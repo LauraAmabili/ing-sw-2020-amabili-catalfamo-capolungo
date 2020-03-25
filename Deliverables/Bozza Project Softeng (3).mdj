@@ -5716,7 +5716,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -256,
+											"left": -240,
 											"height": 13
 										},
 										{
@@ -5726,7 +5726,7 @@
 												"$ref": "AAAAAAFxE4O/HbSQ+aE="
 											},
 											"font": "Arial;13;1",
-											"left": 1421,
+											"left": 1429,
 											"top": 839,
 											"width": 111,
 											"height": 13,
@@ -5740,7 +5740,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -256,
+											"left": -240,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -5753,13 +5753,13 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -256,
+											"left": -240,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1416,
+									"left": 1424,
 									"top": 832,
 									"width": 121,
 									"height": 25,
@@ -5786,7 +5786,7 @@
 										"$ref": "AAAAAAFxE4O/HbSNO4s="
 									},
 									"font": "Arial;13;0",
-									"left": 1416,
+									"left": 1424,
 									"top": 857,
 									"width": 121,
 									"height": 10
@@ -5801,7 +5801,7 @@
 										"$ref": "AAAAAAFxE4O/HbSNO4s="
 									},
 									"font": "Arial;13;0",
-									"left": 1416,
+									"left": 1424,
 									"top": 867,
 									"width": 121,
 									"height": 10
@@ -5817,7 +5817,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -112,
+									"left": -104,
 									"top": -8,
 									"width": 10,
 									"height": 10
@@ -5833,7 +5833,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -112,
+									"left": -104,
 									"top": -8,
 									"width": 10,
 									"height": 10
@@ -5844,7 +5844,7 @@
 							},
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 1416,
+							"left": 1424,
 							"top": 832,
 							"width": 121,
 							"height": 81,
@@ -7862,6 +7862,19 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAFxE51GzRo2GtY="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFxE7k9/y3R8XI=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;18;0",
+							"left": 1376,
+							"top": 944,
+							"width": 353,
+							"height": 49,
+							"text": "Stessi metodi per le restanti classi"
 						}
 					]
 				},
