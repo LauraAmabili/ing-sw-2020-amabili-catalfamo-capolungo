@@ -5,7 +5,7 @@ public class BoardCell {
     private int row;
     private int col;
     private int level;
-    private Worker worker;
+    private boolean worker;
     private boolean dome;
 
     public BoardCell(int row, int col) {
@@ -17,8 +17,12 @@ public class BoardCell {
         this.level = level;
     }
 
-    public void setWorker(Worker worker){
-        this.worker = worker;
+    public void setWorker(){
+        this.worker = false;
+    }
+
+    public void setWorker(boolean statement) {
+        this.worker = statement;
     }
 
     public void setDome(boolean options){
@@ -29,7 +33,7 @@ public class BoardCell {
         return level;
     }
 
-    public Worker getWorker(){
+    public boolean getWorker(){
         return worker;
     }
 
