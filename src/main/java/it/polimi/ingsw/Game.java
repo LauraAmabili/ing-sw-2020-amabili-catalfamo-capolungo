@@ -20,6 +20,10 @@ public class Game {
 
   public Game() {}
 
+  public ArrayList<Player> getOnlinePlayers() {
+    return onlinePlayers;
+  }
+
   public List<String> getNickNames() {
     return nickNames;
   }
@@ -28,11 +32,11 @@ public class Game {
     this.nickNames.add(nickNames);
   }
 
-  public int getid() {
+  public int getId() {
     return id;
   }
 
-  public void setid(int id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -58,12 +62,16 @@ public class Game {
 
     */
 
-  public void addPlayers(ArrayList<Player> activePlayers, Player player){
-    activePlayers.add(player);
+  public void addPlayers(Player player){
+    onlinePlayers.add(player);
   }
 
-  public void delPlayer(ArrayList <Player> activePlayers, Player player){
-    activePlayers.remove(player);
+  public void delPlayer(ArrayList <Player> onlinePlayers, Player player){
+    for(int i = 0; i < player.getWorkerRef().length; i++) {
+      player.getWorkerRef()[i].getCurCell().setWorker(null);
+      player.getWorkerRef()[i] = null;
+    }
+    onlinePlayers.remove(player);
   }
 
   //Aggiungo alla lista di divinità con cui giocare le divinità scelte dal challenger
@@ -86,6 +94,12 @@ public class Game {
       }
       onlinePlayers.add(player);
       list.clear();
+    }
+  }
+
+  public void win(Worker worker) {
+    if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
+        System.out.println(worker.getPlayerWorker().getNickname() + "wins");
     }
   }
 

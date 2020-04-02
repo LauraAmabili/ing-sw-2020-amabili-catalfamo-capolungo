@@ -5,8 +5,13 @@ public class BoardCell {
     private int row;
     private int col;
     private int level;
-    private boolean worker;
+    private Worker worker;
     private boolean dome;
+
+    @Override
+    public String toString(){
+        return "Row: "+row+" Col:"+col+" level: "+level+" Worker: "+worker+" Dome: "+dome;
+    }
 
     public BoardCell(int row, int col) {
         this.row = row;
@@ -17,12 +22,8 @@ public class BoardCell {
         this.level = level;
     }
 
-    public void setWorker(){
-        this.worker = false;
-    }
-
-    public void setWorker(boolean statement) {
-        this.worker = statement;
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 
     public void setDome(boolean options){
@@ -33,7 +34,7 @@ public class BoardCell {
         return level;
     }
 
-    public boolean getWorker(){
+    public Worker getWorker(){
         return worker;
     }
 

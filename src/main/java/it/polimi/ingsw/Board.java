@@ -1,7 +1,5 @@
 package it.polimi.ingsw;
 
-import jdk.internal.org.jline.terminal.Size;
-
 import java.util.ArrayList;
 
 public class Board {
@@ -12,7 +10,7 @@ public class Board {
 
     public void initialiseGrid (){
         for (int i=0; i<grid.length; i++) {
-            for (int j=0; i<grid.length; i++) {
+            for (int j=0; j<grid.length; j++) {
                 grid[i][j] = new BoardCell(i, j);
             }
         }
@@ -21,7 +19,7 @@ public class Board {
     //delete all workers from the game grid and any other references in other classes
     public void deleteWorkers(Player p) {
         for(int i = 0; i < p.getWorkerRef().length; i++) {
-            p.getWorkerRef()[i].getCurCell().setWorker(false);
+            p.getWorkerRef()[i].getCurCell().setWorker(null);
             p.getWorkerRef()[i] = null;
         }
     }
@@ -32,9 +30,9 @@ public class Board {
     }
 
     public void printGrid (){
-        for (int i=0; i<grid.length; i++) {
-            for (int j=0; i<grid.length; i++) {
-                System.out.print(grid[i][j].toString());
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                System.out.print(grid[i][j].toString()+" | ");
             }
             System.out.println();
         }
@@ -50,8 +48,8 @@ public class Board {
         if(c_temp < 0) { c_temp = 0;}
         for (int i = r_temp; i <= b.getRow() + 1 && i < SIZE; i++) {
             for (int j = c_temp; j <= b.getCol() + 1 && j < SIZE; j++) {
-                if (r_temp != b.getRow() && c_temp != b.getCol()) {
-                    adj.add(grid[r_temp][c_temp]);
+                if (!(i == b.getRow() && j == b.getCol())) {
+                    adj.add(grid[i][j]);
                 }
             }
         }
@@ -63,7 +61,7 @@ public class Board {
         ArrayList<BoardCell> b = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if(!grid[i][j].getWorker()) {
+                if(grid[i][j].getWorker() == null) {
                     b.add(grid[i][j]);
                 }
             }
