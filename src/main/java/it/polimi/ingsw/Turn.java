@@ -42,7 +42,7 @@ public class Turn {
   public boolean checkLockPlayer() {
     Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
     for (int i = 0, j = 0; i < workerCurPlayer.length; i++) {
-      if(currentPlayer.checkMovements(workerCurPlayer[i]) == null) {
+      if(currentPlayer.availableCellsToMove(workerCurPlayer[i]) == null) {
         j++;
       }
       if(j == workerCurPlayer.length) {

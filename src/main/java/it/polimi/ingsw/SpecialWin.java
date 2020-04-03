@@ -14,7 +14,7 @@ public class SpecialWin  extends PlayerDecorator{
 	}
 
 	@Override
-	public void build(Worker worker, int row, int col) {
+	public void build(int row, int col, Worker worker) {
 	}
 
 	@Override

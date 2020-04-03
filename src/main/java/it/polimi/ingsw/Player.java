@@ -78,8 +78,7 @@ public class Player implements PlayerInterface {
 
     @Override
     //update the level of the building in the BoardCell
-    public void build(Worker worker, int row, int col) {
-        ArrayList<BoardCell> canBuild = availableCellsToBuild(worker);
+    public void build(int row, int col, Worker worker) {
         BoardCell b = worker.getBoard().getGrid()[row][col];
         if(b.getLevel() == 3) {
             b.setDome(true);
