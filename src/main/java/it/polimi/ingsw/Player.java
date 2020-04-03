@@ -19,6 +19,10 @@ public class Player implements PlayerInterface {
         }
     }
 
+    public void decorate() {
+
+    }
+
     public String getNickname(){
         return nickname;
     }
@@ -43,7 +47,7 @@ public class Player implements PlayerInterface {
 
     // returns an Arraylist of the boardcell where the worker can move
 
-    public ArrayList<BoardCell> checkMovements(Worker worker) {
+    public ArrayList<BoardCell> availableCellsToMove(Worker worker) {
         ArrayList<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n)-> n.getWorker() != null);
         adj.removeIf((n)-> !n.getDome());
@@ -54,12 +58,11 @@ public class Player implements PlayerInterface {
 
 
     //returns an Arraylist of the boardcell where the worker can build
-    public ArrayList<BoardCell> checkBuilding(Worker worker){
+    public ArrayList<BoardCell> availableCellsToBuild(Worker worker){
 
         ArrayList<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n)-> n.getWorker() != null);
         adj.removeIf((n)-> !n.getDome());
-        adj.removeIf((n)-> (worker.getCurCell().getDome()));
         return adj;
 
     }
@@ -67,8 +70,8 @@ public class Player implements PlayerInterface {
     @Override
     //update the location of the worker in Worker && update the presence of the worker in BoardCell
     public void move(int row, int col, Worker worker) {
-        ArrayList<BoardCell> mov = checkMovements(worker);
         worker.getOldCell().setWorker(null);
+        worker.setOldCell(worker.getCurCell());
         worker.setCurCell(worker.getBoard().getGrid()[row][col]);
         worker.getCurCell().setWorker(worker);
     }
@@ -76,7 +79,7 @@ public class Player implements PlayerInterface {
     @Override
     //update the level of the building in the BoardCell
     public void build(Worker worker, int row, int col) {
-        ArrayList<BoardCell> canBuild = checkBuilding(worker);
+        ArrayList<BoardCell> canBuild = availableCellsToBuild(worker);
         BoardCell b = worker.getBoard().getGrid()[row][col];
         if(b.getLevel() == 3) {
             b.setDome(true);
