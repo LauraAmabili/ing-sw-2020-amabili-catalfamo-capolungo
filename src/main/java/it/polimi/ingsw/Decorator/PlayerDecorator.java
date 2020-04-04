@@ -1,4 +1,6 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Decorator;
+
+import it.polimi.ingsw.Model.Worker;
 
 public class PlayerDecorator implements PlayerInterface {
 

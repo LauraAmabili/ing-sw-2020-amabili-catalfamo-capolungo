@@ -1,7 +1,6 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.List;
 
 

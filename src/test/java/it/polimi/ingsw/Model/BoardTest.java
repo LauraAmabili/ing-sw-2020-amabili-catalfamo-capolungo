@@ -1,13 +1,15 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.Board;
+import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Player;
+import it.polimi.ingsw.Model.Worker;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 public class BoardTest {
 
@@ -25,7 +27,6 @@ public class BoardTest {
     @Test
     public void initialiseGrid() {
 
-        Board board = new Board();
         board.initialiseGrid();
         Assert.assertNotNull(board.grid);
     }
@@ -49,7 +50,6 @@ public class BoardTest {
     @Test
     public void adjacentCells() {
         ArrayList<BoardCell> b = new ArrayList<>();
-        ArrayList<BoardCell> adj = new ArrayList<>();
         Worker worker = new Worker(1, board);
         worker.setCurCell(board.getGrid()[3][3]);
         b.add(board.getGrid()[2][2]);

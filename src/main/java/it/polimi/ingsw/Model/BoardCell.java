@@ -1,10 +1,10 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
 
 public class BoardCell {
 
     private int row;
     private int col;
-    private int level;
+    private int level = 0;
     private Worker worker;
     private boolean dome;
 

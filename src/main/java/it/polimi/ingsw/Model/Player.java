@@ -1,4 +1,6 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
+
+import it.polimi.ingsw.Decorator.PlayerInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +87,6 @@ public class Player implements PlayerInterface {
         } else {
             b.setLevel((b.getLevel() + 1));
         }
-
     }
 
     @Override
