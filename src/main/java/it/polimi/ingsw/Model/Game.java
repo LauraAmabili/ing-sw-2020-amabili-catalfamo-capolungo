@@ -27,7 +27,7 @@ public class Game {
     return nickNames;
   }
 
-  public void addNickNames(String nickNames) {
+  public void addNickname(String nickNames) {
     this.nickNames.add(nickNames);
   }
 
@@ -65,7 +65,7 @@ public class Game {
     onlinePlayers.add(player);
   }
 
-  public void delPlayer(ArrayList <Player> onlinePlayers, Player player){
+  public void delPlayer(Player player){
     for(int i = 0; i < player.getWorkerRef().length; i++) {
       player.getWorkerRef()[i].getCurCell().setWorker(null);
       player.getWorkerRef()[i] = null;
@@ -91,7 +91,7 @@ public class Game {
       for(int k = 0; k < player.getWorkerRef().length; k++) {
         player.getWorkerRef()[k].setPlayerWorker(player);
       }
-      onlinePlayers.add(player);
+      addPlayers(player);
       list.clear();
     }
   }
