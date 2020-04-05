@@ -52,7 +52,7 @@ public class Player implements PlayerInterface {
     public ArrayList<BoardCell> availableCellsToMove(Worker worker) {
         ArrayList<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n)-> n.getWorker() != null);
-        adj.removeIf((n)-> !n.getDome());
+        adj.removeIf(BoardCell::getDome);
         adj.removeIf((n)-> (n.getLevel() > worker.getCurCell().getLevel()+1));
         return adj;
     }
@@ -64,7 +64,7 @@ public class Player implements PlayerInterface {
 
         ArrayList<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n)-> n.getWorker() != null);
-        adj.removeIf((n)-> !n.getDome());
+        adj.removeIf(BoardCell::getDome);
         return adj;
 
     }
@@ -72,7 +72,7 @@ public class Player implements PlayerInterface {
     @Override
     //update the location of the worker in Worker && update the presence of the worker in BoardCell
     public void move(int row, int col, Worker worker) {
-        worker.getOldCell().setWorker(null);
+        worker.getCurCell().setWorker(null);
         worker.setOldCell(worker.getCurCell());
         worker.setCurCell(worker.getBoard().getGrid()[row][col]);
         worker.getCurCell().setWorker(worker);

@@ -10,7 +10,7 @@ public class BoardCell {
 
     @Override
     public String toString(){
-        return "Row: "+row+" Col:"+col+" level: "+level+" Worker: "+worker+" Dome: "+dome;
+        return "Row: "+row+" Col: "+col+" level: "+level+" Worker: "+worker+" Dome: "+dome;
     }
 
     public BoardCell(int row, int col) {
