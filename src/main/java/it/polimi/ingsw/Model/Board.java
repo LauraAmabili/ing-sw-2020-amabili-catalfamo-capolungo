@@ -1,6 +1,9 @@
 package it.polimi.ingsw.Model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
@@ -8,7 +11,7 @@ public class Board {
     private static final int SIZE = 5;
     BoardCell[][] grid = new BoardCell[SIZE][SIZE];
 
-    public void initialiseGrid (){
+    public Board() {
         for (int i=0; i<grid.length; i++) {
             for (int j=0; j<grid.length; j++) {
                 grid[i][j] = new BoardCell(i, j);
@@ -17,7 +20,7 @@ public class Board {
     }
 
     //delete all workers from the game grid and any other references in other classes
-    public void deleteWorkers(Player p) {
+    public void deleteWorkers(@NotNull Player p) {
         for(int i = 0; i < p.getWorkerRef().length; i++) {
             p.getWorkerRef()[i].getCurCell().setWorker(null);
             p.getWorkerRef()[i] = null;
@@ -30,18 +33,65 @@ public class Board {
     }
 
     public void printGrid (){
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                System.out.print(grid[i][j].toString()+" | ");
+        System.out.print("                     |");
+        for (int i = 0; i < grid[0].length; i++){
+            System.out.print("          ");
+            System.out.print(i + 1);
+            System.out.print("          |");
+        }
+        System.out.println();
+        for (int i = 0; i < grid.length; i++){
+            System.out.print("---------------------+");
+            for (int j = 0; j < grid[0].length; j++){
+                System.out.print("---------------------+");
+            }
+            System.out.println();
+            System.out.print("          " + (i + 1) + "          |");
+            for (int j = 0; j < grid[0].length; j++) {
+                if(grid[i][j].getWorker() == null) {
+                    for (int k = 0; k < 10; k++) {
+                        System.out.print(" ");
+                    }
+                    if(grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
+                        System.out.print("4");
+                    } else {
+                        System.out.print("3");
+                    }
+                    System.out.print(grid[i][j].getLevel());
+                    if(grid[i][j].getWorker() == null) {
+                        for (int k = 0; k < 10; k++) {
+                            System.out.print(" ");
+                        }
+                    }
+                }
+                else {
+                    int spaces = (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 3)) / 2;
+                    for (int k = 0; k < spaces; k++) {
+                        System.out.print(" ");
+                    }
+                    if (grid[i][j].getWorker() != null) {
+                        System.out.print("W"+grid[i][j].getWorker().getPlayerWorker().getNickname()+"-");
+                    }
+                    if (grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
+                        System.out.print("4");
+                    } else {
+                        System.out.print(grid[i][j].getLevel());
+                    }
+                    for (int k = 0; k < (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 3)) - spaces; k++) {
+                        System.out.print(" ");
+                    }
+                }
+                System.out.print("|");
             }
             System.out.println();
         }
     }
 
-    // given a cell create an ArrayList of all adjacent cells to that.
-    public ArrayList<BoardCell> adjacentCells(BoardCell b) {
+
+    // given a cell create an gridList of all adjacent cells to that.
+    public List<BoardCell> adjacentCells(@NotNull BoardCell b) {
         int r_temp, c_temp;
-        ArrayList<BoardCell> adj = new ArrayList<>();
+        List<BoardCell> adj = new ArrayList<>();
         r_temp = b.getRow() - 1;
         if(r_temp < 0) { r_temp = 0;}
         c_temp = b.getCol() - 1;
@@ -56,9 +106,9 @@ public class Board {
         return adj;
     }
 
-    // create an ArrayList of all cells with no workers on
-    public ArrayList<BoardCell> freeCells() {
-        ArrayList<BoardCell> b = new ArrayList<>();
+    // create an gridList of all cells with no workers on
+    public List<BoardCell> freeCells() {
+        List<BoardCell> b = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if(grid[i][j].getWorker() == null) {

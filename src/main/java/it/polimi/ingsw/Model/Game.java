@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,18 +10,21 @@ public class Game {
 
   //Player
   private int id;
-  private ArrayList<String> nickNames = new ArrayList<>(); //in game players
-  private ArrayList<Player> onlinePlayers = new ArrayList<>();
+  private List<String> nickNames; //in game players
+  private List<Player> onlinePlayers;
   //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
 
   //God
-  private ArrayList<God> godChallengerList;
+  private List<God> godChallengerList;
 
-  public Game() {}
+  public Game() {
+    nickNames = new ArrayList<>();
+    onlinePlayers = new ArrayList<>();
+  }
 
-  public ArrayList<Player> getOnlinePlayers() {
+  public List<Player> getOnlinePlayers() {
     return onlinePlayers;
   }
 
@@ -65,7 +70,7 @@ public class Game {
     onlinePlayers.add(player);
   }
 
-  public void delPlayer(Player player){
+  public void delPlayer(@NotNull Player player){
     for(int i = 0; i < player.getWorkerRef().length; i++) {
       player.getWorkerRef()[i].getCurCell().setWorker(null);
       player.getWorkerRef()[i] = null;
@@ -74,14 +79,13 @@ public class Game {
   }
 
   //Aggiungo alla lista di divinità con cui giocare le divinità scelte dal challenger
-  public void addGod(ArrayList<God> godChallengerList, God chosenGod){
+  public void addGod(@NotNull ArrayList<God> godChallengerList, God chosenGod){
     godChallengerList.add(chosenGod);
   }
 
   public void initialiseMatch() {
     ArrayList<Worker> list = new ArrayList<>();
     Board board = new Board();
-    board.initialiseGrid();
     for (String nickName : nickNames) {
       for (int i = 0; i < 2; i++, counterId++) {
         Worker worker = new Worker(counterId, board);
@@ -96,7 +100,7 @@ public class Game {
     }
   }
 
-  public void win(Worker worker) {
+  public void win(@NotNull Worker worker) {
     if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
         System.out.println(worker.getPlayerWorker().getNickname() + "wins");
     }

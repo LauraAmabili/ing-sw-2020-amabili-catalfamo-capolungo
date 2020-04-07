@@ -1,27 +1,33 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Model.Player;
-import it.polimi.ingsw.Model.Worker;
+import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Model.Turn;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public static void main( String[] args ) {
-        Board board = new Board();
-        ArrayList<Worker> list = new ArrayList<>();
-        Worker worker1 = new Worker(1, board);
-        worker1.setCurCell(board.getGrid()[0][0]);
-        Worker worker2 = new Worker(2, board);
-        worker2.setCurCell(board.getGrid()[0][1]);
-        list.add(worker1);
-        list.add(worker2);
-        Player player = new Player("SuperRexo", list);
-        board.deleteWorkers(player);
+    public static void main( String[] args ) throws IOException {
+
+        Game game = new Game();
+        game.addNickname("SuperRexo");
+        game.addNickname("NotATeen");
+        game.initialiseMatch();
+        Turn turn = new Turn();
+        game.setCurrentTurn(turn);
+        turn.setActivePlayers(game.getOnlinePlayers());
+        turn.getActivePlayers().get(0).getWorkerRef()[0].setCurCell(turn.getActivePlayers().get(0).getWorkerRef()[0].getBoard().getGrid()[1][1]);
+        turn.getActivePlayers().get(0).getWorkerRef()[0].getBoard().getGrid()[1][1].setWorker(turn.getActivePlayers().get(0).getWorkerRef()[0]);
+        turn.getActivePlayers().get(0).getWorkerRef()[0].getBoard().getGrid()[1][1].setLevel(3);
+        turn.getActivePlayers().get(0).getWorkerRef()[1].setCurCell(turn.getActivePlayers().get(0).getWorkerRef()[1].getBoard().getGrid()[4][4]);
+        turn.getActivePlayers().get(0).getWorkerRef()[1].getBoard().getGrid()[4][4].setWorker(turn.getActivePlayers().get(0).getWorkerRef()[1]);
+        turn.getActivePlayers().get(0).getWorkerRef()[1].getBoard().getGrid()[4][4].setLevel(3);
+        turn.getActivePlayers().get(0).getWorkerRef()[1].getBoard().getGrid()[4][4].setDome(true);
+        turn.getActivePlayers().get(1).getWorkerRef()[0].setCurCell(turn.getActivePlayers().get(0).getWorkerRef()[0].getBoard().getGrid()[4][1]);
+        turn.getActivePlayers().get(1).getWorkerRef()[0].getBoard().getGrid()[4][1].setWorker(turn.getActivePlayers().get(1).getWorkerRef()[0]);
+        turn.getActivePlayers().get(0).getWorkerRef()[1].setCurCell(turn.getActivePlayers().get(0).getWorkerRef()[0].getBoard().getGrid()[1][4]);
+        turn.getActivePlayers().get(1).getWorkerRef()[1].getBoard().getGrid()[1][4].setWorker(turn.getActivePlayers().get(1).getWorkerRef()[1]);
+        turn.getActivePlayers().get(1).getWorkerRef()[1].getBoard().printGrid();
     }
 }

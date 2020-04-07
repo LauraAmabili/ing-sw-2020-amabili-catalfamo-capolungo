@@ -1,11 +1,12 @@
 package it.polimi.ingsw.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Turn {
   private int TurnId;
   private Player currentPlayer;
-  private ArrayList<Player> activePlayers;
+  private List<Player> activePlayers;
 
   public int getTurnId() {
     return TurnId;
@@ -23,11 +24,11 @@ public class Turn {
     this.currentPlayer = currentPlayer;
   }
 
-  public ArrayList<Player> getActivePlayers() {
+  public List<Player> getActivePlayers() {
     return activePlayers;
   }
 
-  public void setActivePlayers(ArrayList<Player> activePlayers) {
+  public void setActivePlayers(List<Player> activePlayers) {
     this.activePlayers = activePlayers;
   }
 
@@ -37,18 +38,26 @@ public class Turn {
 
   }
 
+  public boolean checkLockBuild() {
+    Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
+    for (int i = 0; i < workerCurPlayer.length; i++) {
+      if(currentPlayer.availableCellsToBuild(workerCurPlayer[i]) != null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+
   // check if the current player can move at least a worker
   public boolean checkLockPlayer() {
     Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
-    for (int i = 0, j = 0; i < workerCurPlayer.length; i++) {
-      if(currentPlayer.availableCellsToMove(workerCurPlayer[i]) == null) {
-        j++;
-      }
-      if(j == workerCurPlayer.length) {
-        return true;
+    for (int i = 0; i < workerCurPlayer.length; i++) {
+      if(currentPlayer.availableCellsToMove(workerCurPlayer[i]) != null) {
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
 }

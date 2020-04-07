@@ -17,7 +17,6 @@ public class BoardTest {
 
     @Before
     public void setUp() throws Exception {
-        board.initialiseGrid();
     }
 
     @After
@@ -27,7 +26,6 @@ public class BoardTest {
     @Test
     public void initialiseGrid() {
 
-        board.initialiseGrid();
         Assert.assertNotNull(board.grid);
     }
 

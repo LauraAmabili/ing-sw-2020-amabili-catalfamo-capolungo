@@ -20,7 +20,6 @@ public class PlayerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		board.initialiseGrid();
 	}
 
 	@Test

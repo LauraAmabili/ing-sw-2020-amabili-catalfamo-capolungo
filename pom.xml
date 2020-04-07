@@ -9,8 +9,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>AM29</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +36,12 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.jetbrains</groupId>
+          <artifactId>annotations</artifactId>
+          <version>RELEASE</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
 
   <build>
