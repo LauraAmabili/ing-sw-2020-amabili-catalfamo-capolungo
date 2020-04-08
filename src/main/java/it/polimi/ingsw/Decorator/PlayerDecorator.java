@@ -22,7 +22,8 @@ public class PlayerDecorator implements PlayerInterface {
   }
 
   @Override
-  public boolean checkWin(Worker worker) {
+  public boolean checkWin(Worker worker)
+  {
     return false;
 
   }
