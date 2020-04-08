@@ -1,6 +1,9 @@
 package it.polimi.ingsw.Decorator;
 
-import it.polimi.ingsw.Model.Worker;
+
+import it.polimi.ingsw.Model.*;
+
+import java.util.ArrayList;
 
 public class SpecialMove1 extends PlayerDecorator{
 
@@ -9,37 +12,10 @@ public class SpecialMove1 extends PlayerDecorator{
 		super(p);
 	}
 
+	public void decorate(){}
 
-	@Override
-	public void move(int row, int col, Worker worker) {
+	public void move(int row, int col, Worker worker){
 
-	}
-
-	@Override
-	public void build(int row, int col, Worker worker) {
-	}
-
-	@Override
-	public boolean checkWin(Worker worker) {
-		return false;
-
-	}
-
-	/*
-	@Override
-	 */
-	/*
-	public void decorate(){
-		super.decorate();
-		SpecialMove1(row, col, worker);
-	}*/
-	
-	public void SpecialMove1(int row, int col, Worker worker) {
-		/*
-
-		public void move(int row, int col, Worker worker);
-		fai due mosse
-		 */
-	}
+}
 
 }
