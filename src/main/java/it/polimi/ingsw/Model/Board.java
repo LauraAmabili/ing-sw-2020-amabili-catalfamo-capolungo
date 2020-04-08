@@ -32,21 +32,14 @@ public class Board {
         return grid;
     }
 
-    public void printGrid (){
-        System.out.print("                     |");
-        for (int i = 0; i < grid[0].length; i++){
-            System.out.print("          ");
-            System.out.print(i + 1);
-            System.out.print("          |");
-        }
-        System.out.println();
-        for (int i = 0; i < grid.length; i++){
-            System.out.print("---------------------+");
+    public void printGrid () {
+        for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++){
-                System.out.print("---------------------+");
+                System.out.print("+---------------------");
             }
+            System.out.print("+");
             System.out.println();
-            System.out.print("          " + (i + 1) + "          |");
+            System.out.print("|");
             for (int j = 0; j < grid[0].length; j++) {
                 if(grid[i][j].getWorker() == null) {
                     for (int k = 0; k < 10; k++) {
@@ -55,12 +48,11 @@ public class Board {
                     if(grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
                         System.out.print("4");
                     } else {
-                        System.out.print("3");
-                    }
-                    System.out.print(grid[i][j].getLevel());
-                    if(grid[i][j].getWorker() == null) {
-                        for (int k = 0; k < 10; k++) {
-                            System.out.print(" ");
+                        System.out.print(grid[i][j].getLevel());
+                        if (grid[i][j].getWorker() == null) {
+                            for (int k = 0; k < 10; k++) {
+                                System.out.print(" ");
+                            }
                         }
                     }
                 }
@@ -85,6 +77,10 @@ public class Board {
             }
             System.out.println();
         }
+        for (int i = 0; i < grid.length; i++) {
+            System.out.print("+---------------------");
+        }
+        System.out.println("+");
     }
 
 
