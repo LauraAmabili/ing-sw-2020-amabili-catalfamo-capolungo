@@ -71,5 +71,8 @@ public class App
         } while(!a);
         System.out.println(game.getCurrentTurn().getCurrentPlayer()+" Wins");
         game.getBoard().printGrid();
+        /*
+        Il mio lavoro qui è finito!
+         */
     }
 }
