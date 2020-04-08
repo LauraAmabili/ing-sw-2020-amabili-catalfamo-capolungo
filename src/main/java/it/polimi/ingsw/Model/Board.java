@@ -33,52 +33,52 @@ public class Board {
     }
 
     public void printGrid () {
-        for (int i = 0; i < grid.length; i++) {
-            int h = 1;
-            for (int j = 0; j < grid[0].length; j++){
+        for (BoardCell[] boardCells : grid) {
+            for (int j = 0; j < grid[0].length; j++) {
                 System.out.print("+---------------------");
             }
             System.out.print("+");
             System.out.println();
             System.out.print("|");
             for (int j = 0; j < grid[0].length; j++) {
-                if(grid[i][j].getWorker() == null) {
+                if (boardCells[j].getWorker() == null) {
                     for (int k = 0; k < 10; k++) {
                         System.out.print(" ");
                     }
-                    if(grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
+                    if (boardCells[j].getLevel() == 3 && boardCells[j].getDome()) {
                         System.out.print("4");
                     } else {
-                        System.out.print(grid[i][j].getLevel());
-                        if (grid[i][j].getWorker() == null) {
+                        System.out.print(boardCells[j].getLevel());
+                        if (boardCells[j].getWorker() == null) {
                             for (int k = 0; k < 10; k++) {
                                 System.out.print(" ");
                             }
                         }
                     }
-                }
-                else {
-                    int spaces = (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
+                } else {
+                    int spaces = (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
                     for (int k = 0; k < spaces; k++) {
                         System.out.print(" ");
                     }
-                    if (grid[i][j].getWorker() != null) {
-                        System.out.print("W"+h+grid[i][j].getWorker().getPlayerWorker().getNickname()+"-");
-                        h++;
+                    if (boardCells[j].getWorker() != null) {
+                        for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().length; g++) {
+                            if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef()[g] == boardCells[j].getWorker()) {
+                                System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
+                            }
+                        }
                     }
-                    if (grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
+                    if (boardCells[j].getLevel() == 3 && boardCells[j].getDome()) {
                         System.out.print("4");
                     } else {
-                        System.out.print(grid[i][j].getLevel());
+                        System.out.print(boardCells[j].getLevel());
                     }
-                    for (int k = 0; k < (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
+                    for (int k = 0; k < (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
                         System.out.print(" ");
                     }
                 }
                 System.out.print("|");
             }
             System.out.println();
-            h = 1;
         }
         for (int i = 0; i < grid.length; i++) {
             System.out.print("+---------------------");

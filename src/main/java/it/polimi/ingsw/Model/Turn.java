@@ -49,8 +49,8 @@ public class Turn {
 
   public boolean checkLockBuild() {
     Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
-    for (int i = 0; i < workerCurPlayer.length; i++) {
-      if(currentPlayer.availableCellsToBuild(workerCurPlayer[i]) != null) {
+    for (Worker worker : workerCurPlayer) {
+      if (currentPlayer.availableCellsToBuild(worker) != null) {
         return false;
       }
     }
@@ -61,8 +61,8 @@ public class Turn {
   // check if the current player can move at least a worker
   public boolean checkLockPlayer() {
     Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
-    for (int i = 0; i < workerCurPlayer.length; i++) {
-      if(currentPlayer.availableCellsToMove(workerCurPlayer[i]) != null) {
+    for (Worker worker : workerCurPlayer) {
+      if (currentPlayer.availableCellsToMove(worker) != null) {
         return false;
       }
     }
