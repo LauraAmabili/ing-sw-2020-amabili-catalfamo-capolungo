@@ -53,5 +53,4 @@ public class Worker {
         this.board = board;
     }
 
-
 }
