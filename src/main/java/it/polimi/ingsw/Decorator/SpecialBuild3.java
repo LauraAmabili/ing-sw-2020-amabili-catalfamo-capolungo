@@ -5,6 +5,7 @@ import it.polimi.ingsw.Model.*;
 
 import java.util.ArrayList;
 
+//Hephaestus
 public class SpecialBuild3 extends PlayerDecorator{
 
     // constructor
@@ -13,11 +14,11 @@ public class SpecialBuild3 extends PlayerDecorator{
     }
 
     public void decorate(){}
-
+    
     public void build(int row, int col, Worker worker) {
         //normal build
-        ArrayList<BoardCell> canBuild = (ArrayList<BoardCell>) worker.getPlayerWorker().availableCellsToBuild(worker);
-        BoardCell b = worker.getBoard().getGrid()[row][col];
+    	
+    	BoardCell b = worker.getBoard().getGrid()[row][col];  
         if(b.getLevel() == 3) {
             b.setDome(true);
         } else {

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Decorator;
 
+//Minotaur - push opponent's worker
 
 import it.polimi.ingsw.Model.*;
 
@@ -15,7 +16,19 @@ public class SpecialMove3 extends PlayerDecorator{
     public void decorate(){}
 
     public void move(int row, int col, Worker worker){
+        worker.getCurCell().setWorker(null);
+        worker.setOldCell(worker.getCurCell());
+        worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+        worker.getCurCell().setWorker(worker);
 
+        // effect activation call specialEffect()
+
+    }
+
+    public void specialEffect(Worker worker, Worker opponentWorker, int row, int col)
+
+    {
+        move(row, col, opponentWorker);
     }
 
 }

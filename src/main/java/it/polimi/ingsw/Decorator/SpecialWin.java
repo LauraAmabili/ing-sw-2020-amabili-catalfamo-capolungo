@@ -13,7 +13,8 @@ public class SpecialWin extends PlayerDecorator{
 	public void decorate(){}
 
 	public boolean checkWin(Worker worker) {
-		return false;
+		return (((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3) ||
+				(worker.getOldCell().getLevel() - worker.getCurCell().getLevel() >= 2)
+				);
 	}
-
 }
