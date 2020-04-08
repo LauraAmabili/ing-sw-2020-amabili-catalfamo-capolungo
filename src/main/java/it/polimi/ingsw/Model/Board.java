@@ -34,6 +34,7 @@ public class Board {
 
     public void printGrid () {
         for (int i = 0; i < grid.length; i++) {
+            int h = 1;
             for (int j = 0; j < grid[0].length; j++){
                 System.out.print("+---------------------");
             }
@@ -57,30 +58,33 @@ public class Board {
                     }
                 }
                 else {
-                    int spaces = (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 3)) / 2;
+                    int spaces = (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
                     for (int k = 0; k < spaces; k++) {
                         System.out.print(" ");
                     }
                     if (grid[i][j].getWorker() != null) {
-                        System.out.print("W"+grid[i][j].getWorker().getPlayerWorker().getNickname()+"-");
+                        System.out.print("W"+h+grid[i][j].getWorker().getPlayerWorker().getNickname()+"-");
+                        h++;
                     }
                     if (grid[i][j].getLevel() == 3 && grid[i][j].getDome()) {
                         System.out.print("4");
                     } else {
                         System.out.print(grid[i][j].getLevel());
                     }
-                    for (int k = 0; k < (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 3)) - spaces; k++) {
+                    for (int k = 0; k < (21 -(grid[i][j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
                         System.out.print(" ");
                     }
                 }
                 System.out.print("|");
             }
             System.out.println();
+            h = 1;
         }
         for (int i = 0; i < grid.length; i++) {
             System.out.print("+---------------------");
         }
         System.out.println("+");
+
     }
 
 

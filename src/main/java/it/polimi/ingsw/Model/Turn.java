@@ -8,6 +8,10 @@ public class Turn {
   private Player currentPlayer;
   private List<Player> activePlayers;
 
+  public Turn(List<Player> list) {
+    activePlayers = list;
+  }
+
   public int getTurnId() {
     return TurnId;
   }
@@ -33,9 +37,14 @@ public class Turn {
   }
 
   public void nextTurn() {
+    int index = activePlayers.size() - 1;
+    int i = activePlayers.indexOf(currentPlayer);
+    if(index == i) {
+      currentPlayer = activePlayers.get(0);
+    } else {
+      currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
+    }
     TurnId++;
-    currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
-
   }
 
   public boolean checkLockBuild() {

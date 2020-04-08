@@ -111,7 +111,7 @@ public class Game {
     setBoard(board);
     for (String nickName : nickNames) {
       for (int i = 0; i < 2; i++, counterId++) {
-        Worker worker = new Worker(counterId, board);
+        Worker worker = new Worker(counterId, this.board);
         list.add(worker);
       }
       Player player = new Player(nickName, list);
