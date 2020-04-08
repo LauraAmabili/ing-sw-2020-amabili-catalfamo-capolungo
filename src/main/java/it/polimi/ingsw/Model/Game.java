@@ -15,6 +15,7 @@ public class Game {
   //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
+  private Board board;
 
   //God
   private List<God> godChallengerList;
@@ -22,6 +23,14 @@ public class Game {
   public Game() {
     nickNames = new ArrayList<>();
     onlinePlayers = new ArrayList<>();
+  }
+
+  public Board getBoard() {
+    return board;
+  }
+
+  public void setBoard(Board board) {
+    this.board = board;
   }
 
   public List<Player> getOnlinePlayers() {
@@ -78,6 +87,19 @@ public class Game {
     onlinePlayers.remove(player);
   }
 
+  public boolean addWorker(int row, int col, Worker worker) {
+    List<BoardCell> list;
+    list = worker.getBoard().freeCells();
+    if(list.contains(worker.getBoard().getGrid()[row][col])) {
+      worker.getBoard().getGrid()[row][col].setWorker(worker);
+      worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+      return true;
+    } else {
+      System.out.println("Cell is already occupied");
+    }
+    return false;
+  }
+
   //Aggiungo alla lista di divinità con cui giocare le divinità scelte dal challenger
   public void addGod(@NotNull ArrayList<God> godChallengerList, God chosenGod){
     godChallengerList.add(chosenGod);
@@ -86,6 +108,7 @@ public class Game {
   public void initialiseMatch() {
     ArrayList<Worker> list = new ArrayList<>();
     Board board = new Board();
+    setBoard(board);
     for (String nickName : nickNames) {
       for (int i = 0; i < 2; i++, counterId++) {
         Worker worker = new Worker(counterId, board);
