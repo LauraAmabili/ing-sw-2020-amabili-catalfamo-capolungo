@@ -24,7 +24,7 @@ public class SpecialBuild2 extends PlayerDecorator{
 	//if yes, set wantSecondBuild to true 
 	//and assign values to row2, col2
 	
-	public void build(int row, int col, Worker worker) {
+	public boolean build(int row, int col, Worker worker) {
 		
 		 BoardCell b = worker.getBoard().getGrid()[row][col];
 	        if(b.getLevel() == 3) {
@@ -33,7 +33,7 @@ public class SpecialBuild2 extends PlayerDecorator{
 	            b.setLevel((b.getLevel() + 1));
 	        }
 	        
-	        if(wantSecondBuild == true) {
+	        if(wantSecondBuild) {
 	        	BoardCell b_2 = worker.getBoard().getGrid()[row2][col2];
 	        	if(b_2 != b) {
 	        		if(b_2.getLevel() == 3) {
@@ -43,6 +43,7 @@ public class SpecialBuild2 extends PlayerDecorator{
 	    	        }
 	        	}
 	        }
+		return false;
 	}
 
 }

@@ -16,7 +16,7 @@ public class SpecialMove1 extends PlayerDecorator{
 
 	public void decorate(){}
 
-	public void move(int row, int col, @NotNull Worker worker) {
+	public boolean move(int row, int col, @NotNull Worker worker) {
 		worker.getCurCell().setWorker(null);
 		worker.setOldCell(worker.getCurCell());
 
@@ -26,6 +26,7 @@ public class SpecialMove1 extends PlayerDecorator{
 		// otherwise
 		worker.setCurCell(worker.getBoard().getGrid()[row][col]);
 		worker.getCurCell().setWorker(worker);
+		return false;
 	}
 
 	//swap workers, workers order does not matter

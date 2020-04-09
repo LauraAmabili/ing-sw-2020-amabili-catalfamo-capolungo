@@ -47,26 +47,14 @@ public class Turn {
     TurnId++;
   }
 
-  public boolean checkLockBuild() {
-    Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
-    for (Worker worker : workerCurPlayer) {
-      if (currentPlayer.availableCellsToBuild(worker) != null) {
-        return false;
-      }
-    }
-    return true;
+  public boolean checkLockBuild(Worker worker) {
+    return getCurrentPlayer().availableCellsToBuild(worker).size() == 0;
   }
 
 
   // check if the current player can move at least a worker
-  public boolean checkLockPlayer() {
-    Worker[] workerCurPlayer = currentPlayer.getWorkerRef();
-    for (Worker worker : workerCurPlayer) {
-      if (currentPlayer.availableCellsToMove(worker) != null) {
-        return false;
-      }
-    }
-    return true;
+  public boolean checkLockPlayer(Worker worker) {
+    return getCurrentPlayer().availableCellsToMove(worker).size() == 0;
   }
 
 }

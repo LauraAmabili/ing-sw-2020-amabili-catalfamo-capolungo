@@ -15,14 +15,14 @@ public class SpecialMove2 extends PlayerDecorator{
 
 	public void decorate(){}
 
-	public void move(int row, int col, Worker worker){
+	public boolean move(int row, int col, Worker worker){
 		worker.getCurCell().setWorker(null);
 		worker.setOldCell(worker.getCurCell());
 		worker.setCurCell(worker.getBoard().getGrid()[row][col]);
 		worker.getCurCell().setWorker(worker);
 
 		// effect activation call specialEffect()
-
+		return false;
 	}
 
 	public void specialEffect(BoardCell forbiddenCell, int row, int col, Worker worker)

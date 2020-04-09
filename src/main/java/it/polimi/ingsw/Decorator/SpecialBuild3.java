@@ -15,7 +15,7 @@ public class SpecialBuild3 extends PlayerDecorator{
 
     public void decorate(){}
     
-    public void build(int row, int col, Worker worker) {
+    public boolean build(int row, int col, Worker worker) {
         //normal build
     	
     	BoardCell b = worker.getBoard().getGrid()[row][col];  
@@ -28,6 +28,7 @@ public class SpecialBuild3 extends PlayerDecorator{
         if(b.getLevel() != 3) {
             b.setLevel(b.getLevel() + 1);
         }
+        return false;
     }
 
 }

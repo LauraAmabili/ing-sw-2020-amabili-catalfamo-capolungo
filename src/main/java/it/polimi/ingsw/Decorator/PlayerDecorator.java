@@ -13,12 +13,13 @@ public class PlayerDecorator implements PlayerInterface {
   }
 
   @Override
-  public void move(int row, int col, Worker worker) {
-
+  public boolean move(int row, int col, Worker worker) {
+    return false;
   }
 
   @Override
-  public void build(int row, int col, Worker worker) {
+  public boolean build(int row, int col, Worker worker) {
+    return false;
   }
 
   @Override

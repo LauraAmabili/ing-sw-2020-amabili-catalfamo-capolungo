@@ -71,22 +71,30 @@ public class Player implements PlayerInterface {
 
     @Override
     //update the location of the worker in Worker && update the presence of the worker in BoardCell
-    public void move(int row, int col, @NotNull Worker worker) {
-        worker.getCurCell().setWorker(null);
-        worker.setOldCell(worker.getCurCell());
-        worker.setCurCell(worker.getBoard().getGrid()[row][col]);
-        worker.getCurCell().setWorker(worker);
+    public boolean move(int row, int col, @NotNull Worker worker) {
+        if(availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+            worker.getCurCell().setWorker(null);
+            worker.setOldCell(worker.getCurCell());
+            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            worker.getCurCell().setWorker(worker);
+            return true;
+        }
+        return false;
     }
 
     @Override
     //update the level of the building in the BoardCell
-    public void build(int row, int col, @NotNull Worker worker) {
-        BoardCell b = worker.getBoard().getGrid()[row][col];
-        if(b.getLevel() == 3) {
-            b.setDome(true);
-        } else {
-            b.setLevel((b.getLevel() + 1));
+    public boolean build(int row, int col, @NotNull Worker worker) {
+        if(availableCellsToBuild(worker).contains(worker.getBoard().getGrid()[row][col])) {
+            BoardCell b = worker.getBoard().getGrid()[row][col];
+            if(b.getLevel() == 3) {
+                b.setDome(true);
+            } else {
+                b.setLevel((b.getLevel() + 1));
+            }
+            return true;
         }
+        return false;
     }
 
     @Override
