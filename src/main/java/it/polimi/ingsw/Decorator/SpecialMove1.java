@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpecialMove1 extends PlayerDecorator{
 
@@ -38,5 +39,7 @@ public class SpecialMove1 extends PlayerDecorator{
 		workerA.setCurCell(B);
 		workerB.setCurCell(A);
 	}
+
+	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
 
 }

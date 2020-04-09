@@ -1,6 +1,10 @@
 package it.polimi.ingsw.Decorator;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Worker;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public interface PlayerInterface {
 
@@ -10,4 +14,9 @@ public interface PlayerInterface {
 
   public boolean checkWin(Worker worker);
 
-}
+  public List<BoardCell> availableCellsToMove(@NotNull Worker worker);
+
+  public List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
+
+
+  }

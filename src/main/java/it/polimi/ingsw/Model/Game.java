@@ -125,7 +125,7 @@ public class Game {
 
   public void win(@NotNull Worker worker) {
     if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
-        System.out.println(worker.getPlayerWorker().getNickname() + "wins");
+      System.out.println(worker.getPlayerWorker().getNickname() + "wins");
     }
   }
 

@@ -3,8 +3,10 @@ package it.polimi.ingsw.Decorator;
 //Minotaur - push opponent's worker
 
 import it.polimi.ingsw.Model.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpecialMove3 extends PlayerDecorator{
 
@@ -30,5 +32,8 @@ public class SpecialMove3 extends PlayerDecorator{
     {
         move(row, col, opponentWorker);
     }
+
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
+
 
 }

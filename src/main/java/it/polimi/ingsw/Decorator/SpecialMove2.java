@@ -3,8 +3,10 @@ package it.polimi.ingsw.Decorator;
 //Artemis - Move twice
 
 import it.polimi.ingsw.Model.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpecialMove2 extends PlayerDecorator{
 
@@ -36,5 +38,8 @@ public class SpecialMove2 extends PlayerDecorator{
 		}
 
 	}
+
+	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
+
 
 }
