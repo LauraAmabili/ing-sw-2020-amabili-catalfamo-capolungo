@@ -99,9 +99,7 @@ public class Player implements PlayerInterface {
 
     @Override
     public boolean checkWin(@NotNull Worker worker) {
-
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
-
     }
 
     public boolean buildTwice(){
@@ -110,8 +108,6 @@ public class Player implements PlayerInterface {
 
     public boolean buildTwice(int row, int col){
         return false;
-
     };
-
 
 }
