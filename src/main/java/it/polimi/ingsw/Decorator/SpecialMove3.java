@@ -33,7 +33,8 @@ public class SpecialMove3 extends PlayerDecorator{
         move(row, col, opponentWorker);
     }
 
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
-
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
+        return null;
+    };
 
 }

@@ -7,10 +7,10 @@ import it.polimi.ingsw.Model.*;
 import java.util.ArrayList;
 
 //Atlas
-public class SpecialBuild1 extends PlayerDecorator{
+public class SpecialBuild_DomeAnyLevel extends PlayerDecorator{
 
 	// constructor
-	public SpecialBuild1(PlayerInterface p){
+	public SpecialBuild_DomeAnyLevel(PlayerInterface p){
 		super(p);
 	}
 

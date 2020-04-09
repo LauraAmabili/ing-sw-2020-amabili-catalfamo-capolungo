@@ -104,7 +104,14 @@ public class Player implements PlayerInterface {
 
     }
 
+    public boolean buildTwice(){
+        return false;
+    };
 
+    public boolean buildTwice(int row, int col){
+        return false;
+
+    };
 
 
 }

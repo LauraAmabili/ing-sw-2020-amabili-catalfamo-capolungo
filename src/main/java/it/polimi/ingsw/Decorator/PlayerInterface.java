@@ -8,15 +8,20 @@ import java.util.List;
 
 public interface PlayerInterface {
 
-  public boolean move(int row, int col, Worker worker);
+  void decorate();
 
-  public boolean build(int row, int col, Worker worker);
+  boolean move(int row, int col, Worker worker);
 
-  public boolean checkWin(Worker worker);
+  boolean build(int row, int col, @NotNull Worker worker);
 
-  public List<BoardCell> availableCellsToMove(@NotNull Worker worker);
+  boolean checkWin(Worker worker);
 
-  public List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
+  List<BoardCell> availableCellsToMove(@NotNull Worker worker);
 
+  List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
 
-  }
+  boolean buildTwice();
+
+  boolean buildTwice(int row, int col);
+
+}

@@ -39,7 +39,8 @@ public class SpecialMove2 extends PlayerDecorator{
 
 	}
 
-	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
-
+	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
+		return null;
+	};
 
 }

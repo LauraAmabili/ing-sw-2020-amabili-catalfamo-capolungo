@@ -8,6 +8,10 @@ import java.util.List;
 
 public class PlayerDecorator implements PlayerInterface {
 
+  public void decorate() {
+    this.player.decorate();
+  }
+
   // attributes
   protected PlayerInterface player;
 
@@ -16,24 +20,33 @@ public class PlayerDecorator implements PlayerInterface {
     this.player = p;
   }
 
-  @Override
-  public boolean move(int row, int col, Worker worker) {
+
+  public boolean move(int row, int col, Worker worker){
     return false;
+  };
+
+  public boolean build(int row, int col, @NotNull Worker worker){
+    return false;
+  };
+
+  public boolean checkWin(Worker worker){
+    return false;
+  };
+
+  public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
+    return null;
+  };
+
+  public List<BoardCell> availableCellsToBuild(@NotNull Worker worker){
+    return null;
   }
 
-  @Override
-  public boolean build(int row, int col, Worker worker) {return false;}
+  public boolean buildTwice(){return false;};
 
-  @Override
-  public boolean checkWin(Worker worker)
-  {
-    return false;
-
-  }
-
-  public List<BoardCell> availableCellsToMove(@NotNull Worker worker){};
-
-  public List<BoardCell> availableCellsToBuild(@NotNull Worker worker){};
+  public boolean buildTwice(int row, int col){return false;};
 
 
+
+
+  ;
 }
