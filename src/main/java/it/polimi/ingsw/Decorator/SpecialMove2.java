@@ -5,10 +5,9 @@ package it.polimi.ingsw.Decorator;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialMove2 extends PlayerDecorator{
+public class SpecialMove2 extends PlayerDecorator {
 
 	// constructor
 	public SpecialMove2(PlayerInterface p){
@@ -40,7 +39,11 @@ public class SpecialMove2 extends PlayerDecorator{
 	}
 
 	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
-		return null;
+		List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+		adj.removeIf((n)-> n.getWorker() != null);
+		adj.removeIf(BoardCell::getDome);
+		return adj;
+
 	};
 
 }

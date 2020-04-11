@@ -13,6 +13,8 @@ public class Player implements PlayerInterface {
 
     private God activeCard;
 
+
+
     public Player(String nickname, @NotNull List<Worker> list){
         this.nickname = nickname;
         this.workerRef = new Worker[list.size()];
@@ -101,6 +103,7 @@ public class Player implements PlayerInterface {
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
+
 
     public boolean buildTwice(){
         return false;

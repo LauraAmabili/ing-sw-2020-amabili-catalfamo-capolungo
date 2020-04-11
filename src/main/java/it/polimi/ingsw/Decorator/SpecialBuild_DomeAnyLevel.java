@@ -4,10 +4,8 @@ package it.polimi.ingsw.Decorator;
 
 import it.polimi.ingsw.Model.*;
 
-import java.util.ArrayList;
-
 //Atlas
-public class SpecialBuild_DomeAnyLevel extends PlayerDecorator{
+public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
 	// constructor
 	public SpecialBuild_DomeAnyLevel(PlayerInterface p){

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Decorator.SpecialMove1;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -114,13 +116,27 @@ public class Game {
         Worker worker = new Worker(counterId, this.board);
         list.add(worker);
       }
+
       Player player = new Player(nickName, list);
+
       for(int k = 0; k < player.getWorkerRef().length; k++) {
         player.getWorkerRef()[k].setPlayerWorker(player);
       }
       addPlayers(player);
       list.clear();
     }
+  }
+
+
+  public void DecoratePlayer (Player player, God god) {
+
+    player.setActiveCard(god);
+
+    if(god.getGodName().equals("Apollo")){
+      PlayerInterface pApollo = new SpecialMove1(player);
+    }
+
+
   }
 
   public void win(@NotNull Worker worker) {

@@ -1,19 +1,25 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Decorator.PlayerDecorator;
+import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Decorator.SpecialMove1;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Turn;
 import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Worker;
 
-import java.util.List;
-import java.util.Random;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class App 
 {
-    public static void main( String[] args ) {
+
+
+
+
+    public static void main(String[] args ) {
+
+
+
 
         Scanner input = new Scanner (System.in);
         boolean a;
