@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Decorator.SpecialMove1;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ public class Game {
   //Player
   private int id;
   private List<String> nickNames; //in game players
-  private List<Player> onlinePlayers;
+  private List<PlayerInterface> onlinePlayers;
   //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
@@ -33,7 +35,7 @@ public class Game {
     this.board = board;
   }
 
-  public List<Player> getOnlinePlayers() {
+  public List<PlayerInterface> getOnlinePlayers() {
     return onlinePlayers;
   }
 
@@ -75,11 +77,11 @@ public class Game {
 
     */
 
-  public void addPlayers(Player player){
+  public void addPlayers(PlayerInterface player){
     onlinePlayers.add(player);
   }
 
-  public void delPlayer(@NotNull Player player){
+  public void delPlayer(@NotNull PlayerInterface player){
     for(int i = 0; i < player.getWorkerRef().length; i++) {
       player.getWorkerRef()[i].getCurCell().setWorker(null);
       player.getWorkerRef()[i] = null;
@@ -106,7 +108,7 @@ public class Game {
   }
 
   public void initialiseMatch() {
-    ArrayList<Worker> list = new ArrayList<>();
+    List<Worker> list = new ArrayList<>();
     Board board = new Board();
     setBoard(board);
     for (String nickName : nickNames) {
@@ -114,13 +116,27 @@ public class Game {
         Worker worker = new Worker(counterId, this.board);
         list.add(worker);
       }
+
       Player player = new Player(nickName, list);
+
       for(int k = 0; k < player.getWorkerRef().length; k++) {
         player.getWorkerRef()[k].setPlayerWorker(player);
       }
       addPlayers(player);
       list.clear();
     }
+  }
+
+
+  public void DecoratePlayer (Player player, God god) {
+
+    player.setActiveCard(god);
+
+    if(god.getGodName().equals("Apollo")){
+      PlayerInterface pApollo = new SpecialMove1(player);
+    }
+
+
   }
 
   public void win(@NotNull Worker worker) {

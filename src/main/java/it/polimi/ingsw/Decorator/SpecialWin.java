@@ -3,7 +3,7 @@ package it.polimi.ingsw.Decorator;
 
 import it.polimi.ingsw.Model.*;
 
-public class SpecialWin extends PlayerDecorator{
+public class SpecialWin extends PlayerDecorator {
 
 	// constructor
 	public SpecialWin(PlayerInterface p){

@@ -1,9 +1,11 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Decorator.PlayerInterface;
+
 public class Worker {
 
     private int idWorker;
-    private Player playerWorker;
+    private PlayerInterface playerWorker;
     private BoardCell oldCell;
     private BoardCell curCell;
     private Board board;
@@ -17,7 +19,7 @@ public class Worker {
         return idWorker;
     }
 
-    public Player getPlayerWorker() {
+    public PlayerInterface getPlayerWorker() {
         return playerWorker;
     }
 

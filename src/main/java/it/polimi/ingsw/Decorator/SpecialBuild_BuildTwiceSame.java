@@ -4,10 +4,8 @@ package it.polimi.ingsw.Decorator;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-
 //Hephaestus
-public class SpecialBuild_BuildTwiceSame extends PlayerDecorator{
+public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
     int usedRow;
     int usedCol;

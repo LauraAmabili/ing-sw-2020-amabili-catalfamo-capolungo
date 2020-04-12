@@ -1,14 +1,16 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Decorator.PlayerInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Turn {
   private int TurnId;
-  private Player currentPlayer;
-  private List<Player> activePlayers;
+  private PlayerInterface currentPlayer;
+  private List<PlayerInterface> activePlayers;
 
-  public Turn(List<Player> list) {
+  public Turn(List<PlayerInterface> list) {
     activePlayers = list;
   }
 
@@ -20,19 +22,19 @@ public class Turn {
     TurnId = turnId;
   }
 
-  public Player getCurrentPlayer() {
+  public PlayerInterface getCurrentPlayer() {
     return currentPlayer;
   }
 
-  public void setCurrentPlayer(Player currentPlayer) {
+  public void setCurrentPlayer(PlayerInterface currentPlayer) {
     this.currentPlayer = currentPlayer;
   }
 
-  public List<Player> getActivePlayers() {
+  public List<PlayerInterface> getActivePlayers() {
     return activePlayers;
   }
 
-  public void setActivePlayers(List<Player> activePlayers) {
+  public void setActivePlayers(List<PlayerInterface> activePlayers) {
     this.activePlayers = activePlayers;
   }
 

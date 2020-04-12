@@ -5,10 +5,9 @@ package it.polimi.ingsw.Decorator;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialMove3 extends PlayerDecorator{
+public class SpecialMove3 extends PlayerDecorator {
 
     // constructor
     public SpecialMove3(PlayerInterface p){
@@ -33,8 +32,15 @@ public class SpecialMove3 extends PlayerDecorator{
         move(row, col, opponentWorker);
     }
 
+
+    //worker can move everywhere even if there is a worker there
+    //TODO: switched worker must update his position
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
-        return null;
+
+        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        adj.removeIf(BoardCell::getDome);
+        return adj;
+
     };
 
 }

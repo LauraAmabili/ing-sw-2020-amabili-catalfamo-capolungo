@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Decorator.PlayerInterface;
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Player;
@@ -33,8 +34,8 @@ public class GameTest {
         game.initialiseMatch();
         BoardCell b1 = new BoardCell(0, 0);
         BoardCell b2 = new BoardCell(0, 1);
-        Player player1 = game.getOnlinePlayers().get(0);
-        Player player2 = game.getOnlinePlayers().get(1);
+        PlayerInterface player1 = game.getOnlinePlayers().get(0);
+        PlayerInterface player2 = game.getOnlinePlayers().get(1);
         b1.setWorker(player1.getWorkerRef()[0]);
         b2.setWorker(player1.getWorkerRef()[1]);
         player1.getWorkerRef()[0].setCurCell(b1);

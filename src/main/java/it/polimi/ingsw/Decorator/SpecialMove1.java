@@ -5,43 +5,44 @@ package it.polimi.ingsw.Decorator;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialMove1 extends PlayerDecorator{
+public class SpecialMove1 extends PlayerDecorator {
+
+	protected PlayerInterface player;
 
 	// constructor
-	public SpecialMove1(PlayerInterface p){
-		super(p);
+	public SpecialMove1(PlayerInterface player){
+		super(player);
 	}
 
-	public void decorate(){}
-
+	@Override
 	public boolean move(int row, int col, @NotNull Worker worker) {
-		worker.getCurCell().setWorker(null);
-		worker.setOldCell(worker.getCurCell());
-
-		// effect activation call specialEffect()
-
-
-		// otherwise
-		worker.setCurCell(worker.getBoard().getGrid()[row][col]);
-		worker.getCurCell().setWorker(worker);
+		if(availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+			if (worker.getBoard().getGrid()[row][col].getWorker() != null) {
+				worker.getCurCell().setWorker(worker.getBoard().getGrid()[row][col].getWorker());
+				worker.getBoard().getGrid()[row][col].getWorker().setCurCell(worker.getCurCell());
+			} else {
+				worker.getCurCell().setWorker(null);
+			}
+			worker.setOldCell(worker.getCurCell());
+			worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+			worker.getCurCell().setWorker(worker);
+			return true;
+		}
 		return false;
 	}
 
-	//swap workers, workers order does not matter
-	public void specialEffect(Worker workerA, Worker workerB){
-		BoardCell A = workerA.getCurCell();
-		BoardCell B = workerA.getCurCell();
-		workerA.setOldCell(A);
-		workerB.setOldCell(B);
-		workerA.setCurCell(B);
-		workerB.setCurCell(A);
-	}
 
+	//worker can move in every cells he wants even if there are other workers
+	@Override
 	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
-		return null;
-	};
+
+		List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+		adj.removeIf(BoardCell::getDome);
+		adj.removeIf((n)-> (n.getLevel() > worker.getCurCell().getLevel()+1));
+		return adj;
+
+	}
 
 }
