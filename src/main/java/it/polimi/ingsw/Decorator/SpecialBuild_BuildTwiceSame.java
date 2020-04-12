@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Decorator;
 
-
+//TODO: it doesn't work
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 

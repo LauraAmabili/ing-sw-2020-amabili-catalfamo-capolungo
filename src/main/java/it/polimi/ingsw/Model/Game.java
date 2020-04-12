@@ -1,11 +1,12 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
-import it.polimi.ingsw.Decorator.SpecialMove1;
+import it.polimi.ingsw.Decorator.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Game {
@@ -26,7 +27,6 @@ public class Game {
     nickNames = new ArrayList<>();
     onlinePlayers = new ArrayList<>();
   }
-
   public Board getBoard() {
     return board;
   }
@@ -144,6 +144,8 @@ public class Game {
       System.out.println(worker.getPlayerWorker().getNickname() + "wins");
     }
   }
+
+
 
 }
 

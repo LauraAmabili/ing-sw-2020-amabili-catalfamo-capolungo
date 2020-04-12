@@ -23,17 +23,30 @@ public class App
         game.addNickname("SuperRexo");
         game.addNickname("NotATeen");
         game.initialiseMatch();
-        game.getOnlinePlayers().get(0).setActiveCard(apollo);
-        game.getOnlinePlayers().get(1).setActiveCard(atlas);
         Map<String, PlayerInterface> god = new HashMap<>();
         god.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(game.getOnlinePlayers().get(0)))));
         god.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(game.getOnlinePlayers().get(1)))));
-        game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
-        game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
+
+
+
         Turn turn = new Turn(game.getOnlinePlayers());
         game.setCurrentTurn(turn);
         Random rand = new Random();
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
+        for(int i=0; i < game.getOnlinePlayers().size(); i++){
+            System.out.println("Scegli divinità per : " + game.getCurrentTurn().getCurrentPlayer().getNickname());
+            String NomeGod = input.nextLine();
+            God ciao = new God();
+            ciao.setGodName(NomeGod);
+            game.getOnlinePlayers().get(i).setActiveCard(ciao);
+            game.getCurrentTurn().nextTurn();
+        }
+
+        //game.getOnlinePlayers().get(0).setActiveCard(apollo);
+        //game.getOnlinePlayers().get(1).setActiveCard(atlas);
+
+        game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
+        game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
         game.getBoard().printGrid();
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             System.out.println(game.getCurrentTurn().getCurrentPlayer().getNickname()+"'s turn:");
