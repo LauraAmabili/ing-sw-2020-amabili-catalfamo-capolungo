@@ -1,35 +1,35 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Decorator.PlayerDecorator;
-import it.polimi.ingsw.Decorator.PlayerInterface;
-import it.polimi.ingsw.Decorator.SpecialMove1;
+import it.polimi.ingsw.Decorator.*;
+import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.Turn;
-import it.polimi.ingsw.Model.Player;
-import it.polimi.ingsw.Model.Worker;
 
 import java.util.*;
 
 public class App 
 {
-
-
-
-
-    public static void main(String[] args ) {
-
-
-
+    public static void main( String[] args ) {
 
         Scanner input = new Scanner (System.in);
         boolean a;
         int k;
         int row;
         int col;
+        God apollo = new God();
+        God atlas = new God();
+        apollo.setGodName("apollo");
+        atlas.setGodName("atlas");
         Game game = new Game();
         game.addNickname("SuperRexo");
         game.addNickname("NotATeen");
         game.initialiseMatch();
+        game.getOnlinePlayers().get(0).setActiveCard(apollo);
+        game.getOnlinePlayers().get(1).setActiveCard(atlas);
+        Map<String, PlayerInterface> god = new HashMap<>();
+        god.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(game.getOnlinePlayers().get(0)))));
+        god.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(game.getOnlinePlayers().get(1)))));
+        game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
+        game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
         Turn turn = new Turn(game.getOnlinePlayers());
         game.setCurrentTurn(turn);
         Random rand = new Random();
@@ -37,7 +37,6 @@ public class App
         game.getBoard().printGrid();
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             System.out.println(game.getCurrentTurn().getCurrentPlayer().getNickname()+"'s turn:");
-            game.getBoard().freeCells();
             for (int j = 0; j < game.getOnlinePlayers().get(i).getWorkerRef().length; j++) {
                 row = input.nextInt();
                 col = input.nextInt();

@@ -13,7 +13,7 @@ public class Game {
   //Player
   private int id;
   private List<String> nickNames; //in game players
-  private List<Player> onlinePlayers;
+  private List<PlayerInterface> onlinePlayers;
   //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
@@ -35,7 +35,7 @@ public class Game {
     this.board = board;
   }
 
-  public List<Player> getOnlinePlayers() {
+  public List<PlayerInterface> getOnlinePlayers() {
     return onlinePlayers;
   }
 
@@ -77,11 +77,11 @@ public class Game {
 
     */
 
-  public void addPlayers(Player player){
+  public void addPlayers(PlayerInterface player){
     onlinePlayers.add(player);
   }
 
-  public void delPlayer(@NotNull Player player){
+  public void delPlayer(@NotNull PlayerInterface player){
     for(int i = 0; i < player.getWorkerRef().length; i++) {
       player.getWorkerRef()[i].getCurCell().setWorker(null);
       player.getWorkerRef()[i] = null;
@@ -108,7 +108,7 @@ public class Game {
   }
 
   public void initialiseMatch() {
-    ArrayList<Worker> list = new ArrayList<>();
+    List<Worker> list = new ArrayList<>();
     Board board = new Board();
     setBoard(board);
     for (String nickName : nickNames) {

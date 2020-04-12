@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Player implements PlayerInterface {
 
-    private String nickname;
+    private final String nickname;
 
     private Worker[] workerRef; // reference to the workers
 
@@ -23,22 +23,38 @@ public class Player implements PlayerInterface {
         }
     }
 
-    public void decorate() {
-
+    public Player(PlayerInterface player) {
+        this.nickname = player.getNickname();
+        this.workerRef = player.getWorkerRef();
+        this.activeCard = player.getActiveCard();
     }
 
+    @Override
     public String getNickname(){
         return nickname;
     }
 
+    @Override
     public void setActiveCard(God activeCard) {
         this.activeCard = activeCard;
     }
 
+    @Override
     public God getActiveCard() {
         return activeCard;
     }
 
+    @Override
+    public void setNickname(String nickname) {
+
+    }
+
+    @Override
+    public void setWorkerRef(Worker[] worker) {
+
+    }
+
+    @Override
     public Worker[] getWorkerRef() {
         return workerRef;
     }
@@ -71,7 +87,7 @@ public class Player implements PlayerInterface {
 
     }
 
-    @Override
+
     //update the location of the worker in Worker && update the presence of the worker in BoardCell
     public boolean move(int row, int col, @NotNull Worker worker) {
         if(availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
@@ -84,7 +100,7 @@ public class Player implements PlayerInterface {
         return false;
     }
 
-    @Override
+
     //update the level of the building in the BoardCell
     public boolean build(int row, int col, @NotNull Worker worker) {
         if(availableCellsToBuild(worker).contains(worker.getBoard().getGrid()[row][col])) {
@@ -99,18 +115,9 @@ public class Player implements PlayerInterface {
         return false;
     }
 
-    @Override
+
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
-
-
-    public boolean buildTwice(){
-        return false;
-    };
-
-    public boolean buildTwice(int row, int col){
-        return false;
-    };
 
 }
