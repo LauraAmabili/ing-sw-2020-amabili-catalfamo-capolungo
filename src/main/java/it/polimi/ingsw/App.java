@@ -3,6 +3,8 @@ package it.polimi.ingsw;
 import it.polimi.ingsw.Decorator.*;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Model.God;
+
 
 import java.util.*;
 
@@ -17,27 +19,50 @@ public class App
         int col;
         God apollo = new God();
         God atlas = new God();
+
         apollo.setGodName("apollo");
         atlas.setGodName("atlas");
         Game game = new Game();
         game.addNickname("SuperRexo");
         game.addNickname("NotATeen");
         game.initialiseMatch();
-        game.getOnlinePlayers().get(0).setActiveCard(apollo);
-        game.getOnlinePlayers().get(1).setActiveCard(atlas);
-        Map<String, PlayerInterface> god = new HashMap<>();
-        god.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(game.getOnlinePlayers().get(0)))));
-        god.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(game.getOnlinePlayers().get(1)))));
-        game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
-        game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
-        Turn turn = new Turn(game.getOnlinePlayers());
+
+
+        //Map<String, PlayerInterface> god = new HashMap<>();
+        //god.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(game.getOnlinePlayers().get(0)))));
+        //god.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(game.getOnlinePlayers().get(1)))));
+
+
+        Turn turn = new Turn(game.getIterator());
         game.setCurrentTurn(turn);
         Random rand = new Random();
-        game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
+        int num = rand.nextInt(game.getOnlinePlayers().size());
+        game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(num));
+        int j = num;
+
+        for(int i = 0; i < game.getOnlinePlayers().size();i++, j++){
+            System.out.println("Scegli divinità per : " + game.getCurrentTurn().getCurrentPlayer().getNickname());
+            String NomeGod = input.nextLine();
+            game.setGod(NomeGod, game.getCurrentTurn().getCurrentPlayer());
+            game.Decorator();
+            PlayerInterface player = game.getDecorations().get(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName());
+            player.setNickname(game.getOnlinePlayers().get(j).getNickname());
+            player.setWorkerRef(game.getOnlinePlayers().get(j).getWorkerRef());
+            player.setActiveCard(game.getOnlinePlayers().get(j).getActiveCard());
+            game.getOnlinePlayers().set(j, player);
+            game.getCurrentTurn().nextTurn();
+            if(num == game.getOnlinePlayers().size() - 1) {j = -1;}
+        }
+
+        //game.getOnlinePlayers().get(0).setActiveCard(apollo);
+        //game.getOnlinePlayers().get(1).setActiveCard(atlas);
+
+        //game.getOnlinePlayers().set(0, Decorations.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
+        //game.getOnlinePlayers().set(1, Decorations.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
         game.getBoard().printGrid();
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             System.out.println(game.getCurrentTurn().getCurrentPlayer().getNickname()+"'s turn:");
-            for (int j = 0; j < game.getOnlinePlayers().get(i).getWorkerRef().length; j++) {
+            for (j = 0; j < game.getOnlinePlayers().get(i).getWorkerRef().length; j++) {
                 row = input.nextInt();
                 col = input.nextInt();
                 if (!game.addWorker(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef()[j])) {

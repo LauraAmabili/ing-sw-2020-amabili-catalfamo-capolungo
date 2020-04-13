@@ -20,10 +20,10 @@ public class PlayerDecorator implements PlayerInterface {
 
   // constructor
   public PlayerDecorator(PlayerInterface player) {
+    this.player = player;
     this.nickname = player.getNickname();
     this.workerRef = player.getWorkerRef();
     this.activeCard = player.getActiveCard();
-    this.player = player;
   }
 
   @Override

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Decorator;
 
 //Apollo - swap workers
+// TODO: it must be an opponent worker
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Decorator;
 
 //Artemis - Move twice
+//TODO: it doesn'it work
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;

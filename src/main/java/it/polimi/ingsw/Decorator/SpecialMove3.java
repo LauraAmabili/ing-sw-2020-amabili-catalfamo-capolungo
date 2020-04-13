@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Decorator;
 
 //Minotaur - push opponent's worker
+//TODO: it does not work
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;

@@ -7,12 +7,11 @@ import java.util.List;
 
 public class Player implements PlayerInterface {
 
-    private final String nickname;
+    private String nickname;
 
     private Worker[] workerRef; // reference to the workers
 
     private God activeCard;
-
 
 
     public Player(String nickname, @NotNull List<Worker> list){
@@ -23,10 +22,7 @@ public class Player implements PlayerInterface {
         }
     }
 
-    public Player(PlayerInterface player) {
-        this.nickname = player.getNickname();
-        this.workerRef = player.getWorkerRef();
-        this.activeCard = player.getActiveCard();
+    public Player() {
     }
 
     @Override

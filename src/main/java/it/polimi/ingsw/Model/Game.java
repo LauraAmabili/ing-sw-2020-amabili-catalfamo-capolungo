@@ -1,11 +1,9 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
-import it.polimi.ingsw.Decorator.SpecialMove1;
+import it.polimi.ingsw.Decorator.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class Game {
@@ -14,6 +12,7 @@ public class Game {
   private int id;
   private List<String> nickNames; //in game players
   private List<PlayerInterface> onlinePlayers;
+  private ListIterator<PlayerInterface> iterator;
   //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
@@ -22,9 +21,21 @@ public class Game {
   //God
   private List<God> godChallengerList;
 
+  private Map<String, PlayerInterface> Decorations = new HashMap<>();
+
+
+  public void Decorator () {
+    Decorations.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(new Player()))));
+    Decorations.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(new Player()))));
+    System.out.println(Decorations);
+  }
+
   public Game() {
     nickNames = new ArrayList<>();
     onlinePlayers = new ArrayList<>();
+  }
+  public ListIterator<PlayerInterface> getIterator() {
+    return iterator;
   }
 
   public Board getBoard() {
@@ -125,13 +136,13 @@ public class Game {
       addPlayers(player);
       list.clear();
     }
+    iterator = onlinePlayers.listIterator();
   }
 
 
   public void DecoratePlayer (Player player, God god) {
 
     player.setActiveCard(god);
-
     if(god.getGodName().equals("Apollo")){
       PlayerInterface pApollo = new SpecialMove1(player);
     }
@@ -145,5 +156,15 @@ public class Game {
     }
   }
 
+  public void setGod(String name, PlayerInterface player){
+    God ciao = new God();
+    ciao.setGodName(name);
+    player.setActiveCard(ciao);
+  }
+
+
+  public Map<String, PlayerInterface> getDecorations() {
+    return Decorations;
+  }
 }
 

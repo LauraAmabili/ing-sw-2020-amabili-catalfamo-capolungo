@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Decorator;
 
 // Atlas - Build dome at any level
+// TODO: choose to use it or not
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
