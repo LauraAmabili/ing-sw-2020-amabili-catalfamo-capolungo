@@ -1,18 +1,10 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
-import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Model.BoardCell;
-import it.polimi.ingsw.Model.Player;
-import it.polimi.ingsw.Model.Worker;
+import it.polimi.ingsw.Model.Player.PlayerInterface;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 public class GameTest {
 

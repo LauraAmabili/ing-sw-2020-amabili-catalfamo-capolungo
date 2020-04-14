@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.Player.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

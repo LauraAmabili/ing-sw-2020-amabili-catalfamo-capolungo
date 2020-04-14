@@ -3,8 +3,8 @@ package it.polimi.ingsw.Model;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.Model.Player.Player;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

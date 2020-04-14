@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Model.Player.Player;
+import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 public class Worker {
 

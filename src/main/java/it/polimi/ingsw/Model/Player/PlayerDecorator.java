@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Decorator;
+package it.polimi.ingsw.Model.Player;
 
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.God;
@@ -74,6 +74,11 @@ public class PlayerDecorator implements PlayerInterface {
   @Override
   public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
     return player.availableCellsToMove(worker);
+  }
+
+  @Override
+  public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect){
+    return player.availableCellsToMove(worker, specialEffect);
   }
 
   @Override

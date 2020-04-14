@@ -1,6 +1,6 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Decorator.*;
+import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Game;
 
@@ -26,8 +26,8 @@ public class App
         game.getOnlinePlayers().get(0).setActiveCard(apollo);
         game.getOnlinePlayers().get(1).setActiveCard(atlas);
         Map<String, PlayerInterface> god = new HashMap<>();
-        god.put("apollo", new SpecialMove1(new BaseBuild(new BaseWin(game.getOnlinePlayers().get(0)))));
-        god.put("atlas", new SpecialBuild_DomeAnyLevel(new BaseMove(new BaseWin(game.getOnlinePlayers().get(1)))));
+        god.put("apollo", new SpecialMove1(game.getOnlinePlayers().get(0)));
+        god.put("atlas", new SpecialBuild_DomeAnyLevel(game.getOnlinePlayers().get(1)));
         game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
         game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
         Turn turn = new Turn(game.getOnlinePlayers());

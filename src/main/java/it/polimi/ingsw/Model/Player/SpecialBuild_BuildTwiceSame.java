@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Decorator;
+package it.polimi.ingsw.Model.Player;
 
 
 import it.polimi.ingsw.Model.*;
@@ -14,8 +14,6 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
     public SpecialBuild_BuildTwiceSame(PlayerInterface p){
         super(p);
     }
-
-    public void decorate(){}
 
     public boolean build(int row, int col, @NotNull Worker worker) {
         //normal build

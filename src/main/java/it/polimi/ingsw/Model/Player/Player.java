@@ -1,6 +1,8 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Model.Player;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.God;
+import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -65,8 +67,17 @@ public class Player implements PlayerInterface {
         }
     }
 
-    // returns an Arraylist of the boardcell where the worker can move
 
+
+
+    //To be Decorated
+
+
+
+
+
+
+    // returns an Arraylist of the boardcell where the worker can move
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n)-> n.getWorker() != null);
@@ -74,6 +85,13 @@ public class Player implements PlayerInterface {
         adj.removeIf((n)-> (n.getLevel() > worker.getCurCell().getLevel()+1));
         return adj;
     }
+
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
+        return null;
+    };
+
+
+
 
 
 
@@ -119,5 +137,8 @@ public class Player implements PlayerInterface {
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
+
+
+
 
 }

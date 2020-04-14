@@ -1,11 +1,8 @@
-package it.polimi.ingsw.Decorator;
+package it.polimi.ingsw.Model.Player;
 
 //Artemis - Move twice
 
 import it.polimi.ingsw.Model.*;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class SpecialMove2 extends PlayerDecorator {
 
@@ -13,8 +10,6 @@ public class SpecialMove2 extends PlayerDecorator {
 	public SpecialMove2(PlayerInterface p){
 		super(p);
 	}
-
-	public void decorate(){}
 
 	public boolean move(int row, int col, Worker worker){
 		worker.getCurCell().setWorker(null);
@@ -38,12 +33,27 @@ public class SpecialMove2 extends PlayerDecorator {
 
 	}
 
+	/*
 	public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
-		List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+		BoardCell b = worker.getCurCell();
+        	int r_temp = b.getRow() - 2;
+        	if(r_temp < 0) { r_temp = 0;}
+        	int c_temp = b.getCol() - 2;
+        	if(c_temp < 0) { c_temp = 0;}
+		List<BoardCell> adj = new ArrayList<>();
+        	for (int i = r_temp; i <= b.getRow() + 2 && i < SIZE; i++) {
+            		for (int j = c_temp; j <= b.getCol() + 2 && j < SIZE; j++) {
+                		if (!(i == b.getRow() && j == b.getCol())) {
+                    			adj.add(grid[i][j]);
+                			}
+            			}
+			}
 		adj.removeIf((n)-> n.getWorker() != null);
 		adj.removeIf(BoardCell::getDome);
 		return adj;
 
-	};
+	}
+
+	 */
 
 }

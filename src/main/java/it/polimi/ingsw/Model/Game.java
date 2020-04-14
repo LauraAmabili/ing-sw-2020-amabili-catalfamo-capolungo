@@ -1,7 +1,8 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
-import it.polimi.ingsw.Decorator.SpecialMove1;
+import it.polimi.ingsw.Model.Player.Player;
+import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialMove1;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

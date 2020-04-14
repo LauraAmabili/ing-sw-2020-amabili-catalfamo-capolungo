@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Decorator;
+package it.polimi.ingsw.Model.Player;
 
 //Apollo - swap workers
 

@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.PlayerInterface;
+import it.polimi.ingsw.Model.Player.PlayerInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Turn {
