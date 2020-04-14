@@ -1,14 +1,17 @@
 package it.polimi.ingsw.Model.Player;
 
-//Artemis - Move twice
-//TODO: it doesn'it work
+/*Artemis
+
+Your Worker may move one additional time, but not back to its initial space.
+
+*/
 
 import it.polimi.ingsw.Model.*;
 
-public class SpecialMove2 extends PlayerDecorator {
+public class SpecialMove_MoveTwice extends PlayerDecorator {
 
 	// constructor
-	public SpecialMove2(PlayerInterface p){
+	public SpecialMove_MoveTwice(PlayerInterface p){
 		super(p);
 	}
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Decorator.*;
+import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -82,15 +82,6 @@ public class Player implements PlayerInterface {
         return adj;
     }
 
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
-        return null;
-    };
-
-
-
-
-
-
     //returns an Arraylist of the boardcell where the worker can build
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker){
 
@@ -113,6 +104,8 @@ public class Player implements PlayerInterface {
         }
         return false;
     }
+	
+
 
 
     //update the level of the building in the BoardCell

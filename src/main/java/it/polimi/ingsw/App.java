@@ -26,7 +26,7 @@ public class App
         game.getOnlinePlayers().get(0).setActiveCard(apollo);
         game.getOnlinePlayers().get(1).setActiveCard(atlas);
         Map<String, PlayerInterface> god = new HashMap<>();
-        god.put("apollo", new SpecialMove1(game.getOnlinePlayers().get(0)));
+        god.put("apollo", new SpecialMove_SwapWorkers(game.getOnlinePlayers().get(0)));
         god.put("atlas", new SpecialBuild_DomeAnyLevel(game.getOnlinePlayers().get(1)));
         game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
         game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));

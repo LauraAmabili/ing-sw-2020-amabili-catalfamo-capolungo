@@ -12,17 +12,22 @@ public class Board {
     private static final int SIZE = 5;
     BoardCell[][] grid = new BoardCell[SIZE][SIZE];
 
+
     public Board() {
-        for (int i=0; i<grid.length; i++) {
-            for (int j=0; j<grid.length; j++) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
                 grid[i][j] = new BoardCell(i, j);
             }
         }
     }
 
+    public static int getSIZE() {
+        return SIZE;
+    }
+
     //delete all workers from the game grid and any other references in other classes
     public void deleteWorkers(@NotNull Player p) {
-        for(int i = 0; i < p.getWorkerRef().length; i++) {
+        for (int i = 0; i < p.getWorkerRef().length; i++) {
             p.getWorkerRef()[i].getCurCell().setWorker(null);
             p.getWorkerRef()[i] = null;
         }
@@ -33,7 +38,7 @@ public class Board {
         return grid;
     }
 
-    public void printGrid () {
+    public void printGrid() {
         for (BoardCell[] boardCells : grid) {
             for (int j = 0; j < grid[0].length; j++) {
                 System.out.print("+---------------------");
@@ -94,9 +99,13 @@ public class Board {
         int r_temp, c_temp;
         List<BoardCell> adj = new ArrayList<>();
         r_temp = b.getRow() - 1;
-        if(r_temp < 0) { r_temp = 0;}
+        if (r_temp < 0) {
+            r_temp = 0;
+        }
         c_temp = b.getCol() - 1;
-        if(c_temp < 0) { c_temp = 0;}
+        if (c_temp < 0) {
+            c_temp = 0;
+        }
         for (int i = r_temp; i <= b.getRow() + 1 && i < SIZE; i++) {
             for (int j = c_temp; j <= b.getCol() + 1 && j < SIZE; j++) {
                 if (!(i == b.getRow() && j == b.getCol())) {
@@ -112,7 +121,7 @@ public class Board {
         List<BoardCell> b = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if(grid[i][j].getWorker() == null) {
+                if (grid[i][j].getWorker() == null) {
                     b.add(grid[i][j]);
                 }
             }
@@ -120,6 +129,15 @@ public class Board {
         return b;
     }
 
+    public List<BoardCell> allCells() {
+        List<BoardCell> b = new ArrayList<>();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                b.add(grid[i][j]);
+            }
+        }
+        return b;
+    }
 
 
 }

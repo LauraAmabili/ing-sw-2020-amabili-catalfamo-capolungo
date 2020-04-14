@@ -2,7 +2,7 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
-import it.polimi.ingsw.Model.Player.SpecialMove1;
+import it.polimi.ingsw.Model.Player.SpecialMove_SwapWorkers;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -134,7 +134,7 @@ public class Game {
     player.setActiveCard(god);
 
     if(god.getGodName().equals("Apollo")){
-      PlayerInterface pApollo = new SpecialMove1(player);
+      PlayerInterface pApollo = new SpecialMove_SwapWorkers(player);
     }
 
 
