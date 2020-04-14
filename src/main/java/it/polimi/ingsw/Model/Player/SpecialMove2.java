@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.Player;
 
 //Artemis - Move twice
+//TODO: it doesn'it work
 
 import it.polimi.ingsw.Model.*;
 

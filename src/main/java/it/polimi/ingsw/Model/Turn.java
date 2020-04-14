@@ -3,13 +3,14 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.util.List;
+import java.util.ListIterator;
 
 public class Turn {
   private int TurnId;
   private PlayerInterface currentPlayer;
-  private List<PlayerInterface> activePlayers;
+  private ListIterator<PlayerInterface> activePlayers;
 
-  public Turn(List<PlayerInterface> list) {
+  public Turn(ListIterator<PlayerInterface> list) {
     activePlayers = list;
   }
 
@@ -29,21 +30,21 @@ public class Turn {
     this.currentPlayer = currentPlayer;
   }
 
-  public List<PlayerInterface> getActivePlayers() {
+  public ListIterator<PlayerInterface> getActivePlayers() {
     return activePlayers;
   }
 
-  public void setActivePlayers(List<PlayerInterface> activePlayers) {
+  public void setActivePlayers(ListIterator<PlayerInterface> activePlayers) {
     this.activePlayers = activePlayers;
   }
 
   public void nextTurn() {
-    int index = activePlayers.size() - 1;
-    int i = activePlayers.indexOf(currentPlayer);
-    if(index == i) {
-      currentPlayer = activePlayers.get(0);
+    if(activePlayers.hasNext()) {
+      currentPlayer = activePlayers.next();
     } else {
-      currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
+      while(activePlayers.hasPrevious()){
+        currentPlayer = activePlayers.previous();
+      }
     }
     TurnId++;
   }

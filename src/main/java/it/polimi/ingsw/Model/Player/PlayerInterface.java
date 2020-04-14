@@ -27,8 +27,6 @@ public interface PlayerInterface {
 
   String getNickname();
 
-
-
   boolean move(int row, int col, Worker worker);
 
   boolean build(int row, int col, @NotNull Worker worker);

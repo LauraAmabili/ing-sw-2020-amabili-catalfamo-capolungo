@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.Player;
 
 //Demeter - build twice
+// TODO: it doesn't work
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;

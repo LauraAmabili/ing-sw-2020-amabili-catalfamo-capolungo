@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.Player;
 
 //Apollo - swap workers
+// TODO: it must be an opponent worker
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
