@@ -30,7 +30,7 @@ public class App
         god.put("atlas", new SpecialBuild_DomeAnyLevel(game.getOnlinePlayers().get(1)));
         game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
         game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
-        Turn turn = new Turn(game.getOnlinePlayers());
+        /*Turn turn = new Turn(game.getOnlinePlayers());
         game.setCurrentTurn(turn);
         Random rand = new Random();
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
@@ -118,5 +118,6 @@ public class App
         /*
         Il mio lavoro qui è finito!
          */
+
     }
 }

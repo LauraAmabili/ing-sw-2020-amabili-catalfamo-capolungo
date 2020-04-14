@@ -1,53 +1,39 @@
 package it.polimi.ingsw.Model.Player;
-
-//Demeter - build twice
-// TODO: it doesn't work
-
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
+/*
+
+Demeter
+
+Your Worker may build one additional time, but not on the same space.
+
+ */
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
-    int usedRow;
-    int usedCol;
-    Worker usedWorker;
 
-    // constructor
     public SpecialBuild_BuildTwiceDifferent(PlayerInterface p) {
         super(p);
     }
 
-    public void decorate() {
-    }
-
-    //ask the user if they want to perform a second build
-    //if yes, set wantSecondBuild to true
-    //and assign values to row2, col2
-
-    public boolean build(int row, int col, @NotNull Worker worker) {
-
-        BoardCell b = worker.getBoard().getGrid()[row][col];
-        if (b.getLevel() == 3) {
-            b.setDome(true);
-        } else {
-            b.setLevel((b.getLevel() + 1));
-        }
-        usedRow = row;
-        usedCol = col;
-        usedWorker = worker;
-        return false;
-    }
-
-    public boolean buildTwice(int row, int col) {
-        if (row != usedRow || col != usedCol) {
-
-            BoardCell b = usedWorker.getBoard().getGrid()[row][col];
-
-            if (b.getLevel() == 3) {
-                b.setDome(true);
-            } else {
-                b.setLevel((b.getLevel() + 1));
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+        BoardCell b1 = worker.getBoard().getGrid()[row1][col1];
+        BoardCell b2 = worker.getBoard().getGrid()[row2][col2];
+        if (!(b1.equals(b2))){
+            if(availableCellsToBuild(worker).contains(b1) &&
+                    availableCellsToBuild(worker).contains(b2)){
+                if(b1.getLevel() == 3) {
+                    b1.setDome(true);
+                } else {
+                    b1.setLevel((b1.getLevel() + 1));
+                }
+                if (b2.getLevel() == 3) {
+                    b2.setDome(true);
+                } else {
+                    b2.setLevel((b2.getLevel() + 1));
+                }
+                return true;
             }
         }
 

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.Model.Player;
 
-//DONE
 
-
-/*Apollo
+/*DONE
+Apollo
 
 Your Worker may move into an opponent Worker’s space by forcing their Worker to the space yours just vacated.
 
@@ -74,7 +73,7 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
         all.removeIf(BoardCell::getDome);
         all.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
         all.removeIf((n) -> n.getWorker().getPlayerWorker().equals(worker.getPlayerWorker()));
-        all.removeIf((n) -> (n.getWorker().equals(null) && !(adj.contains(n))));
+        all.removeIf((n) -> (n.getWorker()==null && !(adj.contains(n))));
         return all;
 
     }

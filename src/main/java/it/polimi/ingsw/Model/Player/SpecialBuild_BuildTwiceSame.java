@@ -1,46 +1,43 @@
 package it.polimi.ingsw.Model.Player;
 
-//TODO: it doesn't work
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-//Hephaestus
+import java.util.List;
+
+/*
+Hephaestus
+
+Your Worker may build one additional block (not dome) on top of your first block.
+
+ */
+
+
 public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
-    int usedRow;
-    int usedCol;
-    Worker usedWorker;
-    // constructor
-    public SpecialBuild_BuildTwiceSame(PlayerInterface p){
+    public SpecialBuild_BuildTwiceSame(PlayerInterface p) {
         super(p);
     }
 
-    public boolean build(int row, int col, @NotNull Worker worker) {
-        //normal build
-    	
-    	BoardCell b = worker.getBoard().getGrid()[row][col];  
-        if(b.getLevel() == 3) {
-            b.setDome(true);
-        } else {
-            b.setLevel(b.getLevel() + 1);
+    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
+        if (specialEffect) {
+            if (availableCellsToBuild(worker, true).contains(worker.getBoard().getGrid()[row][col])) {
+                BoardCell b = worker.getBoard().getGrid()[row][col];
+                b.setLevel((b.getLevel() + 2));
+                return true;
+            }
         }
-        usedRow = row;
-        usedCol = col;
-        usedWorker = worker;
-
-
         return false;
-
     }
 
-    public boolean buildTwice() {
-        BoardCell b = usedWorker.getBoard().getGrid()[usedRow][usedCol];
-        if (b.getLevel() == 3) {
-                b.setDome(true);
-        } else {
-                b.setLevel((b.getLevel() + 1));
-        }
-        return false;
+
+    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
+        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        adj.removeIf((n) -> n.getWorker() != null);
+        adj.removeIf(BoardCell::getDome);
+        adj.removeIf((n) -> n.getLevel() == 2);
+        return adj;
+
     }
 
 

@@ -27,17 +27,26 @@ public interface PlayerInterface {
 
   String getNickname();
 
-  boolean move(int row, int col, Worker worker);
 
-  boolean build(int row, int col, @NotNull Worker worker);
 
-  boolean checkWin(Worker worker);
+
 
   List<BoardCell> availableCellsToMove(@NotNull Worker worker);
 
-  public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect);
+  List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect);
 
+  boolean move(int row, int col, @NotNull Worker worker);
 
   List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
+
+  List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect);
+
+  boolean build(int row, int col, @NotNull Worker worker);
+
+  boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect);
+
+  boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2);
+
+  boolean checkWin(@NotNull Worker worker);
 
 }

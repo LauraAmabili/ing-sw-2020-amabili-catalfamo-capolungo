@@ -57,21 +57,6 @@ public class PlayerDecorator implements PlayerInterface {
   }
 
   @Override
-  public boolean move(int row, int col, Worker worker){
-    return player.move(row, col, worker);
-  }
-
-  @Override
-  public boolean build(int row, int col, @NotNull Worker worker){
-    return player.build(row, col, worker);
-  }
-
-  @Override
-  public boolean checkWin(Worker worker){
-    return player.checkWin(worker);
-  }
-
-  @Override
   public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
     return player.availableCellsToMove(worker);
   }
@@ -82,8 +67,36 @@ public class PlayerDecorator implements PlayerInterface {
   }
 
   @Override
+  public boolean move(int row, int col, @NotNull Worker worker){
+    return player.move(row, col, worker);
+  }
+
+  @Override
   public List<BoardCell> availableCellsToBuild(@NotNull Worker worker){
     return player.availableCellsToBuild(worker);
+  }
+
+  @Override
+  public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect){
+    return player.availableCellsToBuild(worker, specialEffect);
+  }
+
+  @Override
+  public boolean build(int row, int col, @NotNull Worker worker){
+    return player.build(row, col, worker);
+  }
+
+  @Override
+  public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect){
+    return player.build(row, col, worker, specialEffect);
+  }
+
+  @Override
+  public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2){return player.build(row1, col1, worker, row2, col2);}
+
+  @Override
+  public boolean checkWin(@NotNull Worker worker){
+    return player.checkWin(worker);
   }
 
 }
