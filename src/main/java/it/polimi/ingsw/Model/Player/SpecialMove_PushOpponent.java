@@ -69,7 +69,12 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
             List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
             adj.removeIf((n) -> n.getWorker().getPlayerWorker().equals(worker.getPlayerWorker()));
             adj.removeIf(BoardCell::getDome);
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+            if (worker.getPlayerWorker().isMoveUp()){
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+            }
+            else {
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+            }
             return adj;
         }
         return null;

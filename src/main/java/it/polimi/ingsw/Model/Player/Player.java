@@ -15,6 +15,7 @@ public class Player implements PlayerInterface {
 
     private God activeCard;
 
+    private boolean moveUp=true;
 
     public Player(String nickname, @NotNull List<Worker> list) {
         this.nickname = nickname;
@@ -25,6 +26,14 @@ public class Player implements PlayerInterface {
     }
 
     public Player() {
+    }
+
+    public boolean isMoveUp() {
+        return moveUp;
+    }
+
+    public void setMoveUp(boolean moveUp) {
+        this.moveUp=moveUp;
     }
 
     @Override
@@ -68,10 +77,17 @@ public class Player implements PlayerInterface {
 
     // return an Arraylist of the boardcell where the worker can move
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
+
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);
-        adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+        if (moveUp){
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+        }
+        else {
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+        }
         return adj;
     }
 

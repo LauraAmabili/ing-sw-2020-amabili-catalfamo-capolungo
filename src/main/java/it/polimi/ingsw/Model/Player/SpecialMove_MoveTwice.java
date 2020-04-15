@@ -20,20 +20,26 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
 
     // return an Arraylist of the boardcell where the worker can move
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
-        List<BoardCell> adj2 = worker.getBoard().adjacentCells(worker.getCurCell());
-        for (BoardCell x : adj2) {
+        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        for (BoardCell x : adj) {
             List<BoardCell> temp = worker.getBoard().adjacentCells(x);
             for (BoardCell y : temp) {
-                if (!(adj2.contains(y))) {
-                    adj2.add(y);
+                if (!(adj.contains(y))) {
+                    adj.add(y);
                 }
 
             }
         }
-        adj2.removeIf((n) -> n.getWorker() != null);
-        adj2.removeIf(BoardCell::getDome);
-        adj2.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        return adj2;
+        adj.removeIf((n) -> n.getWorker() != null);
+        adj.removeIf(BoardCell::getDome);
+        if (worker.getPlayerWorker().isMoveUp()){
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+        }
+        else {
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+        }
+
+        return adj;
     }
 
 

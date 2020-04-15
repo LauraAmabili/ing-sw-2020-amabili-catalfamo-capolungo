@@ -18,12 +18,22 @@ public class PlayerDecorator implements PlayerInterface {
 
   private God activeCard;
 
+  private boolean moveUp;
+
   // constructor
   public PlayerDecorator(PlayerInterface player) {
     this.player = player;
     this.nickname = player.getNickname();
     this.workerRef = player.getWorkerRef();
     this.activeCard = player.getActiveCard();
+  }
+
+  public boolean isMoveUp(){
+    return player.isMoveUp();
+  }
+
+  public void setMoveUp(boolean moveUp) {
+    this.moveUp=moveUp;
   }
 
   @Override
