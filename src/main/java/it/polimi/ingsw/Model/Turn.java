@@ -8,9 +8,9 @@ import java.util.ListIterator;
 public class Turn {
   private int TurnId;
   private PlayerInterface currentPlayer;
-  private ListIterator<PlayerInterface> activePlayers;
+  private List<PlayerInterface> activePlayers;
 
-  public Turn(ListIterator<PlayerInterface> list) {
+  public Turn(List<PlayerInterface> list) {
     activePlayers = list;
   }
 
@@ -30,23 +30,24 @@ public class Turn {
     this.currentPlayer = currentPlayer;
   }
 
-  public ListIterator<PlayerInterface> getActivePlayers() {
+  public List<PlayerInterface> getActivePlayers() {
     return activePlayers;
   }
 
-  public void setActivePlayers(ListIterator<PlayerInterface> activePlayers) {
+  public void setActivePlayers(List<PlayerInterface> activePlayers) {
     this.activePlayers = activePlayers;
   }
 
   public void nextTurn() {
-    if(activePlayers.hasNext()) {
-      currentPlayer = activePlayers.next();
-    } else {
-      while(activePlayers.hasPrevious()){
-        currentPlayer = activePlayers.previous();
+      int index = activePlayers.size() - 1;
+      int i = activePlayers.indexOf(currentPlayer);
+      if(index == i) {
+        currentPlayer = activePlayers.get(0);
+      } else {
+        currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
       }
-    }
-    TurnId++;
+      TurnId++;
+
   }
 
   public boolean checkLockBuild(Worker worker) {

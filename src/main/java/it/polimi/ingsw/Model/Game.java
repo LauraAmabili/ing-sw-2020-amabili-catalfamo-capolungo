@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 
 public class Game {
@@ -126,6 +127,7 @@ public class Game {
       addPlayers(player);
       list.clear();
     }
+
   }
 
 
@@ -144,6 +146,10 @@ public class Game {
     if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
       System.out.println(worker.getPlayerWorker().getNickname() + "wins");
     }
+  }
+
+  public String getPlayerNickname(int num){
+    return getOnlinePlayers().get(num).getNickname();
   }
 
 }

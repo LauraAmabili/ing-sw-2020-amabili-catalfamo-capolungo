@@ -1,16 +1,32 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.View.View;
 
 import java.util.*;
 
 public class App 
 {
-    public static void main( String[] args ) {
 
-        Scanner input = new Scanner (System.in);
+    public static void main(String[] args ) {
+
+
+        Controller controller = new Controller();
+        Model model = new Model();
+        View view1 = new View(controller);
+        View view2 = new View(controller);
+        model.addObserver(view1);
+        model.addObserver(view2);
+        model.notifyNickname();
+
+
+
+
+
+        /*
         boolean a;
         int k;
         int row;
@@ -20,9 +36,11 @@ public class App
         apollo.setGodName("apollo");
         atlas.setGodName("atlas");
         Game game = new Game();
+
+        /*
         game.addNickname("SuperRexo");
         game.addNickname("NotATeen");
-        game.initialiseMatch();
+
         game.getOnlinePlayers().get(0).setActiveCard(apollo);
         game.getOnlinePlayers().get(1).setActiveCard(atlas);
         Map<String, PlayerInterface> god = new HashMap<>();
@@ -30,7 +48,10 @@ public class App
         god.put("atlas", new SpecialBuild_DomeAnyLevel(game.getOnlinePlayers().get(1)));
         game.getOnlinePlayers().set(0, god.get(game.getOnlinePlayers().get(0).getActiveCard().getGodName()));
         game.getOnlinePlayers().set(1, god.get(game.getOnlinePlayers().get(1).getActiveCard().getGodName()));
-        /*Turn turn = new Turn(game.getOnlinePlayers());
+
+        System.out.println("Arrivo anche qui");
+
+        Turn turn = new Turn(game.getOnlinePlayers());
         game.setCurrentTurn(turn);
         Random rand = new Random();
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
