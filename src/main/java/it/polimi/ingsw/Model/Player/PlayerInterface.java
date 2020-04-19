@@ -52,4 +52,6 @@ public interface PlayerInterface {
 
   boolean checkWin(@NotNull Worker worker);
 
+  public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
+
 }
