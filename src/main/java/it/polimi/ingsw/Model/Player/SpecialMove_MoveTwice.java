@@ -18,7 +18,11 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
         super(p);
     }
 
-    // return an Arraylist of the boardcell where the worker can move
+    /**
+     *  return an Arraylist of the boardcell where the worker can move
+     * @param worker
+     * @return
+     */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
         for (BoardCell x : adj) {

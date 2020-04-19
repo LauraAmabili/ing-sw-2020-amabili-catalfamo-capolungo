@@ -33,6 +33,7 @@ public class CLIView extends View {
                     in = input.nextLine();
                     controller.addNickname(in);
                     break;
+
                 default:
                     break;
             }

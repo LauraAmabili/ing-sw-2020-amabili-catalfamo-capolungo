@@ -58,4 +58,10 @@ public class Model extends Observable {
     
   }
 
+  public void decoratePlayer(PlayerInterface player){
+    String methodname = player.getActiveCard().getGodName();
+    game.decoratePlayer(methodname, player);
+
+  }
+
 }

@@ -29,6 +29,7 @@ public class Player implements PlayerInterface {
         this.nickname = nickname;
     }
 
+
     public boolean isMoveUp() {
         return moveUp;
     }
@@ -74,9 +75,11 @@ public class Player implements PlayerInterface {
     }
 
 
-    //To be Decorated
-
-    // return an Arraylist of the boardcell where the worker can move
+    /**
+     * return a list of the BoardCell where the worker can move
+     * @param worker
+     * @return
+     */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
@@ -96,7 +99,13 @@ public class Player implements PlayerInterface {
         return null;
     }
 
-    //update the location of the worker in Worker && update the presence of the worker in BoardCell
+    /**
+     * update the location of the worker in Worker && update the presence of the worker in BoardCell
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
@@ -108,7 +117,11 @@ public class Player implements PlayerInterface {
         return false;
     }
 
-    //returns an Arraylist of the boardcell where the worker can build
+    /**
+     * returns an Arraylist of the boardcell where the worker can build
+     * @param worker
+     * @return
+     */
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
 
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
@@ -122,7 +135,13 @@ public class Player implements PlayerInterface {
         return null;
     }
 
-    //update the level of the building in the BoardCell
+    /**
+     * update the level of the building in the BoardCell
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
     public boolean build(int row, int col, @NotNull Worker worker) {
         if (availableCellsToBuild(worker).contains(worker.getBoard().getGrid()[row][col])) {
             BoardCell b = worker.getBoard().getGrid()[row][col];
@@ -144,6 +163,11 @@ public class Player implements PlayerInterface {
         return false;
     }
 
+    /**
+     * check if the worker went from level 2 to level 3
+     * @param worker
+     * @return
+     */
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
