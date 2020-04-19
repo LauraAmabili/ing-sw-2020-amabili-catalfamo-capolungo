@@ -23,7 +23,6 @@ public class CLIView extends View {
     @Override
     public void run() {
         while(true) {
-
             //TODO: Scrivere lista comandi
             System.out.println("1: add nickname");
             String in = input.nextLine();
