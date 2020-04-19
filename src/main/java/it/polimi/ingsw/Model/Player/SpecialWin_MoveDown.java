@@ -10,10 +10,10 @@ You also win if your Worker moves down two or more levels.
 
  */
 
-public class SpecialWin extends PlayerDecorator {
+public class SpecialWin_MoveDown extends PlayerDecorator {
 
 	// constructor
-	public SpecialWin(PlayerInterface p){
+	public SpecialWin_MoveDown(PlayerInterface p){
 		super(p);
 	}
 
