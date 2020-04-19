@@ -1,48 +1,47 @@
 package it.polimi.ingsw.Model;
 
 
+import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class Model extends Observable {
 
-  public Model() {
-  }
-  private Game game = new Game();
-
-  //Set Nickname 1
-  public void setNickname(String nickname){
-    game.addNickname(nickname);
-    //notifyStartMatch();
-  }
-  //Initialise match + create Turn
-  public void initialiseMatch(){
-    game.initialiseMatch();
-
-  }
-  public void setTurn(){
-    Turn turn = new Turn(game.getOnlinePlayers());
-    game.setCurrentTurn(turn);
-    //game.getCurrentTurn().setCurrentPlayer();
+  private enum state {
+    ADDNICKNAMES, INIMATCH,
   }
 
-  public Turn getTurn(){
-    return game.getCurrentTurn();
+  List<state> states = new ArrayList<>();
+
+  private Game game;
+
+  public Model(Game game) {
+    this.game = game;
+  }
+
+  public Game getGame() {
+    return game;
+  }
+
+  public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
+    if(!game.isGameStarted()) {
+      game.getOnlinePlayers().add(player);
+      setChanged();
+      notifyObservers();
+    } else {
+      throw new GameIsAlreadyStarted();
+    }
+  }
+
+  public void addNickname(String nickName) {
+    this.game.addNickname(nickName);
+    this.setChanged(); //guarda che l'ho modificato
+    this.notifyObservers(state.ADDNICKNAMES.name()); //notifica tutti gli observers
   }
 
 
-
-
-  public List<PlayerInterface> getOnlinePlayers(){
-    return game.getOnlinePlayers();
-  }
-
-  public void setActiveCard(String name){
-    God god = new God();
-    god.setGodName(name);
-
-
-  }
 }

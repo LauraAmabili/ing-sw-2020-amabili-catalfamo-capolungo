@@ -4,6 +4,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.View.CLIView;
 import it.polimi.ingsw.View.View;
 
 import java.util.*;
@@ -14,13 +15,15 @@ public class App
     public static void main(String[] args ) {
 
 
-        Controller controller = new Controller();
-        Model model = new Model();
-        View view1 = new View(controller);
-        View view2 = new View(controller);
+        Game game = new Game();
+        Model model = new Model(game);
+        Controller controller = new Controller(model);
+        View view1 = new CLIView(controller);
         model.addObserver(view1);
+        View view2 = new CLIView(controller);
         model.addObserver(view2);
-        model.notifyNickname();
+        view2.start();
+        view1.start();
 
 
 

@@ -25,7 +25,8 @@ public class Player implements PlayerInterface {
         }
     }
 
-    public Player() {
+    public Player(String nickname) {
+        this.nickname = nickname;
     }
 
     public boolean isMoveUp() {

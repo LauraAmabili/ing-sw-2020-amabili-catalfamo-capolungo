@@ -10,14 +10,7 @@ public class God {
 
   private PlayerInterface PlayerToDecorate;
 
-
-  public enum gods {
-    APOLLO, ARTEMIS, ATHENA, ATLAS, DEMETER, HEPHAESTUS, MINOTAUR, PAN, PROMETHEUS
-  }
-
   private String godName;
-
-
 
   public String getGodName() {
     return godName;

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialMove_SwapWorkers;
@@ -20,9 +21,10 @@ public class Game {
   private Turn currentTurn;
   private int counterId = 1;
   private Board board;
+  private boolean gameStarted;
 
   //God
-  private List<God> godChallengerList;
+  private List<Enum> godChallengerList;
 
   public Game() {
     nickNames = new ArrayList<>();
@@ -41,7 +43,7 @@ public class Game {
     return onlinePlayers;
   }
 
-  public List<String> getNickNames() {
+  public List<String> getNicknames() {
     return nickNames;
   }
 
@@ -57,11 +59,13 @@ public class Game {
     this.id = id;
   }
 
-    /*public Player getChallenger() {
-            return challenger;
-        }
+  public boolean isGameStarted() {
+    return gameStarted;
+  }
 
-     */
+  public void setGameStarted(boolean gameStarted) {
+    this.gameStarted = gameStarted;
+  }
 
   public Turn getCurrentTurn() {
     return currentTurn;
@@ -71,15 +75,8 @@ public class Game {
     this.currentTurn = currentTurn;
   }
 
-    /*
-    public void setChallenger() {
-        Random rand = new Random();
-        this.challenger = activePlayers.get(rand.nextInt(activePlayers.size()));
-    }
 
-    */
-
-  public void addPlayers(PlayerInterface player){
+  public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
     onlinePlayers.add(player);
   }
 
@@ -105,7 +102,7 @@ public class Game {
   }
 
   //Aggiungo alla lista di divinità con cui giocare le divinità scelte dal challenger
-  public void addGod(@NotNull ArrayList<God> godChallengerList, God chosenGod){
+  public void addGod(@NotNull ArrayList<God> godChallengerList, God chosenGod) {
     godChallengerList.add(chosenGod);
   }
 
@@ -124,7 +121,11 @@ public class Game {
       for(int k = 0; k < player.getWorkerRef().length; k++) {
         player.getWorkerRef()[k].setPlayerWorker(player);
       }
-      addPlayers(player);
+      try {
+        addPlayers(player);
+      } catch (GameIsAlreadyStarted e) {
+        e.printStackTrace();
+      }
       list.clear();
     }
 

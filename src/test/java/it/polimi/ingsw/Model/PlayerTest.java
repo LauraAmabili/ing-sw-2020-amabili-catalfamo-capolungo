@@ -21,13 +21,18 @@ public class PlayerTest {
     ArrayList<Worker> mockWorkers = new ArrayList<>();
     ArrayList<BoardCell> adjCells = new ArrayList<>();
 
+
+
     @Before
     public void setUp() throws Exception {
     }
 
     @Test
     public void testAvailableCellsToMove() {
-        Player mockPlayer = new Player();
+
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -46,7 +51,9 @@ public class PlayerTest {
 
     @Test
     public void testAvailableCellsToBuild() {
-        Player mockPlayer = new Player();
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -68,7 +75,9 @@ public class PlayerTest {
 
     @Test
     public void testBaseMove() {
-        Player mockPlayer = new Player();
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -84,7 +93,9 @@ public class PlayerTest {
 
     @Test
     public void testBaseBuild() {
-        Player mockPlayer = new Player();
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -102,6 +113,9 @@ public class PlayerTest {
 
     @Test
     public void testBaseCheckWin() {
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         board.getGrid()[1][2].setLevel(3);
         board.getGrid()[0][2].setLevel(1);
         worker1.setCurCell(board.getGrid()[1][2]);
@@ -118,13 +132,16 @@ public class PlayerTest {
     @Test
     public void testSpecialBuild_BuildTwiceDifferent() {
 
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers);
-
-        mockPlayer.build(1, 0, worker1, 0, 1);
+        PlayerInterface player = new SpecialBuild_BuildTwiceDifferent(mockPlayer);
+        player.build(1, 0, worker1, 0, 1);
         assertEquals(1, board.getGrid()[1][0].getLevel());
         assertEquals(1, board.getGrid()[0][1].getLevel());
     }
@@ -132,6 +149,9 @@ public class PlayerTest {
     @Test
     public void testSpecialBuild_BuildTwiceSame() {
 
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -145,6 +165,9 @@ public class PlayerTest {
     @Test
     public void testSpecialBuild_DomeAnyLevel() {
 
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -158,6 +181,9 @@ public class PlayerTest {
     @Test
     public void testSpecialMove_MoveTwice() {
 
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -168,22 +194,13 @@ public class PlayerTest {
         assertSame(worker1, board.getGrid()[2][0].getWorker());
     }
 
-    @Test
-    public void testSpecialMove_MoveTwice() {
-
-        worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
-        worker1.setOldCell(null);
-        worker1.setPlayerWorker(mockPlayer);
-        mockWorkers.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers);
-
-        mockPlayer.move(2, 0, worker1);
-        assertSame(worker1, board.getGrid()[2][0].getWorker());
-    }
 
     @Test
     public void testSpecialMove_PushOpponent() {
 
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -199,7 +216,9 @@ public class PlayerTest {
     @Test
     public void testSpecialMove_SwapWorkers() {
 
-
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
@@ -215,7 +234,9 @@ public class PlayerTest {
 	@Test
 	public void testSpecialWin_MoveDown() {
 
-
+        mockWorkers.add(worker1);
+        mockWorkers.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers);
 		worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
 		worker1.setOldCell(worker1.getBoard().getGrid()[0][1]);
 		worker1.setPlayerWorker(mockPlayer);
