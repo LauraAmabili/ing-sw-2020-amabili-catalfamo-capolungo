@@ -18,7 +18,13 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
         super(p);
     }
 
-    //update the location of the worker in Worker && update the presence of the worker in BoardCell
+    /**
+     * update the location of the worker in Worker && update the presence of the worker in BoardCell
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
@@ -56,7 +62,11 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
 
      */
 
-    // return an Arraylist of the boardcell where the worker can move
+    /**
+     *  return an Arraylist of the boardcell where the worker can move
+     * @param worker
+     * @return
+     */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
