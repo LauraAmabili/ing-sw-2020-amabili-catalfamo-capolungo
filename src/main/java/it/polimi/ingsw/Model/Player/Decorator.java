@@ -35,6 +35,6 @@ public class Decorator {
         return new SpecialMove_MoveTwice(player);
     }
 
-    
+
 
 }
