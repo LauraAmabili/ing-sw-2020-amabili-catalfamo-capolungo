@@ -1,14 +1,10 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
-import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
-import it.polimi.ingsw.Model.Player.SpecialMove_SwapWorkers;
+import it.polimi.ingsw.Model.Player.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 public class Game {
@@ -17,18 +13,65 @@ public class Game {
   private int id;
   private List<String> nickNames; //in game players
   private List<PlayerInterface> onlinePlayers;
-  //private Player challenger;
   private Turn currentTurn;
   private int counterId = 1;
   private Board board;
   private boolean gameStarted;
 
   //God
-  private List<Enum> godChallengerList;
+  private enum gods {
+    Apollo, Artemis, Athena, Atlas, Demeter, Hephaestus, Minotaur, Pan, Prometheus
+  }
+
+  private List<gods> godList = new ArrayList<>();
+  private List<God> chosenGods = new ArrayList<>();
+
+  Map<String, List<PlayerInterface>> map = new HashMap<>();
 
   public Game() {
     nickNames = new ArrayList<>();
     onlinePlayers = new ArrayList<>();
+  }
+
+  public void setMap() {
+    List <PlayerInterface> ApolloList = new ArrayList<>();
+    List <PlayerInterface> ArtemisList = new ArrayList<>();
+    List <PlayerInterface> AthenaList = new ArrayList<>();
+    List <PlayerInterface> AtlasList = new ArrayList<>();
+    List <PlayerInterface> DemeterList = new ArrayList<>();
+    List <PlayerInterface> HephaestusList = new ArrayList<>();
+    List <PlayerInterface> MinotaurList = new ArrayList<>();
+    List <PlayerInterface> PanList = new ArrayList<>();
+    List <PlayerInterface> PrometheusList = new ArrayList<>();
+    for (PlayerInterface onlinePlayer : onlinePlayers) {
+      map.put("Apollo", ApolloList);
+      map.get("Apollo").add(new SpecialMove_SwapWorkers(onlinePlayer));
+      map.put("Artemis", ArtemisList);
+      map.get("Artemis").add(new SpecialMove_MoveTwice(onlinePlayer));
+      map.put("Athena", AthenaList);
+      map.get("Athena").add(new SpecialOpponentTurn_LockMoveUp(onlinePlayer));
+      map.put("Atlas", AtlasList);
+      map.get("Atlas").add(new SpecialBuild_DomeAnyLevel(onlinePlayer));
+      map.put("Demeter", DemeterList);
+      map.get("Demeter").add(new SpecialBuild_BuildTwiceDifferent(onlinePlayer));
+      map.put("Hephaestus", HephaestusList);
+      map.get("Hephaestus").add(new SpecialBuild_BuildTwiceSame(onlinePlayer));
+      map.put("Minotaur", MinotaurList);
+      map.get("Minotaur").add(new SpecialMove_PushOpponent(onlinePlayer));
+      map.put("Pan", PanList);
+      map.get("Pan").add(new SpecialWin_MoveDown(onlinePlayer));
+      map.put("Prometheus", PrometheusList);
+      map.get("Prometheus").add(new SpecialWin_MoveDown(onlinePlayer)); //TODO: Creare classe per movimento e costruzione di prometeo
+    }
+
+  }
+
+  private void chosenGod(God god) {
+    chosenGods.add(god);
+  }
+
+  public void initializeGodList() {
+    godList.addAll(Arrays.asList(gods.values()));
   }
 
   public Board getBoard() {
@@ -75,11 +118,19 @@ public class Game {
     this.currentTurn = currentTurn;
   }
 
-
+  /**
+   * Add player in OnlinePlayer list
+   * @param player
+   * @throws GameIsAlreadyStarted
+   */
   public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
     onlinePlayers.add(player);
   }
 
+  /**
+   * Delete the chosen player and all his workers
+   * @param player
+   */
   public void delPlayer(@NotNull PlayerInterface player){
     for(int i = 0; i < player.getWorkerRef().length; i++) {
       player.getWorkerRef()[i].getCurCell().setWorker(null);
@@ -88,6 +139,12 @@ public class Game {
     onlinePlayers.remove(player);
   }
 
+  /**
+   * @param row
+   * @param col
+   * @param worker
+   * @return
+   */
   public boolean addWorker(int row, int col, Worker worker) {
     List<BoardCell> list;
     list = worker.getBoard().freeCells();
@@ -101,11 +158,9 @@ public class Game {
     return false;
   }
 
-  //Aggiungo alla lista di divinità con cui giocare le divinità scelte dal challenger
-  public void addGod(@NotNull ArrayList<God> godChallengerList, God chosenGod) {
-    godChallengerList.add(chosenGod);
-  }
-
+  /**
+   *
+   */
   public void initialiseMatch() {
     List<Worker> list = new ArrayList<>();
     Board board = new Board();

@@ -17,7 +17,6 @@ public class God {
   }
 
   public void setGodName(String godName) {
-
     this.godName = godName;
   }
 

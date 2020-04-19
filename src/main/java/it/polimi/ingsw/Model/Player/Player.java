@@ -15,7 +15,7 @@ public class Player implements PlayerInterface {
 
     private God activeCard;
 
-    private boolean moveUp=true;
+    private boolean moveUp = true;
 
     public Player(String nickname, @NotNull List<Worker> list) {
         this.nickname = nickname;
