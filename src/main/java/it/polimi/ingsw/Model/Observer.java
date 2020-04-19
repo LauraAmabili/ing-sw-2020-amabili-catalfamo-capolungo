@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model;
 
 public interface Observer {
 
-    public void update(Observable o, Object obj);
-    //TODO: just for fun
-
+    public void update(Object obj);
+    public void updatespecial(Object o, Object obj);
 }
