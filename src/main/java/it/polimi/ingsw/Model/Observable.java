@@ -15,10 +15,7 @@ public class Observable {
         this.observers.add(o);
 
     }
-/*
-    public void addObserver(View view1) {
-    }
-*/
+
     void notifyObservers() {
     }
 
