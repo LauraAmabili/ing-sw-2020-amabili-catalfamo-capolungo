@@ -7,7 +7,6 @@ import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 public class Model extends Observable {
 
@@ -27,6 +26,11 @@ public class Model extends Observable {
     return game;
   }
 
+  /**
+   * Add the Players to the Game
+   * @param player
+   * @throws GameIsAlreadyStarted
+   */
   public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
     if(!game.isGameStarted()) {
       game.getOnlinePlayers().add(player);
@@ -37,11 +41,21 @@ public class Model extends Observable {
     }
   }
 
+
+  /**
+   * Add nickname to the Player
+   * @param nickName
+   */
   public void addNickname(String nickName) {
     this.game.addNickname(nickName);
     this.setChanged(); //guarda che l'ho modificato
     this.notifyObservers(state.ADDNICKNAMES.name()); //notifica tutti gli observers
   }
 
+  public void initialiseMatch(){
+    this.game.initialiseMatch();
+    this.notifyObservers(state.INIMATCH.name());
+    
+  }
 
 }

@@ -140,6 +140,7 @@ public class Game {
   }
 
   /**
+   * Add a Worker in the board for the first time
    * @param row
    * @param col
    * @param worker
@@ -159,7 +160,9 @@ public class Game {
   }
 
   /**
-   *
+   *Create a list of Worker to match the Player
+   *Create a player
+   *Create a Board
    */
   public void initialiseMatch() {
     List<Worker> list = new ArrayList<>();
@@ -187,17 +190,10 @@ public class Game {
   }
 
 
-  public void DecoratePlayer (Player player, God god) {
-
-    player.setActiveCard(god);
-
-    if(god.getGodName().equals("Apollo")){
-      PlayerInterface pApollo = new SpecialMove_SwapWorkers(player);
-    }
-
-
-  }
-
+  /**
+   * Check if the Worker won
+   * @param worker
+   */
   public void win(@NotNull Worker worker) {
     if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
       System.out.println(worker.getPlayerWorker().getNickname() + "wins");

@@ -19,9 +19,9 @@ public class App
         Model model = new Model(game);
         Controller controller = new Controller(model);
         View view1 = new CLIView(controller);
-        model.addObserver(view1);
+        model.AddObserver(view1);
         View view2 = new CLIView(controller);
-        model.addObserver(view2);
+        model.AddObserver(view2);
         view2.start();
         view1.start();
 

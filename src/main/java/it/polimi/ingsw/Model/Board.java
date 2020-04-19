@@ -13,6 +13,7 @@ public class Board {
     BoardCell[][] grid = new BoardCell[SIZE][SIZE];
 
 
+
     public Board() {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid.length; j++) {
@@ -25,7 +26,10 @@ public class Board {
         return SIZE;
     }
 
-    //delete all workers from the game grid and any other references in other classes
+    /**
+     * Delete reference of the worker in the Boardcell
+     * @param p
+     */
     public void deleteWorkers(@NotNull Player p) {
         for (int i = 0; i < p.getWorkerRef().length; i++) {
             p.getWorkerRef()[i].getCurCell().setWorker(null);
@@ -38,6 +42,9 @@ public class Board {
         return grid;
     }
 
+    /**
+     * Print the grid
+     */
     public void printGrid() {
         for (BoardCell[] boardCells : grid) {
             for (int j = 0; j < grid[0].length; j++) {
@@ -94,7 +101,11 @@ public class Board {
     }
 
 
-    // given a cell create an gridList of all adjacent cells to that.
+    /**
+     * Return a List of the adjacent BoardCells given a BoardCell
+     * @param b
+     * @return
+     */
     public List<BoardCell> adjacentCells(@NotNull BoardCell b) {
         int r_temp, c_temp;
         List<BoardCell> adj = new ArrayList<>();
@@ -116,7 +127,10 @@ public class Board {
         return adj;
     }
 
-    // create an gridList of all cells with no workers on
+    /**
+     * Creates an gridList of all cells with no workers on
+     * @return
+     */
     public List<BoardCell> freeCells() {
         List<BoardCell> b = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
@@ -129,6 +143,10 @@ public class Board {
         return b;
     }
 
+    /**
+     * Return a List with all the BoardCells
+     * @return
+     */
     public List<BoardCell> allCells() {
         List<BoardCell> b = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {

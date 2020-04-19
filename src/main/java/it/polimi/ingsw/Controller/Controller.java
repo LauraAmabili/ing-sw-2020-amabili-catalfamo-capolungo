@@ -29,4 +29,8 @@ public class Controller {
         }
     }
 
+    public void initialiseMatch(){
+        model.initialiseMatch();
+    }
+
 }

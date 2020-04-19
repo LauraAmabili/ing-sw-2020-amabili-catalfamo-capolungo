@@ -5,11 +5,10 @@ import it.polimi.ingsw.Controller.*;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.util.List;
-import java.util.Observer;
 import java.util.Scanner;
 
 
-public abstract class View extends Thread implements Observer {
+public abstract class View extends Thread implements Observer  {
 }
 
 

@@ -38,6 +38,10 @@ public class Turn {
     this.activePlayers = activePlayers;
   }
 
+
+  /**
+   * Switch the Player and goes on with the turn
+   */
   public void nextTurn() {
       int index = activePlayers.size() - 1;
       int i = activePlayers.indexOf(currentPlayer);
@@ -50,12 +54,21 @@ public class Turn {
 
   }
 
+  /**
+   * Check if the current player can build at least somewhere
+   * @param worker
+   * @return
+   */
   public boolean checkLockBuild(Worker worker) {
     return getCurrentPlayer().availableCellsToBuild(worker).size() == 0;
   }
 
+  /**
+   * Check if the current player can move at least a worker
+   * @param worker
+   * @return
+   */
 
-  // check if the current player can move at least a worker
   public boolean checkLockPlayer(Worker worker) {
     return getCurrentPlayer().availableCellsToMove(worker).size() == 0;
   }
