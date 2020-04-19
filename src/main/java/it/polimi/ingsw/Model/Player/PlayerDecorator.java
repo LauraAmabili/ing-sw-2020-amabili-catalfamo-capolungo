@@ -109,4 +109,10 @@ public class PlayerDecorator implements PlayerInterface {
     return player.checkWin(worker);
   }
 
-}
+  @Override
+  public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
+    return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
+  }
+
+
+  }

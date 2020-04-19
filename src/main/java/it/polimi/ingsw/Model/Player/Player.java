@@ -90,6 +90,8 @@ public class Player implements PlayerInterface {
             adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
         }
         return adj;
+
+
     }
 
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
@@ -105,6 +107,10 @@ public class Player implements PlayerInterface {
             worker.getCurCell().setWorker(worker);
             return true;
         }
+        return false;
+    }
+
+    public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild){
         return false;
     }
 
@@ -147,5 +153,7 @@ public class Player implements PlayerInterface {
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
+
+
 
 }
