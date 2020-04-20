@@ -11,8 +11,6 @@ import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
 
     protected PlayerInterface player;
@@ -34,9 +32,11 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
             worker.setOldCell(worker.getCurCell());
             worker.setCurCell(worker.getBoard().getGrid()[row][col]);
             worker.getCurCell().setWorker(worker);
-            if (worker.getCurCell().getLevel() > worker.getOldCell().getLevel())
+            if (worker.getCurCell().getLevel() > worker.getOldCell().getLevel()) {
                 lockMoveUp(worker);
-            return true;
+                return true;
+            }
+
         }
         return false;
     }

@@ -1,4 +1,5 @@
 package it.polimi.ingsw.Model.Player;
+
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
@@ -19,7 +20,8 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
         super(p);
     }
 
-    public boolean move(int row, int col, @NotNull Worker worker){
+    public boolean move(int row, int col, @NotNull Worker worker) {
+
         if(availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
             Worker opponentWorker = worker.getBoard().getGrid()[row][col].getWorker();
             if (opponentWorker == null){
@@ -64,20 +66,19 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
     }
 
 
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
-        if (specialEffect) {
-            List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
-            adj.removeIf((n) -> n.getWorker().getPlayerWorker().equals(worker.getPlayerWorker()));
-            adj.removeIf(BoardCell::getDome);
-            if (worker.getPlayerWorker().isMoveUp()){
-                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-            }
-            else {
-                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-            }
-            return adj;
+    @Override
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
+        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+
+        adj.removeIf(BoardCell::getDome);
+        if (worker.getPlayerWorker().isMoveUp()){
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
         }
-        return null;
+        else {
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+        }
+        return adj;
+
     }
 
     public List<BoardCell> availableCellsToBePushed(@NotNull Worker worker) {
@@ -87,4 +88,11 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
         return res;
     }
 
-}
+
+
+
+
+
+
+
+    }

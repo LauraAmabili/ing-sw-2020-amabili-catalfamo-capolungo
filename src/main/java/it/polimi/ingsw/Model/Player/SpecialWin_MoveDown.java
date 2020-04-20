@@ -18,8 +18,12 @@ public class SpecialWin_MoveDown extends PlayerDecorator {
 	}
 
 	public boolean checkWin(@NotNull Worker worker) {
+
+
 		return (((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3) ||
 				(worker.getOldCell().getLevel() - worker.getCurCell().getLevel() >= 2)
 				);
+
+
 	}
 }
