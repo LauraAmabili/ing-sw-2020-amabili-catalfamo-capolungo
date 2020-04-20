@@ -53,18 +53,19 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
     }
 
 
-    /*
-
-    Add cells such that:
-        - adjacent cell
-        - opponent's worker on them
-
-    Remove cells such that:
-        - there is a dome
-        - the level is greater than 1
-
-
+    /**
+     *  Add cells such that:
+     *         - adjacent cell
+     *         - opponent's worker on them
+     *
+     *     Remove cells such that:
+     *         - there is a dome
+     *         - the level is greater than 1
+     * @param worker
+     * @return
      */
+
+
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());

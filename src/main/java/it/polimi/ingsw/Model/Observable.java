@@ -13,16 +13,18 @@ public class Observable {
 
     public void AddObserver(Observer o){
         this.observers.add(o);
-
     }
 
-    void notifyObservers() {
+    void notifyObservers(Object obj) {
+        for(Observer o : observers){
+            o.update(obj);
+        }
     }
 
-    void notifyObservers(Object obj){
-
+    void notifyObservers(Object something, Object obj){
+        for(Observer o : observers){
+            o.updatespecial(something,obj);
+        }
     }
 
-    void setChanged() {
-    }
 }

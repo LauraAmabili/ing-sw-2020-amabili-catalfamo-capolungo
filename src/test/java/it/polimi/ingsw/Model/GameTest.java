@@ -51,4 +51,5 @@ public class GameTest {
         Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef()[1]);
     }
 
+
 }

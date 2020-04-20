@@ -4,6 +4,9 @@ import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.*;
 import org.jetbrains.annotations.NotNull;
 
+
+
+import java.lang.reflect.Method;
 import java.util.*;
 
 
@@ -26,6 +29,7 @@ public class Game {
   private List<gods> godList = new ArrayList<>();
   private List<God> chosenGods = new ArrayList<>();
 
+  Map<String, Method> metodi = new HashMap<>();
   Map<String, List<PlayerInterface>> map = new HashMap<>();
 
   public Game() {
@@ -33,38 +37,6 @@ public class Game {
     onlinePlayers = new ArrayList<>();
   }
 
-  public void setMap() {
-    List <PlayerInterface> ApolloList = new ArrayList<>();
-    List <PlayerInterface> ArtemisList = new ArrayList<>();
-    List <PlayerInterface> AthenaList = new ArrayList<>();
-    List <PlayerInterface> AtlasList = new ArrayList<>();
-    List <PlayerInterface> DemeterList = new ArrayList<>();
-    List <PlayerInterface> HephaestusList = new ArrayList<>();
-    List <PlayerInterface> MinotaurList = new ArrayList<>();
-    List <PlayerInterface> PanList = new ArrayList<>();
-    List <PlayerInterface> PrometheusList = new ArrayList<>();
-    for (PlayerInterface onlinePlayer : onlinePlayers) {
-      map.put("Apollo", ApolloList);
-      map.get("Apollo").add(new SpecialMove_SwapWorkers(onlinePlayer));
-      map.put("Artemis", ArtemisList);
-      map.get("Artemis").add(new SpecialMove_MoveTwice(onlinePlayer));
-      map.put("Athena", AthenaList);
-      map.get("Athena").add(new SpecialOpponentTurn_LockMoveUp(onlinePlayer));
-      map.put("Atlas", AtlasList);
-      map.get("Atlas").add(new SpecialBuild_DomeAnyLevel(onlinePlayer));
-      map.put("Demeter", DemeterList);
-      map.get("Demeter").add(new SpecialBuild_BuildTwiceDifferent(onlinePlayer));
-      map.put("Hephaestus", HephaestusList);
-      map.get("Hephaestus").add(new SpecialBuild_BuildTwiceSame(onlinePlayer));
-      map.put("Minotaur", MinotaurList);
-      map.get("Minotaur").add(new SpecialMove_PushOpponent(onlinePlayer));
-      map.put("Pan", PanList);
-      map.get("Pan").add(new SpecialWin_MoveDown(onlinePlayer));
-      map.put("Prometheus", PrometheusList);
-      map.get("Prometheus").add(new SpecialWin_MoveDown(onlinePlayer)); //TODO: Creare classe per movimento e costruzione di prometeo
-    }
-
-  }
 
   private void chosenGod(God god) {
     chosenGods.add(god);
@@ -189,6 +161,32 @@ public class Game {
 
   }
 
+  /**
+   * Calls the right method using reflection using the name of the ActiveGod
+   * @param name
+   * @param player
+   */
+  public void decoratePlayer(String name, PlayerInterface player){
+
+    DecoratoreReflection dec = new DecoratoreReflection();
+    Method metodo = null;
+    try {
+      metodo = dec.getClass().getMethod(name, player.getClass());
+    }
+    catch (NoSuchMethodException e) {
+      notify(); //there is no God
+    }
+
+    if (metodo != null)
+      try {
+        metodo.invoke(player);
+      }
+      catch (Exception ecc) {
+        notify();
+      }
+
+
+  }
 
   /**
    * Check if the Worker won

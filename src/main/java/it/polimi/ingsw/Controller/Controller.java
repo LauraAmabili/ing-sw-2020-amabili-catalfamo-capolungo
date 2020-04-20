@@ -33,4 +33,8 @@ public class Controller {
         model.initialiseMatch();
     }
 
+    public void decoratePlayer(PlayerInterface player){
+        model.decoratePlayer(player);
+    }
+
 }
