@@ -3,6 +3,8 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.*;
 import org.jetbrains.annotations.NotNull;
+import it.polimi.ingsw.Model.*;
+
 
 
 
@@ -20,6 +22,7 @@ public class Game {
   private int counterId = 1;
   private Board board;
   private boolean gameStarted;
+
 
   //God
   private enum gods {
@@ -171,23 +174,32 @@ public class Game {
     DecoratoreReflection dec = new DecoratoreReflection();
     Method metodo = null;
     try {
-      metodo = dec.getClass().getMethod(name, player.getClass());
+     metodo = dec.getClass().getDeclaredMethod(name, PlayerInterface.class);
     }
     catch (NoSuchMethodException e) {
-      notify(); //there is no God
+      //notify();
+      // there is no God
+      System.out.println("Player not decorated, choose one first");
+      notifyExc();
+      //TODO: check notify()
     }
 
     if (metodo != null)
       try {
-        metodo.invoke(player);
+        metodo.invoke(dec, player);
       }
       catch (Exception ecc) {
-        notify();
+        System.out.println("Exception ecc, non invoca il metodo ");
+        //TODO: check notify()
+        notifyExc();
       }
-
 
   }
 
+  public void notifyExc(){
+    Model model = new Model();
+    model.notifyObservers("Exception");
+  }
   /**
    * Check if the Worker won
    * @param worker

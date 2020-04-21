@@ -23,7 +23,7 @@ public class Observable {
 
     void notifyObservers(Object something, Object obj){
         for(Observer o : observers){
-            o.updatespecial(something,obj);
+            o.update(something,obj);
         }
     }
 
