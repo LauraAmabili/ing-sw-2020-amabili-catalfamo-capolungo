@@ -12,7 +12,7 @@ import java.util.Random;
 public class Model extends Observable {
 
   private enum state {
-    ADDNICKNAMES, INIMATCH, CHOOSECHALLENGER, GODSETTED,  ADDGODTOPLAYER, DECORATEPLAYER, MOVE, BUILD, WIN
+    ADDNICKNAMES, INIMATCH, CHOOSECHALLENGER, GODSETTED,  ADDGODTOPLAYER, PLAYERDECORATED, MOVE, BUILD, WIN
   }
 
   List<state> states = new ArrayList<>();
@@ -22,6 +22,7 @@ public class Model extends Observable {
   public Model(Game game) {
     this.game = game;
   }
+  public Model (){ }
 
   public Game getGame() {
     return game;
@@ -55,6 +56,7 @@ public class Model extends Observable {
   public void decoratePlayer(PlayerInterface player){
     String methodname = player.getActiveCard().getGodName();
     game.decoratePlayer(methodname, player);
+    this.notifyObservers(player,state.PLAYERDECORATED.name());
   }
   public void createTurn(){
     Turn turn = new Turn(game.getOnlinePlayers());

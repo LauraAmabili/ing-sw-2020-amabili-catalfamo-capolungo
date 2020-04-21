@@ -3,6 +3,7 @@ package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Model.God;
 import it.polimi.ingsw.Model.Model;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 import it.polimi.ingsw.Model.Turn;
@@ -35,6 +36,12 @@ public class Controller {
 
     public void decoratePlayer(PlayerInterface player){
         model.decoratePlayer(player);
+    }
+    public void createTurn(){
+        model.createTurn();
+    }
+    public void setGod(String in){
+        model.setGod(in);
     }
 
 }

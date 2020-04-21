@@ -29,7 +29,7 @@ public class CLIView extends View {
             System.out.println("Add nickname: 1");
             System.out.println("Initialize match: 2");
             System.out.println("Choose God: 3");
-            System.out.println("You want to decorate? press 4 bitch!");
+            //System.out.println("You want to decorate? press 4 bitch!");
             String in = input.nextLine();
             Integer integer = Integer.parseInt(in);
             switch (integer) {
@@ -58,13 +58,20 @@ public class CLIView extends View {
 
 
     @Override
-    public void updatespecial(Object o, Object obj){
+    public void update(Object o, Object obj){
         String state = (String) obj;
         switch (state){
             case "GODSETTED":
                 player = (Player)o;
                 System.out.println("God setted");
-                System.out.println(player.getNickname() + player.getActiveCard() + "sto cazzo");
+                System.out.println( player.getNickname() + " " + player.getActiveCard().getGodName() + " " + "sto cazzo");
+                break;
+            case "PLAYERDECORATED":
+                System.out.println(player);
+                System.out.println(player.getNickname()+ " decorated corretly");
+                break;
+            default:
+                break;
         }
     }
     @Override
@@ -78,6 +85,8 @@ public class CLIView extends View {
                 System.out.println("Game is ready!");
 
                 break;
+            case "Exception":
+                System.out.println("There was an exception");
             //case "GODSETTED":
               //  System.out.println("God setted");
             default:
