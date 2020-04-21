@@ -42,12 +42,12 @@ public class CLIView extends View {
                 case 2:
                     System.out.print("Game is starting...");
                     controller.initialiseMatch();
-                    //controller.createTurn();
+                    controller.createTurn();
                     break;
                 case 3:
                     System.out.println("Choose your god");
                     in = input.nextLine();
-                    //controller.setGod(in);
+                    controller.setGod(in);
                     controller.decoratePlayer(player);
                     break;
                 default:
@@ -87,8 +87,8 @@ public class CLIView extends View {
                 break;
             case "Exception":
                 System.out.println("There was an exception");
-            //case "GODSETTED":
-              //  System.out.println("God setted");
+                //case "GODSETTED":
+                //  System.out.println("God setted");
             default:
                 break;
         }
