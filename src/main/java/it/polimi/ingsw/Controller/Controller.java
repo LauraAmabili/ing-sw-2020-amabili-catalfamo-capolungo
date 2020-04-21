@@ -2,11 +2,9 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
-import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God;
-import it.polimi.ingsw.Model.Model;
+import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
-import it.polimi.ingsw.Model.Turn;
 
 import java.util.List;
 
@@ -33,15 +31,22 @@ public class Controller {
     public void initialiseMatch(){
         model.initialiseMatch();
     }
-
-    public void decoratePlayer(PlayerInterface player){
-        model.decoratePlayer(player);
-    }
-    public void createTurn(){
-        model.createTurn();
-    }
     public void setGod(String in){
         model.setGod(in);
     }
+    public void decoratePlayer(PlayerInterface player){
+        model.decoratePlayer(player);
+    }
+    public void addWorker(Worker worker, int row, int col){
+        model.addWorker(worker, row, col);
+    }
+    public void chooseCards(){
+        model.chooseCards();
+    }
+
+    public void createTurn(){
+        model.createTurn();
+    }
+
 
 }

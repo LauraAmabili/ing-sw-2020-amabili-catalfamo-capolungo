@@ -29,6 +29,14 @@ public class Player implements PlayerInterface {
         this.nickname = nickname;
     }
 
+    public Player() {}
+
+    public Player(Player player) {
+        this.nickname = PlayerInterface.nickname;
+        this.workerRef = PlayerInterface.workerRef;
+        this.activeCard = PlayerInterface.activeCard;
+    }
+
     public boolean isMoveUp() {
         return moveUp;
     }

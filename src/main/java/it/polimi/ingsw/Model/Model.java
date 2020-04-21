@@ -12,22 +12,19 @@ import java.util.Random;
 public class Model extends Observable {
 
   private enum state {
-    ADDNICKNAMES, INIMATCH, CHOOSECHALLENGER, GODSETTED,  ADDGODTOPLAYER, PLAYERDECORATED, MOVE, BUILD, WIN
+    ADDNICKNAMES, INIMATCH, CHALLENGERSETTED, GODSETTED, ADDGODTOPLAYER, PLAYERDECORATED, MOVE, BUILD, WIN
   }
 
   List<state> states = new ArrayList<>();
 
   private Game game;
-
   public Model(Game game) {
     this.game = game;
   }
   public Model (){ }
-
   public Game getGame() {
     return game;
   }
-
   /**
    * Add the Players to the Game
    * @param player
@@ -36,8 +33,6 @@ public class Model extends Observable {
   public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
     if(!game.isGameStarted()) {
       game.getOnlinePlayers().add(player);
-      //setChanged();
-      //notifyObservers();
     } else {
       throw new GameIsAlreadyStarted();
     }
@@ -48,36 +43,47 @@ public class Model extends Observable {
    */
   public void addNickname(String nickName) {
     this.game.addNickname(nickName);
-    this.notifyObservers(state.ADDNICKNAMES.name()); //notifica tutti gli observers
+    //this.notifyPlayerAdded(state.ADDNICKNAMES.name());
+    this.notifyPlayerAdded(nickName);
   }
   public void initialiseMatch(){
     this.game.initialiseMatch();
   }
   public void decoratePlayer(PlayerInterface player){
     String methodname = player.getActiveCard().getGodName();
-    game.decoratePlayer(methodname, player);
-    this.notifyObservers(player,state.PLAYERDECORATED.name());
+    PlayerInterface playerA = game.decoratePlayer(methodname,player);
+    this.notifyPlayerDecorated(playerA);
   }
   public void createTurn(){
     Turn turn = new Turn(game.getOnlinePlayers());
     game.setCurrentTurn(turn);
     game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(0));
-    this.notifyObservers(state.INIMATCH.name());
-
-  }
-
-
-  public void ChooseChallenger(){
-    Random rand = new Random();
-    game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
-    this.notifyObservers(state.CHOOSECHALLENGER.name());
+    //this.notifyObservers(state.INIMATCH.name());
+    this.notifyGameIsRead();
   }
   public void setGod(String godName){
     God god = new God();
     god.setGodName(godName);
     game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
-    PlayerInterface player = game.getCurrentTurn().getCurrentPlayer();
-    notifyObservers(player, state.GODSETTED.name());
-
+    Player player = (Player)game.getCurrentTurn().getCurrentPlayer();
+    //notifyObservers(player, state.GODSETTED.name());
+    this.notifyGodSetted(player, godName);
   }
+  public void addWorker(Worker worker, int row, int col){
+    if(game.addWorker(row, col, worker)) {
+      Board board = game.getBoard();
+      this.notifyWorkerSetted(board);
+    }
+  }
+  public void ChooseChallenger(){
+    Random rand = new Random();
+    game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
+    //this.notifyObservers(state.CHALLENGERSETTED.name());
+  }
+  public void chooseCards(){
+    game.initializeGodList();
+    List gods = game.getGodList();
+    this.notifychooseCards(gods);
+  }
+
 }

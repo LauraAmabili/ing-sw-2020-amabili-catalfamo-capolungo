@@ -29,6 +29,7 @@ public class Game {
     Apollo, Artemis, Athena, Atlas, Demeter, Hephaestus, Minotaur, Pan, Prometheus
   }
 
+
   private List<gods> godList = new ArrayList<>();
   private List<God> chosenGods = new ArrayList<>();
 
@@ -40,7 +41,12 @@ public class Game {
     onlinePlayers = new ArrayList<>();
   }
 
-
+  public List<gods> getGodList() {
+    return godList;
+  }
+  public void setGodList(List<gods> godList) {
+    this.godList = godList;
+  }
   private void chosenGod(God god) {
     chosenGods.add(god);
   }
@@ -161,44 +167,40 @@ public class Game {
       }
       list.clear();
     }
-
   }
-
   /**
    * Calls the right method using reflection using the name of the ActiveGod
    * @param name
    * @param player
    */
-  public void decoratePlayer(String name, PlayerInterface player){
+  public PlayerInterface decoratePlayer(String name, PlayerInterface player){
 
     DecoratoreReflection dec = new DecoratoreReflection();
     Method metodo = null;
+    PlayerInterface playerI = new Player();
     try {
-     metodo = dec.getClass().getDeclaredMethod(name, PlayerInterface.class);
+     metodo = dec.getClass().getMethod(name, PlayerInterface.class);
     }
     catch (NoSuchMethodException e) {
-      //notify();
-      // there is no God
       System.out.println("Player not decorated, choose one first");
       notifyExc();
-      //TODO: check notify()
     }
-
     if (metodo != null)
       try {
-        metodo.invoke(dec, player);
+        Object playerD = metodo.invoke(dec, player);
+        playerI = (PlayerInterface) playerD;
       }
       catch (Exception ecc) {
         System.out.println("Exception ecc, non invoca il metodo ");
-        //TODO: check notify()
         notifyExc();
       }
+    return playerI;
 
   }
 
   public void notifyExc(){
     Model model = new Model();
-    model.notifyObservers("Exception");
+    model.notifyObservers(null,"Exception");
   }
   /**
    * Check if the Worker won
