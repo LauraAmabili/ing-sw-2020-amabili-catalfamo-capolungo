@@ -126,8 +126,7 @@ public class PlayerTest {
     //SPECIAL MOVES
 
     @Test
-    public void testSpecialBuild_BuildTwiceDifferent() //WORKING
-    {
+    public void testSpecialBuild_BuildTwiceDifferent() {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
@@ -146,7 +145,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testSpecialBuild_BuildTwiceSame() { //WORKING
+    public void testSpecialBuild_BuildTwiceSame() {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
@@ -163,7 +162,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testSpecialBuild_DomeAnyLevel() { //WORKING
+    public void testSpecialBuild_DomeAnyLevel() {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
@@ -181,7 +180,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testSpecialMove_BMB() { //WORKING
+    public void testSpecialMove_BMB() {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
@@ -203,7 +202,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testSpecialMove_MoveTwice() { //WORKING
+    public void testSpecialMove_MoveTwice() {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);

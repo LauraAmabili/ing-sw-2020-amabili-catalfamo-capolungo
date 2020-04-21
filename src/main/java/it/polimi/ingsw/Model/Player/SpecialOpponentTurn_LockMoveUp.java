@@ -1,12 +1,6 @@
 package it.polimi.ingsw.Model.Player;
 
 
-/*
-Athena
-
-If one of your Workers moved up on your last turn, opponent Workers cannot move up this turn.
-*/
-
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +17,17 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
     }
 
 
+    /**moveUp parameter is managed from this function
+     * if (moveUp = false)
+     *      the other players were locked
+     *      unlock(player)
+     * if you go higher
+     *      lock(player)
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (toUnlock)
@@ -41,7 +46,9 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
         return false;
     }
 
-    //for each player -> player.moveUp=false
+    /**for each player -> player.moveUp=false
+     * @param worker worker used
+     */
     public void lockMoveUp(Worker worker) {
         BoardCell[][] grid = worker.getBoard().getGrid();
         for (BoardCell[] boardCells : grid) {
@@ -56,7 +63,9 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
         toUnlock = true;
     }
 
-    //for each player -> player.moveUp=true
+    /**for each player -> player.moveUp=true
+     * @param worker worker used
+     */
     public void unlockMoveUp(Worker worker) {
         BoardCell[][] grid = worker.getBoard().getGrid();
         for (BoardCell[] boardCells : grid) {

@@ -5,12 +5,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-/*
-Hephaestus
-
-Your Worker may build one additional block (not dome) on top of your first block.
-
- */
 
 
 public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
@@ -18,6 +12,14 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
     public SpecialBuild_BuildTwiceSame(PlayerInterface p) {
         super(p);
     }
+
+    /**Builds twice on the same BoardCell
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @param specialEffect true <--> the effect has to be enabled</-->
+     * @return true <--> the method works </-->
+     */
 
     public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
         if (specialEffect) {

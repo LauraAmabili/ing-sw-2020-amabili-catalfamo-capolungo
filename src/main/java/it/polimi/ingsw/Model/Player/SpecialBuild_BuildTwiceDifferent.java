@@ -2,13 +2,6 @@ package it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-/*
-
-Demeter
-
-Your Worker may build one additional time, but not on the same space.
-
- */
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
@@ -17,6 +10,14 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
         super(p);
     }
 
+    /**Builds on two different BoardCells
+     * @param row1 First BoardCell row
+     * @param col1 First BoardCell col
+     * @param worker Worker used
+     * @param row2 Second BoardCell row
+     * @param col2 Second BoardCell col
+     * @return true <--> the method works </-->
+     */
     public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
         BoardCell b1 = worker.getBoard().getGrid()[row1][col1];
         BoardCell b2 = worker.getBoard().getGrid()[row2][col2];

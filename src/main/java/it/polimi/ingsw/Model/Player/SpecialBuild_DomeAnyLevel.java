@@ -2,13 +2,7 @@ package it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-/*
 
- Atlas
-
- Your Worker may build a dome at any level.
-
- */
 
 public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
@@ -17,6 +11,14 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 	public SpecialBuild_DomeAnyLevel(PlayerInterface player){
 		super(player);
 	}
+
+	/**Builds a dome on that BoardCell
+	 * @param row BoardCell row
+	 * @param col BoardCell col
+	 * @param worker Worker used
+	 * @param specialEffect true <--> the effect has to be enabled</-->
+	 * @return true <--> the method works </-->
+	 */
 
 	public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
 		if (specialEffect){

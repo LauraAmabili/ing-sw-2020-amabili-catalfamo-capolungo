@@ -4,20 +4,21 @@ import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
 
-/*Artemis
-
-Your Worker may move one additional time, but not back to its initial space.
-
-*/
-
-
 public class SpecialMove_BMB extends PlayerDecorator {
 
-    // constructor
     public SpecialMove_BMB(PlayerInterface p) {
         super(p);
     }
 
+    /**
+     * @param row
+     * @param col
+     * @param worker
+     * @param specialEffect
+     * @param rowBuild
+     * @param colBuild
+     * @return
+     */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
         if (specialEffect){

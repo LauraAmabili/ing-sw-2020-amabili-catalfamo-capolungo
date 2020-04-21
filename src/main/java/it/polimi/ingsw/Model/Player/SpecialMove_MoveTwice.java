@@ -1,25 +1,22 @@
 package it.polimi.ingsw.Model.Player;
+
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
-
-/*Artemis
-
-Your Worker may move one additional time, but not back to its initial space.
-
-*/
 
 
 public class SpecialMove_MoveTwice extends PlayerDecorator {
 
-    // constructor
+
     public SpecialMove_MoveTwice(PlayerInterface p) {
         super(p);
     }
 
     /**
-     * update the location of the worker in Worker && update the presence of the worker in BoardCell
+     * Standard Move
+     *
      * @param row
      * @param col
      * @param worker
@@ -36,58 +33,33 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
         return false;
     }
 
-    /*// return an Arraylist of the boardcell where the worker can move
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
-        for (BoardCell x : adj) {
-            List<BoardCell> temp = worker.getBoard().adjacentCells(x);
-            for (BoardCell y : temp) {
-                if (!(adj.contains(y))) {
-                    adj.add(y);
-                }
-
-            }
-        }
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        if (worker.getPlayerWorker().isMoveUp()){
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        }
-        else {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        }
-
-        return adj;
-    }
-
-     */
 
     /**
-     *  return an Arraylist of the boardcell where the worker can move
-     * @param worker
-     * @return
+     * returns the BoardCells such that:
+     * - distance(worker)<=2
+     * - there are not Workers
+     * - there are not Domes
+     * - if (moveUp), remove BoardCells such that BoardCell.level+1>Worker.level
+     * - if !(moveUp), remove BoardCells such that BoardCell.level>Worker.level
+     * @param worker Worker used
+     * @return ArrayList with the BoardCells
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
         List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
-
+        for (BoardCell x : worker.getBoard().adjacentCells(worker.getCurCell())) {
+            adj.addAll(worker.getBoard().adjacentCells(x));
+        }
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);
-        if (worker.getPlayerWorker().isMoveUp()){
+        if (worker.getPlayerWorker().isMoveUp()) {
             adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        }
-        else {
+        } else {
             adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        }
-        for (BoardCell x : worker.getBoard().adjacentCells(worker.getCurCell())){
-            adj.addAll(worker.getBoard().adjacentCells(x));
         }
         return adj;
 
-
     }
-
-
 
 
 }

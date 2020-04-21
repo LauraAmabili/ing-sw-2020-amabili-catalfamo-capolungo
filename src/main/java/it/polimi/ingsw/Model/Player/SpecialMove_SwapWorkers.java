@@ -1,12 +1,7 @@
 package it.polimi.ingsw.Model.Player;
 
 
-/*
-Apollo
 
-Your Worker may move into an opponent Worker’s space by forcing their Worker to the space yours just vacated.
-
-*/
 
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
@@ -16,12 +11,17 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
 
     protected PlayerInterface player;
 
-    // constructor
     public SpecialMove_SwapWorkers(PlayerInterface player) {
         super(player);
     }
 
 
+    /**You can swap your Worker with an opponent's Worker
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
