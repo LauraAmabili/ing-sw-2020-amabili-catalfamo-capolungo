@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Model.Player.FSA;
+package it.polimi.ingsw.Model.FSA;
 
 import it.polimi.ingsw.Model.Worker;
 

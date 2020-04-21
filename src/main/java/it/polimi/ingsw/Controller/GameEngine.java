@@ -1,16 +1,17 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
-import it.polimi.ingsw.Exeptions.NoGod;
+import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Observable;
 import it.polimi.ingsw.Model.Player.*;
-import it.polimi.ingsw.Model.Player.FSA.*;
+import it.polimi.ingsw.Model.FSA.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
 
-public class Game extends Observable {
+public class GameEngine extends Observable {
 
     GameFSA noStarted = new NoStarted(this);
     GameFSA initialized = new Initialized(this);
@@ -42,7 +43,7 @@ public class Game extends Observable {
     Map<String, Method> metodi = new HashMap<>();
     Map<String, List<PlayerInterface>> map = new HashMap<>();
 
-    public Game() {
+    public GameEngine() {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
     }
@@ -108,9 +109,8 @@ public class Game extends Observable {
     /**
      * Add player in OnlinePlayer list
      * @param player
-     * @throws GameIsAlreadyStarted
      */
-    public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
+    public void addPlayers(PlayerInterface player) {
         onlinePlayers.add(player);
     }
 
@@ -165,11 +165,7 @@ public class Game extends Observable {
             for(int k = 0; k < player.getWorkerRef().length; k++) {
                 player.getWorkerRef()[k].setPlayerWorker(player);
             }
-            try {
-                addPlayers(player);
-            } catch (GameIsAlreadyStarted e) {
-                e.printStackTrace();
-            }
+            addPlayers(player);
             list.clear();
             currentTurn = new Turn(onlinePlayers);
             initializeGodList();
@@ -182,7 +178,7 @@ public class Game extends Observable {
      */
     public PlayerInterface decoratePlayer(String name, PlayerInterface player){
 
-        DecoratoreReflection dec = new DecoratoreReflection();
+        EffectsAssigner dec = new EffectsAssigner();
         Method metodo = null;
         PlayerInterface playerI = new Player();
         try {
@@ -225,7 +221,7 @@ public class Game extends Observable {
 
     public void setGod(String godName) {
         int check = 0;
-        for (Game.gods gods : godList) {
+        for (GameEngine.gods gods : godList) {
             if (godName.equals(gods.name())) {
                 check = 1;
             }

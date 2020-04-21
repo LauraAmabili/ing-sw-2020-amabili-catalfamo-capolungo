@@ -1,21 +1,21 @@
-package it.polimi.ingsw.Model.Player.FSA;
+package it.polimi.ingsw.Model.FSA;
 
-import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Controller.GameEngine;
 import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class NoStarted implements GameFSA {
+public class Initialized implements GameFSA {
 
-    private Game game;
+    private GameEngine gameEngine;
 
-    public NoStarted(Game game) {
-        this.game = game;
+    public Initialized(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
     }
 
     @Override
     public void addNickname(String name) {
-        game.getNicknames().add(name);
+
     }
 
     @Override

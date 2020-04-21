@@ -1,11 +1,11 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Model.Player;
 
 import it.polimi.ingsw.Model.Player.*;
 
-public class DecoratoreReflection {
+public class EffectsAssigner {
 
 
-    public DecoratoreReflection() {}
+    public EffectsAssigner() {}
 
     public PlayerInterface Apollo (PlayerInterface player){
         PlayerInterface playerDecorated = new SpecialMove_SwapWorkers(player);

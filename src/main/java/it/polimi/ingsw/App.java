@@ -1,13 +1,8 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Model.Player.*;
-import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Controller.GameEngine;
 import it.polimi.ingsw.View.CLIView;
 import it.polimi.ingsw.View.View;
-
-import java.util.*;
 
 public class App 
 {
@@ -15,10 +10,10 @@ public class App
     public static void main(String[] args ) {
 
 
-        Game game = new Game();
-        Controller controller = new Controller(game);
+        GameEngine gameEngine = new GameEngine();
+        GameEngine controller = new GameEngine(gameEngine);
         View view1 = new CLIView(controller);
-        game.AddObserver(view1);
+        gameEngine.AddObserver(view1);
         //View view2 = new CLIView(controller);
         //model.AddObserver(view2);
         //view2.start();

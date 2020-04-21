@@ -1,16 +1,16 @@
-package it.polimi.ingsw.Model.Player.FSA;
+package it.polimi.ingsw.Model.FSA;
 
-import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Controller.GameEngine;
 import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class Initialized implements GameFSA {
+public class Moving implements GameFSA {
 
-    private Game game;
+    private GameEngine gameEngine;
 
-    public Initialized(Game game) {
-        this.game = game;
+    public Moving(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
     }
 
     @Override
