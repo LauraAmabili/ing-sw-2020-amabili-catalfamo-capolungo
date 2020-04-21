@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model;
 
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
+import it.polimi.ingsw.Exeptions.NoGod;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
@@ -28,14 +29,9 @@ public class Model extends Observable {
   /**
    * Add the Players to the Game
    * @param player
-   * @throws GameIsAlreadyStarted
    */
-  public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
-    if(!game.isGameStarted()) {
+  public void addPlayers(PlayerInterface player) {
       game.getOnlinePlayers().add(player);
-    } else {
-      throw new GameIsAlreadyStarted();
-    }
   }
   /**
    * Add nickname to the Player
@@ -46,14 +42,17 @@ public class Model extends Observable {
     //this.notifyPlayerAdded(state.ADDNICKNAMES.name());
     this.notifyPlayerAdded(nickName);
   }
+
   public void initialiseMatch(){
     this.game.initialiseMatch();
   }
+
   public void decoratePlayer(PlayerInterface player){
     String methodname = player.getActiveCard().getGodName();
     PlayerInterface playerA = game.decoratePlayer(methodname,player);
     this.notifyPlayerDecorated(playerA);
   }
+
   public void createTurn(){
     Turn turn = new Turn(game.getOnlinePlayers());
     game.setCurrentTurn(turn);
@@ -61,29 +60,28 @@ public class Model extends Observable {
     //this.notifyObservers(state.INIMATCH.name());
     this.notifyGameIsRead();
   }
+
   public void setGod(String godName){
-    God god = new God();
-    god.setGodName(godName);
-    game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
+    try {
+      game.setGod(godName);
+    } catch (NoGod e) {
+      game.notifyExc();
+    }
     Player player = (Player)game.getCurrentTurn().getCurrentPlayer();
-    //notifyObservers(player, state.GODSETTED.name());
     this.notifyGodSetted(player, godName);
   }
+
   public void addWorker(Worker worker, int row, int col){
     if(game.addWorker(row, col, worker)) {
       Board board = game.getBoard();
       this.notifyWorkerSetted(board);
     }
   }
-  public void ChooseChallenger(){
+  public void ChooseChallenger() {
     Random rand = new Random();
     game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
     //this.notifyObservers(state.CHALLENGERSETTED.name());
   }
-  public void chooseCards(){
-    game.initializeGodList();
-    List gods = game.getGodList();
-    this.notifychooseCards(gods);
-  }
+
 
 }

@@ -1,18 +1,24 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
+import it.polimi.ingsw.Exeptions.NoGod;
 import it.polimi.ingsw.Model.Player.*;
+import it.polimi.ingsw.Model.Player.FSA.*;
 import org.jetbrains.annotations.NotNull;
-import it.polimi.ingsw.Model.*;
-
-
-
 
 import java.lang.reflect.Method;
 import java.util.*;
 
 
-public class Game {
+public class Game extends Observable {
+
+    GameFSA noStarted = new NoStarted(this);
+    GameFSA initialized = new Initialized(this);
+    GameFSA chosenCards = new ChosenCards(this);
+    GameFSA moving = new Moving(this);
+    GameFSA building = new Building(this);
+
+    GameFSA gameFSA;
 
     //Player
     private int id;
@@ -132,6 +138,7 @@ public class Game {
         if(list.contains(worker.getBoard().getGrid()[row][col])) {
             worker.getBoard().getGrid()[row][col].setWorker(worker);
             worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            this.notifyWorkerSetted(board);
             return true;
         } else {
             System.out.println("Cell is already occupied");
@@ -164,6 +171,8 @@ public class Game {
                 e.printStackTrace();
             }
             list.clear();
+            currentTurn = new Turn(onlinePlayers);
+            initializeGodList();
         }
     }
     /**
@@ -193,8 +202,9 @@ public class Game {
                 notifyExc();
             }
         return playerI;
-
     }
+
+
     public void notifyExc(){
         Model model = new Model();
         model.notifyObservers(null,"Exception");
@@ -208,9 +218,28 @@ public class Game {
             System.out.println(worker.getPlayerWorker().getNickname() + "wins");
         }
     }
+
     public String getPlayerNickname(int num){
         return getOnlinePlayers().get(num).getNickname();
     }
 
+    public void setGod(String godName) {
+        int check = 0;
+        for (Game.gods gods : godList) {
+            if (godName.equals(gods.name())) {
+                check = 1;
+            }
+        }
+        if(check == 1) {
+            getCurrentTurn().getCurrentPlayer().setActiveCard(new God(godName));
+            Enum god = Enum.valueOf(gods.class, godName);
+            godList.remove(god);
+            this.notifyGodSetted(player, godName);
+        }
+    }
+
+    public void chooseCards(){
+        this.notifychooseCards(godList);
+    }
 }
 

@@ -49,19 +49,18 @@ public class Observable {
             o.updateTimeToChoose(gods);
         }
     }
-    /*
-    void notifyObservers(Object obj) {
+
+    void notifyStateError() {
         for(Observer o : observers){
-            o.update(obj);
+            o.updateStateError();
         }
     }
-*/
+
     void notifyObservers(Object something, Object obj){
         for(Observer o : observers){
             o.update(something,obj);
         }
     }
-
 
 
 }

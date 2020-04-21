@@ -10,43 +10,38 @@ import java.util.List;
 
 public class Controller {
 
-    private Model model;
+    private Game game;
 
-    public Controller(Model model) {
-        this.model = model;
+    public Controller(Game game) {
+        this.game = game;
     }
 
     public void addNickname(String name) {
-        model.addNickname(name);
+        game.addNickname(name);
     }
 
     public void addPlayer(PlayerInterface player) {
         try {
-            (model).addPlayers(player);
+            (game).addPlayers(player);
         } catch (GameIsAlreadyStarted e) {
             System.out.println("Game is Already started!");
         }
     }
 
-    public void initialiseMatch(){
-        model.initialiseMatch();
+    public void initialiseMatch() {
+        game.initialiseMatch();
     }
-    public void setGod(String in){
-        model.setGod(in);
+    public void setGod(String in) {
+        game.setGod(in);
     }
-    public void decoratePlayer(PlayerInterface player){
-        model.decoratePlayer(player);
+    public void decoratePlayer(PlayerInterface player) {
+        game.decoratePlayer(player.getActiveCard().getGodName(), player);
     }
-    public void addWorker(Worker worker, int row, int col){
-        model.addWorker(worker, row, col);
+    public void addWorker(Worker worker, int row, int col) {
+        game.addWorker(row, col, worker);
     }
-    public void chooseCards(){
-        model.chooseCards();
+    public void chooseCards() {
+        game.chooseCards();
     }
-
-    public void createTurn(){
-        model.createTurn();
-    }
-
 
 }

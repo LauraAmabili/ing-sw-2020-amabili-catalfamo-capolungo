@@ -8,11 +8,12 @@ import java.util.List;
 public interface Observer {
 
     //public void update(Object obj);
-    public void update(Object o, Object obj);
-    public void updatePlayerAdded(Object obj);
-    public void updateGameisReady();
-    public void updateGodSetted(PlayerInterface player, String godName);
-    public void updatePlayerDecorated(PlayerInterface playerDecorated);
-    public void updateBoard(Board board);
-    public void updateTimeToChoose(List gods);
+    void update(Object o, Object obj);
+    void updatePlayerAdded(Object obj);
+    void updateGameisReady();
+    void updateGodSetted(PlayerInterface player, String godName);
+    void updatePlayerDecorated(PlayerInterface playerDecorated);
+    void updateBoard(Board board);
+    void updateTimeToChoose(List gods);
+    void updateStateError();
 }
