@@ -26,9 +26,6 @@ public class App
         view1.start();
 
 
-
-
-
         /*
         boolean a;
         int k;
