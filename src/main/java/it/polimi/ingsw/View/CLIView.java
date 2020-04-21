@@ -64,7 +64,7 @@ public class CLIView extends View {
             case "GODSETTED":
                 player = (Player)o;
                 System.out.println("God setted");
-                System.out.println( player.getNickname() + " " + player.getActiveCard().getGodName() + " " + "sto cazzo");
+                System.out.println( player.getNickname() + " " + player.getActiveCard().getGodName() + " ");
                 break;
             case "PLAYERDECORATED":
                 System.out.println(player);
