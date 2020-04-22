@@ -29,8 +29,16 @@ public class Player implements PlayerInterface {
         this.nickname = nickname;
     }
 
-    public Player() {}
+    public Player() {
 
+    }
+
+    public void setTutto(PlayerInterface player){
+        this.nickname = player.getNickname();
+        this.activeCard = player.getActiveCard();
+        this.workerRef = player.getWorkerRef();
+        this.moveUp = player.isMoveUp();
+    }
     public Player(Player player) {
         this.nickname = PlayerInterface.nickname;
         this.workerRef = PlayerInterface.workerRef;

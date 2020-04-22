@@ -15,4 +15,8 @@ public interface Observer {
     public void updatePlayerDecorated(PlayerInterface playerDecorated);
     public void updateBoard(Board board);
     public void updateTimeToChoose(List gods);
+    public void updateGodAdded(List gods);
+    public void updateCardsChosen(List gods, int cardsChosen);
+    public void updateWinners(PlayerInterface player);
+    //public void updateTimeToChooseWorker();
 }

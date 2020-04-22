@@ -1,13 +1,13 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
+import it.polimi.ingsw.Exeptions.NoGod;
 import it.polimi.ingsw.Model.Player.*;
 import org.jetbrains.annotations.NotNull;
 import it.polimi.ingsw.Model.*;
 
 
-
-
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -33,6 +33,7 @@ public class Game {
     private List<gods> godList = new ArrayList<>();
     private List<God> chosenGods = new ArrayList<>();
 
+
     Map<String, Method> metodi = new HashMap<>();
     Map<String, List<PlayerInterface>> map = new HashMap<>();
 
@@ -40,37 +41,42 @@ public class Game {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
     }
+    static Game game = null;
+    public static Game instance(){
 
+        if(game == null) {
+            Game game = new Game();
+            return game;
+        }
+        return game;
+
+    }
+
+
+    public List<God> getChosenGods() {
+        return chosenGods;
+    }
     public List<gods> getGodList() {
         return godList;
     }
     public void setGodList(List<gods> godList) {
         this.godList = godList;
     }
-    private void chosenGod(God god) {
-        chosenGods.add(god);
-    }
-
     public void initializeGodList() {
         godList.addAll(Arrays.asList(gods.values()));
     }
-
     public Board getBoard() {
         return board;
     }
-
     public void setBoard(Board board) {
         this.board = board;
     }
-
     public List<PlayerInterface> getOnlinePlayers() {
         return onlinePlayers;
     }
-
     public List<String> getNicknames() {
         return nickNames;
     }
-
     public void addNickname(String nickNames) {
         this.nickNames.add(nickNames);
     }
@@ -164,6 +170,7 @@ public class Game {
                 e.printStackTrace();
             }
             list.clear();
+            initializeGodList();
         }
     }
     /**
@@ -171,9 +178,10 @@ public class Game {
      * @param name
      * @param player
      */
+
     public PlayerInterface decoratePlayer(String name, PlayerInterface player){
 
-        DecoratoreReflection dec = new DecoratoreReflection();
+        Ref dec = new Ref();
         Method metodo = null;
         PlayerInterface playerI = new Player();
         try {
@@ -183,18 +191,28 @@ public class Game {
             System.out.println("Player not decorated, choose one first");
             notifyExc();
         }
-        if (metodo != null)
+        if (metodo != null) {
             try {
                 Object playerD = metodo.invoke(dec, player);
                 playerI = (PlayerInterface) playerD;
-            }
-            catch (Exception ecc) {
-                System.out.println("Exception ecc, non invoca il metodo ");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                notifyExc();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
                 notifyExc();
             }
+        }
         return playerI;
-
     }
+        /*
+    public PlayerInterface decPlayer(String name, PlayerInterface player){
+        Ref ref = new Ref();
+        PlayerInterface newPlayer = ref.Decorator(name);
+        newPlayer.setTutto(player);
+        return newPlayer;
+    }
+    */
     public void notifyExc(){
         Model model = new Model();
         model.notifyObservers(null,"Exception");
@@ -211,6 +229,13 @@ public class Game {
     public String getPlayerNickname(int num){
         return getOnlinePlayers().get(num).getNickname();
     }
+
+    public List<God> addChosenGods(String godName){
+        God god= new God(godName);
+        chosenGods.add(god);
+        return chosenGods;
+    }
+
 
 }
 

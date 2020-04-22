@@ -12,6 +12,11 @@ public class God {
 
   private String godName;
 
+  public God(String godName) {
+    this.godName = godName;
+  }
+
+
   public String getGodName() {
     return godName;
   }

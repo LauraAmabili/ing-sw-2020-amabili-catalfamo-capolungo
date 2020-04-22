@@ -27,6 +27,13 @@ public class PlayerDecorator implements PlayerInterface {
     this.workerRef = player.getWorkerRef();
     this.activeCard = player.getActiveCard();
   }
+  @Override
+  public void setTutto(PlayerInterface player){
+    this.nickname = player.getNickname();
+    this.activeCard = player.getActiveCard();
+    this.workerRef = player.getWorkerRef();
+    this.moveUp = player.isMoveUp();
+  }
 
   public boolean isMoveUp(){
     return player.isMoveUp();
@@ -45,6 +52,7 @@ public class PlayerDecorator implements PlayerInterface {
   public String getNickname(){
     return nickname;
   }
+  
 
   @Override
   public void setActiveCard(God activeCard) {

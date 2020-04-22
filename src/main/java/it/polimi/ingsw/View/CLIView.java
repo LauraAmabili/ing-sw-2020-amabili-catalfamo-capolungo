@@ -1,12 +1,14 @@
 package it.polimi.ingsw.View;
 
 import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Exeptions.NoGod;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.lang.reflect.AnnotatedArrayType;
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class CLIView extends View {
@@ -15,9 +17,9 @@ public class CLIView extends View {
     String nickname;
     PlayerInterface player;
     Controller controller;
-    List<String> choosenGods = new ArrayList<>();
     Scanner input = new Scanner(System.in);
     Scanner cases = new Scanner(System.in);
+
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String PURPLE = "\033[0;35m";
@@ -26,26 +28,17 @@ public class CLIView extends View {
     public CLIView(Controller controller) {
         this.controller = controller;
     }
-
-    /*
-    Map<String, String> map = new HashMap<>();
-    @Override
-    public void run(){
-        while(true) {
-            String in = input.nextLine();
-            String nomemetodo= map.get(in);
-            //array di input
-            nomemetodo.invoke(ClasseMetodi, array);
-        }
-    }
-     */
+    Map<Integer, Method> run = new HashMap<>();
     //TODO: eccezione input case
     //TODO: number of players
 
+
     @Override
     public void run() {
+        //chiamata a metodo costruzione mappa
+        createMap();
         while(true) {
-            //TODO: mapping<comando,nomemetodo> + reflection
+
             printComandi();
             String in = cases.nextLine();
             int integer = Integer.parseInt(in);
@@ -57,21 +50,25 @@ public class CLIView extends View {
                    startingGame();
                     break;
                 case 3:
-                    chooseYourGod();
+                    chooseCards();
                     break;
                 case 4:
-                    chooseCards();
+                    chooseYourGod();
                    break;
                 case 5:
                     setFirstWorkers();
                     break;
+                case 6:
+                    //turn();
                 default:
                     break;
                     }
             }
         }
 
+    public void Comandi (){
 
+    }
 
     @Override
     public void updatePlayerAdded(Object obj){
@@ -103,31 +100,63 @@ public class CLIView extends View {
     }
     @Override
     public void updateTimeToChoose(List gods){
+        //TODO: devi stampare il nome
         System.out.println("Choose gods");
+        System.out.println(gods.toString());
+    }
+    @Override
+    public void updateGodAdded(List gods){
+        System.out.println("God added:");
         System.out.println(gods);
     }
+    @Override
+    public void updateCardsChosen(List gods, int cardChosen){
+        if(cardChosen == 2){
+        System.out.println("Cards Already Chosen "+ gods);}
+        else {
+            //TODO: number of players
+            for (int i = 0; i < 2; i++) {
+                System.out.println("Insert god #" + i);
+                String name = cases.nextLine();
+                controller.addChosenGods(name);
+            }
+        }
+    }
+    @Override
+    public void update(Object obh, Object obj){
+        System.out.println("Exception occured");
+    }
+    @Override
+    public void updateWinners(PlayerInterface player){
+        System.out.println(player+ "wins!");
+    }
+    //@Override
+    /*
+    public void updateTimeToChooseWorker(){
+        System.out.println("Choose worker");
+        int worker = input.nextInt();
+        controller.thisWorker(worker);
+    }
 
-
-
-    public void chooseYourGod(){
+     */
+    public void chooseYourGod() {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
-        controller.setGod(godName);
+        //TODO: controller.GodTaken(godName);
+        controller.setGodName(godName);
         //decorate player
         controller.decoratePlayer(player);
     }
-
     public void printComandi(){
         System.out.println(PURPLE + "Add nickname: 1");
         System.out.println("Initialize match: 2");
-        System.out.println("Choose God: 3");
-        System.out.println("Choose your cards 4");
+        System.out.println("Choose your cards 3");
+        System.out.println("Choose God: 4");
         System.out.println("Press 5 to add Workers");
-        System.out.println("Press 6 to move");
+        //System.out.println("Press 6 to move");
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
     }
-
     public void setFirstWorkers(){
         System.out.println("Set your first worker");
         for ( int i = 0; i < player.getWorkerRef().length; i++) {
@@ -139,7 +168,7 @@ public class CLIView extends View {
         }
     }
     public void startingGame(){
-        System.out.print("Game is starting...");
+        //System.out.print("Game is starting...");
         controller.initialiseMatch();
         controller.createTurn();
     }
@@ -152,17 +181,44 @@ public class CLIView extends View {
     public void chooseCards(){
         System.out.println("Time to choose your powers");
         controller.chooseCards();
-        for (int i = 0; i < 2; i++){
-            System.out.println("Insert god #"+i);
-            String name = cases.nextLine();
-            choosenGods.add(name);
-        }
-        System.out.println("Well done! You choosen cards are "+choosenGods);
     }
-    @Override
-    public void update(Object obh, Object obj){
-        System.out.println("Exception occured");
+    public void checkGods(){
+
+    }
+    /*
+    public void turn(){
+        controller.turn();
+    }
+    */
+
+
+
+
+    public void createMap(){
+        Map<Integer, Method> comandi = new HashMap<>();
+        Integer i = 0;
+       // List<String> names = new ArrayList<String>(Arrays.asList('inserNickname', )); //TODO: inserisci elementi
+        for(Method m : this.getClass().getMethods()) {
+            //if(names.contains(m.getName()))
+            comandi.put(i, m);
+            //System.out.println(m.getName() + i.toString());
+            i++;
+        }
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

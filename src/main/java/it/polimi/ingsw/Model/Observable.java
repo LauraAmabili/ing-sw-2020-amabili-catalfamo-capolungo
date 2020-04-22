@@ -39,12 +39,12 @@ public class Observable {
         }
     }
 
-    void notifyWorkerSetted(Board board){
+    void notifyWorkerSettled(Board board){
         for(Observer o : observers){
             o.updateBoard(board);
         }
     }
-    void notifychooseCards(List gods){
+    void notifyCards(List gods){
         for(Observer o : observers){
             o.updateTimeToChoose(gods);
         }
@@ -62,6 +62,29 @@ public class Observable {
         }
     }
 
+    void notifyGodAdded(List gods){
+        for(Observer o : observers){
+            o.updateGodAdded(gods);
+        }
+    }
+    void notifyCardsChosen(List gods, int cardsChosen){
+        for(Observer o : observers){
+            o.updateCardsChosen(gods, cardsChosen);
+        }
+    }
+    void notifyWinner(PlayerInterface player){
+        for(Observer o : observers){
+            o.updateWinners(player);
+        }
+    }
+    void notifyBoardUpdate(Board board){
+        for(Observer o : observers){
+            o.updateBoard(board);
+        }
+    }
+    void notifyWhereToMove(){
+
+    }
 
 
 }

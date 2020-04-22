@@ -15,15 +15,12 @@ public class App
     public static void main(String[] args ) {
 
 
-        Game game = new Game();
-        Model model = new Model(game);
-        Controller controller = new Controller(model);
-        View view1 = new CLIView(controller);
-        model.AddObserver(view1);
-        //View view2 = new CLIView(controller);
-        //model.AddObserver(view2);
+
+
+       // View view2 = new CLIView(controller);
+       // model.AddObserver(view2);
         //view2.start();
-        view1.start();
+
 
 
         /*
