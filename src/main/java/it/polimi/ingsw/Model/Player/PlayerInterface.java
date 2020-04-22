@@ -27,6 +27,7 @@ public interface PlayerInterface {
 
   String getNickname();
 
+  void setTutto(PlayerInterface player);
 
   boolean isMoveUp();
 

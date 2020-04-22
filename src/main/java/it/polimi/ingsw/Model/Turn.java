@@ -4,7 +4,6 @@ import it.polimi.ingsw.Model.Player.PlayerInterface;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Random;
 
 public class Turn {
   private int TurnId;
@@ -12,9 +11,7 @@ public class Turn {
   private List<PlayerInterface> activePlayers;
 
   public Turn(List<PlayerInterface> list) {
-    Random random = new Random();
     activePlayers = list;
-    setCurrentPlayer(activePlayers.get(random.nextInt(activePlayers.size())));
   }
 
   public int getTurnId() {

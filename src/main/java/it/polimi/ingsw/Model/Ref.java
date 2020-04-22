@@ -1,12 +1,31 @@
-package it.polimi.ingsw.Model.Player;
+package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.*;
 
-public class EffectsAssigner {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Ref {
 
 
-    public EffectsAssigner() {}
+    public Ref() {}
+    private Map<String, PlayerInterface> nome = new HashMap<>();
 
+    /*
+    public void put() {
+        nome.put("Apollo", new SpecialMove_SwapWorkers(new Player()));
+        nome.put("Artemis", new SpecialMove_MoveTwice(new Player()));
+        nome.put("Athena", new SpecialOpponentTurn_LockMoveUp(new Player()));
+        nome.put("Atlas", new SpecialBuild_DomeAnyLevel(new Player()));
+        nome.put("Demeter", new SpecialBuild_BuildTwiceDifferent(new Player()));
+        nome.put("Hephaestus", new SpecialBuild_BuildTwiceSame(new Player()));
+        nome.put("Minotaur", new SpecialMove_PushOpponent(new Player()));
+        nome.put("Pan", new SpecialWin_MoveDown(new Player()));
+    }
+    public PlayerInterface Decorator(String godName){
+        return nome.get(godName);
+    }
+    */
     public PlayerInterface Apollo (PlayerInterface player){
         PlayerInterface playerDecorated = new SpecialMove_SwapWorkers(player);
         return playerDecorated;
@@ -21,7 +40,6 @@ public class EffectsAssigner {
         return new SpecialBuild_DomeAnyLevel(player);
     }
     public PlayerInterface Demeter (PlayerInterface player){
-
 
         return new SpecialBuild_BuildTwiceDifferent(player);
     }

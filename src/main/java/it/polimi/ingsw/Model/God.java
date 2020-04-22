@@ -16,6 +16,7 @@ public class God {
     this.godName = godName;
   }
 
+
   public String getGodName() {
     return godName;
   }

@@ -1,25 +1,16 @@
-package it.polimi.ingsw.Controller;
+package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
-import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Observable;
+import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.*;
-import it.polimi.ingsw.Model.FSA.*;
 import org.jetbrains.annotations.NotNull;
 
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
 
-public class GameEngine extends Observable {
-
-    GameFSA noStarted = new NoStarted(this);
-    GameFSA initialized = new Initialized(this);
-    GameFSA chosenCards = new ChosenCards(this);
-    GameFSA moving = new Moving(this);
-    GameFSA building = new Building(this);
-
-    GameFSA gameFSA;
+public class Game {
 
     //Player
     private int id;
@@ -40,44 +31,50 @@ public class GameEngine extends Observable {
     private List<gods> godList = new ArrayList<>();
     private List<God> chosenGods = new ArrayList<>();
 
+
     Map<String, Method> metodi = new HashMap<>();
     Map<String, List<PlayerInterface>> map = new HashMap<>();
 
-    public GameEngine() {
+    public Game() {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
     }
+    static Game game = null;
+    public static Game instance(){
 
+        if(game == null) {
+            Game game = new Game();
+            return game;
+        }
+        return game;
+
+    }
+
+
+    public List<God> getChosenGods() {
+        return chosenGods;
+    }
     public List<gods> getGodList() {
         return godList;
     }
     public void setGodList(List<gods> godList) {
         this.godList = godList;
     }
-    private void chosenGod(God god) {
-        chosenGods.add(god);
-    }
-
     public void initializeGodList() {
         godList.addAll(Arrays.asList(gods.values()));
     }
-
     public Board getBoard() {
         return board;
     }
-
     public void setBoard(Board board) {
         this.board = board;
     }
-
     public List<PlayerInterface> getOnlinePlayers() {
         return onlinePlayers;
     }
-
     public List<String> getNicknames() {
         return nickNames;
     }
-
     public void addNickname(String nickNames) {
         this.nickNames.add(nickNames);
     }
@@ -109,8 +106,9 @@ public class GameEngine extends Observable {
     /**
      * Add player in OnlinePlayer list
      * @param player
+     * @throws GameIsAlreadyStarted
      */
-    public void addPlayers(PlayerInterface player) {
+    public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
         onlinePlayers.add(player);
     }
 
@@ -138,7 +136,6 @@ public class GameEngine extends Observable {
         if(list.contains(worker.getBoard().getGrid()[row][col])) {
             worker.getBoard().getGrid()[row][col].setWorker(worker);
             worker.setCurCell(worker.getBoard().getGrid()[row][col]);
-            this.notifyWorkerSetted(board);
             return true;
         } else {
             System.out.println("Cell is already occupied");
@@ -165,9 +162,12 @@ public class GameEngine extends Observable {
             for(int k = 0; k < player.getWorkerRef().length; k++) {
                 player.getWorkerRef()[k].setPlayerWorker(player);
             }
-            addPlayers(player);
+            try {
+                addPlayers(player);
+            } catch (GameIsAlreadyStarted e) {
+                e.printStackTrace();
+            }
             list.clear();
-            currentTurn = new Turn(onlinePlayers);
             initializeGodList();
         }
     }
@@ -176,9 +176,10 @@ public class GameEngine extends Observable {
      * @param name
      * @param player
      */
+
     public PlayerInterface decoratePlayer(String name, PlayerInterface player){
 
-        EffectsAssigner dec = new EffectsAssigner();
+        Ref dec = new Ref();
         Method metodo = null;
         PlayerInterface playerI = new Player();
         try {
@@ -188,19 +189,28 @@ public class GameEngine extends Observable {
             System.out.println("Player not decorated, choose one first");
             notifyExc();
         }
-        if (metodo != null)
+        if (metodo != null) {
             try {
                 Object playerD = metodo.invoke(dec, player);
                 playerI = (PlayerInterface) playerD;
-            }
-            catch (Exception ecc) {
-                System.out.println("Exception ecc, non invoca il metodo ");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                notifyExc();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
                 notifyExc();
             }
+        }
         return playerI;
     }
-
-
+        /*
+    public PlayerInterface decPlayer(String name, PlayerInterface player){
+        Ref ref = new Ref();
+        PlayerInterface newPlayer = ref.Decorator(name);
+        newPlayer.setTutto(player);
+        return newPlayer;
+    }
+    */
     public void notifyExc(){
         Model model = new Model();
         model.notifyObservers(null,"Exception");
@@ -214,28 +224,16 @@ public class GameEngine extends Observable {
             System.out.println(worker.getPlayerWorker().getNickname() + "wins");
         }
     }
-
     public String getPlayerNickname(int num){
         return getOnlinePlayers().get(num).getNickname();
     }
 
-    public void setGod(String godName) {
-        int check = 0;
-        for (GameEngine.gods gods : godList) {
-            if (godName.equals(gods.name())) {
-                check = 1;
-            }
-        }
-        if(check == 1) {
-            getCurrentTurn().getCurrentPlayer().setActiveCard(new God(godName));
-            Enum god = Enum.valueOf(gods.class, godName);
-            godList.remove(god);
-            this.notifyGodSetted(player, godName);
-        }
+    public List<God> addChosenGods(String godName){
+        God god= new God(godName);
+        chosenGods.add(god);
+        return chosenGods;
     }
 
-    public void chooseCards(){
-        this.notifychooseCards(godList);
-    }
+
 }
 
