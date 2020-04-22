@@ -1,7 +1,9 @@
 package it.polimi.ingsw.Model.Player;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.God;
+import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,15 +11,19 @@ import java.util.List;
 
 public class PlayerDecorator implements PlayerInterface {
 
+  PlayerFSA initialized;
+  PlayerFSA moving;
+  PlayerFSA building;
+  PlayerFSA idle;
+
+  PlayerFSA playerState;
+
   // attributes
   protected PlayerInterface player;
-
   private String nickname;
-
-  private Worker[] workerRef; // reference to the workers
-
+  private List<Worker> workerRef; // reference to the workers
   private God activeCard;
-
+  private Board board;
   private boolean moveUp;
 
   // constructor
@@ -26,13 +32,12 @@ public class PlayerDecorator implements PlayerInterface {
     this.nickname = player.getNickname();
     this.workerRef = player.getWorkerRef();
     this.activeCard = player.getActiveCard();
-  }
-  @Override
-  public void setTutto(PlayerInterface player){
-    this.nickname = player.getNickname();
-    this.activeCard = player.getActiveCard();
-    this.workerRef = player.getWorkerRef();
-    this.moveUp = player.isMoveUp();
+    this.board = player.getBoard();
+    this.initialized = player.getInitialized();
+    this.moving = player.getMoving();
+    this.building = player.getBuilding();
+    this.idle = player.getIdle();
+    this.playerState = player.getPlayerState();
   }
 
   public boolean isMoveUp(){
@@ -65,12 +70,22 @@ public class PlayerDecorator implements PlayerInterface {
   }
 
   @Override
-  public void setWorkerRef(Worker[] worker) {
-    this.workerRef = worker;
+  public Board getBoard() {
+    return null;
   }
 
   @Override
-  public Worker[] getWorkerRef() {
+  public void setBoard(Board board) {
+
+  }
+
+  @Override
+  public void setWorkerRef(List<Worker> list) {
+    this.workerRef = list;
+  }
+
+  @Override
+  public List<Worker> getWorkerRef() {
     return workerRef;
   }
 
@@ -122,5 +137,34 @@ public class PlayerDecorator implements PlayerInterface {
     return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
   }
 
-
+  @Override
+  public PlayerFSA getInitialized() {
+    return initialized;
   }
+
+  @Override
+  public PlayerFSA getMoving() {
+    return moving;
+  }
+
+  @Override
+  public PlayerFSA getBuilding() {
+    return building;
+  }
+
+  @Override
+  public PlayerFSA getIdle() {
+    return idle;
+  }
+
+  @Override
+  public PlayerFSA getPlayerState() {
+    return playerState;
+  }
+
+  @Override
+  public void setPlayerState(PlayerFSA playerState) {
+  }
+
+
+}

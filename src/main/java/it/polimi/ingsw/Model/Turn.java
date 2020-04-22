@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.Player;
 
 import java.util.List;
 import java.util.ListIterator;

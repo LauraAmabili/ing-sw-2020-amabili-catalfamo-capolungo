@@ -32,10 +32,10 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (toUnlock)
             unlockMoveUp(worker);
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
-            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            worker.setCurCell(this.getBoard().getGrid()[row][col]);
             worker.getCurCell().setWorker(worker);
             if (worker.getCurCell().getLevel() > worker.getOldCell().getLevel()) {
                 lockMoveUp(worker);
@@ -50,7 +50,7 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
      * @param worker worker used
      */
     public void lockMoveUp(Worker worker) {
-        BoardCell[][] grid = worker.getBoard().getGrid();
+        BoardCell[][] grid = this.getBoard().getGrid();
         for (BoardCell[] boardCells : grid) {
             for (int j = 0; j < grid.length; j++) {
                 if (boardCells[j].getWorker() != null) {
@@ -67,7 +67,7 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
      * @param worker worker used
      */
     public void unlockMoveUp(Worker worker) {
-        BoardCell[][] grid = worker.getBoard().getGrid();
+        BoardCell[][] grid = this.getBoard().getGrid();
         for (BoardCell[] boardCells : grid) {
             for (int j = 0; j < grid.length; j++) {
                 if (boardCells[j].getWorker() != null) {
