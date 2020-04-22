@@ -23,10 +23,10 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      * @return
      */
     public boolean move(int row, int col, @NotNull Worker worker) {
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
-            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            worker.setCurCell(this.getBoard().getGrid()[row][col]);
             worker.getCurCell().setWorker(worker);
             return true;
         }
@@ -46,9 +46,9 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
-        for (BoardCell x : worker.getBoard().adjacentCells(worker.getCurCell())) {
-            adj.addAll(worker.getBoard().adjacentCells(x));
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+        for (BoardCell x : this.getBoard().adjacentCells(worker.getCurCell())) {
+            adj.addAll(this.getBoard().adjacentCells(x));
         }
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);

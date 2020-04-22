@@ -22,12 +22,12 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
      */
     public boolean move(int row, int col, @NotNull Worker worker) {
 
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
-            Worker opponentWorker = worker.getBoard().getGrid()[row][col].getWorker();
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
+            Worker opponentWorker = this.getBoard().getGrid()[row][col].getWorker();
             if (opponentWorker == null) {
                 worker.getCurCell().setWorker(null);
                 worker.setOldCell(worker.getCurCell());
-                worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+                worker.setCurCell(this.getBoard().getGrid()[row][col]);
                 worker.getCurCell().setWorker(worker);
                 return true;
             } else {
@@ -49,7 +49,7 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
                 if (cell.getCol() == opponentCell.getCol() - 1)
                     pushedCol = cell.getRow() + 2;
 
-                BoardCell pushedCell = worker.getBoard().getGrid()[pushedRow][pushedCol];
+                BoardCell pushedCell = this.getBoard().getGrid()[pushedRow][pushedCol];
                 if (availableCellsToBePushed(opponentWorker).contains(pushedCell)) {
                     worker.setOldCell(cell);
                     worker.setCurCell(opponentCell);
@@ -80,7 +80,7 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
 
         adj.removeIf(x -> x.getWorker() != null &&
                 x.getWorker().getPlayerWorker() == worker.getPlayerWorker());
@@ -107,7 +107,7 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
                     pushedCol = cell.getRow() - 2;
                 if (cell.getCol() == opponentCell.getCol() - 1)
                     pushedCol = cell.getRow() + 2;
-                BoardCell pushedCell = worker.getBoard().getGrid()[pushedRow][pushedCol];
+                BoardCell pushedCell = this.getBoard().getGrid()[pushedRow][pushedCol];
                 if (!(availableCellsToBePushed(opponentCell.getWorker()).contains(pushedCell))) {
                     adj.remove(opponentCell);
                 }
@@ -129,7 +129,7 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
      * @return ArrayList of BoardCells
      */
     public List<BoardCell> availableCellsToBePushed(@NotNull Worker worker) {
-        List<BoardCell> res = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> res = this.getBoard().adjacentCells(worker.getCurCell());
         res.removeIf(BoardCell::getDome);
         res.removeIf((n) -> n.getWorker() != null);
         return res;

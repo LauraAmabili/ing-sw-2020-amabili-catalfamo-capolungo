@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Model.Player;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.God;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
@@ -9,41 +11,68 @@ import java.util.List;
 
 public class Player implements PlayerInterface {
 
+    private final PlayerFSA initialized = new Initialized(this);
+    private final PlayerFSA moving = new Moving(this);
+    private final PlayerFSA building = new Building(this);
+    private final PlayerFSA idle = new Idle(this);
+
+    private PlayerFSA playerState;
+
+    @Override
+    public PlayerFSA getInitialized() {
+        return initialized;
+    }
+
+    @Override
+    public PlayerFSA getMoving() {
+        return moving;
+    }
+
+    @Override
+    public PlayerFSA getBuilding() {
+        return building;
+    }
+
+    @Override
+    public PlayerFSA getIdle() {
+        return idle;
+    }
+
+    @Override
+    public PlayerFSA getPlayerState() {
+        return playerState;
+    }
+
+    @Override
+    public void setPlayerState(PlayerFSA playerState) {
+        this.playerState = playerState;
+    }
+
     private String nickname;
-
-    private Worker[] workerRef; // reference to the workers
-
+    private List<Worker> workerRef; // reference to the workers
     private God activeCard;
-
+    private Board board;
     private boolean moveUp = true;
 
-    public Player(String nickname, @NotNull List<Worker> list) {
+
+    public Player(String nickname, @NotNull List<Worker> list, Board board) {
         this.nickname = nickname;
-        this.workerRef = new Worker[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            workerRef[i] = list.get(i);
-        }
+        this.workerRef = list;
+        this.board = board;
+        PlayerFSA playerState = initialized;
+    }
+
+    public Player(String nickname, Board board) {
+        this.nickname = nickname;
+        this.board = board;
+        PlayerFSA playerState = initialized;
     }
 
     public Player(String nickname) {
         this.nickname = nickname;
+        PlayerFSA playerState = initialized;
     }
 
-    public Player() {
-
-    }
-
-    public void setTutto(PlayerInterface player){
-        this.nickname = player.getNickname();
-        this.activeCard = player.getActiveCard();
-        this.workerRef = player.getWorkerRef();
-        this.moveUp = player.isMoveUp();
-    }
-    public Player(Player player) {
-        this.nickname = PlayerInterface.nickname;
-        this.workerRef = PlayerInterface.workerRef;
-        this.activeCard = PlayerInterface.activeCard;
-    }
 
     public boolean isMoveUp() {
         return moveUp;
@@ -53,6 +82,16 @@ public class Player implements PlayerInterface {
         this.moveUp=moveUp;
     }
 
+    public void StateMove(int row, int col, Worker worker) {
+        playerState.Move(row, col, worker);
+        setPlayerState(building);
+    }
+
+    public void StateBuild(int row, int col, Worker worker) {
+        playerState.Build(row, col, worker);
+        setPlayerState(idle);
+    }
+
     @Override
     public String getNickname() {
         return nickname;
@@ -60,7 +99,8 @@ public class Player implements PlayerInterface {
 
     @Override
     public void setActiveCard(God activeCard) {
-        this.activeCard = activeCard;
+        playerState.setCard(activeCard);
+        setPlayerState(moving);
     }
 
     @Override
@@ -70,25 +110,18 @@ public class Player implements PlayerInterface {
 
     @Override
     public void setNickname(String nickname) {
-
+        this.nickname = nickname;
     }
 
     @Override
-    public void setWorkerRef(Worker[] worker) {
-
+    public void setWorkerRef(List<Worker> list) {
+        this.workerRef = list;
     }
 
     @Override
-    public Worker[] getWorkerRef() {
+    public List<Worker> getWorkerRef() {
         return workerRef;
     }
-
-    public void setWorkerRef(List<Worker> list) {
-        for (int i = 0; i < list.size(); i++) {
-            workerRef[i] = list.get(i);
-        }
-    }
-
 
     //To be Decorated
 
@@ -99,7 +132,7 @@ public class Player implements PlayerInterface {
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
 
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);
@@ -126,10 +159,10 @@ public class Player implements PlayerInterface {
      * @return
      */
     public boolean move(int row, int col, @NotNull Worker worker) {
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
-            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            worker.setCurCell(this.getBoard().getGrid()[row][col]);
             worker.getCurCell().setWorker(worker);
             return true;
         }
@@ -147,7 +180,7 @@ public class Player implements PlayerInterface {
      */
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
 
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);
         return adj;
@@ -166,8 +199,8 @@ public class Player implements PlayerInterface {
      * @return
      */
     public boolean build(int row, int col, @NotNull Worker worker) {
-        if (availableCellsToBuild(worker).contains(worker.getBoard().getGrid()[row][col])) {
-            BoardCell b = worker.getBoard().getGrid()[row][col];
+        if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
+            BoardCell b = this.getBoard().getGrid()[row][col];
             if (b.getLevel() == 3) {
                 b.setDome(true);
             } else {
@@ -190,6 +223,13 @@ public class Player implements PlayerInterface {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
     }
 
+    @Override
+    public Board getBoard() {
+        return board;
+    }
 
-
+    @Override
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

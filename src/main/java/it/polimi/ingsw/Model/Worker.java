@@ -9,11 +9,9 @@ public class Worker {
     private PlayerInterface playerWorker;
     private BoardCell oldCell;
     private BoardCell curCell;
-    private Board board;
 
     public Worker(int idWorker, Board board) {
         this.idWorker = idWorker;
-        this.board = board;
     }
 
     public int getIdWorker() {
@@ -46,14 +44,6 @@ public class Worker {
 
     public void setCurCell(BoardCell curCell) {
         this.curCell = curCell;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
     }
 
 }

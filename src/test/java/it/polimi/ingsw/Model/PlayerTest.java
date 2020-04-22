@@ -28,12 +28,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         board.getGrid()[0][1].setWorker(worker2);
         board.getGrid()[2][3].setLevel(3);
         adjCells.add(board.getGrid()[0][2]);
@@ -50,12 +50,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         board.getGrid()[0][1].setWorker(worker2);
         board.getGrid()[1][1].setLevel(3);
         board.getGrid()[1][1].setDome(true);
@@ -76,12 +76,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         mockPlayer.move(0, 2, worker1);
         Assert.assertSame(board.getGrid()[0][2], worker1.getCurCell());
         assertNull(worker1.getOldCell().getWorker());
@@ -96,12 +96,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[1][2]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         board.getGrid()[0][1].setLevel(2);
         board.getGrid()[0][2].setLevel(3);
         mockPlayer.build(0, 1, worker1);
@@ -118,14 +118,14 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         board.getGrid()[1][2].setLevel(3);
         board.getGrid()[0][2].setLevel(1);
         worker1.setCurCell(board.getGrid()[1][2]);
         worker1.setOldCell(board.getGrid()[0][2]);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         assertTrue(mockPlayer.checkWin(worker1));
 
     }
@@ -138,12 +138,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_BuildTwiceDifferent(mockPlayer);
         player.build(1, 0, worker1, 0, 1);
         assertEquals(1, board.getGrid()[1][0].getLevel());
@@ -156,12 +156,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_BuildTwiceSame(mockPlayer);
 
         player.build(1, 0, worker1, true);
@@ -174,12 +174,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_DomeAnyLevel(mockPlayer);
         player.build(1, 0, worker1, true);
         assertTrue(board.getGrid()[1][0].getDome());
@@ -190,12 +190,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialMove_BMB(mockPlayer);
         player.move(0, 1, worker1, true, 1, 0);
         assertEquals(1, board.getGrid()[1][0].getLevel());
@@ -208,12 +208,12 @@ public class PlayerTest {
 
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
-        Player mockPlayer = new Player("Rexo", mockWorkers1);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
         worker1.setCurCell(worker1.getBoard().getGrid()[0][0]);
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
         assertEquals(worker1.getCurCell(), worker1.getBoard().getGrid()[0][0]);
         assertFalse(player.move(0, 3, worker1));
@@ -233,11 +233,11 @@ public class PlayerTest {
         worker1.getBoard().getGrid()[0][1].setWorker(worker2);
         worker1.setCurCell(board.getGrid()[0][0]);
         worker2.setCurCell(board.getGrid()[0][1]);
-        Player mockPlayer1 = new Player("Rexo", mockWorkers1);
+        Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialMove_PushOpponent(mockPlayer1);
-        Player mockPlayer2 = new Player("mockName", mockWorkers2);
+        Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         player1.move(0, 1, worker1);
@@ -256,11 +256,11 @@ public class PlayerTest {
         worker1.getBoard().getGrid()[1][1].setWorker(worker2);
         worker1.setCurCell(board.getGrid()[0][0]);
         worker2.setCurCell(board.getGrid()[1][1]);
-        Player mockPlayer1 = new Player("Rexo", mockWorkers1);
+        Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialMove_SwapWorkers(mockPlayer1);
-        Player mockPlayer2 = new Player("mockName", mockWorkers2);
+        Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         player1.move(1, 1, worker1);
@@ -279,11 +279,11 @@ public class PlayerTest {
         worker1.getBoard().getGrid()[0][1].setWorker(worker2);
         worker1.setCurCell(board.getGrid()[0][0]);
         worker2.setCurCell(board.getGrid()[0][1]);
-        Player mockPlayer1 = new Player("Rexo", mockWorkers1);
+        Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialOpponentTurn_LockMoveUp(mockPlayer1);
-        Player mockPlayer2 = new Player("mockName", mockWorkers2);
+        Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         assertTrue(player1.isMoveUp() && mockPlayer2.isMoveUp());
@@ -305,7 +305,7 @@ public class PlayerTest {
         worker1.getBoard().getGrid()[0][0].setWorker(worker1);
         worker1.setCurCell(board.getGrid()[0][0]);
         worker1.setOldCell(board.getGrid()[0][1]);
-        Player mockPlayer1 = new Player("Rexo", mockWorkers1);
+        Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialWin_MoveDown(mockPlayer1);
         board.getGrid()[0][1].setLevel(2); //old

@@ -19,7 +19,6 @@ public class Game {
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
-    private boolean gameStarted;
 
 
     //God
@@ -39,17 +38,6 @@ public class Game {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
     }
-    static Game game = null;
-    public static Game instance(){
-
-        if(game == null) {
-            Game game = new Game();
-            return game;
-        }
-        return game;
-
-    }
-
 
     public List<God> getChosenGods() {
         return chosenGods;
@@ -77,6 +65,7 @@ public class Game {
     }
     public void addNickname(String nickNames) {
         this.nickNames.add(nickNames);
+        onlinePlayers.add(new Player(nickNames));
     }
 
     public int getId() {
@@ -85,14 +74,6 @@ public class Game {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isGameStarted() {
-        return gameStarted;
-    }
-
-    public void setGameStarted(boolean gameStarted) {
-        this.gameStarted = gameStarted;
     }
 
     public Turn getCurrentTurn() {
@@ -108,7 +89,7 @@ public class Game {
      * @param player
      * @throws GameIsAlreadyStarted
      */
-    public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
+    public void addPlayers(PlayerInterface player){
         onlinePlayers.add(player);
     }
 
@@ -117,9 +98,9 @@ public class Game {
      * @param player
      */
     public void delPlayer(@NotNull PlayerInterface player){
-        for(int i = 0; i < player.getWorkerRef().length; i++) {
-            player.getWorkerRef()[i].getCurCell().setWorker(null);
-            player.getWorkerRef()[i] = null;
+        for(int i = player.getWorkerRef().size(); i > 0; i--) {
+            player.getWorkerRef().get(i).getCurCell().setWorker(null);
+            player.getWorkerRef().remove(player.getWorkerRef().get(i));
         }
         onlinePlayers.remove(player);
     }
@@ -132,10 +113,10 @@ public class Game {
      */
     public boolean addWorker(int row, int col, Worker worker) {
         List<BoardCell> list;
-        list = worker.getBoard().freeCells();
-        if(list.contains(worker.getBoard().getGrid()[row][col])) {
-            worker.getBoard().getGrid()[row][col].setWorker(worker);
-            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+        list = currentTurn.getCurrentPlayer().getBoard().freeCells();
+        if(list.contains(currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col])) {
+            currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col].setWorker(worker);
+            worker.setCurCell(currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col]);
             return true;
         } else {
             System.out.println("Cell is already occupied");
@@ -151,26 +132,19 @@ public class Game {
         List<Worker> list = new ArrayList<>();
         Board board = new Board();
         setBoard(board);
-        for (String nickName : nickNames) {
+        for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
                 Worker worker = new Worker(counterId, this.board);
                 list.add(worker);
             }
-
-            Player player = new Player(nickName, list);
-
-            for(int k = 0; k < player.getWorkerRef().length; k++) {
-                player.getWorkerRef()[k].setPlayerWorker(player);
-            }
-            try {
-                addPlayers(player);
-            } catch (GameIsAlreadyStarted e) {
-                e.printStackTrace();
-            }
+            playerInterface.setWorkerRef(list);
+            playerInterface.setBoard(board);
+            addPlayers(playerInterface);
             list.clear();
-            initializeGodList();
         }
+        currentTurn = new Turn(onlinePlayers);
     }
+
     /**
      * Calls the right method using reflection using the name of the ActiveGod
      * @param name

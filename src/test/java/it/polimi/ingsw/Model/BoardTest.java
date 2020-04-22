@@ -35,7 +35,7 @@ public class BoardTest {
         worker2.setCurCell(board.getGrid()[0][1]);
         list.add(worker1);
         list.add(worker2);
-        Player player = new Player("SuperRexo", list);
+        Player player = new Player("SuperRexo", list, board);
         board.deleteWorkers(player);
         for (int i = 0; i < player.getWorkerRef().length; i++) {
             Assert.assertNull(player.getWorkerRef()[i]);

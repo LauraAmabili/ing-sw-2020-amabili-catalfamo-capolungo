@@ -53,12 +53,8 @@ public class GameManager extends Observable {
      * @param player
      * @throws GameIsAlreadyStarted
      */
-    public void addPlayers(PlayerInterface player) throws GameIsAlreadyStarted {
-        if (!game.isGameStarted()) {
-            game.getOnlinePlayers().add(player);
-        } else {
-            throw new GameIsAlreadyStarted();
-        }
+    public void addPlayers(PlayerInterface player) {
+        game.getOnlinePlayers().add(player);
     }
 
     /**

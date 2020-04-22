@@ -24,10 +24,10 @@ public class SpecialMove_BMB extends PlayerDecorator {
         if (specialEffect){
             build(rowBuild, colBuild, worker);
         }
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
-            worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+            worker.setCurCell(this.getBoard().getGrid()[row][col]);
             worker.getCurCell().setWorker(worker);
             return true;
         }

@@ -1,7 +1,9 @@
 package it.polimi.ingsw.Model.Player;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.God;
+import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,31 +11,37 @@ import java.util.List;
 
 public interface PlayerInterface {
 
+  PlayerFSA initialized = null;
+  PlayerFSA moving = null;
+  PlayerFSA building = null;
+  PlayerFSA idle = null;
+
+  PlayerFSA playerState = null;
+
   String nickname = null;
-
-  Worker[] workerRef = new Worker[0];
-
+  List<Worker> workerRef = null;
   God activeCard = null;
+  Board board = null;
 
-  void setWorkerRef(Worker[] worker);
+  void setWorkerRef(List<Worker> list);
 
-  Worker[] getWorkerRef();
+  List<Worker> getWorkerRef();
 
   void setActiveCard(God ActiveCard);
 
   God getActiveCard();
 
+  Board getBoard();
+
+  void setBoard(Board board);
+
   void setNickname(String nickname);
 
   String getNickname();
 
-  void setTutto(PlayerInterface player);
-
   boolean isMoveUp();
 
   void setMoveUp(boolean moveUp);
-
-
 
   List<BoardCell> availableCellsToMove(@NotNull Worker worker);
 
@@ -53,6 +61,20 @@ public interface PlayerInterface {
 
   boolean checkWin(@NotNull Worker worker);
 
-  public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
+  boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
+
+  PlayerFSA getInitialized();
+
+  PlayerFSA getMoving();
+
+  PlayerFSA getBuilding();
+
+  PlayerFSA getIdle();
+
+  PlayerFSA getPlayerState();
+
+  void setPlayerState(PlayerFSA playerState);
+
+
 
 }

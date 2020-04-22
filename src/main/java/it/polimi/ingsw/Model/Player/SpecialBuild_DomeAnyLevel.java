@@ -22,8 +22,8 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
 	public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
 		if (specialEffect){
-			if(availableCellsToBuild(worker).contains(worker.getBoard().getGrid()[row][col])) {
-				worker.getBoard().getGrid()[row][col].setDome(true);
+			if(availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
+				this.getBoard().getGrid()[row][col].setDome(true);
 				return true;
 			}
 

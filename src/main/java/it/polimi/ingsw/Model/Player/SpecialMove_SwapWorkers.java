@@ -24,17 +24,17 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
      */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
-        if (availableCellsToMove(worker).contains(worker.getBoard().getGrid()[row][col])) {
-				if(worker.getBoard().getGrid()[row][col].getWorker()==null){
+        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
+				if(this.getBoard().getGrid()[row][col].getWorker()==null){
 					worker.getCurCell().setWorker(null);
 					worker.setOldCell(worker.getCurCell());
-					worker.setCurCell(worker.getBoard().getGrid()[row][col]);
+					worker.setCurCell(this.getBoard().getGrid()[row][col]);
 					worker.getCurCell().setWorker(worker);
 					return true;
 				}
-				if(worker.getBoard().getGrid()[row][col].getWorker()!=null){
+				if(this.getBoard().getGrid()[row][col].getWorker()!=null){
 					BoardCell workerBoardCell=worker.getCurCell();
-					BoardCell opponentBoardCell=worker.getBoard().getGrid()[row][col];
+					BoardCell opponentBoardCell=this.getBoard().getGrid()[row][col];
 					Worker opponentWorker=opponentBoardCell.getWorker();
 
 					worker.setOldCell(workerBoardCell);
@@ -68,7 +68,7 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
 
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
 
         adj.removeIf(BoardCell::getDome);
         if (worker.getPlayerWorker().isMoveUp()){

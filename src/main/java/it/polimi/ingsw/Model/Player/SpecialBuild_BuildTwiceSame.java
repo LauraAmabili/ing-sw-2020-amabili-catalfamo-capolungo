@@ -23,8 +23,8 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
     public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
         if (specialEffect) {
-            if (availableCellsToBuild(worker, true).contains(worker.getBoard().getGrid()[row][col])) {
-                BoardCell b = worker.getBoard().getGrid()[row][col];
+            if (availableCellsToBuild(worker, true).contains(this.getBoard().getGrid()[row][col])) {
+                BoardCell b = this.getBoard().getGrid()[row][col];
                 b.setLevel((b.getLevel() + 2));
                 return true;
             }
@@ -34,7 +34,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
 
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
-        List<BoardCell> adj = worker.getBoard().adjacentCells(worker.getCurCell());
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
         adj.removeIf((n) -> n.getWorker() != null);
         adj.removeIf(BoardCell::getDome);
         adj.removeIf((n) -> n.getLevel() == 2);
