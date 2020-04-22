@@ -212,8 +212,8 @@ public class Game {
     }
     */
     public void notifyExc(){
-        Model model = new Model();
-        model.notifyObservers(null,"Exception");
+        GameManager gameManager = new GameManager();
+        gameManager.notifyObservers(null,"Exception");
     }
     /**
      * Check if the Worker won

@@ -13,6 +13,7 @@ public class Ref {
 
     /*
     public void put() {
+
         nome.put("Apollo", new SpecialMove_SwapWorkers(new Player()));
         nome.put("Artemis", new SpecialMove_MoveTwice(new Player()));
         nome.put("Athena", new SpecialOpponentTurn_LockMoveUp(new Player()));
@@ -26,33 +27,36 @@ public class Ref {
         return nome.get(godName);
     }
     */
-    public PlayerInterface Apollo (PlayerInterface player){
+
+    public PlayerInterface Apollo (PlayerInterface player) {
         PlayerInterface playerDecorated = new SpecialMove_SwapWorkers(player);
         return playerDecorated;
     }
+
     public PlayerInterface Artemis (PlayerInterface player){
         return new SpecialMove_MoveTwice(player);
     }
     public PlayerInterface Athena (PlayerInterface player){
         return new SpecialOpponentTurn_LockMoveUp(player);
     }
+
     public PlayerInterface Atlas (PlayerInterface player){
         return new SpecialBuild_DomeAnyLevel(player);
     }
-    public PlayerInterface Demeter (PlayerInterface player){
 
+    public PlayerInterface Demeter (PlayerInterface player){
         return new SpecialBuild_BuildTwiceDifferent(player);
     }
-    public PlayerInterface Hephaestus(PlayerInterface player){
 
+    public PlayerInterface Hephaestus(PlayerInterface player){
         return new SpecialBuild_BuildTwiceSame(player);
     }
-    public PlayerInterface Minotaur(PlayerInterface player){
 
+    public PlayerInterface Minotaur(PlayerInterface player){
         return new SpecialMove_PushOpponent(player);
     }
-    public PlayerInterface Pan(PlayerInterface player){
 
+    public PlayerInterface Pan(PlayerInterface player){
         return new SpecialWin_MoveDown(player);
     }
 

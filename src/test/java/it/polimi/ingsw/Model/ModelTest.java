@@ -4,7 +4,7 @@ package it.polimi.ingsw.Model;
 
 class ModelTest {
 
-    Model model = new Model();
+    GameManager gameManager = new GameManager();
 
     public void setUp(){
 

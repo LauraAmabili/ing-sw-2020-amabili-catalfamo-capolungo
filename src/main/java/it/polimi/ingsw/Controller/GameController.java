@@ -5,9 +5,9 @@ import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
-public class Controller {
+public class GameController {
 
-    Model model;
+    GameManager gameManager;
 
     /*
         private static Controller controller = null;
@@ -17,50 +17,50 @@ public class Controller {
             return controller;
         }
          */
-    public Controller() {
+    public GameController() {
         Game game = new Game();
         Game.instance();
-        Model model1 = new Model(game);
-        Model.instance(game);
-        model = model1;
+        GameManager gameManager1 = new GameManager(game);
+        GameManager.instance(game);
+        gameManager = gameManager1;
     }
-    public Controller(Model model) {
-        this.model = model;
+    public GameController(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
     public void addNickname(String name) {
-        model.addNickname(name);
+        gameManager.addNickname(name);
     }
     public void addPlayer(PlayerInterface player) {
         try {
-            (model).addPlayers(player);
+            (gameManager).addPlayers(player);
         } catch (GameIsAlreadyStarted e) {
             System.out.println("Game is Already started!");
         }
     }
     public void initialiseMatch(){
-        model.initialiseMatch();
+        gameManager.initialiseMatch();
     }
     public void setGodName(String in) {
         //TODO: controllare che 'in' sia compreso nella lista dei god (corretto)
-        model.setGod(in);
+        gameManager.setGod(in);
     }
     public void decoratePlayer(PlayerInterface player){
-        model.decoratePlayer(player);
+        gameManager.decoratePlayer(player);
     }
     public void addWorker(Worker worker, int row, int col){
-        model.addWorker(worker, row, col);
+        gameManager.addWorker(worker, row, col);
     }
     public void chooseCards(){
-            model.chooseCards();
+            gameManager.chooseCards();
     }
     public void createTurn(){
-        model.createTurn();
+        gameManager.createTurn();
     }
     public synchronized void addObserver(Observer view){
-        model.AddObserver(view);
+        gameManager.AddObserver(view);
     }
     public void addChosenGods(String godName){
-        model.addChosenGods(godName);
+        gameManager.addChosenGods(godName);
     }
     /*
     public void turn(){

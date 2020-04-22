@@ -1,22 +1,15 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Model.Player.*;
-import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Game;
+import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.View.CLIView;
 import it.polimi.ingsw.View.View;
-
-import java.util.*;
 
 public class App 
 {
 
     public static void main(String[] args ) {
 
-
-
-        Controller controller = new Controller();
+        GameController controller = new GameController();
         View view1 = new CLIView(controller);
         controller.addObserver(view1);
         view1.start();
