@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Exeptions;
+package it.polimi.ingsw.Exceptions;
 
 public class GameIsAlreadyStarted extends Throwable {
 }

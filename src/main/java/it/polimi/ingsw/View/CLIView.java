@@ -1,13 +1,9 @@
 package it.polimi.ingsw.View;
 
-import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Exeptions.NoGod;
+import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 
-import java.lang.reflect.AnnotatedArrayType;
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -16,7 +12,7 @@ public class CLIView extends View {
 
     String nickname;
     PlayerInterface player;
-    Controller controller;
+    GameController controller;
     Scanner input = new Scanner(System.in);
     Scanner cases = new Scanner(System.in);
 
@@ -25,7 +21,7 @@ public class CLIView extends View {
     public static final String PURPLE = "\033[0;35m";
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
-    public CLIView(Controller controller) {
+    public CLIView(GameController controller) {
         this.controller = controller;
     }
     Map<Integer, Method> run = new HashMap<>();

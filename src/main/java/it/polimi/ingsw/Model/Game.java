@@ -1,10 +1,8 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Exeptions.GameIsAlreadyStarted;
-import it.polimi.ingsw.Exeptions.NoGod;
+import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.Player.*;
 import org.jetbrains.annotations.NotNull;
-import it.polimi.ingsw.Model.*;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -214,8 +212,8 @@ public class Game {
     }
     */
     public void notifyExc(){
-        Model model = new Model();
-        model.notifyObservers(null,"Exception");
+        GameManager gameManager = new GameManager();
+        gameManager.notifyObservers(null,"Exception");
     }
     /**
      * Check if the Worker won
