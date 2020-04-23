@@ -5,12 +5,24 @@ import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
+import java.util.List;
+
 public class Moving implements PlayerFSA {
 
     PlayerInterface player;
 
-    public Moving(Player player) {
+    public Moving(PlayerInterface player) {
         this.player = player;
+    }
+
+    @Override
+    public void addNickname(String name) {
+
+    }
+
+    @Override
+    public void chosenCards(List<God> godName) {
+
     }
 
     @Override
@@ -21,6 +33,8 @@ public class Moving implements PlayerFSA {
     @Override
     public void Move(int row, int col, Worker worker) {
         player.move(row, col, worker);
+        player.setOldPlayerState(player.getMoving());
+        player.setPlayerState(player.getBuilding());
     }
 
     @Override

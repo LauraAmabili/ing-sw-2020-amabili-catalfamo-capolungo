@@ -64,8 +64,9 @@ public class Game {
         return nickNames;
     }
     public void addNickname(String nickNames) {
-        this.nickNames.add(nickNames);
-        onlinePlayers.add(new Player(nickNames));
+        for (PlayerInterface player : onlinePlayers) {
+            this.nickNames.add(player.getNickname());
+        }
     }
 
     public int getId() {
@@ -177,7 +178,7 @@ public class Game {
         }
         return playerI;
     }
-        /*
+    /*
     public PlayerInterface decPlayer(String name, PlayerInterface player){
         Ref ref = new Ref();
         PlayerInterface newPlayer = ref.Decorator(name);

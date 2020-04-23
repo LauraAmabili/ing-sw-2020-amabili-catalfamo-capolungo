@@ -5,12 +5,24 @@ import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
+import java.util.List;
+
 public class Idle implements PlayerFSA {
 
     PlayerInterface player;
 
-    public Idle(Player player) {
+    public Idle(PlayerInterface player) {
         this.player = player;
+    }
+
+    @Override
+    public void addNickname(String name) {
+
+    }
+
+    @Override
+    public void chosenCards(List<God> godName) {
+
     }
 
     @Override

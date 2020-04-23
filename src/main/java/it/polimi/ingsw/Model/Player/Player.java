@@ -11,16 +11,31 @@ import java.util.List;
 
 public class Player implements PlayerInterface {
 
+    //FSA State
+    private final PlayerFSA addNickname = new AddNickname(this);
     private final PlayerFSA initialized = new Initialized(this);
+    private final PlayerFSA setCard = new SetCard(this);
     private final PlayerFSA moving = new Moving(this);
     private final PlayerFSA building = new Building(this);
     private final PlayerFSA idle = new Idle(this);
 
+
+    private PlayerFSA oldPlayerState = null;
     private PlayerFSA playerState;
+
+    @Override
+    public PlayerFSA getAddNickname() {
+        return addNickname;
+    }
 
     @Override
     public PlayerFSA getInitialized() {
         return initialized;
+    }
+
+    @Override
+    public PlayerFSA getSetCard() {
+        return setCard;
     }
 
     @Override
@@ -39,8 +54,18 @@ public class Player implements PlayerInterface {
     }
 
     @Override
+    public PlayerFSA getOldPlayerState() {
+        return oldPlayerState;
+    }
+
+    @Override
     public PlayerFSA getPlayerState() {
         return playerState;
+    }
+
+    @Override
+    public void setOldPlayerState(PlayerFSA playerState) {
+        oldPlayerState = playerState;
     }
 
     @Override
@@ -48,48 +73,48 @@ public class Player implements PlayerInterface {
         this.playerState = playerState;
     }
 
+    //Player Attributes
     private String nickname;
     private List<Worker> workerRef; // reference to the workers
     private God activeCard;
     private Board board;
+    private List<God> chosenGods;
     private boolean moveUp = true;
 
-
-    public Player(String nickname, @NotNull List<Worker> list, Board board) {
-        this.nickname = nickname;
+    public Player(@NotNull List<Worker> list, Board board) {
         this.workerRef = list;
         this.board = board;
-        PlayerFSA playerState = initialized;
+        PlayerFSA playerState = addNickname;
     }
 
-    public Player(String nickname, Board board) {
-        this.nickname = nickname;
-        this.board = board;
-        PlayerFSA playerState = initialized;
+    @Override
+    public List<God> getChosenGods() {
+        return chosenGods;
     }
 
-    public Player(String nickname) {
-        this.nickname = nickname;
-        PlayerFSA playerState = initialized;
+    @Override
+    public void setChosenGods(List<God> chosenGods) {
+        this.playerState.chosenCards(chosenGods);
     }
 
-
+    @Override
     public boolean isMoveUp() {
         return moveUp;
     }
 
+    @Override
     public void setMoveUp(boolean moveUp) {
         this.moveUp=moveUp;
     }
 
+    @Override
     public void StateMove(int row, int col, Worker worker) {
         playerState.Move(row, col, worker);
-        setPlayerState(building);
     }
 
+    @Override
     public void StateBuild(int row, int col, Worker worker) {
         playerState.Build(row, col, worker);
-        setPlayerState(idle);
     }
 
     @Override
@@ -100,7 +125,6 @@ public class Player implements PlayerInterface {
     @Override
     public void setActiveCard(God activeCard) {
         playerState.setCard(activeCard);
-        setPlayerState(moving);
     }
 
     @Override

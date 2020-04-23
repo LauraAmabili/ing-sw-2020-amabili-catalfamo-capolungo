@@ -11,15 +11,19 @@ import java.util.List;
 
 public interface PlayerInterface {
 
+  PlayerFSA addNickname = null;
   PlayerFSA initialized = null;
+  PlayerFSA setCard = null;
   PlayerFSA moving = null;
   PlayerFSA building = null;
   PlayerFSA idle = null;
 
+  PlayerFSA OldPlayerState = null;
   PlayerFSA playerState = null;
 
   String nickname = null;
   List<Worker> workerRef = null;
+  List<God> chosenGods = null;
   God activeCard = null;
   Board board = null;
 
@@ -39,9 +43,17 @@ public interface PlayerInterface {
 
   String getNickname();
 
+  void setChosenGods(List<God> gods);
+
+  List<God> getChosenGods();
+
   boolean isMoveUp();
 
   void setMoveUp(boolean moveUp);
+
+  void setOldPlayerState(PlayerFSA playerState);
+
+  PlayerFSA getOldPlayerState();
 
   List<BoardCell> availableCellsToMove(@NotNull Worker worker);
 
@@ -63,7 +75,11 @@ public interface PlayerInterface {
 
   boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
 
+  PlayerFSA getAddNickname();
+
   PlayerFSA getInitialized();
+
+  PlayerFSA getSetCard();
 
   PlayerFSA getMoving();
 
@@ -75,6 +91,8 @@ public interface PlayerInterface {
 
   void setPlayerState(PlayerFSA playerState);
 
+  void StateMove(int row, int col, Worker worker);
 
+  void StateBuild(int row, int col, Worker worker);
 
 }

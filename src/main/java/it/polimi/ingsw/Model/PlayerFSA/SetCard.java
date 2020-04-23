@@ -7,14 +7,13 @@ import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class Initialized implements PlayerFSA {
+public class SetCard implements PlayerFSA{
 
     PlayerInterface player;
 
-    public Initialized(PlayerInterface player) {
+    public SetCard(PlayerInterface player) {
         this.player = player;
     }
-
 
     @Override
     public void addNickname(String name) {
@@ -23,16 +22,14 @@ public class Initialized implements PlayerFSA {
 
     @Override
     public void chosenCards(List<God> godName) {
-        for (God god : godName) {
-            player.getChosenGods().add(god);
-        }
-        player.setOldPlayerState(player.getInitialized());
-        player.setPlayerState(player.getIdle());
+
     }
 
     @Override
     public void setCard(God godName) {
-
+        player.setActiveCard(godName);
+        player.setOldPlayerState(player.getSetCard());
+        player.setPlayerState(player.getIdle());
     }
 
     @Override
