@@ -31,9 +31,9 @@ public class Board {
      * @param p
      */
     public void deleteWorkers(@NotNull Player p) {
-        for (int i = 0; i < p.getWorkerRef().length; i++) {
-            p.getWorkerRef()[i].getCurCell().setWorker(null);
-            p.getWorkerRef()[i] = null;
+        for (int i = p.getWorkerRef().size(); i > 0; i--) {
+            p.getWorkerRef().get(i).getCurCell().setWorker(null);
+            p.getWorkerRef().remove(i);
         }
     }
 
@@ -74,8 +74,8 @@ public class Board {
                         System.out.print(" ");
                     }
                     if (boardCells[j].getWorker() != null) {
-                        for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().length; g++) {
-                            if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef()[g] == boardCells[j].getWorker()) {
+                        for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
+                            if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
                                 System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
                             }
                         }

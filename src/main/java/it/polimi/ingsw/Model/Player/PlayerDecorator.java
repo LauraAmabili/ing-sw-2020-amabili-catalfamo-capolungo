@@ -216,5 +216,9 @@ public class PlayerDecorator implements PlayerInterface {
         playerState.Build(row, col, worker);
     }
 
+    @Override
+    public void addNickname(String nickname) {
+        playerState.addNickname(nickname);
+    }
 
 }

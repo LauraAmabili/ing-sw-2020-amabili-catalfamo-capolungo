@@ -95,4 +95,7 @@ public interface PlayerInterface {
 
   void StateBuild(int row, int col, Worker worker);
 
+  void addNickname(String nickname);
+
+
 }

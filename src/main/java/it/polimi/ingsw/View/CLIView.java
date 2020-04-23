@@ -34,7 +34,6 @@ public class CLIView extends View {
         //chiamata a metodo costruzione mappa
         createMap();
         while(true) {
-
             printComandi();
             String in = cases.nextLine();
             int integer = Integer.parseInt(in);
@@ -155,8 +154,8 @@ public class CLIView extends View {
     }
     public void setFirstWorkers(){
         System.out.println("Set your first worker");
-        for ( int i = 0; i < player.getWorkerRef().length; i++) {
-            Worker worker = player.getWorkerRef()[i];
+        for ( int i = 0; i < player.getWorkerRef().size(); i++) {
+            Worker worker = player.getWorkerRef().get(i);
             System.out.println("Insert coordinates for worker #" + i);
             int raw = input.nextInt();
             int col = input.nextInt();
