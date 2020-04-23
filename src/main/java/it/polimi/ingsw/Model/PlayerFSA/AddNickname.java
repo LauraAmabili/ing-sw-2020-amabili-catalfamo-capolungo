@@ -4,17 +4,25 @@ import it.polimi.ingsw.Model.God;
 import it.polimi.ingsw.Model.Player.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
+import java.util.List;
+
 public class AddNickname implements PlayerFSA {
 
     PlayerInterface player;
 
-    @Override
-    public void addNickname() {
-
+    public AddNickname(PlayerInterface player) {
+        this.player = player;
     }
 
     @Override
-    public void chooseCard() {
+    public void addNickname(String name) {
+        player.setNickname(name);
+        player.setOldPlayerState(player.getAddNickname());
+        player.setPlayerState(player.getIdle());
+    }
+
+    @Override
+    public void chosenCards(List<God> godName) {
 
     }
 
