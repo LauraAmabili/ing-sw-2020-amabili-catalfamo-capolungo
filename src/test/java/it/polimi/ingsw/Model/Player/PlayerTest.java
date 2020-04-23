@@ -1,5 +1,6 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Model.Player;
 
+import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.*;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,18 +12,15 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 
-    Board board = new Board();
-    Worker worker1 = new Worker(1, board);
-    Worker worker2 = new Worker(2, board);
-    ArrayList<Worker> mockWorkers1 = new ArrayList<>();
-    ArrayList<Worker> mockWorkers2 = new ArrayList<>();
+    Game game = new Game();
     ArrayList<BoardCell> adjCells = new ArrayList<>();
 
 
     @Before
     public void setUp() {
-    }
 
+    }
+/*
     @Test
     public void testAvailableCellsToMove() {
 
@@ -323,4 +321,6 @@ public class PlayerTest {
 
     }
 
+
+ */
 }

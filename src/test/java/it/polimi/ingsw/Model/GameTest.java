@@ -28,14 +28,14 @@ public class GameTest {
         BoardCell b2 = new BoardCell(0, 1);
         PlayerInterface player1 = game.getOnlinePlayers().get(0);
         PlayerInterface player2 = game.getOnlinePlayers().get(1);
-        b1.setWorker(player1.getWorkerRef()[0]);
-        b2.setWorker(player1.getWorkerRef()[1]);
-        player1.getWorkerRef()[0].setCurCell(b1);
-        player1.getWorkerRef()[1].setCurCell(b2);
+        b1.setWorker(player1.getWorkerRef().get(0));
+        b2.setWorker(player1.getWorkerRef().get(1));
+        player1.getWorkerRef().get(0).setCurCell(b1);
+        player1.getWorkerRef().get(1).setCurCell(b2);
         game.delPlayer(game.getOnlinePlayers().get(0));
         Assert.assertEquals(game.getOnlinePlayers().get(0), player2);
-        Assert.assertNull(player1.getWorkerRef()[0]);
-        Assert.assertNull(player1.getWorkerRef()[1]);
+        Assert.assertNull(player1.getWorkerRef().get(0));
+        Assert.assertNull(player1.getWorkerRef().get(1));
         Assert.assertNull(b1.getWorker());
         Assert.assertNull(b2.getWorker());
     }
@@ -45,10 +45,10 @@ public class GameTest {
         game.initialiseMatch();
         Assert.assertNotNull(game.getOnlinePlayers().get(0));
         Assert.assertNotNull(game.getOnlinePlayers().get(1));
-        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef()[0]);
-        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef()[1]);
-        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef()[0]);
-        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef()[1]);
+        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(0));
+        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(1));
+        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(0));
+        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
     }
 
 

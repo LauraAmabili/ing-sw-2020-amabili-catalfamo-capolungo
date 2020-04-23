@@ -81,10 +81,15 @@ public class Player implements PlayerInterface {
     private List<God> chosenGods;
     private boolean moveUp = true;
 
-    public Player(@NotNull List<Worker> list, Board board) {
-        this.workerRef = list;
+    public Player() {
+        playerState = addNickname;
+    }
+
+    public Player(String nickname, List<Worker> workerRef, Board board) {
+        this.nickname = nickname;
+        this.workerRef = workerRef;
         this.board = board;
-        PlayerFSA playerState = addNickname;
+        playerState = addNickname;
     }
 
     @Override
@@ -122,9 +127,14 @@ public class Player implements PlayerInterface {
         return nickname;
     }
 
+
+    public void setCard(God activeCard) {
+        playerState.setCard(activeCard);
+    }
+
     @Override
     public void setActiveCard(God activeCard) {
-        playerState.setCard(activeCard);
+        this.activeCard = activeCard;
     }
 
     @Override
@@ -135,6 +145,10 @@ public class Player implements PlayerInterface {
     @Override
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public void addNickname(String nickname) {
+        playerState.addNickname(nickname);
     }
 
     @Override

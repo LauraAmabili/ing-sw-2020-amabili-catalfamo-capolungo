@@ -19,7 +19,6 @@ public class GameController {
          */
     public GameController() {
         Game game = new Game();
-        Game.instance();
         GameManager gameManager1 = new GameManager(game);
         GameManager.instance(game);
         gameManager = gameManager1;
@@ -31,11 +30,7 @@ public class GameController {
         gameManager.addNickname(name);
     }
     public void addPlayer(PlayerInterface player) {
-        try {
-            (gameManager).addPlayers(player);
-        } catch (GameIsAlreadyStarted e) {
-            System.out.println("Game is Already started!");
-        }
+        gameManager.addPlayers(player);
     }
     public void initialiseMatch(){
         gameManager.initialiseMatch();

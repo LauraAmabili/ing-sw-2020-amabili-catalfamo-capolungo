@@ -9,8 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-
 public class Game {
+
+    private final int MAXPLAYER  = 3;
 
     //Player
     private int id;
@@ -104,6 +105,7 @@ public class Game {
             player.getWorkerRef().remove(player.getWorkerRef().get(i));
         }
         onlinePlayers.remove(player);
+        currentTurn.getActivePlayers().remove(player);
     }
     /**
      * Add a Worker in the board for the first time
@@ -129,10 +131,13 @@ public class Game {
      *Create a player
      *Create a Board
      */
-    public void initialiseMatch() {
+    public void initialiseMatch() { //TODO: add player
         List<Worker> list = new ArrayList<>();
         Board board = new Board();
         setBoard(board);
+        for (int i = 0; i < MAXPLAYER; i++) {
+            onlinePlayers.add(new Player());
+        }
         for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
                 Worker worker = new Worker(counterId, this.board);
@@ -140,10 +145,8 @@ public class Game {
             }
             playerInterface.setWorkerRef(list);
             playerInterface.setBoard(board);
-            addPlayers(playerInterface);
             list.clear();
         }
-        currentTurn = new Turn(onlinePlayers);
     }
 
     /**

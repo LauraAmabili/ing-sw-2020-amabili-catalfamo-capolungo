@@ -133,7 +133,7 @@ public class GameManager extends Observable {
     public void checkLockPlayer(){
         int ok = 0;
         for(int i = 0; i < 2 ; i++){
-            game.getCurrentTurn().checkLockPlayer(game.getCurrentTurn().getCurrentPlayer().getWorkerRef()[i]);
+            game.getCurrentTurn().checkLockPlayer(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
             ok++;
         }
         if(ok == 2){
@@ -149,7 +149,7 @@ public class GameManager extends Observable {
     public void checkBuildPlayer(){
         int ok = 0;
         for(int i = 0; i < 2 ; i++){
-            game.getCurrentTurn().checkLockBuild(game.getCurrentTurn().getCurrentPlayer().getWorkerRef()[i]);
+            game.getCurrentTurn().checkLockBuild(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
             ok++;
         }
         if(ok == 2){
@@ -160,7 +160,7 @@ public class GameManager extends Observable {
     }
     public void checkWin(){
         for(int i = 0; i < 2 ; i++) {
-            game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef()[i]);
+            game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
         }
     }
 

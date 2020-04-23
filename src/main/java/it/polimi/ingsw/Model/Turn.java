@@ -15,10 +15,8 @@ public class Turn {
     private List<PlayerInterface> activePlayers;
 
     public Turn(List<PlayerInterface> list) {
-        Random random = new Random();
+
         activePlayers = list;
-        currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()));
-        currentPlayer.setPlayerState(currentPlayer.getInitialized());
     }
 
     public int getTurnId() {
@@ -45,6 +43,11 @@ public class Turn {
         this.activePlayers = activePlayers;
     }
 
+    public void createChallenger() {
+        Random random = new Random();
+        currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()));
+        currentPlayer.setPlayerState(currentPlayer.getInitialized());
+    }
 
     /**
      * Switch the Player and goes on with the turn
