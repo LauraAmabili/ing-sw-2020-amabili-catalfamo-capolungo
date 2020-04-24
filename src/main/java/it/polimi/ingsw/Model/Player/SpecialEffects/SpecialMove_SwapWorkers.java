@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Model.Player;
+package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 
 

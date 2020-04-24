@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Model.Player;
+package it.polimi.ingsw.Model.Player.SpecialEffects;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,6 +19,7 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
      * @return true <--> the method works </-->
      */
     public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+        /*
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
         if (!(b1.equals(b2))) {
@@ -37,6 +38,9 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
                 return true;
             }
         }
+        return false;
+        */
+
         return false;
     }
 }
