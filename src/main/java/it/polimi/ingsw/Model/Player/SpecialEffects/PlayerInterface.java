@@ -11,91 +11,99 @@ import java.util.List;
 
 public interface PlayerInterface {
 
-  PlayerFSA addNickname = null;
-  PlayerFSA initialized = null;
-  PlayerFSA setCard = null;
-  PlayerFSA moving = null;
-  PlayerFSA building = null;
-  PlayerFSA idle = null;
+    PlayerFSA addNickname = null;
+    PlayerFSA initialized = null;
+    PlayerFSA setCard = null;
+    PlayerFSA placeWorker = null;
+    PlayerFSA moving = null;
+    PlayerFSA building = null;
+    PlayerFSA idle = null;
 
-  PlayerFSA OldPlayerState = null;
-  PlayerFSA playerState = null;
+    PlayerFSA OldPlayerState = null;
+    PlayerFSA playerState = null;
 
-  String nickname = null;
-  List<Worker> workerRef = null;
-  List<God> chosenGods = null;
-  God activeCard = null;
-  Board board = null;
+    String nickname = null;
+    List<Worker> workerRef = null;
+    List<God> chosenGods = null;
+    God activeCard = null;
+    Board board = null;
 
-  void setWorkerRef(List<Worker> list);
+    void setWorkerRef(List<Worker> list);
 
-  List<Worker> getWorkerRef();
+    List<Worker> getWorkerRef();
 
-  void setActiveCard(God ActiveCard);
+    void setActiveCard(God ActiveCard);
 
-  God getActiveCard();
+    God getActiveCard();
 
-  Board getBoard();
+    Board getBoard();
 
-  void setBoard(Board board);
+    void setBoard(Board board);
 
-  void setNickname(String nickname);
+    void setNickname(String nickname);
 
-  String getNickname();
+    String getNickname();
 
-  void setChosenGods(List<God> gods);
+    void setChosenGods(List<God> gods);
 
-  List<God> getChosenGods();
+    List<God> getChosenGods();
 
-  boolean isMoveUp();
+    boolean isMoveUp();
 
-  void setMoveUp(boolean moveUp);
+    void setMoveUp(boolean moveUp);
 
-  void setOldPlayerState(PlayerFSA playerState);
+    void setOldPlayerState(PlayerFSA playerState);
 
-  PlayerFSA getOldPlayerState();
+    PlayerFSA getOldPlayerState();
 
-  List<BoardCell> availableCellsToMove(@NotNull Worker worker);
+    boolean addWorker(int row, int col, Worker worker);
 
-  List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect);
+    List<BoardCell> availableCellsToMove(@NotNull Worker worker);
 
-  boolean move(int row, int col, @NotNull Worker worker);
+    List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect);
 
-  List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
+    boolean move(int row, int col, @NotNull Worker worker);
 
-  List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect);
+    List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
 
-  boolean build(int row, int col, @NotNull Worker worker);
+    List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect);
 
-  boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect);
+    boolean build(int row, int col, @NotNull Worker worker);
 
-  boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2);
+    boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect);
 
-  boolean checkWin(@NotNull Worker worker);
+    boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2);
 
-  boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
+    boolean checkWin(@NotNull Worker worker);
 
-  PlayerFSA getAddNickname();
+    boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
 
-  PlayerFSA getInitialized();
+    PlayerFSA getAddNickname();
 
-  PlayerFSA getSetCard();
+    PlayerFSA getInitialized();
 
-  PlayerFSA getMoving();
+    PlayerFSA getSetCard();
 
-  PlayerFSA getBuilding();
+    PlayerFSA getPlaceWorker();
 
-  PlayerFSA getIdle();
+    PlayerFSA getMoving();
 
-  PlayerFSA getPlayerState();
+    PlayerFSA getBuilding();
 
-  void setPlayerState(PlayerFSA playerState);
+    PlayerFSA getIdle();
 
-  void StateMove(int row, int col, Worker worker);
+    PlayerFSA getPlayerState();
 
-  void StateBuild(int row, int col, Worker worker);
+    void setPlayerState(PlayerFSA playerState);
 
-  void addNickname(String nickname);
+    void StateMove(int row, int col, Worker worker);
 
+    void StateBuild(int row, int col, Worker worker);
+
+    void addNickname(String nickname);
+
+    void setCard(God godName);
+
+    void PlaceWorker(int row, int col, Worker worker);
 
 }

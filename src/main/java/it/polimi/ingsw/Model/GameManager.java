@@ -2,8 +2,10 @@ package it.polimi.ingsw.Model;
 
 
 import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+
 
 import java.util.List;
 import java.util.Random;
@@ -72,11 +74,6 @@ public class GameManager extends Observable {
         this.game.initialiseMatch();
     }
 
-    public void decoratePlayer(PlayerInterface player) {
-        String methodname = player.getActiveCard().getGodName();
-        PlayerInterface playerA = game.decoratePlayer(methodname, player);
-        this.notifyPlayerDecorated(playerA);
-    }
 
     public void createTurn() {
         Turn turn = new Turn(game.getOnlinePlayers());
@@ -87,19 +84,13 @@ public class GameManager extends Observable {
     }
 
     public void setGod(String godName) {
-        God god = new God(godName);
+        God god = new God(godName, true);
         game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
         Player player = (Player) game.getCurrentTurn().getCurrentPlayer();
         //notifyObservers(player, state.GODSETTED.name());
         this.notifyGodSetted(player, godName);
     }
 
-    public void addWorker(Worker worker, int row, int col) {
-        if (game.addWorker(row, col, worker)) {
-            Board board = game.getBoard();
-            this.notifyWorkerSettled(board);
-        }
-    }
 
     public void ChooseChallenger() {
         Random rand = new Random();

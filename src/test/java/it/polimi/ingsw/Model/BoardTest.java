@@ -29,9 +29,9 @@ public class BoardTest {
     @Test
     public void deleteWorkers() {
         ArrayList<Worker> list = new ArrayList<>();
-        Worker worker1 = new Worker(1, board);
+        Worker worker1 = new Worker(1);
         worker1.setCurCell(board.getGrid()[0][0]);
-        Worker worker2 = new Worker(2, board);
+        Worker worker2 = new Worker(2);
         worker2.setCurCell(board.getGrid()[0][1]);
         list.add(worker1);
         list.add(worker2);
@@ -45,7 +45,7 @@ public class BoardTest {
     @Test
     public void adjacentCells() {
         ArrayList<BoardCell> b = new ArrayList<>();
-        Worker worker = new Worker(1, board);
+        Worker worker = new Worker(1);
         worker.setCurCell(board.getGrid()[3][3]);
         b.add(board.getGrid()[2][2]);
         b.add(board.getGrid()[2][3]);
@@ -60,8 +60,8 @@ public class BoardTest {
 
     @Test
     public void freeCells() {
-        Worker worker1 = new Worker(1, board);
-        Worker worker2 = new Worker(2, board);
+        Worker worker1 = new Worker(1);
+        Worker worker2 = new Worker(2);
         ArrayList<BoardCell> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {

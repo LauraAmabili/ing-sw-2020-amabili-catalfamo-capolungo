@@ -2,11 +2,13 @@ package it.polimi.ingsw.Model.Player;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.*;
-import it.polimi.ingsw.Model.God;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements PlayerInterface {
@@ -15,6 +17,7 @@ public class Player implements PlayerInterface {
     private final PlayerFSA addNickname = new AddNickname(this);
     private final PlayerFSA initialized = new Initialized(this);
     private final PlayerFSA setCard = new SetCard(this);
+    private final PlayerFSA PlaceWorker = new PlaceWorker(this);
     private final PlayerFSA moving = new Moving(this);
     private final PlayerFSA building = new Building(this);
     private final PlayerFSA idle = new Idle(this);
@@ -36,6 +39,11 @@ public class Player implements PlayerInterface {
     @Override
     public PlayerFSA getSetCard() {
         return setCard;
+    }
+
+    @Override
+    public PlayerFSA getPlaceWorker() {
+        return PlaceWorker;
     }
 
     @Override
@@ -75,10 +83,10 @@ public class Player implements PlayerInterface {
 
     //Player Attributes
     private String nickname;
-    private List<Worker> workerRef; // reference to the workers
+    private List<Worker> workerRef = new ArrayList<>(); // reference to the workers
     private God activeCard;
     private Board board;
-    private List<God> chosenGods;
+    private List<God> chosenGods = new ArrayList<>();
     private boolean moveUp = true;
 
     public Player() {
@@ -127,7 +135,12 @@ public class Player implements PlayerInterface {
         return nickname;
     }
 
+    @Override
+    public void PlaceWorker(int row, int col, Worker worker) {
+        playerState.placeWorker(row, col, worker);
+    }
 
+    @Override
     public void setCard(God activeCard) {
         playerState.setCard(activeCard);
     }
@@ -153,12 +166,35 @@ public class Player implements PlayerInterface {
 
     @Override
     public void setWorkerRef(List<Worker> list) {
-        this.workerRef = list;
+        workerRef.addAll(list);
     }
 
     @Override
     public List<Worker> getWorkerRef() {
         return workerRef;
+    }
+
+
+    /**
+     * Add a Worker in the board for the first time
+     * @param row
+     * @param col
+     * @param worker
+     * @return
+     */
+    @Override
+    public boolean addWorker(int row, int col, Worker worker) {
+        List<BoardCell> list;
+        list = board.freeCells();
+        if(list.contains(getBoard().getGrid()[row][col])) {
+            getBoard().getGrid()[row][col].setWorker(worker);
+            worker.setCurCell(getBoard().getGrid()[row][col]);
+            return true;
+        } else {
+            //TODO: Send error
+            System.out.println("Cell is already occupied");
+        }
+        return false;
     }
 
     //To be Decorated

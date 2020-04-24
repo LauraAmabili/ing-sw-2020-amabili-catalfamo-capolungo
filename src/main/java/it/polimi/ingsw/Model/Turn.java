@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Player.PlayerInterface;
-import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
+
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ public class Turn {
     private List<PlayerInterface> activePlayers;
 
     public Turn(List<PlayerInterface> list) {
-
         activePlayers = list;
     }
 
@@ -64,7 +62,11 @@ public class Turn {
         if(currentPlayer.getOldPlayerState() == currentPlayer.getAddNickname() || currentPlayer.getOldPlayerState() == currentPlayer.getInitialized()) {
             currentPlayer.setPlayerState(currentPlayer.getSetCard());
         } else if(currentPlayer.getOldPlayerState() == currentPlayer.getSetCard()) {
+            currentPlayer.setPlayerState(currentPlayer.getPlaceWorker());
+        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getPlaceWorker()) {
             currentPlayer.setPlayerState(currentPlayer.getMoving());
+        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getMoving()) {
+            currentPlayer.setPlayerState(currentPlayer.getBuilding());
         } else if(currentPlayer.getOldPlayerState() == currentPlayer.getBuilding()) {
             currentPlayer.setPlayerState(currentPlayer.getMoving());
         }

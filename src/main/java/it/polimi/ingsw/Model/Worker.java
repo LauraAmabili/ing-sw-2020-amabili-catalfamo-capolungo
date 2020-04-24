@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 public class Worker {
 
@@ -10,7 +10,7 @@ public class Worker {
     private BoardCell oldCell;
     private BoardCell curCell;
 
-    public Worker(int idWorker, Board board) {
+    public Worker(int idWorker) {
         this.idWorker = idWorker;
     }
 

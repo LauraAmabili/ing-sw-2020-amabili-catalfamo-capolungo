@@ -2,7 +2,7 @@ package it.polimi.ingsw.View;
 
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -48,10 +48,9 @@ public class CLIView extends View {
                     chooseCards();
                     break;
                 case 4:
-                    chooseYourGod();
+                    //chooseYourGod();
                    break;
                 case 5:
-                    setFirstWorkers();
                     break;
                 case 6:
                     //turn();
@@ -133,7 +132,7 @@ public class CLIView extends View {
         controller.thisWorker(worker);
     }
 
-     */
+
     public void chooseYourGod() {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
@@ -142,6 +141,7 @@ public class CLIView extends View {
         //decorate player
         controller.decoratePlayer(player);
     }
+    */
     public void printComandi(){
         System.out.println(PURPLE + "Add nickname: 1");
         System.out.println("Initialize match: 2");
@@ -151,16 +151,6 @@ public class CLIView extends View {
         //System.out.println("Press 6 to move");
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
-    }
-    public void setFirstWorkers(){
-        System.out.println("Set your first worker");
-        for ( int i = 0; i < player.getWorkerRef().size(); i++) {
-            Worker worker = player.getWorkerRef().get(i);
-            System.out.println("Insert coordinates for worker #" + i);
-            int raw = input.nextInt();
-            int col = input.nextInt();
-            controller.addWorker(worker, raw, col);
-        }
     }
     public void startingGame(){
         //System.out.print("Game is starting...");

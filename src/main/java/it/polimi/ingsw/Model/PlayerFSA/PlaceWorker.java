@@ -1,17 +1,18 @@
 package it.polimi.ingsw.Model.PlayerFSA;
 
-
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class Moving implements PlayerFSA {
+public class PlaceWorker implements PlayerFSA{
 
     PlayerInterface player;
+    int workerPlaced = 0;
 
-    public Moving(PlayerInterface player) {
+    public PlaceWorker(PlayerInterface player) {
         this.player = player;
     }
 
@@ -32,17 +33,26 @@ public class Moving implements PlayerFSA {
 
     @Override
     public void placeWorker(int row, int col, Worker worker) {
-
+        if(workerPlaced != player.getWorkerRef().size() - 2) {
+            if(player.addWorker(row, col, worker)) {
+                workerPlaced++;
+            } else {
+                //TODO: Send error
+            }
+        } else {
+            if(player.addWorker(row, col, worker)) {
+                workerPlaced++;
+                player.setOldPlayerState(player.getPlaceWorker());
+                player.setPlayerState(player.getIdle());
+            } else {
+                //TODO: Send error
+            }
+        }
     }
 
     @Override
     public void Move(int row, int col, Worker worker) {
-        if(player.move(row, col, worker)) {
-            player.setOldPlayerState(player.getMoving());
-            player.setPlayerState(player.getBuilding());
-        } else {
-            //TODO: Send error
-        }
+
     }
 
     @Override

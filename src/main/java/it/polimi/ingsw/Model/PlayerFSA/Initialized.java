@@ -1,8 +1,8 @@
 package it.polimi.ingsw.Model.PlayerFSA;
 
-import it.polimi.ingsw.Model.God;
-import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
@@ -32,6 +32,11 @@ public class Initialized implements PlayerFSA {
 
     @Override
     public void setCard(God godName) {
+
+    }
+
+    @Override
+    public void placeWorker(int row, int col, Worker worker) {
 
     }
 

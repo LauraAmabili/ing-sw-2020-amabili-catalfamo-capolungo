@@ -1,7 +1,9 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.*;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -107,25 +109,7 @@ public class Game {
         onlinePlayers.remove(player);
         currentTurn.getActivePlayers().remove(player);
     }
-    /**
-     * Add a Worker in the board for the first time
-     * @param row
-     * @param col
-     * @param worker
-     * @return
-     */
-    public boolean addWorker(int row, int col, Worker worker) {
-        List<BoardCell> list;
-        list = currentTurn.getCurrentPlayer().getBoard().freeCells();
-        if(list.contains(currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col])) {
-            currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col].setWorker(worker);
-            worker.setCurCell(currentTurn.getCurrentPlayer().getBoard().getGrid()[row][col]);
-            return true;
-        } else {
-            System.out.println("Cell is already occupied");
-        }
-        return false;
-    }
+
     /**
      *Create a list of Worker to match the Player
      *Create a player
@@ -140,7 +124,7 @@ public class Game {
         }
         for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
-                Worker worker = new Worker(counterId, this.board);
+                Worker worker = new Worker(counterId);
                 list.add(worker);
             }
             playerInterface.setWorkerRef(list);
@@ -149,38 +133,6 @@ public class Game {
         }
     }
 
-    /**
-     * Calls the right method using reflection using the name of the ActiveGod
-     * @param name
-     * @param player
-     */
-
-    public PlayerInterface decoratePlayer(String name, PlayerInterface player){
-
-        Ref dec = new Ref();
-        Method metodo = null;
-        PlayerInterface playerI = new Player();
-        try {
-            metodo = dec.getClass().getMethod(name, PlayerInterface.class);
-        }
-        catch (NoSuchMethodException e) {
-            System.out.println("Player not decorated, choose one first");
-            notifyExc();
-        }
-        if (metodo != null) {
-            try {
-                Object playerD = metodo.invoke(dec, player);
-                playerI = (PlayerInterface) playerD;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-                notifyExc();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-                notifyExc();
-            }
-        }
-        return playerI;
-    }
     /*
     public PlayerInterface decPlayer(String name, PlayerInterface player){
         Ref ref = new Ref();
@@ -189,6 +141,7 @@ public class Game {
         return newPlayer;
     }
     */
+
     public void notifyExc(){
         GameManager gameManager = new GameManager();
         gameManager.notifyObservers(null,"Exception");
@@ -207,8 +160,8 @@ public class Game {
     }
 
     public List<God> addChosenGods(String godName){
-        God god= new God(godName);
-        chosenGods.add(god);
+        //God god = new God(godName);
+        //chosenGods.add(god);
         return chosenGods;
     }
 
