@@ -1,7 +1,10 @@
 package it.polimi.ingsw.Model.Player.SpecialEffects;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 
 public class SpecialMove_BMB extends PlayerDecorator {
@@ -24,7 +27,7 @@ public class SpecialMove_BMB extends PlayerDecorator {
         if (specialEffect){
             build(rowBuild, colBuild, worker);
         }
-        if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
+        if (availableCellsToMoveAfterEffect(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
             worker.setCurCell(this.getBoard().getGrid()[row][col]);
@@ -34,7 +37,12 @@ public class SpecialMove_BMB extends PlayerDecorator {
         return false;
     }
 
-
-
+    public List<BoardCell> availableCellsToMoveAfterEffect(@NotNull Worker worker) {
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+        adj.removeIf((n) -> n.getWorker() != null);
+        adj.removeIf(BoardCell::getDome);
+        adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+        return adj;
+    }
 
 }

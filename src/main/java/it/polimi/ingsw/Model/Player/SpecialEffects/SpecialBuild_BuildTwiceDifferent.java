@@ -41,6 +41,6 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
         return false;
         */
 
-        return false;
+        return true;
     }
 }

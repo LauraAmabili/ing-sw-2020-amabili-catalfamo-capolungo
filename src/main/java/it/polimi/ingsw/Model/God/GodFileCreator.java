@@ -1,10 +1,11 @@
 package it.polimi.ingsw.Model.God;
 
-//write conf on file
+//false, false, false, false, false, false, false, false, false);
 
 import com.google.gson.*;
 
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class GodFileCreator {
@@ -13,21 +14,23 @@ public class GodFileCreator {
     String godFile = "D:/OneDrive/ing-sw-2020-amabili-catalfamo-capolungo/godFile.json";
 
     public void create() throws IOException {
-        God Athena = new God("Athena", true);
-        write(Athena);
+        ArrayList<God> arrayGods = new ArrayList<>();
+        arrayGods.add(new God("Apollo", false, false, false, false, false, false, true, false, false));
+        arrayGods.add(new God("Artemis", false, false, false, false, true, false, false, false, false));
+        arrayGods.add(new God("Athena", false, false, false, false, false, false, false, true, false));
+        arrayGods.add(new God("Atlas", false, false, true, false, false, false, false, false, false));
+        arrayGods.add(new God("Demeter", true, false, false, false, false, false, false, false, false));
+        arrayGods.add(new God("Hephaestus", false, true, false, false, false, false, false, false, false));
+        arrayGods.add(new God("Minotaur", false, false, false, false, false, true, false, false, false));
+        arrayGods.add(new God("Pan", false, false, false, false, false, false, false, false, true));
+        arrayGods.add(new God("Prometheus", false, false, false, true, false, false, false, false, false));
+        write (arrayGods);
     }
 
-    public void write(God god) throws IOException {
+    public void write(ArrayList<God> arrayGods) throws IOException {
         FileWriter fileWriter = new FileWriter(godFile);
-        gson.toJson(god, fileWriter);
+        gson.toJson(arrayGods, fileWriter);
         fileWriter.close();
-    }
-
-    public God read() throws IOException {
-        FileReader fileReader = new FileReader(godFile);
-        God god = gson.fromJson(fileReader, God.class);
-        fileReader.close();
-        return god;
     }
 
 }
