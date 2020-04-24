@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.Player;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 public class Worker {
 

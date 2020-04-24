@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -39,6 +39,7 @@ public class GameTest {
         Assert.assertNull(b1.getWorker());
         Assert.assertNull(b2.getWorker());
     }
+
 
     @Test
     public void initialiseMatch() {

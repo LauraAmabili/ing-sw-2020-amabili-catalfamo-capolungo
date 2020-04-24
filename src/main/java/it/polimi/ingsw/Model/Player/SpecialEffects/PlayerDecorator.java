@@ -1,9 +1,9 @@
-package it.polimi.ingsw.Model.Player;
+package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
-import it.polimi.ingsw.Model.God;
-import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,6 +14,7 @@ public class PlayerDecorator implements PlayerInterface {
     PlayerFSA addNickname;
     PlayerFSA initialized;
     PlayerFSA setCard;
+    PlayerFSA placeWorker;
     PlayerFSA moving;
     PlayerFSA building;
     PlayerFSA idle;
@@ -39,14 +40,15 @@ public class PlayerDecorator implements PlayerInterface {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
-        this.addNickname = player.getAddNickname();
-        this.initialized = player.getInitialized();
-        this.setCard = player.getSetCard();
-        this.moving = player.getMoving();
-        this.building = player.getBuilding();
-        this.idle = player.getIdle();
-        this.oldPlayerState = player.getOldPlayerState();
-        this.playerState = player.getPlayerState();
+        this.addNickname = new AddNickname(this);
+        this.initialized =  new Initialized(this);
+        this.setCard = new SetCard(this);
+        this.placeWorker = new PlaceWorker(this);
+        this.moving = new Moving(this);
+        this.building = new Building(this);
+        this.idle = new Idle(this);
+        this.oldPlayerState = setCard;
+        this.playerState = idle;
     }
 
     public boolean isMoveUp(){
@@ -95,7 +97,7 @@ public class PlayerDecorator implements PlayerInterface {
 
     @Override
     public void setBoard(Board board) {
-
+        this.board = board;
     }
 
     @Override
@@ -106,6 +108,11 @@ public class PlayerDecorator implements PlayerInterface {
     @Override
     public PlayerFSA getOldPlayerState() {
         return oldPlayerState;
+    }
+
+    @Override
+    public boolean addWorker(int row, int col, Worker worker) {
+        return player.addWorker(row, col, worker);
     }
 
     @Override
@@ -182,6 +189,11 @@ public class PlayerDecorator implements PlayerInterface {
     }
 
     @Override
+    public PlayerFSA getPlaceWorker() {
+        return placeWorker;
+    }
+
+    @Override
     public PlayerFSA getMoving() {
         return moving;
     }
@@ -208,17 +220,26 @@ public class PlayerDecorator implements PlayerInterface {
 
     @Override
     public void StateMove(int row, int col, Worker worker) {
-        playerState.Move(row, col, worker);
+        player.getPlayerState().Move(row, col, worker);
     }
 
     @Override
     public void StateBuild(int row, int col, Worker worker) {
-        playerState.Build(row, col, worker);
+        player.getPlayerState().Build(row, col, worker);
     }
 
     @Override
     public void addNickname(String nickname) {
-        playerState.addNickname(nickname);
+        player.getPlayerState().addNickname(nickname);
     }
 
+    @Override
+    public void setCard(God godName) {
+        player.getPlayerState().setCard(godName);
+    }
+
+    @Override
+    public void PlaceWorker(int row, int col, Worker worker) {
+        player.getPlayerState().placeWorker(row, col, worker);
+    }
 }

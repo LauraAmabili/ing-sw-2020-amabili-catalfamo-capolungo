@@ -3,7 +3,7 @@ package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Player.PlayerInterface;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 public class GameController {
 
@@ -39,12 +39,6 @@ public class GameController {
         //TODO: controllare che 'in' sia compreso nella lista dei god (corretto)
         gameManager.setGod(in);
     }
-    public void decoratePlayer(PlayerInterface player){
-        gameManager.decoratePlayer(player);
-    }
-    public void addWorker(Worker worker, int row, int col){
-        gameManager.addWorker(worker, row, col);
-    }
     public void chooseCards(){
             gameManager.chooseCards();
     }
@@ -57,6 +51,7 @@ public class GameController {
     public void addChosenGods(String godName){
         gameManager.addChosenGods(godName);
     }
+
     /*
     public void turn(){
         model.Turn();
