@@ -10,7 +10,7 @@ public class Worker {
     private BoardCell oldCell;
     private BoardCell curCell;
 
-    public Worker(int idWorker, Board board) {
+    public Worker(int idWorker) {
         this.idWorker = idWorker;
     }
 

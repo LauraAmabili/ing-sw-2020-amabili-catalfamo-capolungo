@@ -140,7 +140,7 @@ public class Game {
         }
         for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
-                Worker worker = new Worker(counterId, this.board);
+                Worker worker = new Worker(counterId);
                 list.add(worker);
             }
             playerInterface.setWorkerRef(list);
