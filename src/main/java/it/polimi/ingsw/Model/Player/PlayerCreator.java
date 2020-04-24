@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PlayerCreator {
 
     Gson gson = new Gson();
-    String godFile = "D:/OneDrive/ing-sw-2020-amabili-catalfamo-capolungo/godFile.json";
+    String godFile = "./godFile.json";
 
     public PlayerInterface createPlayer(String godName, PlayerInterface p) throws IOException {
 

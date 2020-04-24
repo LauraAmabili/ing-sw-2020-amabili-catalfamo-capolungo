@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class GodFileCreator {
 
     Gson gson = new Gson();
-    String godFile = "D:/OneDrive/ing-sw-2020-amabili-catalfamo-capolungo/godFile.json";
+    String godFile = "./godFile.json";
 
     public void create() throws IOException {
         ArrayList<God> arrayGods = new ArrayList<>();
