@@ -13,14 +13,14 @@ public class SpecialMove_BMB extends PlayerDecorator {
         super(p);
     }
 
-    /**
-     * @param row
-     * @param col
-     * @param worker
-     * @param specialEffect
-     * @param rowBuild
-     * @param colBuild
-     * @return
+    /**Build, move on the same level, build
+     * @param row First BoardCell row
+     * @param col First BoardCell col
+     * @param worker Worker used
+     * @param specialEffect SpecialEffect enabled
+     * @param rowBuild Second BoardCell row
+     * @param colBuild Second BoardCell col
+     * @return true <--> the method works </-->
      */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {

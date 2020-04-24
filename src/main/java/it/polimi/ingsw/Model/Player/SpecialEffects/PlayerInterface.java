@@ -24,7 +24,7 @@ public interface PlayerInterface {
 
     String nickname = null;
     List<Worker> workerRef = null;
-    List<God> chosenGods = null;
+
     God activeCard = null;
     Board board = null;
 
