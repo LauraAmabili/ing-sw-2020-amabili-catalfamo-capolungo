@@ -37,6 +37,7 @@ public class PlaceWorker implements PlayerFSA{
             if(player.addWorker(row, col, worker)) {
                 workerPlaced++;
             } else {
+                //notify
                 //TODO: Send error
             }
         } else {
@@ -45,6 +46,7 @@ public class PlaceWorker implements PlayerFSA{
                 player.setOldPlayerState(player.getPlaceWorker());
                 player.setPlayerState(player.getIdle());
             } else {
+                //notify
                 //TODO: Send error
             }
         }

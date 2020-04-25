@@ -41,6 +41,7 @@ public class Moving implements PlayerFSA {
             player.setOldPlayerState(player.getMoving());
             player.setPlayerState(player.getBuilding());
         } else {
+            //notifyErrorMoving();
             //TODO: Send error
         }
     }

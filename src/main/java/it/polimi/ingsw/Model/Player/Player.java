@@ -30,52 +30,42 @@ public class Player implements PlayerInterface {
     public PlayerFSA getAddNickname() {
         return addNickname;
     }
-
     @Override
     public PlayerFSA getInitialized() {
         return initialized;
     }
-
     @Override
     public PlayerFSA getSetCard() {
         return setCard;
     }
-
     @Override
     public PlayerFSA getPlaceWorker() {
         return PlaceWorker;
     }
-
     @Override
     public PlayerFSA getMoving() {
         return moving;
     }
-
     @Override
     public PlayerFSA getBuilding() {
         return building;
     }
-
     @Override
     public PlayerFSA getIdle() {
         return idle;
     }
-
     @Override
     public PlayerFSA getOldPlayerState() {
         return oldPlayerState;
     }
-
     @Override
     public PlayerFSA getPlayerState() {
         return playerState;
     }
-
     @Override
     public void setOldPlayerState(PlayerFSA playerState) {
         oldPlayerState = playerState;
     }
-
     @Override
     public void setPlayerState(PlayerFSA playerState) {
         this.playerState = playerState;

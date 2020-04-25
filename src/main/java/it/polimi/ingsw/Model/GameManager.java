@@ -65,9 +65,10 @@ public class GameManager extends Observable {
      * @param nickName
      */
     public void addNickname(String nickName) {
-        this.game.addNickname(nickName);
-        //this.notifyPlayerAdded(state.ADDNICKNAMES.name());
+        this.game.getCurrentTurn().getCurrentPlayer().addNickname(nickName);
+        //this.game.addNickname(nickName);
         this.notifyPlayerAdded(nickName);
+
     }
 
     public void initialiseMatch() {
@@ -99,7 +100,7 @@ public class GameManager extends Observable {
     }
 
     public void chooseCards() {
-        //game.initializeGodList();
+
         if (cardsChosen == 0) {
             List gods = game.getGodList();
             this.notifyCards(gods);
@@ -120,6 +121,8 @@ public class GameManager extends Observable {
         game.getCurrentTurn().getCurrentPlayer().move(row, col, worker);
         notifyBoardUpdate(game.getBoard());
     }
+
+
 
     public void checkLockPlayer(){
         int ok = 0;

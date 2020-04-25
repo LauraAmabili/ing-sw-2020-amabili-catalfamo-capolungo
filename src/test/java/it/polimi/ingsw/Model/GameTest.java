@@ -12,14 +12,18 @@ public class GameTest {
 
     @Before
     public void setUp() throws Exception {
-        game.addNickname("SuperRexo");
-        game.addNickname("NotATeen");
+        game.getCurrentTurn().getCurrentPlayer().addNickname("SuperRexo");
+        game.getCurrentTurn().getCurrentPlayer().addNickname("Notateen");
+        //game.addNickname("SuperRexo");
+        //game.addNickname("NotATeen");
 
     }
 
     @After
     public void tearDown() throws Exception {
     }
+
+
 
     @Test
     public void delPlayer() {

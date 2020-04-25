@@ -49,6 +49,7 @@ public class Building implements PlayerFSA {
             player.setPlayerState(player.getIdle());
         } else {
             //TODO: Send error
+            //notifyErrorBuilding();
         }
     }
 }

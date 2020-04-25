@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.*;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class Ref {
         return nome.get(godName);
     }
     */
-
+/*
     public PlayerInterface Apollo (PlayerInterface player) {
         PlayerInterface playerDecorated = new SpecialMove_SwapWorkers(player);
         return playerDecorated;
@@ -59,5 +60,7 @@ public class Ref {
     public PlayerInterface Pan(PlayerInterface player){
         return new SpecialWin_MoveDown(player);
     }
+
+ */
 
 }

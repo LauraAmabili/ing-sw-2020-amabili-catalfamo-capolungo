@@ -20,7 +20,6 @@ public class GameController {
     public GameController() {
         Game game = new Game();
         GameManager gameManager1 = new GameManager(game);
-        GameManager.instance(game);
         gameManager = gameManager1;
     }
     public GameController(GameManager gameManager) {
@@ -51,6 +50,7 @@ public class GameController {
     public void addChosenGods(String godName){
         gameManager.addChosenGods(godName);
     }
+
 
     /*
     public void turn(){

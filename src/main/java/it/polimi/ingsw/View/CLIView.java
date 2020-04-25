@@ -38,17 +38,17 @@ public class CLIView extends View {
             String in = cases.nextLine();
             int integer = Integer.parseInt(in);
             switch (integer) {
-                case 1:
+                case 2:
                    insertNickname();
                     break;
-                case 2:
+                case 1:
                    startingGame();
                     break;
                 case 3:
                     chooseCards();
                     break;
                 case 4:
-                    //chooseYourGod();
+                    chooseYourGod();
                    break;
                 case 5:
                     break;
@@ -132,19 +132,19 @@ public class CLIView extends View {
         controller.thisWorker(worker);
     }
 
-
+*/
     public void chooseYourGod() {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
         //TODO: controller.GodTaken(godName);
         controller.setGodName(godName);
         //decorate player
-        controller.decoratePlayer(player);
+        //controller.decoratePlayer(player);
     }
-    */
+
     public void printComandi(){
-        System.out.println(PURPLE + "Add nickname: 1");
-        System.out.println("Initialize match: 2");
+        System.out.println(PURPLE + "Initialize match: 1");
+        System.out.println("Add nickname: 2");
         System.out.println("Choose your cards 3");
         System.out.println("Choose God: 4");
         System.out.println("Press 5 to add Workers");

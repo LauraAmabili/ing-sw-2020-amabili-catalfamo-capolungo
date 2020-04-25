@@ -66,11 +66,14 @@ public class Game {
     public List<String> getNicknames() {
         return nickNames;
     }
+    /*
     public void addNickname(String nickNames) {
         for (PlayerInterface player : onlinePlayers) {
             this.nickNames.add(player.getNickname());
         }
     }
+    */
+
 
     public int getId() {
         return id;
@@ -131,6 +134,7 @@ public class Game {
             playerInterface.setBoard(board);
             list.clear();
         }
+       initializeGodList();
     }
 
     /*
