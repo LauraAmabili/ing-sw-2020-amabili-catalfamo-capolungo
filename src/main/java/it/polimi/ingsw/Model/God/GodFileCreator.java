@@ -1,11 +1,10 @@
 package it.polimi.ingsw.Model.God;
 
-//false, false, false, false, false, false, false, false, false);
-
 import com.google.gson.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class GodFileCreator {
@@ -15,15 +14,16 @@ public class GodFileCreator {
 
     public void create() throws IOException {
         ArrayList<God> arrayGods = new ArrayList<>();
-        arrayGods.add(new God("Apollo", false, false, false, false, false, false, true, false, false));
-        arrayGods.add(new God("Artemis", false, false, false, false, true, false, false, false, false));
-        arrayGods.add(new God("Athena", false, false, false, false, false, false, false, true, false));
-        arrayGods.add(new God("Atlas", false, false, true, false, false, false, false, false, false));
-        arrayGods.add(new God("Demeter", true, false, false, false, false, false, false, false, false));
-        arrayGods.add(new God("Hephaestus", false, true, false, false, false, false, false, false, false));
-        arrayGods.add(new God("Minotaur", false, false, false, false, false, true, false, false, false));
-        arrayGods.add(new God("Pan", false, false, false, false, false, false, false, false, true));
-        arrayGods.add(new God("Prometheus", false, false, false, true, false, false, false, false, false));
+        arrayGods.add(new God("Apollo", Arrays.asList("SpecialMove_SwapWorkers")));
+        arrayGods.add(new God("Artemis", Arrays.asList("SpecialMove_MoveTwice")));
+        arrayGods.add(new God("Athena", Arrays.asList("SpecialOpponentTurn_LockMoveUp")));
+        arrayGods.add(new God("Atlas", Arrays.asList("SpecialBuild_DomeAnyLevel")));
+        arrayGods.add(new God("Demeter", Arrays.asList("SpecialMove_SwapWorkers")));
+        arrayGods.add(new God("Hephaestus", Arrays.asList("SpecialBuild_BuildTwiceDifferent")));
+        arrayGods.add(new God("Minotaur", Arrays.asList("SpecialMove_PushOpponent")));
+        arrayGods.add(new God("Pan", Arrays.asList("SpecialWin_MoveDown")));
+        arrayGods.add(new God("Prometheus", Arrays.asList("SpecialMove_BMB")));
+
         write (arrayGods);
     }
 
