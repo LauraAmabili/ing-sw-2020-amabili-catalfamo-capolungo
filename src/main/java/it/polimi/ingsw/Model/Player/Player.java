@@ -14,58 +14,16 @@ import java.util.List;
 public class Player implements PlayerInterface {
 
     //FSA State
-    private final PlayerFSA addNickname = new AddNickname(this);
-    private final PlayerFSA initialized = new Initialized(this);
-    private final PlayerFSA setCard = new SetCard(this);
-    private final PlayerFSA PlaceWorker = new PlaceWorker(this);
-    private final PlayerFSA moving = new Moving(this);
-    private final PlayerFSA building = new Building(this);
-    private final PlayerFSA idle = new Idle(this);
 
-
-    private PlayerFSA oldPlayerState = null;
     private PlayerFSA playerState;
 
-    @Override
-    public PlayerFSA getAddNickname() {
-        return addNickname;
-    }
-    @Override
-    public PlayerFSA getInitialized() {
-        return initialized;
-    }
-    @Override
-    public PlayerFSA getSetCard() {
-        return setCard;
-    }
-    @Override
-    public PlayerFSA getPlaceWorker() {
-        return PlaceWorker;
-    }
-    @Override
-    public PlayerFSA getMoving() {
-        return moving;
-    }
-    @Override
-    public PlayerFSA getBuilding() {
-        return building;
-    }
-    @Override
-    public PlayerFSA getIdle() {
-        return idle;
-    }
-    @Override
-    public PlayerFSA getOldPlayerState() {
-        return oldPlayerState;
-    }
+
     @Override
     public PlayerFSA getPlayerState() {
         return playerState;
     }
-    @Override
-    public void setOldPlayerState(PlayerFSA playerState) {
-        oldPlayerState = playerState;
-    }
+
+
     @Override
     public void setPlayerState(PlayerFSA playerState) {
         this.playerState = playerState;
@@ -76,18 +34,18 @@ public class Player implements PlayerInterface {
     private List<Worker> workerRef = new ArrayList<>(); // reference to the workers
     private God activeCard;
     private Board board;
-    private List<God> chosenGods = new ArrayList<>();
+    private final List<God> chosenGods = new ArrayList<>();
     private boolean moveUp = true;
 
     public Player() {
-        playerState = addNickname;
+        playerState = new AddNickname(this);
     }
 
     public Player(String nickname, List<Worker> workerRef, Board board) {
         this.nickname = nickname;
         this.workerRef = workerRef;
         this.board = board;
-        playerState = addNickname;
+        playerState = new AddNickname(this);
     }
 
     @Override
@@ -150,6 +108,7 @@ public class Player implements PlayerInterface {
         this.nickname = nickname;
     }
 
+    @Override
     public void addNickname(String nickname) {
         playerState.addNickname(nickname);
     }

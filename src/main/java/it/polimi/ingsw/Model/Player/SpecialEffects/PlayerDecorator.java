@@ -11,15 +11,6 @@ import java.util.List;
 
 public class PlayerDecorator implements PlayerInterface {
 
-    PlayerFSA addNickname;
-    PlayerFSA initialized;
-    PlayerFSA setCard;
-    PlayerFSA placeWorker;
-    PlayerFSA moving;
-    PlayerFSA building;
-    PlayerFSA idle;
-
-    PlayerFSA oldPlayerState;
     PlayerFSA playerState;
 
     // attributes
@@ -40,15 +31,7 @@ public class PlayerDecorator implements PlayerInterface {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
-        this.addNickname = new AddNickname(this);
-        this.initialized =  new Initialized(this);
-        this.setCard = new SetCard(this);
-        this.placeWorker = new PlaceWorker(this);
-        this.moving = new Moving(this);
-        this.building = new Building(this);
-        this.idle = new Idle(this);
-        this.oldPlayerState = setCard;
-        this.playerState = idle;
+        this.playerState = new Idle(this, new SetCard(this));
     }
 
     public boolean isMoveUp(){
@@ -98,16 +81,6 @@ public class PlayerDecorator implements PlayerInterface {
     @Override
     public void setBoard(Board board) {
         this.board = board;
-    }
-
-    @Override
-    public void setOldPlayerState(PlayerFSA playerState) {
-        this.oldPlayerState = playerState;
-    }
-
-    @Override
-    public PlayerFSA getOldPlayerState() {
-        return oldPlayerState;
     }
 
     @Override
@@ -171,41 +144,6 @@ public class PlayerDecorator implements PlayerInterface {
     @Override
     public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
         return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
-    }
-
-    @Override
-    public PlayerFSA getAddNickname() {
-        return addNickname;
-    }
-
-    @Override
-    public PlayerFSA getInitialized() {
-        return initialized;
-    }
-
-    @Override
-    public PlayerFSA getSetCard() {
-        return setCard;
-    }
-
-    @Override
-    public PlayerFSA getPlaceWorker() {
-        return placeWorker;
-    }
-
-    @Override
-    public PlayerFSA getMoving() {
-        return moving;
-    }
-
-    @Override
-    public PlayerFSA getBuilding() {
-        return building;
-    }
-
-    @Override
-    public PlayerFSA getIdle() {
-        return idle;
     }
 
     @Override

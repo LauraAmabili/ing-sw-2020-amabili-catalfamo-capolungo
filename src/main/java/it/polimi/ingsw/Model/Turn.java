@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model;
 
 
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+import it.polimi.ingsw.Model.PlayerFSA.Initialized;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +45,13 @@ public class Turn {
     public void createChallenger() {
         Random random = new Random();
         currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()));
-        currentPlayer.setPlayerState(currentPlayer.getInitialized());
+        currentPlayer.setPlayerState(new Initialized(currentPlayer));
     }
 
     /**
      * Switch the Player and goes on with the turn
      */
-    public void nextTurn() {
+    public synchronized void nextTurn() {
         int index = activePlayers.size() - 1;
         int i = activePlayers.indexOf(currentPlayer);
         if(index == i) {
@@ -59,17 +60,7 @@ public class Turn {
             currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
         }
         TurnId++;
-        if(currentPlayer.getOldPlayerState() == currentPlayer.getAddNickname() || currentPlayer.getOldPlayerState() == currentPlayer.getInitialized()) {
-            currentPlayer.setPlayerState(currentPlayer.getSetCard());
-        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getSetCard()) {
-            currentPlayer.setPlayerState(currentPlayer.getPlaceWorker());
-        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getPlaceWorker()) {
-            currentPlayer.setPlayerState(currentPlayer.getMoving());
-        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getMoving()) {
-            currentPlayer.setPlayerState(currentPlayer.getBuilding());
-        } else if(currentPlayer.getOldPlayerState() == currentPlayer.getBuilding()) {
-            currentPlayer.setPlayerState(currentPlayer.getMoving());
-        }
+        currentPlayer.getPlayerState().Next();
     }
 
     /**

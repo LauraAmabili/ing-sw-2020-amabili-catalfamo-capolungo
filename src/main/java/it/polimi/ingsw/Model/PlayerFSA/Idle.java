@@ -7,40 +7,27 @@ import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class Idle implements PlayerFSA {
+public class Idle extends PlayerFSA {
 
     PlayerInterface player;
+    PlayerFSA oldState;
 
-    public Idle(PlayerInterface player) {
+    public Idle(PlayerInterface player, PlayerFSA oldState) {
         this.player = player;
+        this.oldState = oldState;
     }
 
-    @Override
-    public void addNickname(String name) {
-
-    }
 
     @Override
-    public void chosenCards(List<God> godName) {
-
-    }
-
-    @Override
-    public void setCard(God godName) {
-    }
-
-    @Override
-    public void placeWorker(int row, int col, Worker worker) {
-
-    }
-
-    @Override
-    public void Move(int row, int col, Worker worker) {
-
-    }
-
-    @Override
-    public void Build(int row, int col, Worker worker) {
-
+    public void Next() {
+        if(oldState.equals(new AddNickname(player)) || oldState.equals(new Initialized(player))) {
+            player.setPlayerState(new SetCard(player));
+        } else if(oldState.equals(new SetCard(player))) {
+            player.setPlayerState(new PlaceWorker(player));
+        } else if(oldState.equals(new PlaceWorker(player))) {
+            player.setPlayerState(new Moving(player));
+        } else if(oldState.equals(new Building(player))) {
+            player.setPlayerState(new Moving(player));
+        }
     }
 }

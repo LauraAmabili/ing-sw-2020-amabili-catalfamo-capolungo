@@ -8,17 +8,20 @@ import java.util.List;
 public class God {
 
     private String godName;
-    private List<String> Effects;
+    private List<String> effects;
 
     //Constructor
 
     public God(String godName, List<String> effects) {
         this.godName = godName;
-        Effects = effects;
+        this.effects = effects;
     }
 
     //Getter & Setter
 
+    public God(String godName) {
+        this.godName = godName;
+    }
 
     public String getGodName() {
         return godName;
@@ -29,11 +32,11 @@ public class God {
     }
 
     public List<String> getEffects() {
-        return Effects;
+        return effects;
     }
 
     public void setEffects(List<String> effects) {
-       Effects = effects;
+        this.effects = effects;
     }
 }
 
