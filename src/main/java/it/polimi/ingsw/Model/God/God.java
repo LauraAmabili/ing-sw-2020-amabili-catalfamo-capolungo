@@ -33,7 +33,7 @@ public class God {
     }
 
     public void setEffects(List<String> effects) {
-        Effects = effects;
+       Effects = effects;
     }
 }
 

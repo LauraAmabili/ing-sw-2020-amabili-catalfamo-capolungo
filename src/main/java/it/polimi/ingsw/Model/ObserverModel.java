@@ -5,7 +5,7 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.util.List;
 
-public interface Observer {
+public interface ObserverModel {
 
     //public void update(Object obj);
     public void update(Object o, Object obj);

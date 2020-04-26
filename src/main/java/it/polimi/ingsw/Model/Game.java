@@ -170,12 +170,15 @@ public class Game extends Observable {
         this.notifyGameIsRead();
     }
 
+
     public void addChosenGods(String godName){
 
-        God god = new God(godName);
+        God god = new God(godName, null);
         chosenGods.add(god);
         notifyGodAdded(this.getChosenGods());
 
     }
+
+
 }
 

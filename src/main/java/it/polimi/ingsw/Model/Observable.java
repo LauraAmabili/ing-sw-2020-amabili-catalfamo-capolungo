@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.View.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,42 +8,42 @@ import java.util.List;
 public class Observable {
 
 
-    private List<Observer> observers = new ArrayList<>();
+    private List<ObserverModel> observerModels = new ArrayList<>();
 
 
-    public void AddObserver(Observer o){
-        this.observers.add(o);
+    public void AddObserver(ObserverModel o){
+        this.observerModels.add(o);
     }
 
     void notifyPlayerAdded(Object obj){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);
         }
     }
     void notifyGameIsRead(){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateGameisReady();
         }
     }
     void notifyGodSetted(PlayerInterface player, String godName){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateGodSetted(player, godName);
         }
     }
 
     void notifyPlayerDecorated(PlayerInterface playerDecorated){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updatePlayerDecorated(playerDecorated);
         }
     }
 
     void notifyWorkerSettled(Board board){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateBoard(board);
         }
     }
     void notifyCards(List gods){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateTimeToChoose(gods);
         }
     }
@@ -57,28 +55,28 @@ public class Observable {
     }
 */
     void notifyObservers(Object something, Object obj){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.update(something,obj);
         }
     }
 
     void notifyGodAdded(List gods){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateGodAdded(gods);
         }
     }
     void notifyCardsChosen(List gods, int cardsChosen){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateCardsChosen(gods, cardsChosen);
         }
     }
     void notifyWinner(PlayerInterface player){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateWinners(player);
         }
     }
     void notifyBoardUpdate(Board board){
-        for(Observer o : observers){
+        for(ObserverModel o : observerModels){
             o.updateBoard(board);
         }
     }

@@ -82,9 +82,9 @@ public class TurnTest {
             }
         }
         List<God> godList = new ArrayList<>();
-        God Apollo = new God("Apollo", false, false, false, false, false, false, true, false, false);
-        God Artemis = new God("Artemis", false, false, false, false, true, false, false, false, false);
-        God Athena = new God("Athena", false, false, false, false, false, false, false, true, false);
+        God Apollo = new God("Apollo",null );
+        God Artemis = new God("Artemis", null);
+        God Athena = new God("Athena", null);
 
 
 

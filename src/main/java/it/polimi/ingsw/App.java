@@ -9,6 +9,7 @@ public class App
 
     public static void main(String[] args ) {
 
+
         GameController controller = new GameController();
         View view1 = new CLIView(controller);
         controller.addObserver(view1);
@@ -19,6 +20,11 @@ public class App
        // model.AddObserver(view2);
         //view2.start();
 
+
+        //Controller controller = new Controller();
+        //View view1 = new CLIView(controller);
+        //controller.addObserver(view1);
+        //view1.start();
 
 
         /*

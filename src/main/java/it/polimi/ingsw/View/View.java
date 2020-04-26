@@ -4,7 +4,7 @@ import it.polimi.ingsw.Model.*;
 
 
 
-public abstract class View extends Thread implements Observer  {
+public abstract class  View extends Thread implements ObserverModel   {
 
 }
 

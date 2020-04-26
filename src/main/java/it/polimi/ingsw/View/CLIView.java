@@ -33,16 +33,16 @@ public class CLIView extends View {
     public void run() {
         //chiamata a metodo costruzione mappa
         createMap();
+        System.out.println("Press 1 to start the game");
         while(true) {
-            printComandi();
             String in = cases.nextLine();
             int integer = Integer.parseInt(in);
             switch (integer) {
-                case 2:
-                   insertNickname();
-                    break;
                 case 1:
-                   startingGame();
+                    startingGame();
+                    break;
+                case 2:
+                    insertNickname();
                     break;
                 case 3:
                     chooseCards();
@@ -71,6 +71,7 @@ public class CLIView extends View {
     @Override
     public void updateGameisReady(){
         System.out.println("Game is ready!");
+
     }
     @Override
     public void updateGodSetted(PlayerInterface playerActing, String godName){
@@ -170,13 +171,6 @@ public class CLIView extends View {
     public void checkGods(){
 
     }
-    /*
-    public void turn(){
-        controller.turn();
-    }
-    */
-
-
 
 
     public void createMap(){
