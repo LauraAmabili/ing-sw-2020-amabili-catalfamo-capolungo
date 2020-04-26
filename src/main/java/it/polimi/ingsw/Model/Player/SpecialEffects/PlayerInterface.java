@@ -11,15 +11,7 @@ import java.util.List;
 
 public interface PlayerInterface {
 
-    PlayerFSA addNickname = null;
-    PlayerFSA initialized = null;
-    PlayerFSA setCard = null;
-    PlayerFSA placeWorker = null;
-    PlayerFSA moving = null;
-    PlayerFSA building = null;
-    PlayerFSA idle = null;
 
-    PlayerFSA OldPlayerState = null;
     PlayerFSA playerState = null;
 
     String nickname = null;
@@ -52,10 +44,6 @@ public interface PlayerInterface {
 
     void setMoveUp(boolean moveUp);
 
-    void setOldPlayerState(PlayerFSA playerState);
-
-    PlayerFSA getOldPlayerState();
-
     boolean addWorker(int row, int col, Worker worker);
 
     List<BoardCell> availableCellsToMove(@NotNull Worker worker);
@@ -77,20 +65,6 @@ public interface PlayerInterface {
     boolean checkWin(@NotNull Worker worker);
 
     boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
-
-    PlayerFSA getAddNickname();
-
-    PlayerFSA getInitialized();
-
-    PlayerFSA getSetCard();
-
-    PlayerFSA getPlaceWorker();
-
-    PlayerFSA getMoving();
-
-    PlayerFSA getBuilding();
-
-    PlayerFSA getIdle();
 
     PlayerFSA getPlayerState();
 

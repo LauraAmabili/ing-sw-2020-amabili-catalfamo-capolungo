@@ -6,8 +6,9 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
+import java.util.Objects;
 
-public class AddNickname implements PlayerFSA {
+public class AddNickname extends PlayerFSA {
 
     PlayerInterface player;
 
@@ -18,32 +19,11 @@ public class AddNickname implements PlayerFSA {
     @Override
     public void addNickname(String name) {
         player.setNickname(name);
-        player.setOldPlayerState(player.getAddNickname());
-        player.setPlayerState(player.getIdle());
+        player.setPlayerState(new Idle(player, new AddNickname(player)));
     }
 
-    @Override
-    public void chosenCards(List<God> godName) {
-
+    public PlayerInterface getPlayer() {
+        return player;
     }
 
-    @Override
-    public void setCard(God GodName) {
-
-    }
-
-    @Override
-    public void placeWorker(int row, int col, Worker worker) {
-
-    }
-
-    @Override
-    public void Move(int row, int col, Worker worker) {
-
-    }
-
-    @Override
-    public void Build(int row, int col, Worker worker) {
-
-    }
 }

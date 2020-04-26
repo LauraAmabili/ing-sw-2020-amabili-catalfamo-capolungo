@@ -37,7 +37,7 @@ public class BoardTest {
         list.add(worker2);
         Player player = new Player("SuperRexo", list, board);
         board.deleteWorkers(player);
-        for (int i = 0; i < player.getWorkerRef().size(); i++) {
+        for (int i = player.getWorkerRef().size() - 1; i > 0; i--) {
             Assert.assertNull(player.getWorkerRef().get(i));
         }
     }

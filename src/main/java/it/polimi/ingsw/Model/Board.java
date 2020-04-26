@@ -31,7 +31,7 @@ public class Board {
      * @param p
      */
     public void deleteWorkers(@NotNull Player p) {
-        for (int i = p.getWorkerRef().size(); i > 0; i--) {
+        for (int i = p.getWorkerRef().size() - 1; i > 0; i--) {
             p.getWorkerRef().get(i).getCurCell().setWorker(null);
             p.getWorkerRef().remove(i);
         }

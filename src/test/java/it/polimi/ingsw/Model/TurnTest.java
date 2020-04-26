@@ -3,6 +3,7 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+import it.polimi.ingsw.Model.PlayerFSA.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class TurnTest {
     List<PlayerInterface> playerlist = new ArrayList<>();
 
     @Before
-    public void setUp(){
+    public void setUp() {
         playerlist.clear();
         playerlist.add(new Player());
         playerlist.add(new Player());
@@ -42,7 +43,6 @@ public class TurnTest {
     }
 
 
-
     @Test
     public void TurnTest() {
 
@@ -58,13 +58,13 @@ public class TurnTest {
                 i = turn1.getActivePlayers().indexOf(p);
             }
         }
-        for (int j = 0; j < playerlist.size(); j++) {
+        for (int j = 0; j < playerlist.size() - 1; j++) {
             if (i != j) {
-                Assert.assertEquals(turn1.getActivePlayers().get(j).getPlayerState(), turn1.getActivePlayers().get(j).getAddNickname());
+                Assert.assertEquals(turn1.getActivePlayers().get(j).getPlayerState(), new AddNickname(turn1.getActivePlayers().get(j)));
             }
         }
         assert player != null;
-        Assert.assertEquals(player.getPlayerState(), player.getInitialized());
+        Assert.assertEquals(player.getPlayerState(), new Initialized(player));
 
 
         //NextTurn() when added nickname
@@ -82,10 +82,9 @@ public class TurnTest {
             }
         }
         List<God> godList = new ArrayList<>();
-        God Apollo = new God("Apollo", false, false, false, false, false, false, true, false, false);
-        God Artemis = new God("Artemis", false, false, false, false, true, false, false, false, false);
-        God Athena = new God("Athena", false, false, false, false, false, false, false, true, false);
-
+        God Apollo = new God("Apollo");
+        God Artemis = new God("Artemis");
+        God Athena = new God("Athena");
 
 
         godList.add(Apollo);
@@ -94,13 +93,13 @@ public class TurnTest {
         turn2.getCurrentPlayer().setChosenGods(godList);
         turn2.nextTurn();
         if (i == 2) {
-            assertEquals(turn2.getActivePlayers().get(0).getSetCard(), turn2.getActivePlayers().get(0).getPlayerState());
+            assertEquals(new SetCard(turn2.getActivePlayers().get(0)), turn2.getActivePlayers().get(0).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(0));
-            assertEquals(turn2.getActivePlayers().get(2).getIdle(), turn2.getActivePlayers().get(2).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(2), new AddNickname(turn2.getActivePlayers().get(2))), turn2.getActivePlayers().get(2).getPlayerState());
         } else {
-            assertEquals(turn2.getActivePlayers().get(i + 1).getSetCard(), turn2.getActivePlayers().get(i + 1).getPlayerState());
+            assertEquals(new SetCard(turn2.getActivePlayers().get(i + 1)), turn2.getActivePlayers().get(i + 1).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(i + 1));
-            assertEquals(turn2.getActivePlayers().get(i).getIdle(), turn2.getActivePlayers().get(i).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(i), new AddNickname(turn2.getActivePlayers().get(i))), turn2.getActivePlayers().get(i).getPlayerState());
         }
 
         //NextTurn() when set card
@@ -112,13 +111,13 @@ public class TurnTest {
         }
         turn2.nextTurn();
         if (i == 2) {
-            assertEquals(turn2.getActivePlayers().get(0).getSetCard(), turn2.getActivePlayers().get(0).getPlayerState());
+            assertEquals(new SetCard(turn2.getActivePlayers().get(0)), turn2.getActivePlayers().get(0).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(0));
-            assertEquals(turn2.getActivePlayers().get(2).getIdle(), turn2.getActivePlayers().get(2).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(2), new SetCard(turn2.getActivePlayers().get(2))), turn2.getActivePlayers().get(2).getPlayerState());
         } else {
-            assertEquals(turn2.getActivePlayers().get(i + 1).getSetCard(), turn2.getActivePlayers().get(i + 1).getPlayerState());
+            assertEquals(new SetCard(turn2.getActivePlayers().get(i + 1)), turn2.getActivePlayers().get(i + 1).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(i + 1));
-            assertEquals(turn2.getActivePlayers().get(i).getIdle(), turn2.getActivePlayers().get(i).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(i), new SetCard(turn2.getActivePlayers().get(i))), turn2.getActivePlayers().get(i).getPlayerState());
         }
 
         //One full turn passes
@@ -133,19 +132,19 @@ public class TurnTest {
                 i = turn2.getActivePlayers().indexOf(p);
             }
         }
-        assertEquals(turn2.getCurrentPlayer().getPlaceWorker(), turn2.getCurrentPlayer().getPlayerState());
+        assertEquals(new PlaceWorker(turn2.getCurrentPlayer()), turn2.getCurrentPlayer().getPlayerState());
         turn2.getCurrentPlayer().PlaceWorker(1,1, turn2.getCurrentPlayer().getWorkerRef().get(0));
-        assertEquals(turn2.getCurrentPlayer().getIdle(), turn2.getCurrentPlayer().getPlayerState());
+        assertEquals(new Idle(turn2.getCurrentPlayer(), new PlaceWorker(turn2.getCurrentPlayer())), turn2.getCurrentPlayer().getPlayerState());
         turn2.getCurrentPlayer().PlaceWorker(1,2, turn2.getCurrentPlayer().getWorkerRef().get(1));
         turn2.nextTurn();
         if (i == 2) {
-            assertEquals(turn2.getActivePlayers().get(0).getPlaceWorker(), turn2.getActivePlayers().get(0).getPlayerState());
+            assertEquals(new PlaceWorker(turn2.getActivePlayers().get(0)), turn2.getActivePlayers().get(0).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(0));
-            assertEquals(turn2.getActivePlayers().get(2).getIdle(), turn2.getActivePlayers().get(2).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(2), new PlaceWorker(turn2.getActivePlayers().get(2))), turn2.getActivePlayers().get(2).getPlayerState());
         } else {
-            assertEquals(turn2.getActivePlayers().get(i + 1).getPlaceWorker(), turn2.getActivePlayers().get(i + 1).getPlayerState());
+            assertEquals(new PlaceWorker(turn2.getActivePlayers().get(i + 1)), turn2.getActivePlayers().get(i + 1).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(i + 1));
-            assertEquals(turn2.getActivePlayers().get(i).getIdle(), turn2.getActivePlayers().get(i).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(i), new PlaceWorker(turn2.getActivePlayers().get(i))), turn2.getActivePlayers().get(i).getPlayerState());
         }
 
         //One full turn passes
@@ -162,19 +161,20 @@ public class TurnTest {
                 i = turn2.getActivePlayers().indexOf(p);
             }
         }
-        assertEquals(turn2.getCurrentPlayer().getMoving(), turn2.getCurrentPlayer().getPlayerState());
+        assertEquals(new Moving(turn2.getCurrentPlayer()), turn2.getCurrentPlayer().getPlayerState());
         turn2.getCurrentPlayer().StateMove(0,0,turn2.getCurrentPlayer().getWorkerRef().get(0));
-        assertEquals(turn2.getCurrentPlayer().getBuilding(), turn2.getCurrentPlayer().getPlayerState());
+        assertEquals(new Building(turn2.getCurrentPlayer()), turn2.getCurrentPlayer().getPlayerState());
         turn2.getCurrentPlayer().StateBuild(0,1,turn2.getCurrentPlayer().getWorkerRef().get(0));
         turn2.nextTurn();
         if (i == 2) {
-            assertEquals(turn2.getActivePlayers().get(0).getMoving(), turn2.getActivePlayers().get(0).getPlayerState());
+            assertEquals(new Moving(turn2.getActivePlayers().get(0)), turn2.getActivePlayers().get(0).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(0));
-            assertEquals(turn2.getActivePlayers().get(2).getIdle(), turn2.getActivePlayers().get(2).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(2), new Building(turn2.getActivePlayers().get(2))), turn2.getActivePlayers().get(2).getPlayerState());
         } else {
-            assertEquals(turn2.getActivePlayers().get(i + 1).getMoving(), turn2.getActivePlayers().get(i + 1).getPlayerState());
+            assertEquals(new Moving(turn2.getActivePlayers().get(i + 1)), turn2.getActivePlayers().get(i + 1).getPlayerState());
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(i + 1));
-            assertEquals(turn2.getActivePlayers().get(i).getIdle(), turn2.getActivePlayers().get(i).getPlayerState());
+            assertEquals(new Idle(turn2.getActivePlayers().get(i), new Building(turn2.getActivePlayers().get(i))), turn2.getActivePlayers().get(i).getPlayerState());
         }
     }
+
 }

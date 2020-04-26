@@ -7,7 +7,7 @@ import it.polimi.ingsw.Model.Worker;
 
 import java.util.List;
 
-public class Moving implements PlayerFSA {
+public class Moving extends PlayerFSA {
 
     PlayerInterface player;
 
@@ -16,37 +16,12 @@ public class Moving implements PlayerFSA {
     }
 
     @Override
-    public void addNickname(String name) {
-
-    }
-
-    @Override
-    public void chosenCards(List<God> godName) {
-
-    }
-
-    @Override
-    public void setCard(God godName) {
-
-    }
-
-    @Override
-    public void placeWorker(int row, int col, Worker worker) {
-
-    }
-
-    @Override
     public void Move(int row, int col, Worker worker) {
         if(player.move(row, col, worker)) {
-            player.setOldPlayerState(player.getMoving());
-            player.setPlayerState(player.getBuilding());
+            player.setPlayerState(new Building(player));
         } else {
             //TODO: Send error
         }
     }
 
-    @Override
-    public void Build(int row, int col, Worker worker) {
-
-    }
 }

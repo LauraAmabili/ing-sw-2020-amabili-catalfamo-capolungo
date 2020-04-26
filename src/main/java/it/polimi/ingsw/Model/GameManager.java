@@ -84,7 +84,7 @@ public class GameManager extends Observable {
     }
 
     public void setGod(String godName) {
-        God god = new God(godName, true);
+        God god = new God(godName);
         game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
         Player player = (Player) game.getCurrentTurn().getCurrentPlayer();
         //notifyObservers(player, state.GODSETTED.name());
