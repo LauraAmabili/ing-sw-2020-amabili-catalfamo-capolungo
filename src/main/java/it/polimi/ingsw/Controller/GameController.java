@@ -1,22 +1,16 @@
 
 package it.polimi.ingsw.Controller;
 
-import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 public class GameController {
 
-    GameManager gameManager;
+    private GameManager gameManager;
 
-    /*
-        private static Controller controller = null;
-        public static Controller instance(){
-            if(controller==null)
-                controller = new Controller();
-            return controller;
-        }
-         */
+
+
+
     public GameController() {
         Game game = new Game();
         GameManager gameManager1 = new GameManager(game);
@@ -25,7 +19,11 @@ public class GameController {
     public GameController(GameManager gameManager) {
         this.gameManager = gameManager;
     }
+
+
+
     public void addNickname(String name) {
+
         gameManager.addNickname(name);
     }
     public void addPlayer(PlayerInterface player) {

@@ -14,8 +14,7 @@ public class GameTest {
     public void setUp() throws Exception {
         game.getCurrentTurn().getCurrentPlayer().addNickname("SuperRexo");
         game.getCurrentTurn().getCurrentPlayer().addNickname("Notateen");
-        //game.addNickname("SuperRexo");
-        //game.addNickname("NotATeen");
+
 
     }
 
@@ -56,5 +55,9 @@ public class GameTest {
         Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
     }
 
+    /*
+    State state = State.ADDNICKNAME;
+    assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), "Notateen");
+     */
 
 }

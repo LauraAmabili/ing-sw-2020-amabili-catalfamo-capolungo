@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class Game {
+public class Game extends Observable {
 
     private final int MAXPLAYER  = 3;
 
@@ -22,6 +22,7 @@ public class Game {
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
+    private int cardsChosen = 0;
 
 
     //God
@@ -41,6 +42,9 @@ public class Game {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
     }
+
+
+
 
     public List<God> getChosenGods() {
         return chosenGods;
@@ -66,14 +70,6 @@ public class Game {
     public List<String> getNicknames() {
         return nickNames;
     }
-    /*
-    public void addNickname(String nickNames) {
-        for (PlayerInterface player : onlinePlayers) {
-            this.nickNames.add(player.getNickname());
-        }
-    }
-    */
-
 
     public int getId() {
         return id;
@@ -135,17 +131,8 @@ public class Game {
             list.clear();
         }
        initializeGodList();
-    }
 
-    /*
-    public PlayerInterface decPlayer(String name, PlayerInterface player){
-        Ref ref = new Ref();
-        PlayerInterface newPlayer = ref.Decorator(name);
-        newPlayer.setTutto(player);
-        return newPlayer;
     }
-    */
-
     public void notifyExc(){
         GameManager gameManager = new GameManager();
         gameManager.notifyObservers(null,"Exception");
@@ -162,13 +149,33 @@ public class Game {
     public String getPlayerNickname(int num){
         return getOnlinePlayers().get(num).getNickname();
     }
+    public void addNickname(String nickName) {
 
-    public List<God> addChosenGods(String godName){
-        //God god = new God(godName);
-        //chosenGods.add(god);
-        return chosenGods;
+        this.getCurrentTurn().getCurrentPlayer().addNickname(nickName);
+        this.notifyPlayerAdded(nickName);
+
+    }
+    public void chooseCards() {
+
+            List gods = this.getGodList();
+            this.notifyCards(gods);
+            this.notifyCardsChosen(gods, cardsChosen);
+
     }
 
+    public void createTurn() {
+        Turn turn = new Turn(this.getOnlinePlayers());
+        this.setCurrentTurn(turn);
+        this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
+        this.notifyGameIsRead();
+    }
 
+    public void addChosenGods(String godName){
+
+        God god = new God(godName);
+        chosenGods.add(god);
+        notifyGodAdded(this.getChosenGods());
+
+    }
 }
 

@@ -34,6 +34,7 @@ public class GameManager extends Observable {
     }
 
     public GameManager() {
+
     }
 
     public Game getGame() {
@@ -49,6 +50,10 @@ public class GameManager extends Observable {
     }
 
 
+
+
+
+
     /**
      * Add the Players to the Game
      *
@@ -58,7 +63,6 @@ public class GameManager extends Observable {
     public void addPlayers(PlayerInterface player) {
         game.getOnlinePlayers().add(player);
     }
-
     /**
      * Add nickname to the Player
      *
@@ -70,11 +74,9 @@ public class GameManager extends Observable {
         this.notifyPlayerAdded(nickName);
 
     }
-
     public void initialiseMatch() {
         this.game.initialiseMatch();
     }
-
 
     public void createTurn() {
         Turn turn = new Turn(game.getOnlinePlayers());
@@ -85,10 +87,10 @@ public class GameManager extends Observable {
     }
 
     public void setGod(String godName) {
-        God god = new God(godName, true);
-        game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
+       // God god = new God(godName, true);
+       // God god = new God(godName);
+        //game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
         Player player = (Player) game.getCurrentTurn().getCurrentPlayer();
-        //notifyObservers(player, state.GODSETTED.name());
         this.notifyGodSetted(player, godName);
     }
 
@@ -96,7 +98,7 @@ public class GameManager extends Observable {
     public void ChooseChallenger() {
         Random rand = new Random();
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
-        //this.notifyObservers(state.CHALLENGERSETTED.name());
+
     }
 
     public void chooseCards() {
@@ -122,6 +124,11 @@ public class GameManager extends Observable {
         notifyBoardUpdate(game.getBoard());
     }
 
+    public void decoratePlayer(){
+        Ref ref = new Ref();
+        String godName =  game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName();
+        ref.Decorator(godName, game.getCurrentTurn().getCurrentPlayer());
+    }
 
 
     public void checkLockPlayer(){
@@ -156,6 +163,10 @@ public class GameManager extends Observable {
         for(int i = 0; i < 2 ; i++) {
             game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
         }
+    }
+
+    public void getGodList(){
+
     }
 
 }

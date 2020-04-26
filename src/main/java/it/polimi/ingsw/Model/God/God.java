@@ -20,6 +20,10 @@ public class God {
 	
     //Constructor
 
+    public God(String godName){
+        this.godName = godName;
+    }
+
     public God(String godName, boolean specialBuild_BuildTwiceDifferent, boolean specialBuild_BuildTwiceSame, boolean specialBuild_DomeAnyLevel, boolean specialMove_BMB, boolean specialMove_MoveTwice, boolean specialMove_PushOpponent, boolean specialMove_SwapWorkers, boolean specialOpponentTurn_LockMoveUp, boolean specialWin_MoveDown) {
         this.godName = godName;
         this.specialBuild_BuildTwiceDifferent = specialBuild_BuildTwiceDifferent;
