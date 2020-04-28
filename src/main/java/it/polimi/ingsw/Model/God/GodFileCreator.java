@@ -11,9 +11,7 @@ import java.util.Arrays;
 public class GodFileCreator {
 
     Gson gson = new Gson();
-    String godFile = "./src/main/java/it/polimi/ingsw/Model/God/godFile.json";
-
-
+    String godFile = "./src/main/java/it/polimi/ingsw/resources/godFile.json";
 
     public void create() {
         ArrayList<God> arrayGods = new ArrayList<>();

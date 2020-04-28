@@ -17,7 +17,7 @@ import java.util.List;
 public class PlayerCreator {
 
     Gson gson = new Gson();
-    String godFile = "./src/main/java/it/polimi/ingsw/Model/God/godFile.json";
+    String godFile = "./src/main/java/it/polimi/ingsw/resources/godFile.json";
     ArrayList<God> arrayGods;
 
     public PlayerInterface createPlayer(String godName, PlayerInterface p) {
@@ -57,6 +57,7 @@ public class PlayerCreator {
             e.printStackTrace();
         }
         Type userListType = new TypeToken<ArrayList<God>>(){}.getType();
+        assert fileReader != null;
         arrayGods = gson.fromJson(fileReader, userListType);
         try {
             fileReader.close();
