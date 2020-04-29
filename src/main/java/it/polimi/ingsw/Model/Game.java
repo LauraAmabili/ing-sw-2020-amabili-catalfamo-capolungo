@@ -29,12 +29,9 @@ public class Game extends Observable {
     }
 
     public void initialiseGodList(){
-
-        godListNames.add("Apollo");
-        godListNames.add("Artemis");
-        godListNames.add("Athena");
-
-
+        PlayerCreator playerCreator = new PlayerCreator();
+        for (int i=0; i<playerCreator.getArrayGods().size(); i++)
+            godListNames.add(playerCreator.getArrayGods().get(i).getGodName());
     }
     private List<God> chosenGods = new ArrayList<>();
 

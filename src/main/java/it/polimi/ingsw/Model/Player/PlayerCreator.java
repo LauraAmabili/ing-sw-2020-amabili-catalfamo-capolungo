@@ -20,9 +20,19 @@ public class PlayerCreator {
     String godFile = "./src/main/java/it/polimi/ingsw/resources/godFile.json";
     ArrayList<God> arrayGods;
 
+    public PlayerCreator() {
+        read();
+    }
+
+    public ArrayList<God> getArrayGods() {
+        return arrayGods;
+    }
+
+    public void setArrayGods(ArrayList<God> arrayGods) {
+        this.arrayGods = arrayGods;
+    }
+
     public PlayerInterface createPlayer(String godName, PlayerInterface p) {
-        if (arrayGods==null)
-            read();
         God god = find(godName);
         p = addEffects(p, god.getEffects());
         return p;

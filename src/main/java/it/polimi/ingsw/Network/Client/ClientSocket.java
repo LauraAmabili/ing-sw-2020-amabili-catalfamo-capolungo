@@ -28,12 +28,7 @@ public class ClientSocket extends Client implements Runnable {
         messageReceiver.start();
     }
 
-    /**
-     * Sends a message to server
-     *
-     * @param message message to send to the server
-     * @throws IOException in case of problems with communication with server
-     */
+
     @Override
     public void sendMessage(Message message) throws IOException {
         if (out != null) {
