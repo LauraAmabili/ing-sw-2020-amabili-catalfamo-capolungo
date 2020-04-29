@@ -50,8 +50,6 @@ public class PlayerCreator {
         arrayGods = gson.fromJson(fileReader, userListType);
         fileReader.close();
     }
-
-
     public God find(String g) throws IOException {
         for (God x : arrayGods){
             if (x.getGodName().equals(g)){

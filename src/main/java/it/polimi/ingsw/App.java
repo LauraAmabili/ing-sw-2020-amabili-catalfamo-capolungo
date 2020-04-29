@@ -2,7 +2,10 @@ package it.polimi.ingsw;
 
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.View.CLIView;
+
 import it.polimi.ingsw.View.View;
+
+import java.util.Timer;
 
 public class App 
 {
@@ -10,10 +13,16 @@ public class App
     public static void main(String[] args ) {
 
 
+        /*
         GameController controller = new GameController();
         View view1 = new CLIView(controller);
+        Thread thread = new Thread(view1);
+        thread.start();
         controller.addObserver(view1);
-        view1.start();
+
+        thread.start();
+*/
+
 
 
         // View view2 = new CLIView(controller);
@@ -142,4 +151,7 @@ public class App
          */
 
     }
+
+
+
 }

@@ -19,15 +19,9 @@ public class GameManager extends Observable {
 
     private int cardsChosen = 0;
 
-    private static GameManager gameManager = null;
 
-    public static GameManager instance(Game game) {
-        if (gameManager == null) {
-            GameManager gameManager = new GameManager(game);
-            return gameManager;
-        }
-        return gameManager;
-    }
+
+
 
     public GameManager(Game game) {
         this.game = game;
@@ -48,8 +42,6 @@ public class GameManager extends Observable {
     public void setCardsChosen(int cardsChosen) {
         this.cardsChosen = cardsChosen;
     }
-
-
 
 
 
@@ -101,7 +93,7 @@ public class GameManager extends Observable {
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
 
     }
-
+    /*
     public void chooseCards() {
 
         if (cardsChosen == 0) {
@@ -115,6 +107,8 @@ public class GameManager extends Observable {
         }
     }
 
+     */
+
     public void addChosenGods(String godName) {
         game.addChosenGods(godName);
         notifyGodAdded(game.getChosenGods());
@@ -125,11 +119,6 @@ public class GameManager extends Observable {
         notifyBoardUpdate(game.getBoard());
     }
 
-    public void decoratePlayer(){
-        Ref ref = new Ref();
-        String godName =  game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName();
-        ref.Decorator(godName, game.getCurrentTurn().getCurrentPlayer());
-    }
 
 
     public void checkLockPlayer(){
@@ -166,9 +155,8 @@ public class GameManager extends Observable {
         }
     }
 
-    public void getGodList(){
 
-    }
+
 
 }
 

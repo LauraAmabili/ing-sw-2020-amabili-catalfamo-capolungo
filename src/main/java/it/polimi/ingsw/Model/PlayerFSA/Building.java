@@ -20,7 +20,9 @@ public class Building extends PlayerFSA {
     public void Build(int row, int col, Worker worker) {
         if(player.build(row, col, worker)) {
             player.setPlayerState(new Idle(player, new Building(player)));
+
         } else {
+
             //TODO: Send error
             //notifyErrorBuilding();
         }

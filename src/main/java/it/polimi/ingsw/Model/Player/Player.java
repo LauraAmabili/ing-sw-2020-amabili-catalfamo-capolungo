@@ -68,6 +68,7 @@ public class Player implements PlayerInterface {
         this.moveUp=moveUp;
     }
 
+
     @Override
     public void StateMove(int row, int col, Worker worker) {
         playerState.Move(row, col, worker);
@@ -140,10 +141,11 @@ public class Player implements PlayerInterface {
             worker.setCurCell(getBoard().getGrid()[row][col]);
             return true;
         } else {
-            //TODO: Send error
-            System.out.println("Cell is already occupied");
+
+            return false;
+            //System.out.println("Cell is already occupied");
         }
-        return false;
+
     }
 
     //To be Decorated

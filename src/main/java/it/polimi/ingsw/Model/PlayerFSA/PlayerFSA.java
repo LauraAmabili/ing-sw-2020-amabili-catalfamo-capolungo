@@ -12,6 +12,9 @@ public abstract class PlayerFSA {
 
     PlayerInterface player = null;
 
+
+    //TODO: se modifichi a boolean mi raccomando ricordati di rimodificare qui il tipo di ritorno
+
     public void addNickname(String name) {
 
     }
@@ -39,6 +42,7 @@ public abstract class PlayerFSA {
     public void Next() {
 
     }
+
 
     @Override
     public boolean equals(Object o){

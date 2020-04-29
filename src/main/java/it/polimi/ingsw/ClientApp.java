@@ -11,8 +11,11 @@ public class ClientApp {
 
         GameController controller = new GameController();
         View view1 = new CLIView(controller);
+        Thread thread = new Thread(view1);
+        thread.start();
         controller.addObserver(view1);
-        view1.start();
+        view1.AddObserver(controller);
+
 
     }
 

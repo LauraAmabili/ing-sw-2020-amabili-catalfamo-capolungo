@@ -44,7 +44,7 @@ public class Turn {
 
     public void createChallenger() {
         Random random = new Random();
-        currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()));
+        currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()-1));
         currentPlayer.setPlayerState(new Initialized(currentPlayer));
     }
 

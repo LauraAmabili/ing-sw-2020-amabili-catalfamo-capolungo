@@ -17,6 +17,7 @@ public class SetCard extends PlayerFSA{
 
     @Override
     public void setCard(God godName) {
+
         player.setActiveCard(godName);
         player.setPlayerState(new Idle(player, new SetCard(player)));
     }

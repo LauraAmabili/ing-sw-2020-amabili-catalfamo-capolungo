@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
@@ -16,7 +17,11 @@ public interface ObserverModel {
     public void updateBoard(Board board);
     public void updateTimeToChoose(List gods);
     public void updateGodAdded(List gods);
-    public void updateCardsChosen(List gods, int cardsChosen);
+    public void updateCardsChosen(List gods, int cardsChosen, int numberOfPlayers);
     public void updateWinners(PlayerInterface player);
-    //public void updateTimeToChooseWorker();
+    public void updateMoving(Object obj);
+    public void updateBuilding(Object obj);
+    public void updateSetWorker(int i);
+    public void updateCardNotPresent(List chosenGods);
+
 }

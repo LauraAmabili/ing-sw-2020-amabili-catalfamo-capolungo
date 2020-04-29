@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.util.ArrayList;
@@ -30,13 +31,11 @@ public class Observable {
             o.updateGodSetted(player, godName);
         }
     }
-
     void notifyPlayerDecorated(PlayerInterface playerDecorated){
         for(ObserverModel o : observerModels){
             o.updatePlayerDecorated(playerDecorated);
         }
     }
-
     void notifyWorkerSettled(Board board){
         for(ObserverModel o : observerModels){
             o.updateBoard(board);
@@ -47,27 +46,19 @@ public class Observable {
             o.updateTimeToChoose(gods);
         }
     }
-    /*
-    void notifyObservers(Object obj) {
-        for(Observer o : observers){
-            o.update(obj);
-        }
-    }
-*/
     void notifyObservers(Object something, Object obj){
         for(ObserverModel o : observerModels){
             o.update(something,obj);
         }
     }
-
     void notifyGodAdded(List gods){
         for(ObserverModel o : observerModels){
             o.updateGodAdded(gods);
         }
     }
-    void notifyCardsChosen(List gods, int cardsChosen){
+    void notifyCardsChosen(List gods, int cardsChosen, int numberofPlayers){
         for(ObserverModel o : observerModels){
-            o.updateCardsChosen(gods, cardsChosen);
+            o.updateCardsChosen(gods, cardsChosen, numberofPlayers);
         }
     }
     void notifyWinner(PlayerInterface player){
@@ -80,9 +71,38 @@ public class Observable {
             o.updateBoard(board);
         }
     }
-    void notifyWhereToMove(){
+    void notifyCanMove(Object obj){
+        for(ObserverModel o : observerModels){
+            o.updateMoving(obj);
+        }
+    }
+    void notifyTryNewCoordinatesMove(Object obj){
+        for(ObserverModel o : observerModels){
+            o.updateMoving(obj);
+        }
+    }
+    void notifyCanBuild(Object object){
+        for(ObserverModel o : observerModels){
+            o.updateBuilding(object);
+        }
+    }
+    void notifyTryNewCoordinatesBuild(Object obj){
+        for(ObserverModel o : observerModels){
+            o.updateBuilding(obj);
+        }
+    }
+    void notifyCellAlreadyOccupied(int i){
+        for(ObserverModel o : observerModels){
+            o.updateSetWorker(i);
+        }
 
     }
+    void notifyGodNotCorrect(List chosenGods){
+        for(ObserverModel o : observerModels){
+            o.updateCardNotPresent(chosenGods);
+        }
+    }
+
 
 
 }

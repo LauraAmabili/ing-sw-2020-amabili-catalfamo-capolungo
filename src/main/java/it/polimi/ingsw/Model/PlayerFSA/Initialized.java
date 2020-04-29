@@ -15,6 +15,8 @@ public class Initialized extends PlayerFSA {
         this.player = player;
     }
 
+
+
     @Override
     public void chosenCards(List<God> godName) {
         for (God god : godName) {

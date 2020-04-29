@@ -26,7 +26,7 @@ public class Worker {
         this.idWorker = idWorker;
     }
 
-    public void setPlayerWorker(Player playerWorker) {
+    public void setPlayerWorker(PlayerInterface playerWorker) {
         this.playerWorker = playerWorker;
     }
 

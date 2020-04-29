@@ -2,62 +2,130 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-public class GameController {
+import java.util.ArrayList;
+import java.util.List;
 
-    private GameManager gameManager;
+public class GameController implements Observer {
 
 
+    private Game game = new Game();
+    List<String> godChosen = new ArrayList<>(); //metto le divinità scelte dal challenger
 
 
     public GameController() {
-        Game game = new Game();
-        GameManager gameManager1 = new GameManager(game);
-        gameManager = gameManager1;
-    }
-    public GameController(GameManager gameManager) {
-        this.gameManager = gameManager;
     }
 
+    @Override
+    public void updateInitialiseMatch(){
+        game.initialiseMatch();
+        game.createTurn();
+    }
+    @Override
+    public void updateNickname(String nickname){
+
+        game.addNickname(nickname);
+
+    }
+    @Override
+    public void updateChoosingCards(){
+
+        game.chooseCards();
+
+    }
+    @Override
+    public void updateSetGodName(String godName) {
+
+        boolean present = false;
+        List<God> godChosenGod = game.getChosenGods();
+        for (God god : godChosenGod) {
+            if (god.getGodName().equals(godName)) {
+                present = true;
+                break;
+            }
+        }
+        if (present) {
+            game.setGod(godName);
+        } else {
+            game.GodNotCorrectException();
+        }
+    }
 
 
+
+    /**
+     * God choosen from Challenger
+     * @param godName
+     */
+    @Override
+    public void updateGodAdded(String godName) {
+
+        if(game.getGodListNames().contains(godName)){
+            game.addChosenGods(godName);
+        }
+        else {
+
+        }
+
+
+
+
+    }
+    public void updateAddingWorker(int row, int col, int i){
+
+        game.addingWorker(row, col,i);
+    }
+    public synchronized void addObserver(ObserverModel view) {
+        game.AddObserver(view);
+    }
+    @Override
+    public void updateStartMoving(){
+
+        game.canIMove();
+
+    }
+    @Override
+    public void updateBuilding(int row, int col, int worker){
+
+        game.building(row, col, worker);
+
+    }
+    @Override
+    public void updateTryThisWorker(int worker){
+        game.checkWorker(worker);
+    }
+    public void updateMoving(int row, int col, int worker){
+        game.moving(row, col, worker);
+    }
+
+
+
+
+
+    /*
+    public void initialiseMatch() {
+        game.initialiseMatch();
+    }
+    public void chooseCards() {
+
+        game.chooseCards();
+    }
     public void addNickname(String name) {
 
-        gameManager.addNickname(name);
+        game.addNickname(name);
     }
-    public void addPlayer(PlayerInterface player) {
-        gameManager.addPlayers(player);
+    public void addChosenGods(String godName) {
+        game.addChosenGods(godName);
     }
-    public void initialiseMatch(){
-        gameManager.initialiseMatch();
+    public void move(){
+        game.move();
     }
-    public void setGodName(String in) {
-        //TODO: controllare che 'in' sia compreso nella lista dei god (corretto)
-        gameManager.setGod(in);
-    }
-    public void chooseCards(){
-            gameManager.chooseCards();
-    }
-    public void createTurn(){
-        gameManager.createTurn();
-    }
-    public synchronized void addObserver(Observer view){
-        gameManager.AddObserver(view);
-    }
-    public void addChosenGods(String godName){
-        gameManager.addChosenGods(godName);
-    }
-
-
-    /*
-    public void turn(){
-        model.Turn();
-    }
-    /*
-    public void thisWorker(int worker){
-        model.thisWorker(worker);
+    public void createTurn() {
+        game.createTurn();
     }
 
      */
+
 }
