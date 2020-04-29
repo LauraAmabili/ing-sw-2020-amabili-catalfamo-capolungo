@@ -52,9 +52,6 @@ public class GameController implements Observer {
             game.GodNotCorrectException();
         }
     }
-
-
-
     /**
      * God choosen from Challenger
      * @param godName
@@ -66,7 +63,7 @@ public class GameController implements Observer {
             game.addChosenGods(godName);
         }
         else {
-
+            //TODO: gestire
         }
 
 

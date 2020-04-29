@@ -61,7 +61,6 @@ public class CLIView extends View  {
     public void updateGodSetted(PlayerInterface playerActing, String godName){
         player = playerActing;
         System.out.println(player.getNickname() + " now has " + godName +" as Active Card "+ player.getActiveCard().getGodName());
-        System.out.println(player);
     }
     @Override
     public void updatePlayerDecorated(PlayerInterface playerDecorated){
@@ -212,10 +211,11 @@ public class CLIView extends View  {
         //controller.chooseCards();
     }
     public void chooseYourGod() {
+
         System.out.println("Choose your god");
         String godName = cases.nextLine();
         notifyGodNameChosen(godName);
-        System.out.println(player);
+        System.out.println(player + "io");
 
     }
     public void start(){

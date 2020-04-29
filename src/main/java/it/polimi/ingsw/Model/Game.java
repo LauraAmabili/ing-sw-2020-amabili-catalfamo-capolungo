@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.God.GodFileCreator;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +32,7 @@ public class Game extends Observable {
 
         godListNames.add("Apollo");
         godListNames.add("Artemis");
+        godListNames.add("Athena");
 
 
     }
@@ -163,13 +165,23 @@ public class Game extends Observable {
     public void setGod(String godName) {
 
         PlayerCreator playerCreator = new PlayerCreator();
+
         God god = new God(godName, null);
-        chosenGods.remove(god);
+        //chosenGods.remove(god);
 
         this.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
+
+        PlayerInterface p1 = this.getCurrentTurn().getCurrentPlayer();
+        p1 = playerCreator.createPlayer(godName, p1);
+
+        this.getCurrentTurn().setCurrentPlayer(p1);
+
+        //TODO: sostituisci in active player game e turn
+
+        
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(god);
         this.notifyGodSetted(this.getCurrentTurn().getCurrentPlayer(), godName);
-       //this.getCurrentTurn().nextTurn();
+        //this.getCurrentTurn().nextTurn();
 
     }
 
@@ -226,10 +238,6 @@ public class Game extends Observable {
         this.notifyObservers(null, null);
     }
 
-    public void notifyGodNotPresent(){
-
-        this.notifyCardsChosen(chosenGods, cardsChosen, this.getCurrentTurn().getActivePlayers().size());
-    }
 
     public void addingWorker(int row, int col, int i){
 
