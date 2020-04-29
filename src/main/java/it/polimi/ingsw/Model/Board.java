@@ -12,8 +12,6 @@ public class Board {
     private static final int SIZE = 5;
     BoardCell[][] grid = new BoardCell[SIZE][SIZE];
 
-
-
     public Board() {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid.length; j++) {
@@ -27,7 +25,8 @@ public class Board {
     }
 
     /**
-     * Delete reference of the worker in the Boardcell
+     * OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHHHHHHHHHHHHHHHHHHHHH
+     * Delete all Player's workers
      * @param p
      */
     public void deleteWorkers(@NotNull Player p) {

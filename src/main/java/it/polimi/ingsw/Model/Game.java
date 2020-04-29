@@ -79,16 +79,18 @@ public class Game extends Observable {
 
 
     /**
-     * Delete the chosen player and all his workers
+     * Delete the chosen player and all its workers
      * @param player
      */
     public void delPlayer(@NotNull PlayerInterface player){
-        for(int i = player.getWorkerRef().size(); i > 0; i--) {
-            player.getWorkerRef().get(i).getCurCell().setWorker(null);
-            player.getWorkerRef().remove(player.getWorkerRef().get(i));
+
+        for (Worker x : player.getWorkerRef()){
+            x.getCurCell().setWorker(null);
         }
+        player.getWorkerRef().clear();
         onlinePlayers.remove(player);
         currentTurn.getActivePlayers().remove(player);
+
     }
 
     /**

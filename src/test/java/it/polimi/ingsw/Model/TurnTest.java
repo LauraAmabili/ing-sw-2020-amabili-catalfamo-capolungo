@@ -18,20 +18,20 @@ public class TurnTest {
 
     Board board = new Board();
     List<Worker> list = new ArrayList<>();
-    List<PlayerInterface> playerlist = new ArrayList<>();
+    List<PlayerInterface> playerList = new ArrayList<>();
 
     @Before
     public void setUp() {
-        playerlist.clear();
-        playerlist.add(new Player());
-        playerlist.add(new Player());
-        playerlist.add(new Player());
+        playerList.clear();
+        playerList.add(new Player());
+        playerList.add(new Player());
+        playerList.add(new Player());
     }
 
     @After
     public void tearDown() {
         int counterId = 0;
-        for (PlayerInterface playerInterface : playerlist) {
+        for (PlayerInterface playerInterface : playerList) {
             for (int i = 0; i < 2; i++, counterId++) {
                 Worker worker = new Worker(counterId);
                 list.add(worker);
@@ -49,7 +49,7 @@ public class TurnTest {
         //Create Challenger
         tearDown();
         int i = 0;
-        Turn turn1 = new Turn(playerlist);
+        Turn turn1 = new Turn(playerList);
         PlayerInterface player = null;
         turn1.createChallenger();
         for (PlayerInterface p : turn1.getActivePlayers()) {
@@ -58,7 +58,7 @@ public class TurnTest {
                 i = turn1.getActivePlayers().indexOf(p);
             }
         }
-        for (int j = 0; j < playerlist.size() - 1; j++) {
+        for (int j = 0; j < playerList.size() - 1; j++) {
             if (i != j) {
                 Assert.assertEquals(turn1.getActivePlayers().get(j).getPlayerState(), new AddNickname(turn1.getActivePlayers().get(j)));
             }
@@ -71,7 +71,7 @@ public class TurnTest {
         setUp();
         tearDown();
         i = 0;
-        Turn turn2 = new Turn(playerlist);
+        Turn turn2 = new Turn(playerList);
         turn2.createChallenger();
         turn2.getActivePlayers().get(0).addNickname("Rexo");
         turn2.getActivePlayers().get(1).addNickname("NotATeen");

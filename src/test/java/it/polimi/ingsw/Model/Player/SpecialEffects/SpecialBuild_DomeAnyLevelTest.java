@@ -1,9 +1,10 @@
-package it.polimi.ingsw.Model.Player;
+package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialMove_MoveTwice;
+import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialBuild_DomeAnyLevel;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +13,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SpecialMove_MoveTwiceTest {
-
+class SpecialBuild_DomeAnyLevelTest {
 
     private List<Worker> mockWorkers1 = new ArrayList<Worker>();
 
+
     @Test
-    public void testSpecialMove_MoveTwice() {
+    public void testSpecialBuild_DomeAnyLevel() {
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);
         mockWorkers1.add(worker1);
@@ -32,12 +33,10 @@ class SpecialMove_MoveTwiceTest {
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers1, board);
-        PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
-        assertEquals(worker1.getCurCell(), cell);
-        assertFalse(player.move(0, 3, worker1));
-        assertSame(null, board.getGrid()[0][3].getWorker());
-        assertTrue(player.move(2, 2, worker1));
-        assertSame(worker1, board.getGrid()[2][2].getWorker());
-
+        PlayerInterface player = new SpecialBuild_DomeAnyLevel(mockPlayer);
+        player.build(1, 0, worker1, true);
+        assertTrue(board.getGrid()[1][0].getDome());
     }
+
+
 }
