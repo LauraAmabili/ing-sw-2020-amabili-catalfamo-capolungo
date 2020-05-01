@@ -136,11 +136,26 @@ public class Game extends Observable {
      */
     public void addNickname(String nickName) {
 
+        for(PlayerInterface p : onlinePlayers ) {
+            if (p.getNickname() == null) {
+                this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
+                this.notifyPlayerAdded(nickName);
+                break;
+            } else {
+                if(!p.getNickname().equals(nickName)){
+                    this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
+                }
+                else{
+                    this.notifyNicknameNotValid();
+                }
+            }
+
+        }
        //if lista nomi contains nome return false, se return false devi rifare il metodo
 
        //this.getCurrentTurn().getCurrentPlayer().getPlayerState().addNickname(nickName);
-        this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
-        this.notifyPlayerAdded(nickName);
+
+
        //this.getCurrentTurn().nextTurn();
 
     }

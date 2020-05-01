@@ -89,6 +89,8 @@ public class GameManager extends Observable {
         game.getCurrentTurn().setCurrentPlayer(game.getOnlinePlayers().get(rand.nextInt(game.getOnlinePlayers().size())));
 
     }
+
+
     /*
     public void chooseCards() {
 

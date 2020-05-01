@@ -102,8 +102,6 @@ public class CLIView extends View  {
         chooseCard();
 
     }
-
-
     @Override
     public void update(Object obh, Object obj){
 
@@ -165,6 +163,11 @@ public class CLIView extends View  {
         else  {
             System.out.println("cards are already been chosen");
         }
+    }
+    @Override
+    public void updateNicknameNotValid(){
+        System.out.println("Nickname not valid");
+        insertNickname();
     }
 
 

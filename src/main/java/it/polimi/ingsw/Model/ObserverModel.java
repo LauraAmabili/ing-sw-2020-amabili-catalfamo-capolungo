@@ -24,4 +24,5 @@ public interface ObserverModel {
     public void updateCardNotPresent(List chosenGods);
     public void updateGodNotAdded();
     public void updateChoose(boolean chosenGods, List Names);
+    public void updateNicknameNotValid();
 }

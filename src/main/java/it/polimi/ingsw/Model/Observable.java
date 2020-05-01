@@ -109,6 +109,12 @@ public class Observable {
         }
 
     }
+    void notifyNicknameNotValid(){
+        for(ObserverModel o : observerModels){
+            o.updateNicknameNotValid();
+        }
+
+    }
 
 
 }
