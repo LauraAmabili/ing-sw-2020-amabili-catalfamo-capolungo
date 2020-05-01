@@ -136,22 +136,24 @@ public class Game extends Observable {
      */
     public void addNickname(String nickName) {
 
+        boolean flag = true;
         for(PlayerInterface p : onlinePlayers ) {
             if (p.getNickname() == null) {
-                this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
-                this.notifyPlayerAdded(nickName);
                 break;
             } else {
-                if(!p.getNickname().equals(nickName)){
-                    this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
-                }
-                else{
-                    this.notifyNicknameNotValid();
+                if(p.getNickname().equals(nickName)){
+                    flag = false;
+                    notifyNicknameNotValid();
+                    break;
                 }
             }
-
         }
-       //if lista nomi contains nome return false, se return false devi rifare il metodo
+        if(flag){
+            this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
+            this.notifyPlayerAdded(nickName);
+            this.getCurrentTurn().nextTurn();
+        }
+
 
        //this.getCurrentTurn().getCurrentPlayer().getPlayerState().addNickname(nickName);
 
@@ -213,16 +215,21 @@ public class Game extends Observable {
      */
     public void checkAndAdd(String godName){
 
+        boolean flag = true;
         God god = new God(godName, null);
         if(this.getGodListNames().contains(godName)) {
             if(chosenGods.isEmpty()) {
                 chosenGods.add(god);
             } else {
                 for (God g : chosenGods) {
-                    if (!g.getGodName().equals(godName)) {
-                        chosenGods.add(god);
+                    if (g.getGodName().equals(godName)) {
+                        flag = false;
+                        notifyGodNotAdded();
                         break;
                     }
+                }
+                if(flag){
+                    chosenGods.add(god);
                 }
             }
             if (chosenGods.size() == this.getCurrentTurn().getActivePlayers().size()) {
@@ -232,6 +239,7 @@ public class Game extends Observable {
                 notifyGodAdded(this.getChosenGods(), cardsChosen);
             }
         }
+
         else {
             notifyGodNotAdded();
         }
