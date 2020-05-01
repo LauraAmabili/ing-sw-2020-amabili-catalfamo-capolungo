@@ -41,9 +41,9 @@ public class Observable {
             o.updateBoard(board);
         }
     }
-    void notifyCards(List gods){
+    void notifyCards(List gods, String name){
         for(ObserverModel o : observerModels){
-            o.updateTimeToChoose(gods);
+            o.updateTimeToChoose(gods, name);
         }
     }
     void notifyObservers(Object something, Object obj){
@@ -51,14 +51,9 @@ public class Observable {
             o.update(something,obj);
         }
     }
-    void notifyGodAdded(List gods){
+    void notifyGodAdded(List<God> gods, boolean cardChosen){
         for(ObserverModel o : observerModels){
-            o.updateGodAdded(gods);
-        }
-    }
-    void notifyCardsChosen(List gods, int cardsChosen, int numberofPlayers){
-        for(ObserverModel o : observerModels){
-            o.updateCardsChosen(gods, cardsChosen, numberofPlayers);
+            o.updateGodAdded(gods, cardChosen);
         }
     }
     void notifyWinner(PlayerInterface player){
@@ -102,7 +97,18 @@ public class Observable {
             o.updateCardNotPresent(chosenGods);
         }
     }
+    void notifyGodNotAdded(){
+        for(ObserverModel o : observerModels){
+            o.updateGodNotAdded();
+        }
 
+    }
+    void notifyChoose(boolean chosenGods, List names){
+        for(ObserverModel o : observerModels){
+            o.updateChoose(chosenGods, names);
+        }
+
+    }
 
 
 }

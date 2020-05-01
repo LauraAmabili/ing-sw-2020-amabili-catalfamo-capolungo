@@ -39,13 +39,15 @@ public class Observable {
             o.updateSetGodName(godName);
         }
     }
-
+    /*
     public void notifyAddChosenGods(String nome){
         for(Observer o : observerController){
             o.updateGodAdded(nome);
 
         }
     }
+
+     */
     public void notifyAddingWorker(int row, int col, int i ){
         for(Observer o : observerController){
             o.updateAddingWorker(row, col, i );
@@ -74,6 +76,11 @@ public class Observable {
 
     }
 
+    public void notifyTryThisCard(String in){
+        for(Observer o : observerController){
+            o.updateTryThisCard(in);
+        }
+    }
 
 
     public void notifyBuilding(int row, int col, int i ){

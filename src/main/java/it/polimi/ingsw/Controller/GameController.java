@@ -36,6 +36,13 @@ public class GameController implements Observer {
 
     }
     @Override
+    public void updateTryThisCard(String in){
+
+        game.checkAndAdd(in);
+    }
+
+
+    @Override
     public void updateSetGodName(String godName) {
 
         boolean present = false;
@@ -52,10 +59,12 @@ public class GameController implements Observer {
             game.GodNotCorrectException();
         }
     }
+    /*
     /**
      * God choosen from Challenger
      * @param godName
      */
+    /*
     @Override
     public void updateGodAdded(String godName) {
 
@@ -70,6 +79,7 @@ public class GameController implements Observer {
 
 
     }
+    */
     public void updateAddingWorker(int row, int col, int i){
 
         game.addingWorker(row, col,i);

@@ -15,13 +15,13 @@ public interface ObserverModel {
     public void updateGodSetted(PlayerInterface player, String godName);
     public void updatePlayerDecorated(PlayerInterface playerDecorated);
     public void updateBoard(Board board);
-    public void updateTimeToChoose(List gods);
-    public void updateGodAdded(List gods);
-    public void updateCardsChosen(List gods, int cardsChosen, int numberOfPlayers);
+    public void updateTimeToChoose(List gods, String name);
+    public void updateGodAdded(List<God> gods, boolean cardChosen);
     public void updateWinners(PlayerInterface player);
     public void updateMoving(Object obj);
     public void updateBuilding(Object obj);
     public void updateSetWorker(int i);
     public void updateCardNotPresent(List chosenGods);
-
+    public void updateGodNotAdded();
+    public void updateChoose(boolean chosenGods, List Names);
 }

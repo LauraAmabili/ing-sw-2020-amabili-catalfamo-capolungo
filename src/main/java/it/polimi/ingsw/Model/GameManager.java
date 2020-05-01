@@ -13,14 +13,10 @@ import java.util.Random;
 public class GameManager extends Observable {
 
 
-
     private Game game;
 
 
     private int cardsChosen = 0;
-
-
-
 
 
     public GameManager(Game game) {
@@ -44,8 +40,6 @@ public class GameManager extends Observable {
     }
 
 
-
-
     /**
      * Add the Players to the Game
      *
@@ -55,6 +49,7 @@ public class GameManager extends Observable {
     public void addPlayers(PlayerInterface player) {
         game.getOnlinePlayers().add(player);
     }
+
     /**
      * Add nickname to the Player
      *
@@ -66,6 +61,7 @@ public class GameManager extends Observable {
         this.notifyPlayerAdded(nickName);
 
     }
+
     public void initialiseMatch() {
         this.game.initialiseMatch();
     }
@@ -80,7 +76,7 @@ public class GameManager extends Observable {
 
     public void setGod(String godName) {
         God god = new God(godName, null);
-       // God god = new God(godName);
+        // God god = new God(godName);
         game.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
         Player player = (Player) game.getCurrentTurn().getCurrentPlayer();
         this.notifyGodSetted(player, godName);
@@ -108,7 +104,7 @@ public class GameManager extends Observable {
     }
 
      */
-
+    /*
     public void addChosenGods(String godName) {
         game.addChosenGods(godName);
         notifyGodAdded(game.getChosenGods());
@@ -160,6 +156,8 @@ public class GameManager extends Observable {
 
 }
 
+     */
+}
 
 
 

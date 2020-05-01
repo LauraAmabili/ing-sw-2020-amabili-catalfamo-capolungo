@@ -22,7 +22,8 @@ public class Game extends Observable {
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
-    private int cardsChosen = 0;
+    private boolean cardsChosen = false;
+
     private List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
         return godListNames;
@@ -182,48 +183,45 @@ public class Game extends Observable {
 
     }
 
-    public void addChosenGods(String godName){
+    /**
+     * This method check if someone else has already chosen cards
+     */
+    public void chooseCards() {
 
-        //TODO: in base al nome del god creo il god da file e lo aggiungo alla chosenGods
-
-        God god = new God(godName, null);
-        if(this.getGodListNames().contains(godName)) {
-            chosenGods.add(god);
-            if (chosenGods.size() == this.getOnlinePlayers().size()) {
-               // this.getCurrentTurn().getCurrentPlayer().getPlayerState().chosenCards(chosenGods);
-                this.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
-                //this.getCurrentTurn().nextTurn();
-            }
-            notifyGodAdded(this.getChosenGods());
-
-        }
-        else {
-            //notifyCardsChosen(chosenGods, cardsChosen, true);
-
-            notifyExc();
-
-        }
+        notifyChoose(cardsChosen, this.getGodListNames());
 
     }
 
     /**
-     * if CardsChosen = 0 : if no cards were chosen
-     *
+     * Check if the GodName input is correct by checking if he is written correctly
+     * @param godName
      */
-    public void chooseCards() {
+    public void checkAndAdd(String godName){
 
-
-            if (cardsChosen == 0) {
-                List gods = this.getGodListNames();
-                this.notifyCards(gods); //send list of Cards to the View
-                cardsChosen = 1;
-                this.notifyCardsChosen(chosenGods, cardsChosen, this.getCurrentTurn().getActivePlayers().size());
+        God god = new God(godName, null);
+        if(this.getGodListNames().contains(godName)) {
+            if(chosenGods.isEmpty()) {
+                chosenGods.add(god);
             } else {
-                cardsChosen = 2;
-
-                this.notifyCardsChosen(chosenGods, cardsChosen, this.getCurrentTurn().getActivePlayers().size());
-                //this.notifyCardsChosen(this.getCurrentTurn().getCurrentPlayer().getChosenGods(), cardsChosen);
+                for (God g : chosenGods) {
+                    if (!g.getGodName().equals(godName)) {
+                        chosenGods.add(god);
+                        break;
+                    }
+                }
             }
+            if (chosenGods.size() == this.getCurrentTurn().getActivePlayers().size()) {
+                cardsChosen = true;
+                notifyGodAdded(this.getChosenGods(), cardsChosen);
+            } else {
+                notifyGodAdded(this.getChosenGods(), cardsChosen);
+            }
+        }
+        else {
+            notifyGodNotAdded();
+        }
+
+
 
     }
 
@@ -234,7 +232,6 @@ public class Game extends Observable {
 
         this.notifyObservers(null, null);
     }
-
 
     public void addingWorker(int row, int col, int i){
 

@@ -77,31 +77,33 @@ public class CLIView extends View  {
         System.out.println(ANSI_BLUE);
     }
     @Override
-    public void updateTimeToChoose(List gods){
-        //TODO: devi stampare il nome, di chi?? lol
-        System.out.println("Choose gods");
-        System.out.println(gods.toString());
-    }
-    @Override
-    public void updateGodAdded(List gods){
-        System.out.println("God added:");
-        System.out.println(gods.toString());
-    }
-    @Override
-    public void updateCardsChosen(List gods, int cardChosen, int numberOfPlayers){
+    public void updateTimeToChoose(List gods, String name){
 
-        if(cardChosen == 2){
-        System.out.println("Cards Already Chosen " + gods);}
-        else {
-            for (int i = 0 ; i < numberOfPlayers ; ) {
-                System.out.println("Insert god #" + i);
-                String name = cases.nextLine();
-                notifyAddChosenGods(name);
-                //controller.addChosenGods(name);
-                i++;
-            }
-        }
+        System.out.println( name + " is the Challenger: choose gods");
+        System.out.println(gods.toString());
     }
+    @Override
+    public void updateGodAdded(List<God> gods, boolean cardChosen){
+
+
+        System.out.println("God added:");
+        for(God g : gods)
+            System.out.println(g.getGodName());
+        if(!cardChosen) {
+            chooseCard();
+        }
+
+
+    }
+    @Override
+    public void updateGodNotAdded(){
+
+        System.out.println("Try Again");
+        chooseCard();
+
+    }
+
+
     @Override
     public void update(Object obh, Object obj){
 
@@ -147,11 +149,23 @@ public class CLIView extends View  {
     }
     @Override
     public void updateCardNotPresent(List chosenGods){
+
         System.out.println("Card not present!");
         chooseYourGod();
 
     }
+    @Override
+    public void updateChoose(boolean chosenGods, List Names){
 
+
+        if(!chosenGods) {
+            System.out.println(Names);
+            chooseCard();
+        }
+        else  {
+            System.out.println("cards are already been chosen");
+        }
+    }
 
 
 
@@ -206,9 +220,12 @@ public class CLIView extends View  {
         //controller.addNickname(in);
     }
     public void chooseCards(){
+
         System.out.println("Time to choose your powers");
+
         notifyChoosingCards();
-        //controller.chooseCards();
+
+
     }
     public void chooseYourGod() {
 
@@ -262,6 +279,15 @@ public class CLIView extends View  {
         int row = input.nextInt();
         int col = input.nextInt();
         notifyBuilding(row, col, (Integer)obj);
+
+
+    }
+    public void chooseCard(){
+
+        System.out.println("Scegli carta: ");
+        String in = cases.nextLine();
+
+        notifyTryThisCard(in);
 
 
     }
