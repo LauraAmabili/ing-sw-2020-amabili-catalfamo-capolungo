@@ -30,7 +30,7 @@ public class CLIView extends View  {
 
     }
 
-    //TODO: number of players
+
 
 
     @Override
@@ -54,7 +54,10 @@ public class CLIView extends View  {
     }
     @Override
     public void updateGameisReady(){
+
         System.out.println("Game is ready!");
+        insertNickname();
+
 
     }
     @Override
@@ -112,23 +115,23 @@ public class CLIView extends View  {
         System.out.println(player+ "wins!");
     }
     @Override
-    public void updateMoving(Object object){
+    public void updateDecideWorker(Object bol){
 
-        if(!(boolean)object) {
-            chooseWorker();
-        }
-        else
-        {
-            moving((int)object);
-        }
+
+        chooseWorker();
+    }
+    @Override
+    public void updateMoving(int worker){
+
+        moving(worker);
 
     }
     @Override
-    public void updateBuilding(Object object){
+    public void updateBuilding(Object object, int worker){
 
         if(!(boolean)object){
             System.out.println("Try new coordinates: ");
-            building(object);
+            building(worker);
         }
 
 
@@ -139,7 +142,6 @@ public class CLIView extends View  {
     public void updateSetWorker(int i){
 
         System.out.println("Posizione sbagliata, riprova");
-        //TODO: gestire se il worker è messo in una posizione già occupata
         int row = input.nextInt();
         int col = input.nextInt();
         notifyAddingWorker(row, col, i);
@@ -168,6 +170,11 @@ public class CLIView extends View  {
     public void updateNicknameNotValid(){
         System.out.println("Nickname not valid");
         insertNickname();
+    }
+    @Override
+    public void updatePlayerHasLost(String playerNickname){
+
+        System.out.println(playerNickname + " out!");
     }
 
 
@@ -205,17 +212,22 @@ public class CLIView extends View  {
         System.out.println("You are the challenger, press 3 to choose your cards");
         System.out.println("Press 4 to choose God ");
         System.out.println("Press 5 to add Workers ");
-        //System.out.println("Press 6 to move");
+        System.out.println("Press 6 to start your turn");
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
     }
     public void startingGame(){
 
-        notifyInitialiseMatch();
+        System.out.println("Benvenuto! Choose number of players: 2 or 3?");
+
+        int number = input.nextInt();
+
+        notifyInitialiseMatch(number);
         //controller.initialiseMatch();
         //controller.createTurn();
     }
     public void insertNickname(){
+
         System.out.print("Insert Nickname: ");
         String in = cases.nextLine();
         this.nickname = in;
@@ -239,6 +251,7 @@ public class CLIView extends View  {
 
     }
     public void start(){
+
         System.out.println("WELCOME TO SANTORINI");
         System.out.println("Press 1 to start the game");
     }
@@ -264,30 +277,30 @@ public class CLIView extends View  {
         notifyStartMoving();
 
     }
-    public void moving(Object obj){
+    public void moving(int worker){
 
         System.out.println("Choose row & col: ");
         int row = input.nextInt();
         int col = input.nextInt();
-        notifyMoving(row, col, (Integer)obj);
-        building(obj);
+        notifyMoving(row, col, worker);
+        building(worker);
 
     }
-    public void building(Object obj){
+    public void building(int worker){
 
        // System.out.println("Vuoi costruire? Insert Yes or no");
         //String input = cases.nextLine();
 
-        System.out.println("Time to build! Insert row e col: " );
+        System.out.println("Time to build around your worker #" + worker + "Insert row e col: " );
         int row = input.nextInt();
         int col = input.nextInt();
-        notifyBuilding(row, col, (Integer)obj);
+        notifyBuilding(row, col, worker);
 
 
     }
     public void chooseCard(){
 
-        System.out.println("Scegli carta: ");
+        System.out.println("Choose card: ");
         String in = cases.nextLine();
 
         notifyTryThisCard(in);

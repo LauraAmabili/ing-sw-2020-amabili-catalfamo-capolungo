@@ -68,22 +68,27 @@ public class Observable {
     }
     void notifyCanMove(Object obj){
         for(ObserverModel o : observerModels){
-            o.updateMoving(obj);
+            o.updateDecideWorker(obj);
         }
     }
-    void notifyTryNewCoordinatesMove(Object obj){
+    void notifyCanMoveThisWorker(int worker){
         for(ObserverModel o : observerModels){
-            o.updateMoving(obj);
+            o.updateMoving(worker);
         }
     }
-    void notifyCanBuild(Object object){
+    void notifyTryNewCoordinatesMove(int Worker){
         for(ObserverModel o : observerModels){
-            o.updateBuilding(object);
+            o.updateMoving(Worker);
         }
     }
-    void notifyTryNewCoordinatesBuild(Object obj){
+    void notifyCanBuild(Object object, int worker){
         for(ObserverModel o : observerModels){
-            o.updateBuilding(obj);
+            o.updateBuilding(object, worker);
+        }
+    }
+    void notifyTryNewCoordinatesBuild(Object obj, int worker){
+        for(ObserverModel o : observerModels){
+            o.updateBuilding(obj, worker);
         }
     }
     void notifyCellAlreadyOccupied(int i){
@@ -115,6 +120,10 @@ public class Observable {
         }
 
     }
-
+    void notifyPlayerHasLost(String playerName){
+        for(ObserverModel o : observerModels){
+            o.updatePlayerHasLost(playerName);
+        }
+    }
 
 }

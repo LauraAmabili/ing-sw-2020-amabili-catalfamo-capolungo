@@ -15,12 +15,11 @@ public class Observable {
     }
 
 
-    public void notifyInitialiseMatch(){
+    public void notifyInitialiseMatch(int number){
         for(Observer o : observerController){
-            o.updateInitialiseMatch();
+            o.updateInitialiseMatch(number);
 
         }
-
     }
     public void notifyAddingNickname(String in ){
         for(Observer o : observerController){
@@ -39,15 +38,7 @@ public class Observable {
             o.updateSetGodName(godName);
         }
     }
-    /*
-    public void notifyAddChosenGods(String nome){
-        for(Observer o : observerController){
-            o.updateGodAdded(nome);
 
-        }
-    }
-
-     */
     public void notifyAddingWorker(int row, int col, int i ){
         for(Observer o : observerController){
             o.updateAddingWorker(row, col, i );

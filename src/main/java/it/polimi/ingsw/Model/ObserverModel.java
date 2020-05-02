@@ -18,11 +18,13 @@ public interface ObserverModel {
     public void updateTimeToChoose(List gods, String name);
     public void updateGodAdded(List<God> gods, boolean cardChosen);
     public void updateWinners(PlayerInterface player);
-    public void updateMoving(Object obj);
-    public void updateBuilding(Object obj);
+    public void updateMoving(int worker);
+    public void updateBuilding(Object obj, int worker);
     public void updateSetWorker(int i);
     public void updateCardNotPresent(List chosenGods);
     public void updateGodNotAdded();
     public void updateChoose(boolean chosenGods, List Names);
     public void updateNicknameNotValid();
+    public void updatePlayerHasLost(String playerName);
+    public void updateDecideWorker(Object obj);
 }

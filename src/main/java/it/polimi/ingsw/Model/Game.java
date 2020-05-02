@@ -98,12 +98,15 @@ public class Game extends Observable {
      *Create a player
      *Create a Board
      */
-    public void initialiseMatch() { //TODO: add player
+    public void initialiseMatch(int numberOfPlayers) {
+
         List<Worker> list = new ArrayList<>();
+
         Board board = new Board();
         setBoard(board);
-        int MAXPLAYER = 3;
-        for (int i = 0; i < MAXPLAYER; i++) {
+
+        //int MAXPLAYER = 3;
+        for (int i = 0; i < numberOfPlayers; i++) {
             onlinePlayers.add(new Player());
         }
         for (PlayerInterface playerInterface : onlinePlayers) {
@@ -117,6 +120,7 @@ public class Game extends Observable {
             list.clear();
         }
        initialiseGodList();
+
 
     }
 
@@ -136,6 +140,7 @@ public class Game extends Observable {
      */
     public void addNickname(String nickName) {
 
+        //TODO: menage when number of player = 2 bt someone else tries to connect, we can a set a global variable when we initialise the match
         boolean flag = true;
         for(PlayerInterface p : onlinePlayers ) {
             if (p.getNickname() == null) {
@@ -151,7 +156,7 @@ public class Game extends Observable {
         if(flag){
             this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
             this.notifyPlayerAdded(nickName);
-            this.getCurrentTurn().nextTurn();
+           // this.getCurrentTurn().nextTurn();
         }
 
 
@@ -191,12 +196,29 @@ public class Game extends Observable {
 
         this.getCurrentTurn().setCurrentPlayer(p1);
 
-        //TODO: sostituisci in active player game e turn
+        //TODO: onlinePlayer
+        /*
+        for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size(); i++){
+            if(this.getCurrentTurn().getActivePlayers().get(i).getNickname().equals(p1.getNickname())){
 
-        
+            }
+        }
+
+        for(PlayerInterface p : this.getOnlinePlayers()){
+            if(p.getNickname().equals(p1.getNickname())) {
+                p = p1;
+            }
+        }
+
+
+         */
+
+
+
+
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(god);
         this.notifyGodSetted(this.getCurrentTurn().getCurrentPlayer(), godName);
-        //this.getCurrentTurn().nextTurn();
+
 
     }
 
@@ -279,11 +301,13 @@ public class Game extends Observable {
 
 
         int i = 0;
-        if(this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)) && this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i+1)) ){
-            notifyCanMove(null);
+        if(!this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)) && !this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i+1)) ){
+            notifyCanMove(true);
         }
         else {
-            //TODO: notifyPlayerJustLose
+
+            notifyPlayerHasLost(this.getCurrentTurn().getCurrentPlayer().getNickname());
+            //TODO: cosa bisogna cambiare quando un giocatore perde?
         }
 
 
@@ -291,20 +315,22 @@ public class Game extends Observable {
 
     public void checkWorker(int worker) {
 
-        if (this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
+        if (!this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             if (worker == 2) {
                 worker = 1;
             } else {
                 worker++;
             }
-            notifyCanMove(worker);
+        //TODO: if i choose worker number 1, it moves worker #2
+            notifyCanMoveThisWorker(worker);
         }
+
     }
 
     public void moving(int row, int col, int worker){
 
         if(!this.getCurrentTurn().getCurrentPlayer().move(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
-            notifyTryNewCoordinatesMove(false);
+            notifyTryNewCoordinatesMove(worker);
         }
         else    {
             notifyBoardUpdate(this.board);
@@ -316,7 +342,7 @@ public class Game extends Observable {
     public void building(int row, int col, int worker){
 
         if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
-            notifyTryNewCoordinatesBuild(false);
+            notifyTryNewCoordinatesBuild(false, worker);
         }
         else    {
 

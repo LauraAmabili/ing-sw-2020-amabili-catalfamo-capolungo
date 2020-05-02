@@ -29,7 +29,7 @@ public class GameTest {
 
     @Test
     public void delPlayer() {
-        game.initialiseMatch();
+        game.initialiseMatch(2);
         BoardCell b1 = new BoardCell(0, 0);
         BoardCell b2 = new BoardCell(0, 1);
         PlayerInterface player1 = game.getOnlinePlayers().get(0);
@@ -53,7 +53,7 @@ public class GameTest {
 
     @Test
     public void initialiseMatch() {
-        game.initialiseMatch();
+        game.initialiseMatch(2);
         Assert.assertNotNull(game.getOnlinePlayers().get(0));
         Assert.assertNotNull(game.getOnlinePlayers().get(1));
         Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(0));

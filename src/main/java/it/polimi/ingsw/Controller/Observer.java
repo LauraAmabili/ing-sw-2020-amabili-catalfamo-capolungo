@@ -3,11 +3,10 @@ package it.polimi.ingsw.Controller;
 public interface Observer {
 
 
-    public void updateInitialiseMatch();
+    public void updateInitialiseMatch(int numberOfPlayers);
     public void updateNickname(String in);
     public void updateChoosingCards();
     public void updateSetGodName(String name);
-    //public void updateGodAdded(String name, boolean flag);
     public void updateAddingWorker(int row, int col, int i );
     public void updateStartMoving();
     public void updateBuilding(int row, int col, int i);

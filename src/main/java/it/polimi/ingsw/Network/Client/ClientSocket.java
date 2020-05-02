@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.List;
 
 public class ClientSocket extends Client implements Runnable {
+
     private transient Socket socket;
 
     private transient ObjectInputStream in;

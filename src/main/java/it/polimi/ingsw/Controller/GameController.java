@@ -12,21 +12,23 @@ public class GameController implements Observer {
 
 
     private Game game = new Game();
-    List<String> godChosen = new ArrayList<>(); //metto le divinità scelte dal challenger
+
 
 
     public GameController() {
     }
 
     @Override
-    public void updateInitialiseMatch(){
-        game.initialiseMatch();
+    public void updateInitialiseMatch(int numberOfPlayers){
+
+        game.initialiseMatch(numberOfPlayers);
         game.createTurn();
     }
     @Override
     public void updateNickname(String nickname){
 
         game.addNickname(nickname);
+        game.getCurrentTurn().nextTurn();
 
     }
     @Override
@@ -40,8 +42,6 @@ public class GameController implements Observer {
 
         game.checkAndAdd(in);
     }
-
-
     @Override
     public void updateSetGodName(String godName) {
 
@@ -59,33 +59,10 @@ public class GameController implements Observer {
             game.GodNotCorrectException();
         }
     }
-    /*
-    /**
-     * God choosen from Challenger
-     * @param godName
-     */
-    /*
     @Override
-    public void updateGodAdded(String godName) {
-
-        if(game.getGodListNames().contains(godName)){
-            game.addChosenGods(godName);
-        }
-        else {
-            //TODO: gestire
-        }
-
-
-
-
-    }
-    */
     public void updateAddingWorker(int row, int col, int i){
 
         game.addingWorker(row, col,i);
-    }
-    public synchronized void addObserver(ObserverModel view) {
-        game.AddObserver(view);
     }
     @Override
     public void updateStartMoving(){
@@ -103,36 +80,19 @@ public class GameController implements Observer {
     public void updateTryThisWorker(int worker){
         game.checkWorker(worker);
     }
+    @Override
     public void updateMoving(int row, int col, int worker){
         game.moving(row, col, worker);
     }
 
-
-
-
-
-    /*
-    public void initialiseMatch() {
-        game.initialiseMatch();
-    }
-    public void chooseCards() {
-
-        game.chooseCards();
-    }
-    public void addNickname(String name) {
-
-        game.addNickname(name);
-    }
-    public void addChosenGods(String godName) {
-        game.addChosenGods(godName);
-    }
-    public void move(){
-        game.move();
-    }
-    public void createTurn() {
-        game.createTurn();
+    public synchronized void addObserver(ObserverModel view) {
+        game.AddObserver(view);
     }
 
-     */
+
+
+
+
+
 
 }
