@@ -155,10 +155,11 @@ public class CLIView extends View  {
 
     }
     @Override
-    public void updateChoose(boolean chosenGods, List Names){
+    public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
 
 
         if(!chosenGods) {
+            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards \n");
             System.out.println(Names);
             chooseCard();
         }

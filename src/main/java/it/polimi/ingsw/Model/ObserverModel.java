@@ -23,7 +23,7 @@ public interface ObserverModel {
     public void updateSetWorker(int i);
     public void updateCardNotPresent(List chosenGods);
     public void updateGodNotAdded();
-    public void updateChoose(boolean chosenGods, List Names);
+    public void updateChoose(boolean chosenGods, List Names, String ChallengerName);
     public void updateNicknameNotValid();
     public void updatePlayerHasLost(String playerName);
     public void updateDecideWorker(Object obj);

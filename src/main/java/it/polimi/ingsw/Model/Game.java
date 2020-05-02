@@ -227,7 +227,16 @@ public class Game extends Observable {
      */
     public void chooseCards() {
 
-        notifyChoose(cardsChosen, this.getGodListNames());
+        if(chosenGods.isEmpty()){
+            this.getCurrentTurn().createChallenger();
+            notifyChoose(cardsChosen, this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
+        }
+        else    {
+
+
+            notifyChoose(true, this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
+        }
+
 
     }
 

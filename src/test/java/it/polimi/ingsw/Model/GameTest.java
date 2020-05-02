@@ -17,14 +17,11 @@ public class GameTest {
     public void setUp() throws Exception {
         game.getCurrentTurn().getCurrentPlayer().addNickname("SuperRexo");
         game.getCurrentTurn().getCurrentPlayer().addNickname("Notateen");
-
-
     }
 
     @After
     public void tearDown() throws Exception {
     }
-
 
 
     @Test
@@ -61,6 +58,8 @@ public class GameTest {
         Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(0));
         Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
     }
+
+
 
     /*
     State state = State.ADDNICKNAME;

@@ -108,9 +108,9 @@ public class Observable {
         }
 
     }
-    void notifyChoose(boolean chosenGods, List names){
+    void notifyChoose(boolean chosenGods, List names, String ChallengerName){
         for(ObserverModel o : observerModels){
-            o.updateChoose(chosenGods, names);
+            o.updateChoose(chosenGods, names, ChallengerName);
         }
 
     }

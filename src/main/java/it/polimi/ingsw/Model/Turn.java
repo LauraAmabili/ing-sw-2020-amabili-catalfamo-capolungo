@@ -43,6 +43,7 @@ public class Turn {
     }
 
     public void createChallenger() {
+
         Random random = new Random();
         currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()-1));
         currentPlayer.setPlayerState(new Initialized(currentPlayer));
@@ -77,7 +78,6 @@ public class Turn {
      * @param worker
      * @return
      */
-
     public boolean checkLockPlayer(Worker worker) {
         return getCurrentPlayer().availableCellsToMove(worker).size() == 0;
     }
