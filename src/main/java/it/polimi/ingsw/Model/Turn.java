@@ -2,12 +2,11 @@ package it.polimi.ingsw.Model;
 
 
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.PlayerFSA.Initialized;
+import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Random;
+import java.util.*;
 
 public class Turn {
     private int TurnId;
@@ -42,12 +41,6 @@ public class Turn {
         this.activePlayers = activePlayers;
     }
 
-    public void createChallenger() {
-
-        Random random = new Random();
-        currentPlayer = activePlayers.get(random.nextInt(activePlayers.size()-1));
-        currentPlayer.setPlayerState(new Initialized(currentPlayer));
-    }
 
     /**
      * Switch the Player and goes on with the turn
@@ -61,7 +54,7 @@ public class Turn {
             currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
         }
         TurnId++;
-        currentPlayer.getPlayerState().Next();
+        currentPlayer.getPlayerState().next();
     }
 
     /**

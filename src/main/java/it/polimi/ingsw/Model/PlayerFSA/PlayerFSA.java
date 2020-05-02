@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.PlayerFSA;
 
 
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
@@ -15,34 +16,45 @@ public abstract class PlayerFSA {
 
     //TODO: se modifichi a boolean mi raccomando ricordati di rimodificare qui il tipo di ritorno
 
+    public void setPlayer(PlayerInterface player) {
+        this.player = player;
+    }
+
     public void addNickname(String name) {
 
     }
 
-    public void chosenCards(List<God> godName) {
+    public void chosenCards(String godName) {
 
     }
 
-    public void setCard(God godName) {
+    public void setCard(String godName) {
 
     }
 
-    public void placeWorker(int row, int col, Worker worker) {
+    public void placeWorker(int row, int col, int worker) {
 
     }
 
-    public void Move(int row, int col, Worker worker) {
+    public void canIMove() {
 
     }
 
-    public void Build(int row, int col, Worker worker) {
+    public void checkWorker(int worker) {
 
     }
 
-    public void Next() {
+    public void move(int row, int col, int worker) {
 
     }
 
+    public void build(int row, int col, int worker) {
+
+    }
+
+    public void next() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -61,5 +73,6 @@ public abstract class PlayerFSA {
             return Objects.equals(a, a);
         }
     }
+
 
 }

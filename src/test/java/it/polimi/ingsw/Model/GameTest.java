@@ -15,8 +15,6 @@ public class GameTest {
 
     @Before
     public void setUp() throws Exception {
-        game.getCurrentTurn().getCurrentPlayer().addNickname("SuperRexo");
-        game.getCurrentTurn().getCurrentPlayer().addNickname("Notateen");
     }
 
     @After

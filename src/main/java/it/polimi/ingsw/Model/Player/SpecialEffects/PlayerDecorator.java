@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
@@ -27,11 +28,11 @@ public class PlayerDecorator implements PlayerInterface {
         this.player = player;
         this.nickname = player.getNickname();
         this.workerRef = player.getWorkerRef();
-        this.chosenGods = player.getChosenGods();
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
-        this.playerState = new Idle(this, new SetCard(this));
+        this.playerState = player.getPlayerState();
+        this.playerState.setPlayer(this);
     }
 
     public boolean isMoveUp(){
@@ -51,17 +52,6 @@ public class PlayerDecorator implements PlayerInterface {
     public String getNickname(){
         return nickname;
     }
-
-    @Override
-    public void setChosenGods(List<God> gods) {
-        this.chosenGods = gods;
-    }
-
-    @Override
-    public List<God> getChosenGods() {
-        return chosenGods;
-    }
-
 
     @Override
     public void setActiveCard(God activeCard) {
@@ -153,31 +143,7 @@ public class PlayerDecorator implements PlayerInterface {
 
     @Override
     public void setPlayerState(PlayerFSA playerState) {
-        player.setPlayerState(playerState);
+        this.playerState = playerState;
     }
 
-    @Override
-    public void StateMove(int row, int col, Worker worker) {
-        player.getPlayerState().Move(row, col, worker);
-    }
-
-    @Override
-    public void StateBuild(int row, int col, Worker worker) {
-        player.getPlayerState().Build(row, col, worker);
-    }
-
-    @Override
-    public void addNickname(String nickname) {
-        player.getPlayerState().addNickname(nickname);
-    }
-
-    @Override
-    public void setCard(God godName) {
-        player.getPlayerState().setCard(godName);
-    }
-
-    @Override
-    public void PlaceWorker(int row, int col, Worker worker) {
-        player.getPlayerState().placeWorker(row, col, worker);
-    }
 }

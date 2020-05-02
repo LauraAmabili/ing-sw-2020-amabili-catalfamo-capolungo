@@ -14,7 +14,6 @@ public class CLIView extends View  {
 
     private String nickname;
     private PlayerInterface player;
-    private GameController controller;
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
 
@@ -25,8 +24,7 @@ public class CLIView extends View  {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
-    public CLIView(GameController controller) {
-        this.controller = controller;
+    public CLIView() {
 
     }
 
@@ -156,7 +154,6 @@ public class CLIView extends View  {
     }
     @Override
     public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
-
 
         if(!chosenGods) {
             System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards \n");
@@ -304,9 +301,7 @@ public class CLIView extends View  {
 
         System.out.println("Choose card: ");
         String in = cases.nextLine();
-
         notifyTryThisCard(in);
-
 
     }
 

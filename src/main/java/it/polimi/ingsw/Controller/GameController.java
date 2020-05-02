@@ -24,6 +24,7 @@ public class GameController implements Observer {
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
     }
+
     @Override
     public void updateNickname(String nickname){
 
@@ -31,17 +32,22 @@ public class GameController implements Observer {
         game.getCurrentTurn().nextTurn();
 
     }
+
     @Override
     public void updateChoosingCards(){
 
         game.chooseCards();
 
     }
+
     @Override
     public void updateTryThisCard(String in){
 
-        game.checkAndAdd(in);
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().chosenCards(in);
+        //game.checkAndAdd(in);
+
     }
+
     @Override
     public void updateSetGodName(String godName) {
 
@@ -59,15 +65,18 @@ public class GameController implements Observer {
             game.GodNotCorrectException();
         }
     }
+
     @Override
     public void updateAddingWorker(int row, int col, int i){
 
         game.addingWorker(row, col,i);
+
     }
+
     @Override
     public void updateStartMoving(){
 
-        game.canIMove();
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().canIMove();
 
     }
     @Override
@@ -78,8 +87,9 @@ public class GameController implements Observer {
     }
     @Override
     public void updateTryThisWorker(int worker){
-        game.checkWorker(worker);
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().checkWorker(worker);
     }
+
     @Override
     public void updateMoving(int row, int col, int worker){
         game.moving(row, col, worker);

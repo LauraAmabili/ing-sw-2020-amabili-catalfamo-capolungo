@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model.PlayerFSA;
 
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
@@ -10,30 +11,29 @@ import java.util.List;
 public class PlaceWorker extends PlayerFSA{
 
     PlayerInterface player;
+    Game game;
     int workerPlaced = 0;
 
-    public PlaceWorker(PlayerInterface player) {
+    public PlaceWorker(PlayerInterface player, Game game) {
         this.player = player;
+        this.game = game;
     }
 
     @Override
-    public void placeWorker(int row, int col, Worker worker) {
-        if(workerPlaced != player.getWorkerRef().size() - 2) {
-            if(player.addWorker(row, col, worker)) {
-                workerPlaced++;
-            } else {
-                //notify
-                //TODO: Send error
-            }
-        } else {
-            if(player.addWorker(row, col, worker)) {
-                workerPlaced++;
-                player.setPlayerState(new Idle(player, new PlaceWorker(player)));
-            } else {
-                //notify
-                //TODO: Send error
-            }
+    public void placeWorker(int row, int col, int worker) {
+        /*
+        if(game.addingWorker(row, col, worker)) {
+            player.setPlayerState(new Idle(player, this, game));
         }
+
+         */
     }
+
+    @Override
+    public void next() {
+        player.setPlayerState(new Moving(player, game));
+    }
+
+
 
 }

@@ -5,6 +5,8 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.God.GodFileCreator;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
+import it.polimi.ingsw.Model.PlayerFSA.Initialized;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -108,6 +110,7 @@ public class Game extends Observable {
         //int MAXPLAYER = 3;
         for (int i = 0; i < numberOfPlayers; i++) {
             onlinePlayers.add(new Player());
+            onlinePlayers.get(i).setPlayerState(new AddNickname(onlinePlayers.get(i), this));
         }
         for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
@@ -142,7 +145,7 @@ public class Game extends Observable {
 
         //TODO: menage when number of player = 2 bt someone else tries to connect, we can a set a global variable when we initialise the match
         boolean flag = true;
-        for(PlayerInterface p : onlinePlayers ) {
+        for(PlayerInterface p : onlinePlayers) {
             if (p.getNickname() == null) {
                 break;
             } else {
@@ -153,8 +156,14 @@ public class Game extends Observable {
                 }
             }
         }
-        if(flag){
-            this.getCurrentTurn().getCurrentPlayer().setNickname(nickName);
+        if(flag) {
+            for(PlayerInterface p : onlinePlayers) {
+                if(p.getNickname() == null) {
+                    p.setNickname(nickName);
+                    break;
+                }
+            }
+            //TODO: assegnare player a view
             this.notifyPlayerAdded(nickName);
            // this.getCurrentTurn().nextTurn();
         }
@@ -189,19 +198,20 @@ public class Game extends Observable {
         God god = new God(godName, null);
         //chosenGods.remove(god);
 
-        this.getCurrentTurn().getCurrentPlayer().setActiveCard(god);
+        getCurrentTurn().getCurrentPlayer().setActiveCard(god);
 
         PlayerInterface p1 = this.getCurrentTurn().getCurrentPlayer();
         p1 = playerCreator.createPlayer(godName, p1);
 
-        this.getCurrentTurn().setCurrentPlayer(p1);
+        getCurrentTurn().setCurrentPlayer(p1);
 
         //TODO: controllare se funziona
 
-        for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size() - 1; i++){
+        for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size(); i++){
             if(this.getCurrentTurn().getActivePlayers().get(i).getNickname().equals(p1.getNickname())){
-                this.getCurrentTurn().getActivePlayers().set(i, p1);
+                getCurrentTurn().getActivePlayers().set(i, p1);
                 onlinePlayers.set(i, p1);
+                break;
             }
         }
 
@@ -216,13 +226,11 @@ public class Game extends Observable {
      */
     public void chooseCards() {
 
-        if(chosenGods.isEmpty()){
-            this.getCurrentTurn().createChallenger();
+        if(chosenGods.isEmpty()) {
+            createChallenger();
             notifyChoose(cardsChosen, this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
         }
-        else    {
-
-
+        else {
             notifyChoose(true, this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
         }
 
@@ -233,7 +241,7 @@ public class Game extends Observable {
      * Check if the GodName input is correct by checking if he is written correctly
      * @param godName
      */
-    public void checkAndAdd(String godName){
+    public boolean checkAndAdd(String godName) {
 
         boolean flag = true;
         God god = new God(godName, null);
@@ -255,13 +263,15 @@ public class Game extends Observable {
             if (chosenGods.size() == this.getCurrentTurn().getActivePlayers().size()) {
                 cardsChosen = true;
                 notifyGodAdded(this.getChosenGods(), cardsChosen);
+                return true;
             } else {
                 notifyGodAdded(this.getChosenGods(), cardsChosen);
+                return false;
             }
         }
-
         else {
             notifyGodNotAdded();
+            return false;
         }
 
 
@@ -276,7 +286,7 @@ public class Game extends Observable {
         this.notifyObservers(null, null);
     }
 
-    public void addingWorker(int row, int col, int i){
+    public void addingWorker(int row, int col, int i) {
 
         if(this.getCurrentTurn().getCurrentPlayer().addWorker(row-1, col-1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)))
 
@@ -315,11 +325,6 @@ public class Game extends Observable {
     public void checkWorker(int worker) {
 
         if (!this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
-            if (worker == 2) {
-                worker = 1;
-            } else {
-                worker++;
-            }
         //TODO: if i choose worker number 1, it moves worker #2
             notifyCanMoveThisWorker(worker);
         }
@@ -338,13 +343,12 @@ public class Game extends Observable {
 
     }
 
-    public void building(int row, int col, int worker){
+    public void building(int row, int col, int worker) {
 
         if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
             notifyTryNewCoordinatesBuild(false, worker);
         }
-        else    {
-
+        else {
             notifyBoardUpdate(this.board);
         }
 
@@ -361,6 +365,11 @@ public class Game extends Observable {
     }
 
 
+    public void createChallenger(){
+        Random random = new Random();
+        currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
+        currentTurn.getCurrentPlayer().setPlayerState(new Initialized(getCurrentTurn().getCurrentPlayer(), this));
+    }
 
 }
 

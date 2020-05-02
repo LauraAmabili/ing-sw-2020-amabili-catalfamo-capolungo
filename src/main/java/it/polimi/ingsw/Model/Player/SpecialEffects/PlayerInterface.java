@@ -36,10 +36,6 @@ public interface PlayerInterface {
 
     String getNickname();
 
-    void setChosenGods(List<God> gods);
-
-    List<God> getChosenGods();
-
     boolean isMoveUp();
 
     void setMoveUp(boolean moveUp);
@@ -69,17 +65,6 @@ public interface PlayerInterface {
     PlayerFSA getPlayerState();
 
     void setPlayerState(PlayerFSA playerState);
-
-    void StateMove(int row, int col, Worker worker);
-
-    void StateBuild(int row, int col, Worker worker);
-
-    void addNickname(String nickname);
-
-    void setCard(God godName);
-
-    void PlaceWorker(int row, int col, Worker worker);
-
 
 
 }

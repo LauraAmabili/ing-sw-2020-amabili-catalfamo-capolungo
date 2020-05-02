@@ -37,24 +37,12 @@ public class Player implements PlayerInterface {
     private boolean moveUp = true;
 
     public Player() {
-        playerState = new AddNickname(this);
     }
 
     public Player(String nickname, List<Worker> workerRef, Board board) {
         this.nickname = nickname;
         this.workerRef = workerRef;
         this.board = board;
-        playerState = new AddNickname(this);
-    }
-
-    @Override
-    public List<God> getChosenGods() {
-        return chosenGods;
-    }
-
-    @Override
-    public void setChosenGods(List<God> chosenGods) {
-        this.playerState.chosenCards(chosenGods);
     }
 
     @Override
@@ -67,30 +55,9 @@ public class Player implements PlayerInterface {
         this.moveUp=moveUp;
     }
 
-
-    @Override
-    public void StateMove(int row, int col, Worker worker) {
-        playerState.Move(row, col, worker);
-    }
-
-    @Override
-    public void StateBuild(int row, int col, Worker worker) {
-        playerState.Build(row, col, worker);
-    }
-
     @Override
     public String getNickname() {
         return nickname;
-    }
-
-    @Override
-    public void PlaceWorker(int row, int col, Worker worker) {
-        playerState.placeWorker(row, col, worker);
-    }
-
-    @Override
-    public void setCard(God activeCard) {
-        playerState.setCard(activeCard);
     }
 
     @Override
@@ -108,10 +75,6 @@ public class Player implements PlayerInterface {
         this.nickname = nickname;
     }
 
-    @Override
-    public void addNickname(String nickname) {
-        playerState.addNickname(nickname);
-    }
 
     @Override
     public void setWorkerRef(List<Worker> list) {
@@ -140,7 +103,6 @@ public class Player implements PlayerInterface {
             worker.setCurCell(getBoard().getGrid()[row][col]);
             return true;
         } else {
-
             return false;
             //System.out.println("Cell is already occupied");
         }

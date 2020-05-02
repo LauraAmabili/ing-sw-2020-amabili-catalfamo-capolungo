@@ -55,10 +55,12 @@ public class PlayerCreator {
             p = new SpecialMove_SwapWorkers(p);
         if (effects.contains("SpecialOpponentTurn_LockMoveUp"))
             p = new SpecialOpponentTurn_LockMoveUp(p);
-        if (effects.contains("SpecialWin_MoveDown"))
+        if (effects.contains("SpecialWin_MoveDown")) {
             p = new SpecialWin_MoveDown(p);
+        }
         return p;
     }
+
     public void read() {
         FileReader fileReader = null;
         try {
