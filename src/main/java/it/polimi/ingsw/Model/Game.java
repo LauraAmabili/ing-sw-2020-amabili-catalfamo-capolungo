@@ -196,25 +196,14 @@ public class Game extends Observable {
 
         this.getCurrentTurn().setCurrentPlayer(p1);
 
-        //TODO: onlinePlayer
-        /*
-        for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size(); i++){
+        //TODO: controllare se funziona
+
+        for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size() - 1; i++){
             if(this.getCurrentTurn().getActivePlayers().get(i).getNickname().equals(p1.getNickname())){
-
+                this.getCurrentTurn().getActivePlayers().set(i, p1);
+                onlinePlayers.set(i, p1);
             }
         }
-
-        for(PlayerInterface p : this.getOnlinePlayers()){
-            if(p.getNickname().equals(p1.getNickname())) {
-                p = p1;
-            }
-        }
-
-
-         */
-
-
-
 
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(god);
         this.notifyGodSetted(this.getCurrentTurn().getCurrentPlayer(), godName);
@@ -316,7 +305,8 @@ public class Game extends Observable {
         else {
 
             notifyPlayerHasLost(this.getCurrentTurn().getCurrentPlayer().getNickname());
-            //TODO: cosa bisogna cambiare quando un giocatore perde?
+            delPlayer(currentTurn.getCurrentPlayer());
+            //TODO: disconnettere player
         }
 
 

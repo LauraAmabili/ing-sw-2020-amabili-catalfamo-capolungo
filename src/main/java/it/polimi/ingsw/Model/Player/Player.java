@@ -14,7 +14,6 @@ import java.util.List;
 public class Player implements PlayerInterface {
 
     //FSA State
-
     private PlayerFSA playerState;
 
 

@@ -45,11 +45,11 @@ public abstract class PlayerFSA {
 
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         // self check
-        if(this == o){
+        if(this == o) {
             return true;
-        } else if(o == null){
+        } else if(o == null) {
             // null check
             return false;
         } else if(getClass() != o.getClass()) {

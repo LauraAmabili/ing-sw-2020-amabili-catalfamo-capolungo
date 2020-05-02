@@ -208,6 +208,7 @@ public class CLIView extends View  {
                 break;
         }
     }
+
     public void printComandi(){
         System.out.println(PURPLE + "Press 2 to add nickname");
         System.out.println("You are the challenger, press 3 to choose your cards");
