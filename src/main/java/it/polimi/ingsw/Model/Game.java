@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Exceptions.GameIsAlreadyStarted;
 import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.God.GodFileCreator;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
@@ -10,9 +8,6 @@ import it.polimi.ingsw.Model.PlayerFSA.Initialized;
 import org.jetbrains.annotations.NotNull;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class Game extends Observable {
@@ -304,8 +299,9 @@ public class Game extends Observable {
      * @param row row of the board
      * @param col col of the board
      * @param i reference to the worker to add
+     * @return
      */
-    public void addingWorker(int row, int col, int i) {
+    public boolean addingWorker(int row, int col, int i) {
 
         if(this.getCurrentTurn().getCurrentPlayer().addWorker(row - 1, col - 1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i))) {
             this.notifyBoardUpdate(this.getBoard());
@@ -406,15 +402,6 @@ public class Game extends Observable {
         currentTurn.getCurrentPlayer().setPlayerState(new Initialized(getCurrentTurn().getCurrentPlayer(), this));
     }
 
-    /**
-     * Check if the Worker won
-     * @param worker the worker that must be checked
-     */
-    public void win(@NotNull Worker worker) {
-        if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
-            System.out.println(worker.getPlayerWorker().getNickname() + "wins");
-        }
-    }
 
     public void askingToBuild(int worker){
 

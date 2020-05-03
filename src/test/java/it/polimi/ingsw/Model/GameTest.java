@@ -36,6 +36,18 @@ public class GameTest {
 
 
     @Test
+    public void initialiseMatch() {
+        //game.initialiseMatch(2);
+        Assert.assertNotNull(game.getOnlinePlayers().get(0));
+        Assert.assertNotNull(game.getOnlinePlayers().get(1));
+        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(0));
+        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(1));
+        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(0));
+        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
+    }
+
+    /*
+    @Test
     public void delPlayer() {
 
         BoardCell b1 = new BoardCell(0, 0);
@@ -58,16 +70,6 @@ public class GameTest {
         Assert.assertNull(b2.getWorker());
     }
 
-    @Test
-    public void initialiseMatch() {
-        //game.initialiseMatch(2);
-        Assert.assertNotNull(game.getOnlinePlayers().get(0));
-        Assert.assertNotNull(game.getOnlinePlayers().get(1));
-        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(0));
-        Assert.assertNotNull(game.getOnlinePlayers().get(0).getWorkerRef().get(1));
-        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(0));
-        Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
-    }
 
 
     @Test

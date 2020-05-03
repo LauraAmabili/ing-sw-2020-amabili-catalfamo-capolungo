@@ -3,6 +3,7 @@ package it.polimi.ingsw.View;
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.lang.reflect.Method;
