@@ -3,7 +3,6 @@ package it.polimi.ingsw.View;
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.lang.reflect.Method;
@@ -11,8 +10,6 @@ import java.text.ParseException;
 import java.util.*;
 
 public class CLIView extends View  {
-
-
 
 
     private String nickname;
@@ -27,10 +24,7 @@ public class CLIView extends View  {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
-
-
     public CLIView() {
-
 
     }
 
@@ -77,6 +71,15 @@ public class CLIView extends View  {
 
 
     }
+
+    @Override
+    public void updateTimeToSetCard(String currentPlayerName) {
+
+        System.out.println(currentPlayerName + ",it's time to choose your card");
+        chooseYourGod();
+
+    }
+
     @Override
     public void updateGodSetted(PlayerInterface playerActing, String godName){
 
@@ -97,6 +100,14 @@ public class CLIView extends View  {
         System.out.println(RESET);
         System.out.println(ANSI_BLUE);
     }
+
+    @Override
+    public void updateTimeToChoose(List gods, String name){
+
+        chooseCards();
+
+    }
+
     @Override
     public void updateGodAdded(List<God> gods, boolean cardChosen){
 
@@ -117,6 +128,14 @@ public class CLIView extends View  {
         chooseCard();
 
     }
+
+    @Override
+    public void updateTimeToPlaceWorker(String currentPlayerName) {
+
+        setWorkers();
+
+    }
+
     @Override
     public void update(Object obh, Object obj){
 
@@ -199,15 +218,6 @@ public class CLIView extends View  {
             case 2:
                 insertNickname();
                 break;
-            case 3:
-                chooseCards();
-                break;
-            case 4:
-                chooseYourGod();
-                break;
-            case 5:
-                setWorkers();
-                break;
             case 6:
                 startMoving();
                 break;
@@ -221,10 +231,7 @@ public class CLIView extends View  {
     }
 
     public void printComandi(){
-        System.out.println(PURPLE + "Press 2 to add a player Nickname");
-        System.out.println("Write '3' if all the players are in");
-        System.out.println("Press 4 if you are ready to choose your God ");
-        System.out.println("Press 5 to add Workers ");
+        System.out.println(PURPLE + "Press 2 to add nickname");
         System.out.println("Press 6 to start your turn");
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
@@ -250,7 +257,6 @@ public class CLIView extends View  {
     public void chooseCards(){
 
         System.out.println("Time to choose your powers");
-        System.out.println("A challenger will be assigned randomly");
 
         notifyChoosingCards();
 
@@ -261,8 +267,7 @@ public class CLIView extends View  {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
         notifyGodNameChosen(godName);
-        System.out.println(currentPlayer + "io");
-
+        //Appena uscito da PlaceWorker
     }
     public void start(){
 
@@ -275,6 +280,11 @@ public class CLIView extends View  {
         for(int i = 0;  i < 2; i++){
             int row = input.nextInt();
             int col = input.nextInt();
+            while(row > 5 || row < 1 || col > 5 || col < 1) {
+                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                row = input.nextInt();
+                col = input.nextInt();
+            }
             notifyAddingWorker(row, col, i);
         }
 

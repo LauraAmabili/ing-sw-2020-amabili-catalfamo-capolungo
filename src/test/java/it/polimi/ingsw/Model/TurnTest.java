@@ -154,9 +154,9 @@ public class TurnTest {
             }
         }
         assertEquals(new Moving(turn2.getCurrentPlayer(), game), turn2.getCurrentPlayer().getPlayerState());
-        turn2.getCurrentPlayer().getPlayerState().move(0,0,1);
+        turn2.getCurrentPlayer().getPlayerState().move(1,1,1);
         assertEquals(new Building(turn2.getCurrentPlayer(), game), turn2.getCurrentPlayer().getPlayerState());
-        turn2.getCurrentPlayer().getPlayerState().build(0,1,1);
+        turn2.getCurrentPlayer().getPlayerState().build(1,2,1);
         turn2.nextTurn();
         if (i == 2) {
             assertEquals(new Moving(turn2.getActivePlayers().get(0), game), turn2.getActivePlayers().get(0).getPlayerState());

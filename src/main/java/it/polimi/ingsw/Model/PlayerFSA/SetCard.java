@@ -27,6 +27,12 @@ public class SetCard extends PlayerFSA{
                 player = game.getOnlinePlayers().get(i);
             }
         }
+        game.getCurrentTurn().nextTurn();
+        if(game.getChosenGods().size() != 0) {
+            game.toSetCard();
+        } else {
+            game.toPlaceWorker();
+        }
     }
 
     @Override

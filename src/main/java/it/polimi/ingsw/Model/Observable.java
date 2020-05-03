@@ -111,4 +111,15 @@ public class Observable {
         }
     }
 
+    void notifyTimeToSetCard(String currentPlayerName) {
+        for (ObserverModel o : observerModels) {
+            o.updateTimeToSetCard(currentPlayerName);
+        }
+    }
+
+    void notifyTimeToPlaceWorker(String currentPlayerName) {
+        for (ObserverModel o : observerModels) {
+            o.updateTimeToPlaceWorker(currentPlayerName);
+        }
+    }
 }

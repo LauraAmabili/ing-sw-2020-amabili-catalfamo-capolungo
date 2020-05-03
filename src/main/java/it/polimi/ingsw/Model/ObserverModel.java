@@ -15,6 +15,7 @@ public interface ObserverModel {
     public void updateGodSetted(PlayerInterface player, String godName);
     public void updatePlayerDecorated(PlayerInterface playerDecorated);
     public void updateBoard(Board board);
+    public void updateTimeToChoose(List gods, String name);
     public void updateGodAdded(List<God> gods, boolean cardChosen);
     public void updateWinners(PlayerInterface player);
     public void updateMoving(int worker);
@@ -26,5 +27,8 @@ public interface ObserverModel {
     public void updateNicknameNotValid();
     public void updatePlayerHasLost(String playerName);
     public void updateDecideWorker(Object obj);
+    void updateTimeToSetCard(String currentPlayerName);
+    void updateTimeToPlaceWorker(String currentPlayerName);
+
 
 }
