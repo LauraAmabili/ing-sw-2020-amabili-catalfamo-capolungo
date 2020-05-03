@@ -50,19 +50,29 @@ public class CLIView extends View  {
     public void updatePlayerAdded(Object obj){
         System.out.println("Nickname " + obj + " accepted");
     }
+
     @Override
     public void updateGameisReady(){
 
         System.out.println("Game is ready!");
         insertNickname();
 
+    }
+
+    @Override
+    public void updateTimeToSetCard(String currentPlayerName) {
+
+        System.out.println(currentPlayerName + ",it's time to choose your card");
+        chooseYourGod();
 
     }
+
     @Override
     public void updateGodSetted(PlayerInterface playerActing, String godName){
         player = playerActing;
         System.out.println(player.getNickname() + " now has " + godName +" as Active Card "+ player.getActiveCard().getGodName());
     }
+
     @Override
     public void updatePlayerDecorated(PlayerInterface playerDecorated){
         player = playerDecorated;
@@ -70,6 +80,7 @@ public class CLIView extends View  {
         System.out.println(player.getNickname() + " decorated correctly");
         //System.out.println(player);
     }
+
     @Override
     public void updateBoard(Board board){
         System.out.println(GREEN);
@@ -77,12 +88,14 @@ public class CLIView extends View  {
         System.out.println(RESET);
         System.out.println(ANSI_BLUE);
     }
+
     @Override
     public void updateTimeToChoose(List gods, String name){
 
-        System.out.println( name + " is the Challenger: choose gods");
-        System.out.println(gods.toString());
+        chooseCards();
+
     }
+
     @Override
     public void updateGodAdded(List<God> gods, boolean cardChosen){
 
@@ -132,10 +145,8 @@ public class CLIView extends View  {
             building(worker);
         }
 
-
-
-
     }
+
     @Override
     public void updateSetWorker(int i){
 
@@ -174,7 +185,6 @@ public class CLIView extends View  {
 
         System.out.println(playerNickname + " out!");
     }
-
 
 
     public void menageInput(Integer in) {

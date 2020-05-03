@@ -126,4 +126,10 @@ public class Observable {
         }
     }
 
+    void notifyTimeToSetCard(String currentPlayerName) {
+        for (ObserverModel o : observerModels) {
+            o.updateTimeToSetCard(currentPlayerName);
+        }
+    }
+
 }

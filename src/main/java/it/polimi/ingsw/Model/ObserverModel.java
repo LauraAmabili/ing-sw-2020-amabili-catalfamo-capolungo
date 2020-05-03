@@ -27,4 +27,6 @@ public interface ObserverModel {
     public void updateNicknameNotValid();
     public void updatePlayerHasLost(String playerName);
     public void updateDecideWorker(Object obj);
+    void updateTimeToSetCard(String currentPlayerName);
+
 }

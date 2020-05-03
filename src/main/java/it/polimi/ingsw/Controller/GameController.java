@@ -28,8 +28,12 @@ public class GameController implements Observer {
     @Override
     public void updateNickname(String nickname){
 
-        game.addNickname(nickname);
-        game.getCurrentTurn().nextTurn();
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            if(game.getOnlinePlayers().get(i).getNickname() == null) {
+                game.getOnlinePlayers().get(i).getPlayerState().addNickname(nickname);
+                break;
+            }
+        }
 
     }
 

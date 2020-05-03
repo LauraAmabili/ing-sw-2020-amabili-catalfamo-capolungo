@@ -25,6 +25,8 @@ public class Initialized extends PlayerFSA {
     public void chosenCards(String godName) {
         if(game.checkAndAdd(godName)) {
             player.setPlayerState(new Idle(player, this, game));
+            game.getCurrentTurn().nextTurn();
+            game.toSetCard();
         }
     }
 

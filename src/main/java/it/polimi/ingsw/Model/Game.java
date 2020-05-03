@@ -25,6 +25,7 @@ public class Game extends Observable {
     private int counterId = 1;
     private Board board;
     private boolean cardsChosen = false;
+    int maxPlayer;
 
     private List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
@@ -102,12 +103,12 @@ public class Game extends Observable {
      */
     public void initialiseMatch(int numberOfPlayers) {
 
+        maxPlayer = numberOfPlayers;
         List<Worker> list = new ArrayList<>();
 
         Board board = new Board();
         setBoard(board);
 
-        //int MAXPLAYER = 3;
         for (int i = 0; i < numberOfPlayers; i++) {
             onlinePlayers.add(new Player());
             onlinePlayers.get(i).setPlayerState(new AddNickname(onlinePlayers.get(i), this));
@@ -123,8 +124,6 @@ public class Game extends Observable {
             list.clear();
         }
        initialiseGodList();
-
-
     }
 
     /**
@@ -141,7 +140,7 @@ public class Game extends Observable {
      * Add nickname chosen to the list of OnlinePlayers
      * @param nickName
      */
-    public void addNickname(String nickName) {
+    public synchronized void addNickname(String nickName) {
 
         //TODO: menage when number of player = 2 bt someone else tries to connect, we can a set a global variable when we initialise the match
         boolean flag = true;
@@ -149,7 +148,7 @@ public class Game extends Observable {
             if (p.getNickname() == null) {
                 break;
             } else {
-                if(p.getNickname().equals(nickName)){
+                if(p.getNickname().equals(nickName)) {
                     flag = false;
                     notifyNicknameNotValid();
                     break;
@@ -160,11 +159,16 @@ public class Game extends Observable {
             for(PlayerInterface p : onlinePlayers) {
                 if(p.getNickname() == null) {
                     p.setNickname(nickName);
+                    this.nickNames.add(nickName);
                     break;
                 }
             }
             //TODO: assegnare player a view
             this.notifyPlayerAdded(nickName);
+            if(maxPlayer == nickNames.size()) {
+                createChallenger();
+                notifyCards(this.getGodListNames(), getCurrentTurn().getCurrentPlayer().getNickname());
+            }
            // this.getCurrentTurn().nextTurn();
         }
 
@@ -182,7 +186,7 @@ public class Game extends Observable {
     public void createTurn() {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
-        this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
+        //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
         this.notifyGameIsRead();
     }
 
@@ -286,19 +290,15 @@ public class Game extends Observable {
         this.notifyObservers(null, null);
     }
 
-    public void addingWorker(int row, int col, int i) {
+    public boolean addingWorker(int row, int col, int i) {
 
-        if(this.getCurrentTurn().getCurrentPlayer().addWorker(row-1, col-1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)))
-
+        if(this.getCurrentTurn().getCurrentPlayer().addWorker(row-1, col-1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i - 1))) {
             this.notifyBoardUpdate(this.getBoard());
-
+            return true;
+        }
         else {
-            if(i == 0) {
-                i = -1;
-            } else {
-                i = 0;
-            }
             notifyCellAlreadyOccupied(i);
+            return false;
         }
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().placeWorker(row, col, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
 
@@ -364,11 +364,14 @@ public class Game extends Observable {
 
     }
 
-
     public void createChallenger(){
         Random random = new Random();
         currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
         currentTurn.getCurrentPlayer().setPlayerState(new Initialized(getCurrentTurn().getCurrentPlayer(), this));
+    }
+
+    public void toSetCard() {
+        this.notifyTimeToSetCard(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
 }

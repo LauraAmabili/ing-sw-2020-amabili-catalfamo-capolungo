@@ -25,6 +25,7 @@ public class SetCard extends PlayerFSA{
             if(game.getOnlinePlayers().get(i).getNickname().equals(player.getNickname())) {
                 game.getOnlinePlayers().get(i).setPlayerState(new Idle(game.getOnlinePlayers().get(i), this, game));;
                 player = game.getOnlinePlayers().get(i);
+                game.getCurrentTurn().nextTurn();
             }
         }
     }

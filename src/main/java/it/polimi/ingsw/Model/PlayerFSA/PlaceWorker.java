@@ -21,12 +21,9 @@ public class PlaceWorker extends PlayerFSA{
 
     @Override
     public void placeWorker(int row, int col, int worker) {
-        /*
         if(game.addingWorker(row, col, worker)) {
             player.setPlayerState(new Idle(player, this, game));
         }
-
-         */
     }
 
     @Override
