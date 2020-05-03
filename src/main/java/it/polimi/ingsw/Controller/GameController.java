@@ -88,16 +88,18 @@ public class GameController implements Observer {
     @Override
     public void updateBuilding(int row, int col, int worker){
 
-        game.building(row, col, worker);
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().build(row, col, worker);
 
     }
     @Override
     public void updateTryThisWorker(int worker){
+
         game.getCurrentTurn().getCurrentPlayer().getPlayerState().checkWorker(worker);
     }
     @Override
     public void updateMoving(int row, int col, int worker){
-        game.moving(row, col, worker);
+
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().move(row, col, worker);
     }
 
     public synchronized void addObserver(ObserverModel view) {

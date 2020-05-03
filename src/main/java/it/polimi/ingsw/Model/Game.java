@@ -319,18 +319,15 @@ public class Game extends Observable {
      */
     public void canIMove(){
 
-
         int i = 0;
         if(!this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)) && !this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i+1)) ){
             notifyCanMove(true);
         }
         else {
-
             notifyPlayerHasLost(this.getCurrentTurn().getCurrentPlayer().getNickname());
             delPlayer(currentTurn.getCurrentPlayer());
-            //TODO: disconnettere player
+            //TODO: disconnettere player + toglierlo dagli observer
         }
-
 
     }
 
@@ -372,13 +369,16 @@ public class Game extends Observable {
      * @param col col to build on
      * @param worker worker to build around
      */
-    public void building(int row, int col, int worker) {
+    public boolean building(int row, int col, int worker) {
 
         if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
             notifyTryNewCoordinatesBuild(false, worker);
+            return false;
         }
         else {
             notifyBoardUpdate(this.board);
+            return true;
+
         }
 
 

@@ -66,12 +66,12 @@ public class Observable {
             o.updateMoving(Worker);
         }
     }
-    void notifyCanBuild(Object object, int worker){
+    void notifyCanBuild(boolean object, int worker){
         for(ObserverModel o : observerModels){
             o.updateBuilding(object, worker);
         }
     }
-    void notifyTryNewCoordinatesBuild(Object obj, int worker){
+    void notifyTryNewCoordinatesBuild(boolean obj, int worker){
         for(ObserverModel o : observerModels){
             o.updateBuilding(obj, worker);
         }

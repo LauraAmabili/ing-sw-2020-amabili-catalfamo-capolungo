@@ -21,8 +21,10 @@ public class Building extends PlayerFSA {
 
     @Override
     public void build(int row, int col, int worker) {
-        game.building(row, col,worker);
-        player.setPlayerState(new Idle(player, this, game));
+        if(game.building(row, col,worker)) {
+            player.setPlayerState(new Idle(player, this, game));
+            game.getCurrentTurn().nextTurn();
+        }
     }
 
     @Override

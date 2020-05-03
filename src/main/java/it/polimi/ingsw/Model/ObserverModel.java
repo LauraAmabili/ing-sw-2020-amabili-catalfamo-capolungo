@@ -19,7 +19,7 @@ public interface ObserverModel {
     public void updateGodAdded(List<God> gods, boolean cardChosen);
     public void updateWinners(PlayerInterface player);
     public void updateMoving(int worker);
-    public void updateBuilding(Object obj, int worker);
+    public void updateBuilding(boolean obj, int worker);
     public void updateSetWorker(int i);
     public void updateCardNotPresent(List chosenGods);
     public void updateGodNotAdded();

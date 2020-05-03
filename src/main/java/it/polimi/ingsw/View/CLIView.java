@@ -80,7 +80,6 @@ public class CLIView extends View  {
         chooseYourGod();
 
     }
-
     @Override
     public void updateGodSetted(PlayerInterface playerActing, String godName){
 
@@ -101,14 +100,12 @@ public class CLIView extends View  {
         System.out.println(RESET);
         System.out.println(ANSI_BLUE);
     }
-
     @Override
     public void updateTimeToChoose(List gods, String name){
 
         chooseCards();
 
     }
-
     @Override
     public void updateGodAdded(List<God> gods, boolean cardChosen){
 
@@ -155,19 +152,17 @@ public class CLIView extends View  {
     @Override
     public void updateMoving(int worker){
 
+
         moving(worker);
 
     }
     @Override
-    public void updateBuilding(Object object, int worker){
+    public void updateBuilding(boolean object, int worker){
 
-        if(!(boolean)object){
+        if(!object){
             System.out.println("Try new coordinates: ");
             building(worker);
         }
-
-
-
 
     }
     @Override
@@ -318,7 +313,7 @@ public class CLIView extends View  {
         //String input = cases.nextLine();
         //notifyWantToBuild(worker);
 
-        System.out.println("Time to build around your worker #" + worker + "Insert row e col: " );
+        System.out.println("Build around your worker # " + worker + "Insert row e col: " );
         int row = input.nextInt();
         int col = input.nextInt();
         notifyBuilding(row, col, worker);
