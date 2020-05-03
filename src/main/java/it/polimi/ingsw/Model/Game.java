@@ -82,7 +82,7 @@ public class Game extends Observable {
 
     /**
      * Delete the chosen player and all its workers
-     * @param player
+     * @param player the PlayerInterface to delete from the game
      */
     public void delPlayer(@NotNull PlayerInterface player){
 
@@ -128,18 +128,8 @@ public class Game extends Observable {
     }
 
     /**
-     * Check if the Worker won
-     * @param worker
-     */
-    public void win(@NotNull Worker worker) {
-        if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
-            System.out.println(worker.getPlayerWorker().getNickname() + "wins");
-        }
-    }
-
-    /**
      * Add nickname chosen to the list of OnlinePlayers
-     * @param nickName
+     * @param nickName nickname of the Player
      */
     public void addNickname(String nickName) {
 
@@ -189,7 +179,7 @@ public class Game extends Observable {
     /**
      * Set the chosen god as ActiveGodCard
      * Remove the chosenGod from the list of ChosenGods
-     * @param godName
+     * @param godName name of the god
      */
     public void setGod(String godName) {
 
@@ -205,7 +195,6 @@ public class Game extends Observable {
 
         getCurrentTurn().setCurrentPlayer(p1);
 
-        //TODO: controllare se funziona
 
         for(int i= 0; i < this.getCurrentTurn().getActivePlayers().size(); i++){
             if(this.getCurrentTurn().getActivePlayers().get(i).getNickname().equals(p1.getNickname())){
@@ -286,6 +275,12 @@ public class Game extends Observable {
         this.notifyObservers(null, null);
     }
 
+    /**
+     * This method add first workers in the board
+     * @param row row of the board
+     * @param col col of the board
+     * @param i reference to the worker to add
+     */
     public void addingWorker(int row, int col, int i) {
 
         if(this.getCurrentTurn().getCurrentPlayer().addWorker(row-1, col-1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i)))
@@ -305,6 +300,9 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * Checking if the player can move both his workers, otherwise he loose
+     */
     public void canIMove(){
 
 
@@ -322,15 +320,26 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * Check if the worker can move around at least in one position
+     * @param worker worker to check
+     */
     public void checkWorker(int worker) {
 
         if (!this.getCurrentTurn().checkLockPlayer(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
         //TODO: if i choose worker number 1, it moves worker #2
+            //TODO: try to add list of movements
             notifyCanMoveThisWorker(worker);
         }
 
     }
 
+    /**
+     * Must check if it has written the right coordinates, if so we send the Board Updated
+     * @param row row of the board to check
+     * @param col col of the board to check
+     * @param worker worker to move
+     */
     public void moving(int row, int col, int worker){
 
         if(!this.getCurrentTurn().getCurrentPlayer().move(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
@@ -343,6 +352,12 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * Check if he can build in this position
+     * @param row row to build on
+     * @param col col to build on
+     * @param worker worker to build around
+     */
     public void building(int row, int col, int worker) {
 
         if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
@@ -364,12 +379,30 @@ public class Game extends Observable {
 
     }
 
-
+    /**
+     * This create the challenger by choosing a random number
+     */
     public void createChallenger(){
+
         Random random = new Random();
         currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
         currentTurn.getCurrentPlayer().setPlayerState(new Initialized(getCurrentTurn().getCurrentPlayer(), this));
     }
 
+    /**
+     * Check if the Worker won
+     * @param worker the worker that must be checked
+     */
+    public void win(@NotNull Worker worker) {
+        if(worker.getPlayerWorker().checkWin(worker) || onlinePlayers.size() == 1) {
+            System.out.println(worker.getPlayerWorker().getNickname() + "wins");
+        }
+    }
+
+    public void askingToBuild(int worker){
+
+        //notifyCanBuild(null, worker);
+
+    }
 }
 

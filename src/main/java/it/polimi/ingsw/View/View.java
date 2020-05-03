@@ -10,6 +10,7 @@ public abstract class  View extends Observable implements ObserverModel, Runnabl
 
 
 
+
 }
 
 

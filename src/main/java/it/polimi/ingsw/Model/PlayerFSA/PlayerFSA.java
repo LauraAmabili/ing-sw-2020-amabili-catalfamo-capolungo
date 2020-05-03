@@ -14,7 +14,7 @@ public abstract class PlayerFSA {
     PlayerInterface player = null;
 
 
-    //TODO: se modifichi a boolean mi raccomando ricordati di rimodificare qui il tipo di ritorno
+
 
     public void setPlayer(PlayerInterface player) {
         this.player = player;

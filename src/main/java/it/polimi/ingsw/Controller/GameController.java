@@ -39,7 +39,6 @@ public class GameController implements Observer {
         game.chooseCards();
 
     }
-
     @Override
     public void updateTryThisCard(String in){
 
@@ -47,7 +46,6 @@ public class GameController implements Observer {
         //game.checkAndAdd(in);
 
     }
-
     @Override
     public void updateSetGodName(String godName) {
 
@@ -65,18 +63,22 @@ public class GameController implements Observer {
             game.GodNotCorrectException();
         }
     }
-
     @Override
     public void updateAddingWorker(int row, int col, int i){
 
         game.addingWorker(row, col,i);
 
     }
-
     @Override
     public void updateStartMoving(){
 
         game.getCurrentTurn().getCurrentPlayer().getPlayerState().canIMove();
+
+    }
+    @Override
+    public void updateWantToBuild(int worker){
+
+        game.askingToBuild(worker);
 
     }
     @Override
@@ -89,7 +91,6 @@ public class GameController implements Observer {
     public void updateTryThisWorker(int worker){
         game.getCurrentTurn().getCurrentPlayer().getPlayerState().checkWorker(worker);
     }
-
     @Override
     public void updateMoving(int row, int col, int worker){
         game.moving(row, col, worker);

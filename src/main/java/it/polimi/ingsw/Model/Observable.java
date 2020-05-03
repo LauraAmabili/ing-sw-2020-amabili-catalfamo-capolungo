@@ -31,21 +31,6 @@ public class Observable {
             o.updateGodSetted(player, godName);
         }
     }
-    void notifyPlayerDecorated(PlayerInterface playerDecorated){
-        for(ObserverModel o : observerModels){
-            o.updatePlayerDecorated(playerDecorated);
-        }
-    }
-    void notifyWorkerSettled(Board board){
-        for(ObserverModel o : observerModels){
-            o.updateBoard(board);
-        }
-    }
-    void notifyCards(List gods, String name){
-        for(ObserverModel o : observerModels){
-            o.updateTimeToChoose(gods, name);
-        }
-    }
     void notifyObservers(Object something, Object obj){
         for(ObserverModel o : observerModels){
             o.update(something,obj);

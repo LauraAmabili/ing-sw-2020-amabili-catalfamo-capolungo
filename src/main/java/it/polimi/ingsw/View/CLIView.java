@@ -3,6 +3,7 @@ package it.polimi.ingsw.View;
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.lang.reflect.Method;
@@ -12,8 +13,10 @@ import java.util.*;
 public class CLIView extends View  {
 
 
+
+
     private String nickname;
-    private PlayerInterface player;
+    private PlayerInterface currentPlayer = new Player();
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
 
@@ -24,11 +27,25 @@ public class CLIView extends View  {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
+
+
     public CLIView() {
+
 
     }
 
-
+    public String getNickname() {
+        return nickname;
+    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    public PlayerInterface getCurrentPlayer() {
+        return currentPlayer;
+    }
+    public void setCurrentPlayer(PlayerInterface currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
 
     @Override
@@ -48,6 +65,8 @@ public class CLIView extends View  {
 
     @Override
     public void updatePlayerAdded(Object obj){
+
+        currentPlayer.setNickname((String)obj);
         System.out.println("Nickname " + obj + " accepted");
     }
     @Override
@@ -60,14 +79,15 @@ public class CLIView extends View  {
     }
     @Override
     public void updateGodSetted(PlayerInterface playerActing, String godName){
-        player = playerActing;
-        System.out.println(player.getNickname() + " now has " + godName +" as Active Card "+ player.getActiveCard().getGodName());
+
+        currentPlayer = playerActing;
+        System.out.println(currentPlayer.getNickname() + " now has " + godName + " as Active Card "+ currentPlayer.getActiveCard().getGodName());
     }
     @Override
     public void updatePlayerDecorated(PlayerInterface playerDecorated){
-        player = playerDecorated;
-        System.out.println(player);
-        System.out.println(player.getNickname() + " decorated correctly");
+        currentPlayer = playerDecorated;
+        System.out.println(currentPlayer);
+        System.out.println(currentPlayer.getNickname() + " decorated correctly");
         //System.out.println(player);
     }
     @Override
@@ -76,12 +96,6 @@ public class CLIView extends View  {
         board.printGrid();
         System.out.println(RESET);
         System.out.println(ANSI_BLUE);
-    }
-    @Override
-    public void updateTimeToChoose(List gods, String name){
-
-        System.out.println( name + " is the Challenger: choose gods");
-        System.out.println(gods.toString());
     }
     @Override
     public void updateGodAdded(List<God> gods, boolean cardChosen){
@@ -156,7 +170,7 @@ public class CLIView extends View  {
     public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
 
         if(!chosenGods) {
-            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards \n");
+            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
             System.out.println(Names);
             chooseCard();
         }
@@ -207,9 +221,9 @@ public class CLIView extends View  {
     }
 
     public void printComandi(){
-        System.out.println(PURPLE + "Press 2 to add nickname");
-        System.out.println("You are the challenger, press 3 to choose your cards");
-        System.out.println("Press 4 to choose God ");
+        System.out.println(PURPLE + "Press 2 to add a player Nickname");
+        System.out.println("Write '3' if all the players are in");
+        System.out.println("Press 4 if you are ready to choose your God ");
         System.out.println("Press 5 to add Workers ");
         System.out.println("Press 6 to start your turn");
         System.out.print(RESET);
@@ -236,6 +250,7 @@ public class CLIView extends View  {
     public void chooseCards(){
 
         System.out.println("Time to choose your powers");
+        System.out.println("A challenger will be assigned randomly");
 
         notifyChoosingCards();
 
@@ -246,7 +261,7 @@ public class CLIView extends View  {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
         notifyGodNameChosen(godName);
-        System.out.println(player + "io");
+        System.out.println(currentPlayer + "io");
 
     }
     public void start(){
@@ -282,6 +297,7 @@ public class CLIView extends View  {
         int row = input.nextInt();
         int col = input.nextInt();
         notifyMoving(row, col, worker);
+        //se mi sono mossa costruisco
         building(worker);
 
     }
@@ -289,6 +305,7 @@ public class CLIView extends View  {
 
        // System.out.println("Vuoi costruire? Insert Yes or no");
         //String input = cases.nextLine();
+        //notifyWantToBuild(worker);
 
         System.out.println("Time to build around your worker #" + worker + "Insert row e col: " );
         int row = input.nextInt();
