@@ -28,5 +28,6 @@ public interface ObserverModel {
     public void updatePlayerHasLost(String playerName);
     public void updateDecideWorker(Object obj);
     void updateTimeToSetCard(String currentPlayerName);
+    void updateTimeToPlaceWorker(String currentPlayerName);
 
 }

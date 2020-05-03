@@ -132,4 +132,9 @@ public class Observable {
         }
     }
 
+    void notifyTimeToPlaceWorker(String currentPlayerName) {
+        for (ObserverModel o : observerModels) {
+            o.updateTimeToPlaceWorker(currentPlayerName);
+        }
+    }
 }

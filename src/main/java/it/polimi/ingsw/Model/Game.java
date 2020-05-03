@@ -200,7 +200,13 @@ public class Game extends Observable {
         PlayerCreator playerCreator = new PlayerCreator();
 
         God god = new God(godName, null);
-        //chosenGods.remove(god);
+
+        for (God g : chosenGods) {
+            if(g.getGodName().equals(godName)) {
+                chosenGods.remove(g);
+                break;
+            }
+        }
 
         getCurrentTurn().getCurrentPlayer().setActiveCard(god);
 
@@ -221,7 +227,6 @@ public class Game extends Observable {
 
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(god);
         this.notifyGodSetted(this.getCurrentTurn().getCurrentPlayer(), godName);
-
 
     }
 
@@ -292,17 +297,15 @@ public class Game extends Observable {
 
     public boolean addingWorker(int row, int col, int i) {
 
-        if(this.getCurrentTurn().getCurrentPlayer().addWorker(row-1, col-1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i - 1))) {
+        if(this.getCurrentTurn().getCurrentPlayer().addWorker(row - 1, col - 1,this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i))) {
             this.notifyBoardUpdate(this.getBoard());
-            return true;
+            return i == 1;
         }
         else {
             notifyCellAlreadyOccupied(i);
             return false;
         }
         //this.getCurrentTurn().getCurrentPlayer().getPlayerState().placeWorker(row, col, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(i));
-
-
     }
 
     public void canIMove(){
@@ -372,6 +375,10 @@ public class Game extends Observable {
 
     public void toSetCard() {
         this.notifyTimeToSetCard(getCurrentTurn().getCurrentPlayer().getNickname());
+    }
+
+    public void toPlaceWorker() {
+        notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
 }

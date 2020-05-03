@@ -109,6 +109,7 @@ public class CLIView extends View  {
 
 
     }
+
     @Override
     public void updateGodNotAdded(){
 
@@ -116,19 +117,27 @@ public class CLIView extends View  {
         chooseCard();
 
     }
+
+    @Override
+    public void updateTimeToPlaceWorker(String currentPlayerName) {
+
+        setWorkers();
+
+    }
+
     @Override
     public void update(Object obh, Object obj){
 
         System.out.println("Exception occured");
     }
+
     @Override
     public void updateWinners(PlayerInterface player){
         System.out.println(player+ "wins!");
     }
+
     @Override
     public void updateDecideWorker(Object bol){
-
-
         chooseWorker();
     }
     @Override
@@ -195,15 +204,6 @@ public class CLIView extends View  {
             case 2:
                 insertNickname();
                 break;
-            case 3:
-                chooseCards();
-                break;
-            case 4:
-                chooseYourGod();
-                break;
-            case 5:
-                setWorkers();
-                break;
             case 6:
                 startMoving();
                 break;
@@ -218,9 +218,6 @@ public class CLIView extends View  {
 
     public void printComandi(){
         System.out.println(PURPLE + "Press 2 to add nickname");
-        System.out.println("You are the challenger, press 3 to choose your cards");
-        System.out.println("Press 4 to choose God ");
-        System.out.println("Press 5 to add Workers ");
         System.out.println("Press 6 to start your turn");
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
@@ -256,8 +253,7 @@ public class CLIView extends View  {
         System.out.println("Choose your god");
         String godName = cases.nextLine();
         notifyGodNameChosen(godName);
-        System.out.println(player + "io");
-
+        //Appena uscito da PlaceWorker
     }
     public void start(){
 
@@ -270,6 +266,11 @@ public class CLIView extends View  {
         for(int i = 0;  i < 2; i++){
             int row = input.nextInt();
             int col = input.nextInt();
+            while(row > 5 || row < 1 || col > 5 || col < 1) {
+                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                row = input.nextInt();
+                col = input.nextInt();
+            }
             notifyAddingWorker(row, col, i);
         }
 

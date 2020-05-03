@@ -12,7 +12,6 @@ public class PlaceWorker extends PlayerFSA{
 
     PlayerInterface player;
     Game game;
-    int workerPlaced = 0;
 
     public PlaceWorker(PlayerInterface player, Game game) {
         this.player = player;
@@ -23,6 +22,10 @@ public class PlaceWorker extends PlayerFSA{
     public void placeWorker(int row, int col, int worker) {
         if(game.addingWorker(row, col, worker)) {
             player.setPlayerState(new Idle(player, this, game));
+            game.getCurrentTurn().nextTurn();
+            if(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell() == null) {
+                game.toPlaceWorker();
+            }
         }
     }
 

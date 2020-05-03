@@ -64,7 +64,7 @@ public class GameController implements Observer {
             }
         }
         if (present) {
-            game.setGod(godName);
+            game.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(godName);
         } else {
             game.GodNotCorrectException();
         }
@@ -73,7 +73,7 @@ public class GameController implements Observer {
     @Override
     public void updateAddingWorker(int row, int col, int i){
 
-        game.addingWorker(row, col,i);
+        game.getCurrentTurn().getCurrentPlayer().getPlayerState().placeWorker(row, col,i);
 
     }
 
