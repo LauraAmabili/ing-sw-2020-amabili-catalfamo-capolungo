@@ -4,6 +4,7 @@ package it.polimi.ingsw.Model.Player;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.Player.SpecialEffects.*;
 import it.polimi.ingsw.Model.God.God;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class PlayerCreator {
 
     Gson gson = new Gson();
-    String godFile = "./src/main/java/it/polimi/ingsw/resources/godFile.json";
+    String godConf = GameConf.getGodConf();
     ArrayList<God> arrayGods;
 
     public PlayerCreator() {
@@ -37,6 +38,7 @@ public class PlayerCreator {
         p = addEffects(p, god.getEffects());
         return p;
     }
+
 
     public PlayerInterface addEffects(PlayerInterface p, List<String> effects) {
         if (effects.contains("SpecialBuild_BuildTwiceDifferent"))
@@ -64,7 +66,7 @@ public class PlayerCreator {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(godFile);
+            fileReader = new FileReader(godConf);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

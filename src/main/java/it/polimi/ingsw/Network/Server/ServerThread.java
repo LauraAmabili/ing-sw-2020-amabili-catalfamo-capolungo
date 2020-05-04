@@ -44,8 +44,6 @@ class ServerThread extends Thread implements Runnable{
         }
 
 
-
-
         System.out.println("Received [" + listOfMessages.size() + "] messages from: " + s);
         // print out the text of every message
         System.out.println("All messages:");

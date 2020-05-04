@@ -11,11 +11,6 @@ class GodFileCreatorTest {
 
     private GodFileCreator godFileCreatorUnderTest;
 
-    @BeforeEach
-    void setUp() {
-        godFileCreatorUnderTest = new GodFileCreator();
-        godFileCreatorUnderTest.gson = new Gson();
-    }
 
     @Test
     void testCreate() {

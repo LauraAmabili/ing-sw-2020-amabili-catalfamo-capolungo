@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.God;
 
 import com.google.gson.*;
+import it.polimi.ingsw.Helper.GameConf;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -10,10 +11,10 @@ import java.util.Arrays;
 
 public class GodFileCreator {
 
-    Gson gson = new Gson();
-    String godFile = "./src/main/java/it/polimi/ingsw/resources/godFile.json";
+    private static Gson gson = new Gson();
+    private static String godConf = GameConf.getGodConf();
 
-    public void create() {
+    public static void create() {
         ArrayList<God> arrayGods = new ArrayList<>();
         arrayGods.add(new God("Apollo", Arrays.asList("SpecialMove_SwapWorkers")));
         arrayGods.add(new God("Artemis", Arrays.asList("SpecialMove_MoveTwice")));
@@ -27,10 +28,10 @@ public class GodFileCreator {
         write (arrayGods);
     }
 
-    public void write(ArrayList<God> arrayGods)  {
+    public static void write(ArrayList<God> arrayGods)  {
         FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(godFile);
+            fileWriter = new FileWriter(godConf);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,6 +41,10 @@ public class GodFileCreator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        create();
     }
 
 
