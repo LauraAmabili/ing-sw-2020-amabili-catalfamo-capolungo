@@ -35,7 +35,6 @@ class SpecialBuild_DomeAnyLevelTest {
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer.setPlayerState(new AddNickname(mockPlayer, game));
         PlayerInterface player = new SpecialBuild_DomeAnyLevel(mockPlayer);
         player.build(1, 0, worker1, true);
         assertTrue(board.getGrid()[1][0].getDome());

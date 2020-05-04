@@ -9,26 +9,30 @@ import java.util.List;
 public interface ObserverModel {
 
     //public void update(Object obj);
-    public void update(Object o, Object obj);
-    public void updatePlayerAdded(Object obj);
-    public void updateGameisReady();
-    public void updateGodSetted(PlayerInterface player, String godName);
-    public void updatePlayerDecorated(PlayerInterface playerDecorated);
-    public void updateBoard(Board board);
-    public void updateTimeToChoose(List gods, String name);
-    public void updateGodAdded(List<God> gods, boolean cardChosen);
-    public void updateWinners(PlayerInterface player);
-    public void updateMoving(int worker);
-    public void updateBuilding(boolean obj, int worker);
-    public void updateSetWorker(int i);
-    public void updateCardNotPresent(List chosenGods);
-    public void updateGodNotAdded();
-    public void updateChoose(boolean chosenGods, List Names, String ChallengerName);
-    public void updateNicknameNotValid();
-    public void updatePlayerHasLost(String playerName);
-    public void updateDecideWorker(Object obj);
+    void update(Object o, Object obj);
+    void updatePlayerAdded(Object obj);
+    void updateGameisReady();
+    void updateGodSet(PlayerInterface player, String godName);
+    void updatePlayerDecorated(PlayerInterface playerDecorated);
+    void updateBoard(Board board);
+    void updateTimeToChoose(List gods, String name);
+    void updateGodAdded(List<String> gods, boolean cardChosen);
+    void updateWinners(PlayerInterface player);
+    void updateMoving(int worker);
+    void updateBuilding(int worker);
+    void updateSetWorker(int i);
+    void updateCardNotPresent(List chosenGods);
+    void updateGodNotAdded();
+    void updateChoose(boolean chosenGods, List Names, String ChallengerName);
+    void updateNicknameNotValid();
+    void updatePlayerHasLost(String playerName);
+    void updateDecideWorker();
     void updateTimeToSetCard(String currentPlayerName);
     void updateTimeToPlaceWorker(String currentPlayerName);
-
+    void updateGodAlreadyChosen(String godName);
+    void updateNoPossibleMove();
+    void updateWorkerSelected(int worker);
+    void updateNoCoordinatesValid(int worker);
+    void updateTimeToBuild(int worker);
 
 }

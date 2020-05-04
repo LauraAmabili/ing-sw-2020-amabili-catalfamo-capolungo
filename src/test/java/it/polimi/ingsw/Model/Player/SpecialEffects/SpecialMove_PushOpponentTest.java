@@ -37,10 +37,8 @@ class SpecialMove_PushOpponentTest {
         worker2.setCurCell(board.getGrid()[0][1]);
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
-        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         PlayerInterface player1 = new SpecialMove_PushOpponent(mockPlayer1);
         Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
-        mockPlayer2.setPlayerState(new AddNickname(mockPlayer2, game));
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         mockPlayer2.getBoard().getGrid()[0][1].setWorker(worker2);

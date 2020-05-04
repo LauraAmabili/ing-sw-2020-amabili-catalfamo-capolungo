@@ -12,8 +12,6 @@ import java.util.List;
 
 public class PlayerDecorator implements PlayerInterface {
 
-    PlayerFSA playerState;
-
     // attributes
     protected PlayerInterface player;
     private String nickname;
@@ -31,8 +29,6 @@ public class PlayerDecorator implements PlayerInterface {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
-        this.playerState = player.getPlayerState();
-        this.playerState.setPlayer(this);
     }
 
     public boolean isMoveUp(){
@@ -134,16 +130,6 @@ public class PlayerDecorator implements PlayerInterface {
     @Override
     public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
         return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
-    }
-
-    @Override
-    public PlayerFSA getPlayerState() {
-        return playerState;
-    }
-
-    @Override
-    public void setPlayerState(PlayerFSA playerState) {
-        this.playerState = playerState;
     }
 
 }

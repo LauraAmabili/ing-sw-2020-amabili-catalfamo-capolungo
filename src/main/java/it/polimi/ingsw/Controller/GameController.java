@@ -30,11 +30,10 @@ public class GameController implements Observer {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if(game.getOnlinePlayers().get(i).getNickname() == null) {
-                game.getOnlinePlayers().get(i).getPlayerState().addNickname(nickname);
+                game.getStateList().get(i).addNickname(nickname);
                 break;
             }
         }
-
     }
 
     @Override
@@ -43,63 +42,67 @@ public class GameController implements Observer {
         game.chooseCards();
 
     }
-    @Override
-    public void updateTryThisCard(String in){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().chosenCards(in);
-        //game.checkAndAdd(in);
+    @Override
+    public void updateTryThisCard(String in) {
+
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).chosenCard(in);
+        }
 
     }
+
     @Override
     public void updateSetGodName(String godName) {
 
-        boolean present = false;
-        List<God> godChosenGod = game.getChosenGods();
-        for (God god : godChosenGod) {
-            if (god.getGodName().equals(godName)) {
-                present = true;
-                break;
-            }
-        }
-        if (present) {
-            game.getCurrentTurn().getCurrentPlayer().getPlayerState().setCard(godName);
-        } else {
-            game.GodNotCorrectException();
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).setCard(godName);
         }
     }
-    @Override
-    public void updateAddingWorker(int row, int col, int i){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().placeWorker(row, col,i);
+    @Override
+    public void updateAddingWorker(int row, int col, int worker){
+
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).placeWorker(row, col, worker);
+        }
 
     }
-    @Override
-    public void updateStartMoving(){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().canIMove();
-
-    }
-    @Override
-    public void updateWantToBuild(int worker){
-
-        game.askingToBuild(worker);
-
-    }
     @Override
     public void updateBuilding(int row, int col, int worker){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().build(row, col, worker);
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).build(row, col, worker);
+        }
 
     }
+
+    @Override
+    public void updateStartMoving() {
+
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).canIMove();
+        }
+
+    }
+
     @Override
     public void updateTryThisWorker(int worker){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().checkWorker(worker);
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).checkWorker(worker);
+        }
+
     }
+
     @Override
     public void updateMoving(int row, int col, int worker){
 
-        game.getCurrentTurn().getCurrentPlayer().getPlayerState().move(row, col, worker);
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            game.getStateList().get(i).move(row, col, worker);
+        }
+
     }
 
     public synchronized void addObserver(ObserverModel view) {

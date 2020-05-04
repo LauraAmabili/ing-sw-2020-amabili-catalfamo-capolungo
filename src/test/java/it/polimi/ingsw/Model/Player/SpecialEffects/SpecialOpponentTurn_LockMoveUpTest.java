@@ -36,12 +36,10 @@ class SpecialOpponentTurn_LockMoveUpTest {
         worker1.setCurCell(board.getGrid()[0][0]);
         worker2.setCurCell(board.getGrid()[0][1]);
         Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
-        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialOpponentTurn_LockMoveUp(mockPlayer1);
         Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
-        mockPlayer2.setPlayerState(new AddNickname(mockPlayer2, game));
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         mockPlayer1.getBoard().getGrid()[0][0].setWorker(worker1);

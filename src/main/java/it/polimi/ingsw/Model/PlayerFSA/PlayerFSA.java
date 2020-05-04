@@ -1,12 +1,7 @@
 package it.polimi.ingsw.Model.PlayerFSA;
 
-
-import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Worker;
 
-import java.util.List;
 import java.util.Objects;
 
 public abstract class PlayerFSA {
@@ -14,7 +9,9 @@ public abstract class PlayerFSA {
     PlayerInterface player = null;
 
 
-
+    public PlayerInterface getPlayer() {
+        return player;
+    }
 
     public void setPlayer(PlayerInterface player) {
         this.player = player;
@@ -24,7 +21,7 @@ public abstract class PlayerFSA {
 
     }
 
-    public void chosenCards(String godName) {
+    public void chosenCard(String godName) {
 
     }
 

@@ -36,10 +36,8 @@ class SpecialMove_SwapWorkersTest {
         Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
-        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         PlayerInterface player1 = new SpecialMove_SwapWorkers(mockPlayer1);
         Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
-        mockPlayer2.setPlayerState(new AddNickname(mockPlayer2, game));
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         mockPlayer1.getBoard().getGrid()[0][0].setWorker(worker1);

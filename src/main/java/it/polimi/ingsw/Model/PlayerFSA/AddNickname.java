@@ -2,13 +2,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Turn;
-import it.polimi.ingsw.Model.Worker;
-
-import java.util.List;
-import java.util.Objects;
 
 public class AddNickname extends PlayerFSA {
 
@@ -22,12 +16,48 @@ public class AddNickname extends PlayerFSA {
 
     @Override
     public void addNickname(String name) {
-        game.addNickname(name);
-        player.setPlayerState(new Idle(player, new AddNickname(player, game), game));
+        if(game.getNicknames().size() == 0) {
+            game.getNicknames().add(name);
+            player.setNickname(name);
+            for(int i = 0; i < game.getStateList().size(); i++) {
+                if(game.getNicknames().get(i).equals(player.getNickname())) {
+                    game.getStateList().set(i, new Idle(player, this, game));
+                    break;
+                }
+            }
+            game.nameAccepted(name);
+        } else {
+            for (PlayerInterface p : game.getOnlinePlayers()) {
+                if (p.getNickname().equals(name)) {
+                    game.sameNameError();
+                } else {
+                    game.getNicknames().add(name);
+                    player.setNickname(name);
+                    for (int i = 0; i < game.getStateList().size(); i++) {
+                        if (game.getNicknames().get(i).equals(player.getNickname())) {
+                            game.getStateList().set(i, new Idle(player, this, game));
+                            break;
+                        }
+                    }
+                    game.nameAccepted(name);
+                    if(game.getOnlinePlayers().size() == game.getNicknames().size()) {
+                        game.createChallenger();
+                        game.timeToChallenger();
+                    }
+                }
+                break;
+            }
+        }
     }
 
     @Override
     public void next() {
-        player.setPlayerState(new SetCard(player, game));
+        for(int i = 0; i < game.getStateList().size(); i++) {
+            if(game.getNicknames().get(i).equals(player.getNickname())) {
+                game.getStateList().set(i, new SetCard(player, game));
+                break;
+            }
+        }
     }
+
 }

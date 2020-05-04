@@ -13,5 +13,4 @@ public interface Observer {
     public void updateTryThisWorker(int worker);
     public void updateMoving(int row, int col, int worker);
     public void updateTryThisCard(String in);
-    public void updateWantToBuild(int worker);
 }

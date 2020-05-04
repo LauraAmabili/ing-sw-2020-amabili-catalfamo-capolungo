@@ -34,7 +34,6 @@ class SpecialMove_MoveTwiceTest {
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer.setPlayerState(new AddNickname(mockPlayer, game));
         PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
         assertEquals(worker1.getCurCell(), cell);
         assertFalse(player.move(0, 3, worker1));

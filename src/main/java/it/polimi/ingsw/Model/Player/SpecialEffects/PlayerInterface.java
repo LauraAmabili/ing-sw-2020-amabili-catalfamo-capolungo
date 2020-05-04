@@ -12,8 +12,6 @@ import java.util.List;
 public interface PlayerInterface {
 
 
-    PlayerFSA playerState = null;
-
     String nickname = null;
     List<Worker> workerRef = null;
 
@@ -61,10 +59,5 @@ public interface PlayerInterface {
     boolean checkWin(@NotNull Worker worker);
 
     boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild);
-
-    PlayerFSA getPlayerState();
-
-    void setPlayerState(PlayerFSA playerState);
-
 
 }
