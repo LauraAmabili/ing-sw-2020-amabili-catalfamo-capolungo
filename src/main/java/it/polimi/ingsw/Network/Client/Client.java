@@ -17,38 +17,42 @@ public class Client {
     private static int port;
     private static Gson gson = new Gson();
     private static String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
+    private static Socket socket;
+
+
+    // get the input stream from the connected socket
+    private InputStream is;
+
+    // create a DataInputStream so we can read data from it.
+    private ObjectInputStream ois;
+
+    // get the output stream from the socket.
+    private OutputStream os;
+
+    // create an object output stream from the output stream so we can send an object through it
+    private ObjectOutputStream oos;
 
     public Client() {
         read();
-    }
-
-    public static void main(String[] args) throws IOException {
-        new Client();
-
-
-        // need host and port
-        Socket socket = new Socket("localhost", port);
+        try {
+            socket = new Socket("localhost", port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            os = socket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            oos = new ObjectOutputStream(os);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Connected!");
-
-        // get the output stream from the socket.
-        OutputStream os = socket.getOutputStream();
-        // create an object output stream from the output stream so we can send an object through it
-        ObjectOutputStream oos = new ObjectOutputStream(os);
-
-        // make a bunch of messages to send.
-        List<Message> greetings = new ArrayList<>();
-        greetings.add(new Greetings("Walter", "1", 0));
-        greetings.add(new Greetings("Walter", "2", 0));
-        greetings.add(new Greetings("Walter", "3", 0));
-        greetings.add(new Greetings("Walter", "4", 0));
-
-        System.out.println("Sending messages to the ServerSocket");
-
-        oos.writeObject(greetings);
-
-        System.out.println("Closing socket and terminating program.");
-        socket.close();
     }
+
+
 
     public static void read() {
         FileReader fileReader = null;
@@ -66,5 +70,67 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    public static List<Message> receiveListFromServer(){
+
+        // read the list of messages from the socket
+        List<Message> listOfMessages = null;
+        try {
+
+            listOfMessages = (List<Message>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listOfMessages;
+    }
+
+    public Message receiveMessageFromServer(){
+        // read the message from the socket
+        Message message= null;
+        try {
+
+            message = (Message) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return message;
+    }
+
+
+    public static void sendToServer(List<Message> listOfMessages){
+        try {
+            oos.writeObject(listOfMessages);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void sendToServer(Message message){
+        try {
+            oos.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Client();
+        List<Message> greetings = new ArrayList<>();
+        greetings.add(new Greetings("Walter", "1", 0));
+        greetings.add(new Greetings("Walter", "2", 0));
+        greetings.add(new Greetings("Walter", "3", 0));
+        greetings.add(new Greetings("Walter", "4", 0));
+        sendToServer(greetings);
+
+        List<Message> listOfMessages = receiveListFromServer();
+
+
+
+
+        System.out.println("Closing socket and terminating program.");
+        socket.close();
+    }
+
 
 }
