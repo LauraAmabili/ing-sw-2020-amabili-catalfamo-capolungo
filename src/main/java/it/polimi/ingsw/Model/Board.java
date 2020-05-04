@@ -25,7 +25,6 @@ public class Board {
     }
 
     /**
-     * OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHHHHHHHHHHHHHHHHHHHHH
      * Delete all Player's workers
      * @param p
      */

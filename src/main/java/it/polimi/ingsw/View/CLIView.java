@@ -40,6 +40,7 @@ public class CLIView extends View  {
     }
     public void setCurrentPlayer(PlayerInterface currentPlayer) {
         this.currentPlayer = currentPlayer;
+
     }
 
 
@@ -63,6 +64,8 @@ public class CLIView extends View  {
 
         currentPlayer.setNickname((String)obj);
         System.out.println("Nickname " + obj + " accepted");
+
+
     }
     @Override
     public void updateGameisReady(){
