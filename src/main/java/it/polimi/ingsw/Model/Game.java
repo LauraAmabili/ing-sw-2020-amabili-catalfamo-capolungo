@@ -371,7 +371,7 @@ public class Game extends Observable {
      */
     public boolean building(int row, int col, int worker) {
 
-        if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
+        if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))){
             notifyTryNewCoordinatesBuild(false, worker);
             return false;
         }
