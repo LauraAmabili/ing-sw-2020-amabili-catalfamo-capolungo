@@ -5,6 +5,7 @@ import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.PlayerFSA.Initialized;
+import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -16,6 +17,7 @@ public class Game extends Observable {
     private int id;
     private List<String> nickNames; //in game players
     private List<PlayerInterface> onlinePlayers;
+    private List<PlayerFSA> StateList;
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
@@ -360,7 +362,6 @@ public class Game extends Observable {
             notifyBoardUpdate(this.board);
         }
 
-
     }
 
     /**
@@ -371,7 +372,7 @@ public class Game extends Observable {
      */
     public boolean building(int row, int col, int worker) {
 
-        if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))){
+        if(!this.getCurrentTurn().getCurrentPlayer().build(row - 1, col - 1, this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))){
             notifyTryNewCoordinatesBuild(false, worker);
             return false;
         }
