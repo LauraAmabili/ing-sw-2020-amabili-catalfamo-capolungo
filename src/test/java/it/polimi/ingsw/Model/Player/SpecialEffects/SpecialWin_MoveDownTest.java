@@ -2,9 +2,11 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialWin_MoveDown;
+import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialWin_MoveDownTest {
 
-
+    Game game = new Game();
     private List<Worker> mockWorkers1 = new ArrayList<Worker>();
     private List<Worker> mockWorkers2 = new ArrayList<Worker>();
 
@@ -36,6 +38,7 @@ class SpecialWin_MoveDownTest {
         worker1.setOldCell(board.getGrid()[0][1]);
         Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         mockPlayer1.getBoard().getGrid()[0][0].setWorker(worker1);
+        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialWin_MoveDown(mockPlayer1);
         board.getGrid()[0][1].setLevel(2); //old

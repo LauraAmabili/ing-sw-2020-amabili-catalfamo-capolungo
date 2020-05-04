@@ -5,6 +5,7 @@ import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.PlayerFSA.Initialized;
+import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -16,6 +17,7 @@ public class Game extends Observable {
     private int id;
     private List<String> nickNames; //in game players
     private List<PlayerInterface> onlinePlayers;
+    private List<PlayerFSA> StateList;
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
@@ -359,7 +361,6 @@ public class Game extends Observable {
         else    {
             notifyBoardUpdate(this.board);
         }
-
 
     }
 

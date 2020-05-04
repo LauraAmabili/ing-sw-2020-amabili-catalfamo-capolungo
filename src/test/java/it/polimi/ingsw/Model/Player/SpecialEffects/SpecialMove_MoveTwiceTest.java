@@ -2,9 +2,11 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialMove_MoveTwice;
+import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialMove_MoveTwiceTest {
 
-
+    Game game = new Game();
     private List<Worker> mockWorkers1 = new ArrayList<Worker>();
 
     @Test
@@ -32,7 +34,7 @@ class SpecialMove_MoveTwiceTest {
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer = new Player("mockName", mockWorkers1, board);
+        mockPlayer.setPlayerState(new AddNickname(mockPlayer, game));
         PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
         assertEquals(worker1.getCurCell(), cell);
         assertFalse(player.move(0, 3, worker1));

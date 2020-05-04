@@ -2,9 +2,11 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialOpponentTurn_LockMoveUp;
+import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpecialOpponentTurn_LockMoveUpTest {
 
 
-
+    Game game = new Game();
     private List<Worker> mockWorkers1 = new ArrayList<Worker>();
     private List<Worker> mockWorkers2 = new ArrayList<Worker>();
 
@@ -34,10 +36,12 @@ class SpecialOpponentTurn_LockMoveUpTest {
         worker1.setCurCell(board.getGrid()[0][0]);
         worker2.setCurCell(board.getGrid()[0][1]);
         Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
+        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         worker1.setPlayerWorker(mockPlayer1);
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialOpponentTurn_LockMoveUp(mockPlayer1);
         Player mockPlayer2 = new Player("mockName", mockWorkers2, board);
+        mockPlayer2.setPlayerState(new AddNickname(mockPlayer2, game));
         mockWorkers1.add(worker2);
         worker2.setPlayerWorker(mockPlayer2);
         mockPlayer1.getBoard().getGrid()[0][0].setWorker(worker1);
