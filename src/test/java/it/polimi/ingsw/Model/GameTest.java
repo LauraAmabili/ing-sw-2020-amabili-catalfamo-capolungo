@@ -94,7 +94,6 @@ public class GameTest {
        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
            game.getStateList().get(i).chosenCard("Atlas");
        }
-
        Assert.assertNotNull(game.getChosenGods());
        Assert.assertEquals(game.getChosenGods().get(0), "Apollo");
        Assert.assertEquals(game.getChosenGods().get(1), "Atlas");
@@ -176,8 +175,6 @@ public class GameTest {
         Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0));
         Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1));
 
-
-
     }
 
 
@@ -207,7 +204,6 @@ public class GameTest {
         Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getCol(), 1);
         game.getStateList().get(1).build(2, 3, 1);
         Assert.assertEquals(game.getBoard().getGrid()[1][2].getLevel(), 1);
-
 
     }
 

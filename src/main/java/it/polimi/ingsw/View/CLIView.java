@@ -59,11 +59,14 @@ public class CLIView extends View  {
         }
     }
 
-    @Override
-    public void updatePlayerAdded(Object obj){
+    //Preparing game
 
-        currentPlayer.setNickname((String)obj);
-        System.out.println("Nickname " + obj + " accepted");
+    public void startingGame(){
+
+        System.out.println("Welcome! Choose number of players: 2 or 3?");
+
+        int integer = input.nextInt();
+            notifyInitialiseMatch(integer);
 
 
     }
@@ -76,36 +79,55 @@ public class CLIView extends View  {
 
     }
 
-    @Override
-    public void updateTimeToSetCard(String currentPlayerName) {
+    //Adding player & nicknames
 
-        System.out.println(currentPlayerName + ",it's time to choose your card");
-        chooseYourGod();
+    public void insertNickname(){
+
+        System.out.print("Insert Nickname: ");
+        String in = cases.nextLine();
+        this.nickname = in;
+        notifyAddingNickname(in);
 
     }
     @Override
-    public void updateGodSet(PlayerInterface playerActing, String godName){
-        currentPlayer = playerActing;
-        System.out.println(currentPlayer.getNickname() + " now has " + godName + " as Active Card "+ currentPlayer.getActiveCard().getGodName());
+    public void updatePlayerAdded(String nickname){
+
+        System.out.println("Nickname " + nickname + " accepted");
+        //nicknameRESPONSE
+
     }
-    @Override
-    public void updatePlayerDecorated(PlayerInterface playerDecorated){
-        currentPlayer = playerDecorated;
-        System.out.println(currentPlayer);
-        System.out.println(currentPlayer.getNickname() + " decorated correctly");
-        //System.out.println(player);
-    }
-    @Override
-    public void updateBoard(Board board){
-        System.out.println(GREEN);
-        board.printGrid();
-        System.out.println(RESET);
-        System.out.println(ANSI_BLUE);
-    }
+
+    //Challenger + Setting chosenCards
+
     @Override
     public void updateTimeToChoose(List gods, String name){
 
         chooseCards();
+
+    }
+    public void chooseCards(){
+
+        System.out.println("Time to choose your powers");
+        notifyChoosingCards();
+
+    }
+    @Override
+    public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
+
+        if(!chosenGods) {
+            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
+            System.out.println(Names);
+            chooseCard();
+        }
+        else  {
+            System.out.println("Cards are already been chosen");
+        }
+    }
+    public void chooseCard(){
+
+        System.out.println("Choose card: ");
+        String in = cases.nextLine();
+        notifyTryThisCard(in);
 
     }
     @Override
@@ -129,6 +151,21 @@ public class CLIView extends View  {
 
     }
 
+
+    //Setting personal God
+
+    @Override
+    public void updateTimeToSetCard(String currentPlayerName) {
+
+        System.out.println(currentPlayerName + ",it's time to choose your card");
+        chooseYourGod();
+
+    }
+    @Override
+    public void updateGodSet(String nickname, String godName){
+
+        System.out.println(nickname + " now has " + godName + " as Active Card "+ godName);
+    }
     @Override
     public void updateGodAlreadyChosen(String godName) {
 
@@ -136,75 +173,50 @@ public class CLIView extends View  {
         chooseCard();
 
     }
+    @Override
+    public void updatePlayerDecorated(PlayerInterface playerDecorated){
+        currentPlayer = playerDecorated;
+        System.out.println(currentPlayer);
+        System.out.println(currentPlayer.getNickname() + " decorated correctly");
 
+    }
+    @Override
+    public void updateCardNotPresent(List chosenGods){
+
+        System.out.println("Card not present!");
+        chooseYourGod();
+
+    }
+    public void chooseYourGod() {
+
+        System.out.println("Choose your god");
+        String godName = cases.nextLine();
+        notifyGodNameChosen(godName);
+
+    }
+
+
+
+    //Placing worker
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) {
 
         setWorkers();
 
     }
+    public void setWorkers(){
 
-    @Override
-    public void update(Object obh, Object obj){
-
-        System.out.println("Exception occured");
-    }
-
-    @Override
-    public void updateWinners(PlayerInterface player){
-        System.out.println(player + "You win!");
-    }
-
-    @Override
-    public void updateDecideWorker() {
-
-        chooseWorker();
-
-    }
-
-    @Override
-    public void updateWorkerSelected(int worker) {
-
-        System.out.println("This worker cannot moves. It's been automatically chosen the other one");
-        moving(worker);
-
-    }
-
-    @Override
-    public void updateNoPossibleMove() {
-
-        System.out.println("Your workers are locked. You loose");
-        //TODO: Disconnettere client
-
-    }
-
-    @Override
-    public void updateMoving(int worker){
-
-        moving(worker);
-
-    }
-
-    @Override
-    public void updateNoCoordinatesValid(int worker) {
-
-        System.out.println("This coordinates are not valid, insert them again");
-        moving(worker);
-
-    }
-
-    @Override
-    public void updateTimeToBuild(int worker) {
-
-        building(worker);
-
-    }
-
-    @Override
-    public void updateBuilding(int worker){
-
-            System.out.println("Try new coordinates: ");
-            building(worker);
+        System.out.println("Time to set your Workers");
+        for(int i = 0;  i < 2; i++) {
+            int row = input.nextInt();
+            int col = input.nextInt();
+            while(row > 5 || row < 1 || col > 5 || col < 1) {
+                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                row = input.nextInt();
+                col = input.nextInt();
+            }
+            notifyAddingWorker(row, col, i);
+        }
 
     }
     @Override
@@ -216,25 +228,74 @@ public class CLIView extends View  {
         notifyAddingWorker(row, col, i);
 
     }
-    @Override
-    public void updateCardNotPresent(List chosenGods){
 
-        System.out.println("Card not present!");
-        chooseYourGod();
+
+
+    //Input 6 to start your Turn
+
+    public void startMoving(){
+
+        notifyStartMoving();
+
+    }
+
+    @Override
+    public void update(Object obh, Object obj){
+
+        System.out.println("Exception occured");
+    }
+    @Override
+    public void updateWinners(PlayerInterface player){
+        System.out.println(player + "You win!");
+    }
+    @Override
+    public void updateDecideWorker() {
+
+        chooseWorker();
 
     }
     @Override
-    public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
+    public void updateWorkerSelected(int worker) {
 
-        if(!chosenGods) {
-            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
-            System.out.println(Names);
-            chooseCard();
-        }
-        else  {
-            System.out.println("cards are already been chosen");
-        }
+        System.out.println("This worker cannot moves. It's been automatically chosen the other one");
+        moving(worker);
+
     }
+    @Override
+    public void updateNoPossibleMove() {
+
+        System.out.println("Your workers are locked. You loose");
+        //TODO: Disconnettere client
+
+    }
+    @Override
+    public void updateMoving(int worker){
+
+        moving(worker);
+
+    }
+    @Override
+    public void updateNoCoordinatesValid(int worker) {
+
+        System.out.println("This coordinates are not valid, insert them again");
+        moving(worker);
+
+    }
+    @Override
+    public void updateTimeToBuild(int worker) {
+
+        building(worker);
+
+    }
+    @Override
+    public void updateBuilding(int worker){
+
+            System.out.println("Try new coordinates: ");
+            building(worker);
+
+    }
+
+
     @Override
     public void updateNicknameNotValid(){
         System.out.println("Nickname not valid");
@@ -245,6 +306,14 @@ public class CLIView extends View  {
 
         System.out.println(playerNickname + " out!");
 
+    }
+
+    @Override
+    public void updateBoard(Board board){
+        System.out.println(GREEN);
+        board.printGrid();
+        System.out.println(RESET);
+        System.out.println(ANSI_BLUE);
     }
 
 
@@ -275,59 +344,16 @@ public class CLIView extends View  {
         System.out.print(RESET);
         System.out.print(ANSI_BLUE);
     }
-    public void startingGame(){
-
-        System.out.println("Benvenuto! Choose number of players: 2 or 3?");
-
-        int number = input.nextInt();
-
-        notifyInitialiseMatch(number);
-        //controller.initialiseMatch();
-        //controller.createTurn();
-    }
-    public void insertNickname(){
-
-        System.out.print("Insert Nickname: ");
-        String in = cases.nextLine();
-        this.nickname = in;
-        notifyAddingNickname(in);
-        //controller.addNickname(in);
-    }
-    public void chooseCards(){
-
-        System.out.println("Time to choose your powers");
-
-        notifyChoosingCards();
 
 
-    }
-    public void chooseYourGod() {
 
-        System.out.println("Choose your god");
-        String godName = cases.nextLine();
-        notifyGodNameChosen(godName);
-        //Appena uscito da PlaceWorker
-    }
+
     public void start(){
 
         System.out.println("WELCOME TO SANTORINI");
         System.out.println("Press 1 to start the game");
     }
-    public void setWorkers(){
 
-        System.out.println("Time to set your Workers");
-        for(int i = 0;  i < 2; i++) {
-            int row = input.nextInt();
-            int col = input.nextInt();
-            while(row > 5 || row < 1 || col > 5 || col < 1) {
-                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-                row = input.nextInt();
-                col = input.nextInt();
-            }
-            notifyAddingWorker(row, col, i);
-        }
-
-    }
     public void chooseWorker(){
 
         System.out.println("Choose your Worker : ");
@@ -335,11 +361,7 @@ public class CLIView extends View  {
         notifyTryThisWorker(worker);
 
     }
-    public void startMoving(){
 
-        notifyStartMoving();
-
-    }
     public void moving(int worker){
 
         System.out.println("Choose row & col: ");
@@ -368,13 +390,7 @@ public class CLIView extends View  {
 
 
     }
-    public void chooseCard(){
 
-        System.out.println("Choose card: ");
-        String in = cases.nextLine();
-        notifyTryThisCard(in);
-
-    }
 
 
 

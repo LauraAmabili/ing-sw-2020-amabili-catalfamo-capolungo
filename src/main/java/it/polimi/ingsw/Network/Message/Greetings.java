@@ -1,7 +1,9 @@
 package it.polimi.ingsw.Network.Message;
 
 public class Greetings extends Message {
+
     private int a = 0;
+
     public Greetings(String senderUsername, String token, int a) {
         super(senderUsername, token);
         this.a=a;
@@ -21,6 +23,8 @@ public class Greetings extends Message {
                 "a=" + a +
                 '}';
     }
+
+
 
 
 }

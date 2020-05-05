@@ -176,7 +176,7 @@ public class Game extends Observable {
     }
 
     public void msgGodSet(String godName) {
-        notifyGodSet(currentTurn.getCurrentPlayer(), godName);
+        notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
     }
 
     public void toPlaceWorker() {

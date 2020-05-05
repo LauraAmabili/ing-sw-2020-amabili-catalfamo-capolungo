@@ -16,7 +16,7 @@ public class Observable {
         this.observerModels.add(o);
     }
 
-    void notifyPlayerAdded(Object obj){
+    void notifyPlayerAdded(String obj){
         for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);
         }
@@ -26,7 +26,7 @@ public class Observable {
             o.updateGameisReady();
         }
     }
-    void notifyGodSet(PlayerInterface player, String godName){
+    void notifyGodSet(String player, String godName){
         for(ObserverModel o : observerModels){
             o.updateGodSet(player, godName);
         }

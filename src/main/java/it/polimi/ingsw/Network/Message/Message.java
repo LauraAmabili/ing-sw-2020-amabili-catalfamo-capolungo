@@ -2,7 +2,8 @@ package it.polimi.ingsw.Network.Message;
 
 import java.io.Serializable;
 
-public abstract class Message implements Serializable{
+public abstract class Message implements Serializable {
+
     private final String senderUsername;
     private final String token;
 

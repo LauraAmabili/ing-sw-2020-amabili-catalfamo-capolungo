@@ -10,9 +10,9 @@ public interface ObserverModel {
 
     //public void update(Object obj);
     void update(Object o, Object obj);
-    void updatePlayerAdded(Object obj);
+    void updatePlayerAdded(String obj);
     void updateGameisReady();
-    void updateGodSet(PlayerInterface player, String godName);
+    void updateGodSet(String player, String godName);
     void updatePlayerDecorated(PlayerInterface playerDecorated);
     void updateBoard(Board board);
     void updateTimeToChoose(List gods, String name);
