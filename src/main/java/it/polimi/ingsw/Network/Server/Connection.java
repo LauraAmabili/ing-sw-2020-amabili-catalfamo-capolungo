@@ -1,32 +1,15 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Message.Message;
+import java.net.InetAddress;
 
-import java.io.IOException;
+public class Connection {
+    private String username;
+    private int port;
+    private InetAddress address;
 
-public abstract class Connection {
-    private boolean connected = true;
-    private String token;
-
-
-    public boolean isConnected() {
-        return connected;
-    }
-
-
-    public abstract void sendMessage(Message message) throws IOException;
-
-
-    public abstract void disconnect();
-
-
-    public abstract void ping();
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public Connection(String username, int port, InetAddress address) {
+        this.username = username;
+        this.port = port;
+        this.address = address;
     }
 }
