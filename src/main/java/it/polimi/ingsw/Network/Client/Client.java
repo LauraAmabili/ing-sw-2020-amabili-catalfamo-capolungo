@@ -2,16 +2,11 @@ package it.polimi.ingsw.Network.Client;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Network.Message.Greetings;
-import it.polimi.ingsw.Network.Message.Message;
+import it.polimi.ingsw.Network.Message.Ping;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Client {
 
@@ -39,18 +34,18 @@ public class Client {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 
-        send("MessageFromClient");
+        send(new Ping("Client"));
 
         System.out.println(receive());
         socket.close();
     }
 
-    public void send(String x) throws IOException {
+    public void send(Ping x) throws IOException {
         out.writeObject(x);
     }
 
-    public String receive() throws IOException, ClassNotFoundException {
-        String x = (String) in.readObject();
+    public Ping receive() throws IOException, ClassNotFoundException {
+        Ping x = (Ping) in.readObject();
         return x;
     }
 

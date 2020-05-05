@@ -1,13 +1,9 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Client.Client;
-import it.polimi.ingsw.Network.Message.Greetings;
-import it.polimi.ingsw.Network2.Message;
+import it.polimi.ingsw.Network.Message.Ping;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.List;
 
 class ServerThread extends Thread implements Runnable {
 
@@ -39,18 +35,17 @@ class ServerThread extends Thread implements Runnable {
 
         System.out.println(receive());
 
-        send("MessageFromServer");
-
+        send(new Ping("Server")) ;
 
         socket.close();
     }
 
-    public void send(String x) throws IOException {
+    public void send(Ping x) throws IOException {
         out.writeObject(x);
     }
 
-    public String receive() throws IOException, ClassNotFoundException {
-        String x = (String) in.readObject();
+    public Ping receive() throws IOException, ClassNotFoundException {
+        Ping x = (Ping) in.readObject();
         return x;
     }
 
