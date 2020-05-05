@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model.Player;
 
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.*;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -132,5 +133,24 @@ public class PlayerTest {
         mockPlayer = new Player("mockName", mockWorkers1, board);
         assertTrue(mockPlayer.checkWin(worker1));
 
+    }
+
+    @Test
+    public void addWorkerTest() {
+        mockWorkers1.add(worker1);
+        mockWorkers1.add(worker2);
+        board.getGrid()[0][0].setWorker(worker1);
+        List<BoardCell> free = new ArrayList<>();
+        for(BoardCell[] b : board.getGrid()) {
+            for (BoardCell c : b) {
+                if(c.getWorker() != null) {
+                    free.add(c);
+                }
+            }
+        }
+        PlayerInterface player = new Player("abc", mockWorkers1, board);
+        player.addWorker(0,0, player.getWorkerRef().get(1));
+        assertFalse(player.addWorker(0,0, player.getWorkerRef().get(1)));
+        assertTrue(player.addWorker(4,4, player.getWorkerRef().get(1)));
     }
 }

@@ -17,10 +17,11 @@ public class PlaceWorker extends PlayerFSA{
     public void placeWorker(int row, int col, int worker) {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
             game.updateBoard();
+            worker++;
         } else {
             game.cellAlreadyOccupied(worker);
         }
-        if(worker == game.getCurrentTurn().getCurrentPlayer().getWorkerRef().size() - 1) {
+        if(worker == game.getCurrentTurn().getCurrentPlayer().getWorkerRef().size()) {
             for (int i = 0; i < game.getStateList().size(); i++) {
                 if (game.getNicknames().get(i).equals(player.getNickname())) {
                     game.getStateList().set(i, new Idle(player, this, game));

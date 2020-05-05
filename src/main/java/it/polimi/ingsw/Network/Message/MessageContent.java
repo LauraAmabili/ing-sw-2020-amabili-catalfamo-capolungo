@@ -1,8 +1,5 @@
 package it.polimi.ingsw.Network.Message;
 
-public class MessageContent {
-
-
-    public static String numberOfPlayers = "Number of Players";
-
+public enum MessageContent {
+    CONNECTION, HANDSHAKE
 }

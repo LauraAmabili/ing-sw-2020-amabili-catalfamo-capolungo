@@ -22,7 +22,6 @@ public class BoardTest {
 
     @Test
     public void initialiseGrid() {
-
         Assert.assertNotNull(board.grid);
     }
 

@@ -34,7 +34,7 @@ public class Client {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 
-        send(new Ping("Client"));
+        send(new Ping("1", "1", "Message from client"));
 
         System.out.println(receive());
         socket.close();

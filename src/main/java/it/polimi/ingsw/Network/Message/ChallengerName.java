@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Network.Message;
 
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 
 import java.util.List;
 

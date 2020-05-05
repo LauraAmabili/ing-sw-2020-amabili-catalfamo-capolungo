@@ -76,7 +76,6 @@ public class CLIView extends View  {
         System.out.println("Game is ready!");
         insertNickname();
 
-
     }
 
     //Adding player & nicknames
@@ -111,6 +110,7 @@ public class CLIView extends View  {
         notifyChoosingCards();
 
     }
+
     @Override
     public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
 
@@ -130,6 +130,7 @@ public class CLIView extends View  {
         notifyTryThisCard(in);
 
     }
+
     @Override
     public void updateGodAdded(List<String> gods, boolean cardChosen){
 
@@ -143,6 +144,7 @@ public class CLIView extends View  {
 
 
     }
+
     @Override
     public void updateGodNotAdded(){
 
@@ -250,9 +252,7 @@ public class CLIView extends View  {
     }
     @Override
     public void updateDecideWorker() {
-
         chooseWorker();
-
     }
     @Override
     public void updateWorkerSelected(int worker) {

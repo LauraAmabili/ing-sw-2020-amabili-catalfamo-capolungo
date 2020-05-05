@@ -37,10 +37,6 @@ public class Turn {
         return activePlayers;
     }
 
-    public void setActivePlayers(List<PlayerInterface> activePlayers) {
-        this.activePlayers = activePlayers;
-    }
-
 
     /**
      * Switch the Player and goes on with the turn
@@ -56,15 +52,6 @@ public class Turn {
         TurnId++;
         i = getActivePlayers().indexOf(currentPlayer);
         game.getStateList().get(i).next();
-    }
-
-    /**
-     * Check if the current player can build at least somewhere
-     * @param worker
-     * @return
-     */
-    public boolean checkLockBuild(Worker worker) {
-        return getCurrentPlayer().availableCellsToBuild(worker).size() == 0;
     }
 
     /**

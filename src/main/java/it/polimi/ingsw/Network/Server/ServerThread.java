@@ -26,7 +26,6 @@ class ServerThread extends Thread implements Runnable {
             e.printStackTrace();
         }
 
-
     }
 
     public void startServer() throws IOException, ClassNotFoundException {
@@ -35,7 +34,7 @@ class ServerThread extends Thread implements Runnable {
 
         System.out.println(receive());
 
-        send(new Ping("Server")) ;
+        send(new Ping("1", "1", "Message from server"));
 
         socket.close();
     }

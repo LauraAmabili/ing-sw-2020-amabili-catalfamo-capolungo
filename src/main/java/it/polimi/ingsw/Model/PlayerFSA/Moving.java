@@ -53,12 +53,12 @@ public class Moving extends PlayerFSA {
                     break;
                 }
             }
-        }
-        game.updateBoard();
-        if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
-            game.updateWin(player);
-        } else {
-            game.timeToBuild(worker);
+            game.updateBoard();
+            if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
+                game.updateWin(player);
+            } else {
+                game.timeToBuild(worker);
+            }
         }
     }
 

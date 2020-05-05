@@ -43,6 +43,8 @@ public class TurnTest {
         game.initialiseMatch(3);
         game.getStateList().get(0).addNickname("Rexo");
         assertEquals(new Idle(game.getOnlinePlayers().get(0), new AddNickname(game.getOnlinePlayers().get(0), game), game), game.getStateList().get(0));
+        game.getStateList().get(1).addNickname("Rexo");
+        assertEquals(new AddNickname(game.getOnlinePlayers().get(1), game), game.getStateList().get(1));
         game.getStateList().get(1).addNickname("NotATeen");
         assertEquals(new Idle(game.getOnlinePlayers().get(1), new AddNickname(game.getOnlinePlayers().get(1), game), game), game.getStateList().get(0));
         game.getStateList().get(2).addNickname("Walter");
@@ -57,6 +59,10 @@ public class TurnTest {
 
         game.getStateList().get(i).chosenCard("Apollo");
         game.getStateList().get(i).chosenCard("Artemis");
+        game.getStateList().get(i).chosenCard("Artemis");
+        assertEquals(new Initialized(game.getOnlinePlayers().get(i), game), game.getStateList().get(i));
+        game.getStateList().get(i).chosenCard("artemis");
+        assertEquals(new Initialized(game.getOnlinePlayers().get(i), game), game.getStateList().get(i));
         game.getStateList().get(i).chosenCard("Athena");
         if (i == 2) {
             assertEquals(new SetCard(turn2.getActivePlayers().get(0), game), game.getStateList().get(0));
@@ -87,14 +93,20 @@ public class TurnTest {
 
         //A full turn passes
         if(i == 2) {
+            game.getStateList().get(0).setCard("artemis");
+            assertEquals(new SetCard(game.getOnlinePlayers().get(0), game), game.getStateList().get(0));
             game.getStateList().get(0).setCard("Artemis");
             game.getStateList().get(1).setCard("Athena");
         }
         if(i == 1) {
+            game.getStateList().get(2).setCard("artemis");
+            assertEquals(new SetCard(game.getOnlinePlayers().get(2), game), game.getStateList().get(2));
             game.getStateList().get(2).setCard("Artemis");
             game.getStateList().get(0).setCard("Athena");
         }
         if(i == 0) {
+            game.getStateList().get(1).setCard("artemis");
+            assertEquals(new SetCard(game.getOnlinePlayers().get(1), game), game.getStateList().get(1));
             game.getStateList().get(1).setCard("Artemis");
             game.getStateList().get(2).setCard("Athena");
         }
@@ -109,6 +121,8 @@ public class TurnTest {
         }
         assertEquals(new PlaceWorker(turn2.getCurrentPlayer(), game), game.getStateList().get(i));
         game.getStateList().get(i).placeWorker(1, 1, 0);
+        game.getStateList().get(i).placeWorker(1, 1, 1);
+        assertEquals(new PlaceWorker(game.getOnlinePlayers().get(i), game), game.getStateList().get(i));
         game.getStateList().get(i).placeWorker(2,2, 1);
         assertEquals(new Idle(turn2.getActivePlayers().get(i), new PlaceWorker(turn2.getActivePlayers().get(i), game), game), game.getStateList().get(i));
         if (i == 2) {
@@ -149,7 +163,11 @@ public class TurnTest {
             }
         }
         assertEquals(new Moving(turn2.getCurrentPlayer(), game), game.getStateList().get(i));
+        game.getStateList().get(i).move(3,3,1);
+        assertEquals(new Moving(turn2.getCurrentPlayer(), game), game.getStateList().get(i));
         game.getStateList().get(i).move(1,2,1);
+        assertEquals(new Building(turn2.getCurrentPlayer(), game), game.getStateList().get(i));
+        game.getStateList().get(i).build(2,2,1);
         assertEquals(new Building(turn2.getCurrentPlayer(), game), game.getStateList().get(i));
         game.getStateList().get(i).build(1,3,1);
         if (i == 2) {
