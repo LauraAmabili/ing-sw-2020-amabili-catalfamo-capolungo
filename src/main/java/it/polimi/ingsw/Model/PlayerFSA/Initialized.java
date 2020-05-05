@@ -19,20 +19,50 @@ public class Initialized extends PlayerFSA {
         this.game = game;
     }
 
-
-
     @Override
-    public void chosenCards(String godName) {
-        if(game.checkAndAdd(godName)) {
-            player.setPlayerState(new Idle(player, this, game));
-            game.getCurrentTurn().nextTurn();
-            game.toSetCard();
+    public void chosenCard(String godName) {
+        boolean flag = true;
+        if(game.getGodListNames().contains(godName)) {
+            if(game.getChosenGods().isEmpty()) {
+                game.getChosenGods().add(godName);
+            } else {
+                for(String g : game.getChosenGods()) {
+                    if(g.equals(godName)) {
+                        flag = false;
+                        game.godNotAdded();
+                        break;
+                    }
+                }
+                if(flag) {
+                    game.getChosenGods().add(godName);
+                }
+            }
+            if(game.getChosenGods().size() == game.getOnlinePlayers().size()) {
+                game.godAdded(true);
+                for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
+                    if (game.getNicknames().get(i).equals(player.getNickname())) {
+                        game.getStateList().set(i, new Idle(player, this, game));
+                        break;
+                    }
+                }
+                game.getCurrentTurn().nextTurn(game);
+                game.toSetCard();
+            } else {
+                game.godAdded(false);
+            }
+        } else {
+            game.godNotAdded();
         }
     }
 
     @Override
     public void next() {
-        player.setPlayerState(new SetCard(player, game));
+        for(int i = 0; i < game.getStateList().size(); i++) {
+            if(game.getNicknames().get(i).equals(player.getNickname())) {
+                game.getStateList().set(i, new SetCard(player, game));
+                break;
+            }
+        }
     }
 
 }

@@ -44,7 +44,6 @@ class SpecialBuild_BuildTwiceDifferentTest {
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer.setPlayerState(new AddNickname(mockPlayer, game));
         PlayerInterface player = new SpecialBuild_BuildTwiceDifferent(mockPlayer);
         player.build(1, 0, worker1, 0, 1);
         assertEquals(1, board.getGrid()[1][0].getLevel());

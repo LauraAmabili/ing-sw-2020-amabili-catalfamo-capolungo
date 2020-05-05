@@ -26,9 +26,9 @@ public class Observable {
             o.updateGameisReady();
         }
     }
-    void notifyGodSetted(PlayerInterface player, String godName){
+    void notifyGodSet(PlayerInterface player, String godName){
         for(ObserverModel o : observerModels){
-            o.updateGodSetted(player, godName);
+            o.updateGodSet(player, godName);
         }
     }
     void notifyObservers(Object something, Object obj){
@@ -36,7 +36,7 @@ public class Observable {
             o.update(something,obj);
         }
     }
-    void notifyGodAdded(List<God> gods, boolean cardChosen){
+    void notifyGodAdded(List<String> gods, boolean cardChosen){
         for(ObserverModel o : observerModels){
             o.updateGodAdded(gods, cardChosen);
         }
@@ -51,9 +51,9 @@ public class Observable {
             o.updateBoard(board);
         }
     }
-    void notifyCanMove(Object obj){
+    void notifyCanMove(){
         for(ObserverModel o : observerModels){
-            o.updateDecideWorker(obj);
+            o.updateDecideWorker();
         }
     }
     void notifyCanMoveThisWorker(int worker){
@@ -66,14 +66,9 @@ public class Observable {
             o.updateMoving(Worker);
         }
     }
-    void notifyCanBuild(boolean object, int worker){
+    void notifyTryNewCoordinatesBuild(int worker){
         for(ObserverModel o : observerModels){
-            o.updateBuilding(object, worker);
-        }
-    }
-    void notifyTryNewCoordinatesBuild(boolean obj, int worker){
-        for(ObserverModel o : observerModels){
-            o.updateBuilding(obj, worker);
+            o.updateBuilding(worker);
         }
     }
     void notifyCellAlreadyOccupied(int i){
@@ -125,4 +120,41 @@ public class Observable {
             o.updateTimeToChoose(gods, name);
         }
     }
+
+    void notifyGodAlreadyChosen(String name){
+        for (ObserverModel o : observerModels){
+            o.updateGodAlreadyChosen(name);
+        }
+    }
+
+    void notifyNoPossibleMove() {
+        for (ObserverModel o : observerModels){
+            o.updateNoPossibleMove();
+        }
+    }
+
+    void notifyWin(PlayerInterface p) {
+        for (ObserverModel o : observerModels){
+            o.updateWinners(p);
+        }
+    }
+
+    void notifyWorkerSelected(int worker) {
+        for (ObserverModel o : observerModels){
+            o.updateWorkerSelected(worker);
+        }
+    }
+
+    void notifyNoCoordinatesValid(int worker) {
+        for (ObserverModel o : observerModels){
+            o.updateNoCoordinatesValid(worker);
+        }
+    }
+
+    void notifyTimeToBuild(int worker) {
+        for (ObserverModel o : observerModels){
+            o.updateTimeToBuild(worker);
+        }
+    }
+
 }

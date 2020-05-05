@@ -35,7 +35,6 @@ class SpecialMove_BMBTest {
         worker1.setOldCell(null);
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
-        mockPlayer.setPlayerState(new AddNickname(mockPlayer, game));
         PlayerInterface player = new SpecialMove_BMB(mockPlayer);
         player.move(0, 1, worker1, true, 1, 0);
         assertEquals(1, board.getGrid()[1][0].getLevel());

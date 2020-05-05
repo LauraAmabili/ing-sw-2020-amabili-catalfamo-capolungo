@@ -38,7 +38,6 @@ class SpecialWin_MoveDownTest {
         worker1.setOldCell(board.getGrid()[0][1]);
         Player mockPlayer1 = new Player("Rexo", mockWorkers1, board);
         mockPlayer1.getBoard().getGrid()[0][0].setWorker(worker1);
-        mockPlayer1.setPlayerState(new AddNickname(mockPlayer1, game));
         mockWorkers1.add(worker1);
         PlayerInterface player1 = new SpecialWin_MoveDown(mockPlayer1);
         board.getGrid()[0][1].setLevel(2); //old

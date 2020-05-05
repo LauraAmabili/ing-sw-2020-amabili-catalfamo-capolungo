@@ -2,11 +2,8 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Worker;
 
-import java.util.List;
 
 
 public class Building extends PlayerFSA {
@@ -21,15 +18,29 @@ public class Building extends PlayerFSA {
 
     @Override
     public void build(int row, int col, int worker) {
-        if(game.building(row, col,worker)) {
-            player.setPlayerState(new Idle(player, this, game));
-            game.getCurrentTurn().nextTurn();
+        if(!player.build(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
+            game.NoCoordinatesValidBuild(worker);
+        } else {
+            for(int i = 0; i < game.getStateList().size(); i++) {
+                if(game.getNicknames().get(i).equals(player.getNickname())) {
+                    game.getStateList().set(i, new Idle(player, this, game));
+                    break;
+                }
+            }
+            game.updateBoard();
+            game.getCurrentTurn().nextTurn(game);
         }
+
     }
 
     @Override
     public void next() {
-        player.setPlayerState(new Moving(player, game));
+        for(int i = 0; i < game.getStateList().size(); i++) {
+            if(game.getNicknames().get(i).equals(player.getNickname())) {
+                game.getStateList().set(i, new Moving(player, game));
+                break;
+            }
+        }
     }
 
 }

@@ -45,7 +45,7 @@ public class Turn {
     /**
      * Switch the Player and goes on with the turn
      */
-    public synchronized void nextTurn() {
+    public synchronized void nextTurn(Game game) {
         int index = activePlayers.size() - 1;
         int i = activePlayers.indexOf(currentPlayer);
         if(index == i) {
@@ -54,7 +54,8 @@ public class Turn {
             currentPlayer = activePlayers.get(activePlayers.indexOf(currentPlayer) + 1);
         }
         TurnId++;
-        currentPlayer.getPlayerState().next();
+        i = getActivePlayers().indexOf(currentPlayer);
+        game.getStateList().get(i).next();
     }
 
     /**
@@ -71,8 +72,12 @@ public class Turn {
      * @param worker
      * @return
      */
-    public boolean checkLockPlayer(Worker worker) {
+    public boolean checkLockWorker(Worker worker) {
         return getCurrentPlayer().availableCellsToMove(worker).size() == 0;
+    }
+
+    public boolean checkLockPlayer() {
+        return currentPlayer.availableCellsToMove(currentPlayer.getWorkerRef().get(0)).size() == 0 && currentPlayer.availableCellsToMove(currentPlayer.getWorkerRef().get(1)).size() == 0;
     }
 
 }

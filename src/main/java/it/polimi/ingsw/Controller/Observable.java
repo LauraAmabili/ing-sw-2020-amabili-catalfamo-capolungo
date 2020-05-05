@@ -81,10 +81,5 @@ public class Observable {
 
     }
 
-    public void notifyWantToBuild(int worker){
-        for(Observer o: observerController){
-            o.updateWantToBuild(worker);
-        }
-    }
 
 }

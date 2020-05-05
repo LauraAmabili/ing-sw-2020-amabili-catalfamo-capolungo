@@ -4,7 +4,6 @@ import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,20 +12,6 @@ import java.util.List;
 
 public class Player implements PlayerInterface {
 
-    //FSA State
-    private PlayerFSA playerState;
-
-
-    @Override
-    public PlayerFSA getPlayerState() {
-        return playerState;
-    }
-
-
-    @Override
-    public void setPlayerState(PlayerFSA playerState) {
-        this.playerState = playerState;
-    }
 
     //Player Attributes
     private String nickname;

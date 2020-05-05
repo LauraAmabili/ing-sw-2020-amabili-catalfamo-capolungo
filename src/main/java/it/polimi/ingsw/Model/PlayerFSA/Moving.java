@@ -2,11 +2,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Worker;
-
-import java.util.List;
 
 public class Moving extends PlayerFSA {
 
@@ -20,18 +16,50 @@ public class Moving extends PlayerFSA {
 
     @Override
     public void canIMove() {
-        game.canIMove();
+        if(game.getCurrentTurn().checkLockPlayer()) {
+            game.NoPossibleMoves(player.getNickname());
+            game.delPlayer(game.getCurrentTurn().getCurrentPlayer());
+            if(game.getOnlinePlayers().size() == 1) {
+                game.updateWin(player);
+            } else {
+                game.getCurrentTurn().nextTurn(game);
+            }
+        } else {
+            game.timeToCheckWorker();
+        }
     }
 
     @Override
     public void checkWorker(int worker) {
-        game.checkWorker(worker);
+        if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
+            if(worker == 2) {
+                worker = 1;
+            } else {
+                worker++;
+            }
+            game.updateWorkerSelected(worker);
+        }
+        game.timeToMove(worker);
     }
 
     @Override
     public void move(int row, int col, int worker) {
-        game.moving(row, col, worker);
-        player.setPlayerState(new Building(player, game));
+        if(!player.move(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
+            game.NoCoordinatesValidMove(worker);
+        } else {
+            for (int i = 0; i < game.getStateList().size(); i++) {
+                if(game.getNicknames().get(i).equals(player.getNickname())) {
+                    game.getStateList().set(i, new Building(player, game));
+                    break;
+                }
+            }
+        }
+        game.updateBoard();
+        if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
+            game.updateWin(player);
+        } else {
+            game.timeToBuild(worker);
+        }
     }
 
 

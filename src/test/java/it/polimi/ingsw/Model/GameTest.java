@@ -1,17 +1,13 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Controller.GameController;
-import it.polimi.ingsw.Controller.Observable;
-import it.polimi.ingsw.Controller.Observer;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.View.CLIView;
-import it.polimi.ingsw.View.View;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.management.modelmbean.ModelMBean;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +42,7 @@ public class GameTest {
         Assert.assertNotNull(game.getOnlinePlayers().get(1).getWorkerRef().get(1));
     }
 
-    /*
+
     @Test
     public void delPlayer() {
 
@@ -75,63 +71,61 @@ public class GameTest {
     @Test
     public void addNickname(){
        // game.initialiseMatch(2);
-        game.createTurn();
-        game.addNickname("Notateen");
-        game.notifyPlayerAdded("Notateen");
+        game.getOnlinePlayers().get(0).setNickname("Notateen");
+        view1.updatePlayerAdded("Notateen");
+        Assert.assertEquals(view1.getCurrentPlayer().getNickname(), "Notateen");
         //Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), view1.getCurrentPlayer().getNickname());
-        game.getCurrentTurn().nextTurn();
-        game.addNickname("SuperRexo");
+        game.getOnlinePlayers().get(1).setNickname("SuperRexo");
         Assert.assertEquals(game.getOnlinePlayers().get(0).getNickname(), "Notateen");
         Assert.assertEquals(game.getOnlinePlayers().get(1).getNickname(), "SuperRexo");
     }
 
-    @Test
-    public void NicknameNotCorrect() {
-        game.addNickname("Notateen");
-        game.getCurrentTurn().nextTurn();
-        game.addNickname("Notateen");
-        Assert.assertNotEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), "Notateen");
-    }
+
+   @Test
+   public void CorrectCards(){
+
+
+       game.getStateList().get(0).addNickname("Notateen");
+       game.getStateList().get(1).addNickname("SuperRexo");
+       game.chooseCards();
+       for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+           game.getStateList().get(i).chosenCard("Apollo");
+       }
+       for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+           game.getStateList().get(i).chosenCard("Atlas");
+       }
+
+       Assert.assertNotNull(game.getChosenGods());
+       Assert.assertEquals(game.getChosenGods().get(0), "Apollo");
+       Assert.assertEquals(game.getChosenGods().get(1), "Atlas");
+
+   }
+
+
+
 
     @Test
     public void isGodNameSetted(){
 
-        game.addNickname("Notateen");
-        game.setGod("Apollo");
-        Assert.assertSame(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName(), "Apollo");
-        game.getCurrentTurn().nextTurn();
-        game.addNickname("SuperRexo");
-        game.setGod("Pan");
-        Assert.assertSame(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName(), "Pan");
-        Assert.assertNotEquals(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName(), "Apollo");
-
+        game.getStateList().get(0).addNickname("Notateen");
+        game.getStateList().get(1).addNickname("SuperRexo");
+        game.chooseCards();
+        game.getStateList().get(0).chosenCard("Pan");
+        game.getStateList().get(1).chosenCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(1).setCard("Pan");
+        game.getStateList().get(0).setCard("Athena");
+        Assert.assertEquals(game.getOnlinePlayers().get(1).getActiveCard().getGodName(), "Pan");
+        Assert.assertNotEquals(game.getOnlinePlayers().get(1).getActiveCard().getGodName(), "Butterfly ");
     }
-    @Test
-    public void checkUpdatesOfSettingGod(){
 
-        game.addNickname("Notateen");
-        game.setGod("Pan");
-        Assert.assertEquals(game.getCurrentTurn().getActivePlayers().get(0).getActiveCard().getGodName(), "Pan");
-        Assert.assertEquals(game.getOnlinePlayers().get(0).getActiveCard().getGodName(), "Pan");
-        game.notifyGodSetted(game.getCurrentTurn().getCurrentPlayer(), "Pan");
-        view1.updateGodSetted(game.getCurrentTurn().getCurrentPlayer(), "Pan");
-        Assert.assertEquals(view1.getCurrentPlayer().getActiveCard().getGodName(), "Pan");
-        Assert.assertEquals(view1.getCurrentPlayer().getActiveCard().getGodName(), "Pan");
-        game.getCurrentTurn().nextTurn();
-        game.addNickname("SuperRexo");
-        game.setGod("Atlas");
-        game.notifyGodSetted(game.getCurrentTurn().getCurrentPlayer(), "Atlas");
-        view1.updateGodSetted(game.getCurrentTurn().getCurrentPlayer(), "Atlas");
-        Assert.assertEquals(view1.getCurrentPlayer().getActiveCard().getGodName(), "Atlas");
-        Assert.assertNotEquals(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName(), "Butterfly");
-        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getActiveCard().getGodName(), "Atlas");
 
-    }
+
 
     @Test
     public void CardsNotChosenYet(){
 
-        game.addNickname("Notateen");
+        game.getStateList().get(0).addNickname("Notateen");
         Assert.assertEquals(game.getChosenGods().size(), 0 );
         game.chooseCards();
         game.createChallenger();
@@ -140,15 +134,83 @@ public class GameTest {
 
     }
 
+
+
     @Test
     public void CheckCard(){
-         game.checkAndAdd("Apollo");
+         game.getChosenGods().add("Apollo");
          Assert.assertNotNull(game.getChosenGods());
-         Assert.assertEquals(game.getChosenGods().get(0).getGodName(), "Apollo");
-         game.checkAndAdd("Pan");
-         Assert.assertEquals(game.getChosenGods().get(1).getGodName(), "Pan");
+         Assert.assertEquals(game.getChosenGods().get(0), "Apollo");
+       game.getChosenGods().add("Pan");
+         Assert.assertEquals(game.getChosenGods().get(1), "Pan");
+
+
 
     }
+
+    @Test
+    public void isWorkerAddedCorrectly(){
+
+        game.getOnlinePlayers().get(0).setNickname("Notateen");
+        game.getOnlinePlayers().get(1).setNickname("SuperRexo");
+        game.getStateList().get(0).addNickname("Notateen");
+        game.getStateList().get(1).addNickname("SuperRexo");
+        game.chooseCards();
+        game.getStateList().get(0).chosenCard("Pan");
+        game.getStateList().get(1).chosenCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(1).setCard("Pan");
+        game.getStateList().get(0).setCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(1).placeWorker(1, 1, 0);
+        Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0));
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getRow(), 0);
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getCol(), 0);
+        game.getStateList().get(1).placeWorker(1, 2, 1);
+        Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1));
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(0).placeWorker(5, 5, 0);
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getRow(), 4);
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getCol(), 4);
+        game.getStateList().get(0).placeWorker(5, 4, 1);
+        Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0));
+        Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1));
+
+
+
+    }
+
+
+
+    @Test
+    public void isMovingAndBuildingCorrectly(){
+
+        game.getOnlinePlayers().get(0).setNickname("Notateen");
+        game.getOnlinePlayers().get(1).setNickname("SuperRexo");
+        game.getStateList().get(0).addNickname("Notateen");
+        game.getStateList().get(1).addNickname("SuperRexo");
+        game.chooseCards();
+        game.getStateList().get(0).chosenCard("Pan");
+        game.getStateList().get(1).chosenCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(1).setCard("Pan");
+        game.getStateList().get(0).setCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
+        game.getStateList().get(1).placeWorker(1, 1, 0);
+        game.getStateList().get(1).placeWorker(1, 2, 1);
+        game.getStateList().get(0).placeWorker(5, 5, 0);
+        game.getStateList().get(0).placeWorker(5, 4, 1);
+        game.getStateList().get(1).canIMove();
+        game.getStateList().get(1).checkWorker(1);
+        game.getStateList().get(1).move(2 , 2, 1);
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getRow(),1);
+        Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getCol(), 1);
+        game.getStateList().get(1).build(2, 3, 1);
+        Assert.assertEquals(game.getBoard().getGrid()[1][2].getLevel(), 1);
+
+
+    }
+
 
 
 
@@ -164,5 +226,6 @@ public class GameTest {
     State state = State.ADDNICKNAME;
     assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), "Notateen");
      */
+
 
 }
