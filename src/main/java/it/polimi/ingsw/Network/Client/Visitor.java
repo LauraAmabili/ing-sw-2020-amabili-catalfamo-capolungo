@@ -20,6 +20,9 @@ public interface Visitor {
     public void visit(GodNotAdded godNotAdded);
     public void visit(PlayerSetCard playerSetCard);
     public void visit(SetCard setCard);
+    public void visit(CardSet cardSet);
+    public void visit(CardNotPresent cardNotPresent);
+    public void visit(Welcome welcome);
 
 
 

@@ -16,10 +16,12 @@ public class ConcreteMethods implements Visitor {
         System.out.println("This card " + cardToBeAdded.getCardName() + " has been chosen from " + cardToBeAdded.getSenderUsername());
     }
 
+
     @Override
     public void visit(ChallengerName challengerName){
 
         System.out.println("Challenger was random, "+ challengerName.getChallengerName() + "can now choose the Cards \n. Here are the cards " + challengerName.getGodNames());
+
     }
     @Override
     public void visit(NicknameResponseOk nicknameResponseOk){
@@ -59,6 +61,25 @@ public class ConcreteMethods implements Visitor {
     public void visit(SetCard setCard) {
 
     }
+
+    @Override
+    public void visit(CardSet cardSet) {
+
+    }
+
+    @Override
+    public void visit(CardNotPresent cardNotPresent) {
+
+    }
+
+    @Override
+    public void visit(Welcome welcome) {
+
+        System.out.println("Welcome to Santorini");
+        System.out.println("Press 1 to start your Game");
+
+    }
+
     @Override
     public void visit(GameReady gameReady){}
 

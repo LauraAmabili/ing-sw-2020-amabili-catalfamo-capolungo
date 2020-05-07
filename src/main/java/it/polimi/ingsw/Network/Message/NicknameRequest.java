@@ -8,6 +8,7 @@ public class NicknameRequest extends Message{
         super(senderUsername, token);
     }
 
+
     @Override
     public void accept(Visitor gameMessageVisitor) {
             gameMessageVisitor.visit(this);
