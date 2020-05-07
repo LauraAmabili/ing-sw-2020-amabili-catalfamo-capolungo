@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Network.Message;
 
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 import java.util.List;
 
 public class ChallengerName extends Message {
@@ -14,8 +16,26 @@ public class ChallengerName extends Message {
         this.challengerName = challengerName;
     }
 
+    public String getChallengerName() {
+        return challengerName;
+    }
+
+    public void setChallengerName(String challengerName) {
+        this.challengerName = challengerName;
+    }
+
+    public List getGodNames() {
+        return godNames;
+    }
+
+    public void setGodNames(List godNames) {
+        this.godNames = godNames;
+    }
+
+
     @Override
-    public String toString(){
-        return "Challenger was random, "+ challengerName + "can now choose the Cards \n. Here are the cards " + godNames;
+    public void accept(Visitor gameMessageVisitor) {
+        gameMessageVisitor.visit(this);
+
     }
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Message;
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 public class CardToBeAdded extends Message {
 
 
@@ -14,15 +16,17 @@ public class CardToBeAdded extends Message {
 
     }
 
+
     public String getCardName() {
         return cardName;
     }
 
     @Override
-    public String toString(){
-        return "This card " + cardName + " has been chosen from " + getSenderUsername();
-    }
+    public void accept(Visitor gameMessageVisitor) {
 
+       gameMessageVisitor.visit(this);
+
+    }
 
 
 }

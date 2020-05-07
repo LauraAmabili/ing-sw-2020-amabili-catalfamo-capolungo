@@ -232,7 +232,7 @@ public class Game extends Observable {
     }
 
     public void timeToCheckWorker() {
-        notifyCanMove();
+        notifyCanMove(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void timeToMove(int worker) {

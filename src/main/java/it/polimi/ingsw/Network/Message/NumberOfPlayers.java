@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Message;
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 public class NumberOfPlayers extends Message {
 
 
@@ -28,6 +30,11 @@ public class NumberOfPlayers extends Message {
     @Override
     public String toString(){
         return "numberOfPlayers (" + numberOfPlayers + ") set by " + getSenderUsername();
+    }
+
+    @Override
+    public void accept(Visitor gameMessageVisitor) {
+
     }
 
 }

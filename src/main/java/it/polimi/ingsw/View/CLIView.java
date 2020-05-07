@@ -95,6 +95,11 @@ public class CLIView extends View  {
         //nicknameRESPONSE
 
     }
+    @Override
+    public void updateNicknameNotValid(){
+        System.out.println("Nickname not valid");
+        insertNickname();
+    }
 
     //Challenger + Setting chosenCards
 
@@ -110,7 +115,6 @@ public class CLIView extends View  {
         notifyChoosingCards();
 
     }
-
     @Override
     public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
 
@@ -130,7 +134,6 @@ public class CLIView extends View  {
         notifyTryThisCard(in);
 
     }
-
     @Override
     public void updateGodAdded(List<String> gods, boolean cardChosen){
 
@@ -144,7 +147,6 @@ public class CLIView extends View  {
 
 
     }
-
     @Override
     public void updateGodNotAdded(){
 
@@ -163,6 +165,13 @@ public class CLIView extends View  {
         chooseYourGod();
 
     }
+    public void chooseYourGod() {
+
+        System.out.println("Choose your god");
+        String godName = cases.nextLine();
+        notifyGodNameChosen(godName);
+
+    }
     @Override
     public void updateGodSet(String nickname, String godName){
 
@@ -176,33 +185,21 @@ public class CLIView extends View  {
 
     }
     @Override
-    public void updatePlayerDecorated(PlayerInterface playerDecorated){
-        currentPlayer = playerDecorated;
-        System.out.println(currentPlayer);
-        System.out.println(currentPlayer.getNickname() + " decorated correctly");
-
-    }
-    @Override
     public void updateCardNotPresent(List chosenGods){
 
         System.out.println("Card not present!");
         chooseYourGod();
 
     }
-    public void chooseYourGod() {
-
-        System.out.println("Choose your god");
-        String godName = cases.nextLine();
-        notifyGodNameChosen(godName);
-
-    }
 
 
 
     //Placing worker
+
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) {
 
+        System.out.println("Now " + currentPlayerName + "is setting his workers");
         setWorkers();
 
     }
@@ -210,6 +207,7 @@ public class CLIView extends View  {
 
         System.out.println("Time to set your Workers");
         for(int i = 0;  i < 2; i++) {
+            System.out.println("Insert your coordinates (x,y) as row and col");
             int row = input.nextInt();
             int col = input.nextInt();
             while(row > 5 || row < 1 || col > 5 || col < 1) {
@@ -231,29 +229,38 @@ public class CLIView extends View  {
 
     }
 
-
-
     //Input 6 to start your Turn
 
     public void startMoving(){
 
         notifyStartMoving();
+    }
+
+
+
+    @Override
+    public void updatePlayerHasLost(String playerNickname){
+
+        System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
 
     @Override
-    public void update(Object obh, Object obj){
+    public void updateDecideWorker(String nickname) {
 
-        System.out.println("Exception occured");
-    }
-    @Override
-    public void updateWinners(PlayerInterface player){
-        System.out.println(player + "You win!");
-    }
-    @Override
-    public void updateDecideWorker() {
+        System.out.println("It's "  + nickname + " turn!");
+        System.out.println("Choosing his worker");
         chooseWorker();
     }
+    public void chooseWorker(){
+
+        System.out.println("Choose your Worker : ");
+        int worker = input.nextInt();
+        notifyTryThisWorker(worker);
+
+    }
+
+
     @Override
     public void updateWorkerSelected(int worker) {
 
@@ -262,16 +269,24 @@ public class CLIView extends View  {
 
     }
     @Override
-    public void updateNoPossibleMove() {
-
-        System.out.println("Your workers are locked. You loose");
-        //TODO: Disconnettere client
-
-    }
-    @Override
     public void updateMoving(int worker){
 
+        //System.out.println("Worker " + worker +" can move");
         moving(worker);
+    }
+
+    public void moving(int worker){
+
+        System.out.println("Choose row & col: ");
+        int row = input.nextInt();
+        int col = input.nextInt();
+        while(row > 5 || row < 1 || col > 5 || col < 1) {
+            System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+            row = input.nextInt();
+            col = input.nextInt();
+        }
+        notifyMoving(row, col, worker);
+        //se mi sono mossa costruisco
 
     }
     @Override
@@ -282,11 +297,36 @@ public class CLIView extends View  {
 
     }
     @Override
+    public void update(Object obh, Object obj){
+
+        System.out.println("Exception occured");
+    }
+    @Override
+    public void updateWinners(PlayerInterface player){
+        System.out.println(player + "You win!");
+    }
+
+    @Override
     public void updateTimeToBuild(int worker) {
 
+        System.out.println("It's now time to  build!");
         building(worker);
 
     }
+    public void building(int worker){
+
+        // System.out.println("Vuoi costruire? Insert Yes or no");
+        //String input = cases.nextLine();
+        //notifyWantToBuild(worker);
+
+        System.out.println("Build around your worker # " + worker + "Insert row e col: " );
+        int row = input.nextInt();
+        int col = input.nextInt();
+        notifyBuilding(row, col, worker);
+
+
+    }
+
     @Override
     public void updateBuilding(int worker){
 
@@ -296,17 +336,6 @@ public class CLIView extends View  {
     }
 
 
-    @Override
-    public void updateNicknameNotValid(){
-        System.out.println("Nickname not valid");
-        insertNickname();
-    }
-    @Override
-    public void updatePlayerHasLost(String playerNickname){
-
-        System.out.println(playerNickname + " out!");
-
-    }
 
     @Override
     public void updateBoard(Board board){
@@ -354,42 +383,7 @@ public class CLIView extends View  {
         System.out.println("Press 1 to start the game");
     }
 
-    public void chooseWorker(){
 
-        System.out.println("Choose your Worker : ");
-        int worker = input.nextInt();
-        notifyTryThisWorker(worker);
-
-    }
-
-    public void moving(int worker){
-
-        System.out.println("Choose row & col: ");
-        int row = input.nextInt();
-        int col = input.nextInt();
-        while(row > 5 || row < 1 || col > 5 || col < 1) {
-            System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-            row = input.nextInt();
-            col = input.nextInt();
-        }
-        notifyMoving(row, col, worker);
-        //se mi sono mossa costruisco
-
-
-    }
-    public void building(int worker){
-
-       // System.out.println("Vuoi costruire? Insert Yes or no");
-        //String input = cases.nextLine();
-        //notifyWantToBuild(worker);
-
-        System.out.println("Build around your worker # " + worker + "Insert row e col: " );
-        int row = input.nextInt();
-        int col = input.nextInt();
-        notifyBuilding(row, col, worker);
-
-
-    }
 
 
 

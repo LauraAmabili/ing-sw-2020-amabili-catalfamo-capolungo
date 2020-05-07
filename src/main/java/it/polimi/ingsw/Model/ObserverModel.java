@@ -13,7 +13,6 @@ public interface ObserverModel {
     void updatePlayerAdded(String obj);
     void updateGameisReady();
     void updateGodSet(String player, String godName);
-    void updatePlayerDecorated(PlayerInterface playerDecorated);
     void updateBoard(Board board);
     void updateTimeToChoose(List gods, String name);
     void updateGodAdded(List<String> gods, boolean cardChosen);
@@ -26,11 +25,10 @@ public interface ObserverModel {
     void updateChoose(boolean chosenGods, List Names, String ChallengerName);
     void updateNicknameNotValid();
     void updatePlayerHasLost(String playerName);
-    void updateDecideWorker();
+    void updateDecideWorker(String nickname);
     void updateTimeToSetCard(String currentPlayerName);
     void updateTimeToPlaceWorker(String currentPlayerName);
     void updateGodAlreadyChosen(String godName);
-    void updateNoPossibleMove();
     void updateWorkerSelected(int worker);
     void updateNoCoordinatesValid(int worker);
     void updateTimeToBuild(int worker);

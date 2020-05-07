@@ -51,9 +51,9 @@ public class Observable {
             o.updateBoard(board);
         }
     }
-    void notifyCanMove(){
+    void notifyCanMove(String nickname){
         for(ObserverModel o : observerModels){
-            o.updateDecideWorker();
+            o.updateDecideWorker(nickname);
         }
     }
     void notifyCanMoveThisWorker(int worker){
@@ -126,13 +126,6 @@ public class Observable {
             o.updateGodAlreadyChosen(name);
         }
     }
-
-    void notifyNoPossibleMove() {
-        for (ObserverModel o : observerModels){
-            o.updateNoPossibleMove();
-        }
-    }
-
     void notifyWin(PlayerInterface p) {
         for (ObserverModel o : observerModels){
             o.updateWinners(p);

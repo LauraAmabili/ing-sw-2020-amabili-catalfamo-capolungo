@@ -71,7 +71,7 @@ public class GameTest {
     @Test
     public void addNickname(){
        // game.initialiseMatch(2);
-        game.getOnlinePlayers().get(0).setNickname("Notateen");
+        game.getStateList().get(0).addNickname("Notateen");
         view1.updatePlayerAdded("Notateen");
         Assert.assertEquals(view1.getCurrentPlayer().getNickname(), "Notateen");
         //Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), view1.getCurrentPlayer().getNickname());

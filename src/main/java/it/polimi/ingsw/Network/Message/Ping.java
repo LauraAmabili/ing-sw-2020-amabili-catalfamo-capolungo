@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Message;
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 import java.io.Serializable;
 
 public class Ping extends Message{
@@ -16,5 +18,10 @@ public class Ping extends Message{
         return "Ping{" +
                 "sender='" + sender + '\'' +
                 '}';
+    }
+
+    @Override
+    public void accept(Visitor gameMessageVisitor) {
+
     }
 }

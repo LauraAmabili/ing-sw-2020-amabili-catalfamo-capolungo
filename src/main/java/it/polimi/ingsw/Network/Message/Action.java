@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Message;
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 public class Action extends Message {
 
 
@@ -40,5 +42,10 @@ public class Action extends Message {
 
     public int getWorker() {
         return worker;
+    }
+
+    @Override
+    public void accept(Visitor gameMessageVisitor) {
+
     }
 }

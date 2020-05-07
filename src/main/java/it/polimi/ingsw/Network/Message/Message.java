@@ -1,8 +1,11 @@
 package it.polimi.ingsw.Network.Message;
 
+import it.polimi.ingsw.Network.Client.Visitor;
+
 import java.io.Serializable;
 
 public abstract class Message implements Serializable {
+
 
     private final String senderUsername;
     private final String token;
@@ -28,4 +31,6 @@ public abstract class Message implements Serializable {
                 "senderUsername='" + senderUsername + '\'' +
                 '}';
     }
+
+    public abstract void accept(Visitor gameMessageVisitor);
 }
