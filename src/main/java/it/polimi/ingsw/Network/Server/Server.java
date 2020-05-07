@@ -27,33 +27,44 @@ import java.util.stream.Collectors;
 
 public class Server {
 
-    private static int port;
-    private static Gson gson = new Gson();
-    private static String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
-    private Map<String, Connection> clients;
+    private int port;
+    private Gson gson = new Gson();
+    private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
     private boolean gameLoading;
+    private static int maxClient = 3;
+    private ArrayList<Connection> connections;
 
     public Server() {
         read();
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        new Server();
+        Server server = new Server();
+        server.startServer();
+    }
+
+    public void startServer() throws IOException, ClassNotFoundException {
         // don't need to specify a hostname, it will be the current machine
         Socket s = null;
         ServerSocket ss = new ServerSocket(port);
         System.out.println("ServerSocket awaiting connections...");
         while (true) {
-            s = ss.accept(); // blocking call, this will wait until a connection is attempted on this port.
-            System.out.println("Connection from " + s + "!");
-            ServerThread st = new ServerThread(s);
-            st.start();
-        }
+            //if (clients.size() <= maxClient) {
+                s = ss.accept(); // blocking call, this will wait until a connection is attempted on this port.
+                System.out.println("Connection from " + s + "!");
+                connections.add(new Connection("a", s.getPort(), s.getInetAddress()));
+                ServerThread st = new ServerThread(s);
+                st.start();
 
+
+
+
+        }
 
     }
 
-    public static void read() {
+
+    public void read() {
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(file);
@@ -71,19 +82,28 @@ public class Server {
         }
     }
 
-
     private boolean checkUsername(String username) {
         for (String forbidden : GameConf.getIllegalUsernames()) {
             if (username.equalsIgnoreCase(forbidden)) {
                 return false;
             }
         }
+        /*for (String forbidden : usedUsernames) {
+            if (username.equalsIgnoreCase(forbidden)) {
+                return false;
+            }
+
+
+        }
+
+         */
         return true;
 
     }
 
+    /*
     void login(String username, Connection connection) throws IOException {
-        if (clients.containsKey(username)) {
+        if (clients.contains(username)) {
             knownPlayerLogin(username, connection);
         } else {
             newPlayerLogin(username, connection);
@@ -112,10 +132,9 @@ public class Server {
     private void newPlayerLogin(String username, Connection connection) throws IOException {
         //check if game has already started
         //check if lobby is full
-        if (false){
+        if (false) {
 
-        }
-        else { // New player
+        } else { // New player
             if (checkUsername(username)) { // Username legit
                 clients.put(username, connection);
 
@@ -129,7 +148,7 @@ public class Server {
                 connection.disconnect();
             }
         }
-    }
+    }*/
 
 
 }
