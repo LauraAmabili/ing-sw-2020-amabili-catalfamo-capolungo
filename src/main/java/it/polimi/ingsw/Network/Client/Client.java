@@ -51,6 +51,8 @@ public class Client {
 
     }
 
+
+
     public void send(MessageToServer x) throws IOException {
         out.writeObject(x);
     }
