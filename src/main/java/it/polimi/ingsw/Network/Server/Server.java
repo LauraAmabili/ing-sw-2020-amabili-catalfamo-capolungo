@@ -1,16 +1,29 @@
 package it.polimi.ingsw.Network.Server;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Helper.GameConf;
-import it.polimi.ingsw.Network.Message.MessageToClient;
-import it.polimi.ingsw.View.VirtualView;
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Network.Message.Message;
+import it.polimi.ingsw.Network.Message.Ping;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.stream.Collectors;
 
 
 public class Server {
@@ -18,45 +31,49 @@ public class Server {
     private int port;
     private Gson gson = new Gson();
     private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
-    private boolean gameLoading;
     private static int maxClient = 3;
-    private ArrayList<Connection> connections;
-    private List<VirtualView> viewList = new ArrayList<>();
-    private List<ServerThread> threadList = new ArrayList<>();
+    private ArrayList<ServerThread> clients = new ArrayList<>();
+
 
     public Server() {
         read();
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Server server = new Server();
         server.startServer();
     }
 
-    public void send(VirtualView view, MessageToClient message) throws IOException {
-        int i = viewList.indexOf(view);
-        ServerThread thread = threadList.get(i);
-        thread.send(message);
+    public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
+
+
+
+
+        connectClients();
+        while(true);
+        /*System.out.println(clients.get(0).receiveFromClient());
+        clients.get(0).sendToClient(new Ping("UE", "a", "Server"));
+        */
     }
 
-
-    public void startServer() throws IOException, ClassNotFoundException {
-        // don't need to specify a hostname, it will be the current machine
+    public void connectClients() throws IOException, ClassNotFoundException {
         Socket s = null;
         ServerSocket ss = new ServerSocket(port);
-        System.out.println("ServerSocket awaiting connections...");
-        while (true) {
-            //if (clients.size() <= maxClient) {
-            s = ss.accept(); // blocking call, this will wait until a connection is attempted on this port.
+
+        while (clients.size()<maxClient){
+            s = ss.accept();
             System.out.println("Connection from " + s + "!");
-            connections.add(new Connection("a", s.getPort(), s.getInetAddress()));
-            ServerThread st = new ServerThread(s);
-            threadList.add(st);
+            ServerThread st = new ServerThread(s, this);
             st.start();
-            VirtualView view = new VirtualView(this);
-            viewList.add(view);
+            st.startServer();
+            clients.add(st);
+
+
         }
+
+
     }
+
 
     public void read() {
         FileReader fileReader = null;

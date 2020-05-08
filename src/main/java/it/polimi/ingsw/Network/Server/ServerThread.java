@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Message.MessageToClient;
-import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
+import it.polimi.ingsw.Network.Message.Message;
+import it.polimi.ingsw.Network.Message.Ping;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,22 +9,23 @@ import java.net.Socket;
 class ServerThread extends Thread implements Runnable {
 
     Socket socket;
+    Server server;
 
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
-    public ServerThread(Socket socket) {
+    public Message messageIn;
+
+    private boolean ready = false;
+
+    public ServerThread(Socket socket, Server server) {
         this.socket = socket;
+        this.server = server;
+
 
     }
 
     public void run() {
-        ServerThread serverThread = new ServerThread(socket);
-        try {
-            serverThread.startServer();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     public void startServer() throws IOException, ClassNotFoundException {
@@ -33,25 +34,21 @@ class ServerThread extends Thread implements Runnable {
         in = new ObjectInputStream(socket.getInputStream());
 
 
-        //????
-
-
-        socket.close();
+        //messageIn = receiveFromClient();
+        ready=true;
     }
 
-    public void send(MessageToClient x) throws IOException {
-
+    public void sendToClient(Message x) throws IOException {
         out.writeObject(x);
     }
 
-    public MessageToServer receive() throws IOException, ClassNotFoundException {
+    public Message receiveFromClient() throws IOException, ClassNotFoundException {
 
-        return ((MessageToServer) in.readObject());
-
+        return ((Message) in.readObject());
     }
 
-    public String getUsername() throws IOException, ClassNotFoundException {
-        return receive().getSenderUsername();
-    }
 
+    public boolean isReady() {
+        return ready;
+    }
 }
