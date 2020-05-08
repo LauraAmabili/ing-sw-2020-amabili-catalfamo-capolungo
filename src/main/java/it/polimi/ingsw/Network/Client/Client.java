@@ -45,6 +45,10 @@ public class Client {
         System.out.println(((MockMessageToClient) receive()).string);
 
 
+        while (true){
+            //accept(receive());
+        }
+
     }
 
     public void send(MessageToServer x) throws IOException {

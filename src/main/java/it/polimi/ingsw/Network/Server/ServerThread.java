@@ -36,8 +36,7 @@ public class ServerThread extends Thread implements Runnable {
         in = new ObjectInputStream(socket.getInputStream());
         System.out.println(((MockMessageToServer) receive()).string);
         send(new MockMessageToClient("fromServer"));
-
-        socket.close();
+        while (true){}
     }
 
     public void send(MessageToClient x) throws IOException {
