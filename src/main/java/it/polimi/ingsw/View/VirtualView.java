@@ -18,7 +18,7 @@ public class VirtualView extends View  {
     private ServerThread thread;
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
-
+    private int numberOfPlayer = 0;
 
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
@@ -43,7 +43,12 @@ public class VirtualView extends View  {
         this.currentPlayer = currentPlayer;
 
     }
-
+    public int getNumberOfPlayer() {
+        return numberOfPlayer;
+    }
+    public void setNumberOfPlayer(int numberOfPlayer) {
+        this.numberOfPlayer = numberOfPlayer;
+    }
 
     @Override
     public void run() {
@@ -78,6 +83,7 @@ public class VirtualView extends View  {
 
         notifyInitialiseMatch(number);
 
+
     }
     @Override
     public void updateGameisReady() throws IOException {
@@ -92,7 +98,7 @@ public class VirtualView extends View  {
 
     public void insertNickname() throws IOException {
 
-        thread.sendToClient(new NicknameRequest());
+        thread.send(new NicknameRequest());
 
     }
     public void AddingNickname(String nickname) throws IOException {
@@ -103,7 +109,7 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerAdded(String nickname) throws IOException {
 
-        thread.sendToClient(new NicknameAccepted());
+        thread.send(new NicknameAccepted());
         //System.out.println("Nickname " + nickname + " accepted");
 
 
@@ -111,7 +117,7 @@ public class VirtualView extends View  {
     @Override
     public void updateNicknameNotValid() throws IOException {
 
-        thread.sendToClient(new NicknameNotValid());
+        thread.send(new NicknameNotValid());
         //System.out.println("Nickname not valid");
         //insertNickname();
     }
@@ -136,7 +142,7 @@ public class VirtualView extends View  {
         if(!chosenGods) {
             //System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
             //System.out.println(Names);
-            thread.sendToClient(new CardsName(Names));
+            thread.send(new CardsName(Names));
             chooseCard();
         }
         else  {
@@ -145,7 +151,7 @@ public class VirtualView extends View  {
     }
     public void chooseCard() throws IOException {
 
-        thread.sendToClient(new ChooseTheCard());
+        thread.send(new ChooseTheCard());
 
 
     }
@@ -159,7 +165,7 @@ public class VirtualView extends View  {
     public void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException {
 
 
-        thread.sendToClient(new GodAdded(gods));
+        thread.send(new GodAdded(gods));
         //System.out.println("God added:");
         //for(String g : gods)
            // System.out.println(g);
@@ -172,7 +178,7 @@ public class VirtualView extends View  {
     @Override
     public void updateGodNotAdded() throws IOException {
 
-        thread.sendToClient(new GodNotAdded());
+        thread.send(new GodNotAdded());
         chooseCard();
 
     }
@@ -191,7 +197,7 @@ public class VirtualView extends View  {
     }
     public void chooseYourGod(List<String> chosenGods) throws IOException {
 
-        thread.sendToClient(new SetYourCard(chosenGods));
+        thread.send(new SetYourCard(chosenGods));
         //System.out.println("Choose your god");
         //String godName = cases.nextLine();
         //notifyGodNameChosen(godName);
@@ -206,7 +212,6 @@ public class VirtualView extends View  {
         //TODO: send to every client new setcardUpdate(nickname, godName)
         //System.out.println(nickname + " now has " + godName + " as Active Card "+ godName);
     }
-
     /*
     @Override
     public void updateGodAlreadyChosen(List<String> chosenGods, String godName) throws IOException {
@@ -217,32 +222,34 @@ public class VirtualView extends View  {
     }
 
      */
-
     @Override
     public void updateCardNotPresent(List<String> chosenGods) throws IOException {
 
         //thread.sendToClient();
-        System.out.println("Card not present!");
+        thread.send(new CardNotPresent());
+        //System.out.println("Card not present!");
         chooseYourGod(chosenGods);
 
     }
 
-
-
     //Placing worker
 
     @Override
-    public void updateTimeToPlaceWorker(String currentPlayerName) {
+    public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
-        System.out.println("Now " + currentPlayerName + "is setting his workers");
+        //TODO: mandare a tutti thread.sendToClient(new TimeToPlaceWorkers(currentPlayerName));
+        // System.out.println("Now " + currentPlayerName + "is setting his workers");
         setWorkers();
 
     }
-    public void setWorkers(){
+    public void setWorkers() throws IOException {
 
+        thread.send(new SetWorkerRequest());
+        /*
         System.out.println("Time to set your Workers");
+        System.out.println("Insert your coordinates (x,y) as row and col");
         for(int i = 0;  i < 2; i++) {
-            System.out.println("Insert your coordinates (x,y) as row and col");
+
             int row = input.nextInt();
             int col = input.nextInt();
             while(row > 5 || row < 1 || col > 5 || col < 1) {
@@ -252,21 +259,25 @@ public class VirtualView extends View  {
             }
             notifyAddingWorker(row, col, i);
         }
-
+         */
+    }
+    public void toSetWorker(int row, int col, int i ) throws IOException {
+        notifyAddingWorker(row, col, i);
     }
     @Override
-    public void updateSetWorker(int i){
+    public void updateSetWorker(int i) throws IOException {
 
-        System.out.println("Posizione sbagliata, riprova");
-        int row = input.nextInt();
-        int col = input.nextInt();
-        notifyAddingWorker(row, col, i);
+        thread.send(new WrongPositionForWorker(i));
+        //System.out.println("Posizione sbagliata, riprova");
+        // int row = input.nextInt();
+        //int col = input.nextInt();
+        //notifyAddingWorker(row, col, i);
 
     }
 
     //Input 6 to start your Turn
 
-    public void startMoving(){
+    public void startMoving() throws IOException {
 
         notifyStartMoving();
     }
@@ -274,20 +285,21 @@ public class VirtualView extends View  {
 
 
     @Override
-    public void updatePlayerHasLost(String playerNickname){
+    public void updatePlayerHasLost(String playerNickname) throws IOException {
 
-        System.out.println(playerNickname + "'s workers are locked. Out!");
+        thread.send(new PlayerOut(playerNickname));
+        //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
 
     @Override
-    public void updateDecideWorker(String nickname) {
+    public void updateDecideWorker(String nickname) throws IOException {
 
         System.out.println("It's "  + nickname + " turn!");
         System.out.println("Choosing his worker");
         chooseWorker();
     }
-    public void chooseWorker(){
+    public void chooseWorker() throws IOException {
 
         System.out.println("Choose your Worker : ");
         int worker = input.nextInt();
@@ -297,20 +309,20 @@ public class VirtualView extends View  {
 
 
     @Override
-    public void updateWorkerSelected(int worker) {
+    public void updateWorkerSelected(int worker) throws IOException {
 
         System.out.println("This worker cannot moves. It's been automatically chosen the other one");
         moving(worker);
 
     }
     @Override
-    public void updateMoving(int worker){
+    public void updateMoving(int worker) throws IOException {
 
         //System.out.println("Worker " + worker +" can move");
         moving(worker);
     }
 
-    public void moving(int worker){
+    public void moving(int worker) throws IOException {
 
         System.out.println("Choose row & col: ");
         int row = input.nextInt();
@@ -325,7 +337,7 @@ public class VirtualView extends View  {
 
     }
     @Override
-    public void updateNoCoordinatesValid(int worker) {
+    public void updateNoCoordinatesValid(int worker) throws IOException {
 
         System.out.println("This coordinates are not valid, insert them again");
         moving(worker);
@@ -342,13 +354,13 @@ public class VirtualView extends View  {
     }
 
     @Override
-    public void updateTimeToBuild(int worker) {
+    public void updateTimeToBuild(int worker) throws IOException {
 
         System.out.println("It's now time to  build!");
         building(worker);
 
     }
-    public void building(int worker){
+    public void building(int worker) throws IOException {
 
         // System.out.println("Vuoi costruire? Insert Yes or no");
         //String input = cases.nextLine();
@@ -363,7 +375,7 @@ public class VirtualView extends View  {
     }
 
     @Override
-    public void updateBuilding(int worker){
+    public void updateBuilding(int worker) throws IOException {
 
             System.out.println("Try new coordinates: ");
             building(worker);
@@ -373,11 +385,17 @@ public class VirtualView extends View  {
 
 
     @Override
-    public void updateBoard(Board board){
+    public void updateBoard(Board board) throws IOException {
+
+
+        thread.send(new BoardUpdate(board));
+        /*
         System.out.println(GREEN);
         board.printGrid();
         System.out.println(RESET);
         System.out.println(ANSI_BLUE);
+
+         */
     }
 
 

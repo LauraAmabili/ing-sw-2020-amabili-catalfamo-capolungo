@@ -3,6 +3,8 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
+
 public class PlaceWorker extends PlayerFSA{
 
     PlayerInterface player;
@@ -14,7 +16,7 @@ public class PlaceWorker extends PlayerFSA{
     }
 
     @Override
-    public void placeWorker(int row, int col, int worker) {
+    public void placeWorker(int row, int col, int worker) throws IOException {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
             game.updateBoard();
             worker++;

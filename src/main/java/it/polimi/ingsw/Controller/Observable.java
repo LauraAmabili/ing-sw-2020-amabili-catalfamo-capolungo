@@ -40,27 +40,27 @@ public class Observable {
         }
     }
 
-    public void notifyAddingWorker(int row, int col, int i ){
+    public void notifyAddingWorker(int row, int col, int i ) throws IOException {
         for(Observer o : observerController){
             o.updateAddingWorker(row, col, i );
         }
     }
 
 
-    public void notifyStartMoving(){
+    public void notifyStartMoving() throws IOException {
         for(Observer o : observerController){
             o.updateStartMoving();
         }
 
     }
 
-    public void notifyTryThisWorker(int worker){
+    public void notifyTryThisWorker(int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTryThisWorker(worker);
         }
     }
 
-    public void notifyMoving(int row, int col, int worker){
+    public void notifyMoving(int row, int col, int worker) throws IOException {
         for(Observer o : observerController){
             o.updateMoving(row, col, worker);
         }
@@ -75,7 +75,7 @@ public class Observable {
     }
 
 
-    public void notifyBuilding(int row, int col, int i ){
+    public void notifyBuilding(int row, int col, int i ) throws IOException {
         for(Observer o : observerController){
             o.updateBuilding(row, col, i );
         }

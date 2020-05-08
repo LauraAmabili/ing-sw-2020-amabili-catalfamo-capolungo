@@ -14,24 +14,24 @@ public interface ObserverModel {
     void updatePlayerAdded(String obj) throws IOException;
     void updateGameisReady() throws IOException;
     void updateGodSet(String player, String godName);
-    void updateBoard(Board board);
+    void updateBoard(Board board) throws IOException;
     void updateTimeToChoose(List gods, String name) throws IOException;
     void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException;
     void updateWinners(PlayerInterface player);
-    void updateMoving(int worker);
-    void updateBuilding(int worker);
-    void updateSetWorker(int i);
+    void updateMoving(int worker) throws IOException;
+    void updateBuilding(int worker) throws IOException;
+    void updateSetWorker(int i) throws IOException;
     void updateCardNotPresent(List<String> chosenGods) throws IOException;
     void updateGodNotAdded() throws IOException;
     void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException;
     void updateNicknameNotValid() throws IOException;
-    void updatePlayerHasLost(String playerName);
-    void updateDecideWorker(String nickname);
+    void updatePlayerHasLost(String playerName) throws IOException;
+    void updateDecideWorker(String nickname) throws IOException;
     void updateTimeToSetCard(List chosenGods, String currentPlayerName) throws IOException;
-    void updateTimeToPlaceWorker(String currentPlayerName);
+    void updateTimeToPlaceWorker(String currentPlayerName) throws IOException;
     //void updateGodAlreadyChosen(List <String> chosenGods, String godName) throws IOException;
-    void updateWorkerSelected(int worker);
-    void updateNoCoordinatesValid(int worker);
-    void updateTimeToBuild(int worker);
+    void updateWorkerSelected(int worker) throws IOException;
+    void updateNoCoordinatesValid(int worker) throws IOException;
+    void updateTimeToBuild(int worker) throws IOException;
 
 }

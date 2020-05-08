@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.*;
-import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenCard;
-import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenGod;
-import it.polimi.ingsw.Network.Message.MessageFromClient.NicknameResponse;
-import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
+import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.TimeToChooseCards;
 
@@ -80,7 +77,62 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(CardNotPresent cardNotPresent) {
 
+        System.out.println("Card not Present");
+
     }
+
+    @Override
+    public void visit(TimeToPlaceWorkers timeToPlaceWorkers) {
+
+        System.out.println("It's "+ timeToPlaceWorkers.getCurrentPlayer() + " time to place Workers");
+    }
+
+    @Override
+    public void visit(SetWorkerRequest setWorkerRequest) throws IOException {
+
+        System.out.println("Time to set your Workers");
+        System.out.println("Insert your coordinates (x,y) as row and col");
+        for(int i = 0;  i < 2; i++) {
+
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+            while(row > 5 || row < 1 || col > 5 || col < 1) {
+                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                row = scanner.nextInt();
+                col = scanner.nextInt();
+            }
+            client.send(new SetWorkerResponse(row, col, i));
+        }
+    }
+
+    @Override
+    public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException {
+
+        System.out.println("Wrong position");
+        int row = scanner.nextInt();
+        int col = scanner.nextInt();
+        while(row > 5 || row < 1 || col > 5 || col < 1) {
+            System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+            row = scanner.nextInt();
+            col = scanner.nextInt();
+        }
+        client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
+    }
+
+    @Override
+    public void visit(PlayerOut playerOut) {
+
+        System.out.println(playerOut.getNickname() + "'s workers are locked. Out!");
+
+
+    }
+
+    @Override
+    public void visit(BoardUpdate boardUpdate) {
+
+        boardUpdate.getBoard().printGrid();
+    }
+
 
     @Override
     public void visit(Welcome welcome) {

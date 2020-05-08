@@ -9,6 +9,6 @@ public class GodNotAdded extends MessageToClient {
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
-
+        gameMessageVisitorClient.visit(this);
     }
 }

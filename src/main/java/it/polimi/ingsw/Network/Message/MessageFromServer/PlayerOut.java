@@ -3,26 +3,23 @@ package it.polimi.ingsw.Network.Message.MessageFromServer;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
-import java.util.List;
 
-public class CardsName extends MessageToClient {
-
+public class PlayerOut extends MessageToClient {
 
 
+    String nickname;
 
-    List<String> cards;
-
-
-    public CardsName(List<String> cards) {
-        this.cards = cards;
+    public PlayerOut(String nickname) {
+        this.nickname = nickname;
     }
 
-    public List<String> getCards() {
-        return cards;
+    public String getNickname() {
+        return nickname;
     }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
+
     }
 }

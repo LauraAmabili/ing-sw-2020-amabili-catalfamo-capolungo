@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Network.Message.*;
-import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenCard;
-import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenGod;
-import it.polimi.ingsw.Network.Message.MessageFromClient.NicknameResponse;
-import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
+import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
 import it.polimi.ingsw.View.VirtualView;
 
@@ -38,6 +35,13 @@ public class VisitorMethodsServer implements VisitorServer {
     public void visit(ChosenGod chosenGod) throws IOException {
 
         view.godNameChosen(chosenGod.getChosenGod());
+
+    }
+
+    @Override
+    public void visit(SetWorkerResponse setWorkerResponse) throws IOException {
+
+        view.toSetWorker(setWorkerResponse.getRow(), setWorkerResponse.getCol(), setWorkerResponse.getWorker());
 
     }
 

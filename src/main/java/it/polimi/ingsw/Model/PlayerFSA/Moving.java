@@ -4,6 +4,8 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
+
 public class Moving extends PlayerFSA {
 
     PlayerInterface player;
@@ -15,7 +17,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void canIMove() {
+    public void canIMove() throws IOException {
         if(game.getCurrentTurn().checkLockPlayer()) {
             game.NoPossibleMoves(player.getNickname());
             game.delPlayer(game.getCurrentTurn().getCurrentPlayer());
@@ -30,7 +32,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void checkWorker(int worker) {
+    public void checkWorker(int worker) throws IOException {
         if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             if(worker == 2) {
                 worker = 1;
@@ -43,7 +45,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void move(int row, int col, int worker) {
+    public void move(int row, int col, int worker) throws IOException {
         if(!player.move(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidMove(worker);
         } else {

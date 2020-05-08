@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenCard;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+import it.polimi.ingsw.Network.Message.MessageFromServer.CardNotPresent;
 import it.polimi.ingsw.Network.Message.MessageFromServer.GodAdded;
 import it.polimi.ingsw.Network.Message.MessageFromServer.TimeToChooseCards;
 
@@ -20,7 +22,6 @@ public interface VisitorClient {
     public void visit(Challenger challenger);
     public void visit(PlayerSetCard playerSetCard);
     public void visit(CardSet cardSet);
-    public void visit(CardNotPresent cardNotPresent);
     public void visit(Welcome welcome);
     public void visit(NicknameAccepted nicknameAccepted);
     public void visit(NicknameNotValid nicknameNotValid) throws IOException;
@@ -29,9 +30,15 @@ public interface VisitorClient {
     public void visit(GodAdded godAdded);
     public void visit(GodNotAdded godNotAdded);
     public void visit(TimeToSetCard timeToSetCard);
-    public void visit (SetYourCard setYourCard) throws IOException;
+    public void visit(SetYourCard setYourCard) throws IOException;
     public void visit(SetCardUpdate setCardUpdate);
     public void visit(TimeToChooseCards timeToChooseCard);
+    public void visit(CardNotPresent cardNotPresent);
+    public void visit(TimeToPlaceWorkers timeToPlaceWorkers);
+    public void visit(SetWorkerRequest setWorkerRequest) throws IOException;
+    public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
+    public void visit(PlayerOut playerOut);
+    public void visit (BoardUpdate boardUpdate);
 
 
 

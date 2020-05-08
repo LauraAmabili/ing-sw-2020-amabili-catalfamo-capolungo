@@ -19,6 +19,6 @@ public class ChosenCard extends MessageToServer {
 
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
-
+        gameMessageVisitorClient.visit(this);
     }
 }

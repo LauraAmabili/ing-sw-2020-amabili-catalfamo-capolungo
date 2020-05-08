@@ -30,23 +30,23 @@ public abstract class PlayerFSA {
 
     }
 
-    public void placeWorker(int row, int col, int worker) {
+    public void placeWorker(int row, int col, int worker) throws IOException {
 
     }
 
-    public void canIMove() {
+    public void canIMove() throws IOException {
 
     }
 
-    public void checkWorker(int worker) {
+    public void checkWorker(int worker) throws IOException {
 
     }
 
-    public void move(int row, int col, int worker) {
+    public void move(int row, int col, int worker) throws IOException {
 
     }
 
-    public void build(int row, int col, int worker) {
+    public void build(int row, int col, int worker) throws IOException {
 
     }
 

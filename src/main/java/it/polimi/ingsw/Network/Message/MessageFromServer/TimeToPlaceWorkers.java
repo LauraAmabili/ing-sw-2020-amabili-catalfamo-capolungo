@@ -4,22 +4,17 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class SetCardUpdate extends MessageToClient {
+public class TimeToPlaceWorkers extends MessageToClient {
+
 
     String currentPlayer;
-    String godName;
 
-    public SetCardUpdate(String currentPlayer, String godName) {
+    public TimeToPlaceWorkers(String currentPlayer) {
         this.currentPlayer = currentPlayer;
-        this.godName = godName;
     }
 
     public String getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    public String getGodName() {
-        return godName;
     }
 
     @Override

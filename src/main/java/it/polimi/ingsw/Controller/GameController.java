@@ -67,7 +67,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateAddingWorker(int row, int col, int worker){
+    public void updateAddingWorker(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).placeWorker(row, col, worker);
@@ -76,7 +76,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateBuilding(int row, int col, int worker){
+    public void updateBuilding(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).build(row, col, worker);
@@ -85,7 +85,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateStartMoving() {
+    public void updateStartMoving() throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).canIMove();
@@ -94,7 +94,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateTryThisWorker(int worker){
+    public void updateTryThisWorker(int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).checkWorker(worker);
@@ -103,7 +103,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateMoving(int row, int col, int worker){
+    public void updateMoving(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).move(row, col, worker);

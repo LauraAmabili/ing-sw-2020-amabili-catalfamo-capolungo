@@ -46,32 +46,32 @@ public class Observable {
             o.updateWinners(player);
         }
     }
-    void notifyBoardUpdate(Board board){
+    void notifyBoardUpdate(Board board) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateBoard(board);
         }
     }
-    void notifyCanMove(String nickname){
+    void notifyCanMove(String nickname) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateDecideWorker(nickname);
         }
     }
-    void notifyCanMoveThisWorker(int worker){
+    void notifyCanMoveThisWorker(int worker) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateMoving(worker);
         }
     }
-    void notifyTryNewCoordinatesMove(int Worker){
+    void notifyTryNewCoordinatesMove(int Worker) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateMoving(Worker);
         }
     }
-    void notifyTryNewCoordinatesBuild(int worker){
+    void notifyTryNewCoordinatesBuild(int worker) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateBuilding(worker);
         }
     }
-    void notifyCellAlreadyOccupied(int i){
+    void notifyCellAlreadyOccupied(int i) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateSetWorker(i);
         }
@@ -100,7 +100,7 @@ public class Observable {
         }
 
     }
-    void notifyPlayerHasLost(String playerName){
+    void notifyPlayerHasLost(String playerName) throws IOException {
         for(ObserverModel o : observerModels){
             o.updatePlayerHasLost(playerName);
         }
@@ -110,7 +110,7 @@ public class Observable {
             o.updateTimeToSetCard(chosenGods, currentPlayerName);
         }
     }
-    void notifyTimeToPlaceWorker(String currentPlayerName) {
+    void notifyTimeToPlaceWorker(String currentPlayerName) throws IOException {
         for (ObserverModel o : observerModels) {
             o.updateTimeToPlaceWorker(currentPlayerName);
         }
@@ -132,17 +132,17 @@ public class Observable {
             o.updateWinners(p);
         }
     }
-    void notifyWorkerSelected(int worker) {
+    void notifyWorkerSelected(int worker) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateWorkerSelected(worker);
         }
     }
-    void notifyNoCoordinatesValid(int worker) {
+    void notifyNoCoordinatesValid(int worker) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateNoCoordinatesValid(worker);
         }
     }
-    void notifyTimeToBuild(int worker) {
+    void notifyTimeToBuild(int worker) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateTimeToBuild(worker);
         }

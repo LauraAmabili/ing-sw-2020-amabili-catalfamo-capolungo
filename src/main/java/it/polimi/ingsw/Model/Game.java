@@ -180,7 +180,7 @@ public class Game extends Observable {
         notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
     }
 
-    public void toPlaceWorker() {
+    public void toPlaceWorker() throws IOException {
         notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
@@ -203,15 +203,15 @@ public class Game extends Observable {
 
      */
 
-    public void updateBoard() {
+    public void updateBoard() throws IOException {
         notifyBoardUpdate(getBoard());
     }
 
-    public void cellAlreadyOccupied(int worker) {
+    public void cellAlreadyOccupied(int worker) throws IOException {
         notifyCellAlreadyOccupied(worker);
     }
 
-    public void NoPossibleMoves(String name) {
+    public void NoPossibleMoves(String name) throws IOException {
         notifyPlayerHasLost(name);
     }
 
@@ -219,27 +219,27 @@ public class Game extends Observable {
         notifyWin(p);
     }
 
-    public void updateWorkerSelected(int worker) {
+    public void updateWorkerSelected(int worker) throws IOException {
         notifyWorkerSelected(worker);
     }
 
-    public void NoCoordinatesValidMove(int worker) {
+    public void NoCoordinatesValidMove(int worker) throws IOException {
         notifyNoCoordinatesValid(worker);
     }
 
-    public void timeToBuild(int worker) {
+    public void timeToBuild(int worker) throws IOException {
         notifyTimeToBuild(worker);
     }
 
-    public void NoCoordinatesValidBuild(int worker) {
+    public void NoCoordinatesValidBuild(int worker) throws IOException {
         notifyTryNewCoordinatesBuild(worker);
     }
 
-    public void timeToCheckWorker() {
+    public void timeToCheckWorker() throws IOException {
         notifyCanMove(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void timeToMove(int worker) {
+    public void timeToMove(int worker) throws IOException {
         notifyCanMoveThisWorker(worker);
     }
 

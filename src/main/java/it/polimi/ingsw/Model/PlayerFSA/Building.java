@@ -4,6 +4,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 
 
 public class Building extends PlayerFSA {
@@ -17,7 +18,7 @@ public class Building extends PlayerFSA {
     }
 
     @Override
-    public void build(int row, int col, int worker) {
+    public void build(int row, int col, int worker) throws IOException {
         if(!player.build(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
             game.NoCoordinatesValidBuild(worker);
         } else {

@@ -17,6 +17,8 @@ import java.util.List;
 
 public class GameTest {
 
+
+    /*
     Game game = new Game();
     VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server()));
     GameController controller = new GameController();
@@ -228,6 +230,7 @@ public class GameTest {
     State state = State.ADDNICKNAME;
     assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), "Notateen");
      */
+
 
 
 }
