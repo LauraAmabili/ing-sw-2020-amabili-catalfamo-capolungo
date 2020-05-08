@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class CardToBeAdded extends Message {
+public class CardToBeAdded extends MessageToClient {
 
 
 

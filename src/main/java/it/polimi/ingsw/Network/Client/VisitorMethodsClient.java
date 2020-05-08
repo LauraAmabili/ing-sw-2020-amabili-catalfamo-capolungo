@@ -3,37 +3,33 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
-import it.polimi.ingsw.View.CLIView;
+import it.polimi.ingsw.View.VirtualView;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class VisitorMethodsClient implements VisitorClient {
 
     Client client = new Client();
-    CLIView view = new CLIView();
+    Scanner scanner = new Scanner(System.in);
 
-    public VisitorMethodsClient() throws IOException {
+    public VisitorMethodsClient(Client client) throws IOException {
+        this.client = client;
     }
 
 
 
     @Override
-    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) {
+    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException {
 
-            System.out.println("Number of player ");
-            //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
-
-
-    }
-
-    @Override
-    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) {
-
-       //chiamo metodo che sulla view manda l'input ricevuto
-
+        System.out.println("Number of player ");
+        int input = scanner.nextInt();
+        client.send(new NumberOfPlayerResponse("Client1", "1", input));
+        //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
 
 
     }
+
 
     @Override
     public void visit(CardToBeAdded cardToBeAdded){

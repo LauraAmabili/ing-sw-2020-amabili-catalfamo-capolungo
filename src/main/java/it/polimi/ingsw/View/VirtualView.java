@@ -6,16 +6,20 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.util.*;
+
+import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
 import it.polimi.ingsw.Network.Server.*;
 
-public class CLIView extends View  {
+public class VirtualView extends View  {
 
 
     private String nickname;
     private PlayerInterface currentPlayer = new Player();
+    private Server server;
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
 
@@ -26,8 +30,8 @@ public class CLIView extends View  {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
-    public CLIView() {
-
+    public VirtualView(Server server) {
+        this.server = server;
     }
 
     public String getNickname() {
@@ -54,21 +58,25 @@ public class CLIView extends View  {
             try {
                 int integer = Integer.parseInt(in);
                 menageInput(integer);
-            } catch (NumberFormatException exc) {
-                menageInput(0);
+            } catch (NumberFormatException | IOException exc) {
+                try {
+                    menageInput(0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     //Preparing game
 
-    public void startingGame(){
+    public void startingGame() throws IOException {
 
-        System.out.println("Welcome! Choose number of players: 2 or 3?");
+        //System.out.println("Welcome! Choose number of players: 2 or 3?");
+        server.send(this, new NumberOfPlayersRequest("Server", nickname));
 
-
-            //int integer = input.nextInt();
-            //notifyInitialiseMatch(integer);
+        //int integer = input.nextInt();
+        //notifyInitialiseMatch(integer);
 
     }
 
@@ -357,7 +365,7 @@ public class CLIView extends View  {
 
 
 
-    public void menageInput(Integer in) {
+    public void menageInput(Integer in) throws IOException {
         switch (in) {
             case 1:
                 startingGame();

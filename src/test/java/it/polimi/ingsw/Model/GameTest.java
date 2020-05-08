@@ -2,7 +2,8 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.View.CLIView;
+import it.polimi.ingsw.Network.Server.Server;
+import it.polimi.ingsw.View.VirtualView;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +15,7 @@ import java.util.List;
 public class GameTest {
 
     Game game = new Game();
-    CLIView view1 = new CLIView();
+    VirtualView view1 = new VirtualView(new Server());
     GameController controller = new GameController();
 
 

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.Network.Message.MessageFromClient;
 
-import it.polimi.ingsw.Network.Client.VisitorClient;
-import it.polimi.ingsw.Network.Message.Message;
+import it.polimi.ingsw.Network.Server.VisitorServer;
 
-public class NumberOfPlayerResponse extends Message {
+public class NumberOfPlayerResponse extends MessageToServer {
 
 
     int numberOfPlayers;
@@ -23,8 +22,8 @@ public class NumberOfPlayerResponse extends Message {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) {
-        gameMessageVisitorClient.visit(this);
+    public void accept(VisitorServer gameMessageVisitorServer) {
+        gameMessageVisitorServer.visit(this);
 
     }
 }

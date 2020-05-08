@@ -2,7 +2,8 @@ package it.polimi.ingsw.Network.Client;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Network.Message.Message;
+import it.polimi.ingsw.Network.Message.MessageToClient;
+import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -17,6 +18,7 @@ public class Client {
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    private VisitorMethodsClient visitor = new VisitorMethodsClient(this);
     private Scanner input = new Scanner(System.in);
 
     public Client() throws IOException {
@@ -43,12 +45,13 @@ public class Client {
         socket.close();
     }
 
-    public void send(Message x) throws IOException {
+    public void send(MessageToServer x) throws IOException {
         out.writeObject(x);
     }
 
-    public Message receive() throws IOException, ClassNotFoundException {
-        Message x = (Message) in.readObject();
+    public MessageToClient receive() throws IOException, ClassNotFoundException {
+        MessageToClient x = (MessageToClient) in.readObject();
+        x.accept(visitor);
         return x;
     }
 

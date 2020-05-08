@@ -3,12 +3,10 @@ package it.polimi.ingsw.View;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+class VirtualViewTest {
 
-class CLIViewTest {
-
-
-    CLIView virtualView = new CLIView();
+    /*
+    VirtualView virtualView = new VirtualView();
 
     @Test
     void nicknameCurrentPlayerUpdated () {
@@ -17,7 +15,7 @@ class CLIViewTest {
         Assert.assertEquals(virtualView.getCurrentPlayer().getNickname(), "Notateen");
 
     }
-
+     */
     @Test
     void updateGameisReady() {
 

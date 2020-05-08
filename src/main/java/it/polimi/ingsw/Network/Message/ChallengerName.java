@@ -5,7 +5,7 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.util.List;
 
-public class ChallengerName extends Message {
+public class ChallengerName extends MessageToClient {
 
     String challengerName;
     List godNames;

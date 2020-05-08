@@ -1,13 +1,6 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Controller.GameController;
-import it.polimi.ingsw.View.CLIView;
-
-import it.polimi.ingsw.View.View;
-
-import java.util.Timer;
-
-public class App 
+public class App
 {
 
     public static void main(String[] args ){

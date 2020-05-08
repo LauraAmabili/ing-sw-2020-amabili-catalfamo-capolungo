@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class CardSet extends Message {
+public class CardSet extends MessageToClient {
 
     CardSet(String senderUsername, String token) {
         super(senderUsername, token);

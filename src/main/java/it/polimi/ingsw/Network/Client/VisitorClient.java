@@ -4,10 +4,12 @@ import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
 
+import java.io.IOException;
+
 public interface VisitorClient {
 
 
-    public void visit(NumberOfPlayersRequest numberOfPlayersRequest);
+    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException;
     public void visit(CardToBeAdded cardToBeAdded);
     public void visit(ChallengerName challengerName);
     public void visit(GameReady gameReady);
@@ -23,7 +25,6 @@ public interface VisitorClient {
     public void visit(CardSet cardSet);
     public void visit(CardNotPresent cardNotPresent);
     public void visit(Welcome welcome);
-    public void visit(NumberOfPlayerResponse numberOfPlayerResponse);
 
 
 

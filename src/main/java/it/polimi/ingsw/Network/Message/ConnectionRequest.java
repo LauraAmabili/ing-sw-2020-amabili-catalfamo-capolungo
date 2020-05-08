@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class ConnectionRequest extends Message{
+public class ConnectionRequest extends MessageToClient {
     ConnectionRequest(String senderUsername, String token) {
         super(senderUsername, token);
     }

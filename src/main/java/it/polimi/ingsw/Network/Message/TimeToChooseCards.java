@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class TimeToChooseCards extends Message {
+public class TimeToChooseCards extends MessageToClient {
 
     TimeToChooseCards(String senderUsername, String token) {
         super(senderUsername, token);

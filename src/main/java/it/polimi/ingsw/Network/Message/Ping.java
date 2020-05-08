@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class Ping extends Message{
+public class Ping extends MessageToClient {
 
     String sender;
 

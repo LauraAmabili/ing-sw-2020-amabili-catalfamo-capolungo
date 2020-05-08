@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class Challenger extends Message {
+public class Challenger extends MessageToClient {
 
     Challenger(String senderUsername, String token) {
         super(senderUsername, token);

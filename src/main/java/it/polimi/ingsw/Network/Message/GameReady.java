@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
-public class GameReady extends Message {
+public class GameReady extends MessageToClient {
 
 
     GameReady(String senderUsername, String token) {

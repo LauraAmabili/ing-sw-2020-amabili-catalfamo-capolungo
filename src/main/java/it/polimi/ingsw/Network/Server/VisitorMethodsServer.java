@@ -4,16 +4,17 @@ import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
-import it.polimi.ingsw.View.CLIView;
+import it.polimi.ingsw.View.VirtualView;
 
 import java.io.IOException;
 
 public class VisitorMethodsServer implements VisitorServer {
 
     Client client = new Client();
-    CLIView view = new CLIView();
+    VirtualView view;
 
-    public VisitorMethodsServer() throws IOException {
+    public VisitorMethodsServer(VirtualView view) throws IOException {
+        this.view = view;
     }
 
 
@@ -30,6 +31,7 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(NumberOfPlayerResponse numberOfPlayerResponse) {
 
+        view.notifyNumberOfPlayer(numberOfPlayerResponse.getNumberOfPlayers());
        //chiamo metodo che sulla view manda l'input ricevuto
 
 
