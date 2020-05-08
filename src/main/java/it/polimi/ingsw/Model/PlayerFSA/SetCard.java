@@ -6,6 +6,8 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
+
 public class SetCard extends PlayerFSA{
 
     PlayerInterface player;
@@ -17,7 +19,7 @@ public class SetCard extends PlayerFSA{
     }
 
     @Override
-    public void setCard(String godName) {
+    public void setCard(String godName) throws IOException {
         PlayerCreator playerCreator = new PlayerCreator();
         if(!game.getChosenGods().contains(godName)) {
             game.NoGodHasSuchName();

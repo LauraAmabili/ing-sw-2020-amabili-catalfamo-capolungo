@@ -7,7 +7,7 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import java.io.IOException;
 import java.util.*;
 
-import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
+import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Server.ServerThread;
 
 public class VirtualView extends View  {
@@ -74,13 +74,11 @@ public class VirtualView extends View  {
         //notifyInitialiseMatch(integer);
 
     }
-
     public void notifyNumberOfPlayer(int number){
 
         notifyInitialiseMatch(number);
 
     }
-
     @Override
     public void updateGameisReady() throws IOException {
 
@@ -97,24 +95,25 @@ public class VirtualView extends View  {
         thread.sendToClient(new NicknameRequest());
 
     }
-
     public void AddingNickname(String nickname) {
 
         notifyAddingNickname(nickname);
 
     }
-
     @Override
-    public void updatePlayerAdded(String nickname){
+    public void updatePlayerAdded(String nickname) throws IOException {
 
-        System.out.println("Nickname " + nickname + " accepted");
-        //nicknameRESPONSE
+        thread.sendToClient(new NicknameAccepted());
+        //System.out.println("Nickname " + nickname + " accepted");
+
 
     }
     @Override
     public void updateNicknameNotValid() throws IOException {
-        System.out.println("Nickname not valid");
-        insertNickname();
+
+        thread.sendToClient(new NicknameNotValid());
+        //System.out.println("Nickname not valid");
+        //insertNickname();
     }
 
     //Challenger + Setting chosenCards
@@ -123,42 +122,47 @@ public class VirtualView extends View  {
     public void updateTimeToChoose(List gods, String name){
 
         chooseCards();
-
     }
-
     public void chooseCards(){
 
-        System.out.println("Time to choose your powers");
+
         notifyChoosingCards();
 
     }
     @Override
-    public void updateChoose(boolean chosenGods, List Names, String ChallengerName){
+    public void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException {
 
+        ///TODO: thread.sentAll(new TimeToChooseCards(ChallengerName))
         if(!chosenGods) {
-            System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
-            System.out.println(Names);
+            //System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
+            //System.out.println(Names);
+            thread.sendToClient(new CardsName(Names));
             chooseCard();
         }
         else  {
             System.out.println("Cards are already been chosen");
         }
     }
+    public void chooseCard() throws IOException {
 
-    public void chooseCard(){
+        thread.sendToClient(new ChooseTheCard());
 
-        System.out.println("Choose card: ");
-        String in = cases.nextLine();
-        notifyTryThisCard(in);
+
+    }
+    public void tryThisCard(String card){
+
+        notifyTryThisCard(card);
+
 
     }
     @Override
-    public void updateGodAdded(List<String> gods, boolean cardChosen){
+    public void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException {
 
 
-        System.out.println("God added:");
-        for(String g : gods)
-            System.out.println(g);
+        thread.sendToClient(new GodAdded(gods));
+        //System.out.println("God added:");
+        //for(String g : gods)
+           // System.out.println(g);
         if(!cardChosen) {
             chooseCard();
         }
@@ -166,9 +170,9 @@ public class VirtualView extends View  {
 
     }
     @Override
-    public void updateGodNotAdded(){
+    public void updateGodNotAdded() throws IOException {
 
-        System.out.println("Try Again");
+        thread.sendToClient(new GodNotAdded());
         chooseCard();
 
     }
@@ -177,36 +181,49 @@ public class VirtualView extends View  {
     //Setting personal God
 
     @Override
-    public void updateTimeToSetCard(String currentPlayerName) {
+    public void updateTimeToSetCard(List chosenGods, String currentPlayerName) throws IOException {
 
-        System.out.println(currentPlayerName + ",it's time to choose your card");
-        chooseYourGod();
+        //TODO send everyone "it's currentplayer turn to set up the card"
+        // System.out.println(currentPlayerName + ",it's time to choose your card");
+
+        chooseYourGod(chosenGods);
 
     }
-    public void chooseYourGod() {
+    public void chooseYourGod(List<String> chosenGods) throws IOException {
 
-        System.out.println("Choose your god");
-        String godName = cases.nextLine();
-        notifyGodNameChosen(godName);
-
+        thread.sendToClient(new SetYourCard(chosenGods));
+        //System.out.println("Choose your god");
+        //String godName = cases.nextLine();
+        //notifyGodNameChosen(godName);
+    }
+    public void godNameChosen(String chosenGod){
+        notifyGodNameChosen(chosenGod);
     }
     @Override
     public void updateGodSet(String nickname, String godName){
 
-        System.out.println(nickname + " now has " + godName + " as Active Card "+ godName);
+        //se tutto va bene mando a tutti la carta scelta
+        //TODO: send to every client new setcardUpdate(nickname, godName)
+        //System.out.println(nickname + " now has " + godName + " as Active Card "+ godName);
     }
+
+    /*
     @Override
-    public void updateGodAlreadyChosen(String godName) {
+    public void updateGodAlreadyChosen(List<String> chosenGods, String godName) throws IOException {
 
         System.out.println(godName + "has been already chosen, try a new one");
-        chooseCard();
+        chooseYourGod(chosenGods);
 
     }
-    @Override
-    public void updateCardNotPresent(List chosenGods){
 
+     */
+
+    @Override
+    public void updateCardNotPresent(List<String> chosenGods) throws IOException {
+
+        //thread.sendToClient();
         System.out.println("Card not present!");
-        chooseYourGod();
+        chooseYourGod(chosenGods);
 
     }
 

@@ -9,6 +9,7 @@ import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import org.jetbrains.annotations.NotNull;
 
 
+import java.io.IOException;
 import java.util.*;
 
 public class Game extends Observable {
@@ -131,7 +132,7 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() {
+    public void createTurn() throws IOException {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
         //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
@@ -142,7 +143,7 @@ public class Game extends Observable {
     /**
      * This method check if someone else has already chosen cards
      */
-    public void chooseCards() {
+    public void chooseCards() throws IOException {
 
         if(chosenGods.isEmpty()) {
             createChallenger();
@@ -167,12 +168,12 @@ public class Game extends Observable {
     /**
      * This notify the view that the God chosen is not in the list of the God that the Challenger chose
      */
-    public void GodNotCorrectException(){
+    public void GodNotCorrectException() throws IOException {
         notifyGodNotCorrect(chosenGods);
     }
 
-    public void toSetCard() {
-        this.notifyTimeToSetCard(getCurrentTurn().getCurrentPlayer().getNickname());
+    public void toSetCard() throws IOException {
+        this.notifyTimeToSetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void msgGodSet(String godName) {
@@ -183,21 +184,24 @@ public class Game extends Observable {
         notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void sameNameError() {
+    public void sameNameError() throws IOException {
         notifyNicknameNotValid();
     }
 
-    public void nameAccepted(String name) {
+    public void nameAccepted(String name) throws IOException {
         notifyPlayerAdded(name);
     }
 
-    public void NoGodHasSuchName() {
+    public void NoGodHasSuchName() throws IOException {
         notifyGodNotCorrect(chosenGods);
     }
 
+    /*
     public void GodAlreadyChosen(String name) {
-        notifyGodAlreadyChosen(name);
+        notifyGodAlreadyChosen(chosenGods, name);
     }
+
+     */
 
     public void updateBoard() {
         notifyBoardUpdate(getBoard());
@@ -243,11 +247,11 @@ public class Game extends Observable {
         notifyCards(getGodListNames(), getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void godAdded(boolean state) {
+    public void godAdded(boolean state) throws IOException {
         notifyGodAdded(chosenGods, state);
     }
 
-    public void godNotAdded() {
+    public void godNotAdded() throws IOException {
         notifyGodNotAdded();
     }
 }

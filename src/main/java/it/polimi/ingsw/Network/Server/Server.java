@@ -72,8 +72,8 @@ public class Server {
 
     }
 
-    public void requestPlayers(ServerThread st) {
-        st.sendToClient(new NumberOfPlayersRequest(""));
+    public void requestPlayers(ServerThread st) throws IOException {
+        st.sendToClient(new NumberOfPlayersRequest());
 
 
     }

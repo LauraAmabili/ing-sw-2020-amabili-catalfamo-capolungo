@@ -2,7 +2,7 @@ package it.polimi.ingsw.Network.Client;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Network.Message.MessageToClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
 
 import java.io.*;

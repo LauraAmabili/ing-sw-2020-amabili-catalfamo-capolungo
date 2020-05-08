@@ -4,6 +4,8 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
+
 public class AddNickname extends PlayerFSA {
 
     PlayerInterface player;
@@ -15,7 +17,7 @@ public class AddNickname extends PlayerFSA {
     }
 
     @Override
-    public void addNickname(String name) {
+    public void addNickname(String name) throws IOException {
         if(game.getNicknames().size() == 0) {
             game.getNicknames().add(name);
             player.setNickname(name);

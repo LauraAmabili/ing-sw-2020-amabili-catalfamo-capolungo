@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public abstract class PlayerFSA {
@@ -17,7 +18,7 @@ public abstract class PlayerFSA {
         this.player = player;
     }
 
-    public void addNickname(String name) {
+    public void addNickname(String name) throws IOException {
 
     }
 
@@ -25,7 +26,7 @@ public abstract class PlayerFSA {
 
     }
 
-    public void setCard(String godName) {
+    public void setCard(String godName) throws IOException {
 
     }
 

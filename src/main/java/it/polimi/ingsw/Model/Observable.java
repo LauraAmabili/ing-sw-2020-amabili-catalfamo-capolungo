@@ -3,6 +3,7 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,12 @@ public class Observable {
         this.observerModels.add(o);
     }
 
-    void notifyPlayerAdded(String obj){
+    void notifyPlayerAdded(String obj) throws IOException {
         for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);
         }
     }
-    void notifyGameIsRead(){
+    void notifyGameIsRead() throws IOException {
         for(ObserverModel o : observerModels){
             o.updateGameisReady();
         }
@@ -36,7 +37,7 @@ public class Observable {
             o.update(something,obj);
         }
     }
-    void notifyGodAdded(List<String> gods, boolean cardChosen){
+    void notifyGodAdded(List<String> gods, boolean cardChosen) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateGodAdded(gods, cardChosen);
         }
@@ -77,24 +78,24 @@ public class Observable {
         }
 
     }
-    void notifyGodNotCorrect(List chosenGods){
+    void notifyGodNotCorrect(List<String> chosenGods) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateCardNotPresent(chosenGods);
         }
     }
-    void notifyGodNotAdded(){
+    void notifyGodNotAdded() throws IOException {
         for(ObserverModel o : observerModels){
             o.updateGodNotAdded();
         }
 
     }
-    void notifyChoose(boolean chosenGods, List names, String ChallengerName){
+    void notifyChoose(boolean chosenGods, List names, String ChallengerName) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateChoose(chosenGods, names, ChallengerName);
         }
 
     }
-    void notifyNicknameNotValid(){
+    void notifyNicknameNotValid() throws IOException {
         for(ObserverModel o : observerModels){
             o.updateNicknameNotValid();
         }
@@ -105,9 +106,9 @@ public class Observable {
             o.updatePlayerHasLost(playerName);
         }
     }
-    void notifyTimeToSetCard(String currentPlayerName) {
+    void notifyTimeToSetCard(List chosenGods, String currentPlayerName) throws IOException {
         for (ObserverModel o : observerModels) {
-            o.updateTimeToSetCard(currentPlayerName);
+            o.updateTimeToSetCard(chosenGods, currentPlayerName);
         }
     }
     void notifyTimeToPlaceWorker(String currentPlayerName) {
@@ -120,30 +121,29 @@ public class Observable {
             o.updateTimeToChoose(gods, name);
         }
     }
-
-    void notifyGodAlreadyChosen(String name){
+    /*
+    void notifyGodAlreadyChosen(List <String> chosenGods, String name){
         for (ObserverModel o : observerModels){
-            o.updateGodAlreadyChosen(name);
+            o.updateGodAlreadyChosen(chosenGods, name);
         }
     }
+
+     */
     void notifyWin(PlayerInterface p) {
         for (ObserverModel o : observerModels){
             o.updateWinners(p);
         }
     }
-
     void notifyWorkerSelected(int worker) {
         for (ObserverModel o : observerModels){
             o.updateWorkerSelected(worker);
         }
     }
-
     void notifyNoCoordinatesValid(int worker) {
         for (ObserverModel o : observerModels){
             o.updateNoCoordinatesValid(worker);
         }
     }
-
     void notifyTimeToBuild(int worker) {
         for (ObserverModel o : observerModels){
             o.updateTimeToBuild(worker);
