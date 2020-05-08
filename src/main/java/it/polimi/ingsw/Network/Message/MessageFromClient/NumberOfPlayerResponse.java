@@ -7,8 +7,7 @@ public class NumberOfPlayerResponse extends MessageToServer {
 
     int numberOfPlayers;
 
-    public NumberOfPlayerResponse(String senderUsername, String token, int numberOfPlayers) {
-        super(senderUsername, token);
+    public NumberOfPlayerResponse(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
 
     }
@@ -24,6 +23,5 @@ public class NumberOfPlayerResponse extends MessageToServer {
     @Override
     public void accept(VisitorServer gameMessageVisitorServer) {
         gameMessageVisitorServer.visit(this);
-
     }
 }

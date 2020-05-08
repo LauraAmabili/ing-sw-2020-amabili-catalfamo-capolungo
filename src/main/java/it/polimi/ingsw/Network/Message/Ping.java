@@ -1,13 +1,13 @@
 package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 
 public class Ping extends MessageToClient {
 
     String sender;
 
-    public Ping(String senderUsername, String token, String sender) {
-        super(senderUsername, token);
+    public Ping(String sender) {
         this.sender = sender;
     }
 

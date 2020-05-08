@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 
 public class CardToBeAdded extends MessageToClient {
 
@@ -11,7 +12,6 @@ public class CardToBeAdded extends MessageToClient {
 
     public CardToBeAdded(String senderUsername, String token, String cardName) {
 
-        super(senderUsername, token);
         this.cardName = cardName;
 
     }

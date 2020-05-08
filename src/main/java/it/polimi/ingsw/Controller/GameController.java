@@ -18,11 +18,16 @@ public class GameController implements Observer {
     public GameController() {
     }
 
+    public Game getGame() {
+        return game;
+    }
+
     @Override
     public void updateInitialiseMatch(int numberOfPlayers){
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
+
     }
 
     @Override
@@ -104,15 +109,6 @@ public class GameController implements Observer {
         }
 
     }
-
-    public synchronized void addObserver(ObserverModel view) {
-        game.AddObserver(view);
-    }
-
-
-
-
-
 
 
 }

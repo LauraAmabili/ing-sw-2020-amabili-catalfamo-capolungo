@@ -1,25 +1,21 @@
 package it.polimi.ingsw.View;
 
-import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.text.ParseException;
 import java.util.*;
 
-import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
-import it.polimi.ingsw.Network.Server.*;
+import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
+import it.polimi.ingsw.Network.Server.ServerThread;
 
 public class VirtualView extends View  {
 
 
     private String nickname;
     private PlayerInterface currentPlayer = new Player();
-    private Server server;
+    private ServerThread thread;
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
 
@@ -30,8 +26,8 @@ public class VirtualView extends View  {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
-    public VirtualView(Server server) {
-        this.server = server;
+    public VirtualView(ServerThread thread) {
+        this.thread = thread;
     }
 
     public String getNickname() {
@@ -73,7 +69,6 @@ public class VirtualView extends View  {
     public void startingGame() throws IOException {
 
         //System.out.println("Welcome! Choose number of players: 2 or 3?");
-        server.send(this, new NumberOfPlayersRequest("Server", nickname));
 
         //int integer = input.nextInt();
         //notifyInitialiseMatch(integer);
@@ -84,26 +79,31 @@ public class VirtualView extends View  {
 
         notifyInitialiseMatch(number);
 
-
     }
-    @Override
-    public void updateGameisReady(){
 
-        System.out.println("Game is ready!");
+    @Override
+    public void updateGameisReady() throws IOException {
+
+        //System.out.println("Game is ready!");
         insertNickname();
+
 
     }
 
     //Adding player & nicknames
 
-    public void insertNickname(){
+    public void insertNickname() throws IOException {
 
-        System.out.print("Insert Nickname: ");
-        String in = cases.nextLine();
-        this.nickname = in;
-        notifyAddingNickname(in);
+        thread.sendToClient(new NicknameRequest());
 
     }
+
+    public void AddingNickname(String nickname) {
+
+        notifyAddingNickname(nickname);
+
+    }
+
     @Override
     public void updatePlayerAdded(String nickname){
 
@@ -112,7 +112,7 @@ public class VirtualView extends View  {
 
     }
     @Override
-    public void updateNicknameNotValid(){
+    public void updateNicknameNotValid() throws IOException {
         System.out.println("Nickname not valid");
         insertNickname();
     }
