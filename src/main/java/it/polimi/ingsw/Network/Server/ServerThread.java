@@ -31,6 +31,8 @@ public class ServerThread extends Thread implements Runnable {
 
     }
 
+
+
     public void startServer() throws IOException, ClassNotFoundException {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
