@@ -60,13 +60,15 @@ public class Server {
             ServerThread st = new ServerThread(s, this);
             st.start();
             st.startServer();
-            clients.add(st);
+            /*clients.add(st);
             if (clients.size() == 1)
                 requestPlayers(clients.get(0));
             if (clients.size() == numPlayers + 1) {
                 st.interrupt();
                 clients.remove(clients.size() - 1);
             }
+
+             */
 
         }
 

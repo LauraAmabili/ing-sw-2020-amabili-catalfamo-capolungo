@@ -14,8 +14,8 @@ public class ServerThread extends Thread implements Runnable {
     Socket socket;
     Server server;
 
-    private ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-    private ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
 
 
     private boolean ready = false;
@@ -48,7 +48,8 @@ public class ServerThread extends Thread implements Runnable {
 
     public void startServer() throws IOException, ClassNotFoundException {
 
-
+        out = new ObjectOutputStream(socket.getOutputStream());
+        in = new ObjectInputStream(socket.getInputStream());
 
         //messageIn = receiveFromClient();
         ready=true;
