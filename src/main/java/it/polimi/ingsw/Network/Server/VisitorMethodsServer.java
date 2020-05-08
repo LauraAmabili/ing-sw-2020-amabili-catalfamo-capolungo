@@ -1,12 +1,38 @@
-package it.polimi.ingsw.Network.Client;
+package it.polimi.ingsw.Network.Server;
 
+import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Message.*;
+import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
+import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
+import it.polimi.ingsw.View.CLIView;
 
-public class ConcreteMethods implements Visitor {
+import java.io.IOException;
+
+public class VisitorMethodsServer implements VisitorServer {
+
+    Client client = new Client();
+    CLIView view = new CLIView();
+
+    public VisitorMethodsServer() throws IOException {
+    }
+
 
 
     @Override
-    public void visit(NumberOfPlayers numberOfPlayers) {
+    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) {
+
+            System.out.println("Number of player ");
+            //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
+
+
+    }
+
+    @Override
+    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) {
+
+       //chiamo metodo che sulla view manda l'input ricevuto
+
+
 
     }
 
@@ -79,6 +105,8 @@ public class ConcreteMethods implements Visitor {
         System.out.println("Press 1 to start your Game");
 
     }
+
+
 
     @Override
     public void visit(GameReady gameReady){}

@@ -49,18 +49,14 @@ public class Server {
         ServerSocket ss = new ServerSocket(port);
         System.out.println("ServerSocket awaiting connections...");
         while (true) {
+
             //if (clients.size() <= maxClient) {
                 s = ss.accept(); // blocking call, this will wait until a connection is attempted on this port.
                 System.out.println("Connection from " + s + "!");
                 connections.add(new Connection("a", s.getPort(), s.getInetAddress()));
                 ServerThread st = new ServerThread(s);
                 st.start();
-
-
-
-
         }
-
     }
 
 

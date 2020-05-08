@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Network.Message;
 
-import it.polimi.ingsw.Network.Client.Visitor;
+import it.polimi.ingsw.Network.Client.VisitorClient;
 
 public class NicknameRequest extends Message{
 
@@ -10,8 +10,8 @@ public class NicknameRequest extends Message{
 
 
     @Override
-    public void accept(Visitor gameMessageVisitor) {
-            gameMessageVisitor.visit(this);
+    public void accept(VisitorClient gameMessageVisitorClient) {
+            gameMessageVisitorClient.visit(this);
     }
 
     //asking the Client to insert nickname

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Network.Message;
 
-import it.polimi.ingsw.Network.Client.Visitor;
+import it.polimi.ingsw.Network.Client.VisitorClient;
 
 public class CardToBeAdded extends Message {
 
@@ -22,9 +22,9 @@ public class CardToBeAdded extends Message {
     }
 
     @Override
-    public void accept(Visitor gameMessageVisitor) {
+    public void accept(VisitorClient gameMessageVisitorClient) {
 
-       gameMessageVisitor.visit(this);
+       gameMessageVisitorClient.visit(this);
 
     }
 

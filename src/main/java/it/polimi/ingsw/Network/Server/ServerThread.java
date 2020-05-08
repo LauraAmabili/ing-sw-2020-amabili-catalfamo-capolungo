@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Network.Message.Message;
-import it.polimi.ingsw.Network.Message.Ping;
 
 import java.io.*;
 import java.net.Socket;
@@ -32,19 +31,23 @@ class ServerThread extends Thread implements Runnable {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 
-        System.out.println(receive());
 
-        send(new Ping("1", "1", "Message from server"));
+
+        //????
+
 
         socket.close();
     }
 
     public void send(Message x) throws IOException {
+
         out.writeObject(x);
     }
 
     public Message receive() throws IOException, ClassNotFoundException {
+
         return ((Message) in.readObject());
+
     }
 
     public String getUsername() throws IOException, ClassNotFoundException {

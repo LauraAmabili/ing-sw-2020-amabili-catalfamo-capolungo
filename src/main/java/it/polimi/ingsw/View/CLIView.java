@@ -9,6 +9,7 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.util.*;
+import it.polimi.ingsw.Network.Server.*;
 
 public class CLIView extends View  {
 
@@ -65,8 +66,15 @@ public class CLIView extends View  {
 
         System.out.println("Welcome! Choose number of players: 2 or 3?");
 
-        int integer = input.nextInt();
-            notifyInitialiseMatch(integer);
+
+            //int integer = input.nextInt();
+            //notifyInitialiseMatch(integer);
+
+    }
+
+    public void notifyNumberOfPlayer(int number){
+
+        notifyInitialiseMatch(number);
 
 
     }
@@ -109,6 +117,7 @@ public class CLIView extends View  {
         chooseCards();
 
     }
+
     public void chooseCards(){
 
         System.out.println("Time to choose your powers");
@@ -127,6 +136,7 @@ public class CLIView extends View  {
             System.out.println("Cards are already been chosen");
         }
     }
+
     public void chooseCard(){
 
         System.out.println("Choose card: ");

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Network.Message;
 
-import it.polimi.ingsw.Network.Client.Visitor;
+import it.polimi.ingsw.Network.Client.VisitorClient;
 
 public class NicknameResponseOk extends Message {
 
@@ -12,8 +12,8 @@ public class NicknameResponseOk extends Message {
 
 
     @Override
-    public void accept(Visitor gameMessageVisitor) {
-        gameMessageVisitor.visit(this);
+    public void accept(VisitorClient gameMessageVisitorClient) {
+        gameMessageVisitorClient.visit(this);
     }
 
     //player Added

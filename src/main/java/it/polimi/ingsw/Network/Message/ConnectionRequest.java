@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Network.Message;
 
-import it.polimi.ingsw.Network.Client.Visitor;
+import it.polimi.ingsw.Network.Client.VisitorClient;
 
 public class ConnectionRequest extends Message{
     ConnectionRequest(String senderUsername, String token) {
@@ -8,7 +8,7 @@ public class ConnectionRequest extends Message{
     }
 
     @Override
-    public void accept(Visitor gameMessageVisitor) {
+    public void accept(VisitorClient gameMessageVisitorClient) {
 
     }
 
