@@ -1,20 +1,19 @@
 package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
+import it.polimi.ingsw.Network.Server.VisitorServer;
 
-public class NicknameResponseOk extends MessageToClient {
+import java.io.IOException;
 
+public class NicknameResponseOk extends MessageToServer {
 
-    NicknameResponseOk(String senderUsername, String token) {
-        super(senderUsername, token);
+    public NicknameResponseOk() {
     }
-
-
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) {
-        gameMessageVisitorClient.visit(this);
-    }
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
 
-    //player Added
+    }
 }

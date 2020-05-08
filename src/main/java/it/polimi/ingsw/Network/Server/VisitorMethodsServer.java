@@ -1,32 +1,20 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Message.*;
+import it.polimi.ingsw.Network.Message.MessageFromClient.NicknameResponse;
 import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
-import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
+import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
 import it.polimi.ingsw.View.VirtualView;
-
-import java.io.IOException;
 
 public class VisitorMethodsServer implements VisitorServer {
 
-    Client client = new Client();
     VirtualView view;
 
-    public VisitorMethodsServer(VirtualView view) throws IOException {
+    public VisitorMethodsServer(VirtualView view) {
         this.view = view;
     }
 
 
-
-    @Override
-    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) {
-
-            System.out.println("Number of player ");
-            //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
-
-
-    }
 
     @Override
     public void visit(NumberOfPlayerResponse numberOfPlayerResponse) {
@@ -34,14 +22,11 @@ public class VisitorMethodsServer implements VisitorServer {
         view.notifyNumberOfPlayer(numberOfPlayerResponse.getNumberOfPlayers());
        //chiamo metodo che sulla view manda l'input ricevuto
 
-
-
     }
 
     @Override
     public void visit(CardToBeAdded cardToBeAdded){
 
-        System.out.println("This card " + cardToBeAdded.getCardName() + " has been chosen from " + cardToBeAdded.getSenderUsername());
     }
 
 
@@ -115,6 +100,13 @@ public class VisitorMethodsServer implements VisitorServer {
 
     @Override
     public void visit(NicknameRequest nicknameRequest) {
+
+    }
+
+    @Override
+    public void visit(NicknameResponse nicknameResponse) {
+
+        view.AddingNickname(nicknameResponse.getNickname());
 
     }
 

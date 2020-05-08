@@ -3,27 +3,32 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Server.Server;
+import it.polimi.ingsw.Network.Server.ServerThread;
 import it.polimi.ingsw.View.VirtualView;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameTest {
 
     Game game = new Game();
-    VirtualView view1 = new VirtualView(new Server());
+    VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server()));
     GameController controller = new GameController();
+
+    public GameTest() throws IOException {
+    }
 
 
     @Before
     public void setUp() throws Exception {
         game.initialiseMatch(2);
         game.createTurn();
-        controller.addObserver(view1);
         view1.AddObserver(controller);
     }
 

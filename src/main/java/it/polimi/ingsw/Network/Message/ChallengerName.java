@@ -2,6 +2,7 @@ package it.polimi.ingsw.Network.Message;
 
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 
 import java.util.List;
 
@@ -10,8 +11,7 @@ public class ChallengerName extends MessageToClient {
     String challengerName;
     List godNames;
 
-    public  ChallengerName(String senderUsername, String token, List godNames, String challengerName) {
-        super(senderUsername, token);
+    public  ChallengerName(List godNames, String challengerName) {
         this.godNames = godNames;
         this.challengerName = challengerName;
     }

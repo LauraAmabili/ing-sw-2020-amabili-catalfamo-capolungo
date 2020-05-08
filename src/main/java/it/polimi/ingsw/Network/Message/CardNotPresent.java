@@ -1,11 +1,9 @@
 package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 
 public class CardNotPresent extends MessageToClient {
-    CardNotPresent(String senderUsername, String token) {
-        super(senderUsername, token);
-    }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) {

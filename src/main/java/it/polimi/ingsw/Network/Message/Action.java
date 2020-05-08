@@ -1,43 +1,43 @@
 package it.polimi.ingsw.Network.Message;
 
 import it.polimi.ingsw.Network.Client.VisitorClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
 
 public class Action extends MessageToClient {
 
 
 
-    int OldRow;
-    int OldCol;
-    int NewRow;
-    int NewCol;
+    int oldRow;
+    int oldCol;
+    int newRow;
+    int newCol;
     int worker;
     String player;
 
-    public Action(String senderUsername, String token, int oldRow, int oldCol, int newRow, int newCol, int worker, String player) {
-        super(senderUsername, token);
-        OldRow = oldRow;
-        OldCol = oldCol;
-        NewRow = newRow;
-        NewCol = newCol;
+    public Action(int oldRow, int oldCol, int newRow, int newCol, int worker, String player) {
+        this.oldRow = oldRow;
+        this.oldCol = oldCol;
+        this.newRow = newRow;
+        this.newCol = newCol;
         this.worker = worker;
         this.player = player;
     }
 
 
     public int getOldRow() {
-        return OldRow;
+        return oldRow;
     }
 
     public int getOldCol() {
-        return OldCol;
+        return oldCol;
     }
 
     public int getNewRow() {
-        return NewRow;
+        return newRow;
     }
 
     public int getNewCol() {
-        return NewCol;
+        return newCol;
     }
 
     public int getWorker() {

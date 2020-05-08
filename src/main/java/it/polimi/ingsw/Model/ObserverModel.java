@@ -4,6 +4,7 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ObserverModel {
@@ -11,7 +12,7 @@ public interface ObserverModel {
     //public void update(Object obj);
     void update(Object o, Object obj);
     void updatePlayerAdded(String obj);
-    void updateGameisReady();
+    void updateGameisReady() throws IOException;
     void updateGodSet(String player, String godName);
     void updateBoard(Board board);
     void updateTimeToChoose(List gods, String name);
@@ -23,7 +24,7 @@ public interface ObserverModel {
     void updateCardNotPresent(List chosenGods);
     void updateGodNotAdded();
     void updateChoose(boolean chosenGods, List Names, String ChallengerName);
-    void updateNicknameNotValid();
+    void updateNicknameNotValid() throws IOException;
     void updatePlayerHasLost(String playerName);
     void updateDecideWorker(String nickname);
     void updateTimeToSetCard(String currentPlayerName);
