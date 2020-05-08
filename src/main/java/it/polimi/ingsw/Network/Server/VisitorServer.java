@@ -7,16 +7,18 @@ import it.polimi.ingsw.Network.Message.MessageFromClient.NicknameResponse;
 import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
 
+import java.io.IOException;
+
 public interface VisitorServer {
 
 
 
 
 
-    public void visit(NicknameResponse nicknameResponse);
-    public void visit(NumberOfPlayerResponse numberOfPlayerResponse);
-    public void visit(ChosenCard chosenCard);
-    public void visit(ChosenGod chosenGod);
+    public void visit(NicknameResponse nicknameResponse) throws IOException;
+    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException;
+    public void visit(ChosenCard chosenCard) throws IOException;
+    public void visit(ChosenGod chosenGod) throws IOException;
 
 
 

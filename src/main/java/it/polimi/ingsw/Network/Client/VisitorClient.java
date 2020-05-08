@@ -24,7 +24,6 @@ public interface VisitorClient {
     public void visit(Welcome welcome);
     public void visit(NicknameAccepted nicknameAccepted);
     public void visit(NicknameNotValid nicknameNotValid) throws IOException;
-    public void visit(TimeToChooseCards timeToChooseCards);
     public void visit(CardsName cardsName);
     public void visit(ChooseTheCard chooseTheCard) throws IOException;
     public void visit(GodAdded godAdded);
@@ -32,7 +31,7 @@ public interface VisitorClient {
     public void visit(TimeToSetCard timeToSetCard);
     public void visit (SetYourCard setYourCard) throws IOException;
     public void visit(SetCardUpdate setCardUpdate);
-
+    public void visit(TimeToChooseCards timeToChooseCard);
 
 
 

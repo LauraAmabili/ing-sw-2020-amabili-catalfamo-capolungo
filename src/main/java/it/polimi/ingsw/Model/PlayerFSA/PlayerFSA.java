@@ -22,7 +22,7 @@ public abstract class PlayerFSA {
 
     }
 
-    public void chosenCard(String godName) {
+    public void chosenCard(String godName) throws IOException {
 
     }
 

@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Initialized extends PlayerFSA {
@@ -20,7 +21,7 @@ public class Initialized extends PlayerFSA {
     }
 
     @Override
-    public void chosenCard(String godName) {
+    public void chosenCard(String godName) throws IOException {
         boolean flag = true;
         if(game.getGodListNames().contains(godName)) {
             if(game.getChosenGods().isEmpty()) {

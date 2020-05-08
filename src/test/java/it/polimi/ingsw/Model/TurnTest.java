@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class TurnTest {
 
 
     @Test
-    public void TurnTest() {
+    public void TurnTest() throws IOException {
 
 
         //NextTurn() when added nickname

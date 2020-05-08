@@ -243,7 +243,7 @@ public class Game extends Observable {
         notifyCanMoveThisWorker(worker);
     }
 
-    public void timeToChallenger() {
+    public void timeToChallenger() throws IOException {
         notifyCards(getGodListNames(), getCurrentTurn().getCurrentPlayer().getNickname());
     }
 

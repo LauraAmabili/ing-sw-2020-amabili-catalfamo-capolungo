@@ -5,6 +5,7 @@ import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateInitialiseMatch(int numberOfPlayers){
+    public void updateInitialiseMatch(int numberOfPlayers) throws IOException {
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
@@ -31,7 +32,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateNickname(String nickname){
+    public void updateNickname(String nickname) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if(game.getOnlinePlayers().get(i).getNickname() == null) {
@@ -42,14 +43,14 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateChoosingCards(){
+    public void updateChoosingCards() throws IOException {
 
         game.chooseCards();
 
     }
 
     @Override
-    public void updateTryThisCard(String in) {
+    public void updateTryThisCard(String in) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).chosenCard(in);
@@ -58,7 +59,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateSetGodName(String godName) {
+    public void updateSetGodName(String godName) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).setCard(godName);

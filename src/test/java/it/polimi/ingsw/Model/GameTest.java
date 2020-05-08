@@ -75,7 +75,7 @@ public class GameTest {
 
 
     @Test
-    public void addNickname(){
+    public void addNickname() throws IOException {
        // game.initialiseMatch(2);
         game.getStateList().get(0).addNickname("Notateen");
         view1.updatePlayerAdded("Notateen");
@@ -88,7 +88,7 @@ public class GameTest {
 
 
    @Test
-   public void CorrectCards(){
+   public void CorrectCards() throws IOException {
 
 
        game.getStateList().get(0).addNickname("Notateen");
@@ -110,7 +110,7 @@ public class GameTest {
 
 
     @Test
-    public void isGodNameSetted(){
+    public void isGodNameSetted() throws IOException {
 
         game.getStateList().get(0).addNickname("Notateen");
         game.getStateList().get(1).addNickname("SuperRexo");
@@ -128,7 +128,7 @@ public class GameTest {
 
 
     @Test
-    public void CardsNotChosenYet(){
+    public void CardsNotChosenYet() throws IOException {
 
         game.getStateList().get(0).addNickname("Notateen");
         Assert.assertEquals(game.getChosenGods().size(), 0 );
@@ -154,7 +154,7 @@ public class GameTest {
     }
 
     @Test
-    public void isWorkerAddedCorrectly(){
+    public void isWorkerAddedCorrectly() throws IOException {
 
         game.getOnlinePlayers().get(0).setNickname("Notateen");
         game.getOnlinePlayers().get(1).setNickname("SuperRexo");
@@ -186,7 +186,7 @@ public class GameTest {
 
 
     @Test
-    public void isMovingAndBuildingCorrectly(){
+    public void isMovingAndBuildingCorrectly() throws IOException {
 
         game.getOnlinePlayers().get(0).setNickname("Notateen");
         game.getOnlinePlayers().get(1).setNickname("SuperRexo");

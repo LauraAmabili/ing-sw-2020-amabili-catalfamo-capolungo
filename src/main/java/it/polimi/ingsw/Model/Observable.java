@@ -16,7 +16,6 @@ public class Observable {
     public void AddObserver(ObserverModel o){
         this.observerModels.add(o);
     }
-
     void notifyPlayerAdded(String obj) throws IOException {
         for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);
@@ -116,7 +115,7 @@ public class Observable {
             o.updateTimeToPlaceWorker(currentPlayerName);
         }
     }
-    void notifyCards(List gods, String name){
+    void notifyCards(List gods, String name) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateTimeToChoose(gods, name);
         }
@@ -127,7 +126,6 @@ public class Observable {
             o.updateGodAlreadyChosen(chosenGods, name);
         }
     }
-
      */
     void notifyWin(PlayerInterface p) {
         for (ObserverModel o : observerModels){

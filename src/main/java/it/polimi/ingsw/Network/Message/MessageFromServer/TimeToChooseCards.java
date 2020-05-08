@@ -4,9 +4,10 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class TimeToChooseCards extends MessageToClient {
+public class TimeToChooseCards extends MessageToClient{
 
     String challenger;
+
 
     public TimeToChooseCards(String challenger) {
         this.challenger = challenger;
@@ -17,7 +18,7 @@ public class TimeToChooseCards extends MessageToClient {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
-
-    }
+        public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+            gameMessageVisitorClient.visit(this);
+        }
 }

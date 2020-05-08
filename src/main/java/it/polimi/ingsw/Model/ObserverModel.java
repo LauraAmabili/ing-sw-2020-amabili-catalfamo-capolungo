@@ -15,7 +15,7 @@ public interface ObserverModel {
     void updateGameisReady() throws IOException;
     void updateGodSet(String player, String godName);
     void updateBoard(Board board);
-    void updateTimeToChoose(List gods, String name);
+    void updateTimeToChoose(List gods, String name) throws IOException;
     void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException;
     void updateWinners(PlayerInterface player);
     void updateMoving(int worker);

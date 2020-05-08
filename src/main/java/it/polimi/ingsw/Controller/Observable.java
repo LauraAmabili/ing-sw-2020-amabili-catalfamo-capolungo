@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,25 +16,25 @@ public class Observable {
     }
 
 
-    public void notifyInitialiseMatch(int number){
+    public void notifyInitialiseMatch(int number) throws IOException {
         for(Observer o : observerController){
             o.updateInitialiseMatch(number);
 
         }
     }
-    public void notifyAddingNickname(String in ){
+    public void notifyAddingNickname(String in ) throws IOException {
         for(Observer o : observerController){
             o.updateNickname(in);
         }
     }
-    public void notifyChoosingCards(){
+    public void notifyChoosingCards() throws IOException {
         for(Observer o : observerController){
             o.updateChoosingCards();
         }
 
     }
 
-    public void notifyGodNameChosen(String godName){
+    public void notifyGodNameChosen(String godName) throws IOException {
         for(Observer o : observerController){
             o.updateSetGodName(godName);
         }
@@ -67,7 +68,7 @@ public class Observable {
 
     }
 
-    public void notifyTryThisCard(String in){
+    public void notifyTryThisCard(String in) throws IOException {
         for(Observer o : observerController){
             o.updateTryThisCard(in);
         }

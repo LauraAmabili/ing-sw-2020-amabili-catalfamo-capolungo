@@ -74,7 +74,7 @@ public class VirtualView extends View  {
         //notifyInitialiseMatch(integer);
 
     }
-    public void notifyNumberOfPlayer(int number){
+    public void notifyNumberOfPlayer(int number) throws IOException {
 
         notifyInitialiseMatch(number);
 
@@ -95,7 +95,7 @@ public class VirtualView extends View  {
         thread.sendToClient(new NicknameRequest());
 
     }
-    public void AddingNickname(String nickname) {
+    public void AddingNickname(String nickname) throws IOException {
 
         notifyAddingNickname(nickname);
 
@@ -119,11 +119,11 @@ public class VirtualView extends View  {
     //Challenger + Setting chosenCards
 
     @Override
-    public void updateTimeToChoose(List gods, String name){
+    public void updateTimeToChoose(List gods, String name) throws IOException {
 
         chooseCards();
     }
-    public void chooseCards(){
+    public void chooseCards() throws IOException {
 
 
         notifyChoosingCards();
@@ -149,7 +149,7 @@ public class VirtualView extends View  {
 
 
     }
-    public void tryThisCard(String card){
+    public void tryThisCard(String card) throws IOException {
 
         notifyTryThisCard(card);
 
@@ -196,7 +196,7 @@ public class VirtualView extends View  {
         //String godName = cases.nextLine();
         //notifyGodNameChosen(godName);
     }
-    public void godNameChosen(String chosenGod){
+    public void godNameChosen(String chosenGod) throws IOException {
         notifyGodNameChosen(chosenGod);
     }
     @Override
