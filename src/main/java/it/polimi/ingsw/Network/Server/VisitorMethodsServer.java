@@ -10,16 +10,18 @@ import java.io.IOException;
 public class VisitorMethodsServer implements VisitorServer {
 
     VirtualView view;
+    ServerThread server;
 
-    public VisitorMethodsServer(VirtualView view) {
+    public VisitorMethodsServer(VirtualView view, ServerThread server) {
         this.view = view;
+        this.server = server;
     }
-
 
 
     @Override
     public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException, InterruptedException {
 
+        server.setNumPlayers(numberOfPlayerResponse.getNumberOfPlayers());
         view.notifyNumberOfPlayer(numberOfPlayerResponse.getNumberOfPlayers());
 
     }

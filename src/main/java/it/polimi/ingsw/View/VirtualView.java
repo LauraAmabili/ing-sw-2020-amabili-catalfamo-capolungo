@@ -19,7 +19,6 @@ public class VirtualView extends View  {
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
     private int numberOfPlayer = 0;
-    Object mutexLock = new Object();
 
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
@@ -60,10 +59,10 @@ public class VirtualView extends View  {
             try {
                 int integer = Integer.parseInt(in);
                 menageInput(integer);
-            } catch (NumberFormatException | IOException | InterruptedException exc) {
+            } catch (NumberFormatException | IOException exc) {
                 try {
                     menageInput(0);
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -74,24 +73,20 @@ public class VirtualView extends View  {
 
     public void startingGame() throws IOException {
 
-        System.out.println("Starting game");
         //System.out.println("Welcome! Choose number of players: 2 or 3?");
 
         //int integer = input.nextInt();
         //notifyInitialiseMatch(integer);
 
     }
+    public void notifyNumberOfPlayer(int number) throws IOException, InterruptedException {
 
-    public  void notifyNumberOfPlayer(int number) throws IOException, InterruptedException {
-
-        synchronized (mutexLock) {
-            notifyInitialiseMatch(number);
-        }
+        notifyInitialiseMatch(number);
 
 
     }
     @Override
-    public void updateGameisReady() throws IOException, InterruptedException {
+    public void updateGameisReady() throws IOException {
 
         //System.out.println("Game is ready!");
         insertNickname();
@@ -101,12 +96,9 @@ public class VirtualView extends View  {
 
     //Adding player & nicknames
 
-    public synchronized void insertNickname() throws IOException, InterruptedException {
+    public void insertNickname() throws IOException {
 
-
-            thread.send(new NicknameRequest());
-
-
+        thread.sendToClient(new NicknameRequest());
 
     }
     public void AddingNickname(String nickname) throws IOException {
@@ -117,7 +109,7 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerAdded(String nickname) throws IOException {
 
-        thread.send(new NicknameAccepted());
+        thread.sendToClient(new NicknameAccepted());
         //System.out.println("Nickname " + nickname + " accepted");
 
 
@@ -125,7 +117,7 @@ public class VirtualView extends View  {
     @Override
     public void updateNicknameNotValid() throws IOException {
 
-        thread.send(new NicknameNotValid());
+        thread.sendToClient(new NicknameNotValid());
         //System.out.println("Nickname not valid");
         //insertNickname();
     }
@@ -148,7 +140,9 @@ public class VirtualView extends View  {
 
         ///TODO: thread.sentAll(new TimeToChooseCards(ChallengerName))
         if(!chosenGods) {
-            thread.send(new CardsName(Names));
+            //System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
+            //System.out.println(Names);
+            thread.sendToClient(new CardsName(Names));
             chooseCard();
         }
         else  {
@@ -157,7 +151,7 @@ public class VirtualView extends View  {
     }
     public void chooseCard() throws IOException {
 
-        thread.send(new ChooseTheCard());
+        thread.sendToClient(new ChooseTheCard());
 
 
     }
@@ -171,7 +165,7 @@ public class VirtualView extends View  {
     public void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException {
 
 
-        thread.send(new GodAdded(gods));
+        thread.sendToClient(new GodAdded(gods));
         //System.out.println("God added:");
         //for(String g : gods)
            // System.out.println(g);
@@ -184,7 +178,7 @@ public class VirtualView extends View  {
     @Override
     public void updateGodNotAdded() throws IOException {
 
-        thread.send(new GodNotAdded());
+        thread.sendToClient(new GodNotAdded());
         chooseCard();
 
     }
@@ -203,7 +197,7 @@ public class VirtualView extends View  {
     }
     public void chooseYourGod(List<String> chosenGods) throws IOException {
 
-        thread.send(new SetYourCard(chosenGods));
+        thread.sendToClient(new SetYourCard(chosenGods));
         //System.out.println("Choose your god");
         //String godName = cases.nextLine();
         //notifyGodNameChosen(godName);
@@ -232,7 +226,7 @@ public class VirtualView extends View  {
     public void updateCardNotPresent(List<String> chosenGods) throws IOException {
 
         //thread.sendToClient();
-        thread.send(new CardNotPresent());
+        thread.sendToClient(new CardNotPresent());
         //System.out.println("Card not present!");
         chooseYourGod(chosenGods);
 
@@ -250,7 +244,7 @@ public class VirtualView extends View  {
     }
     public void setWorkers() throws IOException {
 
-        thread.send(new SetWorkerRequest());
+        thread.sendToClient(new SetWorkerRequest());
         /*
         System.out.println("Time to set your Workers");
         System.out.println("Insert your coordinates (x,y) as row and col");
@@ -273,7 +267,7 @@ public class VirtualView extends View  {
     @Override
     public void updateSetWorker(int i) throws IOException {
 
-        thread.send(new WrongPositionForWorker(i));
+        thread.sendToClient(new WrongPositionForWorker(i));
         //System.out.println("Posizione sbagliata, riprova");
         // int row = input.nextInt();
         //int col = input.nextInt();
@@ -287,13 +281,17 @@ public class VirtualView extends View  {
 
         notifyStartMoving();
     }
+
+
+
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
-        thread.send(new PlayerOut(playerNickname));
+        thread.sendToClient(new PlayerOut(playerNickname));
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
+
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
@@ -308,6 +306,8 @@ public class VirtualView extends View  {
         notifyTryThisWorker(worker);
 
     }
+
+
     @Override
     public void updateWorkerSelected(int worker) throws IOException {
 
@@ -321,6 +321,7 @@ public class VirtualView extends View  {
         //System.out.println("Worker " + worker +" can move");
         moving(worker);
     }
+
     public void moving(int worker) throws IOException {
 
         System.out.println("Choose row & col: ");
@@ -351,6 +352,7 @@ public class VirtualView extends View  {
     public void updateWinners(PlayerInterface player){
         System.out.println(player + "You win!");
     }
+
     @Override
     public void updateTimeToBuild(int worker) throws IOException {
 
@@ -371,6 +373,7 @@ public class VirtualView extends View  {
 
 
     }
+
     @Override
     public void updateBuilding(int worker) throws IOException {
 
@@ -385,7 +388,7 @@ public class VirtualView extends View  {
     public void updateBoard(Board board) throws IOException {
 
 
-        thread.send(new BoardUpdate(board));
+        thread.sendToClient(new BoardUpdate(board));
         /*
         System.out.println(GREEN);
         board.printGrid();
