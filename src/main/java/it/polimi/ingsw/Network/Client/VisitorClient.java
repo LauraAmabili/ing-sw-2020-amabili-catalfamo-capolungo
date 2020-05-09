@@ -3,6 +3,7 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenCard;
+import it.polimi.ingsw.Network.Message.MessageFromClient.FirstInput;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.CardNotPresent;
 import it.polimi.ingsw.Network.Message.MessageFromServer.GodAdded;
@@ -39,6 +40,7 @@ public interface VisitorClient {
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
     public void visit(PlayerOut playerOut);
     public void visit (BoardUpdate boardUpdate);
+
 
 
 

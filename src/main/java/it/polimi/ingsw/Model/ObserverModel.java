@@ -12,7 +12,7 @@ public interface ObserverModel {
     //public void update(Object obj);
     void update(Object o, Object obj);
     void updatePlayerAdded(String obj) throws IOException;
-    void updateGameisReady() throws IOException;
+    void updateGameisReady() throws IOException, InterruptedException;
     void updateGodSet(String player, String godName);
     void updateBoard(Board board) throws IOException;
     void updateTimeToChoose(List gods, String name) throws IOException;

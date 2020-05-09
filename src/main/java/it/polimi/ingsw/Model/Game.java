@@ -132,7 +132,7 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() throws IOException {
+    public void createTurn() throws IOException, InterruptedException {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
         //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));

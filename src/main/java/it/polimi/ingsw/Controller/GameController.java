@@ -24,7 +24,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateInitialiseMatch(int numberOfPlayers) throws IOException {
+    public void updateInitialiseMatch(int numberOfPlayers) throws IOException, InterruptedException {
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();

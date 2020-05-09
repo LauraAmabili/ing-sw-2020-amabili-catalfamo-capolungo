@@ -18,7 +18,7 @@ public class VisitorMethodsServer implements VisitorServer {
 
 
     @Override
-    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException {
+    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException, InterruptedException {
 
         view.notifyNumberOfPlayer(numberOfPlayerResponse.getNumberOfPlayers());
 
@@ -43,6 +43,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
         view.toSetWorker(setWorkerResponse.getRow(), setWorkerResponse.getCol(), setWorkerResponse.getWorker());
 
+    }
+
+    @Override
+    public void visit(FirstInput firstInput) throws IOException {
+            view.startingGame();
     }
 
     @Override

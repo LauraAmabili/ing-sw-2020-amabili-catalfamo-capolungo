@@ -16,7 +16,7 @@ public class Observable {
     }
 
 
-    public void notifyInitialiseMatch(int number) throws IOException {
+    public void notifyInitialiseMatch(int number) throws IOException, InterruptedException {
         for(Observer o : observerController){
             o.updateInitialiseMatch(number);
 

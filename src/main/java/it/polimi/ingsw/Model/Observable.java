@@ -21,7 +21,7 @@ public class Observable {
             o.updatePlayerAdded(obj);
         }
     }
-    void notifyGameIsRead() throws IOException {
+    void notifyGameIsRead() throws IOException, InterruptedException {
         for(ObserverModel o : observerModels){
             o.updateGameisReady();
         }

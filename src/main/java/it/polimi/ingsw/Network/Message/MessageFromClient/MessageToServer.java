@@ -8,6 +8,6 @@ import java.io.Serializable;
 public abstract class MessageToServer implements Serializable {
 
 
-    public abstract void accept(VisitorServer gameMessageVisitorClient) throws IOException;
+    public abstract void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException;
 
 }

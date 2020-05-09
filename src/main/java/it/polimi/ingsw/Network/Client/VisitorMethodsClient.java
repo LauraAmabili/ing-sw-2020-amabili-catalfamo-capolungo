@@ -11,11 +11,14 @@ import java.util.Scanner;
 public class VisitorMethodsClient implements VisitorClient {
 
     Client client;
+
     Scanner scanner = new Scanner(System.in);
 
     public VisitorMethodsClient(Client client) {
         this.client = client;
     }
+
+
 
 
 
@@ -98,6 +101,7 @@ public class VisitorMethodsClient implements VisitorClient {
             int col = scanner.nextInt();
             while(row > 5 || row < 1 || col > 5 || col < 1) {
                 System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                //TODO:
                 row = scanner.nextInt();
                 col = scanner.nextInt();
             }

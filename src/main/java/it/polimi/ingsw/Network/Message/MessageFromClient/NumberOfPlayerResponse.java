@@ -23,7 +23,7 @@ public class NumberOfPlayerResponse extends MessageToServer {
     }
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorServer) throws IOException {
+    public void accept(VisitorServer gameMessageVisitorServer) throws IOException, InterruptedException {
         gameMessageVisitorServer.visit(this);
     }
 }

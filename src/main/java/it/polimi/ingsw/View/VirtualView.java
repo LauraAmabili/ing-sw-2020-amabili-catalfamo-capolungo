@@ -19,6 +19,7 @@ public class VirtualView extends View  {
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
     private int numberOfPlayer = 0;
+    Object mutexLock = new Object();
 
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
@@ -59,10 +60,10 @@ public class VirtualView extends View  {
             try {
                 int integer = Integer.parseInt(in);
                 menageInput(integer);
-            } catch (NumberFormatException | IOException exc) {
+            } catch (NumberFormatException | IOException | InterruptedException exc) {
                 try {
                     menageInput(0);
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -73,20 +74,24 @@ public class VirtualView extends View  {
 
     public void startingGame() throws IOException {
 
+        System.out.println("Starting game");
         //System.out.println("Welcome! Choose number of players: 2 or 3?");
 
         //int integer = input.nextInt();
         //notifyInitialiseMatch(integer);
 
     }
-    public void notifyNumberOfPlayer(int number) throws IOException {
 
-        notifyInitialiseMatch(number);
+    public  void notifyNumberOfPlayer(int number) throws IOException, InterruptedException {
+
+        synchronized (mutexLock) {
+            notifyInitialiseMatch(number);
+        }
 
 
     }
     @Override
-    public void updateGameisReady() throws IOException {
+    public void updateGameisReady() throws IOException, InterruptedException {
 
         //System.out.println("Game is ready!");
         insertNickname();
@@ -96,9 +101,12 @@ public class VirtualView extends View  {
 
     //Adding player & nicknames
 
-    public void insertNickname() throws IOException {
+    public synchronized void insertNickname() throws IOException, InterruptedException {
 
-        thread.send(new NicknameRequest());
+
+            thread.send(new NicknameRequest());
+
+
 
     }
     public void AddingNickname(String nickname) throws IOException {
@@ -140,8 +148,6 @@ public class VirtualView extends View  {
 
         ///TODO: thread.sentAll(new TimeToChooseCards(ChallengerName))
         if(!chosenGods) {
-            //System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
-            //System.out.println(Names);
             thread.send(new CardsName(Names));
             chooseCard();
         }
@@ -281,9 +287,6 @@ public class VirtualView extends View  {
 
         notifyStartMoving();
     }
-
-
-
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
@@ -291,7 +294,6 @@ public class VirtualView extends View  {
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
-
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
@@ -306,8 +308,6 @@ public class VirtualView extends View  {
         notifyTryThisWorker(worker);
 
     }
-
-
     @Override
     public void updateWorkerSelected(int worker) throws IOException {
 
@@ -321,7 +321,6 @@ public class VirtualView extends View  {
         //System.out.println("Worker " + worker +" can move");
         moving(worker);
     }
-
     public void moving(int worker) throws IOException {
 
         System.out.println("Choose row & col: ");
@@ -352,7 +351,6 @@ public class VirtualView extends View  {
     public void updateWinners(PlayerInterface player){
         System.out.println(player + "You win!");
     }
-
     @Override
     public void updateTimeToBuild(int worker) throws IOException {
 
@@ -373,7 +371,6 @@ public class VirtualView extends View  {
 
 
     }
-
     @Override
     public void updateBuilding(int worker) throws IOException {
 
@@ -400,7 +397,7 @@ public class VirtualView extends View  {
 
 
 
-    public void menageInput(Integer in) throws IOException {
+    public void menageInput(Integer in) throws IOException, InterruptedException {
         switch (in) {
             case 1:
                 startingGame();
