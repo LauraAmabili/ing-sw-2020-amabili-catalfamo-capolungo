@@ -15,7 +15,6 @@ public class GameController implements Observer {
     private Game game = new Game();
 
 
-
     public GameController() {
     }
 
@@ -24,7 +23,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateInitialiseMatch(int numberOfPlayers) throws IOException {
+    public synchronized void updateInitialiseMatch(int numberOfPlayers) throws IOException {
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
@@ -32,7 +31,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateNickname(String nickname) throws IOException {
+    public synchronized void updateNickname(String nickname) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if(game.getOnlinePlayers().get(i).getNickname() == null) {

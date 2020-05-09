@@ -18,6 +18,7 @@ public interface VisitorClient {
     public void visit(ChallengerName challengerName);
     public void visit(ConnectionResponse connectionResponse);
     public void visit(GameReady gameReady);
+    void visit(MaxPlayerReach maxPlayerReach);
     public void visit(NicknameRequest nicknameRequest) throws IOException;
     public void visit(Challenger challenger);
     public void visit(PlayerSetCard playerSetCard);
@@ -38,7 +39,7 @@ public interface VisitorClient {
     public void visit(SetWorkerRequest setWorkerRequest) throws IOException;
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
     public void visit(PlayerOut playerOut);
-    public void visit (BoardUpdate boardUpdate);
+    public void visit(BoardUpdate boardUpdate);
 
 
 

@@ -98,7 +98,7 @@ public class VirtualView extends View  {
 
     public void insertNickname() throws IOException {
 
-        thread.send(new NicknameRequest());
+        thread.sendToClient(new NicknameRequest());
 
     }
     public void AddingNickname(String nickname) throws IOException {
@@ -109,7 +109,7 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerAdded(String nickname) throws IOException {
 
-        thread.send(new NicknameAccepted());
+        thread.sendToClient(new NicknameAccepted());
         //System.out.println("Nickname " + nickname + " accepted");
 
 
@@ -117,7 +117,7 @@ public class VirtualView extends View  {
     @Override
     public void updateNicknameNotValid() throws IOException {
 
-        thread.send(new NicknameNotValid());
+        thread.sendToClient(new NicknameNotValid());
         //System.out.println("Nickname not valid");
         //insertNickname();
     }
@@ -142,7 +142,7 @@ public class VirtualView extends View  {
         if(!chosenGods) {
             //System.out.println("Challenger was random, "+ ChallengerName + "can now choose the Cards ");
             //System.out.println(Names);
-            thread.send(new CardsName(Names));
+            thread.sendToClient(new CardsName(Names));
             chooseCard();
         }
         else  {
@@ -151,7 +151,7 @@ public class VirtualView extends View  {
     }
     public void chooseCard() throws IOException {
 
-        thread.send(new ChooseTheCard());
+        thread.sendToClient(new ChooseTheCard());
 
 
     }
@@ -165,7 +165,7 @@ public class VirtualView extends View  {
     public void updateGodAdded(List<String> gods, boolean cardChosen) throws IOException {
 
 
-        thread.send(new GodAdded(gods));
+        thread.sendToClient(new GodAdded(gods));
         //System.out.println("God added:");
         //for(String g : gods)
            // System.out.println(g);
@@ -178,7 +178,7 @@ public class VirtualView extends View  {
     @Override
     public void updateGodNotAdded() throws IOException {
 
-        thread.send(new GodNotAdded());
+        thread.sendToClient(new GodNotAdded());
         chooseCard();
 
     }
@@ -197,7 +197,7 @@ public class VirtualView extends View  {
     }
     public void chooseYourGod(List<String> chosenGods) throws IOException {
 
-        thread.send(new SetYourCard(chosenGods));
+        thread.sendToClient(new SetYourCard(chosenGods));
         //System.out.println("Choose your god");
         //String godName = cases.nextLine();
         //notifyGodNameChosen(godName);
@@ -226,7 +226,7 @@ public class VirtualView extends View  {
     public void updateCardNotPresent(List<String> chosenGods) throws IOException {
 
         //thread.sendToClient();
-        thread.send(new CardNotPresent());
+        thread.sendToClient(new CardNotPresent());
         //System.out.println("Card not present!");
         chooseYourGod(chosenGods);
 
@@ -244,7 +244,7 @@ public class VirtualView extends View  {
     }
     public void setWorkers() throws IOException {
 
-        thread.send(new SetWorkerRequest());
+        thread.sendToClient(new SetWorkerRequest());
         /*
         System.out.println("Time to set your Workers");
         System.out.println("Insert your coordinates (x,y) as row and col");
@@ -267,7 +267,7 @@ public class VirtualView extends View  {
     @Override
     public void updateSetWorker(int i) throws IOException {
 
-        thread.send(new WrongPositionForWorker(i));
+        thread.sendToClient(new WrongPositionForWorker(i));
         //System.out.println("Posizione sbagliata, riprova");
         // int row = input.nextInt();
         //int col = input.nextInt();
@@ -287,7 +287,7 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
-        thread.send(new PlayerOut(playerNickname));
+        thread.sendToClient(new PlayerOut(playerNickname));
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
@@ -388,7 +388,7 @@ public class VirtualView extends View  {
     public void updateBoard(Board board) throws IOException {
 
 
-        thread.send(new BoardUpdate(board));
+        thread.sendToClient(new BoardUpdate(board));
         /*
         System.out.println(GREEN);
         board.printGrid();

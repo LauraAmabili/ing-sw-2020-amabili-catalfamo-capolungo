@@ -3,7 +3,6 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
-import it.polimi.ingsw.Network.Message.MessageFromServer.TimeToChooseCards;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -12,6 +11,8 @@ public class VisitorMethodsClient implements VisitorClient {
 
     Client client;
     Scanner scanner = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
+    private Scanner string = new Scanner(System.in);
 
     public VisitorMethodsClient(Client client) {
         this.client = client;
@@ -20,15 +21,17 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     @Override
-    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException {
+    public synchronized void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException {
 
         System.out.println("Number of player ");
-        int input = scanner.nextInt(); //TODO: to cast
-        client.send(new NumberOfPlayerResponse(input));
+        int numPLayer = input.nextInt(); //TODO: to cast
+        client.send(new NumberOfPlayerResponse(numPLayer));
         //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
 
 
     }
+
+
     @Override
     public void visit(CardToBeAdded cardToBeAdded){
 
@@ -41,10 +44,10 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(NicknameRequest nicknameRequest) throws IOException {
+    public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
 
         System.out.println("Insert nickname:");
-        String nickname = scanner.nextLine();
+        String nickname = string.nextLine();
         client.send(new NicknameResponse(nickname));
     }
 
@@ -223,6 +226,10 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(GameReady gameReady){}
 
+    @Override
+    public void visit(MaxPlayerReach maxPlayerReach) {
+        System.out.println("Lobby is full. Try again later");
+    }
 
 
 }
