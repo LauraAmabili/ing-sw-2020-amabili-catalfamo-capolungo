@@ -136,7 +136,6 @@ public class Game extends Observable {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
         //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
-        this.notifyGameIsRead();
     }
 
 

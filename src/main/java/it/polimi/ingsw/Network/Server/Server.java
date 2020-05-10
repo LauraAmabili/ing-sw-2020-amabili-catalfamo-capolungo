@@ -50,10 +50,14 @@ public class Server {
         while (true) {
             s = ss.accept();
             System.out.println("Connection from " + s + "!");
-            ServerThread st = new ServerThread(s, this);
+            ServerThread st;
+            if(clients.size() == 0) {
+                st = new ServerThread(s, this, 2, false);
+            } else {
+                st = new ServerThread(s, this, clients.get(0).getNumPlayers(), clients.get(0).isMaxPlrSet());
+            }
             st.start();
         }
-
     }
 
     public void read() {

@@ -61,8 +61,8 @@ public class Client {
 
         try {
 
-            System.out.println("Press x to start the game");
-            String inout = scanner.nextLine();
+            //System.out.println("Press x to start the game");
+            //String inout = scanner.nextLine();
             Thread T0 = receive();
             T0.join();
 

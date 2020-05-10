@@ -23,6 +23,7 @@ public class VisitorMethodsServer implements VisitorServer {
 
         int numberOfPlayers = numberOfPlayerResponse.getNumberOfPlayers();
         server.setNumPlayers(numberOfPlayers);
+        server.setMaxPlrMsg(true);
         view.notifyNumberOfPlayer(numberOfPlayers);
 
     }
