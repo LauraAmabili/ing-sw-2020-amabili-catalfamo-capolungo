@@ -218,11 +218,11 @@ public class Game extends Observable {
     }
 
     public void updateWorkerSelected(int worker) throws IOException {
-        notifyWorkerSelected(worker);
+        notifyWorkerSelected(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void NoCoordinatesValidMove(int worker) throws IOException {
-        notifyNoCoordinatesValid(worker);
+        notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void timeToBuild(int worker) throws IOException {
@@ -238,7 +238,7 @@ public class Game extends Observable {
     }
 
     public void timeToMove(int worker) throws IOException {
-        notifyCanMoveThisWorker(worker);
+        notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void timeToChallenger() throws IOException {
@@ -264,6 +264,7 @@ public class Game extends Observable {
     public void toMoving() throws IOException {
 
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 }
 

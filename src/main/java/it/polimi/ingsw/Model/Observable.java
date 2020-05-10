@@ -56,14 +56,14 @@ public class Observable {
             o.updateDecideWorker(nickname);
         }
     }
-    void notifyCanMoveThisWorker(int worker) throws IOException {
+    void notifyCanMoveThisWorker(int worker, String current) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateMoving(worker);
+            o.updateMoving(worker, current);
         }
     }
-    void notifyTryNewCoordinatesMove(int Worker) throws IOException {
+    void notifyTryNewCoordinatesMove(int Worker, String current) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateMoving(Worker);
+            o.updateMoving(Worker, current);
         }
     }
     void notifyTryNewCoordinatesBuild(int worker) throws IOException {
@@ -134,14 +134,14 @@ public class Observable {
             o.updateWinners(p);
         }
     }
-    void notifyWorkerSelected(int worker) throws IOException {
+    void notifyWorkerSelected(int worker, String current) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateWorkerSelected(worker);
+            o.updateWorkerSelected(worker, current);
         }
     }
-    void notifyNoCoordinatesValid(int worker) throws IOException {
+    void notifyNoCoordinatesValid(int worker, String current) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateNoCoordinatesValid(worker);
+            o.updateNoCoordinatesValid(worker, current);
         }
     }
     void notifyTimeToBuild(int worker) throws IOException {
@@ -170,6 +170,12 @@ public class Observable {
     public void notifyStartMoving(String currentPlayer) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateStartMoving(currentPlayer);
+        }
+    }
+
+    public void notifyChooseWorker(String currentPlayer) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateTimeToChooseWorker(currentPlayer);
         }
 
     }

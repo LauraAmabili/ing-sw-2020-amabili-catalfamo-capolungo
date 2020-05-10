@@ -347,22 +347,36 @@ public class VirtualView extends View  {
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
         thread.sendToClient(new PlayerOut(playerNickname));
+
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
 
+
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
-        thread.sendToClient(new TurnToMove(nickname));
-        //System.out.println("It's "  + nickname + " turn!");
-        //System.out.println("Choosing his worker");
-        chooseWorker();
+            //ho appena controllato che posso muovermi
+            thread.sendToClient(new TurnToMove(nickname));
+            //System.out.println("It's "  + nickname + " turn!");
+            //System.out.println("Choosing his worker");
+            //chooseWorker(nickname);
+            //chooseWorker(nickname);
     }
-    
-    public void chooseWorker() throws IOException {
 
-        thread.sendToClient(new ChooseYourWorkerRequest());
+
+    @Override
+    public void updateTimeToChooseWorker(String nickname) throws IOException {
+
+        chooseWorker(nickname);
+
+    }
+    public void chooseWorker(String nickname) throws IOException {
+
+
+        if(MyNickname.equals(nickname)) {
+            thread.sendToClient(new ChooseYourWorkerRequest());
+        }
         //System.out.println("Choose your Worker : ");
         //int worker = input.nextInt();
         //notifyTryThisWorker(worker);
@@ -378,22 +392,25 @@ public class VirtualView extends View  {
 
 
     @Override
-    public void updateWorkerSelected(int worker) throws IOException {
+    public void updateWorkerSelected(int worker, String current) throws IOException {
 
         System.out.println("This worker cannot moves. It's been automatically chosen the other one");
-        moving(worker);
+        moving(worker, current);
 
     }
     @Override
-    public void updateMoving(int worker) throws IOException {
+    public void updateMoving(int worker, String current) throws IOException {
 
         //System.out.println("Worker " + worker +" can move");
-        moving(worker);
+        moving(worker, current);
     }
 
-    public void moving(int worker) throws IOException {
+    public void moving(int worker, String current) throws IOException {
 
-        thread.sendToClient(new ChooseRowAndColRequest(worker));
+        if(MyNickname.equals(current)) {
+            thread.sendToClient(new ChooseRowAndColRequest(worker));
+        }
+
         //System.out.println("Choose row & col: ");
         //int row = input.nextInt();
         //int col = input.nextInt();
@@ -403,7 +420,6 @@ public class VirtualView extends View  {
             row = input.nextInt();
             col = input.nextInt();
         }
-
          */
 
         //se mi sono mossa costruisco
@@ -415,11 +431,12 @@ public class VirtualView extends View  {
         notifyMoving(row, col, worker);
 
     }
+
     @Override
-    public void updateNoCoordinatesValid(int worker) throws IOException {
+    public void updateNoCoordinatesValid(int worker, String current) throws IOException {
 
         System.out.println("This coordinates are not valid, insert them again");
-        moving(worker);
+        moving(worker, current);
 
     }
     @Override

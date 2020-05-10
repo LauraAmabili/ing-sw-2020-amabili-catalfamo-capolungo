@@ -11,30 +11,57 @@ public interface ObserverModel {
 
     //public void update(Object obj);
     void update(Object o, Object obj);
+
     void updatePlayerAdded(String obj) throws IOException;
+
     void updateGameisReady() throws IOException, InterruptedException;
+
     void updateGodSet(String player, String godName) throws IOException;
+
     void updateBoard(Board board) throws IOException;
+
     void updateTimeToChoose(List gods, String name) throws IOException;
+
     void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException;
+
     void updateWinners(PlayerInterface player);
-    void updateMoving(int worker) throws IOException;
+
+    void updateMoving(int worker, String current) throws IOException;
+
     void updateBuilding(int worker) throws IOException;
+
     void updateSetWorker(int i, String currentPlayer) throws IOException;
+
     void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException;
+
     void updateGodNotAdded(String challengerName) throws IOException;
+
     void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException;
+
     void updateNicknameNotValid(String nickname) throws IOException;
+
     void updatePlayerHasLost(String playerName) throws IOException;
+
     void updateDecideWorker(String nickname) throws IOException;
+
     void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException;
+
     void updateTimeToPlaceWorker(String currentPlayerName) throws IOException;
-    //void updateGodAlreadyChosen(List <String> chosenGods, String godName) throws IOException;
-    void updateWorkerSelected(int worker) throws IOException;
-    void updateNoCoordinatesValid(int worker) throws IOException;
+
+    void updateWorkerSelected(int worker, String current) throws IOException;
+
+    void updateNoCoordinatesValid(int worker, String current) throws IOException;
+
     void updateTimeToBuild(int worker) throws IOException;
+
     void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
+
     void updateSetCard(List<String> chosendGods, String currentPlayer) throws IOException;
+
     void updateSetWorkerOk(String currentWorker, Board board) throws IOException;
+
     void updateStartMoving(String current) throws IOException;
+
+    void updateTimeToChooseWorker(String current) throws IOException;
 }
+
