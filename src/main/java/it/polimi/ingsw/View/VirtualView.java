@@ -88,7 +88,6 @@ public class VirtualView extends View  {
             numberOfPlayer = number;
             notifyInitialiseMatch(number);
 
-
     }
     @Override
     public void updateGameisReady() throws IOException, InterruptedException {
@@ -109,12 +108,13 @@ public class VirtualView extends View  {
 
 
     }
-    public synchronized void AddingNickname(String nickname) throws IOException, InterruptedException {
+    public synchronized void AddingNickname(String nickname) throws IOException {
 
         MyNickname = nickname;
         notifyAddingNickname(nickname);
 
     }
+
     @Override
     public void updatePlayerAdded(String nickname) throws IOException {
 
@@ -303,27 +303,14 @@ public class VirtualView extends View  {
             //}
         }
 
-        /*
-        System.out.println("Time to set your Workers");
-        System.out.println("Insert your coordinates (x,y) as row and col");
-        for(int i = 0;  i < 2; i++) {
-
-            int row = input.nextInt();
-            int col = input.nextInt();
-            while(row > 5 || row < 1 || col > 5 || col < 1) {
-                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-                row = input.nextInt();
-                col = input.nextInt();
-            }
-            notifyAddingWorker(row, col, i);
-        }
-         */
     }
 
     public void toSetWorker(int row, int col, int i ) throws IOException {
-
-        notifyAddingWorker(row, col, i);
-
+        if(row > 0 && row <= 5 && col > 0 && col <= 5) {
+            notifyAddingWorker(row, col, i);
+        } else {
+            thread.sendToClient(new WrongPositionForWorker(i));
+        }
     }
 
     @Override

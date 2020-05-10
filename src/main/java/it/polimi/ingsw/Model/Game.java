@@ -135,7 +135,6 @@ public class Game extends Observable {
     public void createTurn() throws IOException, InterruptedException {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
-        //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
     }
 
 
@@ -163,13 +162,6 @@ public class Game extends Observable {
         int i = onlinePlayers.indexOf(currentTurn.getCurrentPlayer());
         stateList.set(i, new Initialized(getCurrentTurn().getCurrentPlayer(), this));
 
-    }
-
-    /**
-     * This notify the view that the God chosen is not in the list of the God that the Challenger chose
-     */
-    public void GodNotCorrectException() throws IOException {
-        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
     public void toSetCard() throws IOException {
@@ -208,12 +200,6 @@ public class Game extends Observable {
         notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
-    /*
-    public void GodAlreadyChosen(String name) {
-        notifyGodAlreadyChosen(chosenGods, name);
-    }
-
-     */
 
     public void updateBoard() throws IOException {
         notifyBoardUpdate(board);
