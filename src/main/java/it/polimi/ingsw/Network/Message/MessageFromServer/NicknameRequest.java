@@ -8,6 +8,10 @@ import java.io.IOException;
 public class NicknameRequest extends MessageToClient {
 
 
+    public NicknameRequest(String target) {
+        super(target);
+    }
+
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
             gameMessageVisitorClient.visit(this);

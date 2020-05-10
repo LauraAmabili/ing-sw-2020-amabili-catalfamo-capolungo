@@ -31,7 +31,7 @@ public class AddNickname extends PlayerFSA {
         } else {
             for (PlayerInterface p : game.getOnlinePlayers()) {
                 if (p.getNickname().equals(name)) {
-                    game.sameNameError();
+                    game.sameNameError(name);
                 } else {
                     game.getNicknames().add(name);
                     player.setNickname(name);
@@ -42,10 +42,13 @@ public class AddNickname extends PlayerFSA {
                         }
                     }
                     game.nameAccepted(name);
+
                     if(game.getOnlinePlayers().size() == game.getNicknames().size()) {
                         game.createChallenger();
                         game.timeToChallenger();
                     }
+
+
                 }
                 break;
             }

@@ -10,6 +10,10 @@ import java.io.IOException;
 public class ConnectionResponse extends MessageToClient {
 
 
+    public ConnectionResponse(String target) {
+        super(target);
+    }
+
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);

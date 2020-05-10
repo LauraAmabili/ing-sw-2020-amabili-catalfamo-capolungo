@@ -163,20 +163,21 @@ public class Game extends Observable {
         currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
         int i = onlinePlayers.indexOf(currentTurn.getCurrentPlayer());
         stateList.set(i, new Initialized(getCurrentTurn().getCurrentPlayer(), this));
+
     }
 
     /**
      * This notify the view that the God chosen is not in the list of the God that the Challenger chose
      */
     public void GodNotCorrectException() throws IOException {
-        notifyGodNotCorrect(chosenGods);
+        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
     public void toSetCard() throws IOException {
         this.notifyTimeToSetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void msgGodSet(String godName) {
+    public void msgGodSet(String godName) throws IOException {
         notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
     }
 
@@ -184,8 +185,8 @@ public class Game extends Observable {
         notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void sameNameError() throws IOException {
-        notifyNicknameNotValid();
+    public void sameNameError(String nickname) throws IOException {
+        notifyNicknameNotValid(nickname);
     }
 
     public void nameAccepted(String name) throws IOException {
@@ -193,7 +194,7 @@ public class Game extends Observable {
     }
 
     public void NoGodHasSuchName() throws IOException {
-        notifyGodNotCorrect(chosenGods);
+        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
     /*
@@ -245,14 +246,21 @@ public class Game extends Observable {
 
     public void timeToChallenger() throws IOException {
         notifyCards(getGodListNames(), getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyChoose(cardsChosen,this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void godAdded(boolean state) throws IOException {
-        notifyGodAdded(chosenGods, state);
+
+        notifyGodAdded(chosenGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        System.out.println(chosenGods);
     }
 
     public void godNotAdded() throws IOException {
-        notifyGodNotAdded();
+        notifyGodNotAdded(this.getCurrentTurn().getCurrentPlayer().getNickname());
+    }
+
+    public void startingGame(){
+
     }
 }
 

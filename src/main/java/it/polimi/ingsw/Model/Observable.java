@@ -26,7 +26,7 @@ public class Observable {
             o.updateGameisReady();
         }
     }
-    void notifyGodSet(String player, String godName){
+    void notifyGodSet(String player, String godName) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateGodSet(player, godName);
         }
@@ -36,9 +36,9 @@ public class Observable {
             o.update(something,obj);
         }
     }
-    void notifyGodAdded(List<String> gods, boolean cardChosen) throws IOException {
+    void notifyGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateGodAdded(gods, cardChosen);
+            o.updateGodAdded(gods, cardChosen, challengerName);
         }
     }
     void notifyWinner(PlayerInterface player){
@@ -77,14 +77,14 @@ public class Observable {
         }
 
     }
-    void notifyGodNotCorrect(List<String> chosenGods) throws IOException {
+    void notifyGodNotCorrect(String nickname, List<String> chosenGods) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateCardNotPresent(chosenGods);
+            o.updateCardNotPresent(nickname, chosenGods);
         }
     }
-    void notifyGodNotAdded() throws IOException {
+    void notifyGodNotAdded(String challengerName) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateGodNotAdded();
+            o.updateGodNotAdded(challengerName);
         }
 
     }
@@ -94,9 +94,9 @@ public class Observable {
         }
 
     }
-    void notifyNicknameNotValid() throws IOException {
+    void notifyNicknameNotValid(String nickname) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateNicknameNotValid();
+            o.updateNicknameNotValid(nickname);
         }
 
     }
@@ -126,6 +126,8 @@ public class Observable {
             o.updateGodAlreadyChosen(chosenGods, name);
         }
     }
+
+
      */
     void notifyWin(PlayerInterface p) {
         for (ObserverModel o : observerModels){
@@ -145,6 +147,11 @@ public class Observable {
     void notifyTimeToBuild(int worker) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateTimeToBuild(worker);
+        }
+    }
+    public void notifyStartingGame() throws IOException, InterruptedException {
+        for(ObserverModel o : observerModels){
+            o.updateGameisReady();
         }
     }
 

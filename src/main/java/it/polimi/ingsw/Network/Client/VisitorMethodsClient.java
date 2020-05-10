@@ -1,10 +1,12 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class VisitorMethodsClient implements VisitorClient {
@@ -14,6 +16,7 @@ public class VisitorMethodsClient implements VisitorClient {
     Scanner scanner = new Scanner(System.in);
     private Scanner input = new Scanner(System.in);
     private Scanner string = new Scanner(System.in);
+    Board boardToPrint = new Board();
 
     public VisitorMethodsClient(Client client) {
         this.client = client;
@@ -35,22 +38,14 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
-    @Override
-    public void visit(CardToBeAdded cardToBeAdded){
 
-    }
-    @Override
-    public void visit(ChallengerName challengerName){
-
-        System.out.println("Challenger was random, "+ challengerName.getChallengerName() + "can now choose the Cards \n. Here are the cards " + challengerName.getGodNames());
-
-    }
 
     @Override
     public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
 
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
+        client.setNickname(nickname);
         client.send(new NicknameResponse(nickname));
     }
 
@@ -62,23 +57,6 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
-    @Override
-    public void visit(Challenger challenger) {
-
-    }
-
-
-
-    @Override
-    public void visit(PlayerSetCard playerSetCard) {
-
-    }
-
-
-    @Override
-    public void visit(CardSet cardSet) {
-
-    }
 
     @Override
     public void visit(CardNotPresent cardNotPresent) {
@@ -96,21 +74,29 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(SetWorkerRequest setWorkerRequest) throws IOException {
 
-        System.out.println("Time to set your Workers");
-        System.out.println("Insert your coordinates (x,y) as row and col");
-        for(int i = 0;  i < 2; i++) {
+        //System.out.println("Time to set your Workers");
+        int worker = setWorkerRequest.getWorker();
+        System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
+        //for(int i = 0;  i < 2; i++) {
 
-            int row = scanner.nextInt();
-            int col = scanner.nextInt();
+        int row = scanner.nextInt();
+        int col = scanner.nextInt();
+        System.out.println(row);
+        System.out.println(col);
+
+            /*
             while(row > 5 || row < 1 || col > 5 || col < 1) {
                 System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
                 //TODO:
                 row = scanner.nextInt();
                 col = scanner.nextInt();
             }
-            client.send(new SetWorkerResponse(row, col, i));
-        }
+             */
+            //System.out.println("Mando row e col");
+        client.send(new SetWorkerResponse(row, col, worker));
+
     }
+
 
     @Override
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException {
@@ -118,11 +104,14 @@ public class VisitorMethodsClient implements VisitorClient {
         System.out.println("Wrong position");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
+        /*
         while(row > 5 || row < 1 || col > 5 || col < 1) {
             System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
             row = scanner.nextInt();
             col = scanner.nextInt();
         }
+
+         */
         client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
     }
 
@@ -137,17 +126,16 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BoardUpdate boardUpdate) {
 
-        boardUpdate.getBoard().printGrid();
-    }
+        System.out.println("Sto provando a stampare la board");
+       // System.out.println(boardUpdate.getBoard());
+       // boardUpdate.getBoard().printGrid();
+       // boardToPrint = boardUpdate.getBoard();
 
 
-    @Override
-    public void visit(Welcome welcome) {
-
-        System.out.println("Welcome to Santorini");
-        System.out.println("Press 1 to start your Game");
 
     }
+
+
 
     @Override
     public void visit(NicknameAccepted nicknameAccepted) {
@@ -178,6 +166,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(CardsName cardsName) {
 
+        //questa la stampa!!!!
         System.out.println(cardsName.getCards());
 
     }
@@ -195,7 +184,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(GodAdded godAdded) {
 
         System.out.println("God added");
-        System.out.println(godAdded.getAddedGods());
+        List<String> addedGods = godAdded.getAddedGods();
+        System.out.println(addedGods);
+
     }
 
     @Override
@@ -208,7 +199,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(TimeToSetCard timeToSetCard) {
 
-        System.out.println("It's " + timeToSetCard.getCurrentPlayer() + " time to set his Card");
+        String current = timeToSetCard.getCurrentPlayer();
+        System.out.println("It's " + current + " time to set his Card");
 
     }
 
@@ -227,8 +219,6 @@ public class VisitorMethodsClient implements VisitorClient {
         System.out.println("Now "+ setCardUpdate.getCurrentPlayer() + " has " + setCardUpdate.getGodName() + " as Active Card");
     }
 
-    @Override
-    public void visit(GameReady gameReady){}
 
     @Override
     public void visit(MaxPlayerReach maxPlayerReach) {

@@ -9,7 +9,8 @@ public class SetCardUpdate extends MessageToClient {
     String currentPlayer;
     String godName;
 
-    public SetCardUpdate(String currentPlayer, String godName) {
+    public SetCardUpdate(String currentPlayer, String godName, String target ) {
+        super(target);
         this.currentPlayer = currentPlayer;
         this.godName = godName;
     }

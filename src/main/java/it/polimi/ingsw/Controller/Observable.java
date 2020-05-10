@@ -82,5 +82,13 @@ public class Observable {
 
     }
 
+    public void notifyStartingGame() throws IOException, InterruptedException {
+        for(Observer o : observerController){
+            o.updateStartingGame();
+        }
+    }
+
+
+
 
 }

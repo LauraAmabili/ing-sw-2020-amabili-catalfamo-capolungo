@@ -19,7 +19,7 @@ public class ServerThread extends Thread implements Runnable {
     Server server;
     private VisitorServer visitor = new VisitorMethodsServer(view, this);
     int numPlayers = 2;
-
+    int numOnline = 0;
 
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -40,6 +40,10 @@ public class ServerThread extends Thread implements Runnable {
         this.numPlayers = numPlayers;
     }
 
+    public int getNumOnline() {
+        return numOnline;
+    }
+
     @Override
     public void run() {
         try {
@@ -49,9 +53,10 @@ public class ServerThread extends Thread implements Runnable {
             e.printStackTrace();
         }
         server.getClients().add(this);
+        //numOnline = server.getClients().size();
         if (server.getClients().size() == 1) {
             try {
-                sendToClient(new NumberOfPlayersRequest());
+                sendToClient(new NumberOfPlayersRequest("ALL"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,11 +64,14 @@ public class ServerThread extends Thread implements Runnable {
             if (server.getClients().size() > numPlayers) {
                 server.getClients().remove(server.getClients().size() - 1);
                 try {
-                    sendToClient(new MaxPlayerReach());
+                    sendToClient(new MaxPlayerReach("ALL"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return;
+            }
+
+                /*
             } else {
                 try {
                     sendToClient(new NicknameRequest());
@@ -71,6 +79,8 @@ public class ServerThread extends Thread implements Runnable {
                     e.printStackTrace();
                 }
             }
+
+                 */
         }
         view.AddObserver(server.getGameController());
         server.getGameController().getGame().AddObserver(view);
@@ -83,6 +93,8 @@ public class ServerThread extends Thread implements Runnable {
             } catch (IOException e) {
                 return;
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 

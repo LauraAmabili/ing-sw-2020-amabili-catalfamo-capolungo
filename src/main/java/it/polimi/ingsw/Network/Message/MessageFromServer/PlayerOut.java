@@ -9,7 +9,8 @@ public class PlayerOut extends MessageToClient {
 
     String nickname;
 
-    public PlayerOut(String nickname) {
+    public PlayerOut(String nickname, String target) {
+        super(target);
         this.nickname = nickname;
     }
 

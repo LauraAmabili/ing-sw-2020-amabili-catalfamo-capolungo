@@ -24,7 +24,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateInitialiseMatch(int numberOfPlayers) throws IOException, InterruptedException {
+    public synchronized void updateInitialiseMatch(int numberOfPlayers) throws IOException, InterruptedException {
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
@@ -32,7 +32,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateNickname(String nickname) throws IOException {
+    public synchronized void updateNickname(String nickname) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if(game.getOnlinePlayers().get(i).getNickname() == null) {
@@ -40,17 +40,19 @@ public class GameController implements Observer {
                 break;
             }
         }
+
     }
 
+
     @Override
-    public void updateChoosingCards() throws IOException {
+    public synchronized void updateChoosingCards() throws IOException {
 
         game.chooseCards();
 
     }
 
     @Override
-    public void updateTryThisCard(String in) throws IOException {
+    public synchronized void updateTryThisCard(String in) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).chosenCard(in);
@@ -59,7 +61,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateSetGodName(String godName) throws IOException {
+    public synchronized void updateSetGodName(String godName) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).setCard(godName);
@@ -67,7 +69,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateAddingWorker(int row, int col, int worker) throws IOException {
+    public synchronized void updateAddingWorker(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).placeWorker(row, col, worker);
@@ -109,6 +111,11 @@ public class GameController implements Observer {
             game.getStateList().get(i).move(row, col, worker);
         }
 
+    }
+
+    @Override
+    public void updateStartingGame() throws IOException, InterruptedException {
+        game.notifyStartingGame();
     }
 
 

@@ -8,8 +8,15 @@ import java.io.Serializable;
 
 public abstract class MessageToClient implements Serializable {
 
+    String target;
 
-    public MessageToClient() {
+    public MessageToClient(String target) {
+        this.target = target;
+    }
+
+
+    public String getTarget() {
+        return target;
     }
 
 

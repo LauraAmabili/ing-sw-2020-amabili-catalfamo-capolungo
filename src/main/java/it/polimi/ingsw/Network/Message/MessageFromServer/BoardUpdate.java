@@ -8,18 +8,22 @@ import java.io.IOException;
 public class BoardUpdate extends MessageToClient {
 
 
-    Board board;
+    //Board board;
+    String boardUpdate;
 
-    public BoardUpdate(Board board) {
-        this.board = board;
+    public BoardUpdate(String target, String boardUpdate) {
+        super(target);
+       // this.board = board;
+        this.boardUpdate = boardUpdate;
     }
 
-    public Board getBoard() {
-        return board;
-    }
+   // public Board getBoard() {
+    //    return board;
+   // }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+
             gameMessageVisitorClient.visit(this);
     }
 }

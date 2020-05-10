@@ -21,15 +21,17 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException, InterruptedException {
 
-        server.setNumPlayers(numberOfPlayerResponse.getNumberOfPlayers());
-        view.notifyNumberOfPlayer(numberOfPlayerResponse.getNumberOfPlayers());
+        int numberOfPlayers = numberOfPlayerResponse.getNumberOfPlayers();
+        server.setNumPlayers(numberOfPlayers);
+        view.notifyNumberOfPlayer(numberOfPlayers);
 
     }
 
     @Override
     public void visit(ChosenCard chosenCard) throws IOException {
 
-        view.tryThisCard(chosenCard.getChosenCard());
+        String cardName = chosenCard.getChosenCard();
+        view.tryThisCard(cardName);
 
     }
 
@@ -43,17 +45,22 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(SetWorkerResponse setWorkerResponse) throws IOException {
 
-        view.toSetWorker(setWorkerResponse.getRow(), setWorkerResponse.getCol(), setWorkerResponse.getWorker());
+        int row = setWorkerResponse.getRow();
+        int col = setWorkerResponse.getCol();
+        System.out.println("Sono nel server visitor, set worker response");
+        view.toSetWorker(row, col, setWorkerResponse.getWorker());
 
     }
 
     @Override
-    public void visit(FirstInput firstInput) throws IOException {
+    public void visit(FirstInput firstInput) throws IOException, InterruptedException {
+
+
             view.startingGame();
     }
 
     @Override
-    public void visit(NicknameResponse nicknameResponse) throws IOException {
+    public void visit(NicknameResponse nicknameResponse) throws IOException, InterruptedException {
 
         view.AddingNickname(nicknameResponse.getNickname());
 

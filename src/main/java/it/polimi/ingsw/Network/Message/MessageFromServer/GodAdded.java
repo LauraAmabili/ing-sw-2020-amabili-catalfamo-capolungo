@@ -11,7 +11,8 @@ public class GodAdded extends MessageToClient {
 
     List<String> addedGods;
 
-    public GodAdded(List<String> addedGods) {
+    public GodAdded(List<String> addedGods, String target) {
+        super(target);
         this.addedGods = addedGods;
     }
 

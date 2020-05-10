@@ -43,6 +43,7 @@ public class Server {
 
 
     public void connectClients() throws IOException, ClassNotFoundException {
+
         Socket s = null;
         ServerSocket ss = new ServerSocket(port);
 
