@@ -262,7 +262,6 @@ public class Game extends Observable {
     }
 
     public void toMoving() throws IOException {
-
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 }
