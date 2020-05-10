@@ -33,7 +33,8 @@ public interface ObserverModel {
     void updateWorkerSelected(int worker) throws IOException;
     void updateNoCoordinatesValid(int worker) throws IOException;
     void updateTimeToBuild(int worker) throws IOException;
-    void updateBoardAddedWorker(int row, int col, int worker) throws IOException;
+    void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
     void updateSetCard(List<String> chosendGods, String currentPlayer) throws IOException;
     void updateSetWorkerOk(String currentWorker, Board board) throws IOException;
+    void updateStartMoving(String current) throws IOException;
 }

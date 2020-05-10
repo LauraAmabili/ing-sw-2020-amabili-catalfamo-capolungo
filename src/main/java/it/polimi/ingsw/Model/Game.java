@@ -183,6 +183,10 @@ public class Game extends Observable {
     }
 
 
+    public void BoardWorkerUpdate() throws IOException {
+
+        notifyWorkerBoardUpdate(board, this.getCurrentTurn().getCurrentPlayer().getNickname());
+    }
 
     public void msgGodSet(String godName) throws IOException {
         notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
@@ -269,6 +273,11 @@ public class Game extends Observable {
 
     public void startingGame(){
 
+    }
+
+    public void toMoving() throws IOException {
+
+        notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 }
 

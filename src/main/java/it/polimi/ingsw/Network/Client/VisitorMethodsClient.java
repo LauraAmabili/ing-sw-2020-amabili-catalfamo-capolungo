@@ -113,13 +113,13 @@ public class VisitorMethodsClient implements VisitorClient {
         System.out.println("Wrong position");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
+
         /*
         while(row > 5 || row < 1 || col > 5 || col < 1) {
             System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
             row = scanner.nextInt();
             col = scanner.nextInt();
         }
-
          */
 
         client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
@@ -159,6 +159,27 @@ public class VisitorMethodsClient implements VisitorClient {
         String nickname = turnToMove.getNickname();
         System.out.println("It's time to move!");
         System.out.println("Now playing :" + nickname);
+
+    }
+
+    @Override
+    public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
+
+        System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
+        int input = scanner.nextInt();
+        client.send(new ChooseYourWorkerResponse(input));
+
+    }
+
+    @Override
+    public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException {
+
+        int worker = chooseRowAndColRequest.getWorker();
+        System.out.println("Choose row and col for worker " + worker + " : " );
+        int row = input.nextInt();
+        int col = input.nextInt();
+        client.send(new ChooseRowAndColResponse(row, col, worker));
+
 
     }
 

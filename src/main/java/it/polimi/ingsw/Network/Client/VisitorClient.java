@@ -38,6 +38,8 @@ public interface VisitorClient {
     public void visit(BoardUpdate boardUpdate);
     public void visit(BoardUpdateWorker boardUpdateWorker);
     public void visit(TurnToMove turnToMove);
+    public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException;
+    public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException;
 
 
 

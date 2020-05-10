@@ -16,7 +16,7 @@ public interface VisitorServer {
     public void visit(ChosenGod chosenGod) throws IOException;
     public void visit(SetWorkerResponse setWorkerResponse) throws IOException;
     public void visit(FirstInput firstInput) throws IOException, InterruptedException;
-
-
+    public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException;
+    public void visit(ChooseRowAndColResponse chooseRowAndColResponse) throws IOException;
 
 }

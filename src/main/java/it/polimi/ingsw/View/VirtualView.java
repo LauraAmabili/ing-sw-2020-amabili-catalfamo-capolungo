@@ -207,7 +207,6 @@ public class VirtualView extends View  {
         //chooseYourGod(chosenGods, currentPlayerName);
 
     }
-
     @Override
     public  void updateSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
@@ -220,19 +219,11 @@ public class VirtualView extends View  {
 
     }
 
-
-    public  void chooseYourGod(List<String> chosenGods, String currentPlayerName) throws IOException {
-
-    }
-    //mando il messaggio sopra e mi fermo! aspetto che mi mandi la carta, sono in ascolto della carta
-
-
     public synchronized void godNameChosen(String chosenGod) throws IOException {
 
         System.out.println(chosenGod);
         notifyGodNameChosen(chosenGod);
     }
-
     @Override
     public  void updateGodSet(String nickname, String godName) throws IOException {
 
@@ -263,20 +254,53 @@ public class VirtualView extends View  {
 
     //Placing worker
 
+    //TODO: provare a stampare ogni volta
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
         thread.sendToClient(new TimeToPlaceWorkers(currentPlayerName));
-        setWorkers(currentPlayerName);
+        setWorkers1(currentPlayerName, 0);
+    }
+
+    public void setWorkers1(String currentPlayerName, int i) throws IOException {
+
+        if(MyNickname.equals(currentPlayerName)) {
+            //for (int i = 0; i < 2; i++) {
+                thread.sendToClient(new SetWorkerRequest(i));
+            //}
+        }
+        /*
+        System.out.println("Time to set your Workers");
+        System.out.println("Insert your coordinates (x,y) as row and col");
+        for(int i = 0;  i < 2; i++) {
+
+            int row = input.nextInt();
+            int col = input.nextInt();
+            while(row > 5 || row < 1 || col > 5 || col < 1) {
+                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
+                row = input.nextInt();
+                col = input.nextInt();
+            }
+            notifyAddingWorker(row, col, i);
+        }
+         */
+    }
+
+
+    @Override
+    public void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException {
+
+        thread.sendToClient(new BoardUpdate("boo", board));
+        setWorkers2(currentPlayer, 1);
 
     }
 
-    public void setWorkers(String currentPlayerName) throws IOException {
+    public void setWorkers2(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
-            for (int i = 0; i < 2; i++) {
-                thread.sendToClient(new SetWorkerRequest(i));
-            }
+            //for (int i = 0; i < 2; i++) {
+            thread.sendToClient(new SetWorkerRequest(i));
+            //}
         }
 
         /*
@@ -295,6 +319,7 @@ public class VirtualView extends View  {
         }
          */
     }
+
     public void toSetWorker(int row, int col, int i ) throws IOException {
 
         notifyAddingWorker(row, col, i);
@@ -324,7 +349,9 @@ public class VirtualView extends View  {
 
     //Input 6 to start your Turn
 
-    public void startMoving() throws IOException {
+
+    @Override
+    public void updateStartMoving(String currentPlayer) throws IOException {
 
         notifyStartMoving();
 
@@ -336,6 +363,7 @@ public class VirtualView extends View  {
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
+
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
@@ -344,11 +372,19 @@ public class VirtualView extends View  {
         //System.out.println("Choosing his worker");
         chooseWorker();
     }
+    
     public void chooseWorker() throws IOException {
 
+        thread.sendToClient(new ChooseYourWorkerRequest());
+        //System.out.println("Choose your Worker : ");
+        //int worker = input.nextInt();
+        //notifyTryThisWorker(worker);
 
-        System.out.println("Choose your Worker : ");
-        int worker = input.nextInt();
+    }
+
+
+    public void tryThisWorker(int worker) throws IOException {
+
         notifyTryThisWorker(worker);
 
     }
@@ -370,16 +406,26 @@ public class VirtualView extends View  {
 
     public void moving(int worker) throws IOException {
 
-        System.out.println("Choose row & col: ");
-        int row = input.nextInt();
-        int col = input.nextInt();
+        thread.sendToClient(new ChooseRowAndColRequest(worker));
+        //System.out.println("Choose row & col: ");
+        //int row = input.nextInt();
+        //int col = input.nextInt();
+        /*
         while(row > 5 || row < 1 || col > 5 || col < 1) {
             System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
             row = input.nextInt();
             col = input.nextInt();
         }
-        notifyMoving(row, col, worker);
+
+         */
+
         //se mi sono mossa costruisco
+
+    }
+
+    public void tryMoving(int row, int col, int worker) throws IOException {
+
+        notifyMoving(row, col, worker);
 
     }
     @Override
@@ -407,10 +453,6 @@ public class VirtualView extends View  {
 
     }
 
-    @Override
-    public void updateBoardAddedWorker(int row, int col, int worker) throws IOException {
-        thread.sendToClient(new BoardUpdateWorker("ALL", row, col, worker));
-    }
 
     public void building(int worker) throws IOException {
 
@@ -441,7 +483,6 @@ public class VirtualView extends View  {
 
         System.out.println("Sto provando a mandare la board ");
         thread.sendToClient(new BoardUpdate("ho aggiornato la board", board));
-
         System.out.println("la board l'ho mandata");
         /*
         System.out.println(GREEN);
@@ -463,7 +504,7 @@ public class VirtualView extends View  {
                 insertNickname();
                 break;
             case 6:
-                startMoving();
+                //startMoving();
                 break;
             case 0:
                 System.out.println("Input sbagliato");

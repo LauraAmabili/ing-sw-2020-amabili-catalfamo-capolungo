@@ -155,9 +155,9 @@ public class Observable {
         }
     }
 
-    public void notifyWorkerBoardUpdate(int row, int col, int worker) throws IOException {
+    public void notifyWorkerBoardUpdate(Board board, String current) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateBoardAddedWorker(row, col, worker);
+            o.updateBoardAddedWorker(board, current);
         }
     }
 
@@ -165,6 +165,13 @@ public class Observable {
         for(ObserverModel o : observerModels){
             o.updateSetCard(chosenGods, currentPlayer);
         }
+    }
+
+    public void notifyStartMoving(String currentPlayer) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateStartMoving(currentPlayer);
+        }
+
     }
 
 
