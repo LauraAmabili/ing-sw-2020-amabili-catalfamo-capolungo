@@ -7,10 +7,11 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player implements PlayerInterface {
+public class Player implements PlayerInterface, Serializable {
 
 
     //Player Attributes

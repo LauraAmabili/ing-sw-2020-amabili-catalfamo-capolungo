@@ -3,7 +3,9 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-public class Worker {
+import java.io.Serializable;
+
+public class Worker implements Serializable {
 
     private int idWorker;
     private PlayerInterface playerWorker;

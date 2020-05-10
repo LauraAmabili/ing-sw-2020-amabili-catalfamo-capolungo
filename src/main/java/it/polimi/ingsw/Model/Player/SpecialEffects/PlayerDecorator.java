@@ -8,9 +8,10 @@ import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PlayerDecorator implements PlayerInterface {
+public class PlayerDecorator implements PlayerInterface, Serializable {
 
     // attributes
     protected PlayerInterface player;

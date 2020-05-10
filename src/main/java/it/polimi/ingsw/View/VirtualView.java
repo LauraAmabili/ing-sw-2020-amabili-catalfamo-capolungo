@@ -19,7 +19,6 @@ public class VirtualView extends View  {
     private Scanner input = new Scanner(System.in);
     private Scanner cases = new Scanner(System.in);
     private int numberOfPlayer = 0;
-    Board boardToSend = new Board();
 
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
@@ -416,9 +415,8 @@ public class VirtualView extends View  {
     @Override
     public void updateBoard(Board board) throws IOException {
 
-        boardToSend = board;
         System.out.println("Sto provando a mandare la board ");
-        thread.sendToClient(new BoardUpdate("ALL", "ho aggiornato la board"));
+        thread.sendToClient(new BoardUpdate("ALL", "ho aggiornato la board", board));
         System.out.println("la board l'ho mandata");
         /*
         System.out.println(GREEN);

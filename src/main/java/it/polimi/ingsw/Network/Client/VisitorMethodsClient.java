@@ -1,12 +1,15 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Worker;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -129,14 +132,12 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BoardUpdate boardUpdate) {
 
-
         System.out.println("DOVREBBE ESSERE LA BOARD");
-        System.out.println(boardUpdate.getBoardUpdate());
+        boardToPrint = boardUpdate.getBoard();
+        boardToPrint.printGrid();
        // System.out.println(boardUpdate.getBoard());
        // boardUpdate.getBoard().printGrid();
        // boardToPrint = boardUpdate.getBoard();
-
-
 
     }
 

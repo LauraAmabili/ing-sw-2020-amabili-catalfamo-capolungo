@@ -2,10 +2,11 @@ package it.polimi.ingsw.Model.God;
 
 //To delete
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class God {
+public class God implements Serializable {
 
     private String godName;
     private List<String> effects;
