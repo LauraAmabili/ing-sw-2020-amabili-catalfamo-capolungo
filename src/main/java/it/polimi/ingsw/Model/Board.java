@@ -3,10 +3,11 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.Player.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
 
 
     private static final int SIZE = 5;

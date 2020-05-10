@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Model;
 
-public class BoardCell {
+import java.io.Serializable;
+
+public class BoardCell implements Serializable {
 
     private int row;
     private int col;
@@ -49,4 +51,6 @@ public class BoardCell {
     public int getCol(){
         return  col;
     }
+
+
 }
