@@ -28,7 +28,7 @@ public class Building extends PlayerFSA {
                     break;
                 }
             }
-            game.updateBoard();
+            game.updateBoard(row, col, worker);
             game.getCurrentTurn().nextTurn(game);
         }
 

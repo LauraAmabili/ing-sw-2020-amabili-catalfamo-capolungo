@@ -203,13 +203,16 @@ public class Game extends Observable {
 
      */
 
-    public void updateBoard() throws IOException {
-        notifyBoardUpdate(getBoard());
+    public void updateBoard(int row, int col, int worker) throws IOException {
+        //updateBoard di place worker
+        // notifyBoardUpdate(getBoard());
+        notifyWorkerBoardUpdate(row, col, worker);
     }
 
     public void cellAlreadyOccupied(int worker) throws IOException {
-        notifyCellAlreadyOccupied(worker);
+        notifyCellAlreadyOccupied(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
+
 
     public void NoPossibleMoves(String name) throws IOException {
         notifyPlayerHasLost(name);

@@ -18,7 +18,7 @@ public class PlaceWorker extends PlayerFSA{
     @Override
     public void placeWorker(int row, int col, int worker) throws IOException {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
-            game.updateBoard();
+            //game.updateBoard();
             worker++;
         } else {
             game.cellAlreadyOccupied(worker);
@@ -31,6 +31,7 @@ public class PlaceWorker extends PlayerFSA{
                 }
             }
             game.getCurrentTurn().nextTurn(game);
+            game.updateBoard(row, col, worker);
             if (game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell() == null) {
                 game.toPlaceWorker();
             }

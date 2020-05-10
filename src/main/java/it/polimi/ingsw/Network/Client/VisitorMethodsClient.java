@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
+import it.polimi.ingsw.Model.Worker;
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
@@ -101,6 +102,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException {
 
+
         System.out.println("Wrong position");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
@@ -112,6 +114,7 @@ public class VisitorMethodsClient implements VisitorClient {
         }
 
          */
+
         client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
     }
 
@@ -126,7 +129,9 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BoardUpdate boardUpdate) {
 
-        System.out.println("Sto provando a stampare la board");
+
+        System.out.println("DOVREBBE ESSERE LA BOARD");
+        System.out.println(boardUpdate.getBoardUpdate());
        // System.out.println(boardUpdate.getBoard());
        // boardUpdate.getBoard().printGrid();
        // boardToPrint = boardUpdate.getBoard();
@@ -135,6 +140,13 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    @Override
+    public void visit(BoardUpdateWorker boardUpdateWorker) {
+
+        System.out.println("DEVI INSERIRE IN UNA BOADR QUESTI AGGIORNAMENTI" + boardUpdateWorker.getCol() + boardUpdateWorker.getRow() + boardUpdateWorker.getWorker());
+       // boardToPrint.printGrid();
+
+    }
 
 
     @Override
@@ -142,6 +154,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
         System.out.println("Nickname accepted");
         System.out.println("Wait for others to connect..");
+
     }
 
     @Override

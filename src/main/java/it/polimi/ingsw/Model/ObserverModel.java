@@ -20,7 +20,7 @@ public interface ObserverModel {
     void updateWinners(PlayerInterface player);
     void updateMoving(int worker) throws IOException;
     void updateBuilding(int worker) throws IOException;
-    void updateSetWorker(int i) throws IOException;
+    void updateSetWorker(int i, String currentPlayer) throws IOException;
     void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException;
     void updateGodNotAdded(String challengerName) throws IOException;
     void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException;
@@ -33,5 +33,5 @@ public interface ObserverModel {
     void updateWorkerSelected(int worker) throws IOException;
     void updateNoCoordinatesValid(int worker) throws IOException;
     void updateTimeToBuild(int worker) throws IOException;
-
+    void updateBoardAddedWorker(int row, int col, int worker) throws IOException;
 }

@@ -36,6 +36,7 @@ public interface VisitorClient {
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
     public void visit(PlayerOut playerOut);
     public void visit(BoardUpdate boardUpdate);
+    public void visit(BoardUpdateWorker boardUpdateWorker);
 
 
 

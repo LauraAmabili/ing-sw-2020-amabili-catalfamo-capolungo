@@ -71,9 +71,9 @@ public class Observable {
             o.updateBuilding(worker);
         }
     }
-    void notifyCellAlreadyOccupied(int i) throws IOException {
+    void notifyCellAlreadyOccupied(int i, String currentPlayer) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateSetWorker(i);
+            o.updateSetWorker(i, currentPlayer);
         }
 
     }
@@ -152,6 +152,12 @@ public class Observable {
     public void notifyStartingGame() throws IOException, InterruptedException {
         for(ObserverModel o : observerModels){
             o.updateGameisReady();
+        }
+    }
+
+    public void notifyWorkerBoardUpdate(int row, int col, int worker) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateBoardAddedWorker(row, col, worker);
         }
     }
 

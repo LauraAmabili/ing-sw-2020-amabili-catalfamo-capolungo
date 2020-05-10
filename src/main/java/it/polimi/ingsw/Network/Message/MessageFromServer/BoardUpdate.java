@@ -8,6 +8,10 @@ import java.io.IOException;
 public class BoardUpdate extends MessageToClient {
 
 
+    public String getBoardUpdate() {
+        return boardUpdate;
+    }
+
     //Board board;
     String boardUpdate;
 
