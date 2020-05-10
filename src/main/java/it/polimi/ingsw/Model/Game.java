@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
@@ -132,10 +131,9 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() throws IOException, InterruptedException {
+    public void createTurn() {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
-        //this.getCurrentTurn().setCurrentPlayer(this.getOnlinePlayers().get(0));
     }
 
 
@@ -159,17 +157,11 @@ public class Game extends Observable {
      */
     public void createChallenger(){
         Random random = new Random();
-        currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
+        int index = random.nextInt(currentTurn.getActivePlayers().size());
+        currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(index));
         int i = onlinePlayers.indexOf(currentTurn.getCurrentPlayer());
         stateList.set(i, new Initialized(getCurrentTurn().getCurrentPlayer(), this));
 
-    }
-
-    /**
-     * This notify the view that the God chosen is not in the list of the God that the Challenger chose
-     */
-    public void GodNotCorrectException() throws IOException {
-        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
     public void toSetCard() throws IOException {
@@ -177,12 +169,6 @@ public class Game extends Observable {
         this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
 
     }
-
-    public void toSetCard2() throws IOException {
-        this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
-    }
-
-
 
     public void msgGodSet(String godName) throws IOException {
         notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
@@ -204,12 +190,6 @@ public class Game extends Observable {
         notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
 
-    /*
-    public void GodAlreadyChosen(String name) {
-        notifyGodAlreadyChosen(chosenGods, name);
-    }
-
-     */
 
     public void updateBoard() throws IOException {
         notifyBoardUpdate(board);
@@ -267,8 +247,5 @@ public class Game extends Observable {
         notifyGodNotAdded(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void startingGame(){
-
-    }
 }
 

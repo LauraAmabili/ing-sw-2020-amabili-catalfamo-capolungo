@@ -17,10 +17,8 @@ import java.util.List;
 
 public class GameTest {
 
-
-    /*
     Game game = new Game();
-    VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server()));
+    VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server(), 2, true));
     GameController controller = new GameController();
 
     public GameTest() throws IOException {
@@ -72,20 +70,6 @@ public class GameTest {
         Assert.assertEquals(0, player1.getWorkerRef().size());
         Assert.assertNull(b1.getWorker());
         Assert.assertNull(b2.getWorker());
-    }
-
-
-
-    @Test
-    public void addNickname() throws IOException {
-       // game.initialiseMatch(2);
-        game.getStateList().get(0).addNickname("Notateen");
-        view1.updatePlayerAdded("Notateen");
-        Assert.assertEquals(view1.getCurrentPlayer().getNickname(), "Notateen");
-        //Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), view1.getCurrentPlayer().getNickname());
-        game.getOnlinePlayers().get(1).setNickname("SuperRexo");
-        Assert.assertEquals(game.getOnlinePlayers().get(0).getNickname(), "Notateen");
-        Assert.assertEquals(game.getOnlinePlayers().get(1).getNickname(), "SuperRexo");
     }
 
 

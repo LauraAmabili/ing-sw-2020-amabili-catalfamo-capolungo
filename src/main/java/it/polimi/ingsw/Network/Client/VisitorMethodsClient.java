@@ -110,18 +110,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException {
 
 
-        System.out.println("Wrong position");
+        System.out.println("Wrong coordinates inserted. Insert new coordinates");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
-        /*
-        while(row > 5 || row < 1 || col > 5 || col < 1) {
-            System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-            row = scanner.nextInt();
-            col = scanner.nextInt();
-        }
-
-         */
-
         client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
     }
 

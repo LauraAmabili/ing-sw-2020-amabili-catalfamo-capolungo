@@ -55,6 +55,10 @@ public class ServerThread extends Thread implements Runnable {
         this.maxPlrSet = maxPlrSet;
     }
 
+    public Server getServer() {
+        return server;
+    }
+
     public int getNumOnline() {
         return numOnline;
     }

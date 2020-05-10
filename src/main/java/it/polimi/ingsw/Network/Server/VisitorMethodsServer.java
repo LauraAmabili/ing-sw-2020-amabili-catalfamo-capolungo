@@ -25,6 +25,11 @@ public class VisitorMethodsServer implements VisitorServer {
         server.setNumPlayers(numberOfPlayers);
         server.setMaxPlrMsg(true);
         view.notifyNumberOfPlayer(numberOfPlayers);
+        if(server.getServer().getClients().size() == numberOfPlayers) {
+            for (int i = 0; i < server.getServer().getClients().size(); i++) {
+                server.getServer().getClients().get(i).sendToClient(new NicknameRequest());
+            }
+        }
 
     }
 
