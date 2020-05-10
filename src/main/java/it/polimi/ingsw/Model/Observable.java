@@ -161,4 +161,11 @@ public class Observable {
         }
     }
 
+    public void notifySetCard(List<String> chosenGods, String currentPlayer) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateSetCard(chosenGods, currentPlayer);
+        }
+    }
+
+
 }

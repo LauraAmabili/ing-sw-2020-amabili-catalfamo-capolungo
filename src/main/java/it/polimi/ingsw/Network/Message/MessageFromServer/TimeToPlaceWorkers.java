@@ -9,8 +9,7 @@ public class TimeToPlaceWorkers extends MessageToClient {
 
     String currentPlayer;
 
-    public TimeToPlaceWorkers(String currentPlayer, String target) {
-        super(target);
+    public TimeToPlaceWorkers(String currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 

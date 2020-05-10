@@ -17,8 +17,8 @@ public class ChallengerName extends MessageToClient {
     List<String > godNames;
 
 
-    public ChallengerName(String target, String challengerName, List<String> godNames) {
-        super(target);
+    public ChallengerName(String challengerName, List<String> godNames) {
+
         this.challengerName = challengerName;
         this.godNames = godNames;
     }

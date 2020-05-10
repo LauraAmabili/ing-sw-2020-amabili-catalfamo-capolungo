@@ -71,7 +71,7 @@ public class ServerThread extends Thread implements Runnable {
         //numOnline = server.getClients().size();
         if (server.getClients().size() == 1) {
             try {
-                sendToClient(new NumberOfPlayersRequest("ALL"));
+                sendToClient(new NumberOfPlayersRequest());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,7 +79,7 @@ public class ServerThread extends Thread implements Runnable {
             if (isMaxPlrSet() && server.getClients().size() == numPlayers) {
                 for(int i = 0; i < server.getClients().size(); i++) {
                     try {
-                        server.getClients().get(i).sendToClient(new NicknameRequest("ALL"));
+                        server.getClients().get(i).sendToClient(new NicknameRequest());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -88,7 +88,7 @@ public class ServerThread extends Thread implements Runnable {
             if (server.getClients().size() > numPlayers) {
                 server.getClients().remove(server.getClients().size() - 1);
                 try {
-                    sendToClient(new MaxPlayerReach("ALL"));
+                    sendToClient(new MaxPlayerReach());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,7 +113,9 @@ public class ServerThread extends Thread implements Runnable {
     }
 
     public void sendToClient(MessageToClient x) throws IOException {
+        out.reset();
         out.writeObject(x);
+        out.flush();
     }
 
 }

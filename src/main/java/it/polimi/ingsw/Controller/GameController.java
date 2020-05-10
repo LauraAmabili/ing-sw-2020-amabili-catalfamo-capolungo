@@ -66,6 +66,8 @@ public class GameController implements Observer {
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).setCard(godName);
         }
+
+
     }
 
     @Override

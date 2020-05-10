@@ -174,7 +174,15 @@ public class Game extends Observable {
 
     public void toSetCard() throws IOException {
         this.notifyTimeToSetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
+        this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
+
     }
+
+    public void toSetCard2() throws IOException {
+        this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
+    }
+
+
 
     public void msgGodSet(String godName) throws IOException {
         notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);

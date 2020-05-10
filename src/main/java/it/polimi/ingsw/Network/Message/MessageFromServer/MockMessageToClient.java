@@ -12,8 +12,8 @@ public class MockMessageToClient extends MessageToClient {
 
     public String string;
 
-    public MockMessageToClient(String string, String target) {
-        super(target);
+    public MockMessageToClient(String string) {
+
         this.string = string;
     }
 }

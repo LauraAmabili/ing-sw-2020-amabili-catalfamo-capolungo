@@ -78,8 +78,6 @@ public class VirtualView extends View  {
     public void startingGame() throws IOException, InterruptedException {
 
        //notifyStartingGame();
-
-
         //notifyInitialiseMatch(integer);
 
     }
@@ -105,7 +103,7 @@ public class VirtualView extends View  {
     public  void insertNickname() throws IOException, InterruptedException {
 
      // if(thread.getNumOnline() == numberOfPlayer) {
-          thread.sendToClient(new NicknameRequest("ALL"));
+          thread.sendToClient(new NicknameRequest());
       //}
 
 
@@ -120,7 +118,7 @@ public class VirtualView extends View  {
     public void updatePlayerAdded(String nickname) throws IOException {
 
         if(nickname.equals(MyNickname)) {
-            thread.sendToClient(new NicknameAccepted(nickname));
+            thread.sendToClient(new NicknameAccepted());
         }
 
     }
@@ -128,7 +126,7 @@ public class VirtualView extends View  {
     public void updateNicknameNotValid(String nickname) throws IOException {
 
         if(MyNickname.equals(nickname)) {
-            thread.sendToClient(new NicknameNotValid(nickname));
+            thread.sendToClient(new NicknameNotValid());
         }
         MyNickname = null;
 
@@ -140,7 +138,7 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToChoose(List gods, String name) throws IOException {
 
-        thread.sendToClient(new TimeToChooseCards(name, "ALL"));
+        thread.sendToClient(new TimeToChooseCards(name));
         //chooseCards();
     }
     public void chooseCards() throws IOException {
@@ -154,7 +152,7 @@ public class VirtualView extends View  {
 
         if(!chosenGods) {
             if(MyNickname.equals(ChallengerName)) {
-                thread.sendToClient(new CardsName(Names, currentPlayer.getNickname()));
+                thread.sendToClient(new CardsName(Names));
                 chooseCard(ChallengerName);
             }
         }
@@ -165,7 +163,7 @@ public class VirtualView extends View  {
     public void chooseCard(String challengerName) throws IOException {
 
         if(MyNickname.equals(challengerName)) {
-            thread.sendToClient(new ChooseTheCard("nickname"));
+            thread.sendToClient(new ChooseTheCard());
         }
 
 
@@ -182,17 +180,16 @@ public class VirtualView extends View  {
             chooseCard(challengerName);
         } else {
             if (MyNickname.equals(challengerName)) {
-                thread.sendToClient(new GodAdded(gods, getCurrentPlayer().getNickname()));
+                thread.sendToClient(new GodAdded(gods));
             }
         }
 
     }
-
     @Override
     public void updateGodNotAdded(String challengerName) throws IOException {
 
         if(MyNickname.equals(challengerName)) {
-            thread.sendToClient(new GodNotAdded("All"));
+            thread.sendToClient(new GodNotAdded());
             chooseCard(challengerName);
         }
 
@@ -202,36 +199,52 @@ public class VirtualView extends View  {
     //Setting personal God
 
     @Override
-    public void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
+    public  void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
-        thread.sendToClient(new TimeToSetCard(currentPlayerName, "ALL"));
-        chooseYourGod(chosenGods, currentPlayerName);
+        thread.sendToClient(new TimeToSetCard(currentPlayerName));
+        //chooseYourGod(chosenGods, currentPlayerName);
 
     }
-    public void chooseYourGod(List<String> chosenGods, String currentPlayerName) throws IOException {
+
+    @Override
+    public  void updateSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
+
+        //chooseYourGod(chosenGods, currentPlayerName);
 
         if(MyNickname.equals(currentPlayerName)) {
-            thread.sendToClient(new SetYourCard(chosenGods, "ALL"));
+            System.out.println(chosenGods);
+            thread.sendToClient(new SetYourCard(chosenGods));
         }
 
     }
-    public void godNameChosen(String chosenGod) throws IOException {
 
+
+    public  void chooseYourGod(List<String> chosenGods, String currentPlayerName) throws IOException {
+
+    }
+    //mando il messaggio sopra e mi fermo! aspetto che mi mandi la carta, sono in ascolto della carta
+
+
+    public synchronized void godNameChosen(String chosenGod) throws IOException {
+
+        System.out.println(chosenGod);
         notifyGodNameChosen(chosenGod);
     }
-    @Override
-    public void updateGodSet(String nickname, String godName) throws IOException {
 
-        thread.sendToClient(new SetCardUpdate(nickname, godName, "ALL"));
+    @Override
+    public  void updateGodSet(String nickname, String godName) throws IOException {
+
+        thread.sendToClient(new SetCardUpdate(nickname, godName));
 
     }
     @Override
     public void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException {
 
         if(MyNickname.equals(nickname)) {
-            thread.sendToClient(new CardNotPresent(getCurrentPlayer().getNickname()));
+            thread.sendToClient(new CardNotPresent());
         }
-        chooseYourGod(chosenGods, nickname);
+        //chooseYourGod(chosenGods, nickname);
+        updateSetCard(chosenGods, nickname);
     }
 
 
@@ -251,7 +264,7 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
-        thread.sendToClient(new TimeToPlaceWorkers(currentPlayerName, "ALL"));
+        thread.sendToClient(new TimeToPlaceWorkers(currentPlayerName));
         setWorkers(currentPlayerName);
 
     }
@@ -260,7 +273,7 @@ public class VirtualView extends View  {
 
         if(MyNickname.equals(currentPlayerName)) {
             for (int i = 0; i < 2; i++) {
-                thread.sendToClient(new SetWorkerRequest(currentPlayerName, i));
+                thread.sendToClient(new SetWorkerRequest(i));
             }
         }
 
@@ -285,11 +298,19 @@ public class VirtualView extends View  {
         notifyAddingWorker(row, col, i);
 
     }
+
+    @Override
+    public void updateSetWorkerOk(String currentPlayer, Board board) throws IOException {
+
+        if(MyNickname.equals(currentPlayer)){
+            thread.sendToClient(new BoardUpdateWorker("ALL", 1, 1, 1));
+        }
+    }
     @Override
     public void updateSetWorker(int i, String currentPlayer) throws IOException {
 
         if(MyNickname.equals(currentPlayer)) {
-            thread.sendToClient(new WrongPositionForWorker(i, getCurrentPlayer().getNickname()));
+            thread.sendToClient(new WrongPositionForWorker(i));
         }
         //System.out.println("Posizione sbagliata, riprova");
         // int row = input.nextInt();
@@ -298,31 +319,31 @@ public class VirtualView extends View  {
 
     }
 
+
     //Input 6 to start your Turn
 
     public void startMoving() throws IOException {
 
         notifyStartMoving();
+
     }
-
-
-
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
-        thread.sendToClient(new PlayerOut(playerNickname, getCurrentPlayer().getNickname()));
+        thread.sendToClient(new PlayerOut(playerNickname));
         //System.out.println(playerNickname + "'s workers are locked. Out!");
 
     }
-
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
-        System.out.println("It's "  + nickname + " turn!");
-        System.out.println("Choosing his worker");
+        thread.sendToClient(new TurnToMove(nickname));
+        //System.out.println("It's "  + nickname + " turn!");
+        //System.out.println("Choosing his worker");
         chooseWorker();
     }
     public void chooseWorker() throws IOException {
+
 
         System.out.println("Choose your Worker : ");
         int worker = input.nextInt();
@@ -418,7 +439,7 @@ public class VirtualView extends View  {
 
         boardToSend = board;
         System.out.println("Sto provando a mandare la board ");
-        thread.sendToClient(new BoardUpdate("ALL", "ho aggiornato la board"));
+        thread.sendToClient(new BoardUpdate("ho aggiornato la board"));
         System.out.println("la board l'ho mandata");
         /*
         System.out.println(GREEN);

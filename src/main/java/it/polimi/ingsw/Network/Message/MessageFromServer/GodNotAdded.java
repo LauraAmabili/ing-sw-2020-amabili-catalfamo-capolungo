@@ -7,9 +7,7 @@ import java.io.IOException;
 public class GodNotAdded extends MessageToClient {
 
 
-    public GodNotAdded(String target) {
-        super(target);
-    }
+
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {

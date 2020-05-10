@@ -8,9 +8,7 @@ import java.util.List;
 public class ChooseTheCard extends MessageToClient {
 
 
-    public ChooseTheCard(String target) {
-        super(target);
-    }
+
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {

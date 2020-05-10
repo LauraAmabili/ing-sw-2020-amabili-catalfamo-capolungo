@@ -8,8 +8,8 @@ public class TimeToSetCard  extends  MessageToClient {
 
     String currentPlayer;
 
-    public TimeToSetCard(String currentPlayer, String target) {
-        super(target);
+    public TimeToSetCard(String currentPlayer) {
+
         this.currentPlayer = currentPlayer;
     }
 

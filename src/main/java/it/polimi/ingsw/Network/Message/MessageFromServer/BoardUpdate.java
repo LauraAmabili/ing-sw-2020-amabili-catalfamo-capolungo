@@ -15,8 +15,8 @@ public class BoardUpdate extends MessageToClient {
     //Board board;
     String boardUpdate;
 
-    public BoardUpdate(String target, String boardUpdate) {
-        super(target);
+    public BoardUpdate(String boardUpdate) {
+
        // this.board = board;
         this.boardUpdate = boardUpdate;
     }

@@ -9,8 +9,7 @@ public class TimeToChooseCards extends MessageToClient{
     String challenger;
 
 
-    public TimeToChooseCards(String challenger, String target) {
-        super(target);
+    public TimeToChooseCards(String challenger) {
         this.challenger = challenger;
     }
 

@@ -23,7 +23,11 @@ public class VisitorMethodsClient implements VisitorClient {
         this.client = client;
     }
 
-
+    public static String ANSI_BLUE = "\u001B[34m";
+    public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String PURPLE = "\033[0;35m";
+    public static final String RESET = "\033[0m";
+    public static final String GREEN = "\033[0;32m";
 
 
 
@@ -82,8 +86,8 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int row = scanner.nextInt();
         int col = scanner.nextInt();
-        System.out.println(row);
-        System.out.println(col);
+       //System.out.println(row);
+        // System.out.println(col);
 
             /*
             while(row > 5 || row < 1 || col > 5 || col < 1) {
@@ -143,8 +147,17 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BoardUpdateWorker boardUpdateWorker) {
 
-        System.out.println("DEVI INSERIRE IN UNA BOADR QUESTI AGGIORNAMENTI" + boardUpdateWorker.getCol() + boardUpdateWorker.getRow() + boardUpdateWorker.getWorker());
-       // boardToPrint.printGrid();
+        System.out.println("Worker settato correttamente in posizione "+ boardUpdateWorker.getRow() + boardUpdateWorker.getCol());
+        System.out.println(GREEN+"QUESTA DOVREBBE ESSERE LA BOARD AGGIORNATA dai worker "+ RESET);
+
+    }
+
+    @Override
+    public void visit(TurnToMove turnToMove) {
+
+        String nickname = turnToMove.getNickname();
+        System.out.println("It's time to move!");
+        System.out.println("Now playing :" + nickname);
 
     }
 

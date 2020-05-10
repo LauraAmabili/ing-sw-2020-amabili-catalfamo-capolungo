@@ -9,8 +9,7 @@ public class WrongPositionForWorker extends MessageToClient {
 
     int worker;
 
-    public WrongPositionForWorker(int worker, String target) {
-        super(target);
+    public WrongPositionForWorker(int worker) {
         this.worker = worker;
     }
 

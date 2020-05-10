@@ -37,6 +37,7 @@ public interface VisitorClient {
     public void visit(PlayerOut playerOut);
     public void visit(BoardUpdate boardUpdate);
     public void visit(BoardUpdateWorker boardUpdateWorker);
+    public void visit(TurnToMove turnToMove);
 
 
 

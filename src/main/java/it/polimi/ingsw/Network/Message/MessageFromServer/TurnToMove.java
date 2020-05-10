@@ -4,23 +4,21 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class SetWorkerRequest extends MessageToClient {
+public class TurnToMove extends MessageToClient{
 
 
-    int worker;
+    String nickname;
 
-    public SetWorkerRequest(int worker) {
-
-        this.worker = worker;
+    public TurnToMove(String nickname) {
+        this.nickname = nickname;
     }
 
-    public int getWorker() {
-        return worker;
+    public String getNickname() {
+        return nickname;
     }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
-        gameMessageVisitorClient.visit(this);
-
+            gameMessageVisitorClient.visit(this);
     }
 }

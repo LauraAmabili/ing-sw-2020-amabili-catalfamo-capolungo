@@ -10,8 +10,7 @@ public class SetYourCard extends MessageToClient {
 
     List<String> chosenGods;
 
-    public SetYourCard(List<String> chosenGods, String target ) {
-        super(target);
+    public SetYourCard(List<String> chosenGods) {
         this.chosenGods = chosenGods;
     }
 

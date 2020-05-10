@@ -12,7 +12,7 @@ public class BoardUpdateWorker extends MessageToClient{
     int worker;
 
     public BoardUpdateWorker(String target, int row, int col, int worker) {
-        super(target);
+
         this.row = row;
         this.col = col;
         this.worker = worker;

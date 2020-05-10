@@ -13,8 +13,8 @@ public class CardsName extends MessageToClient {
     List<String> cards;
 
 
-    public CardsName(List<String> cards, String target) {
-        super(target);
+    public CardsName(List<String> cards) {
+
         this.cards = cards;
     }
 

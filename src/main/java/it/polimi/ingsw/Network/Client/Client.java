@@ -92,6 +92,7 @@ public class Client {
                 try {
                     while (isActive()) {
                         try {
+
                             MessageToClient x = (MessageToClient) in.readObject();
                             x.accept(visit);
                         }

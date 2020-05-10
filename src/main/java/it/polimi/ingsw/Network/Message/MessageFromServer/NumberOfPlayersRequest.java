@@ -7,9 +7,7 @@ import java.io.IOException;
 public class NumberOfPlayersRequest extends MessageToClient {
 
 
-    public NumberOfPlayersRequest(String target) {
-        super(target);
-    }
+
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
