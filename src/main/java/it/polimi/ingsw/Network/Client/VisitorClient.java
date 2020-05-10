@@ -36,11 +36,11 @@ public interface VisitorClient {
     public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
     public void visit(PlayerOut playerOut);
     public void visit(BoardUpdate boardUpdate);
-    public void visit(BoardUpdateWorker boardUpdateWorker);
     public void visit(TurnToMove turnToMove);
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException;
     public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException;
-
+    public void visit(TimeToBuild timeToBuild);
+    public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException;
 
 
 

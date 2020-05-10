@@ -4,27 +4,13 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class BoardUpdateWorker extends MessageToClient{
+public class BuildingRowAndCol extends MessageToClient{
 
 
-    int row;
-    int col;
     int worker;
 
-    public BoardUpdateWorker(String target, int row, int col, int worker) {
-
-        this.row = row;
-        this.col = col;
+    public BuildingRowAndCol(int worker) {
         this.worker = worker;
-    }
-
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
     }
 
     public int getWorker() {

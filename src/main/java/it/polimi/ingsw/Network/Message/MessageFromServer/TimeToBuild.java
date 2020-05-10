@@ -4,17 +4,18 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class ChooseRowAndColRequest extends MessageToClient {
+public class TimeToBuild extends MessageToClient {
 
 
-    int worker;
 
-    public ChooseRowAndColRequest(int worker) {
-        this.worker = worker;
+    String current;
+
+    public TimeToBuild(String current) {
+        this.current = current;
     }
 
-    public int getWorker() {
-        return worker;
+    public String getCurrent() {
+        return current;
     }
 
     @Override

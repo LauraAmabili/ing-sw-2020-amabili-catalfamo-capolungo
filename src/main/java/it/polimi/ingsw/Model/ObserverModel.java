@@ -28,7 +28,7 @@ public interface ObserverModel {
 
     void updateMoving(int worker, String current) throws IOException;
 
-    void updateBuilding(int worker) throws IOException;
+    void updateBuilding(int worker, String current) throws IOException;
 
     void updateSetWorker(int i, String currentPlayer) throws IOException;
 
@@ -52,7 +52,7 @@ public interface ObserverModel {
 
     void updateNoCoordinatesValid(int worker, String current) throws IOException;
 
-    void updateTimeToBuild(int worker) throws IOException;
+    void updateTimeToBuild(int worker, String current) throws IOException;
 
     void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
 

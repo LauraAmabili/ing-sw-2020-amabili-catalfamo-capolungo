@@ -317,7 +317,7 @@ public class VirtualView extends View  {
     public void updateSetWorkerOk(String currentPlayer, Board board) throws IOException {
 
         if(MyNickname.equals(currentPlayer)){
-            thread.sendToClient(new BoardUpdateWorker("ALL", 1, 1, 1));
+            thread.sendToClient(new BoardUpdate("ciao", board));
         }
     }
     @Override
@@ -403,6 +403,7 @@ public class VirtualView extends View  {
 
         //System.out.println("Worker " + worker +" can move");
         moving(worker, current);
+
     }
 
     public void moving(int worker, String current) throws IOException {
@@ -423,7 +424,6 @@ public class VirtualView extends View  {
          */
 
         //se mi sono mossa costruisco
-
     }
 
     public void tryMoving(int row, int col, int worker) throws IOException {
@@ -432,8 +432,11 @@ public class VirtualView extends View  {
 
     }
 
+
+
     @Override
     public void updateNoCoordinatesValid(int worker, String current) throws IOException {
+
 
         System.out.println("This coordinates are not valid, insert them again");
         moving(worker, current);
@@ -450,33 +453,43 @@ public class VirtualView extends View  {
     }
 
     @Override
-    public void updateTimeToBuild(int worker) throws IOException {
+    public void updateTimeToBuild(int worker, String current) throws IOException {
 
-        System.out.println("It's now time to  build!");
-        building(worker);
+        thread.sendToClient(new TimeToBuild(current));
+        //System.out.println("It's now time to  build!");
+        building(worker, current);
 
     }
 
 
-    public void building(int worker) throws IOException {
+
+    public void building(int worker, String current) throws IOException {
 
         // System.out.println("Vuoi costruire? Insert Yes or no");
         //String input = cases.nextLine();
         //notifyWantToBuild(worker);
-
-        System.out.println("Build around your worker # " + worker + "Insert row e col: " );
-        int row = input.nextInt();
-        int col = input.nextInt();
-        notifyBuilding(row, col, worker);
+        if(MyNickname.equals(current)) {
+            thread.sendToClient(new BuildingRowAndCol(worker));
+            //System.out.println("Build around your worker # " + worker + "Insert row e col: ");
+            //int row = input.nextInt();
+            //int col = input.nextInt();
+            //notifyBuilding(row, col, worker);
+        }
 
 
     }
 
+    public void tryToBuild(int row, int col, int worker) throws IOException {
+
+        notifyBuilding(row, col, worker);
+
+    }
+
     @Override
-    public void updateBuilding(int worker) throws IOException {
+    public void updateBuilding(int worker, String current) throws IOException {
 
             System.out.println("Try new coordinates: ");
-            building(worker);
+            building(worker, current);
 
     }
 
@@ -485,9 +498,7 @@ public class VirtualView extends View  {
     @Override
     public void updateBoard(Board board) throws IOException {
 
-        System.out.println("Sto provando a mandare la board ");
         thread.sendToClient(new BoardUpdate("ho aggiornato la board", board));
-        System.out.println("la board l'ho mandata");
         /*
         System.out.println(GREEN);
         board.printGrid();

@@ -226,11 +226,11 @@ public class Game extends Observable {
     }
 
     public void timeToBuild(int worker) throws IOException {
-        notifyTimeToBuild(worker);
+        notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void NoCoordinatesValidBuild(int worker) throws IOException {
-        notifyTryNewCoordinatesBuild(worker);
+        notifyTryNewCoordinatesBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void timeToCheckWorker() throws IOException {

@@ -66,9 +66,9 @@ public class Observable {
             o.updateMoving(Worker, current);
         }
     }
-    void notifyTryNewCoordinatesBuild(int worker) throws IOException {
+    void notifyTryNewCoordinatesBuild(int worker, String current) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateBuilding(worker);
+            o.updateBuilding(worker, current);
         }
     }
     void notifyCellAlreadyOccupied(int i, String currentPlayer) throws IOException {
@@ -144,9 +144,9 @@ public class Observable {
             o.updateNoCoordinatesValid(worker, current);
         }
     }
-    void notifyTimeToBuild(int worker) throws IOException {
+    void notifyTimeToBuild(int worker, String current) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateTimeToBuild(worker);
+            o.updateTimeToBuild(worker, current);
         }
     }
     public void notifyStartingGame() throws IOException, InterruptedException {

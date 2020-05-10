@@ -18,5 +18,5 @@ public interface VisitorServer {
     public void visit(FirstInput firstInput) throws IOException, InterruptedException;
     public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException;
     public void visit(ChooseRowAndColResponse chooseRowAndColResponse) throws IOException;
-
+    public void visit(BuildingRowAndColResponse buildingRowAndColResponse) throws IOException;
 }

@@ -125,18 +125,13 @@ public class VisitorMethodsClient implements VisitorClient {
 
         System.out.println("DOVREBBE ESSERE LA BOARD");
         boardToPrint = boardUpdate.getBoard();
+        System.out.println(GREEN);
         boardToPrint.printGrid();
+        System.out.println(RESET);
+        System.out.println(ANSI_BLUE);
        // System.out.println(boardUpdate.getBoard());
        // boardUpdate.getBoard().printGrid();
        // boardToPrint = boardUpdate.getBoard();
-
-    }
-
-    @Override
-    public void visit(BoardUpdateWorker boardUpdateWorker) {
-
-        System.out.println("Worker settato correttamente in posizione "+ boardUpdateWorker.getRow() + boardUpdateWorker.getCol());
-        System.out.println(GREEN+"QUESTA DOVREBBE ESSERE LA BOARD AGGIORNATA dai worker "+ RESET);
 
     }
 
@@ -168,6 +163,23 @@ public class VisitorMethodsClient implements VisitorClient {
         client.send(new ChooseRowAndColResponse(row, col, worker));
 
 
+    }
+
+    @Override
+    public void visit(TimeToBuild timeToBuild) {
+
+        System.out.println("Time to Build!");
+
+    }
+
+    @Override
+    public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException {
+
+        int worker = buildingRowAndCol.getWorker();
+        System.out.println("Choose where to build! Insert Row and Col: ");
+        int row = input.nextInt();
+        int col = input.nextInt();
+        client.send(new BuildingRowAndColResponse(row, col, worker));
     }
 
 

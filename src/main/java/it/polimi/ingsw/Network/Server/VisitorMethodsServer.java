@@ -83,6 +83,15 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
+    public void visit(BuildingRowAndColResponse buildingRowAndColResponse) throws IOException {
+
+        int row = buildingRowAndColResponse.getRow();
+        int col = buildingRowAndColResponse.getCol();
+        int worker = buildingRowAndColResponse.getWorker();
+        view.tryToBuild(row, col, worker);
+    }
+
+    @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException, InterruptedException {
 
         view.AddingNickname(nicknameResponse.getNickname());

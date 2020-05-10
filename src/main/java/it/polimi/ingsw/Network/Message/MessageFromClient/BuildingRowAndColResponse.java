@@ -4,13 +4,14 @@ import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
 
-public class ChooseRowAndColResponse extends MessageToServer {
+public class BuildingRowAndColResponse extends MessageToServer {
+
 
     int row;
     int col;
     int worker;
 
-    public ChooseRowAndColResponse(int row, int col, int worker) {
+    public BuildingRowAndColResponse(int row, int col, int worker) {
         this.row = row;
         this.col = col;
         this.worker = worker;
@@ -27,6 +28,7 @@ public class ChooseRowAndColResponse extends MessageToServer {
     public int getWorker() {
         return worker;
     }
+
 
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
