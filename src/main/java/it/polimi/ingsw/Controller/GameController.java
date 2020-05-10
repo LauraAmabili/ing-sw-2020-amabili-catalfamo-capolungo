@@ -64,7 +64,10 @@ public class GameController implements Observer {
     public synchronized void updateSetGodName(String godName) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            game.getStateList().get(i).setCard(godName);
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                game.getStateList().get(i).setCard(godName);
+                break;
+            }
         }
 
 
@@ -74,7 +77,10 @@ public class GameController implements Observer {
     public synchronized void updateAddingWorker(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            game.getStateList().get(i).placeWorker(row, col, worker);
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                game.getStateList().get(i).placeWorker(row, col, worker);
+                break;
+            }
         }
 
     }
@@ -92,7 +98,10 @@ public class GameController implements Observer {
     public void updateStartMoving() throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            game.getStateList().get(i).canIMove();
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                game.getStateList().get(i).canIMove();
+                break;
+            }
         }
 
     }
@@ -110,7 +119,10 @@ public class GameController implements Observer {
     public void updateMoving(int row, int col, int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            game.getStateList().get(i).move(row, col, worker);
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                game.getStateList().get(i).move(row, col, worker);
+                break;
+            }
         }
 
     }

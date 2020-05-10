@@ -42,11 +42,7 @@ public class VisitorMethodsClient implements VisitorClient {
         client.send(new NumberOfPlayerResponse(numPLayer));
         //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
 
-
     }
-
-
-
 
     @Override
     public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
