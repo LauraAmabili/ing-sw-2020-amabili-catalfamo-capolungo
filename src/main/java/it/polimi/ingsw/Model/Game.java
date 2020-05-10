@@ -252,6 +252,7 @@ public class Game extends Observable {
 
         notifyGodAdded(chosenGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
         System.out.println(chosenGods);
+
     }
 
     public void godNotAdded() throws IOException {
