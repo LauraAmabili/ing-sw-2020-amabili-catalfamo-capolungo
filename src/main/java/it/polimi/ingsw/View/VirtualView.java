@@ -164,8 +164,9 @@ public class VirtualView extends View  {
     }
     public void chooseCard(String challengerName) throws IOException {
 
-        if(MyNickname.equals(challengerName))
-        thread.sendToClient(new ChooseTheCard("nickname"));
+        if(MyNickname.equals(challengerName)) {
+            thread.sendToClient(new ChooseTheCard("nickname"));
+        }
 
 
     }
@@ -173,21 +174,20 @@ public class VirtualView extends View  {
 
         notifyTryThisCard(card);
 
-
     }
     @Override
     public void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException {
 
-
-        if(MyNickname.equals(challengerName)) {
-            thread.sendToClient(new GodAdded(gods, getCurrentPlayer().getNickname()));
-            if (!cardChosen) {
-                chooseCard(challengerName);
+        if (!cardChosen) {
+            chooseCard(challengerName);
+        } else {
+            if (MyNickname.equals(challengerName)) {
+                thread.sendToClient(new GodAdded(gods, getCurrentPlayer().getNickname()));
             }
         }
 
-
     }
+
     @Override
     public void updateGodNotAdded(String challengerName) throws IOException {
 
@@ -204,9 +204,8 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
-
         thread.sendToClient(new TimeToSetCard(currentPlayerName, "ALL"));
-            chooseYourGod(chosenGods, currentPlayerName);
+        chooseYourGod(chosenGods, currentPlayerName);
 
     }
     public void chooseYourGod(List<String> chosenGods, String currentPlayerName) throws IOException {
