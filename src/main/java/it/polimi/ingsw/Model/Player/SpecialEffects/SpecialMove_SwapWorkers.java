@@ -39,8 +39,10 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
 
 					worker.setOldCell(workerBoardCell);
 					worker.setCurCell(opponentBoardCell);
+					worker.getCurCell().setWorker(worker);
 					opponentWorker.setOldCell(opponentBoardCell);
 					opponentWorker.setCurCell(workerBoardCell);
+					opponentWorker.getCurCell().setWorker(opponentWorker);
 					return true;
 
 				}

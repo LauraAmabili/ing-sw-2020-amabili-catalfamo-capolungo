@@ -320,7 +320,9 @@ public class VirtualView extends View  {
     @Override
     public void updateStartMoving(String currentPlayer) throws IOException {
 
-        notifyStartMoving();
+        if(MyNickname.equals(currentPlayer)) {
+            notifyStartMoving();
+        }
 
     }
     @Override

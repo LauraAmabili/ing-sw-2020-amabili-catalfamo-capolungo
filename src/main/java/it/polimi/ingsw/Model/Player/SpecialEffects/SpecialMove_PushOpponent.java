@@ -52,8 +52,11 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
                 if (availableCellsToBePushed(opponentWorker).contains(pushedCell)) {
                     worker.setOldCell(cell);
                     worker.setCurCell(opponentCell);
+                    worker.getOldCell().setWorker(null);
+                    worker.getCurCell().setWorker(worker);
                     opponentWorker.setOldCell(opponentCell);
                     opponentWorker.setCurCell(pushedCell);
+                    opponentWorker.getCurCell().setWorker(opponentWorker);
                     return true;
                 }
                 return false;

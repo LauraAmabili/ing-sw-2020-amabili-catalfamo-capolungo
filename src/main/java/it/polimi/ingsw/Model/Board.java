@@ -57,35 +57,53 @@ public class Board implements Serializable {
                     for (int k = 0; k < 10; k++) {
                         System.out.print(" ");
                     }
-                    if (boardCells[j].getLevel() == 3 && boardCells[j].getDome()) {
-                        System.out.print("4");
-                    } else {
+                    if (boardCells[j].getWorker() == null) {
                         System.out.print(boardCells[j].getLevel());
-                        if (boardCells[j].getWorker() == null) {
+                        if(boardCells[j].getDome()) {
+                            System.out.print("D");
+                            for (int k = 0; k < 9; k++) {
+                                System.out.print(" ");
+                            }
+                        } else {
                             for (int k = 0; k < 10; k++) {
                                 System.out.print(" ");
                             }
                         }
                     }
                 } else {
-                    int spaces = (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
-                    for (int k = 0; k < spaces; k++) {
-                        System.out.print(" ");
-                    }
-                    if (boardCells[j].getWorker() != null) {
-                        for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
-                            if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
-                                System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
+                    if(!boardCells[j].getDome()) {
+                        int spaces = (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
+                        for (int k = 0; k < spaces; k++) {
+                            System.out.print(" ");
+                        }
+                        if (boardCells[j].getWorker() != null) {
+                            for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
+                                if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
+                                    System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
+                                }
                             }
                         }
-                    }
-                    if (boardCells[j].getLevel() == 3 && boardCells[j].getDome()) {
-                        System.out.print("4");
-                    } else {
                         System.out.print(boardCells[j].getLevel());
-                    }
-                    for (int k = 0; k < (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
-                        System.out.print(" ");
+                        for (int k = 0; k < (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
+                            System.out.print(" ");
+                        }
+                    } else {
+                        int spaces = (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 5)) / 2;
+                        for (int k = 0; k < spaces; k++) {
+                            System.out.print(" ");
+                        }
+                        if (boardCells[j].getWorker() != null) {
+                            for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
+                                if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
+                                    System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
+                                }
+                            }
+                        }
+                        System.out.print(boardCells[j].getLevel());
+                        System.out.print("D");
+                        for (int k = 0; k < (21 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 5)) - spaces; k++) {
+                            System.out.print(" ");
+                        }
                     }
                 }
                 System.out.print("|");

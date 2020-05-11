@@ -136,7 +136,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
         String nickname = turnToMove.getNickname();
         System.out.println("It's time to move!");
-        System.out.println("Now playing :" + nickname);
+        System.out.println("Now playing : " + nickname);
 
     }
 
