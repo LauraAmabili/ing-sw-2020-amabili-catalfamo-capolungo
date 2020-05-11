@@ -38,22 +38,18 @@ public class SpecialMove_BMB extends PlayerDecorator {
         if (enableSpecialMove){
             build(rowBuild, colBuild, worker);
         }
-        if (availableCellsToMoveAfterEffect(worker).contains(this.getBoard().getGrid()[row][col])) {
-            worker.getCurCell().setWorker(null);
-            worker.setOldCell(worker.getCurCell());
-            worker.setCurCell(this.getBoard().getGrid()[row][col]);
-            worker.getCurCell().setWorker(worker);
-            return true;
-        }
-        return false;
+        return player.move(row, col, worker);
     }
 
-    public List<BoardCell> availableCellsToMoveAfterEffect(@NotNull Worker worker) {
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        return adj;
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
+        if (enableSpecialMove) {
+            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+            adj.removeIf((n) -> n.getWorker() != null);
+            adj.removeIf(BoardCell::getDome);
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+            return adj;
+        }
+        return player.availableCellsToMove(worker);
     }
 
 }
