@@ -77,23 +77,16 @@ public class VisitorMethodsClient implements VisitorClient {
         int worker = setWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         //for(int i = 0;  i < 2; i++) {
-    //TODO: gestire caso stringa invece di intero
-        int row = scanner.nextInt();
-        int col = scanner.nextInt();
-       //System.out.println(row);
-        // System.out.println(col);
-
-            /*
-            while(row > 5 || row < 1 || col > 5 || col < 1) {
-                System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-
-                row = scanner.nextInt();
-                col = scanner.nextInt();
-            }
-             */
-            //System.out.println("Mando row e col");
-        client.send(new SetWorkerResponse(row, col, worker));
-
+        String rowstring = input.nextLine();
+        String colstring = input.nextLine();
+        try {
+            int row = Integer.parseInt(rowstring);
+            int col = Integer.parseInt(colstring);
+            client.send(new SetWorkerResponse(row, col, worker));
+        }
+        catch (NumberFormatException e){
+            visit(setWorkerRequest);
+        }
     }
 
 
@@ -102,10 +95,17 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
         System.out.println("Wrong coordinates inserted. Insert new coordinates");
-        //TODO: gestire caso stringa invece di intero
-        int row = scanner.nextInt();
-        int col = scanner.nextInt();
-        client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
+        String rowstring = input.nextLine();
+        String colstring = input.nextLine();
+        try {
+            int row = Integer.parseInt(rowstring);
+            int col = Integer.parseInt(colstring);
+            client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
+        }
+        catch (NumberFormatException e){
+            visit(wrongPositionForWorker);
+        }
+
     }
 
     @Override
@@ -154,10 +154,17 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = chooseRowAndColRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
-        //TODO: gestire caso stringa invece di intero
-        int row = input.nextInt();
-        int col = input.nextInt();
-        client.send(new ChooseRowAndColResponse(row, col, worker));
+        String rowstring = input.nextLine();
+        String colstring = input.nextLine();
+        try {
+            int row = Integer.parseInt(rowstring);
+            int col = Integer.parseInt(colstring);
+            client.send(new ChooseRowAndColResponse(row, col, worker));
+        }
+        catch (NumberFormatException e){
+            visit(chooseRowAndColRequest);
+        }
+
 
 
     }
@@ -174,10 +181,18 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = buildingRowAndCol.getWorker();
         System.out.println("Choose where to build! Insert Row and Col: ");
-        //TODO: gestire caso stringa invece di intero
-        int row = input.nextInt();
-        int col = input.nextInt();
-        client.send(new BuildingRowAndColResponse(row, col, worker));
+        String rowstring = input.nextLine();
+        String colstring = input.nextLine();
+        try {
+            int row = Integer.parseInt(rowstring);
+            int col = Integer.parseInt(colstring);
+            client.send(new BuildingRowAndColResponse(row, col, worker));
+        }
+        catch (NumberFormatException e){
+            visit(buildingRowAndCol);
+        }
+
+
     }
 
 
