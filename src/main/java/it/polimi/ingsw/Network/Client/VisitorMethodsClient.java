@@ -30,19 +30,19 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     @Override
-    public synchronized void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException {
+    public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
         System.out.println("Number of player ");
         String numPlayer = string.nextLine();
         try {
             int num = Integer.parseInt(numPlayer);
-            client.send(new NumberOfPlayerResponse(num));
+            client.send(new PlayerNumberResponse(num));
         }
         catch (NumberFormatException e){
-            visit(numberOfPlayersRequest);
+            visit(playerNumberRequest);
         }
         //int numPLayer = input.nextInt(); //TODO: to cast
-        //client.send(new NumberOfPlayerResponse(numPLayer));
+        //client.send(new PlayerNumberResponse(numPLayer));
         //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
 
     }
@@ -66,23 +66,23 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     @Override
-    public void visit(CardNotPresent cardNotPresent) {
+    public void visit(CardNotFoundRequest cardNotFoundRequest) {
 
         System.out.println("Card not Present");
 
     }
 
     @Override
-    public void visit(TimeToPlaceWorkers timeToPlaceWorkers) {
+    public void visit(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
-        System.out.println("It's "+ timeToPlaceWorkers.getCurrentPlayer() + " time to place Workers");
+        System.out.println("It's "+ startingSetWorkerTimeUpdate.getCurrentPlayer() + " time to place Workers");
     }
 
     @Override
-    public void visit(SetWorkerRequest setWorkerRequest) throws IOException {
+    public void visit(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
 
         //System.out.println("Time to set your Workers");
-        int worker = setWorkerRequest.getWorker();
+        int worker = startingSetWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         System.out.println("Row: ");
         String rowstring = string.nextLine();
@@ -91,16 +91,16 @@ public class VisitorMethodsClient implements VisitorClient {
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
-            client.send(new SetWorkerResponse(row, col, worker));
+            client.send(new StartingSetWorkerResponse(row, col, worker));
         }
         catch (NumberFormatException e){
-            visit(setWorkerRequest);
+            visit(startingSetWorkerRequest);
         }
     }
 
 
     @Override
-    public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException {
+    public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
 
 
         System.out.println("Wrong coordinates inserted. Insert new coordinates");
@@ -111,18 +111,18 @@ public class VisitorMethodsClient implements VisitorClient {
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
-            client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
+            client.send(new StartingSetWorkerResponse(row, col, wrongCoordinatesUpdate.getWorker()));
         }
         catch (NumberFormatException e){
-            visit(wrongPositionForWorker);
+            visit(wrongCoordinatesUpdate);
         }
 
     }
 
     @Override
-    public void visit(PlayerOut playerOut) {
+    public void visit(PlayerLockedUpdate playerLockedUpdate) {
 
-        System.out.println(playerOut.getNickname() + "'s workers are locked. Out!");
+        System.out.println(playerLockedUpdate.getNickname() + "'s workers are locked. Out!");
 
 
     }
@@ -136,16 +136,16 @@ public class VisitorMethodsClient implements VisitorClient {
         boardToPrint.printGrid();
         System.out.println(RESET);
 
-       // System.out.println(boardUpdate.getBoard());
-       // boardUpdate.getBoard().printGrid();
-       // boardToPrint = boardUpdate.getBoard();
+        // System.out.println(boardUpdate.getBoard());
+        // boardUpdate.getBoard().printGrid();
+        // boardToPrint = boardUpdate.getBoard();
 
     }
 
     @Override
-    public void visit(TurnToMove turnToMove) {
+    public void visit(PlayerTurnUpdate playerTurnUpdate) {
 
-        String nickname = turnToMove.getNickname();
+        String nickname = playerTurnUpdate.getNickname();
         System.out.println("It's time to move!");
         System.out.println("Now playing : " + nickname);
 
@@ -161,9 +161,9 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException {
+    public void visit(MoveRequest moveRequest) throws IOException {
 
-        int worker = chooseRowAndColRequest.getWorker();
+        int worker = moveRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
         System.out.println("Row: ");
         String rowstring = string.nextLine();
@@ -172,10 +172,10 @@ public class VisitorMethodsClient implements VisitorClient {
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
-            client.send(new ChooseRowAndColResponse(row, col, worker));
+            client.send(new MoveResponse(row, col, worker));
         }
         catch (NumberFormatException e){
-            visit(chooseRowAndColRequest);
+            visit(moveRequest);
         }
 
 
@@ -183,14 +183,14 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(TimeToBuild timeToBuild) {
+    public void visit(BuildTimeUpdate buildTimeUpdate) {
 
         System.out.println("Time to Build!");
 
     }
 
     @Override
-    public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException {
+    public void visit(BuildRequest buildingRowAndCol) throws IOException {
 
         int worker = buildingRowAndCol.getWorker();
         System.out.println("Choose where to build! Insert Row and Col: ");
@@ -201,7 +201,7 @@ public class VisitorMethodsClient implements VisitorClient {
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
-            client.send(new BuildingRowAndColResponse(row, col, worker));
+            client.send(new BuildResponse(row, col, worker));
         }
         catch (NumberFormatException e){
             visit(buildingRowAndCol);
@@ -212,7 +212,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     @Override
-    public void visit(TryNewCoordinates tryNewCoordinates) throws IOException {
+    public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) throws IOException {
 
         //int worker = tryNewCoordinatesBuilding.getWorker();
         System.out.println("Coordinates not correct! Try new coordinates");
@@ -222,15 +222,15 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(WorkerChanged workerChanged) {
+    public void visit(WrongWorkerUpdate wrongWorkerUpdate) {
 
-        int worker = workerChanged.getWorker();
+        int worker = wrongWorkerUpdate.getWorker();
         System.out.println("This worker cannot move! Another worker has been chosen for you! Move now with worker " + worker);
     }
 
 
     @Override
-    public void visit(NicknameAccepted nicknameAccepted) {
+    public void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
 
         System.out.println("Nickname accepted");
         System.out.println("Wait for others to connect..");
@@ -238,7 +238,7 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(NicknameNotValid nicknameNotValid) throws IOException {
+    public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) throws IOException {
 
         System.out.println("Nickname not valid");
         System.out.println("Insert Nickname: ");
@@ -249,73 +249,101 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(TimeToChooseCards timeToChooseCards) {
+    public void visit(ChooseCardsUpdate chooseCardsUpdate) {
 
         System.out.println("It's time to choose the cards for the game!");
-        System.out.println("Challenger was random, " + timeToChooseCards.getChallenger()+ " is choosing the cards");
+        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger()+ " is choosing the cards");
 
     }
 
     @Override
-    public void visit(CardsName cardsName) {
+    public void visit(AvailableGodsUpdate availableGodsUpdate) {
 
-        List<String> cards = cardsName.getCards();
+        List<String> cards = availableGodsUpdate.getCards();
         System.out.println(cards);
 
     }
 
     @Override
-    public void visit(ChooseTheCard chooseTheCard) throws IOException {
+    public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
         System.out.println("Choose card: ");
         String cardName = scanner.nextLine();
-        client.send(new ChosenCard(cardName));
+        client.send(new ChosenCardsUpdate(cardName));
 
     }
 
     @Override
-    public void visit(GodAdded godAdded) {
+    public void visit(CardAddedUpdate cardAddedUpdate) {
 
         System.out.println("God added");
-        List<String> addedGods = godAdded.getAddedGods();
+        List<String> addedGods = cardAddedUpdate.getAddedGods();
         System.out.println(addedGods);
 
     }
 
     @Override
-    public void visit(GodNotAdded godNotAdded) {
+    public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
 
         System.out.println("Try again, God not correct");
 
     }
 
     @Override
-    public void visit(TimeToSetCard timeToSetCard) {
+    public void visit(SetCardTimeUpdate setCardTimeUpdate) {
 
-        String current = timeToSetCard.getCurrentPlayer();
+        String current = setCardTimeUpdate.getCurrentPlayer();
         System.out.println("It's " + current + " time to set his Card");
 
     }
 
     @Override
-    public void visit(SetYourCard setYourCard) throws IOException {
+    public void visit(SetYourCardRequest setYourCardRequest) throws IOException {
 
-        System.out.println("Choose your card between:  " + setYourCard.getChosenGods());
+        System.out.println("Choose your card between:  " + setYourCardRequest.getChosenGods());
         String in = scanner.nextLine();
-        client.send(new ChosenGod(in));
+        client.send(new SetYourCardResponse(in));
 
     }
 
     @Override
-    public void visit(SetCardUpdate setCardUpdate) {
+    public void visit(CardSetUpdate cardSetUpdate) {
 
-        System.out.println("Now "+ setCardUpdate.getCurrentPlayer() + " has " + setCardUpdate.getGodName() + " as Active Card");
+        System.out.println("Now "+ cardSetUpdate.getCurrentPlayer() + " has " + cardSetUpdate.getGodName() + " as Active Card");
     }
 
 
     @Override
-    public void visit(MaxPlayerReach maxPlayerReach) {
+    public void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate) {
         System.out.println("Lobby is full. Try again later");
+    }
+
+    @Override
+    public void visit(AskEffect askEffect) throws IOException {
+
+        System.out.println("Do you want to use yor card effect?\ny: Yes, b: No");
+        String effect = scanner.nextLine();
+        client.send(new AskEffectReply(effect, client.getNickname()));
+
+    }
+
+    @Override
+    public void visit(PingRequest pingRequest){
+        try {
+            client.send(new PingResponse(pingRequest.getN()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+
+        System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
+        int input = scanner.nextInt();
+        client.send(new ChooseYourWorkerEffectResponse(input, chooseYourWorkerEffectRequest.isEffect()));
+
     }
 
 

@@ -4,7 +4,7 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class AskEffect extends MessageToClient {
+public class AskEffect extends MessageFromServer {
 
 
     @Override

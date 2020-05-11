@@ -4,7 +4,7 @@ import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
 
-public class ChooseYourWorkerEffectResponse extends MessageToServer{
+public class ChooseYourWorkerEffectResponse extends MessageFromClient{
 
     boolean effect;
     int Worker;

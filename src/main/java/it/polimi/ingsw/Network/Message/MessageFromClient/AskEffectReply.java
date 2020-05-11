@@ -4,7 +4,7 @@ import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
 
-public class AskEffectReply extends MessageToServer {
+public class AskEffectReply extends MessageFromClient {
 
     String effect;
     String playerNickname;

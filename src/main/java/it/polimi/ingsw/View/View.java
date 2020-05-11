@@ -6,8 +6,8 @@ import it.polimi.ingsw.Controller.*;
 
 
 
-public abstract class  View extends Observable implements ObserverModel {
-        //ho tolto implements runnable
+public abstract class  View extends Observable implements ObserverModel, Runnable {
+
 
 
 
