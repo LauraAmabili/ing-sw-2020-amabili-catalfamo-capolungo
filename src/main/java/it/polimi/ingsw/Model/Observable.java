@@ -180,5 +180,12 @@ public class Observable {
 
     }
 
+    public void notifyAskForEffect(String currentPlayer) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateAskForEffect(currentPlayer);
+        }
+
+    }
+
 
 }

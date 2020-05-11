@@ -6,12 +6,19 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
-    private final static boolean hasSpecialBuild=true;
+    private final boolean hasSpecialBuild;
 
+    @Override
+    public boolean isHasSpecialBuild() {
+        return hasSpecialBuild;
+    }
+
+    @Override
     public boolean isEnableSpecialBuild() {
         return enableSpecialBuild;
     }
 
+    @Override
     public void setEnableSpecialBuild(boolean enableSpecialBuild) {
         this.enableSpecialBuild = enableSpecialBuild;
     }
@@ -20,6 +27,7 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
     public SpecialBuild_DomeAnyLevel(PlayerInterface player){
         super(player);
+        hasSpecialBuild = true;
     }
 
     /**Builds a dome on that BoardCell

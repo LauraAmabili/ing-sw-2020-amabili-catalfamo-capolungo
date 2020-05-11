@@ -38,7 +38,7 @@ public abstract class PlayerFSA {
 
     }
 
-    public void checkWorker(int worker) throws IOException {
+    public void checkWorker(int worker, boolean effect) throws IOException {
 
     }
 

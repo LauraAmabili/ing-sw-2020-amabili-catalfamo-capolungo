@@ -2,6 +2,7 @@ package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
+import it.polimi.ingsw.Network.Message.MessageFromServer.ChooseYourWorkerEffectRequest;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
 import it.polimi.ingsw.View.VirtualView;
 
@@ -89,6 +90,21 @@ public class VisitorMethodsServer implements VisitorServer {
         int col = buildingRowAndColResponse.getCol();
         int worker = buildingRowAndColResponse.getWorker();
         view.tryToBuild(row, col, worker);
+    }
+
+    @Override
+    public void visit(AskEffectReply askEffectReply) throws IOException {
+
+        boolean effect = askEffectReply.getState().equals("y");
+        view.updateTimeToChooseWorkerEffect(effect);
+
+    }
+
+    @Override
+    public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException {
+
+        view.tryThisWorkerEffect(chooseYourWorkerEffectResponse.isEffect(), chooseYourWorkerEffectResponse.getWorker());
+
     }
 
     @Override

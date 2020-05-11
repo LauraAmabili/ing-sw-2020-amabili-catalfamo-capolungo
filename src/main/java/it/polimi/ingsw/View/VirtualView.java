@@ -90,6 +90,7 @@ public class VirtualView extends View  {
             notifyInitialiseMatch(number);
 
     }
+
     @Override
     public void updateGameisReady() throws IOException, InterruptedException {
 
@@ -329,8 +330,18 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
+
         thread.sendToClient(new PlayerOut(playerNickname));
 
+
+    }
+
+    @Override
+    public void updateAskForEffect(String nickname) throws IOException {
+
+        if(MyNickname.equals(nickname)) {
+            thread.sendToClient(new AskEffect());
+        }
 
     }
 
@@ -350,10 +361,21 @@ public class VirtualView extends View  {
     }
     public void chooseWorker(String nickname) throws IOException {
 
-
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new ChooseYourWorkerRequest());
         }
+    }
+
+    public void updateTimeToChooseWorkerEffect(boolean effect) throws IOException {
+
+        thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
+
+    }
+
+    public void tryThisWorkerEffect(boolean effect, int worker) throws IOException, InterruptedException {
+
+        notifyTryThisWorkerEffect(effect, worker);
+
     }
 
 

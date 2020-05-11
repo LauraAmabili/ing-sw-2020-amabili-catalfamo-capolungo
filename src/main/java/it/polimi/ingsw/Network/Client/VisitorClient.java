@@ -39,6 +39,6 @@ public interface VisitorClient {
     public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException;
     public void visit(TryNewCoordinates tryNewCoordinates) throws IOException;
     public void visit(WorkerChanged workerChanged);
-
-
+    public void visit(AskEffect askEffect) throws IOException;
+    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException;
 }

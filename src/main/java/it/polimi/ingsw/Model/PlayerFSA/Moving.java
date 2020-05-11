@@ -10,6 +10,7 @@ public class Moving extends PlayerFSA {
 
     PlayerInterface player;
     Game game;
+    boolean effect;
 
     public Moving(PlayerInterface player, Game game) {
         this.player = player;
@@ -32,7 +33,9 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void checkWorker(int worker) throws IOException {
+    public void checkWorker(int worker, boolean effect) throws IOException {
+        this.effect = effect;
+        player.setEnableSpecialMove(effect);
         if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             if(worker == 2) {
                 worker = 1;
@@ -63,6 +66,5 @@ public class Moving extends PlayerFSA {
             }
         }
     }
-
 
 }

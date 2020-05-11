@@ -9,9 +9,28 @@ import java.util.List;
 
 public class SpecialMove_MoveTwice extends PlayerDecorator {
 
+    private boolean hasSpecialMove = true;
+
+    @Override
+    public boolean isEnableSpecialMove() {
+        return enableSpecialMove;
+    }
+
+    @Override
+    public void setEnableSpecialMove(boolean enableSpecialMove) {
+        this.enableSpecialMove = enableSpecialMove;
+    }
+
+    @Override
+    public boolean isHasSpecialMove() {
+        return hasSpecialMove;
+    }
+
+    private boolean enableSpecialMove;
 
     public SpecialMove_MoveTwice(PlayerInterface p) {
         super(p);
+        hasSpecialMove = true;
     }
 
     /**

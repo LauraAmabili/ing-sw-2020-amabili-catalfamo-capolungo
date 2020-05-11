@@ -38,6 +38,9 @@ public class Player implements PlayerInterface, Serializable {
         return hasSpecialBuild;
     }
 
+    public void setHasSpecialBuild(boolean hasSpecialBuild) {
+        this.hasSpecialBuild = hasSpecialBuild;
+    }
 
     public boolean isEnableSpecialBuild() {
         return enableSpecialBuild;

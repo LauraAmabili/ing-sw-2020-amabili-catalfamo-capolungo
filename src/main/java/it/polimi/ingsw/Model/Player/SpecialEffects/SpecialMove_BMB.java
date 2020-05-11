@@ -9,12 +9,15 @@ import java.util.List;
 
 public class SpecialMove_BMB extends PlayerDecorator {
 
-    private final static boolean hasSpecialMove=true;
+    private boolean hasSpecialMove = true;
 
+
+    @Override
     public boolean isEnableSpecialMove() {
         return enableSpecialMove;
     }
 
+    @Override
     public void setEnableSpecialMove(boolean enableSpecialMove) {
         this.enableSpecialMove = enableSpecialMove;
     }
@@ -23,6 +26,7 @@ public class SpecialMove_BMB extends PlayerDecorator {
 
     public SpecialMove_BMB(PlayerInterface player) {
         super(player);
+        hasSpecialMove = true;
     }
 
     /**Build, move on the same level, build

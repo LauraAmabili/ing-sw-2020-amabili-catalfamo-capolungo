@@ -190,7 +190,7 @@ public class GameTest {
         game.getStateList().get(0).placeWorker(5, 5, 0);
         game.getStateList().get(0).placeWorker(5, 4, 1);
         game.getStateList().get(1).canIMove();
-        game.getStateList().get(1).checkWorker(1);
+        game.getStateList().get(1).checkWorker(1, false);
         game.getStateList().get(1).move(2 , 2, 1);
         Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getRow(),1);
         Assert.assertEquals(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getCurCell().getCol(), 1);

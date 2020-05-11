@@ -164,7 +164,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException {
 
         int worker = chooseRowAndColRequest.getWorker();
-        System.out.println("Choose row and col for worker " + worker + " : " );
+        System.out.println("Choose row and col for worker " + worker + " : ");
         System.out.println("Row: ");
         String rowstring = string.nextLine();
         System.out.println("Col: ");
@@ -226,6 +226,24 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = workerChanged.getWorker();
         System.out.println("This worker cannot move! Another worker has been chosen for you! Move now with worker " + worker);
+    }
+
+    @Override
+    public void visit(AskEffect askEffect) throws IOException {
+
+        System.out.println("Do you want to use yor card effect?\ny: Yes, b: No");
+        String effect = scanner.nextLine();
+        client.send(new AskEffectReply(effect, client.getNickname()));
+
+    }
+
+    @Override
+    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+
+        System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
+        int input = scanner.nextInt();
+        client.send(new ChooseYourWorkerEffectResponse(input, chooseYourWorkerEffectRequest.isEffect()));
+
     }
 
 
