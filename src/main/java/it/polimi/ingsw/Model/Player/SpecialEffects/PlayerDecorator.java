@@ -2,9 +2,7 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
-import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -156,22 +154,25 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-
     public boolean isHasSpecialMove() {
         return false;
     }
 
 
     @Override
-
     public void setHasSpecialMove(boolean hasSpecialMove) {
+
     }
 
 
     @Override
-
     public boolean isHasSpecialBuild() {
         return false;
+    }
+
+    @Override
+    public void setHasSpecialBuild(boolean hasSpecialBuild) {
+
     }
 
 }

@@ -174,7 +174,6 @@ public class Game extends Observable {
         this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-
     public void BoardWorkerUpdate() throws IOException {
 
         notifyWorkerBoardUpdate(board, this.getCurrentTurn().getCurrentPlayer().getNickname());
@@ -199,7 +198,6 @@ public class Game extends Observable {
     public void NoGodHasSuchName() throws IOException {
         notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
     }
-
 
     public void updateBoard() throws IOException {
         notifyBoardUpdate(board);
@@ -257,13 +255,13 @@ public class Game extends Observable {
         notifyGodNotAdded(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
-    public void startingGame(){
-
-    }
-
     public void toMoving() throws IOException {
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
-        notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
+        if(getCurrentTurn().getCurrentPlayer().isHasSpecialMove()) {
+            notifyAskForEffect(currentTurn.getCurrentPlayer().getNickname());
+        } else {
+            notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
+        }
     }
     /*
     public void anotherRound(){

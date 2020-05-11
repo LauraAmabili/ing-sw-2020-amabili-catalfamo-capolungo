@@ -1,45 +1,44 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
-import it.polimi.ingsw.Network.Message.MessageFromServer.CardNotFoundRequest;
-import it.polimi.ingsw.Network.Message.MessageFromServer.CardAddedUpdate;
-import it.polimi.ingsw.Network.Message.MessageFromServer.ChooseCardsUpdate;
+import it.polimi.ingsw.Network.Message.MessageFromServer.CardNotPresent;
+import it.polimi.ingsw.Network.Message.MessageFromServer.GodAdded;
+import it.polimi.ingsw.Network.Message.MessageFromServer.TimeToChooseCards;
 
 import java.io.IOException;
 
 public interface VisitorClient {
 
 
-    public void visit(PlayerNumberRequest playerNumberRequest) throws IOException;
+    public void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException;
 
     public void visit(ConnectionResponse connectionResponse);
 
-    void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate);
+    void visit(MaxPlayerReach maxPlayerReach);
     public void visit(NicknameRequest nicknameRequest) throws IOException;
-    public void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate);
-    public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) throws IOException;
-    public void visit(AvailableGodsUpdate availableGodsUpdate);
-    public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException;
-    public void visit(CardAddedUpdate cardAddedUpdate);
-    public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest);
-    public void visit(SetCardTimeUpdate setCardTimeUpdate);
-    public void visit(SetYourCardRequest setYourCardRequest) throws IOException;
-    public void visit(CardSetUpdate cardSetUpdate);
-    public void visit(ChooseCardsUpdate timeToChooseCard);
-    public void visit(CardNotFoundRequest cardNotFoundRequest);
-    public void visit(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate);
-    public void visit(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException;
-    public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException;
-    public void visit(PlayerLockedUpdate playerLockedUpdate);
+    public void visit(NicknameAccepted nicknameAccepted);
+    public void visit(NicknameNotValid nicknameNotValid) throws IOException;
+    public void visit(CardsName cardsName);
+    public void visit(ChooseTheCard chooseTheCard) throws IOException;
+    public void visit(GodAdded godAdded);
+    public void visit(GodNotAdded godNotAdded);
+    public void visit(TimeToSetCard timeToSetCard);
+    public void visit(SetYourCard setYourCard) throws IOException;
+    public void visit(SetCardUpdate setCardUpdate);
+    public void visit(TimeToChooseCards timeToChooseCard);
+    public void visit(CardNotPresent cardNotPresent);
+    public void visit(TimeToPlaceWorkers timeToPlaceWorkers);
+    public void visit(SetWorkerRequest setWorkerRequest) throws IOException;
+    public void visit(WrongPositionForWorker wrongPositionForWorker) throws IOException;
+    public void visit(PlayerOut playerOut);
     public void visit(BoardUpdate boardUpdate);
-    public void visit(PlayerTurnUpdate playerTurnUpdate);
+    public void visit(TurnToMove turnToMove);
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException;
-    public void visit(MoveRequest moveRequest) throws IOException;
-    public void visit(BuildTimeUpdate buildTimeUpdate);
-    public void visit(BuildRequest buildingRowAndCol) throws IOException;
-    public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) throws IOException;
-    public void visit(WrongWorkerUpdate wrongWorkerUpdate);
-    public void visit(PingRequest pingRequest);
+    public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException;
+    public void visit(TimeToBuild timeToBuild);
+    public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException;
+    public void visit(TryNewCoordinates tryNewCoordinates) throws IOException;
+    public void visit(WorkerChanged workerChanged);
 
 
 }

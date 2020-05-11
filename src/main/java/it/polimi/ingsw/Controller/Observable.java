@@ -88,6 +88,12 @@ public class Observable {
         }
     }
 
+    public void notifyTryThisWorkerEffect(boolean effect,int worker) throws IOException, InterruptedException {
+        for(Observer o : observerController){
+            o.updateTryThisWorkerEffect(effect, worker);
+        }
+    }
+
 
 
 

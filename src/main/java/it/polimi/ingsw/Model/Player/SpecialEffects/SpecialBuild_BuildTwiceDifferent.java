@@ -7,24 +7,28 @@ import java.io.Serializable;
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
-    private final static boolean hasSpecialBuild=true;
+    private final boolean hasSpecialBuild;
 
+    private boolean enableSpecialBuild;
+
+    @Override
     public boolean isHasSpecialBuild() {
         return hasSpecialBuild;
     }
 
-    private boolean enableSpecialBuild;
-
+    @Override
     public boolean isEnableSpecialBuild() {
         return enableSpecialBuild;
     }
 
+    @Override
     public void setEnableSpecialBuild(boolean enableSpecialBuild) {
         this.enableSpecialBuild = enableSpecialBuild;
     }
 
     public SpecialBuild_BuildTwiceDifferent(PlayerInterface p) {
         super(p);
+        hasSpecialBuild = true;
     }
 
     /**Builds on two different BoardCells

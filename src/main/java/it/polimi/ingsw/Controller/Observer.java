@@ -16,4 +16,5 @@ public interface Observer {
     public void updateMoving(int row, int col, int worker) throws IOException;
     public void updateTryThisCard(String in) throws IOException;
     public void updateStartingGame() throws IOException, InterruptedException;
+    public void updateTryThisWorkerEffect(boolean effect,int  worker) throws IOException;
 }

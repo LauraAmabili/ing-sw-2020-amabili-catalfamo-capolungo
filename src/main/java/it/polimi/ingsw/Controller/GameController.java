@@ -107,10 +107,26 @@ public class GameController implements Observer {
     }
 
     @Override
+    public void updateTryThisWorkerEffect(boolean effect, int worker) throws IOException {
+
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                if(game.getCurrentTurn().getCurrentPlayer().isHasSpecialMove()) {
+                    game.getStateList().get(i).checkWorker(worker, effect);
+                } else {
+                    game.getStateList().get(i).checkWorker(worker, false);
+                }
+                break;
+            }
+        }
+
+    }
+
+    @Override
     public void updateTryThisWorker(int worker) throws IOException {
 
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            game.getStateList().get(i).checkWorker(worker);
+            game.getStateList().get(i).checkWorker(worker, false);
         }
 
     }

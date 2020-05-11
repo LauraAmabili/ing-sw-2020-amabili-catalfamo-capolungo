@@ -3,7 +3,6 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.PlayerFSA.*;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
@@ -74,5 +73,7 @@ public interface PlayerInterface extends Serializable {
     public void setHasSpecialMove(boolean hasSpecialMove);
 
     public boolean isHasSpecialBuild();
+
+    void setHasSpecialBuild(boolean hasSpecialBuild);
 
 }
