@@ -1,15 +1,10 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Model.BoardCell;
-import it.polimi.ingsw.Model.Worker;
-import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,7 +77,7 @@ public class VisitorMethodsClient implements VisitorClient {
         int worker = setWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         //for(int i = 0;  i < 2; i++) {
-
+    //TODO: gestire caso stringa invece di intero
         int row = scanner.nextInt();
         int col = scanner.nextInt();
        //System.out.println(row);
@@ -91,7 +86,7 @@ public class VisitorMethodsClient implements VisitorClient {
             /*
             while(row > 5 || row < 1 || col > 5 || col < 1) {
                 System.out.println("Input not correct, insert coordinates greater than 1 and lesser then 5");
-                //TODO:
+
                 row = scanner.nextInt();
                 col = scanner.nextInt();
             }
@@ -107,6 +102,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
         System.out.println("Wrong coordinates inserted. Insert new coordinates");
+        //TODO: gestire caso stringa invece di intero
         int row = scanner.nextInt();
         int col = scanner.nextInt();
         client.send(new SetWorkerResponse(row, col, wrongPositionForWorker.getWorker()));
@@ -123,12 +119,12 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BoardUpdate boardUpdate) {
 
-        System.out.println("DOVREBBE ESSERE LA BOARD");
+
         boardToPrint = boardUpdate.getBoard();
         System.out.println(GREEN);
         boardToPrint.printGrid();
         System.out.println(RESET);
-        System.out.println(ANSI_BLUE);
+
        // System.out.println(boardUpdate.getBoard());
        // boardUpdate.getBoard().printGrid();
        // boardToPrint = boardUpdate.getBoard();
@@ -158,6 +154,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = chooseRowAndColRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
+        //TODO: gestire caso stringa invece di intero
         int row = input.nextInt();
         int col = input.nextInt();
         client.send(new ChooseRowAndColResponse(row, col, worker));
@@ -177,9 +174,28 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = buildingRowAndCol.getWorker();
         System.out.println("Choose where to build! Insert Row and Col: ");
+        //TODO: gestire caso stringa invece di intero
         int row = input.nextInt();
         int col = input.nextInt();
         client.send(new BuildingRowAndColResponse(row, col, worker));
+    }
+
+
+    @Override
+    public void visit(TryNewCoordinates tryNewCoordinates) throws IOException {
+
+        //int worker = tryNewCoordinatesBuilding.getWorker();
+        System.out.println("Coordinates not correct! Try new coordinates");
+        //int row = input.nextInt();
+        //int col = input.nextInt();
+        //client.send(new BuildingRowAndColResponse(row, col, worker));
+    }
+
+    @Override
+    public void visit(WorkerChanged workerChanged) {
+
+        int worker = workerChanged.getWorker();
+        System.out.println("This worker cannot move! Another worker has been chosen for you! Move now with worker " + worker);
     }
 
 
@@ -213,8 +229,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(CardsName cardsName) {
 
-        //questa la stampa!!!!
-        System.out.println(cardsName.getCards());
+        List<String> cards = cardsName.getCards();
+        System.out.println(cards);
 
     }
 

@@ -53,8 +53,8 @@ public class VisitorMethodsServer implements VisitorServer {
 
         int row = setWorkerResponse.getRow();
         int col = setWorkerResponse.getCol();
-        System.out.println("Sono nel server visitor, set worker response");
-        view.toSetWorker(row, col, setWorkerResponse.getWorker());
+        int worker = setWorkerResponse.getWorker();
+        view.toSetWorker(row, col, worker);
 
     }
 
@@ -94,7 +94,8 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException, InterruptedException {
 
-        view.AddingNickname(nicknameResponse.getNickname());
+        String nickname = nicknameResponse.getNickname();
+        view.AddingNickname(nickname);
 
     }
 

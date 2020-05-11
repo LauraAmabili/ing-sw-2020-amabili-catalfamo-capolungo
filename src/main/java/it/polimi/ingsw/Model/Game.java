@@ -265,5 +265,12 @@ public class Game extends Observable {
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
         notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
+    /*
+    public void anotherRound(){
+        notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
+    }
+
+     */
 }
 

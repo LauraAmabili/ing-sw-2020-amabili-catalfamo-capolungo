@@ -19,7 +19,7 @@ public class Building extends PlayerFSA {
 
     @Override
     public void build(int row, int col, int worker) throws IOException {
-        if(!player.build(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
+        if(!player.build(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1))) {
             game.NoCoordinatesValidBuild(worker);
         } else {
             for(int i = 0; i < game.getStateList().size(); i++) {
@@ -30,6 +30,7 @@ public class Building extends PlayerFSA {
             }
             game.updateBoard();
             game.getCurrentTurn().nextTurn(game);
+            game.toMoving();
         }
 
     }
