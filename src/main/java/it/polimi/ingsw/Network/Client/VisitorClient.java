@@ -1,9 +1,5 @@
 package it.polimi.ingsw.Network.Client;
 
-import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Network.Message.*;
-import it.polimi.ingsw.Network.Message.MessageFromClient.ChosenCard;
-import it.polimi.ingsw.Network.Message.MessageFromClient.FirstInput;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.CardNotPresent;
 import it.polimi.ingsw.Network.Message.MessageFromServer.GodAdded;
@@ -41,8 +37,8 @@ public interface VisitorClient {
     public void visit(ChooseRowAndColRequest chooseRowAndColRequest) throws IOException;
     public void visit(TimeToBuild timeToBuild);
     public void visit(BuildingRowAndCol buildingRowAndCol) throws IOException;
-
-
+    public void visit(TryNewCoordinates tryNewCoordinates) throws IOException;
+    public void visit(WorkerChanged workerChanged);
 
 
 }
