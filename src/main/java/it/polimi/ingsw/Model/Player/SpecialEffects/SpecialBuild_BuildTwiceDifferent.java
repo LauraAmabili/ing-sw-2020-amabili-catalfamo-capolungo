@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
+    private final static boolean hasSpecialBuild=true;
+
 
     public SpecialBuild_BuildTwiceDifferent(PlayerInterface p) {
         super(p);
@@ -20,27 +22,20 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
      * @param col2 Second BoardCell col
      * @return true <--> the method works </-->
      */
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect) {
 
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
-        if (!(b1.equals(b2))) {
-            if(availableCellsToBuild(worker).contains(b1) &&
-                    availableCellsToBuild(worker).contains(b2)){
-                if(b1.getLevel() == 3) {
-                    b1.setDome(true);
-                } else {
-                    b1.setLevel((b1.getLevel() + 1));
-                }
-                if (b2.getLevel() == 3) {
-                    b2.setDome(true);
-                } else {
-                    b2.setLevel((b2.getLevel() + 1));
+        if (specialEffect) {
+            if(availableCellsToBuild(worker).contains(b1) && availableCellsToBuild(worker).contains(b2)){
+                if(!b1.equals(b2)) {
+                    build(row1, col1, worker);
+                    build(row2, col2, worker);
                 }
                 return true;
             }
+            return false;
         }
-        return false;
-
+        return build(row1, col1, worker);
     }
 }

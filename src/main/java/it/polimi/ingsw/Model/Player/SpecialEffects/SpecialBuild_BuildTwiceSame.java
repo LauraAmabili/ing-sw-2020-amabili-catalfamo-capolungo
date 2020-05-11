@@ -13,23 +13,32 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
         super(p);
     }
 
+    public boolean isEnableSpecialBuild() {
+        return enableSpecialBuild;
+    }
+
+    public void setEnableSpecialBuild(boolean enableSpecialBuild) {
+        this.enableSpecialBuild = enableSpecialBuild;
+    }
+
+    private boolean enableSpecialBuild;
+
     /**Builds twice on the same BoardCell
      * @param row BoardCell row
      * @param col BoardCell col
      * @param worker Worker used
-     * @param specialEffect true <--> the effect has to be enabled</-->
      * @return true <--> the method works </-->
      */
 
-    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
-        if (specialEffect) {
+    public boolean build(int row, int col, @NotNull Worker worker) {
+        if (enableSpecialBuild) {
             if (availableCellsToBuild(worker, true).contains(this.getBoard().getGrid()[row][col])) {
                 BoardCell b = this.getBoard().getGrid()[row][col];
                 b.setLevel((b.getLevel() + 2));
                 return true;
             }
         }
-        return false;
+        return player.build(row, col, worker);
     }
 
 

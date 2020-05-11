@@ -32,7 +32,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         this.moveUp = player.isMoveUp();
     }
 
-    public boolean isMoveUp(){
+    public boolean isMoveUp() {
         return moveUp;
     }
 
@@ -46,7 +46,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public String getNickname(){
+    public String getNickname() {
         return nickname;
     }
 
@@ -86,45 +86,47 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker){
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         return player.availableCellsToMove(worker);
     }
 
     @Override
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect){
+    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
         return player.availableCellsToMove(worker, specialEffect);
     }
 
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker){
+    public boolean move(int row, int col, @NotNull Worker worker) {
         return player.move(row, col, worker);
     }
 
     @Override
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker){
+    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
         return player.availableCellsToBuild(worker);
     }
 
     @Override
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect){
+    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
         return player.availableCellsToBuild(worker, specialEffect);
     }
 
     @Override
-    public boolean build(int row, int col, @NotNull Worker worker){
+    public boolean build(int row, int col, @NotNull Worker worker) {
         return player.build(row, col, worker);
     }
 
     @Override
-    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect){
+    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
         return player.build(row, col, worker, specialEffect);
     }
 
     @Override
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2){return player.build(row1, col1, worker, row2, col2);}
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect) {
+        return player.build(row1, col1, worker, row2, col2, specialEffect);
+    }
 
     @Override
-    public boolean checkWin(@NotNull Worker worker){
+    public boolean checkWin(@NotNull Worker worker) {
         return player.checkWin(worker);
     }
 
@@ -132,5 +134,51 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
         return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
     }
+
+    @Override
+    public boolean isEnableSpecialMove() {
+        return false;
+    }
+
+    @Override
+    public void setEnableSpecialMove(boolean enableSpecialMove) {
+
+    }
+
+    @Override
+    public boolean isEnableSpecialBuild() {
+        return false;
+    }
+
+    @Override
+    public void setEnableSpecialBuild(boolean enableSpecialBuild) {
+
+    }
+
+    @Override
+
+    public boolean isHasSpecialMove() {
+        return false;
+    }
+
+
+    @Override
+
+    public void setHasSpecialMove(boolean hasSpecialMove) {
+    }
+
+
+    @Override
+
+    public boolean isHasSpecialBuild() {
+        return false;
+    }
+
+    @Override
+
+
+    public void setHasSpecialBuild(boolean hasSpecialBuild) {
+    }
+
 
 }
