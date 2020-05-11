@@ -38,8 +38,15 @@ class SpecialBuild_BuildTwiceSameTest {
         mockWorkers1.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_BuildTwiceSame(mockPlayer);
-        player.build(1, 0, worker1, true);
+        player.setEnableSpecialBuild(true);
+        player.build(1, 0, worker1);
         assertEquals(2, board.getGrid()[1][0].getLevel());
+        player.setEnableSpecialBuild(false);
+        player.build(1, 0, worker1);
+        assertEquals(3, board.getGrid()[1][0].getLevel());
+
+
+
 
     }
 

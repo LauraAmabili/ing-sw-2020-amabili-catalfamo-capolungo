@@ -13,6 +13,20 @@ public class SpecialMove_BMB extends PlayerDecorator {
         super(p);
     }
 
+    private boolean hasSpecialMove=true;
+
+
+    public boolean isEnableSpecialMove() {
+        return enableSpecialMove;
+    }
+
+    public void setEnableSpecialMove(boolean enableSpecialMove) {
+        this.enableSpecialMove = enableSpecialMove;
+    }
+
+    private boolean enableSpecialMove;
+
+
     /**Build, move on the same level, build
      * @param row First BoardCell row
      * @param col First BoardCell col

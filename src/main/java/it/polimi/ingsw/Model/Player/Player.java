@@ -21,6 +21,42 @@ public class Player implements PlayerInterface, Serializable {
     private Board board;
     private final List<God> chosenGods = new ArrayList<>();
     private boolean moveUp = true;
+    private boolean enableSpecialMove;
+    private boolean enableSpecialBuild;
+    private boolean hasSpecialMove=false;
+    private boolean hasSpecialBuild=false;
+
+    public boolean isHasSpecialMove() {
+        return hasSpecialMove;
+    }
+
+    public void setHasSpecialMove(boolean hasSpecialMove) {
+        this.hasSpecialMove = hasSpecialMove;
+    }
+
+    public boolean isHasSpecialBuild() {
+        return hasSpecialBuild;
+    }
+
+    public void setHasSpecialBuild(boolean hasSpecialBuild) {
+        this.hasSpecialBuild = hasSpecialBuild;
+    }
+
+    public boolean isEnableSpecialBuild() {
+        return enableSpecialBuild;
+    }
+
+    public void setEnableSpecialBuild(boolean enableSpecialBuild) {
+        this.enableSpecialBuild = enableSpecialBuild;
+    }
+
+    public boolean isEnableSpecialMove() {
+        return enableSpecialMove;
+    }
+
+    public void setEnableSpecialMove(boolean enableSpecialMove) {
+        this.enableSpecialMove = enableSpecialMove;
+    }
 
     public Player() {
     }
@@ -184,6 +220,11 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
+        return false;
+    }
+
+    @Override
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect) {
         return false;
     }
 

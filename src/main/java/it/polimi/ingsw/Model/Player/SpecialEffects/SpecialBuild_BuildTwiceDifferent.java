@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
+    private final static boolean hasSpecialBuild=true;
+
 
     public SpecialBuild_BuildTwiceDifferent(PlayerInterface p) {
         super(p);
