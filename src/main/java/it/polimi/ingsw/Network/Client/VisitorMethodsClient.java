@@ -33,8 +33,16 @@ public class VisitorMethodsClient implements VisitorClient {
     public synchronized void visit(NumberOfPlayersRequest numberOfPlayersRequest) throws IOException {
 
         System.out.println("Number of player ");
-        int numPLayer = input.nextInt(); //TODO: to cast
-        client.send(new NumberOfPlayerResponse(numPLayer));
+        String numPlayer = string.nextLine();
+        try {
+            int num = Integer.parseInt(numPlayer);
+            client.send(new NumberOfPlayerResponse(num));
+        }
+        catch (NumberFormatException e){
+            visit(numberOfPlayersRequest);
+        }
+        //int numPLayer = input.nextInt(); //TODO: to cast
+        //client.send(new NumberOfPlayerResponse(numPLayer));
         //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
 
     }
@@ -76,9 +84,10 @@ public class VisitorMethodsClient implements VisitorClient {
         //System.out.println("Time to set your Workers");
         int worker = setWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
-        //for(int i = 0;  i < 2; i++) {
-        String rowstring = input.nextLine();
-        String colstring = input.nextLine();
+        System.out.println("Row: ");
+        String rowstring = string.nextLine();
+        System.out.println("Col: ");
+        String colstring = string.nextLine();
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
@@ -95,8 +104,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
         System.out.println("Wrong coordinates inserted. Insert new coordinates");
-        String rowstring = input.nextLine();
-        String colstring = input.nextLine();
+        System.out.println("Row: ");
+        String rowstring = string.nextLine();
+        System.out.println("Col: ");
+        String colstring = string.nextLine();
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
@@ -154,8 +165,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = chooseRowAndColRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
-        String rowstring = input.nextLine();
-        String colstring = input.nextLine();
+        System.out.println("Row: ");
+        String rowstring = string.nextLine();
+        System.out.println("Col: ");
+        String colstring = string.nextLine();
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);
@@ -181,8 +194,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
         int worker = buildingRowAndCol.getWorker();
         System.out.println("Choose where to build! Insert Row and Col: ");
-        String rowstring = input.nextLine();
-        String colstring = input.nextLine();
+        System.out.println("Row: ");
+        String rowstring = string.nextLine();
+        System.out.println("Col: ");
+        String colstring = string.nextLine();
         try {
             int row = Integer.parseInt(rowstring);
             int col = Integer.parseInt(colstring);

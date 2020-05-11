@@ -51,6 +51,7 @@ public class VirtualView extends View  {
         this.numberOfPlayer = numberOfPlayer;
     }
 
+    /*
     @Override
     public void run() {
         start();
@@ -70,6 +71,8 @@ public class VirtualView extends View  {
         }
     }
 
+     */
+
     //Preparing game
 
 
@@ -77,8 +80,6 @@ public class VirtualView extends View  {
     public void startingGame() throws IOException, InterruptedException {
 
        //notifyStartingGame();
-
-
         //notifyInitialiseMatch(integer);
 
     }
@@ -102,9 +103,9 @@ public class VirtualView extends View  {
 
     public  void insertNickname() throws IOException, InterruptedException {
 
-     // if(thread.getNumOnline() == numberOfPlayer) {
+
           thread.sendToClient(new NicknameRequest());
-      //}
+
 
 
     }
@@ -140,7 +141,7 @@ public class VirtualView extends View  {
     public void updateTimeToChoose(List gods, String name) throws IOException {
 
         thread.sendToClient(new TimeToChooseCards(name));
-        //chooseCards();
+
     }
     public void chooseCards() throws IOException {
 
@@ -250,7 +251,7 @@ public class VirtualView extends View  {
 
     //Placing worker
 
-    //TODO: provare a stampare ogni volta
+
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
@@ -394,7 +395,6 @@ public class VirtualView extends View  {
     }
 
 
-
     @Override
     public void updateNoCoordinatesValid(int worker, String current) throws IOException {
 
@@ -470,7 +470,7 @@ public class VirtualView extends View  {
     }
 
 
-
+    /*
     public void menageInput(Integer in) throws IOException, InterruptedException {
         switch (in) {
             case 1:
@@ -491,6 +491,8 @@ public class VirtualView extends View  {
         }
     }
 
+
+
     public void printComandi(){
         System.out.println(PURPLE + "Press 2 to add nickname");
         System.out.println("Press 6 to start your turn");
@@ -506,6 +508,8 @@ public class VirtualView extends View  {
         System.out.println("WELCOME TO SANTORINI");
         System.out.println("Press 1 to start the game");
     }
+
+     */
 
 
 

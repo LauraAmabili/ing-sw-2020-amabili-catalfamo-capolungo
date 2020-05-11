@@ -43,7 +43,6 @@ public class GameController implements Observer {
 
     }
 
-
     @Override
     public synchronized void updateChoosingCards() throws IOException {
 
@@ -88,6 +87,7 @@ public class GameController implements Observer {
     @Override
     public void updateBuilding(int row, int col, int worker) throws IOException {
 
+
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).build(row, col, worker);
         }
@@ -124,6 +124,8 @@ public class GameController implements Observer {
                 break;
             }
         }
+
+
 
     }
 
