@@ -121,8 +121,8 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect) {
-        return player.build(row1, col1, worker, row2, col2, specialEffect);
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+        return player.build(row1, col1, worker, row2, col2);
     }
 
     @Override
@@ -131,8 +131,8 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild) {
-        return player.move(row, col, worker, specialEffect, rowBuild, colBuild);
+    public boolean move(int row, int col, @NotNull Worker worker, int rowBuild, int colBuild) {
+        return player.move(row, col, worker, rowBuild, colBuild);
     }
 
     @Override
@@ -173,12 +173,5 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     public boolean isHasSpecialBuild() {
         return false;
     }
-
-    @Override
-
-
-    public void setHasSpecialBuild(boolean hasSpecialBuild) {
-    }
-
 
 }

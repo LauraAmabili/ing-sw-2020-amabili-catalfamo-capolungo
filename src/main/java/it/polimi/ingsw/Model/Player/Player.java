@@ -38,9 +38,6 @@ public class Player implements PlayerInterface, Serializable {
         return hasSpecialBuild;
     }
 
-    public void setHasSpecialBuild(boolean hasSpecialBuild) {
-        this.hasSpecialBuild = hasSpecialBuild;
-    }
 
     public boolean isEnableSpecialBuild() {
         return enableSpecialBuild;
@@ -177,7 +174,7 @@ public class Player implements PlayerInterface, Serializable {
         return false;
     }
 
-    public boolean move(int row, int col, @NotNull Worker worker, boolean specialEffect, int rowBuild, int colBuild){
+    public boolean move(int row, int col, @NotNull Worker worker, int rowBuild, int colBuild){
         return false;
     }
 
@@ -220,11 +217,6 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
-        return false;
-    }
-
-    @Override
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect) {
         return false;
     }
 

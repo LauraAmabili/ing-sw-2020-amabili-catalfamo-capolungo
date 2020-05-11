@@ -20,7 +20,6 @@ class SpecialBuild_DomeAnyLevelTest {
     Game game = new Game();
     private List<Worker> mockWorkers1 = new ArrayList<Worker>();
 
-
     @Test
     public void testSpecialBuild_DomeAnyLevel() {
         Worker worker2 = new Worker(2);
@@ -36,8 +35,15 @@ class SpecialBuild_DomeAnyLevelTest {
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
         PlayerInterface player = new SpecialBuild_DomeAnyLevel(mockPlayer);
-        player.build(1, 0, worker1, true);
+        player.setEnableSpecialBuild(false);
+        player.build(1, 0, worker1);
+        assertFalse(board.getGrid()[1][0].getDome());
+        assertEquals(1, board.getGrid()[1][0].getLevel());
+        player.setEnableSpecialBuild(true);
+        player.build(1, 0, worker1);
         assertTrue(board.getGrid()[1][0].getDome());
+        assertEquals(1, board.getGrid()[1][0].getLevel());
+
     }
 
 

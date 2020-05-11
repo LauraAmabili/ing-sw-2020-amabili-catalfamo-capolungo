@@ -9,9 +9,7 @@ import java.util.List;
 
 public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
-    public SpecialBuild_BuildTwiceSame(PlayerInterface p) {
-        super(p);
-    }
+    private final static boolean hasSpecialBuild=true;
 
     public boolean isEnableSpecialBuild() {
         return enableSpecialBuild;
@@ -22,6 +20,10 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
     }
 
     private boolean enableSpecialBuild;
+
+    public SpecialBuild_BuildTwiceSame(PlayerInterface p) {
+        super(p);
+    }
 
     /**Builds twice on the same BoardCell
      * @param row BoardCell row

@@ -6,7 +6,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
 
-    protected PlayerInterface player;
+    private final static boolean hasSpecialBuild=true;
+
+    public boolean isEnableSpecialBuild() {
+        return enableSpecialBuild;
+    }
+
+    public void setEnableSpecialBuild(boolean enableSpecialBuild) {
+        this.enableSpecialBuild = enableSpecialBuild;
+    }
+
+    private boolean enableSpecialBuild;
 
     public SpecialBuild_DomeAnyLevel(PlayerInterface player){
         super(player);
@@ -16,18 +26,17 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
      * @param row BoardCell row
      * @param col BoardCell col
      * @param worker Worker used
-     * @param specialEffect true <--> the effect has to be enabled</-->
      * @return true <--> the method works </-->
      */
 
-    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
-        if (specialEffect) {
+    public boolean build(int row, int col, @NotNull Worker worker) {
+        if (enableSpecialBuild) {
             if(availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
                 this.getBoard().getGrid()[row][col].setDome(true);
                 return true;
             }
             return false;
         }
-        return build(row, col, worker);
+        return player.build(row, col, worker);
     }
 }
