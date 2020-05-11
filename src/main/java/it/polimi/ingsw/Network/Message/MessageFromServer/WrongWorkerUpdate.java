@@ -4,14 +4,21 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class NicknameRequest extends MessageFromServer {
+public class WrongWorkerUpdate extends MessageFromServer {
 
+    int worker;
+
+    public WrongWorkerUpdate(int worker) {
+        this.worker = worker;
+    }
+
+    public int getWorker() {
+        return worker;
+    }
 
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
-            gameMessageVisitorClient.visit(this);
-    }
 
-    //asking the Client to insert nickname
+    }
 }

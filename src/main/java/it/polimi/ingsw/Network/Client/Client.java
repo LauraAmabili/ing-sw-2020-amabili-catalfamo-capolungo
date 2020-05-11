@@ -2,10 +2,8 @@ package it.polimi.ingsw.Network.Client;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Network.Message.MessageFromClient.FirstInput;
-import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
-import it.polimi.ingsw.Network.Message.MessageFromClient.NumberOfPlayerResponse;
-import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
+import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 
 
 import java.io.*;
@@ -56,8 +54,6 @@ public class Client {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 
-        //send(new MockMessageToServer("fromClient"));
-        //System.out.println(((MockMessageToClient) receive()).string);
 
         try {
 
@@ -78,7 +74,7 @@ public class Client {
 
 
 
-    public void send(MessageToServer x) throws IOException {
+    public void send(MessageFromClient x) throws IOException {
 
         out.writeObject(x);
         out.flush();
@@ -93,7 +89,7 @@ public class Client {
                     while (isActive()) {
                         try {
 
-                            MessageToClient x = (MessageToClient) in.readObject();
+                            MessageFromServer x = (MessageFromServer) in.readObject();
                             x.accept(visit);
                         }
                         catch (WriteAbortedException e){

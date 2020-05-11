@@ -1,13 +1,11 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
 import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Model.BoardCell;
-import it.polimi.ingsw.Model.Worker;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class BoardUpdate extends MessageToClient {
+public class BoardUpdate extends MessageFromServer {
 
     //Board board;
     String boardUpdate;

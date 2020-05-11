@@ -120,7 +120,7 @@ public class VirtualView extends View  {
     public void updatePlayerAdded(String nickname) throws IOException {
 
         if(nickname.equals(MyNickname)) {
-            thread.sendToClient(new NicknameAccepted());
+            thread.sendToClient(new NicknameAcceptedUpdate());
         }
 
     }
@@ -128,7 +128,7 @@ public class VirtualView extends View  {
     public void updateNicknameNotValid(String nickname) throws IOException {
 
         if(MyNickname.equals(nickname)) {
-            thread.sendToClient(new NicknameNotValid());
+            thread.sendToClient(new NicknameNotValidUpdate());
         }
         MyNickname = null;
 
@@ -140,7 +140,7 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToChoose(List gods, String name) throws IOException {
 
-        thread.sendToClient(new TimeToChooseCards(name));
+        thread.sendToClient(new ChooseCardsUpdate(name));
 
     }
     public void chooseCards() throws IOException {
@@ -154,7 +154,7 @@ public class VirtualView extends View  {
 
         if(!chosenGods) {
             if(MyNickname.equals(ChallengerName)) {
-                thread.sendToClient(new CardsName(Names));
+                thread.sendToClient(new AvailableGodsUpdate(Names));
                 chooseCard(ChallengerName);
             }
         }
@@ -164,7 +164,7 @@ public class VirtualView extends View  {
     public void chooseCard(String challengerName) throws IOException {
 
         if(MyNickname.equals(challengerName)) {
-            thread.sendToClient(new ChooseTheCard());
+            thread.sendToClient(new ChallengerCardsRequest());
         }
 
 
@@ -181,7 +181,7 @@ public class VirtualView extends View  {
             chooseCard(challengerName);
         } else {
             if (MyNickname.equals(challengerName)) {
-                thread.sendToClient(new GodAdded(gods));
+                thread.sendToClient(new CardAddedUpdate(gods));
             }
         }
 
@@ -191,7 +191,7 @@ public class VirtualView extends View  {
     public void updateGodNotAdded(String challengerName) throws IOException {
 
         if(MyNickname.equals(challengerName)) {
-            thread.sendToClient(new GodNotAdded());
+            thread.sendToClient(new CardChallengerNotFoundRequest());
             chooseCard(challengerName);
         }
 
@@ -203,7 +203,7 @@ public class VirtualView extends View  {
     @Override
     public  void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
-        thread.sendToClient(new TimeToSetCard(currentPlayerName));
+        thread.sendToClient(new SetCardTimeUpdate(currentPlayerName));
 
     }
     @Override
@@ -211,7 +211,7 @@ public class VirtualView extends View  {
 
         if(MyNickname.equals(currentPlayerName)) {
             System.out.println(chosenGods);
-            thread.sendToClient(new SetYourCard(chosenGods));
+            thread.sendToClient(new SetYourCardRequest(chosenGods));
         }
 
     }
@@ -224,14 +224,14 @@ public class VirtualView extends View  {
     @Override
     public  void updateGodSet(String nickname, String godName) throws IOException {
 
-        thread.sendToClient(new SetCardUpdate(nickname, godName));
+        thread.sendToClient(new CardSetUpdate(nickname, godName));
 
     }
     @Override
     public void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException {
 
         if(MyNickname.equals(nickname)) {
-            thread.sendToClient(new CardNotPresent());
+            thread.sendToClient(new CardNotFoundRequest());
         }
         //chooseYourGod(chosenGods, nickname);
         updateSetCard(chosenGods, nickname);
@@ -255,14 +255,14 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
-        thread.sendToClient(new TimeToPlaceWorkers(currentPlayerName));
+        thread.sendToClient(new StartingSetWorkerTimeUpdate(currentPlayerName));
         setWorkers1(currentPlayerName, 0);
     }
 
     public void setWorkers1(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
-                thread.sendToClient(new SetWorkerRequest(i));
+                thread.sendToClient(new StartingSetWorkerRequest(i));
         }
 
     }
@@ -278,7 +278,7 @@ public class VirtualView extends View  {
     public void setWorkers2(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
-            thread.sendToClient(new SetWorkerRequest(i));
+            thread.sendToClient(new StartingSetWorkerRequest(i));
         }
 
     }
@@ -287,7 +287,7 @@ public class VirtualView extends View  {
         if(row > 0 && row <= 5 && col > 0 && col <= 5) {
             notifyAddingWorker(row, col, i);
         } else {
-            thread.sendToClient(new WrongPositionForWorker(i));
+            thread.sendToClient(new WrongCoordinatesUpdate(i));
         }
     }
 
@@ -309,7 +309,7 @@ public class VirtualView extends View  {
     public void updateSetWorker(int i, String currentPlayer) throws IOException {
 
         if(MyNickname.equals(currentPlayer)) {
-            thread.sendToClient(new WrongPositionForWorker(i));
+            thread.sendToClient(new WrongCoordinatesUpdate(i));
         }
 
     }
@@ -329,7 +329,7 @@ public class VirtualView extends View  {
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
-        thread.sendToClient(new PlayerOut(playerNickname));
+        thread.sendToClient(new PlayerLockedUpdate(playerNickname));
 
 
     }
@@ -338,7 +338,7 @@ public class VirtualView extends View  {
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
-         thread.sendToClient(new TurnToMove(nickname));
+         thread.sendToClient(new PlayerTurnUpdate(nickname));
     }
 
 
@@ -368,7 +368,7 @@ public class VirtualView extends View  {
     public void updateWorkerSelected(int worker, String current) throws IOException {
 
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new WorkerChanged(worker));
+            thread.sendToClient(new WrongWorkerUpdate(worker));
             moving(worker, current);
         }
 
@@ -383,7 +383,7 @@ public class VirtualView extends View  {
     public void moving(int worker, String current) throws IOException {
 
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new ChooseRowAndColRequest(worker));
+            thread.sendToClient(new MoveRequest(worker));
         }
         //se mi sono mossa costruisco
     }
@@ -398,7 +398,7 @@ public class VirtualView extends View  {
     @Override
     public void updateNoCoordinatesValid(int worker, String current) throws IOException {
 
-        thread.sendToClient(new TryNewCoordinates(worker));
+        thread.sendToClient(new TryNewCoordinatesRequest(worker));
         //System.out.println("This coordinates are not valid, insert them again");
         moving(worker, current);
 
@@ -418,7 +418,7 @@ public class VirtualView extends View  {
     @Override
     public void updateTimeToBuild(int worker, String current) throws IOException {
 
-        thread.sendToClient(new TimeToBuild(current));
+        thread.sendToClient(new BuildTimeUpdate(current));
         //System.out.println("It's now time to  build!");
         building(worker, current);
 
@@ -434,7 +434,7 @@ public class VirtualView extends View  {
         //String input = cases.nextLine();
         //notifyWantToBuild(worker);
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new BuildingRowAndCol(worker));
+            thread.sendToClient(new BuildRequest(worker));
             //System.out.println("Build around your worker # " + worker + "Insert row e col: ");
             //int row = input.nextInt();
             //int col = input.nextInt();
@@ -454,7 +454,7 @@ public class VirtualView extends View  {
     public void updateBuilding(int worker, String current) throws IOException {
 
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new TryNewCoordinates(worker));
+            thread.sendToClient(new TryNewCoordinatesRequest(worker));
             //System.out.println("Try new coordinates: ");
             building(worker, current);
         }

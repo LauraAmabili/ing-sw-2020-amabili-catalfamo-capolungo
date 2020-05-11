@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Message.*;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
 import it.polimi.ingsw.View.VirtualView;
@@ -15,13 +14,14 @@ public class VisitorMethodsServer implements VisitorServer {
     public VisitorMethodsServer(VirtualView view, ServerThread server) {
         this.view = view;
         this.server = server;
+
     }
 
 
     @Override
-    public void visit(NumberOfPlayerResponse numberOfPlayerResponse) throws IOException, InterruptedException {
+    public void visit(PlayerNumberResponse playerNumberResponse) throws IOException, InterruptedException {
 
-        int numberOfPlayers = numberOfPlayerResponse.getNumberOfPlayers();
+        int numberOfPlayers = playerNumberResponse.getNumberOfPlayers();
         server.setNumPlayers(numberOfPlayers);
         server.setMaxPlrMsg(true);
         view.notifyNumberOfPlayer(numberOfPlayers);
@@ -34,36 +34,31 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
-    public void visit(ChosenCard chosenCard) throws IOException {
+    public void visit(ChosenCardsUpdate chosenCardsUpdate) throws IOException {
 
-        String cardName = chosenCard.getChosenCard();
+        String cardName = chosenCardsUpdate.getChosenCard();
         view.tryThisCard(cardName);
 
     }
 
     @Override
-    public void visit(ChosenGod chosenGod) throws IOException {
+    public void visit(SetYourCardResponse setYourCardResponse) throws IOException {
 
-        view.godNameChosen(chosenGod.getChosenGod());
+        view.godNameChosen(setYourCardResponse.getChosenGod());
 
     }
 
     @Override
-    public void visit(SetWorkerResponse setWorkerResponse) throws IOException {
+    public void visit(StartingSetWorkerResponse startingSetWorkerResponse) throws IOException {
 
-        int row = setWorkerResponse.getRow();
-        int col = setWorkerResponse.getCol();
-        int worker = setWorkerResponse.getWorker();
+        int row = startingSetWorkerResponse.getRow();
+        int col = startingSetWorkerResponse.getCol();
+        int worker = startingSetWorkerResponse.getWorker();
         view.toSetWorker(row, col, worker);
 
     }
 
-    @Override
-    public void visit(FirstInput firstInput) throws IOException, InterruptedException {
 
-
-            view.startingGame();
-    }
 
     @Override
     public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException {
@@ -74,20 +69,20 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
-    public void visit(ChooseRowAndColResponse chooseRowAndColResponse) throws IOException {
+    public void visit(MoveResponse moveResponse) throws IOException {
 
-        int row = chooseRowAndColResponse.getRow();
-        int col = chooseRowAndColResponse.getCol();
-        int worker = chooseRowAndColResponse.getWorker();
+        int row = moveResponse.getRow();
+        int col = moveResponse.getCol();
+        int worker = moveResponse.getWorker();
         view.tryMoving(row, col, worker);
     }
 
     @Override
-    public void visit(BuildingRowAndColResponse buildingRowAndColResponse) throws IOException {
+    public void visit(BuildResponse buildResponse) throws IOException {
 
-        int row = buildingRowAndColResponse.getRow();
-        int col = buildingRowAndColResponse.getCol();
-        int worker = buildingRowAndColResponse.getWorker();
+        int row = buildResponse.getRow();
+        int col = buildResponse.getCol();
+        int worker = buildResponse.getWorker();
         view.tryToBuild(row, col, worker);
     }
 
@@ -97,6 +92,11 @@ public class VisitorMethodsServer implements VisitorServer {
         String nickname = nicknameResponse.getNickname();
         view.AddingNickname(nickname);
 
+    }
+
+    @Override
+    public void visit(PingResponse pingResponse){
+        server.getServer().getConnectionManager().receivePing(pingResponse.getN());
     }
 
 }

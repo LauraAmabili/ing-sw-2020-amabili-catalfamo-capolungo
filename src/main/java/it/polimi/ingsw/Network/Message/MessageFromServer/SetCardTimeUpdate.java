@@ -4,14 +4,22 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
-public class ConnectionResponse extends MessageFromServer {
+public class SetCardTimeUpdate extends MessageFromServer {
 
+    String currentPlayer;
 
+    public SetCardTimeUpdate(String currentPlayer) {
 
+        this.currentPlayer = currentPlayer;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
-    }
 
+    }
 }

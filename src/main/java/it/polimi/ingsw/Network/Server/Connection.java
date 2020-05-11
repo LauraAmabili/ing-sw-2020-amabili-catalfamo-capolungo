@@ -3,13 +3,38 @@ package it.polimi.ingsw.Network.Server;
 import java.net.InetAddress;
 
 public class Connection {
-    private String username;
-    private int port;
-    private InetAddress address;
+    private ServerThread serverThread;
+    int LastPing;
+    private boolean pingReceived;
 
-    public Connection(String username, int port, InetAddress address) {
-        this.username = username;
-        this.port = port;
-        this.address = address;
+    public int getLastPing() {
+        return LastPing;
+    }
+
+    public void setLastPing(int lastPing) {
+        LastPing = lastPing;
+    }
+
+    public ServerThread getServerThread() {
+        return serverThread;
+    }
+
+    public void setServerThread(ServerThread serverThread) {
+        this.serverThread = serverThread;
+    }
+
+    public boolean isPingReceived() {
+        return pingReceived;
+    }
+
+    public void setPingReceived(boolean pingReceived) {
+        this.pingReceived = pingReceived;
+    }
+
+
+
+    public Connection(ServerThread serverThread, boolean pingReceived) {
+        this.serverThread = serverThread;
+        this.pingReceived = pingReceived;
     }
 }

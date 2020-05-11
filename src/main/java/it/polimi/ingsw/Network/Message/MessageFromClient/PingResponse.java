@@ -4,20 +4,24 @@ import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
 
-public class NicknameResponse extends MessageFromClient {
+public class PingResponse extends MessageFromClient{
 
-    String nickname;
-
-    public NicknameResponse(String nickname) {
-        this.nickname = nickname;
+    public PingResponse(int n) {
+        this.n = n;
     }
 
-    public String getNickname() {
-        return nickname;
+    int n;
+
+    public int getN() {
+        return n;
+    }
+
+    public void setN(int n) {
+        this.n = n;
     }
 
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
-            gameMessageVisitorClient.visit(this);
+
     }
 }

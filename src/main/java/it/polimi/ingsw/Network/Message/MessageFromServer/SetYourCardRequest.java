@@ -3,11 +3,24 @@ package it.polimi.ingsw.Network.Message.MessageFromServer;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
+import java.util.List;
 
-public class ChooseYourWorkerRequest extends MessageFromServer {
+public class SetYourCardRequest extends MessageFromServer {
+
+
+    List<String> chosenGods;
+
+    public SetYourCardRequest(List<String> chosenGods) {
+        this.chosenGods = chosenGods;
+    }
+
+    public List<String> getChosenGods() {
+        return chosenGods;
+    }
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
+
     }
 }

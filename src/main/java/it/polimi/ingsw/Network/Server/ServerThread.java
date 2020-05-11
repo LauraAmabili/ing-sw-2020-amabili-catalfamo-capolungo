@@ -1,16 +1,15 @@
 package it.polimi.ingsw.Network.Server;
 
-import it.polimi.ingsw.Network.Message.MessageFromClient.MessageToServer;
-import it.polimi.ingsw.Network.Message.MessageFromServer.MaxPlayerReach;
-import it.polimi.ingsw.Network.Message.MessageFromServer.MessageToClient;
+import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MaxPlayerReachedUpdate;
+import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
-import it.polimi.ingsw.Network.Message.MessageFromServer.NumberOfPlayersRequest;
+import it.polimi.ingsw.Network.Message.MessageFromServer.PlayerNumberRequest;
 import it.polimi.ingsw.View.VirtualView;
 
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class ServerThread extends Thread implements Runnable {
 
@@ -26,7 +25,8 @@ public class ServerThread extends Thread implements Runnable {
     private ObjectInputStream in;
 
 
-    private boolean ready;
+
+    private boolean ready = false;
 
     public VirtualView getView() {
         return view;
@@ -75,7 +75,7 @@ public class ServerThread extends Thread implements Runnable {
         //numOnline = server.getClients().size();
         if (server.getClients().size() == 1) {
             try {
-                sendToClient(new NumberOfPlayersRequest());
+                sendToClient(new PlayerNumberRequest());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -92,7 +92,7 @@ public class ServerThread extends Thread implements Runnable {
             if (server.getClients().size() > numPlayers) {
                 server.getClients().remove(server.getClients().size() - 1);
                 try {
-                    sendToClient(new MaxPlayerReach());
+                    sendToClient(new MaxPlayerReachedUpdate());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -103,7 +103,7 @@ public class ServerThread extends Thread implements Runnable {
         server.getGameController().getGame().AddObserver(view);
         while (true) {
             try {
-                MessageToServer message = ((MessageToServer) in.readObject());
+                MessageFromClient message = ((MessageFromClient) in.readObject());
                 System.out.println("Message received");
                 message.accept(visitor);
             } catch (IOException e) {
@@ -116,7 +116,7 @@ public class ServerThread extends Thread implements Runnable {
 
     }
 
-    public void sendToClient(MessageToClient x) throws IOException {
+    public void sendToClient(MessageFromServer x) throws IOException {
         out.reset();
         out.writeObject(x);
         out.flush();

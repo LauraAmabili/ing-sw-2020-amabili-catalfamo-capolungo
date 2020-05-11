@@ -16,12 +16,17 @@ public class Server {
     private int port;
     private Gson gson = new Gson();
     private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
-    private List<ServerThread> clients = new ArrayList<>();
+    private ArrayList<ServerThread> clients = new ArrayList<>();
+    private ConnectionManager connectionManager;
 
     GameController gameController = new GameController();
 
     public Server() {
         read();
+    }
+
+    public ConnectionManager getConnectionManager(){
+        return connectionManager;
     }
 
     public List<ServerThread> getClients() {
@@ -38,6 +43,11 @@ public class Server {
     }
 
     public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
+        /*TODO
+        connectionManager = new ConnectionManager(this);
+        new Thread(connectionManager).start();
+         */
+
         connectClients();
     }
 
