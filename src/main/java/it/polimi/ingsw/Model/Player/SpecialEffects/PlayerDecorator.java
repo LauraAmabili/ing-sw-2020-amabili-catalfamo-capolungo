@@ -121,7 +121,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2){return player.build(row1, col1, worker, row2, col2);}
+    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect){return player.build(row1, col1, worker, row2, col2, specialEffect);}
 
     @Override
     public boolean checkWin(@NotNull Worker worker){

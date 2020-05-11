@@ -29,7 +29,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
                 return true;
             }
         }
-        return false;
+        return build(row, col, worker);
     }
 
 

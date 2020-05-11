@@ -55,7 +55,7 @@ public interface PlayerInterface extends Serializable {
 
     boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect);
 
-    boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2);
+    boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2, boolean specialEffect);
 
     boolean checkWin(@NotNull Worker worker);
 
