@@ -350,8 +350,10 @@ public class VirtualView extends View  {
     }
 
     @Override
-    public void updateAskForEffect(String currentPlayer) throws IOException {
-        
+    public void updateAskForEffect(String nickname) throws IOException {
+        if(MyNickname.equals(nickname)) {
+            thread.sendToClient(new AskEffect());
+        }
     }
 
     public void chooseWorker(String nickname) throws IOException {
@@ -480,10 +482,12 @@ public class VirtualView extends View  {
 
     }
 
-    public void updateTimeToChooseWorkerEffect(boolean effect) {
+    public void updateTimeToChooseWorkerEffect(boolean effect) throws IOException {
+        thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
     }
 
-    public void tryThisWorkerEffect(boolean effect, int worker) {
+    public void tryThisWorkerEffect(boolean effect, int worker) throws IOException {
+        notifyTryThisWorkerEffect(effect, worker);
     }
 
 

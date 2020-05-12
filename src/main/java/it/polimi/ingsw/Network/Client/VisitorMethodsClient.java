@@ -321,7 +321,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(AskEffect askEffect) throws IOException {
 
-        System.out.println("Do you want to use yor card effect?\ny: Yes, b: No");
+        System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
         String effect = scanner.nextLine();
         client.send(new AskEffectReply(effect, client.getNickname()));
 
