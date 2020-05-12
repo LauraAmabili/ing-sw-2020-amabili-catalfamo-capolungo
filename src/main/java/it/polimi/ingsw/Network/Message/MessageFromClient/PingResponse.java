@@ -6,18 +6,18 @@ import java.io.IOException;
 
 public class PingResponse extends MessageFromClient{
 
-    public PingResponse(int n) {
-        this.n = n;
+    public PingResponse(int id) {
+        this.id = id;
     }
 
-    int n;
+    int id;
 
-    public int getN() {
-        return n;
+    public int getId() {
+        return id;
     }
 
-    public void setN(int n) {
-        this.n = n;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

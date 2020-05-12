@@ -35,11 +35,9 @@ public class ConnectionManager implements Runnable {
         while (true) {
             initialise();
             knock();
-            try {
-                sleep(1000*timeToSleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+                //timer(1000*timeToSleep);
+
 
             clean();
 

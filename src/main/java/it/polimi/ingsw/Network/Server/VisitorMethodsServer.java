@@ -112,7 +112,7 @@ public class VisitorMethodsServer implements VisitorServer {
 
     @Override
     public void visit(PingResponse pingResponse){
-        server.getServer().getConnectionManager().receivePing(pingResponse.getN());
+        server.getServer().getConnectionManager().receivePing(pingResponse.getId());
     }
 
 }

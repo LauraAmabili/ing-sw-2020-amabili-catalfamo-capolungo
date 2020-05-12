@@ -5,18 +5,18 @@ import it.polimi.ingsw.Network.Client.VisitorClient;
 import java.io.IOException;
 
 public class PingRequest extends MessageFromServer {
-    int n;
+    int id;
 
-    public PingRequest(int n) {
-        this.n=n;
+    public PingRequest(int id) {
+        this.id=id;
     }
 
-    public int getN() {
-        return n;
+    public int getId() {
+        return id;
     }
 
-    public void setN(int n) {
-        this.n = n;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
