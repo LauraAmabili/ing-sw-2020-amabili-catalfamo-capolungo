@@ -330,7 +330,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(PingRequest pingRequest){
         try {
-            client.send(new PingResponse(pingRequest.getN()));
+            client.send(new PingResponse(pingRequest.getId()));
         } catch (IOException e) {
             e.printStackTrace();
         }
