@@ -8,9 +8,29 @@ import java.util.List;
 
 public class SpecialMove_PushOpponent extends PlayerDecorator {
 
+    private final boolean hasSpecialMove;
+
+    @Override
+    public boolean isEnableSpecialMove() {
+        return enableSpecialMove;
+    }
+
+    @Override
+    public void setEnableSpecialMove(boolean enableSpecialMove) {
+        this.enableSpecialMove = enableSpecialMove;
+    }
+
+    @Override
+    public boolean isHasSpecialMove() {
+        return hasSpecialMove;
+    }
+
+    private boolean enableSpecialMove;
+
     // constructor
     public SpecialMove_PushOpponent(PlayerInterface p) {
         super(p);
+        hasSpecialMove = true;
     }
 
     /**You can move your Worker into an opponent's pushable BoardCell
@@ -81,44 +101,45 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
      */
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
+        if(enableSpecialMove) {
+            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
 
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-
-        adj.removeIf(x -> x.getWorker() != null &&
+            adj.removeIf(x -> x.getWorker() != null &&
                 x.getWorker().getPlayerWorker() == worker.getPlayerWorker());
-        adj.removeIf(BoardCell::getDome);
-        if (worker.getPlayerWorker().isMoveUp()) {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        } else {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        }
-        BoardCell cell = worker.getCurCell();
-        for (BoardCell opponentCell : adj) {
-            if (opponentCell.getWorker() != null) {
-                int pushedRow = 0;
-                int pushedCol = 0;
-                if (cell.getRow() == opponentCell.getRow())
-                    pushedRow = cell.getRow();
-                if (cell.getRow() == opponentCell.getRow() + 1)
-                    pushedRow = cell.getRow() - 2;
-                if (cell.getRow() == opponentCell.getRow() - 1)
-                    pushedRow = cell.getRow() + 2;
-                if (cell.getCol() == opponentCell.getCol())
-                    pushedCol = cell.getRow();
-                if (cell.getCol() == opponentCell.getCol() + 1)
-                    pushedCol = cell.getRow() - 2;
-                if (cell.getCol() == opponentCell.getCol() - 1)
-                    pushedCol = cell.getRow() + 2;
-                BoardCell pushedCell = this.getBoard().getGrid()[pushedRow][pushedCol];
-                if (!(availableCellsToBePushed(opponentCell.getWorker()).contains(pushedCell))) {
-                    adj.remove(opponentCell);
-                }
-
+            adj.removeIf(BoardCell::getDome);
+            if (worker.getPlayerWorker().isMoveUp()) {
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+            } else {
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
             }
+            BoardCell cell = worker.getCurCell();
+            for (BoardCell opponentCell : adj) {
+                if (opponentCell.getWorker() != null) {
+                    int pushedRow = 0;
+                    int pushedCol = 0;
+                    if (cell.getRow() == opponentCell.getRow())
+                        pushedRow = cell.getRow();
+                    if (cell.getRow() == opponentCell.getRow() + 1)
+                        pushedRow = cell.getRow() - 2;
+                    if (cell.getRow() == opponentCell.getRow() - 1)
+                        pushedRow = cell.getRow() + 2;
+                    if (cell.getCol() == opponentCell.getCol())
+                        pushedCol = cell.getRow();
+                    if (cell.getCol() == opponentCell.getCol() + 1)
+                        pushedCol = cell.getRow() - 2;
+                    if (cell.getCol() == opponentCell.getCol() - 1)
+                        pushedCol = cell.getRow() + 2;
+                    BoardCell pushedCell = this.getBoard().getGrid()[pushedRow][pushedCol];
+                    if (!(availableCellsToBePushed(opponentCell.getWorker()).contains(pushedCell))) {
+                        adj.remove(opponentCell);
+                    }
+
+                }
+            }
+
+            return adj;
         }
-
-
-        return adj;
+        return player.availableCellsToMove(worker, false);
     }
 
 

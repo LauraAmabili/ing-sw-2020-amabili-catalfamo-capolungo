@@ -62,8 +62,9 @@ public class Moving extends PlayerFSA {
             if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
                 game.updateWin(player);
             } else {
-                game.timeToBuild(worker);
+                game.askEffectBuild(worker);
             }
+            player.setEnableSpecialMove(false);
         }
     }
 

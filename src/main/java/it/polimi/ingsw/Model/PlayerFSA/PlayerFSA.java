@@ -38,11 +38,23 @@ public abstract class PlayerFSA {
 
     }
 
+    public boolean getEffect() {
+        return false;
+    }
+
     public void checkWorker(int worker, boolean effect) throws IOException {
 
     }
 
     public void move(int row, int col, int worker) throws IOException {
+
+    }
+
+    public void checkBuild(int worker, boolean effect) throws IOException {
+
+    }
+
+    public void build(int row1, int col1, int row2, int col2, int worker) throws IOException {
 
     }
 

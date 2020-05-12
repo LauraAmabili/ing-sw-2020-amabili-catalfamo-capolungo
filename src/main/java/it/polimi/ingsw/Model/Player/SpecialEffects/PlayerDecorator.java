@@ -28,6 +28,9 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
+        for (Worker worker : workerRef) {
+            worker.setPlayerWorker(this);
+        }
     }
 
     public boolean isMoveUp() {
@@ -119,8 +122,8 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
-        return player.build(row1, col1, worker, row2, col2);
+    public boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
+        return player.build(row1, col1, row2, col2, worker);
     }
 
     @Override
@@ -164,9 +167,13 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
 
     }
 
-
     @Override
     public boolean isHasSpecialBuild() {
+        return false;
+    }
+
+    @Override
+    public boolean isHasTwoInputBuild() {
         return false;
     }
 

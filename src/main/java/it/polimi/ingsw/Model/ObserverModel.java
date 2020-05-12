@@ -65,5 +65,9 @@ public interface ObserverModel {
     void updateTimeToChooseWorker(String current) throws IOException;
 
     void updateAskForEffect(String currentPlayer) throws IOException;
+    
+    void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException;
+
+    void updateBuildTwoInput(String currentPlayer,int worker) throws IOException;
 }
 

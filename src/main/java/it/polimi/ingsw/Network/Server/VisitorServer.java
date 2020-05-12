@@ -18,6 +18,7 @@ public interface VisitorServer {
     public void visit(BuildResponse buildResponse) throws IOException;
     public void visit(PingResponse pingResponse);
     void visit(AskEffectReply askEffectReply) throws IOException;
-
     void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException;
+    void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException;
+    void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException;
 }

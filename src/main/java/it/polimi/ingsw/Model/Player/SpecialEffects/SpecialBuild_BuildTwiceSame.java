@@ -52,13 +52,15 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
     }
 
 
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        adj.removeIf((n) -> n.getLevel() == 2);
-        return adj;
-
+    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
+        if(enableSpecialBuild) {
+            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+            adj.removeIf((n) -> n.getWorker() != null);
+            adj.removeIf(BoardCell::getDome);
+            adj.removeIf((n) -> n.getLevel() == 2);
+            return adj;
+        }
+        return player.availableCellsToBuild(worker, false);
     }
 
 

@@ -8,12 +8,18 @@ import java.io.Serializable;
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 
     private final boolean hasSpecialBuild;
+    private final boolean hasTwoInputBuild;
 
     private boolean enableSpecialBuild;
 
     @Override
     public boolean isHasSpecialBuild() {
         return hasSpecialBuild;
+    }
+
+    @Override
+    public boolean isHasTwoInputBuild() {
+        return hasTwoInputBuild;
     }
 
     @Override
@@ -29,6 +35,7 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
     public SpecialBuild_BuildTwiceDifferent(PlayerInterface p) {
         super(p);
         hasSpecialBuild = true;
+        hasTwoInputBuild = true;
     }
 
     /**Builds on two different BoardCells
@@ -39,17 +46,18 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
      * @param col2 Second BoardCell col
      * @return true <--> the method works </-->
      */
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+    public boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
 
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
         if (enableSpecialBuild) {
             if(availableCellsToBuild(worker).contains(b1) && availableCellsToBuild(worker).contains(b2)){
                 if(!b1.equals(b2)) {
-                    build(row1, col1, worker);
-                    build(row2, col2, worker);
+                    player.build(row1, col1, worker);
+                    player.build(row2, col2, worker);
+                    return true;
                 }
-                return true;
+                return false;
             }
             return false;
         }

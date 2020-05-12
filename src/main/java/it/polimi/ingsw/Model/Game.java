@@ -223,8 +223,28 @@ public class Game extends Observable {
         notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    public void askEffectBuild(int worker) throws IOException {
+        if(getCurrentTurn().getCurrentPlayer().isHasSpecialBuild()) {
+            notifyAskForEffectBuild(currentTurn.getCurrentPlayer().getNickname(), worker);
+        } else {
+            notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        }
+    }
+
     public void timeToBuild(int worker) throws IOException {
-        notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        for(int i = 0; i < getOnlinePlayers().size(); i++) {
+            if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
+                if(getStateList().get(i).getEffect()) {
+                    if (getCurrentTurn().getCurrentPlayer().isHasTwoInputBuild()) {
+                        notifyTimeToBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    }
+                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                } else {
+                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                }
+                break;
+            }
+        }
     }
 
     public void NoCoordinatesValidBuild(int worker) throws IOException {

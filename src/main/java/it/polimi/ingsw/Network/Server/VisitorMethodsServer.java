@@ -90,7 +90,7 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
-        boolean effect = askEffectReply.getState().equals("y");
+        boolean effect = askEffectReply.getEffect().equals("y");
         view.updateTimeToChooseWorkerEffect(effect);
 
     }
@@ -99,6 +99,26 @@ public class VisitorMethodsServer implements VisitorServer {
     public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException {
 
         view.tryThisWorkerEffect(chooseYourWorkerEffectResponse.isEffect(), chooseYourWorkerEffectResponse.getWorker());
+
+    }
+
+    @Override
+    public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
+
+        boolean effect = askEffectBuildResponse.getEffect().equals("y");
+        view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+
+    }
+
+    @Override
+    public void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException {
+
+        int row1 = buildTwoInputResponse.getRow1();
+        int row2 = buildTwoInputResponse.getRow2();
+        int col1 = buildTwoInputResponse.getCol1();
+        int col2 = buildTwoInputResponse.getCol2();
+        int worker = buildTwoInputResponse.getWorker();
+        view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
 
     }
 

@@ -187,5 +187,17 @@ public class Observable {
 
     }
 
+    public void notifyAskForEffectBuild(String currentPlayer, int worker) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateAskForEffectBuild(currentPlayer, worker);
+        }
+    }
+
+    public void notifyTimeToBuildTwoInput(int worker, String currentPlayer) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateBuildTwoInput(currentPlayer, worker);
+        }
+    }
+
 
 }

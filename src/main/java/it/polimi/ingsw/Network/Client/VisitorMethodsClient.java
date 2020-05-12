@@ -155,8 +155,8 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-        int input = scanner.nextInt();
-        client.send(new ChooseYourWorkerResponse(input));
+        int worker = input.nextInt();
+        client.send(new ChooseYourWorkerResponse(worker));
 
     }
 
@@ -242,7 +242,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
         System.out.println("Nickname not valid");
         System.out.println("Insert Nickname: ");
-        String nickname = scanner.nextLine();
+        String nickname = string.nextLine();
         client.send(new NicknameResponse(nickname));
 
 
@@ -268,7 +268,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
         System.out.println("Choose card: ");
-        String cardName = scanner.nextLine();
+        String cardName = string.nextLine();
         client.send(new ChosenCardsUpdate(cardName));
 
     }
@@ -301,7 +301,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(SetYourCardRequest setYourCardRequest) throws IOException {
 
         System.out.println("Choose your card between:  " + setYourCardRequest.getChosenGods());
-        String in = scanner.nextLine();
+        String in = string.nextLine();
         client.send(new SetYourCardResponse(in));
 
     }
@@ -322,7 +322,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(AskEffect askEffect) throws IOException {
 
         System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
-        String effect = scanner.nextLine();
+        String effect = string.nextLine();
         client.send(new AskEffectReply(effect, client.getNickname()));
 
     }
@@ -341,8 +341,42 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-        int input = scanner.nextInt();
-        client.send(new ChooseYourWorkerEffectResponse(input, chooseYourWorkerEffectRequest.isEffect()));
+        int worker = input.nextInt();
+        client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
+
+    }
+
+    @Override
+    public void visit(AskEffectBuild askEffectBuild) throws IOException {
+        System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
+        String effect = string.nextLine();
+        client.send(new AskEffectBuildResponse(effect, client.getNickname(), askEffectBuild.getWorker()));
+    }
+
+    @Override
+    public void visit(BuildTwoInputRequest buildTwoInputRequest) {
+        int worker = buildTwoInputRequest.getWorker();
+        System.out.println("Choose row and col for the first action");
+        System.out.println("Row: ");
+        String rowstring1 = string.nextLine();
+        System.out.println("Col: ");
+        String colstring1 = string.nextLine();
+        System.out.println("Choose row and col for the second action");
+        System.out.println("Row: ");
+        String rowstring2 = string.nextLine();
+        System.out.println("Col: ");
+        String colstring2 = string.nextLine();
+        try {
+            int row1 = Integer.parseInt(rowstring1);
+            int col1 = Integer.parseInt(colstring1);
+            int row2 = Integer.parseInt(rowstring2);
+            int col2 = Integer.parseInt(colstring2);
+            client.send(new BuildTwoInputResponse(row1, col1, row2, col2, worker));
+        }
+        catch (NumberFormatException | IOException e) {
+            System.out.println("You insert e wrong character");
+            visit(buildTwoInputRequest);
+        }
 
     }
 

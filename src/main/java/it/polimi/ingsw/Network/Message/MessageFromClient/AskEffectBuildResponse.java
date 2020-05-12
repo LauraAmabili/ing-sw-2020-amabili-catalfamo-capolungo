@@ -4,19 +4,24 @@ import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
 
-public class AskEffectReply extends MessageFromClient {
+public class AskEffectBuildResponse extends MessageFromClient {
 
     String effect;
+    int worker;
     String playerNickname;
 
     public String getEffect() {
         return effect;
     }
     public String getPlayerNickname() {return playerNickname;}
+    public int getWorker() {
+        return worker;
+    }
 
-    public AskEffectReply(String effect, String playerNickname) {
+    public AskEffectBuildResponse(String effect, String playerNickname, int worker) {
         this.effect = effect;
         this.playerNickname = playerNickname;
+        this.worker = worker;
     }
 
     @Override

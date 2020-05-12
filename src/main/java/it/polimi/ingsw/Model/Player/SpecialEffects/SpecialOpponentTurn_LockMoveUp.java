@@ -41,7 +41,7 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
                 lockMoveUp(worker);
                 return true;
             }
-
+            return true;
         }
         return false;
     }

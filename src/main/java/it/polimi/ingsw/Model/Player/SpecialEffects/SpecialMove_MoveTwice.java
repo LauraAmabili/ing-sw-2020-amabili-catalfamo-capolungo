@@ -64,19 +64,21 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      * @return ArrayList with the BoardCells
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
-
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        for (BoardCell x : this.getBoard().adjacentCells(worker.getCurCell())) {
-            adj.addAll(this.getBoard().adjacentCells(x));
+        if(enableSpecialMove) {
+            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+            for (BoardCell x : this.getBoard().adjacentCells(worker.getCurCell())) {
+                adj.addAll(this.getBoard().adjacentCells(x));
+            }
+            adj.removeIf((n) -> n.getWorker() != null);
+            adj.removeIf(BoardCell::getDome);
+            if (worker.getPlayerWorker().isMoveUp()) {
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+            } else {
+                adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+            }
+            return adj;
         }
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        if (worker.getPlayerWorker().isMoveUp()) {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        } else {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        }
-        return adj;
+        return player.availableCellsToMove(worker, false);
 
     }
 

@@ -23,8 +23,9 @@ public class Player implements PlayerInterface, Serializable {
     private boolean moveUp = true;
     private boolean enableSpecialMove;
     private boolean enableSpecialBuild;
-    private boolean hasSpecialMove=false;
-    private boolean hasSpecialBuild=false;
+    private boolean hasSpecialMove = false;
+    private boolean hasSpecialBuild = false;
+    private boolean hasTwoInputBuild = false;
 
     public boolean isHasSpecialMove() {
         return hasSpecialMove;
@@ -36,6 +37,10 @@ public class Player implements PlayerInterface, Serializable {
 
     public boolean isHasSpecialBuild() {
         return hasSpecialBuild;
+    }
+
+    public boolean isHasTwoInputBuild() {
+        return hasTwoInputBuild;
     }
 
     public void setHasSpecialBuild(boolean hasSpecialBuild) {
@@ -156,7 +161,18 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
-        return null;
+
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+
+        adj.removeIf((n) -> n.getWorker() != null);
+        adj.removeIf(BoardCell::getDome);
+        if (moveUp) {
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
+        } else {
+            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
+        }
+        return adj;
+
     }
 
     /**
@@ -196,7 +212,12 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
-        return null;
+
+        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
+        adj.removeIf((n) -> n.getWorker() != null);
+        adj.removeIf(BoardCell::getDome);
+        return adj;
+
     }
 
     /**
@@ -223,7 +244,7 @@ public class Player implements PlayerInterface, Serializable {
         return false;
     }
 
-    public boolean build(int row1, int col1, @NotNull Worker worker, int row2, int col2) {
+    public boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
         return false;
     }
 

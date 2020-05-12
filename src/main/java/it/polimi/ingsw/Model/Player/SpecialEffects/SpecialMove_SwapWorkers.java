@@ -69,7 +69,13 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        adj.removeIf(n -> n.getWorker().getPlayerWorker()==worker.getPlayerWorker());
+        for (int i = 0; i < adj.size(); i++) {
+            if(adj.get(i).getWorker() != null) {
+                if(adj.get(i).getWorker().getPlayerWorker().getNickname().equals(worker.getPlayerWorker().getNickname())) {
+                    adj.remove(adj.get(i));
+                }
+            }
+        }
         adj.removeIf(BoardCell::getDome);
         if (worker.getPlayerWorker().isMoveUp()){
             adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));

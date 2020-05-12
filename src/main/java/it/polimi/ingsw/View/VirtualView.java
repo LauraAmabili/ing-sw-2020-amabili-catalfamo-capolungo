@@ -356,6 +356,17 @@ public class VirtualView extends View  {
         }
     }
 
+    @Override
+    public void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException {
+        if(MyNickname.equals(currentPlayer)) {
+            thread.sendToClient(new AskEffectBuild(worker));
+        }
+    }
+
+    public void updatePlayerBuild(boolean effect, String nickname,int worker) throws IOException {
+        notifyPlayerBuild(effect, nickname, worker);
+    }
+
     public void chooseWorker(String nickname) throws IOException {
 
 
@@ -421,6 +432,21 @@ public class VirtualView extends View  {
     @Override
     public void updateWinners(PlayerInterface player){
         System.out.println(player + "You win!");
+    }
+
+    @Override
+    public void updateBuildTwoInput(String currentPlayer,int worker) throws IOException {
+        thread.sendToClient(new BuildTimeUpdate(currentPlayer));
+        if(MyNickname.equals(currentPlayer)) {
+            thread.sendToClient(new BuildTwoInputRequest(worker));
+        }
+    }
+
+
+    public void timeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+
+        notifyTimeToBuildTwoInput(row1, col1, row2, col2, worker);
+
     }
 
     @Override
