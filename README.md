@@ -6,15 +6,15 @@ The purpose of the project is to develop the board game [Santorini](https://roxl
 ### Libraries
 |Librery|Description|
 |---------------|-----------|
-|__maven__|strumento di gestione per software basati su Java e build automation|
-|__junit__|framework dedicato a Java per unit testing|
-|__gson__|libreria per il supporto al parsing di file in formato json|
-|__JavaFx__|libreria grafica di Java|
+|__maven__|build automation tool|
+|__junit__|unit testing framework|
+|__gson__|serialize and deserialize Java objects to JSON|
+|__JavaFx__|next-generation standard GUI library for Java|
 
 
 | Functionality | State |
 |:-----------------------|:------------------------------------:|
-| Basic rules | [![GREEN](https://placehold.it/15/f03c15/f03c15)](#) |
+| Basic rules | [![GREEN](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/1200px-Solid_green.svg.png)](#) |
 | Complete rules | [![GREEN](https://placehold.it/15/f03c15/f03c15)](#) |
 | Socket | [![GREEN](https://placehold.it/15/f03c15/f03c15)](#) |
 | GUI | [![YELLOW](https://placehold.it/15/f03c15/f03c15)](#) |
