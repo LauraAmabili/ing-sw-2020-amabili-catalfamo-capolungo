@@ -12,17 +12,12 @@ The purpose of the project is to develop the board game [Santorini](https://roxl
 |__JavaFx__|next-generation standard GUI library for Java|
 
 
-| Functionality | State |
-|:-----------------------|:------------------------------------:|
-| Basic rules | [![GREEN](https://www.iconsdb.com/icons/preview/green/ok-xxl.png)](#) |
-| GUI | [![YELLOW](https://placehold.it/15/f03c15/f03c15)](#) |
-| CLI | [![YELLOW](https://placehold.it/15/f03c15/f03c15)](#) |
-| Multiple games | [![YELLOW](https://placehold.it/15/f03c15/f03c15)](#) |
-| Persistence | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
-| Advanced Gods | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
-| Undo | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
+### Developed Functionalities
+- Complete Rules
+- CLI
+- Socket
 
-## Componenti del gruppo
+## Group Components
 - [__Laura Amabili__](https://github.com/LauraAmabili)
 - [__Roberto Capolungo__](https://github.com/RCapolungo)
 - [__Walter Catalfamo__](https://github.com/walter-catalfamo)
