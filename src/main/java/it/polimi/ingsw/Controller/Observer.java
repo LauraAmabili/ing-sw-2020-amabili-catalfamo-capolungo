@@ -18,6 +18,7 @@ public interface Observer {
     public void updateStartingGame() throws IOException, InterruptedException;
     public void updateTryThisWorkerEffect(boolean effect,int  worker) throws IOException;
     public void updatePlayerBuild(boolean effect, String nickname, int worker) throws IOException;
+    public void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
     public void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
     public void updateDropConnection(String nickname);
 }

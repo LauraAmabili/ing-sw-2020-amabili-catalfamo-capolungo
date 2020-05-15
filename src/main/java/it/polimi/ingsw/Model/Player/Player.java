@@ -31,6 +31,11 @@ public class Player implements PlayerInterface, Serializable {
         return hasSpecialMove;
     }
 
+    @Override
+    public boolean isHasTwoInputMove() {
+        return false;
+    }
+
     public void setHasSpecialMove(boolean hasSpecialMove) {
         this.hasSpecialMove = hasSpecialMove;
     }
@@ -250,6 +255,11 @@ public class Player implements PlayerInterface, Serializable {
 
     public boolean checkWin(@NotNull Worker worker) {
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel()) && worker.getCurCell().getLevel() == 3);
+    }
+
+    @Override
+    public boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
+        return false;
     }
 
     @Override

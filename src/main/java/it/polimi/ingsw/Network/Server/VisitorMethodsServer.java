@@ -185,11 +185,47 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
+    public void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException {
+        String rowString1 = moveTwoInputResponse.getRow1();
+        String rowString2 = moveTwoInputResponse.getRow2();
+        String colString1 = moveTwoInputResponse.getCol1();
+        String colString2 = moveTwoInputResponse.getCol2();
+        int worker = moveTwoInputResponse.getWorker();
+        try {
+            int row1 = Integer.parseInt(rowString1);
+            int col1 = Integer.parseInt(colString1);
+            int row2 = Integer.parseInt(rowString2);
+            int col2 = Integer.parseInt(colString2);
+            view.timeToMoveTwoInput(row1, col1, row2, col2, worker);
+        } catch (NumberFormatException e) {
+            server.sendToClient(new TryNewCoordinatesRequest(worker));
+            server.sendToClient(new MoveTwoInputRequest(worker));
+        }
+    }
+
+    @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException, InterruptedException {
 
+        boolean check = false;
         String nickname = nicknameResponse.getNickname();
-        view.AddingNickname(nickname);
-
+        for(int i = 0; i < server.getServer().getClients().size() - 1; i++) {
+            if(server.getServer().getClients().get(i).getView().getNickname() == null) {
+                view.AddingNickname(nickname);
+                return;
+            }
+        }
+        for (int i = 0; i < server.getServer().getClients().size() - 1; i++) {
+            if (server.getServer().getClients().get(i).getView().getNickname().equals(nickname)) {
+                check = true;
+                break;
+            }
+        }
+        if (check) {
+            server.sendToClient(new NicknameNotValidUpdate());
+            server.sendToClient(new NicknameRequest());
+        } else {
+            view.AddingNickname(nickname);
+        }
     }
 
     @Override

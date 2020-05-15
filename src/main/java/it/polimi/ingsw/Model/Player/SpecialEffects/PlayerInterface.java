@@ -58,7 +58,7 @@ public interface PlayerInterface extends Serializable {
 
     boolean checkWin(@NotNull Worker worker);
 
-    boolean move(int row, int col, @NotNull Worker worker, int rowBuild, int colBuild);
+    boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker);
 
     public boolean isEnableSpecialMove();
 
@@ -69,6 +69,8 @@ public interface PlayerInterface extends Serializable {
     public void setEnableSpecialBuild(boolean enableSpecialBuild);
 
     public boolean isHasSpecialMove();
+
+    public boolean isHasTwoInputMove();
 
     public void setHasSpecialMove(boolean hasSpecialMove);
 

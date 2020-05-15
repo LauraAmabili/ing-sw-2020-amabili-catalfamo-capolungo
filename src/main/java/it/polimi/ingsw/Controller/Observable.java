@@ -100,6 +100,12 @@ public class Observable {
         }
     }
 
+    public void notifyTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+        for(Observer o : observerController){
+            o.updateTimeToMoveTwoInput(row1, col1, row2, col2, worker);
+        }
+    }
+
     public void notifyTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTimeToBuildTwoInput(row1, col1, row2, col2, worker);
@@ -111,6 +117,8 @@ public class Observable {
             o.updateDropConnection(nickname);
         }
     }
+
+
 
 
 
