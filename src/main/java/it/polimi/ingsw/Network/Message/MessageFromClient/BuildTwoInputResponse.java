@@ -6,25 +6,25 @@ import java.io.IOException;
 
 public class BuildTwoInputResponse extends MessageFromClient {
 
-    int row1;
-    int row2;
-    int col1;
-    int col2;
+    String row1;
+    String row2;
+    String col1;
+    String col2;
     int worker;
 
-    public int getRow1() {
+    public String  getRow1() {
         return row1;
     }
 
-    public int getRow2() {
+    public String  getRow2() {
         return row2;
     }
 
-    public int getCol1() {
+    public String  getCol1() {
         return col1;
     }
 
-    public int getCol2() {
+    public String getCol2() {
         return col2;
     }
 
@@ -32,7 +32,7 @@ public class BuildTwoInputResponse extends MessageFromClient {
         return worker;
     }
 
-    public BuildTwoInputResponse(int row1, int row2, int col1, int col2, int worker) {
+    public BuildTwoInputResponse(String row1, String row2, String col1, String col2, int worker) {
         this.row1 = row1;
         this.row2 = row2;
         this.col1 = col1;

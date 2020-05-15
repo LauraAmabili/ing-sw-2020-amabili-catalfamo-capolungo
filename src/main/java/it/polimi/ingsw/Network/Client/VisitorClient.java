@@ -43,5 +43,6 @@ public interface VisitorClient {
     public void visit(AskEffect askEffect) throws IOException;
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException;
     public void visit(AskEffectBuild askEffectBuild) throws IOException;
-    public void visit(BuildTwoInputRequest buildTwoInputRequest);
+    public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException;
+    void visit(NumberOfPlayerWrong numberOfPlayerWrong);
 }

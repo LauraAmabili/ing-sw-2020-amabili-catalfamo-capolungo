@@ -7,22 +7,22 @@ import java.io.IOException;
 public class StartingSetWorkerResponse extends MessageFromClient {
 
 
-    int row;
-    int col;
+    String row;
+    String col;
     int worker;
 
 
-    public StartingSetWorkerResponse(int row, int col, int worker) {
+    public StartingSetWorkerResponse(String row, String col, int worker) {
         this.row = row;
         this.col = col;
         this.worker = worker;
     }
 
-    public int getRow() {
+    public String getRow() {
         return row;
     }
 
-    public int getCol() {
+    public String getCol() {
         return col;
     }
 

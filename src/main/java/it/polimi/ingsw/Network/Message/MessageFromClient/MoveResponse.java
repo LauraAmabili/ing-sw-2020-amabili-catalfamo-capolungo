@@ -6,21 +6,21 @@ import java.io.IOException;
 
 public class MoveResponse extends MessageFromClient {
 
-    int row;
-    int col;
+    String row;
+    String col;
     int worker;
 
-    public MoveResponse(int row, int col, int worker) {
+    public MoveResponse(String row, String col, int worker) {
         this.row = row;
         this.col = col;
         this.worker = worker;
     }
 
-    public int getRow() {
+    public String getRow() {
         return row;
     }
 
-    public int getCol() {
+    public String getCol() {
         return col;
     }
 

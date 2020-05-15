@@ -39,7 +39,6 @@ public class VirtualView extends View  {
     public PlayerInterface getCurrentPlayer() {
         return currentPlayer;
     }
-
     public void setCurrentPlayer(PlayerInterface currentPlayer) {
         this.currentPlayer = currentPlayer;
 
@@ -75,21 +74,24 @@ public class VirtualView extends View  {
 
     //Preparing game
 
-
-
-    public void startingGame() throws IOException, InterruptedException {
-
-       //notifyStartingGame();
-        //notifyInitialiseMatch(integer);
-
-    }
-
+    /**
+     * Set number of Players of the game. It is called only from the first client
+     * @param number number of players chosen
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public synchronized void notifyNumberOfPlayer(int number) throws IOException, InterruptedException {
 
             numberOfPlayer = number;
             notifyInitialiseMatch(number);
 
     }
+
+    /**
+     * Starts when there are enough clients for the number of players chosen
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Override
     public void updateGameisReady() throws IOException, InterruptedException {
 
@@ -101,6 +103,12 @@ public class VirtualView extends View  {
 
     //Adding player & nicknames
 
+
+    /**
+     * Sends a message to the client asking the nickname
+     * @throws IOException Exception for the Message
+     * @throws InterruptedException Exception for the Message
+     */
     public  void insertNickname() throws IOException, InterruptedException {
 
 
@@ -109,6 +117,12 @@ public class VirtualView extends View  {
 
 
     }
+
+    /**
+     * Setting the name for the virtual view and for the player in the game
+     * @param nickname name chosen by the client
+     * @throws IOException Exception for the Message
+     */
     public synchronized void AddingNickname(String nickname) throws IOException {
 
         MyNickname = nickname;
@@ -116,6 +130,11 @@ public class VirtualView extends View  {
 
     }
 
+    /**
+     * Sends a Message to the client that the nickname is accepted
+     * @param nickname nickname chosen by the client
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updatePlayerAdded(String nickname) throws IOException {
 
@@ -124,8 +143,16 @@ public class VirtualView extends View  {
         }
 
     }
+
+    /**
+     * Sends the client this message if the nickname is not Valid
+     * @param nickname nickname not accepted by the server
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateNicknameNotValid(String nickname) throws IOException {
+
+        //TODO: serve ancora?
 
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new NicknameNotValidUpdate());
@@ -137,20 +164,27 @@ public class VirtualView extends View  {
     //Challenger + Setting chosenCards
 
 
+    /**
+     * Sends to all the clients the Message that it's time for the Challenger to set the cards
+     * @param name name of the challenger
+     * @throws IOException Exception for the Message
+     */
     @Override
-    public void updateTimeToChoose(List gods, String name) throws IOException {
+    public void updateTimeToChoose(String name) throws IOException {
 
         thread.sendToClient(new ChooseCardsUpdate(name));
 
     }
-    public void chooseCards() throws IOException {
 
-        notifyChoosingCards();
-
-    }
+    /**
+     * sends the client/challenger the positive update that the Card chosen is added correctly sending the names of the chosenGods
+     * @param chosenGods name of the chosenGod
+     * @param Names names of the gods chosen until now
+     * @param ChallengerName name of the challenger
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException {
-
 
         if(!chosenGods) {
             if(MyNickname.equals(ChallengerName)) {
@@ -161,6 +195,12 @@ public class VirtualView extends View  {
             update(null, null);
 
     }
+
+    /**
+     * Sends the challenger that it's time to choose for the cards
+     * @param challengerName name of the challenger
+     * @throws IOException Exception for the Message
+     */
     public void chooseCard(String challengerName) throws IOException {
 
         if(MyNickname.equals(challengerName)) {
@@ -169,11 +209,25 @@ public class VirtualView extends View  {
 
 
     }
+
+    /**
+     * Sending a notify to the controller checking if the card chosen is correct
+     * @param card name of the card chosen by the challenger
+     * @throws IOException Exception for the Message
+     */
     public void tryThisCard(String card) throws IOException {
 
         notifyTryThisCard(card);
 
     }
+
+    /**
+     * sends the name of the chosenGods when the challenger is finished choosing
+     * @param gods list of chosenGods
+     * @param cardChosen false if there are more cards to be chosen
+     * @param challengerName name of the challenger
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException {
 
@@ -187,6 +241,11 @@ public class VirtualView extends View  {
 
     }
 
+    /**
+     * Sends an update if the god chosen by the challenger is not correct
+     * @param challengerName challenger name
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateGodNotAdded(String challengerName) throws IOException {
 
@@ -200,12 +259,25 @@ public class VirtualView extends View  {
 
     //Setting personal God
 
+    /**
+     * Sends to all clients an update about the Time of the game, now it's time to set the Card for each player
+     * @param chosenGods list of gods chosen by the challenger
+     * @param currentPlayerName name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public  void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
         thread.sendToClient(new SetCardTimeUpdate(currentPlayerName));
 
     }
+
+    /**
+     * Sends the client of che currentPlayer the option to set the God for the Game
+     * @param chosenGods list of gods chosen by the challenger
+     * @param currentPlayerName name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public  void updateSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
 
@@ -216,49 +288,70 @@ public class VirtualView extends View  {
 
     }
 
+    /**
+     * sends a notify to the controller to check if the Name of the god chosen by the current player is correct
+     * @param chosenGod name of the God chosen
+     * @throws IOException Exception for the Message
+     */
     public synchronized void godNameChosen(String chosenGod) throws IOException {
 
         System.out.println(chosenGod);
         notifyGodNameChosen(chosenGod);
     }
+
+    /**
+     * Sends to all the clients the name of the Player and the God that the player decided to take
+     * @param nickname name of the current player
+     * @param godName name of the god chosen by the player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public  void updateGodSet(String nickname, String godName) throws IOException {
 
         thread.sendToClient(new CardSetUpdate(nickname, godName));
 
     }
+
+    /**
+     * Send to the client/current player an update that the name of the God chosen is not correct
+     * @param nickname name of the current player
+     * @param chosenGods name of the chosen God
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException {
 
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new CardNotFoundRequest());
         }
-        //chooseYourGod(chosenGods, nickname);
+
         updateSetCard(chosenGods, nickname);
     }
 
 
-    /*
-    @Override
-    public void updateGodAlreadyChosen(List<String> chosenGods, String godName) throws IOException {
-
-        System.out.println(godName + "has been already chosen, try a new one");
-        chooseYourGod(chosenGods);
-
-    }
-
-     */
 
     //Placing worker
 
 
+    /**
+     * Sends to all the client the update about the time of the game, it's time to place the first workers
+     * @param currentPlayerName name of the current Player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateTimeToPlaceWorker(String currentPlayerName) throws IOException {
 
         thread.sendToClient(new StartingSetWorkerTimeUpdate(currentPlayerName));
         setWorkers1(currentPlayerName, 0);
+
     }
 
+    /**
+     * Sends to the client of the current player the request to set the first worker
+     * @param currentPlayerName name of the current player
+     * @param i number of the worker
+     * @throws IOException Exception for the Message
+     */
     public void setWorkers1(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
@@ -267,14 +360,29 @@ public class VirtualView extends View  {
 
     }
 
+    /**
+     * Sends the board update with the position of the worker just added and calls the request to set the second worker
+     * @param board sends a copy of the board to print
+     * @param currentPlayer name of the current Player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException {
 
-        thread.sendToClient(new BoardUpdate("boo", board));
+        Board boardToSend = new Board();
+        boardToSend = board;
+        thread.sendToClient(new BoardUpdate("boo", boardToSend));
         setWorkers2(currentPlayer, 1);
 
     }
 
+
+    /**
+     * sends to the client the request to add the second worker
+     * @param currentPlayerName name of the current Player
+     * @param i number of the worker
+     * @throws IOException Exception for the Message
+     */
     public void setWorkers2(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {

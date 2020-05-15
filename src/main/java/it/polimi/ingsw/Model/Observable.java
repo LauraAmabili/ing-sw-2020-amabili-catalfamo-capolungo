@@ -115,9 +115,9 @@ public class Observable {
             o.updateTimeToPlaceWorker(currentPlayerName);
         }
     }
-    void notifyCards(List gods, String name) throws IOException {
+    void notifyCards(String name) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateTimeToChoose(gods, name);
+            o.updateTimeToChoose(name);
         }
     }
     /*

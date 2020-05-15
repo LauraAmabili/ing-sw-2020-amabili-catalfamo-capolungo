@@ -20,7 +20,7 @@ public interface ObserverModel {
 
     void updateBoard(Board board) throws IOException;
 
-    void updateTimeToChoose(List gods, String name) throws IOException;
+    void updateTimeToChoose(String name) throws IOException;
 
     void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException;
 

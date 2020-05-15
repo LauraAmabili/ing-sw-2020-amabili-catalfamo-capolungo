@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
-import it.polimi.ingsw.Network.Message.MessageFromServer.ChooseYourWorkerEffectRequest;
-import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
+import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.VirtualView;
 
 import java.io.IOException;
@@ -22,14 +21,31 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(PlayerNumberResponse playerNumberResponse) throws IOException, InterruptedException {
 
-        int numberOfPlayers = playerNumberResponse.getNumberOfPlayers();
-        server.setNumPlayers(numberOfPlayers);
-        server.setMaxPlrMsg(true);
-        view.notifyNumberOfPlayer(numberOfPlayers);
-        if(server.getServer().getClients().size() == numberOfPlayers) {
-            for (int i = 0; i < server.getServer().getClients().size(); i++) {
-                server.getServer().getClients().get(i).sendToClient(new NicknameRequest());
+        String num = playerNumberResponse.getNumberOfPlayers();
+        try {
+            int numberOfPlayers = Integer.parseInt(num);
+            if(numberOfPlayers == 3 || numberOfPlayers == 2){
+                server.setNumPlayers(numberOfPlayers);
+                server.setMaxPlrMsg(true);
+                view.notifyNumberOfPlayer(numberOfPlayers);
+                if (server.getServer().getClients().size() == numberOfPlayers) {
+                    for (int i = 0; i < server.getServer().getClients().size(); i++) {
+                        server.getServer().getClients().get(i).sendToClient(new NicknameRequest());
+                    }
+                }
             }
+            else
+            {
+                server.sendToClient(new NumberOfPlayerWrong());
+               server.sendToClient(new PlayerNumberRequest());
+
+            }
+
+        } catch (NumberFormatException e){
+
+            server.sendToClient(new NumberOfPlayerWrong());
+            server.sendToClient(new PlayerNumberRequest());
+
         }
 
     }
@@ -52,10 +68,19 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(StartingSetWorkerResponse startingSetWorkerResponse) throws IOException {
 
-        int row = startingSetWorkerResponse.getRow();
-        int col = startingSetWorkerResponse.getCol();
-        int worker = startingSetWorkerResponse.getWorker();
-        view.toSetWorker(row, col, worker);
+
+        String rowString = startingSetWorkerResponse.getRow();
+        String colString = startingSetWorkerResponse.getCol();
+        try {
+            int row = Integer.parseInt(rowString);
+            int col = Integer.parseInt(colString);
+            int worker = startingSetWorkerResponse.getWorker();
+            view.toSetWorker(row, col, worker);
+        } catch (NumberFormatException e){
+            int worker = startingSetWorkerResponse.getWorker();
+            server.sendToClient(new WrongCoordinatesUpdate(worker));
+        }
+
 
     }
 
@@ -72,19 +97,37 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(MoveResponse moveResponse) throws IOException {
 
-        int row = moveResponse.getRow();
-        int col = moveResponse.getCol();
-        int worker = moveResponse.getWorker();
-        view.tryMoving(row, col, worker);
+        String rowString = moveResponse.getRow();
+        String colString = moveResponse.getCol();
+        try {
+            int row = Integer.parseInt(rowString);
+            int col = Integer.parseInt(colString);
+            int worker = moveResponse.getWorker();
+            view.tryMoving(row, col, worker);
+        } catch (NumberFormatException e){
+            int worker = moveResponse.getWorker();
+            server.sendToClient(new TryNewCoordinatesRequest(worker));
+            server.sendToClient(new MoveRequest(worker));
+        }
+
     }
 
     @Override
     public void visit(BuildResponse buildResponse) throws IOException {
 
-        int row = buildResponse.getRow();
-        int col = buildResponse.getCol();
-        int worker = buildResponse.getWorker();
-        view.tryToBuild(row, col, worker);
+        String rowString = buildResponse.getRow();
+        String colString = buildResponse.getCol();
+        try {
+            int row = Integer.parseInt(rowString);
+            int col = Integer.parseInt(colString);
+            int worker = buildResponse.getWorker();
+            view.tryToBuild(row, col, worker);
+        } catch (NumberFormatException e){
+            int worker = buildResponse.getWorker();
+            server.sendToClient(new TryNewCoordinatesRequest(worker));
+            server.sendToClient(new BuildRequest(worker));
+        }
+
     }
 
     @Override
@@ -113,12 +156,31 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException {
 
+        String rowString1 = buildTwoInputResponse.getRow1();
+        String colString1 = buildTwoInputResponse.getCol1();
+        String rowString2 = buildTwoInputResponse.getRow2();
+        String colString2 = buildTwoInputResponse.getCol2();
+        int worker = buildTwoInputResponse.getWorker();
+        try {
+            int row1 = Integer.parseInt(rowString1);
+            int col1 = Integer.parseInt(colString1);
+            int row2 = Integer.parseInt(rowString2);
+            int col2 = Integer.parseInt(colString2);
+            view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
+        } catch (NumberFormatException e){
+            server.sendToClient(new TryNewCoordinatesRequest(worker));
+            server.sendToClient(new BuildTwoInputRequest(worker));
+        }
+
+        /*
         int row1 = buildTwoInputResponse.getRow1();
         int row2 = buildTwoInputResponse.getRow2();
         int col1 = buildTwoInputResponse.getCol1();
         int col2 = buildTwoInputResponse.getCol2();
         int worker = buildTwoInputResponse.getWorker();
         view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
+
+         */
 
     }
 
