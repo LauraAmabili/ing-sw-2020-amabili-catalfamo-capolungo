@@ -10,6 +10,7 @@ import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ class SpecialBuild_BuildTwiceSameTest {
 
 
     @Test
-    public void testSpecialBuild_BuildTwiceSame() {
+    public void testSpecialBuild_BuildTwiceSame() throws IOException {
 
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);

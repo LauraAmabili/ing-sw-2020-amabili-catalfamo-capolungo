@@ -43,6 +43,7 @@ public class Server {
     }
 
     public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
+
         /*TODO
         connectionManager = new ConnectionManager(this);
         new Thread(connectionManager).start();
