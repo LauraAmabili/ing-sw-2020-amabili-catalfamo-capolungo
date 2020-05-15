@@ -24,5 +24,6 @@ public class GUI_App extends Application {
         root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
+
     }
 }

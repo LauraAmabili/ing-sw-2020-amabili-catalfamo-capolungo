@@ -8,14 +8,14 @@ public class BuildTimeUpdate extends MessageFromServer {
 
 
 
-    String current;
+    String currentPlayer;
 
     public BuildTimeUpdate(String current) {
-        this.current = current;
+        this.currentPlayer = current;
     }
 
     public String getCurrent() {
-        return current;
+        return currentPlayer;
     }
 
     @Override
