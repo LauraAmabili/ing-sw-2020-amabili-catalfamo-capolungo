@@ -174,5 +174,18 @@ public class GameController implements Observer {
         game.notifyStartingGame();
     }
 
+    @Override
+    public void updateDropConnection(String nickname) {
+        for (PlayerInterface p : game.getOnlinePlayers()) {
+            if(p.getNickname().equals(nickname)) {
+                if(game.getCurrentTurn().getCurrentPlayer().getNickname().equals(p.getNickname())) {
+                    // TODO: send to other players drop connection error
+                    game.getCurrentTurn().nextTurn(game);
+                }
+                game.delPlayer(p);
+            }
+        }
+    }
+
 
 }

@@ -516,6 +516,10 @@ public class VirtualView extends View  {
         notifyTryThisWorkerEffect(effect, worker);
     }
 
+    public void dropConnection() {
+        notifyDropConnection(MyNickname);
+    }
+
 
     /*
     public void menageInput(Integer in) throws IOException, InterruptedException {

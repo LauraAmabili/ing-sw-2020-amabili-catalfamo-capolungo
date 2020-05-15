@@ -106,6 +106,12 @@ public class Observable {
         }
     }
 
+    public void notifyDropConnection(String nickname) {
+        for(Observer o : observerController){
+            o.updateDropConnection(nickname);
+        }
+    }
+
 
 
 
