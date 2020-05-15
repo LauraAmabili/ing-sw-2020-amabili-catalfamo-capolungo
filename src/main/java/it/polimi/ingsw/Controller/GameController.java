@@ -137,6 +137,16 @@ public class GameController implements Observer {
     }
 
     @Override
+    public void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
+                game.getStateList().get(i).move(row1, col1, row2, col2, worker);
+                break;
+            }
+        }
+    }
+
+    @Override
     public void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if(game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {

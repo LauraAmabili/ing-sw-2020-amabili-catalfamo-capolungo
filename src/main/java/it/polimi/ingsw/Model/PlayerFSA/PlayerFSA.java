@@ -50,6 +50,10 @@ public abstract class PlayerFSA {
 
     }
 
+    public void move(int row1, int col1, int row2, int col2, int worker) throws IOException {
+
+    }
+
     public void checkBuild(int worker, boolean effect) throws IOException {
 
     }

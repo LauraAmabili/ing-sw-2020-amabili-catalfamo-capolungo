@@ -132,8 +132,8 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker, int rowBuild, int colBuild) {
-        return player.move(row, col, worker, rowBuild, colBuild);
+    public boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
+        return player.move(row, col, rowBuild, colBuild, worker);
     }
 
     @Override
@@ -161,12 +161,15 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         return false;
     }
 
+    @Override
+    public boolean isHasTwoInputMove() {
+        return false;
+    }
 
     @Override
     public void setHasSpecialMove(boolean hasSpecialMove) {
 
     }
-
     @Override
     public boolean isHasSpecialBuild() {
         return false;

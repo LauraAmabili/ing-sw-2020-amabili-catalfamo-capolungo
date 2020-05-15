@@ -69,5 +69,7 @@ public interface ObserverModel {
     void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException;
 
     void updateBuildTwoInput(String currentPlayer,int worker) throws IOException;
+
+    void updateMoveTwoInput(String nickname, int worker) throws IOException;
 }
 

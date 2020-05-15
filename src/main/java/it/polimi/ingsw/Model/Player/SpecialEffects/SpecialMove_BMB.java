@@ -9,8 +9,20 @@ import java.util.List;
 
 public class SpecialMove_BMB extends PlayerDecorator {
 
-    private boolean hasSpecialMove = true;
+    private final boolean hasSpecialMove;
+    private final boolean hasTwoInputMove;
 
+    private boolean enableSpecialMove;
+
+    @Override
+    public boolean isHasTwoInputMove() {
+        return hasTwoInputMove;
+    }
+
+    @Override
+    public boolean isHasSpecialMove() {
+        return hasSpecialMove;
+    }
 
     @Override
     public boolean isEnableSpecialMove() {
@@ -22,11 +34,10 @@ public class SpecialMove_BMB extends PlayerDecorator {
         this.enableSpecialMove = enableSpecialMove;
     }
 
-    private boolean enableSpecialMove;
-
     public SpecialMove_BMB(PlayerInterface player) {
         super(player);
         hasSpecialMove = true;
+        hasTwoInputMove = true;
     }
 
     /**Build, move on the same level, build
@@ -38,9 +49,9 @@ public class SpecialMove_BMB extends PlayerDecorator {
      * @return true <--> the method works </-->
      */
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker, int rowBuild, int colBuild) {
-        if (enableSpecialMove){
-            build(rowBuild, colBuild, worker);
+    public boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
+        if (enableSpecialMove) {
+            return player.build(rowBuild, colBuild, worker) && player.move(row, col, worker);
         }
         return player.move(row, col, worker);
     }

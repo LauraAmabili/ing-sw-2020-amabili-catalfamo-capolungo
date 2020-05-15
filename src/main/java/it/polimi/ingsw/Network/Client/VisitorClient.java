@@ -45,4 +45,5 @@ public interface VisitorClient {
     public void visit(AskEffectBuild askEffectBuild) throws IOException;
     public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException;
     void visit(NumberOfPlayerWrong numberOfPlayerWrong);
+    public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
 }

@@ -170,10 +170,6 @@ public class Game extends Observable {
 
     }
 
-    public void toSetCard2() throws IOException {
-        this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
-    }
-
     public void BoardWorkerUpdate() throws IOException {
 
         notifyWorkerBoardUpdate(board, this.getCurrentTurn().getCurrentPlayer().getNickname());
@@ -256,7 +252,19 @@ public class Game extends Observable {
     }
 
     public void timeToMove(int worker) throws IOException {
-        notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        for(int i = 0; i < getOnlinePlayers().size(); i++) {
+            if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
+                if (getStateList().get(i).getEffect()) {
+                    if (getCurrentTurn().getCurrentPlayer().isHasTwoInputMove()) {
+                        notifyTimeToMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    }
+                } else {
+                    notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                }
+                break;
+            }
+        }
+
     }
 
     public void timeToChallenger() throws IOException {

@@ -32,7 +32,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
-        System.out.println("Number of player ");
+        System.out.println("\"Choose a game mode: \\n*: 2 for a game 1v1.\\n*: 3 for a game 1v1v1.");
         String num = string.nextLine();
         client.send(new PlayerNumberResponse(num));
 
@@ -344,6 +344,22 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(NumberOfPlayerWrong numberOfPlayerWrong) {
 
         System.out.println("Wrong number of player! ");
+    }
+
+    @Override
+    public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
+        int worker = moveTwoInputRequest.getWorker();
+        System.out.println("Choose row and col for the first action");
+        System.out.println("Row: ");
+        String row1 = string.nextLine();
+        System.out.println("Col: ");
+        String col1 = string.nextLine();
+        System.out.println("Choose row and col for the second action");
+        System.out.println("Row: ");
+        String row2 = string.nextLine();
+        System.out.println("Col: ");
+        String col2 = string.nextLine();
+        client.send(new MoveTwoInputResponse(row1, col1, row2, col2, worker));
     }
 
 

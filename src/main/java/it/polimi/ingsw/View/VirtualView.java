@@ -550,6 +550,18 @@ public class VirtualView extends View  {
         }
     }
 
+    @Override
+    public void updateMoveTwoInput(String nickname, int worker) throws IOException {
+        if(MyNickname.equals(nickname)) {
+            thread.sendToClient(new MoveTwoInputRequest(worker));
+        }
+    }
+
+    public void timeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+
+        notifyTimeToMoveTwoInput(row1, col1, row2, col2, worker);
+
+    }
 
     public void timeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
 
