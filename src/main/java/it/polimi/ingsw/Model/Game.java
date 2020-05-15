@@ -260,7 +260,7 @@ public class Game extends Observable {
     }
 
     public void timeToChallenger() throws IOException {
-        notifyCards(getGodListNames(), getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyCards(getCurrentTurn().getCurrentPlayer().getNickname());
         notifyChoose(cardsChosen,this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 

@@ -7,18 +7,18 @@ import java.io.IOException;
 public class PlayerNumberResponse extends MessageFromClient {
 
 
-    int numberOfPlayers;
+    String numberOfPlayers;
 
-    public PlayerNumberResponse(int numberOfPlayers) {
+    public PlayerNumberResponse(String numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
 
     }
 
-    public int getNumberOfPlayers() {
+    public String getNumberOfPlayers() {
         return numberOfPlayers;
     }
 
-    public void setNumberOfPlayers(int numberOfPlayers) {
+    public void setNumberOfPlayers(String numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
 

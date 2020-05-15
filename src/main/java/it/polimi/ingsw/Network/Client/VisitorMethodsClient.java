@@ -33,17 +33,8 @@ public class VisitorMethodsClient implements VisitorClient {
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
         System.out.println("Number of player ");
-        String numPlayer = string.nextLine();
-        try {
-            int num = Integer.parseInt(numPlayer);
-            client.send(new PlayerNumberResponse(num));
-        }
-        catch (NumberFormatException e){
-            visit(playerNumberRequest);
-        }
-        //int numPLayer = input.nextInt(); //TODO: to cast
-        //client.send(new PlayerNumberResponse(numPLayer));
-        //chiamo metodo sulla view del client che chiede al client l'inpt e la manda indietro
+        String num = string.nextLine();
+        client.send(new PlayerNumberResponse(num));
 
     }
 
@@ -88,14 +79,9 @@ public class VisitorMethodsClient implements VisitorClient {
         String rowstring = string.nextLine();
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        try {
-            int row = Integer.parseInt(rowstring);
-            int col = Integer.parseInt(colstring);
-            client.send(new StartingSetWorkerResponse(row, col, worker));
-        }
-        catch (NumberFormatException e){
-            visit(startingSetWorkerRequest);
-        }
+
+        client.send(new StartingSetWorkerResponse(rowstring, colstring, worker));
+
     }
 
 
@@ -108,14 +94,12 @@ public class VisitorMethodsClient implements VisitorClient {
         String rowstring = string.nextLine();
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        try {
-            int row = Integer.parseInt(rowstring);
-            int col = Integer.parseInt(colstring);
-            client.send(new StartingSetWorkerResponse(row, col, wrongCoordinatesUpdate.getWorker()));
-        }
-        catch (NumberFormatException e){
-            visit(wrongCoordinatesUpdate);
-        }
+        int worker = wrongCoordinatesUpdate.getWorker();
+        client.send(new StartingSetWorkerResponse(rowstring, colstring, worker));
+
+
+
+
 
     }
 
@@ -169,14 +153,7 @@ public class VisitorMethodsClient implements VisitorClient {
         String rowstring = string.nextLine();
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        try {
-            int row = Integer.parseInt(rowstring);
-            int col = Integer.parseInt(colstring);
-            client.send(new MoveResponse(row, col, worker));
-        }
-        catch (NumberFormatException e){
-            visit(moveRequest);
-        }
+        client.send(new MoveResponse(rowstring, colstring, worker));
 
 
 
@@ -198,14 +175,7 @@ public class VisitorMethodsClient implements VisitorClient {
         String rowstring = string.nextLine();
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        try {
-            int row = Integer.parseInt(rowstring);
-            int col = Integer.parseInt(colstring);
-            client.send(new BuildResponse(row, col, worker));
-        }
-        catch (NumberFormatException e){
-            visit(buildingRowAndCol);
-        }
+        client.send(new BuildResponse(rowstring, colstring, worker));
 
 
     }
@@ -214,11 +184,9 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) throws IOException {
 
-        //int worker = tryNewCoordinatesBuilding.getWorker();
+
         System.out.println("Coordinates not correct! Try new coordinates");
-        //int row = input.nextInt();
-        //int col = input.nextInt();
-        //client.send(new BuildingRowAndColResponse(row, col, worker));
+
     }
 
     @Override
@@ -354,7 +322,8 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(BuildTwoInputRequest buildTwoInputRequest) {
+    public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
+
         int worker = buildTwoInputRequest.getWorker();
         System.out.println("Choose row and col for the first action");
         System.out.println("Row: ");
@@ -366,18 +335,15 @@ public class VisitorMethodsClient implements VisitorClient {
         String rowstring2 = string.nextLine();
         System.out.println("Col: ");
         String colstring2 = string.nextLine();
-        try {
-            int row1 = Integer.parseInt(rowstring1);
-            int col1 = Integer.parseInt(colstring1);
-            int row2 = Integer.parseInt(rowstring2);
-            int col2 = Integer.parseInt(colstring2);
-            client.send(new BuildTwoInputResponse(row1, col1, row2, col2, worker));
-        }
-        catch (NumberFormatException | IOException e) {
-            System.out.println("You insert e wrong character");
-            visit(buildTwoInputRequest);
-        }
+        client.send(new BuildTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker));
 
+
+    }
+
+    @Override
+    public void visit(NumberOfPlayerWrong numberOfPlayerWrong) {
+
+        System.out.println("Wrong number of player! ");
     }
 
 
