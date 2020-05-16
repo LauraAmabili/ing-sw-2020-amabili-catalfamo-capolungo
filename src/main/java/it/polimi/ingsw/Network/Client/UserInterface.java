@@ -1,4 +1,4 @@
-package it.polimi.ingsw.View;
+package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Controller.Observable;
 import it.polimi.ingsw.Model.*;
@@ -6,7 +6,7 @@ import it.polimi.ingsw.Controller.*;
 
 
 
-public abstract class  View extends Observable implements ObserverModel, Runnable {
+public interface UserInterface {
 
 
 
