@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import it.polimi.ingsw.Controller.Observable;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
@@ -10,7 +11,7 @@ import java.util.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Server.ServerThread;
 
-public class VirtualView extends View  {
+public class VirtualView extends Observable implements ObserverModel, Runnable {
 
 
     private String MyNickname;

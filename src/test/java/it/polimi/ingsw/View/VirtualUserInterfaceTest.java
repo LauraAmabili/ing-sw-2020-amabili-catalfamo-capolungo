@@ -3,7 +3,7 @@ package it.polimi.ingsw.View;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class VirtualViewTest {
+class VirtualUserInterfaceTest {
 
     /*
     VirtualView virtualView = new VirtualView();
