@@ -51,13 +51,8 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
         if (enableSpecialBuild) {
-            if(availableCellsToBuild(worker).contains(b1) && availableCellsToBuild(worker).contains(b2)){
-                if(!b1.equals(b2)) {
-                    player.build(row1, col1, worker);
-                    player.build(row2, col2, worker);
-                    return true;
-                }
-                return false;
+            if(!b1.equals(b2)) {
+                return player.build(row1, col1, worker) && player.build(row2, col2, worker);
             }
             return false;
         }

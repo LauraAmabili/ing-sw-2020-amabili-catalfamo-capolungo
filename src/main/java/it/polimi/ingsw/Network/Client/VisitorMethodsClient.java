@@ -32,7 +32,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
-        System.out.println("\"Choose a game mode: \\n*: 2 for a game 1v1.\\n*: 3 for a game 1v1v1.");
+        System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         String num = string.nextLine();
         client.send(new PlayerNumberResponse(num));
 
@@ -209,11 +209,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) throws IOException {
 
         System.out.println("Nickname not valid");
-        System.out.println("Insert Nickname: ");
-        String nickname = string.nextLine();
-        client.send(new NicknameResponse(nickname));
-
-
+        
     }
 
     @Override

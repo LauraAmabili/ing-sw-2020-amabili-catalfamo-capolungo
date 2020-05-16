@@ -234,7 +234,6 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputBuild()) {
                         notifyTimeToBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
-                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 } else {
                     notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 }

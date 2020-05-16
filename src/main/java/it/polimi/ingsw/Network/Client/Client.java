@@ -21,10 +21,9 @@ public class Client {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private VisitorMethodsClient visit = new VisitorMethodsClient(this);
-    Scanner scanner = new Scanner(System.in);
     private boolean active = true;
 
-    public Client() throws IOException {
+    public Client() {
         read();
 
     }
@@ -43,12 +42,12 @@ public class Client {
         this.nickname = nickname;
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException {
         Client client = new Client();
         client.startClient();
     }
 
-    public void startClient() throws IOException, ClassNotFoundException {
+    public void startClient() throws IOException {
 
         socket = new Socket("localhost", port);
         out = new ObjectOutputStream(socket.getOutputStream());
@@ -81,26 +80,23 @@ public class Client {
 
     }
 
-    public Thread receive() throws IOException, ClassNotFoundException {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (isActive()) {
-                        try {
+    public Thread receive() {
+        Thread t = new Thread(() -> {
+            try {
+                while (isActive()) {
+                    try {
 
-                            MessageFromServer x = (MessageFromServer) in.readObject();
-                            x.accept(visit);
-                        }
-                        catch (WriteAbortedException e){
-                            System.out.println("Non premere nient tanto non puoi ");
-                        }
+                        MessageFromServer x = (MessageFromServer) in.readObject();
+                        x.accept(visit);
                     }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                    setActive(false);
-
+                    catch (WriteAbortedException e){
+                        System.out.println("Non premere nient tanto non puoi ");
+                    }
                 }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                setActive(false);
+
             }
         });
         t.start();
