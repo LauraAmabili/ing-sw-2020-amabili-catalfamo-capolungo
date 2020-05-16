@@ -220,11 +220,11 @@ public class VisitorMethodsServer implements VisitorServer {
                 break;
             }
         }
-        if (check) {
+        if (!check) {
+            view.AddingNickname(nickname);
+        } else {
             server.sendToClient(new NicknameNotValidUpdate());
             server.sendToClient(new NicknameRequest());
-        } else {
-            view.AddingNickname(nickname);
         }
     }
 

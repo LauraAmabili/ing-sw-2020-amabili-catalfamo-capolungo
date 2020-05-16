@@ -32,7 +32,7 @@ public class BuildTwoInputResponse extends MessageFromClient {
         return worker;
     }
 
-    public BuildTwoInputResponse(String row1, String row2, String col1, String col2, int worker) {
+    public BuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) {
         this.row1 = row1;
         this.row2 = row2;
         this.col1 = col1;
