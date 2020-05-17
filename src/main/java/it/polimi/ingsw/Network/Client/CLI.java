@@ -123,8 +123,10 @@ public class CLI implements UserInterface {
     public int ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
+
         int worker = input.nextInt();
         //TODO: manage
+        //TODO: Artemis qui da problemi
         return worker;
 
     }
@@ -344,6 +346,13 @@ public class CLI implements UserInterface {
         coordinates.add(colstring2);
 
         return coordinates;
+
+    }
+
+    @Override
+    public void WinMessage(String nickaname) {
+
+        System.out.println(nickaname + " wins the match! Yay!!");
 
     }
 

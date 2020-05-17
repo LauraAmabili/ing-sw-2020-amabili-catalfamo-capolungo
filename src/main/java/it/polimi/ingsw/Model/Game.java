@@ -207,7 +207,7 @@ public class Game extends Observable {
         notifyPlayerHasLost(name);
     }
 
-    public void updateWin(PlayerInterface p) {
+    public void updateWin(PlayerInterface p) throws IOException {
         notifyWin(p);
     }
 
@@ -234,9 +234,8 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputBuild()) {
                         notifyTimeToBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
-                } else {
-                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 }
+                notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 break;
             }
         }
@@ -257,9 +256,8 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputMove()) {
                         notifyTimeToMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
-                } else {
-                    notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 }
+                notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 break;
             }
         }

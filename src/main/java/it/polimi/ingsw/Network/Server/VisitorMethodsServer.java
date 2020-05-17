@@ -141,7 +141,9 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException {
 
-        view.tryThisWorkerEffect(chooseYourWorkerEffectResponse.isEffect(), chooseYourWorkerEffectResponse.getWorker());
+        boolean effect = chooseYourWorkerEffectResponse.isEffect();
+        int worker = chooseYourWorkerEffectResponse.getWorker();
+        view.tryThisWorkerEffect(effect, worker);
 
     }
 

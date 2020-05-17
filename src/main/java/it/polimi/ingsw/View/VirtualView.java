@@ -539,8 +539,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
 
     @Override
-    public void updateWinners(PlayerInterface player){
-        System.out.println(player + "You win!");
+    public void updateWinners(PlayerInterface player) throws IOException {
+
+        thread.sendToClient(new WinMessage(player.getNickname()));
+
+        //System.out.println(player + "You win!");
     }
 
     @Override
