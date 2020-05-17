@@ -45,6 +45,7 @@ public interface UserInterface {
     public void NumberOfPlayerWrong();
     public List<String> BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest);
     public List<String> MoveTwoInputRequest (MoveTwoInputRequest moveTwoInputRequest);
+    public void WinMessage(String nickaname);
 
 }
 

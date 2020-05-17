@@ -24,7 +24,7 @@ public interface ObserverModel {
 
     void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException;
 
-    void updateWinners(PlayerInterface player);
+    void updateWinners(PlayerInterface player) throws IOException;
 
     void updateMoving(int worker, String current) throws IOException;
 

@@ -304,5 +304,12 @@ public class VisitorMethodsClient implements VisitorClient {
         client.send(new MoveTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
     }
 
+    @Override
+    public void visit(WinMessage winMessage) {
+
+        userInterface.WinMessage(winMessage.getNickname());
+
+    }
+
 
 }

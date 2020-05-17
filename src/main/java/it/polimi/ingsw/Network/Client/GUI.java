@@ -172,5 +172,10 @@ public class GUI implements UserInterface {
         return null;
     }
 
+    @Override
+    public void WinMessage(String nickaname) {
+
+    }
+
 
 }

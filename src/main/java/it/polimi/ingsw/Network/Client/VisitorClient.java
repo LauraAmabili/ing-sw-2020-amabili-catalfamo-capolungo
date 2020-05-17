@@ -46,4 +46,5 @@ public interface VisitorClient {
     public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException;
     void visit(NumberOfPlayerWrong numberOfPlayerWrong);
     public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
+    public void visit(WinMessage winMessage);
 }
