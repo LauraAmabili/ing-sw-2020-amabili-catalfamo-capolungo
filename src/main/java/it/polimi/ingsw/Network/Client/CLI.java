@@ -13,6 +13,7 @@ public class CLI implements UserInterface {
     private Scanner string = new Scanner(System.in);
     private Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
+    ColoredBoxes coloredBoxes = new ColoredBoxes();
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String PURPLE = "\033[0;35m";
@@ -24,6 +25,7 @@ public class CLI implements UserInterface {
 
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         String num = string.nextLine();
+        face();
         return num;
 
     }
@@ -31,8 +33,11 @@ public class CLI implements UserInterface {
     @Override
     public String NicknameRequest() {
 
+
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
+        coloredBoxes.cards(nickname);
+        System.out.println();
         return nickname;
     }
 
@@ -355,6 +360,43 @@ public class CLI implements UserInterface {
         System.out.println(nickaname + " wins the match! Yay!!");
 
     }
+
+
+
+    public void face(){
+
+        System.out.println(PURPLE);
+        System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+        System.out.println(RESET);
+    }
+
+
+    public void tryGrid(){
+
+        char rows = 'a';
+        int col = 0;
+        String spot;
+
+        int[][] grid = new int [8][8];
+
+        for(int i = 0; i <= grid.length; i++, rows++)
+        {
+            for(; col < grid.length; col++)
+            {
+                System.out.print(rows + "" + (col + 1) + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+
+
+
 
 
 }

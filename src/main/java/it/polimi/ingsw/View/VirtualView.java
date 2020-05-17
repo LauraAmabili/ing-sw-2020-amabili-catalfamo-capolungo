@@ -193,7 +193,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
                 chooseCard(ChallengerName);
             }
         }
-            update(null, null);
+            //update(null, null);
 
     }
 
@@ -531,6 +531,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         moving(worker, current);
 
     }
+
     @Override
     public void update(Object obh, Object obj){
 
