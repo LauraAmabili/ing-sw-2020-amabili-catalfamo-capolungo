@@ -15,15 +15,21 @@ public class Client {
 
     private int port;
     private String nickname;
-    private Gson gson = new Gson();
+    private Gson gson;
     private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private VisitorMethodsClient visit = new VisitorMethodsClient(this);
-    private boolean active = true;
+    private VisitorMethodsClient visit;
+    private boolean active;
+    private UserInterface userInterface;
 
-    public Client() {
+    public Client(UserInterface userInterface) {
+
+        this.userInterface = userInterface;
+        gson = new Gson();
+        active = true;
+        visit = new VisitorMethodsClient(this,userInterface);
         read();
 
     }
@@ -42,10 +48,19 @@ public class Client {
         this.nickname = nickname;
     }
 
+
+
+
+
+    /*
     public static void main(String[] args) throws IOException {
+
         Client client = new Client();
         client.startClient();
+
     }
+
+     */
 
     public void startClient() throws IOException {
 

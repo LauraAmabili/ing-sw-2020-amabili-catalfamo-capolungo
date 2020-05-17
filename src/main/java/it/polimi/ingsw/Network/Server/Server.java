@@ -38,8 +38,10 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+
         Server server = new Server();
         server.startServer();
+
     }
 
     public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
