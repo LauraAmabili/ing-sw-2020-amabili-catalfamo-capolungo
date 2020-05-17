@@ -13,10 +13,9 @@ public class CLI implements UserInterface {
     private Scanner string = new Scanner(System.in);
     private Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
-<<<<<<< HEAD
+
     ColoredBoxes coloredBoxes = new ColoredBoxes();
-=======
->>>>>>> origin/master
+
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String PURPLE = "\033[0;35m";
@@ -28,10 +27,9 @@ public class CLI implements UserInterface {
 
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         String num = string.nextLine();
-<<<<<<< HEAD
+
         face();
-=======
->>>>>>> origin/master
+
         return num;
 
     }
@@ -39,16 +37,12 @@ public class CLI implements UserInterface {
     @Override
     public String NicknameRequest() {
 
-<<<<<<< HEAD
+
 
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
         coloredBoxes.cards(nickname);
         System.out.println();
-=======
-        System.out.println("Insert nickname:");
-        String nickname = string.nextLine();
->>>>>>> origin/master
         return nickname;
     }
 
@@ -373,7 +367,7 @@ public class CLI implements UserInterface {
     }
 
 
-<<<<<<< HEAD
+
 
     public void face(){
 
@@ -411,6 +405,5 @@ public class CLI implements UserInterface {
 
 
 
-=======
->>>>>>> origin/master
+
 }
