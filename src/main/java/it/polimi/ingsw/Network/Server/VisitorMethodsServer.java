@@ -95,8 +95,8 @@ public class VisitorMethodsServer implements VisitorServer {
             view.tryThisWorker(w);
         }
         catch (NumberFormatException e) {
-            server.sendToClient(new WorkerInputNotValid());
-            server.sendToClient(new ChooseYourWorkerRequest());
+            serverThread.sendToClient(new WorkerInputNotValid());
+            serverThread.sendToClient(new ChooseYourWorkerRequest());
         }
 
 
@@ -157,8 +157,8 @@ public class VisitorMethodsServer implements VisitorServer {
             view.tryThisWorkerEffect(effect,w);
         }
         catch (NumberFormatException e) {
-            server.sendToClient(new WorkerInputNotValid());
-            server.sendToClient(new ChooseYourWorkerEffectRequest(effect));
+            serverThread.sendToClient(new WorkerInputNotValid());
+            serverThread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
         }
 
 

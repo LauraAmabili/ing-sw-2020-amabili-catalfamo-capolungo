@@ -14,7 +14,7 @@ public class CLI implements UserInterface {
     private Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
 
-    ColoredBoxes coloredBoxes = new ColoredBoxes();
+
     ClientBoard clientBoard = new ClientBoard();
 
     public static String ANSI_BLUE = "\u001B[34m";
@@ -26,7 +26,11 @@ public class CLI implements UserInterface {
     @Override
     public String  PlayerNumberRequest() {
 
+        System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
+        //clientBoard.Martello();
+
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
+        //clientBoard.Players();
         String num = string.nextLine();
         return num;
 
@@ -106,9 +110,9 @@ public class CLI implements UserInterface {
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
         boardToPrint = boardUpdate.getBoard();
-        //System.out.println(GREEN);
+        System.out.println(GREEN);
         boardToPrint.printGrid();
-        //System.out.println(RESET);
+        System.out.println(RESET);
 
 
     }
@@ -285,7 +289,6 @@ public class CLI implements UserInterface {
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
         //int worker = input.nextInt();
         String worker = string.nextLine();
-        //TODO: manage
         return worker;
 
     }
@@ -380,24 +383,6 @@ public class CLI implements UserInterface {
     }
 
 
-    public void tryGrid(){
-
-        char rows = 'a';
-        int col = 0;
-        String spot;
-
-        int[][] grid = new int [8][8];
-
-        for(int i = 0; i <= grid.length; i++, rows++)
-        {
-            for(; col < grid.length; col++)
-            {
-                System.out.print(rows + "" + (col + 1) + " ");
-            }
-
-            System.out.println();
-        }
-    }
 
 
 

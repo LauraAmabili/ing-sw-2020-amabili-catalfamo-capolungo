@@ -149,8 +149,8 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public int ChooseYourWorkerEffectRequest() {
-        return 0;
+    public String ChooseYourWorkerEffectRequest() {
+        return null;
     }
 
     @Override

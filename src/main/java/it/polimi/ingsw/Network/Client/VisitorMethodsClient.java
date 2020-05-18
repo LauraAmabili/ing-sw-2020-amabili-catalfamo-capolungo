@@ -18,6 +18,8 @@ public class VisitorMethodsClient implements VisitorClient {
 
     public final UserInterface userInterface;
 
+
+
     public VisitorMethodsClient(Client client, UserInterface userInterface) {
         this.client = client;
         this.userInterface = userInterface;
@@ -253,6 +255,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /*
     @Override
     public void visit(PingRequest pingRequest){
         try {
@@ -262,6 +265,8 @@ public class VisitorMethodsClient implements VisitorClient {
         }
 
     }
+
+     */
 
     @Override
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
