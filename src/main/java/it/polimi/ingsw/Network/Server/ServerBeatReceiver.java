@@ -11,7 +11,7 @@ public class ServerBeatReceiver extends Thread implements Runnable{
     Server server;
     ArrayList<Connection> connections = new ArrayList<>();
 
-    int expectedCardiacRhythm = 20; //seconds
+    int expectedCardiacRhythm = 5; //seconds
 
 
     public ServerBeatReceiver(Server server) {
@@ -34,31 +34,32 @@ public class ServerBeatReceiver extends Thread implements Runnable{
 
         String toDelete = connection.serverThread.toString();
         System.out.println("deleting " + toDelete + " with last beat at " + connection.inst);
-        //connection.serverThread.getView().dropConnection();
-        //server.getClients().remove(connection.serverThread);
+        connection.serverThread.getView().dropConnection();
+        /*server.getServerThreads().remove(connection.serverThread);
 
-        //connection.serverThread.setKeepAlive(false);
-        //connections.remove(connection);
+        connection.serverThread.setKeepAlive(false);
+        connections.remove(connection);*/
         System.out.println(toDelete + " deleted");
+
 
     }
 
     public synchronized void checkAlives(){
         long refInst = Instant.now().getLong(INSTANT_SECONDS);
-        if (connections.size()>0)
-            for (Connection connection: connections
-            ) {
-                if (refInst-connection.inst>expectedCardiacRhythm)
-                    removeBody(connection);
+        if (connections.size()!=0) {
+            for (int i=0; i<connections.size(); i++) {
+                if (refInst - connections.get(i).inst > expectedCardiacRhythm)
+                    removeBody(connections.get(i));
             }
+        }
+
     }
 
     public synchronized void receiveBeat(ServerThread serverThread){
         System.out.println("Beat from: " + serverThread + "at" + Instant.now().getLong(INSTANT_SECONDS));
-        for (Connection connection: connections
-        ) {
-            if (connection.serverThread==serverThread) {
-                connection.inst = Instant.now().getLong(INSTANT_SECONDS);
+        for (int i=0; i<connections.size(); i++) {
+            if (connections.get(i).serverThread==serverThread) {
+                connections.get(i).inst = Instant.now().getLong(INSTANT_SECONDS);
                 return;
             }
         }

@@ -80,26 +80,26 @@ public class ServerThread extends Thread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        server.getClients().add(this);
+        server.getServerThreads().add(this);
         //numOnline = server.getClients().size();
-        if (server.getClients().size() == 1) {
+        if (server.getServerThreads().size() == 1) {
             try {
                 sendToClient(new PlayerNumberRequest());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            if (isMaxPlrSet() && server.getClients().size() == numPlayers) {
-                for(int i = 0; i < server.getClients().size(); i++) {
+            if (isMaxPlrSet() && server.getServerThreads().size() == numPlayers) {
+                for(int i = 0; i < server.getServerThreads().size(); i++) {
                     try {
-                        server.getClients().get(i).sendToClient(new NicknameRequest());
+                        server.getServerThreads().get(i).sendToClient(new NicknameRequest());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
-            if (server.getClients().size() > numPlayers) {
-                server.getClients().remove(server.getClients().size() - 1);
+            if (server.getServerThreads().size() > numPlayers) {
+                server.getServerThreads().remove(server.getServerThreads().size() - 1);
                 try {
                     sendToClient(new MaxPlayerReachedUpdate());
                 } catch (IOException e) {
