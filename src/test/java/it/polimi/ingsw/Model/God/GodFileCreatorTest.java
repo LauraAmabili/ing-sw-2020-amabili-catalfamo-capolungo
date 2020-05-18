@@ -25,7 +25,7 @@ class GodFileCreatorTest {
     @Test
     void testWrite() {
         // Setup
-        final ArrayList<God> arrayGods = new ArrayList<>(Arrays.asList(new God("godName", Arrays.asList("value"))));
+        final ArrayList<God> arrayGods = new ArrayList<>(Arrays.asList(new God("godName", Arrays.asList("value"),"descTitle","descStep","descEff")));
 
         // Run the test
         godFileCreatorUnderTest.write(arrayGods);

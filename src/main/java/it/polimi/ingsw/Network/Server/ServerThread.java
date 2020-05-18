@@ -22,9 +22,18 @@ public class ServerThread extends Thread implements Runnable {
     int numOnline = 0;
 
     private ObjectOutputStream out;
+
+    public boolean isKeepAlive() {
+        return keepAlive;
+    }
+
+    public void setKeepAlive(boolean keepAlive) {
+        this.keepAlive = keepAlive;
+    }
+
     private ObjectInputStream in;
 
-
+    private volatile boolean keepAlive = true;
 
     private boolean ready = false;
 
@@ -101,7 +110,7 @@ public class ServerThread extends Thread implements Runnable {
         }
         view.AddObserver(server.getGameController());
         server.getGameController().getGame().AddObserver(view);
-        while (true) {
+        while (keepAlive) {
             try {
                 MessageFromClient message = ((MessageFromClient) in.readObject());
                 System.out.println("Message received");

@@ -1,7 +1,4 @@
 
-
-
-
 package it.polimi.ingsw.Network.Server;
 
 import java.time.Instant;
@@ -31,23 +28,33 @@ public class ServerBeatReceiver extends Thread implements Runnable{
             }
             checkAlives();
         }
-
     }
 
     public synchronized void removeBody(Connection connection){
-        System.out.println(connection.serverThread + "is dead!!");
+
+        String toDelete = connection.serverThread.toString();
+        System.out.println("deleting " + toDelete + " with last beat at " + connection.inst);
+        //connection.serverThread.getView().dropConnection();
+        //server.getClients().remove(connection.serverThread);
+
+        //connection.serverThread.setKeepAlive(false);
+        //connections.remove(connection);
+        System.out.println(toDelete + " deleted");
+
     }
 
     public synchronized void checkAlives(){
         long refInst = Instant.now().getLong(INSTANT_SECONDS);
-        for (Connection connection: connections
-        ) {
-            if (refInst-connection.inst>expectedCardiacRhythm)
-                removeBody(connection);
-        }
+        if (connections.size()>0)
+            for (Connection connection: connections
+            ) {
+                if (refInst-connection.inst>expectedCardiacRhythm)
+                    removeBody(connection);
+            }
     }
 
     public synchronized void receiveBeat(ServerThread serverThread){
+        System.out.println("Beat from: " + serverThread + "at" + Instant.now().getLong(INSTANT_SECONDS));
         for (Connection connection: connections
         ) {
             if (connection.serverThread==serverThread) {
