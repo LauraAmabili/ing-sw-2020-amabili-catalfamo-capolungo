@@ -11,6 +11,15 @@ public class Worker implements Serializable {
     private PlayerInterface playerWorker;
     private BoardCell oldCell;
     private BoardCell curCell;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public Worker(int idWorker) {
         this.idWorker = idWorker;

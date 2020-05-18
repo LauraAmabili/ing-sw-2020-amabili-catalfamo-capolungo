@@ -18,11 +18,12 @@ public class Game extends Observable {
     private int id;
     private List<String> nickNames; //in game players
     private List<PlayerInterface> onlinePlayers;
-    private List<PlayerFSA> stateList = new ArrayList<>();
+    private List<PlayerFSA> stateList;
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
     private boolean cardsChosen = false;
+    private List<String> color;
     int maxPlayer;
 
 
@@ -44,6 +45,14 @@ public class Game extends Observable {
     public Game() {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
+        stateList = new ArrayList<>();
+        color = new ArrayList<>();
+        String ANSI_YELLOW = "\u001B[33m";
+        String ANSI_BLUE = "\u001B[34m";
+        String ANSI_PURPLE = "\u001B[35m";
+        color.add(ANSI_BLUE);
+        color.add(ANSI_YELLOW);
+        color.add(ANSI_PURPLE);
     }
 
 
@@ -118,9 +127,11 @@ public class Game extends Observable {
         for (PlayerInterface playerInterface : onlinePlayers) {
             for (int i = 0; i < 2; i++, counterId++) {
                 Worker worker = new Worker(counterId);
+                worker.setColor(color.get(0));
                 worker.setPlayerWorker(playerInterface);
                 list.add(worker);
             }
+            color.remove(0);
             stateList.add(new AddNickname(playerInterface, this));
             playerInterface.setWorkerRef(list);
             playerInterface.setBoard(board);
