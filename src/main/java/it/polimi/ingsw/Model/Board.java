@@ -52,6 +52,16 @@ public class Board implements Serializable {
             System.out.print("+");
             System.out.println();
             System.out.print("|");
+            for(int l = 0; l < 2; l++) {
+                for(int z = 0; z < grid[0].length; z++) {
+                    for (int k = 0; k < 21; k++) {
+                        System.out.print(" ");
+                    }
+                    System.out.print("|");
+                }
+                System.out.println();
+                System.out.print("|");
+            }
             for (int j = 0; j < grid[0].length; j++) {
                 if (boardCells[j].getWorker() == null) {
                     for (int k = 0; k < 10; k++) {
@@ -105,6 +115,24 @@ public class Board implements Serializable {
                             System.out.print(" ");
                         }
                     }
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+            System.out.print("|");
+            for(int l = 0; l < 1; l++) {
+                for(int z = 0; z < grid[0].length; z++) {
+                    for (int k = 0; k < 21; k++) {
+                        System.out.print(" ");
+                    }
+                    System.out.print("|");
+                }
+                System.out.println();
+                System.out.print("|");
+            }
+            for(int z = 0; z < grid[0].length; z++) {
+                for (int k = 0; k < 21; k++) {
+                    System.out.print(" ");
                 }
                 System.out.print("|");
             }

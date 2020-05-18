@@ -9,11 +9,11 @@ import java.io.IOException;
 public class VisitorMethodsServer implements VisitorServer {
 
     VirtualView view;
-    ServerThread server;
+    ServerThread serverThread;
 
-    public VisitorMethodsServer(VirtualView view, ServerThread server) {
+    public VisitorMethodsServer(VirtualView view, ServerThread serverThread) {
         this.view = view;
-        this.server = server;
+        this.serverThread = serverThread;
 
     }
 
@@ -25,26 +25,26 @@ public class VisitorMethodsServer implements VisitorServer {
         try {
             int numberOfPlayers = Integer.parseInt(num);
             if(numberOfPlayers == 3 || numberOfPlayers == 2){
-                server.setNumPlayers(numberOfPlayers);
-                server.setMaxPlrMsg(true);
+                serverThread.setNumPlayers(numberOfPlayers);
+                serverThread.setMaxPlrMsg(true);
                 view.notifyNumberOfPlayer(numberOfPlayers);
-                if (server.getServer().getClients().size() == numberOfPlayers) {
-                    for (int i = 0; i < server.getServer().getClients().size(); i++) {
-                        server.getServer().getClients().get(i).sendToClient(new NicknameRequest());
+                if (serverThread.getServer().getClients().size() == numberOfPlayers) {
+                    for (int i = 0; i < serverThread.getServer().getClients().size(); i++) {
+                        serverThread.getServer().getClients().get(i).sendToClient(new NicknameRequest());
                     }
                 }
             }
             else
             {
-                server.sendToClient(new NumberOfPlayerWrong());
-               server.sendToClient(new PlayerNumberRequest());
+                serverThread.sendToClient(new NumberOfPlayerWrong());
+               serverThread.sendToClient(new PlayerNumberRequest());
 
             }
 
         } catch (NumberFormatException e){
 
-            server.sendToClient(new NumberOfPlayerWrong());
-            server.sendToClient(new PlayerNumberRequest());
+            serverThread.sendToClient(new NumberOfPlayerWrong());
+            serverThread.sendToClient(new PlayerNumberRequest());
 
         }
 
@@ -78,7 +78,7 @@ public class VisitorMethodsServer implements VisitorServer {
             view.toSetWorker(row, col, worker);
         } catch (NumberFormatException e){
             int worker = startingSetWorkerResponse.getWorker();
-            server.sendToClient(new WrongCoordinatesUpdate(worker));
+            serverThread.sendToClient(new WrongCoordinatesUpdate(worker));
         }
 
 
@@ -115,8 +115,8 @@ public class VisitorMethodsServer implements VisitorServer {
             view.tryMoving(row, col, worker);
         } catch (NumberFormatException e){
             int worker = moveResponse.getWorker();
-            server.sendToClient(new TryNewCoordinatesRequest(worker));
-            server.sendToClient(new MoveRequest(worker));
+            serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+            serverThread.sendToClient(new MoveRequest(worker));
         }
 
     }
@@ -133,8 +133,8 @@ public class VisitorMethodsServer implements VisitorServer {
             view.tryToBuild(row, col, worker);
         } catch (NumberFormatException e){
             int worker = buildResponse.getWorker();
-            server.sendToClient(new TryNewCoordinatesRequest(worker));
-            server.sendToClient(new BuildRequest(worker));
+            serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+            serverThread.sendToClient(new BuildRequest(worker));
         }
 
     }
@@ -187,11 +187,12 @@ public class VisitorMethodsServer implements VisitorServer {
             int col2 = Integer.parseInt(colString2);
             view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
         } catch (NumberFormatException e){
-            server.sendToClient(new TryNewCoordinatesRequest(worker));
-            server.sendToClient(new BuildTwoInputRequest(worker));
+            serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+            serverThread.sendToClient(new BuildTwoInputRequest(worker));
         }
 
         /*
+
         int row1 = buildTwoInputResponse.getRow1();
         int row2 = buildTwoInputResponse.getRow2();
         int col1 = buildTwoInputResponse.getCol1();
@@ -202,6 +203,8 @@ public class VisitorMethodsServer implements VisitorServer {
          */
 
     }
+
+
 
     @Override
     public void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException {
@@ -217,9 +220,14 @@ public class VisitorMethodsServer implements VisitorServer {
             int col2 = Integer.parseInt(colString2);
             view.timeToMoveTwoInput(row1, col1, row2, col2, worker);
         } catch (NumberFormatException e) {
-            server.sendToClient(new TryNewCoordinatesRequest(worker));
-            server.sendToClient(new MoveTwoInputRequest(worker));
+            serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+            serverThread.sendToClient(new MoveTwoInputRequest(worker));
         }
+    }
+
+    @Override
+    public void visit(BeatUpdate beatUpdate) {
+        serverThread.getServer().serverBeatReceiver.receiveBeat(serverThread);
     }
 
     @Override
@@ -227,14 +235,14 @@ public class VisitorMethodsServer implements VisitorServer {
 
         boolean check = false;
         String nickname = nicknameResponse.getNickname();
-        for(int i = 0; i < server.getServer().getClients().size() - 1; i++) {
-            if(server.getServer().getClients().get(i).getView().getNickname() == null) {
+        for(int i = 0; i < serverThread.getServer().getClients().size() - 1; i++) {
+            if(serverThread.getServer().getClients().get(i).getView().getNickname() == null) {
                 view.AddingNickname(nickname);
                 return;
             }
         }
-        for (int i = 0; i < server.getServer().getClients().size() - 1; i++) {
-            if (server.getServer().getClients().get(i).getView().getNickname().equals(nickname)) {
+        for (int i = 0; i < serverThread.getServer().getClients().size() - 1; i++) {
+            if (serverThread.getServer().getClients().get(i).getView().getNickname().equals(nickname)) {
                 check = true;
                 break;
             }
@@ -242,14 +250,11 @@ public class VisitorMethodsServer implements VisitorServer {
         if (!check) {
             view.AddingNickname(nickname);
         } else {
-            server.sendToClient(new NicknameNotValidUpdate());
-            server.sendToClient(new NicknameRequest());
+            serverThread.sendToClient(new NicknameNotValidUpdate());
+            serverThread.sendToClient(new NicknameRequest());
         }
     }
 
-    @Override
-    public void visit(PingResponse pingResponse){
-        server.getServer().getConnectionManager().receivePing(pingResponse.getId());
-    }
+
 
 }

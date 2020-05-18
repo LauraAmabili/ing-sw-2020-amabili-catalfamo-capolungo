@@ -1,3 +1,5 @@
+
+
 package it.polimi.ingsw.Network.Server;
 
 import com.google.gson.Gson;
@@ -10,6 +12,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 
+import static java.lang.Thread.sleep;
+
 
 public class Server {
 
@@ -17,7 +21,7 @@ public class Server {
     private Gson gson = new Gson();
     private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
     private ArrayList<ServerThread> clients = new ArrayList<>();
-    private ConnectionManager connectionManager;
+    public ServerBeatReceiver serverBeatReceiver;
 
     GameController gameController = new GameController();
 
@@ -25,9 +29,6 @@ public class Server {
         read();
     }
 
-    public ConnectionManager getConnectionManager(){
-        return connectionManager;
-    }
 
     public List<ServerThread> getClients() {
         return clients;
@@ -38,7 +39,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-
         Server server = new Server();
         server.startServer();
 
@@ -46,11 +46,8 @@ public class Server {
 
     public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
 
-        /*TODO
-        connectionManager = new ConnectionManager(this);
-        new Thread(connectionManager).start();
-         */
-
+        serverBeatReceiver = new ServerBeatReceiver(this);
+        new Thread(serverBeatReceiver).start();
         connectClients();
     }
 
