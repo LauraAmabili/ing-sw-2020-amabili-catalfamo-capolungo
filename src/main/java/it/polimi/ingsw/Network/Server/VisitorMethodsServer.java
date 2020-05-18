@@ -17,7 +17,15 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
-
+    /**
+     * receive the number of players
+     * check if the format is correct
+     * check if the number is available
+     * otherwise the view is notified
+     * @param playerNumberResponse
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Override
     public void visit(PlayerNumberResponse playerNumberResponse) throws IOException, InterruptedException {
 
@@ -50,6 +58,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * cards chosen by the challenger
+     * @param chosenCardsUpdate
+     * @throws IOException
+     */
     @Override
     public void visit(ChosenCardsUpdate chosenCardsUpdate) throws IOException {
 

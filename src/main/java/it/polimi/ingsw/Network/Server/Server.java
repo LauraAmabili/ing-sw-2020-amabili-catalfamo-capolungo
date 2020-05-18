@@ -73,7 +73,7 @@ public class Server {
             if(serverThreads.size() == 0) {
                 st = new ServerThread(s, this, 2, false);
             } else {
-                st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), serverThreads.get(0).isMaxPlrSet());
+                st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), serverThreads.get(0).isMaxPlayerNumberSet());
             }
             st.start();
         }
