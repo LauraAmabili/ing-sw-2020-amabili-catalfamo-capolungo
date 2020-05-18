@@ -17,6 +17,7 @@ public class ClientBeatSender extends Thread {
     @Override
     public void run() {
         while (true) {
+            /*
             try {
                 client.send(new BeatUpdate());
             } catch (IOException e) {
@@ -27,6 +28,8 @@ public class ClientBeatSender extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+             */
         }
     }
 }

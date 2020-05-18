@@ -4,16 +4,28 @@ import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CLI implements UserInterface {
+public class CLI extends NotifyMessages implements UserInterface {
 
     private Scanner string = new Scanner(System.in);
     private Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
+    private Client client;
+    UpdatesForMessages up;
 
+
+    public CLI() throws IOException {
+
+        client = new Client(this);
+        up = new UpdatesForMessages(client);
+        this.addObserver(up);
+        client.startClient();
+
+    }
 
     ClientBoard clientBoard = new ClientBoard();
 
@@ -23,25 +35,26 @@ public class CLI implements UserInterface {
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
 
+
     @Override
-    public String  PlayerNumberRequest() {
+    public void  PlayerNumberRequest() throws IOException {
 
         System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
         //clientBoard.Martello();
-
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         //clientBoard.Players();
         String num = string.nextLine();
-        return num;
+        notifyPlayerNumberResponse(num);
 
     }
 
     @Override
-    public String NicknameRequest() {
+    public void NicknameRequest() throws IOException {
 
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
-        return nickname;
+        notifyNicknameResponse(nickname);
+        //return nickname;
     }
 
     @Override
@@ -64,38 +77,36 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public List<String> StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
+    public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
 
 
-        List<String> coordinates = new ArrayList<String>();
+
         int worker = startingSetWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         System.out.println("Row: ");
         String rowstring = string.nextLine();
-        coordinates.add(rowstring);
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        coordinates.add(colstring);
-        return coordinates;
+        notifyStartingSetWorkerResponse(rowstring, colstring, worker);
+
 
 
 
     }
 
     @Override
-    public List<String> WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
+    public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
 
-        List<String> coordinates = new ArrayList<String>();
+
         int worker = wrongCoordinatesUpdate.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         System.out.println("Row: ");
         String rowstring = string.nextLine();
-        coordinates.add(rowstring);
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        coordinates.add(colstring);
+        notifyWrongCoordinatesUpdate(rowstring, colstring, worker);
 
-        return coordinates;
+
     }
 
     @Override
@@ -126,30 +137,30 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public String ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+    public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
 
         //int worker = input.nextInt();
         String worker = string.nextLine();
-        return worker;
+       notifyChooseYourWorkerResponse(worker);
 
     }
 
     @Override
-    public List<String> MoveRequest(MoveRequest moveRequest) {
+    public void MoveRequest(MoveRequest moveRequest) throws IOException {
 
-        List<String> coordinates = new ArrayList<String>();
+
         int worker = moveRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
         System.out.println("Row: ");
         String rowstring = string.nextLine();
-        coordinates.add(rowstring);
+
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        coordinates.add(colstring);
 
-        return coordinates;
+
+       notifyMoveResponse(rowstring, colstring, worker);
     }
 
     @Override
@@ -158,18 +169,16 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public List<String> BuildRequest() {
+    public void BuildRequest(BuildRequest buildRequest) throws IOException {
 
-        List<String> coordinates = new ArrayList<String>();
         System.out.println("Choose where to build! Insert Row and Col: ");
         System.out.println("Row: ");
         String rowstring = string.nextLine();
-        coordinates.add(rowstring);
         System.out.println("Col: ");
         String colstring = string.nextLine();
-        coordinates.add(colstring);
+        int worker = buildRequest.getWorker();
 
-        return coordinates;
+        notifyBuildResponse(rowstring, colstring,worker);
     }
 
     @Override
@@ -220,11 +229,12 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public String ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
+    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
         System.out.println("Choose card: ");
         String cardName = string.nextLine();
-        return cardName;
+        notifyChosenCardsUpdate(cardName);
+
     }
 
     @Override
@@ -252,10 +262,10 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public String SetYourCardRequest(SetYourCardRequest setYourCardRequest) {
+    public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
         System.out.println("Choose your card between:  " + setYourCardRequest.getChosenGods());
         String in = string.nextLine();
-        return in;
+        notifySetYourCardResponse(in);
     }
 
     @Override
@@ -273,31 +283,35 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public String  AskEffect() {
+    public void AskEffect() throws IOException {
 
         System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
-        return effect;
+        notifyAskEffectReply(effect, client.getNickname());
+
 
 
     }
 
     @Override
-    public String ChooseYourWorkerEffectRequest() {
+    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
         //int worker = input.nextInt();
+        boolean effect = chooseYourWorkerEffectRequest.isEffect();
         String worker = string.nextLine();
-        return worker;
+        notifyChooseYourWorkerEffectResponse(worker, effect);
 
     }
 
     @Override
-    public String AskEffectBuild(AskEffectBuild askEffectBuild) {
+    public void AskEffectBuild(AskEffectBuild askEffectBuild) throws IOException {
 
         System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
-        return effect;
+        int worker = askEffectBuild.getWorker();
+        notifyAskeffectBuildResponse(effect,client.getNickname(),worker);
+       // return effect;
 
     }
 
@@ -308,50 +322,53 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public List<String> BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
+    public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
 
-        List<String> coordinates = new ArrayList<String>();
+        int worker = buildTwoInputRequest.getWorker();
         System.out.println("Choose row and col for the first action");
         System.out.println("Row: ");
         String rowstring1 = string.nextLine();
-        coordinates.add(rowstring1);
+
         System.out.println("Col: ");
         String colstring1 = string.nextLine();
-        coordinates.add(colstring1);
+
         System.out.println("Choose row and col for the second action");
         System.out.println("Row: ");
         String rowstring2 = string.nextLine();
-        coordinates.add(rowstring2);
+
         System.out.println("Col: ");
         String colstring2 = string.nextLine();
-        coordinates.add(colstring2);
 
-        return coordinates;
+
+       notifyBuildTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker);
 
 
 
     }
 
     @Override
-    public List<String> MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
+    public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
 
-        List<String> coordinates = new ArrayList<String>();
+
+        int worker = moveTwoInputRequest.getWorker();
+
         System.out.println("Choose row and col for the first action");
         System.out.println("Row: ");
         String rowstring1 = string.nextLine();
-        coordinates.add(rowstring1);
+
         System.out.println("Col: ");
         String colstring1 = string.nextLine();
-        coordinates.add(colstring1);
+
         System.out.println("Choose row and col for the second action");
         System.out.println("Row: ");
         String rowstring2 = string.nextLine();
-        coordinates.add(rowstring2);
+
         System.out.println("Col: ");
         String colstring2 = string.nextLine();
-        coordinates.add(colstring2);
 
-        return coordinates;
+
+        notifyBuildTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker);
+
 
     }
 

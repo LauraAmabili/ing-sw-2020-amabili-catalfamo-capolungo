@@ -22,15 +22,16 @@ public class Client {
     private VisitorMethodsClient visit;
     private boolean active;
     private UserInterface userInterface;
+    private UpdatesForMessages updatesForMessages;
 
-    public Client(UserInterface userInterface) {
-
+    public Client(UserInterface userInterface) throws IOException {
+        updatesForMessages = new UpdatesForMessages(this);
         this.userInterface = userInterface;
         gson = new Gson();
         active = true;
         visit = new VisitorMethodsClient(this,userInterface);
         read();
-
+        //startClient();
     }
 
     public boolean isActive() {
@@ -38,6 +39,10 @@ public class Client {
     }
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public UpdatesForMessages getUpdatesForMessages() {
+        return updatesForMessages;
     }
 
     public String getNickname() {

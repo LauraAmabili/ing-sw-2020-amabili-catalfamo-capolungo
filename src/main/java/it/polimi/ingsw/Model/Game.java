@@ -200,7 +200,7 @@ public class Game extends Observable {
     }
 
     public void nameAccepted(String name) throws IOException {
-
+        //String color = this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getColor();
         notifyPlayerAdded(name);
     }
 
