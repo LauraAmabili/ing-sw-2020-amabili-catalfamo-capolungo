@@ -19,6 +19,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     private God activeCard;
     private Board board;
     private boolean moveUp;
+    private String color;
 
     // constructor
     public PlayerDecorator(PlayerInterface player) {
@@ -28,10 +29,12 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
+        this.color = player.getColor();
         for (Worker worker : workerRef) {
             worker.setPlayerWorker(this);
         }
     }
+
 
     public boolean isMoveUp() {
         return moveUp;
@@ -74,6 +77,16 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     @Override
     public boolean addWorker(int row, int col, Worker worker) {
         return player.addWorker(row, col, worker);
+    }
+
+    @Override
+    public String getColor() {
+        return null;
+    }
+
+    @Override
+    public void setColor(String color) {
+
     }
 
     @Override

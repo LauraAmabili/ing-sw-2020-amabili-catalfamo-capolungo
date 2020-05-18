@@ -18,6 +18,12 @@ public interface PlayerInterface extends Serializable {
     God activeCard = null;
     Board board = null;
 
+    String color = null;
+
+    String getColor();
+
+    void setColor(String color);
+
     void setWorkerRef(List<Worker> list);
 
     List<Worker> getWorkerRef();

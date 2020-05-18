@@ -1,6 +1,3 @@
-
-
-
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
@@ -20,6 +17,8 @@ public class VisitorMethodsClient implements VisitorClient {
     private Scanner string = new Scanner(System.in);
 
     public final UserInterface userInterface;
+
+
 
     public VisitorMethodsClient(Client client, UserInterface userInterface) {
         this.client = client;
@@ -104,7 +103,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
 
-        userInterface.BoardUpdate(boardUpdate);
+       userInterface.BoardUpdate(boardUpdate);
 
 
     }
@@ -120,7 +119,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
 
-        int worker = userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
+        String worker = userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
         client.send(new ChooseYourWorkerResponse(worker));
 
 
@@ -138,7 +137,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(BuildTimeUpdate buildTimeUpdate) {
 
-        userInterface.BuildTimeUpdate();
+       userInterface.BuildTimeUpdate();
 
     }
 
@@ -158,7 +157,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) throws IOException {
 
 
-        userInterface.TryNewCoordinatesRequest();
+       userInterface.TryNewCoordinatesRequest();
 
     }
 
@@ -168,8 +167,6 @@ public class VisitorMethodsClient implements VisitorClient {
         userInterface.WrongWorkerUpdate(wrongWorkerUpdate);
 
     }
-
-
 
 
     @Override
@@ -182,8 +179,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) throws IOException {
 
-        userInterface.NicknameNotValidUpdate();
-
+       userInterface.NicknameNotValidUpdate();
+        
     }
 
     @Override
@@ -196,7 +193,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(AvailableGodsUpdate availableGodsUpdate) {
 
-        userInterface.AvailableGodsUpdate(availableGodsUpdate);
+       userInterface.AvailableGodsUpdate(availableGodsUpdate);
     }
 
     @Override
@@ -210,21 +207,21 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(CardAddedUpdate cardAddedUpdate) {
 
-        userInterface.CardAddedUpdate(cardAddedUpdate);
+       userInterface.CardAddedUpdate(cardAddedUpdate);
 
     }
 
     @Override
     public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
 
-        userInterface.CardChallengerNotFoundRequest(cardChallengerNotFoundRequest);
+       userInterface.CardChallengerNotFoundRequest(cardChallengerNotFoundRequest);
 
     }
 
     @Override
     public void visit(SetCardTimeUpdate setCardTimeUpdate) {
 
-        userInterface.SetCardTimeUpdate(setCardTimeUpdate);
+       userInterface.SetCardTimeUpdate(setCardTimeUpdate);
     }
 
     @Override
@@ -258,11 +255,23 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /*
+    @Override
+    public void visit(PingRequest pingRequest){
+        try {
+            client.send(new PingResponse(pingRequest.getId()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+     */
 
     @Override
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
-        int worker = userInterface.ChooseYourWorkerEffectRequest();
+        String worker = userInterface.ChooseYourWorkerEffectRequest();
         client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
 
     }
@@ -288,7 +297,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(NumberOfPlayerWrong numberOfPlayerWrong) {
 
-        userInterface.NumberOfPlayerWrong();
+       userInterface.NumberOfPlayerWrong();
 
     }
 
@@ -306,5 +315,15 @@ public class VisitorMethodsClient implements VisitorClient {
         userInterface.WinMessage(winMessage.getNickname());
 
     }
-}
 
+
+
+    @Override
+    public void visit(WorkerInputNotValid workerInputNotValid) {
+
+        userInterface.WorkerInputNotValid();
+
+    }
+
+
+}

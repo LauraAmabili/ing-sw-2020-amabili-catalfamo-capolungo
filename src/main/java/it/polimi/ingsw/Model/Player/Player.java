@@ -26,6 +26,15 @@ public class Player implements PlayerInterface, Serializable {
     private boolean hasSpecialMove = false;
     private boolean hasSpecialBuild = false;
     private boolean hasTwoInputBuild = false;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public boolean isHasSpecialMove() {
         return hasSpecialMove;

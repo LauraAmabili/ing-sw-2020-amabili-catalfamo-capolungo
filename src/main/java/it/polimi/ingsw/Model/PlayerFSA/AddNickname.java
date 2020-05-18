@@ -10,10 +10,12 @@ public class AddNickname extends PlayerFSA {
 
     PlayerInterface player;
     Game game;
+    public static final String PURPLE = "\033[0;35m";
 
     public AddNickname(PlayerInterface player, Game game) {
         this.player = player;
         this.game = game;
+
     }
 
     @Override
@@ -21,6 +23,7 @@ public class AddNickname extends PlayerFSA {
         if(game.getNicknames().size() == 0) {
             game.getNicknames().add(name);
             player.setNickname(name);
+            player.setColor(PURPLE);
             for(int i = 0; i < game.getStateList().size(); i++) {
                 if(game.getNicknames().get(i).equals(player.getNickname())) {
                     game.getStateList().set(i, new Idle(player, this, game));

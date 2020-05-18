@@ -8,13 +8,13 @@ public class ChooseYourWorkerResponse extends MessageFromClient {
 
 
 
-    int worker;
+    String worker;
 
-    public ChooseYourWorkerResponse(int worker) {
+    public ChooseYourWorkerResponse(String worker) {
         this.worker = worker;
     }
 
-    public int getWorker() {
+    public String getWorker() {
         return worker;
     }
 

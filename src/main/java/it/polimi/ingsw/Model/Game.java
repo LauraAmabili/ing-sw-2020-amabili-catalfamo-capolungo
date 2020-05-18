@@ -200,6 +200,7 @@ public class Game extends Observable {
     }
 
     public void nameAccepted(String name) throws IOException {
+
         notifyPlayerAdded(name);
     }
 

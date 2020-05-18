@@ -6,11 +6,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BoardTest {
 
     Board board = new Board();
+    Game game = new Game();
 
     @Before
     public void setUp() throws Exception {
@@ -72,5 +74,15 @@ public class BoardTest {
         board.getGrid()[3][3].setWorker(worker1);
         board.getGrid()[0][0].setWorker(worker2);
         Assert.assertEquals(board.freeCells(), list);
+    }
+
+    @Test
+    public void squareBoard() throws IOException, InterruptedException {
+        game.initialiseMatch(2);
+        game.createTurn();
+        game.getStateList().get(0).addNickname("Notateen");
+        game.getStateList().get(1).addNickname("SuperRexo");
+        board.printGrid();
+
     }
 }

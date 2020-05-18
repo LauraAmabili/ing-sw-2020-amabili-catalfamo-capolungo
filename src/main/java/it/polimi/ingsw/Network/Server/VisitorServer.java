@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
+import it.polimi.ingsw.Network.Message.MessageFromServer.WorkerInputNotValid;
 
 import java.io.IOException;
 
@@ -21,4 +22,5 @@ public interface VisitorServer {
     void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException;
     void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException;
     void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException;
+
 }
