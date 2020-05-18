@@ -156,7 +156,7 @@ public class TurnTest {
             game.getStateList().get(2).placeWorker(1, 5, 1);
         }
 
-
+        game.getBoard().printGrid();
         //NextTurn() when moved worker and built building
         for (PlayerInterface p : turn2.getActivePlayers()) {
             if (turn2.getCurrentPlayer() == p) {

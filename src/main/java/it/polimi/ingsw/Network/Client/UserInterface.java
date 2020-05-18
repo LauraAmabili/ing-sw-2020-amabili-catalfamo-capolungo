@@ -22,7 +22,7 @@ public interface UserInterface {
     public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate);
     public void BoardUpdate(BoardUpdate boardUpdate);
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate);
-    public int ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest);
+    public String ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest);
     public List<String> MoveRequest(MoveRequest moveRequest);
     public void BuildTimeUpdate();
     public List<String> BuildRequest();
@@ -40,12 +40,13 @@ public interface UserInterface {
     public void CardSetUpdate(CardSetUpdate cardSetUpdate);
     public void MaxPlayerReachedUpdate();
     public String AskEffect();
-    public int ChooseYourWorkerEffectRequest();
+    public String ChooseYourWorkerEffectRequest();
     public String AskEffectBuild(AskEffectBuild askEffectBuild);
     public void NumberOfPlayerWrong();
     public List<String> BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest);
     public List<String> MoveTwoInputRequest (MoveTwoInputRequest moveTwoInputRequest);
     public void WinMessage(String nickaname);
+    public void WorkerInputNotValid();
 
 }
 

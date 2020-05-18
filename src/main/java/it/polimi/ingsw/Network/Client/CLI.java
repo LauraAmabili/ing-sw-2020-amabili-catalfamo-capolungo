@@ -15,6 +15,7 @@ public class CLI implements UserInterface {
     Board boardToPrint = new Board();
 
     ColoredBoxes coloredBoxes = new ColoredBoxes();
+    ClientBoard clientBoard = new ClientBoard();
 
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
@@ -27,9 +28,6 @@ public class CLI implements UserInterface {
 
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         String num = string.nextLine();
-
-        face();
-
         return num;
 
     }
@@ -41,8 +39,6 @@ public class CLI implements UserInterface {
 
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
-        coloredBoxes.cards(nickname);
-        System.out.println();
         return nickname;
     }
 
@@ -78,8 +74,6 @@ public class CLI implements UserInterface {
         System.out.println("Col: ");
         String colstring = string.nextLine();
         coordinates.add(colstring);
-
-
         return coordinates;
 
 
@@ -112,9 +106,9 @@ public class CLI implements UserInterface {
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
         boardToPrint = boardUpdate.getBoard();
-        System.out.println(GREEN);
+        //System.out.println(GREEN);
         boardToPrint.printGrid();
-        System.out.println(RESET);
+        //System.out.println(RESET);
 
 
     }
@@ -130,13 +124,12 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public int ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+    public String ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
 
-        int worker = input.nextInt();
-        //TODO: manage
-        //TODO: Artemis qui da problemi
+        //int worker = input.nextInt();
+        String worker = string.nextLine();
         return worker;
 
     }
@@ -287,10 +280,11 @@ public class CLI implements UserInterface {
     }
 
     @Override
-    public int ChooseYourWorkerEffectRequest() {
+    public String ChooseYourWorkerEffectRequest() {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-        int worker = input.nextInt();
+        //int worker = input.nextInt();
+        String worker = string.nextLine();
         //TODO: manage
         return worker;
 
@@ -366,7 +360,12 @@ public class CLI implements UserInterface {
 
     }
 
+    @Override
+    public void WorkerInputNotValid() {
 
+        System.out.println("Input not valid");
+
+    }
 
 
     public void face(){

@@ -9,6 +9,7 @@ public class GUI implements UserInterface {
 
     @Override
     public String PlayerNumberRequest() {
+
         return null;
     }
 
@@ -58,8 +59,8 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public int ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
-        return 0;
+    public String ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+        return null;
     }
 
     @Override
@@ -174,6 +175,11 @@ public class GUI implements UserInterface {
 
     @Override
     public void WinMessage(String nickaname) {
+
+    }
+
+    @Override
+    public void WorkerInputNotValid() {
 
     }
 

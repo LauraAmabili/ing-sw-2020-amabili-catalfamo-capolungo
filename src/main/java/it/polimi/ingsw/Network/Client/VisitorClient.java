@@ -47,4 +47,5 @@ public interface VisitorClient {
     void visit(NumberOfPlayerWrong numberOfPlayerWrong);
     public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
     public void visit(WinMessage winMessage);
+    void visit(WorkerInputNotValid workerInputNotValid);
 }

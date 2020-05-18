@@ -117,7 +117,7 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
 
-        int worker = userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
+        String worker = userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
         client.send(new ChooseYourWorkerResponse(worker));
 
 
@@ -266,7 +266,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
-        int worker = userInterface.ChooseYourWorkerEffectRequest();
+        String worker = userInterface.ChooseYourWorkerEffectRequest();
         client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
 
     }
@@ -308,6 +308,13 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(WinMessage winMessage) {
 
         userInterface.WinMessage(winMessage.getNickname());
+
+    }
+
+    @Override
+    public void visit(WorkerInputNotValid workerInputNotValid) {
+
+        userInterface.WorkerInputNotValid();
 
     }
 

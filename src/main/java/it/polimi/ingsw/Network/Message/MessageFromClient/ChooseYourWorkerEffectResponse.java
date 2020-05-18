@@ -7,7 +7,7 @@ import java.io.IOException;
 public class ChooseYourWorkerEffectResponse extends MessageFromClient{
 
     boolean effect;
-    int Worker;
+    String Worker;
 
     public boolean isEffect() {
         return effect;
@@ -17,15 +17,15 @@ public class ChooseYourWorkerEffectResponse extends MessageFromClient{
         this.effect = effect;
     }
 
-    public int getWorker() {
+    public String getWorker() {
         return Worker;
     }
 
-    public void setWorker(int worker) {
+    public void setWorker(String worker) {
         Worker = worker;
     }
 
-    public ChooseYourWorkerEffectResponse(int worker, boolean effect) {
+    public ChooseYourWorkerEffectResponse(String worker, boolean effect) {
         this.effect = effect;
         Worker = worker;
     }

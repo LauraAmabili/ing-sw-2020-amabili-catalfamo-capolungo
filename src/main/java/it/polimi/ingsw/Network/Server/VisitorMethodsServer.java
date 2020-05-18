@@ -89,8 +89,17 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException {
 
-        int worker  = chooseYourWorkerResponse.getWorker();
-        view.tryThisWorker(worker);
+        String worker  = chooseYourWorkerResponse.getWorker();
+        try {
+            int w = Integer.parseInt(worker);
+            view.tryThisWorker(w);
+        }
+        catch (NumberFormatException e) {
+            server.sendToClient(new WorkerInputNotValid());
+            server.sendToClient(new ChooseYourWorkerRequest());
+        }
+
+
 
     }
 
@@ -142,8 +151,16 @@ public class VisitorMethodsServer implements VisitorServer {
     public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException {
 
         boolean effect = chooseYourWorkerEffectResponse.isEffect();
-        int worker = chooseYourWorkerEffectResponse.getWorker();
-        view.tryThisWorkerEffect(effect, worker);
+        String worker  = chooseYourWorkerEffectResponse.getWorker();
+        try {
+            int w = Integer.parseInt(worker);
+            view.tryThisWorkerEffect(effect,w);
+        }
+        catch (NumberFormatException e) {
+            server.sendToClient(new WorkerInputNotValid());
+            server.sendToClient(new ChooseYourWorkerEffectRequest(effect));
+        }
+
 
     }
 

@@ -25,6 +25,7 @@ public class Game extends Observable {
     private boolean cardsChosen = false;
     int maxPlayer;
 
+
     private List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
         return godListNames;
@@ -188,6 +189,7 @@ public class Game extends Observable {
     }
 
     public void nameAccepted(String name) throws IOException {
+
         notifyPlayerAdded(name);
     }
 
