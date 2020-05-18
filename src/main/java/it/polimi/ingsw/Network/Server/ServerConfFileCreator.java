@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Network.Server;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.God.God;
 
 import java.io.FileWriter;
@@ -10,11 +11,14 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
+/**
+ * Helper Class used to save the configurations of the server on a file
+ */
 public class ServerConfFileCreator {
 
     private static Gson gson = new Gson();
-    private static String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
+    private static String file = GameConf.getServerConf();
+
 
     public static void create() {
         int port = 7777;

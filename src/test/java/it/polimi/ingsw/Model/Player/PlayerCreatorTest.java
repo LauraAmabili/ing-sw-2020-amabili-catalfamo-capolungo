@@ -18,7 +18,7 @@ class PlayerCreatorTest {
     void setUp() {
         playerCreatorUnderTest = new PlayerCreator();
         playerCreatorUnderTest.gson = new Gson();
-        playerCreatorUnderTest.arrayGods = new ArrayList<>(Arrays.asList(new God("godName", Arrays.asList("value"))));
+        playerCreatorUnderTest.arrayGods = new ArrayList<>(Arrays.asList(new God("godName", Arrays.asList("value"),"descTitle","descStep","descEff")));
     }
 
     @Test

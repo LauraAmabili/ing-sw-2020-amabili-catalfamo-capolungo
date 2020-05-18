@@ -8,7 +8,7 @@ import java.io.IOException;
 public class ClientBeatSender extends Thread {
     Client client;
 
-    int cardiacRhythm = 10; //seconds
+    int cardiacRhythm = 1; //seconds
 
     public ClientBeatSender(Client client) {
         this.client = client;

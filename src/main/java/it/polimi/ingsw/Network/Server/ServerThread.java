@@ -20,13 +20,19 @@ public class ServerThread extends Thread implements Runnable {
     boolean maxPlrSet = false;
     int numPlayers = 2;
     int numOnline = 0;
-
     private ObjectOutputStream out;
     private ObjectInputStream in;
-
-
-
+    private volatile boolean keepAlive = true;
     private boolean ready = false;
+
+
+    public boolean isKeepAlive() {
+        return keepAlive;
+    }
+
+    public void setKeepAlive(boolean keepAlive) {
+        this.keepAlive = keepAlive;
+    }
 
     public VirtualView getView() {
         return view;
@@ -67,30 +73,30 @@ public class ServerThread extends Thread implements Runnable {
     public void run() {
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
-            in  = new ObjectInputStream(socket.getInputStream());
+            in = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        server.getClients().add(this);
+        server.getServerThreads().add(this);
         //numOnline = server.getClients().size();
-        if (server.getClients().size() == 1) {
+        if (server.getServerThreads().size() == 1) {
             try {
                 sendToClient(new PlayerNumberRequest());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            if (isMaxPlrSet() && server.getClients().size() == numPlayers) {
-                for(int i = 0; i < server.getClients().size(); i++) {
+            if (isMaxPlrSet() && server.getServerThreads().size() == numPlayers) {
+                for (int i = 0; i < server.getServerThreads().size(); i++) {
                     try {
-                        server.getClients().get(i).sendToClient(new NicknameRequest());
+                        server.getServerThreads().get(i).sendToClient(new NicknameRequest());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
-            if (server.getClients().size() > numPlayers) {
-                server.getClients().remove(server.getClients().size() - 1);
+            if (server.getServerThreads().size() > numPlayers) {
+                server.getServerThreads().remove(server.getServerThreads().size() - 1);
                 try {
                     sendToClient(new MaxPlayerReachedUpdate());
                 } catch (IOException e) {
@@ -101,7 +107,7 @@ public class ServerThread extends Thread implements Runnable {
         }
         view.AddObserver(server.getGameController());
         server.getGameController().getGame().AddObserver(view);
-        while (true) {
+        while (keepAlive) {
             try {
                 MessageFromClient message = ((MessageFromClient) in.readObject());
                 System.out.println("Message received");

@@ -28,9 +28,9 @@ public class VisitorMethodsServer implements VisitorServer {
                 serverThread.setNumPlayers(numberOfPlayers);
                 serverThread.setMaxPlrMsg(true);
                 view.notifyNumberOfPlayer(numberOfPlayers);
-                if (serverThread.getServer().getClients().size() == numberOfPlayers) {
-                    for (int i = 0; i < serverThread.getServer().getClients().size(); i++) {
-                        serverThread.getServer().getClients().get(i).sendToClient(new NicknameRequest());
+                if (serverThread.getServer().getServerThreads().size() == numberOfPlayers) {
+                    for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+                        serverThread.getServer().getServerThreads().get(i).sendToClient(new NicknameRequest());
                     }
                 }
             }
@@ -235,14 +235,14 @@ public class VisitorMethodsServer implements VisitorServer {
 
         boolean check = false;
         String nickname = nicknameResponse.getNickname();
-        for(int i = 0; i < serverThread.getServer().getClients().size() - 1; i++) {
-            if(serverThread.getServer().getClients().get(i).getView().getNickname() == null) {
+        for(int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
+            if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() == null) {
                 view.AddingNickname(nickname);
                 return;
             }
         }
-        for (int i = 0; i < serverThread.getServer().getClients().size() - 1; i++) {
-            if (serverThread.getServer().getClients().get(i).getView().getNickname().equals(nickname)) {
+        for (int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
+            if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
                 check = true;
                 break;
             }

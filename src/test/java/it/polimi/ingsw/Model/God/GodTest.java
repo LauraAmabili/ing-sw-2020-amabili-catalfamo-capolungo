@@ -10,6 +10,6 @@ class GodTest {
 
     @BeforeEach
     void setUp() {
-        godUnderTest = new God("godName", Arrays.asList("value"));
+        godUnderTest = new God("godName", Arrays.asList("value"),"descTitle","descStep","descEff");
     }
 }
