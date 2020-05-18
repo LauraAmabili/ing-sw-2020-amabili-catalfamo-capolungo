@@ -39,8 +39,6 @@ public class CLI implements UserInterface {
     @Override
     public String NicknameRequest() {
 
-
-
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
         return nickname;
@@ -110,9 +108,9 @@ public class CLI implements UserInterface {
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
         boardToPrint = boardUpdate.getBoard();
-        System.out.println(GREEN);
+        //System.out.println(GREEN);
         boardToPrint.printGrid();
-        System.out.println(RESET);
+        //System.out.println(RESET);
 
 
     }
@@ -193,6 +191,7 @@ public class CLI implements UserInterface {
 
         System.out.println("Nickname accepted");
         System.out.println("Wait for others to connect..");
+
 
     }
 
