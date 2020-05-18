@@ -17,7 +17,7 @@ public class ServerThread extends Thread implements Runnable {
     Socket socket;
     Server server;
     private VisitorServer visitor = new VisitorMethodsServer(view, this);
-    boolean maxPlrSet = false;
+    boolean maxPlayerNumberSet = false;
     int numPlayers = 2;
     int numOnline = 0;
     private ObjectOutputStream out;
@@ -38,11 +38,20 @@ public class ServerThread extends Thread implements Runnable {
         return view;
     }
 
-    public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlrSet) throws IOException {
+    /**
+     * This class is a thread create by the server. Each client has its own Thread.
+     * The thread is the real gate between the Server and the Client.
+     * @param socket
+     * @param server
+     * @param numPlayers
+     * @param maxPlayerNumberSet
+     * @throws IOException
+     */
+    public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlayerNumberSet) throws IOException {
         this.socket = socket;
         this.server = server;
         this.numPlayers = numPlayers;
-        this.maxPlrSet = maxPlrSet;
+        this.maxPlayerNumberSet = maxPlayerNumberSet;
     }
 
     public void setNumPlayers(int numPlayers) {
@@ -53,12 +62,12 @@ public class ServerThread extends Thread implements Runnable {
         return numPlayers;
     }
 
-    public boolean isMaxPlrSet() {
-        return maxPlrSet;
+    public boolean isMaxPlayerNumberSet() {
+        return maxPlayerNumberSet;
     }
 
     public void setMaxPlrMsg(boolean maxPlrSet) {
-        this.maxPlrSet = maxPlrSet;
+        this.maxPlayerNumberSet = maxPlrSet;
     }
 
     public Server getServer() {
@@ -69,6 +78,19 @@ public class ServerThread extends Thread implements Runnable {
         return numOnline;
     }
 
+    /**
+     * out and in are the channels used to communicate with the clients
+     * if this is the first client, request the number of players
+     * if the number of connected clients is greater than the number
+     *      of maximum players allowed, then a message is sent to that client
+     *      notifying of this event
+     * otherwise view and controller are set
+     * the attribute KeepAlive is used to manage the thread.
+     *      If KeepAlive = true, then
+     *          the thread runs and continues to accept new packets
+     *      If KeepAlive = false, then
+     *          the thread stops
+     */
     @Override
     public void run() {
         try {
@@ -86,7 +108,7 @@ public class ServerThread extends Thread implements Runnable {
                 e.printStackTrace();
             }
         } else {
-            if (isMaxPlrSet() && server.getServerThreads().size() == numPlayers) {
+            if (isMaxPlayerNumberSet() && server.getServerThreads().size() == numPlayers) {
                 for (int i = 0; i < server.getServerThreads().size(); i++) {
                     try {
                         server.getServerThreads().get(i).sendToClient(new NicknameRequest());
@@ -122,9 +144,15 @@ public class ServerThread extends Thread implements Runnable {
 
     }
 
-    public void sendToClient(MessageFromServer x) throws IOException {
+    /**
+     * This method sends the input to the client
+     * @param messageFromServer
+     * @throws IOException
+     */
+
+    public void sendToClient(MessageFromServer messageFromServer) throws IOException {
         out.reset();
-        out.writeObject(x);
+        out.writeObject(messageFromServer);
         out.flush();
     }
 
