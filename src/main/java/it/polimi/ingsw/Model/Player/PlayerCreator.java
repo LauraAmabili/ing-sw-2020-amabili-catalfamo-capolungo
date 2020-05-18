@@ -8,12 +8,14 @@ import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.Player.SpecialEffects.*;
 import it.polimi.ingsw.Model.God.God;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PlayerCreator {
 
@@ -66,7 +68,7 @@ public class PlayerCreator {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(godConf);
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("godConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

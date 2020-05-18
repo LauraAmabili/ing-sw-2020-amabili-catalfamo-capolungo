@@ -202,6 +202,123 @@ public class Board implements Serializable {
         return b;
     }
 
+    public void printGrid(List<BoardCell> adj) {
+        boolean stamped = false;
+        for (BoardCell[] boardCells : grid) {
+            for (int j = 0; j < grid[0].length; j++) {
+                System.out.print("+-------------------");
+            }
+            System.out.print("+");
+            System.out.println();
+            System.out.print("|");
+            for(int l = 0; l < 2; l++) {
+                for(int z = 0; z < grid[0].length; z++) {
+                    for (int k = 0; k < 19; k++) {
+                        System.out.print(" ");
+                    }
+                    System.out.print("|");
+                }
+                System.out.println();
+                System.out.print("|");
+            }
+            for (int j = 0; j < grid[0].length; j++) {
+                if (boardCells[j].getWorker() == null) {
+                    for (int k = 0; k < 9; k++) {
+                        System.out.print(" ");
+                    }
+                    if (boardCells[j].getWorker() == null) {
+                        int h = 0;
+                        while (h < adj.size()) {
+                            if(adj.get(h).getRow() == boardCells[j].getRow() && adj.get(h).getCol() == boardCells[j].getCol()) {
+                                System.out.print("\u001B[32m" + boardCells[j].getLevel() + "\u001B[0m");
+                                stamped = true;
+                                adj.remove(h);
+                            } else {
+                                stamped = false;
+                            }
+                            break;
+                        }
+                        if(!stamped) {
+                            System.out.print(boardCells[j].getLevel());
+                            stamped = false;
+                        }
+                        if(adj.size() == 0) {
+                            stamped = false;
+                        }
+                        if(boardCells[j].getDome()) {
+                            System.out.print("D");
+                            for (int k = 0; k < 9; k++) {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            for (int k = 0; k < 9; k++) {
+                                System.out.print(" ");
+                            }
+                        }
+                    }
+                } else {
+                    if(!boardCells[j].getDome()) {
+                        int spaces = (19 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) / 2;
+                        for (int k = 0; k < spaces; k++) {
+                            System.out.print(" ");
+                        }
+                        if (boardCells[j].getWorker() != null) {
+                            for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
+                                if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
+                                    System.out.print(boardCells[j].getWorker().getColor() + "W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "\u001B[0m" + "-");
+                                }
+                            }
+                        }
+                        System.out.print(boardCells[j].getLevel());
+                        for (int k = 0; k < (19 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 4)) - spaces; k++) {
+                            System.out.print(" ");
+                        }
+                    } else {
+                        int spaces = (19 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 5)) / 2;
+                        for (int k = 0; k < spaces; k++) {
+                            System.out.print(" ");
+                        }
+                        if (boardCells[j].getWorker() != null) {
+                            for (int g = 0; g < boardCells[j].getWorker().getPlayerWorker().getWorkerRef().size(); g++) {
+                                if (boardCells[j].getWorker().getPlayerWorker().getWorkerRef().get(g) == boardCells[j].getWorker()) {
+                                    System.out.print("W" + (g + 1) + boardCells[j].getWorker().getPlayerWorker().getNickname() + "-");
+                                }
+                            }
+                        }
+                        System.out.print(boardCells[j].getLevel());
+                        System.out.print("D");
+                        for (int k = 0; k < (19 - (boardCells[j].getWorker().getPlayerWorker().getNickname().length() + 5)) - spaces; k++) {
+                            System.out.print(" ");
+                        }
+                    }
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+            System.out.print("|");
+            for(int l = 0; l < 1; l++) {
+                for(int z = 0; z < grid[0].length; z++) {
+                    for (int k = 0; k < 19; k++) {
+                        System.out.print(" ");
+                    }
+                    System.out.print("|");
+                }
+                System.out.println();
+                System.out.print("|");
+            }
+            for(int z = 0; z < grid[0].length; z++) {
+                for (int k = 0; k < 19; k++) {
+                    System.out.print(" ");
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < grid.length; i++) {
+            System.out.print("+-------------------");
+        }
+        System.out.println("+");
 
+    }
 
 }

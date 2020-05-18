@@ -4,8 +4,9 @@ import java.util.List;
 
 public class GameConf {
     private static List<String> illegalUsernames = null;
-    private static String godConf = "./src/main/java/it/polimi/ingsw/Resources/godConf.json";
-    private static String serverConf = "./src/main/java/it/polimi/ingsw/Resources/serverConf.json";
+    private static String godConf = "godConf.json";
+    private static String serverConf = "serverConf.json";
+
 
     public static String getGodConf() {
         return godConf;

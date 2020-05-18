@@ -9,6 +9,7 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
+import java.util.Objects;
 
 public class Client {
 
@@ -31,7 +32,7 @@ public class Client {
         active = true;
         visit = new VisitorMethodsClient(this,userInterface);
         read();
-        //startClient();
+
     }
 
     public boolean isActive() {
@@ -71,23 +72,10 @@ public class Client {
         socket = new Socket("localhost", port);
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
-        ClientBeatSender clientBeatSender = new ClientBeatSender(this);
-        clientBeatSender.start();
 
-        try {
-
-            //System.out.println("Press x to start the game");
-            //String inout = scanner.nextLine();
-            Thread T0 = receive();
-            T0.join();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            in.close();
-            out.close();
-            socket.close();
-        }
+        //System.out.println("Press x to start the game");
+        //String inout = scanner.nextLine();
+        Thread T0 = receive();
 
     }
 
@@ -126,7 +114,7 @@ public class Client {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(file);
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("serverConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -139,6 +127,12 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void killClient() throws IOException {
+        in.close();
+        out.close();
+        socket.close();
     }
 
 }

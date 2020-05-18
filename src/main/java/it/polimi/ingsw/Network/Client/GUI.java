@@ -1,15 +1,33 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+import it.polimi.ingsw.View.GUI.GUI_App;
+import it.polimi.ingsw.View.GUI.SceneController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
+
 
 public class GUI implements UserInterface {
 
+    private Stage primaryStage;
+    private SceneController ModeController;
+
+    public void run(Stage primaryStage) throws IOException {
+        this.primaryStage = primaryStage;
+
+    }
 
     @Override
-    public void PlayerNumberRequest() {
+    public void PlayerNumberRequest() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+        Parent root = loader.load();
+        Scene primaryStage = new Scene(root);
 
     }
 
@@ -77,7 +95,6 @@ public class GUI implements UserInterface {
     public void BuildRequest(BuildRequest buildRequest) throws IOException {
 
     }
-
 
     @Override
     public void TryNewCoordinatesRequest() {
@@ -152,8 +169,6 @@ public class GUI implements UserInterface {
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
     }
-
-
 
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) {
