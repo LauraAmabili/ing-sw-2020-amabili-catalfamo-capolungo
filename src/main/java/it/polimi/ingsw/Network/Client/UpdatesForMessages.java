@@ -5,38 +5,49 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.WrongCoordinatesUpdate;
 
 import java.io.IOException;
 
-public class UpdatesForMessages {
+public class UpdatesForMessages implements ClientObserver {
 
-    Client client;
+    private Client client;
 
+    public UpdatesForMessages(Client client) {
+        this.client = client;
+    }
+
+    @Override
     public void updatePlayerNumberResponse(String num) throws IOException {
 
         client.send(new PlayerNumberResponse(num));
 
     }
 
+    @Override
     public void updateNicknameResponse(String nickname) throws IOException {
 
+        client.setNickname(nickname);
         client.send(new NicknameResponse(nickname));
 
     }
 
+    @Override
     public void updateStartingSetWorkerResponse(String row, String col, int worker) throws IOException {
 
         client.send(new StartingSetWorkerResponse(row, col, worker));
 
     }
 
+    @Override
     public void updateWrongCoordinatesUpdate(String row, String col, int worker) throws IOException {
         client.send(new StartingSetWorkerResponse(row, col, worker));
     }
 
+    @Override
     public void updateChooseYourWorkerResponse(String worker) throws IOException {
 
         client.send(new ChooseYourWorkerResponse(worker));
 
     }
 
+    @Override
     public void updateMoveResponse(String row, String col, int worker) throws IOException {
 
         client.send(new MoveResponse(row, col, worker));

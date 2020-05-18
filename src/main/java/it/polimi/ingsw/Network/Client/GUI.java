@@ -2,20 +2,20 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
+import java.io.IOException;
 import java.util.List;
 
 public class GUI implements UserInterface {
 
 
     @Override
-    public String PlayerNumberRequest() {
+    public void PlayerNumberRequest() {
 
-        return null;
     }
 
     @Override
-    public String NicknameRequest() {
-        return null;
+    public void NicknameRequest() {
+
     }
 
     @Override
@@ -34,13 +34,13 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public List<String> StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
-        return null;
+    public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
+
     }
 
     @Override
-    public List<String> WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
-        return null;
+    public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
+
     }
 
     @Override
@@ -59,13 +59,13 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public String ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
-        return null;
+    public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+
     }
 
     @Override
-    public List<String> MoveRequest(MoveRequest moveRequest) {
-        return null;
+    public void MoveRequest(MoveRequest moveRequest) {
+
     }
 
     @Override
@@ -74,9 +74,10 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public List<String> BuildRequest() {
-        return null;
+    public void BuildRequest(BuildRequest buildRequest) throws IOException {
+
     }
+
 
     @Override
     public void TryNewCoordinatesRequest() {
@@ -109,8 +110,8 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public String ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
-        return null;
+    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
+
     }
 
     @Override
@@ -129,8 +130,7 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public String SetYourCardRequest(SetYourCardRequest setYourCardRequest) {
-        return null;
+    public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
     }
 
     @Override
@@ -144,18 +144,20 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public String AskEffect() {
-        return null;
+    public void AskEffect() {
+
     }
 
     @Override
-    public String ChooseYourWorkerEffectRequest() {
-        return null;
+    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+
     }
 
+
+
     @Override
-    public String AskEffectBuild(AskEffectBuild askEffectBuild) {
-        return null;
+    public void AskEffectBuild(AskEffectBuild askEffectBuild) {
+
     }
 
     @Override
@@ -164,13 +166,13 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public List<String> BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
-        return null;
+    public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
+
     }
 
     @Override
-    public List<String> MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
-        return null;
+    public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
+
     }
 
     @Override

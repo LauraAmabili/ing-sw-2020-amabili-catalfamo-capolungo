@@ -31,8 +31,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
-        String num = userInterface.PlayerNumberRequest();
-        client.send(new PlayerNumberResponse(num));
+        userInterface.PlayerNumberRequest();
+        //client.send(new PlayerNumberResponse(num));
 
     }
 
@@ -40,9 +40,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
 
 
-        String nickname = userInterface.NicknameRequest();
-        client.setNickname(nickname);
-        client.send(new NicknameResponse(nickname));
+        userInterface.NicknameRequest();
+
+        //client.send(new NicknameResponse(nickname));
 
     }
 
@@ -73,9 +73,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
 
 
-        List<String> coor = userInterface.StartingSetWorkerRequest(startingSetWorkerRequest);
-        int worker = startingSetWorkerRequest.getWorker();
-        client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
+        userInterface.StartingSetWorkerRequest(startingSetWorkerRequest);
+        //int worker = startingSetWorkerRequest.getWorker();
+        //client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
 
     }
 
@@ -84,9 +84,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
 
 
-        List<String> coor = userInterface.WrongCoordinatesUpdate(wrongCoordinatesUpdate);
-        int worker = wrongCoordinatesUpdate.getWorker();
-        client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
+        userInterface.WrongCoordinatesUpdate(wrongCoordinatesUpdate);
+        //int worker = wrongCoordinatesUpdate.getWorker();
+        //client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
 
 
     }
@@ -119,8 +119,8 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
 
-        String worker = userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
-        client.send(new ChooseYourWorkerResponse(worker));
+        userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
+        //client.send(new ChooseYourWorkerResponse(worker));
 
 
     }
@@ -128,9 +128,9 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(MoveRequest moveRequest) throws IOException {
 
-        List<String> coor = userInterface.MoveRequest(moveRequest);
-        int worker = moveRequest.getWorker();
-        client.send(new MoveResponse(coor.get(0), coor.get(1), worker));
+        userInterface.MoveRequest(moveRequest);
+       // int worker = moveRequest.getWorker();
+       // client.send(new MoveResponse(coor.get(0), coor.get(1), worker));
 
     }
 
@@ -145,9 +145,9 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(BuildRequest buildingRowAndCol) throws IOException {
 
 
-        List<String> coor = userInterface.BuildRequest();
-        int worker = buildingRowAndCol.getWorker();
-        client.send(new BuildResponse(coor.get(0), coor.get(1), worker));
+        userInterface.BuildRequest(buildingRowAndCol);
+        //int worker = buildingRowAndCol.getWorker();
+        //client.send(new BuildResponse(coor.get(0), coor.get(1), worker));
 
 
     }
@@ -199,8 +199,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
-        String cardName = userInterface.ChallengerCardsRequest(challengerCardsRequest);
-        client.send(new ChosenCardsUpdate(cardName));
+        userInterface.ChallengerCardsRequest(challengerCardsRequest);
+        //client.send(new ChosenCardsUpdate(cardName));
 
     }
 
@@ -227,8 +227,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(SetYourCardRequest setYourCardRequest) throws IOException {
 
-        String in = userInterface.SetYourCardRequest(setYourCardRequest);
-        client.send(new SetYourCardResponse(in));
+        userInterface.SetYourCardRequest(setYourCardRequest);
+        //client.send(new SetYourCardResponse(in));
 
     }
 
@@ -250,8 +250,8 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(AskEffect askEffect) throws IOException {
 
 
-        String effect = userInterface.AskEffect();
-        client.send(new AskEffectReply(effect, client.getNickname()));
+        userInterface.AskEffect();
+        //client.send(new AskEffectReply(effect, client.getNickname()));
 
     }
 
@@ -271,8 +271,8 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
-        String worker = userInterface.ChooseYourWorkerEffectRequest();
-        client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
+        userInterface.ChooseYourWorkerEffectRequest(chooseYourWorkerEffectRequest);
+        //client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
 
     }
 
@@ -280,17 +280,17 @@ public class VisitorMethodsClient implements VisitorClient {
     public void visit(AskEffectBuild askEffectBuild) throws IOException {
 
 
-        String effect = userInterface.AskEffectBuild(askEffectBuild);
-        client.send(new AskEffectBuildResponse(effect, client.getNickname(), askEffectBuild.getWorker()));
+        userInterface.AskEffectBuild(askEffectBuild);
+        //client.send(new AskEffectBuildResponse(effect, client.getNickname(), askEffectBuild.getWorker()));
 
     }
 
     @Override
     public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
 
-        int worker = buildTwoInputRequest.getWorker();
-        List<String> coos = userInterface.BuildTwoInputRequest(buildTwoInputRequest);
-        client.send(new BuildTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
+       // int worker = buildTwoInputRequest.getWorker();
+        userInterface.BuildTwoInputRequest(buildTwoInputRequest);
+        //client.send(new BuildTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
 
     }
 
@@ -304,9 +304,9 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
 
-        int worker = moveTwoInputRequest.getWorker();
-        List<String> coos = userInterface.MoveTwoInputRequest(moveTwoInputRequest);
-        client.send(new MoveTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
+        //int worker = moveTwoInputRequest.getWorker();
+        userInterface.MoveTwoInputRequest(moveTwoInputRequest);
+        //client.send(new MoveTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Observable {
     public void AddObserver(ObserverModel o){
         this.observerModels.add(o);
     }
+
     void notifyPlayerAdded(String obj) throws IOException {
         for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);
