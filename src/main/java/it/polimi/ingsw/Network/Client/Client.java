@@ -9,7 +9,6 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
 
@@ -67,7 +66,8 @@ public class Client {
         socket = new Socket("localhost", port);
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
-
+        ClientBeatSender clientBeatSender = new ClientBeatSender(this);
+        clientBeatSender.start();
 
         try {
 
@@ -88,7 +88,7 @@ public class Client {
 
 
 
-    public void send(MessageFromClient x) throws IOException {
+    public synchronized void send(MessageFromClient x) throws IOException {
 
         out.writeObject(x);
         out.flush();

@@ -1,40 +1,13 @@
+
+
 package it.polimi.ingsw.Network.Server;
 
-import java.net.InetAddress;
-
 public class Connection {
-    private ServerThread serverThread;
-    int LastPing;
-    private boolean pingReceived;
-
-    public int getLastPing() {
-        return LastPing;
-    }
-
-    public void setLastPing(int lastPing) {
-        LastPing = lastPing;
-    }
-
-    public ServerThread getServerThread() {
-        return serverThread;
-    }
-
-    public void setServerThread(ServerThread serverThread) {
+    public Connection(ServerThread serverThread, long inst) {
         this.serverThread = serverThread;
+        this.inst = inst;
     }
 
-    public boolean isPingReceived() {
-        return pingReceived;
-    }
-
-    public void setPingReceived(boolean pingReceived) {
-        this.pingReceived = pingReceived;
-    }
-
-
-
-    public Connection(ServerThread serverThread, boolean pingReceived) {
-        this.serverThread = serverThread;
-        this.pingReceived = pingReceived;
-    }
+    public ServerThread serverThread;
+    public long inst;
 }
