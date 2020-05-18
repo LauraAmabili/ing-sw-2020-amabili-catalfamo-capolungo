@@ -20,8 +20,11 @@ public class ServerThread extends Thread implements Runnable {
     boolean maxPlrSet = false;
     int numPlayers = 2;
     int numOnline = 0;
-
     private ObjectOutputStream out;
+    private ObjectInputStream in;
+    private volatile boolean keepAlive = true;
+    private boolean ready = false;
+
 
     public boolean isKeepAlive() {
         return keepAlive;
@@ -30,12 +33,6 @@ public class ServerThread extends Thread implements Runnable {
     public void setKeepAlive(boolean keepAlive) {
         this.keepAlive = keepAlive;
     }
-
-    private ObjectInputStream in;
-
-    private volatile boolean keepAlive = true;
-
-    private boolean ready = false;
 
     public VirtualView getView() {
         return view;
@@ -76,7 +73,7 @@ public class ServerThread extends Thread implements Runnable {
     public void run() {
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
-            in  = new ObjectInputStream(socket.getInputStream());
+            in = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +87,7 @@ public class ServerThread extends Thread implements Runnable {
             }
         } else {
             if (isMaxPlrSet() && server.getServerThreads().size() == numPlayers) {
-                for(int i = 0; i < server.getServerThreads().size(); i++) {
+                for (int i = 0; i < server.getServerThreads().size(); i++) {
                     try {
                         server.getServerThreads().get(i).sendToClient(new NicknameRequest());
                     } catch (IOException e) {

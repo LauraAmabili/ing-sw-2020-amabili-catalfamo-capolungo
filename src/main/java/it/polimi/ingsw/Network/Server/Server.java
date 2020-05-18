@@ -44,24 +44,25 @@ public class Server {
 
     }
 
+    /**
+     * Create the thread that manages the connection
+     * Listen for new connections from clients
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws InterruptedException
+     */
     public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
 
         serverBeatReceiver = new ServerBeatReceiver(this);
         new Thread(serverBeatReceiver).start();
-        connectClients();
-    }
-
-
-    public void connectClients() throws IOException, ClassNotFoundException {
-
         Socket s = null;
         ServerSocket ss = new ServerSocket(port);
-
         while (true) {
             s = ss.accept();
             System.out.println("Connection from " + s + "!");
             ServerThread st;
-            if(serverThreads.size() == 0) {
+            if (serverThreads.size() == 0) {
                 st = new ServerThread(s, this, 2, false);
             } else {
                 st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), serverThreads.get(0).isMaxPlrSet());
@@ -70,6 +71,10 @@ public class Server {
         }
     }
 
+
+    /**
+     * Read the configuration from the server
+     */
     public void read() {
         FileReader fileReader = null;
         try {
