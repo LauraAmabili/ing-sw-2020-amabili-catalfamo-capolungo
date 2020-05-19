@@ -30,13 +30,28 @@ public class ChosenCardsController extends SceneController implements Initializa
     }
 
     @FXML
-    ImageView FirstCard = new ImageView();
-
+    ImageView Apollo = new ImageView();
     @FXML
-    ImageView SecondCard = new ImageView();
-
+    ImageView Artemis = new ImageView();
     @FXML
-    ImageView ThirdCard = new ImageView();
+    ImageView Athena = new ImageView();
+    @FXML
+    ImageView Atlas = new ImageView();
+    @FXML
+    ImageView Demeter = new ImageView();
+    @FXML
+    ImageView Hephaestus = new ImageView();
+    @FXML
+    ImageView Minotaur = new ImageView();
+    @FXML
+    ImageView Pan = new ImageView();
+    @FXML
+    ImageView Prometheus = new ImageView();
+
+
+
+
+
 
     @Override
     public Client getClient() {
@@ -49,11 +64,99 @@ public class ChosenCardsController extends SceneController implements Initializa
     }
 
     public void setUpButtons() {
-        FirstCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        Apollo.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Apollo");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Artemis.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Artemis");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Athena.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Athena");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Atlas.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Atlas");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Demeter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Demeter");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Hephaestus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Hephaestus");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Minotaur.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Minotaur");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Pan.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Pan");
+                    removeObserver(up);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Prometheus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    notifyChosenCardsUpdate("Prometheus");
                     removeObserver(up);
                 } catch (IOException e) {
                     e.printStackTrace();
