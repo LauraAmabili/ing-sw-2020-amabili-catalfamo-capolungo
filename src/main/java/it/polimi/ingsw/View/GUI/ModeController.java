@@ -6,7 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,9 +23,17 @@ public class ModeController extends SceneController implements Initializable {
     @FXML
     Button ThreePlayerButton = new Button();
 
+    Client client;
+    UpdatesForMessages up;
+
+    public Client getClient() {
+        return client;
+    }
 
     public ModeController(Client client) {
-        UpdatesForMessages up = new UpdatesForMessages(client);
+        super(client);
+        this.client = client;
+        up = new UpdatesForMessages(client);
         addObserver(up);
     }
 
@@ -38,6 +49,7 @@ public class ModeController extends SceneController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     notifyPlayerNumberResponse("2");
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -53,6 +65,10 @@ public class ModeController extends SceneController implements Initializable {
                 }
             }
         });
+    }
+
+    public void LoadScene(Parent root, Stage stage) {
+        stage.setScene(new Scene(root));
     }
 
 }

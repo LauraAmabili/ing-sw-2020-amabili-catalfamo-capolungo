@@ -7,13 +7,14 @@ import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 
 public abstract class SceneController extends NotifyMessages  {
 
+    Client client;
 
+    public Client getClient() {
+        return client;
+    }
 
-    UpdatesForMessages up;
-
-    public void SceneBuilder(Client client) {
-        up = new UpdatesForMessages(client);
-        addObserver(up);
+    public SceneController(Client client) {
+        this.client = client;
     }
 
 

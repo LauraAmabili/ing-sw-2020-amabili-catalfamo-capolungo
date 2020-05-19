@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="296.0" fitWidth="512.0">
                <image>
-                  <Image url="@insertNickanem.png" />
+                  <Image url="@insertNickname.png" />
                </image>
             </ImageView>
             <TextField fx:id="nicknameTextField" layoutX="136.0" layoutY="246.0" prefHeight="27.0" prefWidth="241.0" />

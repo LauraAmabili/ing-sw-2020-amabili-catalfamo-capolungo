@@ -9,6 +9,7 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Objects;
 
 public class Client {
@@ -34,6 +35,10 @@ public class Client {
         visit = new VisitorMethodsClient(this,userInterface);
         read();
 
+    }
+
+    public UserInterface getUserInterface() {
+        return userInterface;
     }
 
     public boolean isActive() {
@@ -94,12 +99,16 @@ public class Client {
             try {
                 while (isActive()) {
                     try {
-
                         MessageFromServer x = (MessageFromServer) in.readObject();
                         x.accept(visit);
                     }
                     catch (WriteAbortedException e){
                         System.out.println("Non premere nient tanto non puoi ");
+                        setActive(false);
+                    }
+                    catch (SocketException e) {
+                        System.out.println("Server is offline");
+                        setActive(false);
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {

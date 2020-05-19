@@ -2,7 +2,9 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.GUI_App;
+import it.polimi.ingsw.View.GUI.ModeController;
 import it.polimi.ingsw.View.GUI.SceneController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,10 +23,22 @@ public class GUI implements UserInterface {
 
     private Stage primaryStage;
     private SceneController ModeController;
+    Client client;
 
-    public void run(Stage primaryStage) throws IOException {
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /*
@@ -38,17 +52,29 @@ public class GUI implements UserInterface {
      */
     @Override
     public void PlayerNumberRequest() throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
-        Parent root = loader.load();
-        Scene primaryStage = new Scene(root);
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+                ModeController controller = new ModeController(client);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
     public void NicknameRequest() throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+        SceneController controller = loader.load();
+        loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
         Parent root = loader.load();
         Scene primaryStage = new Scene(root);
 
