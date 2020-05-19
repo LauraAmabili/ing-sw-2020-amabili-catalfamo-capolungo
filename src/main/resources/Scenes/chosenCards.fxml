@@ -11,22 +11,22 @@
    <children>
       <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
-            <Image url="@SantoriniBoard.png" />
+            <Image url="@../Images/SantoriniBoard.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ThirdCard" fitHeight="353.0" fitWidth="210.0" layoutX="1035.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@godCards/03.png" />
+            <Image url="@../godCards/03.png" />
          </image>
       </ImageView>
       <ImageView fx:id="SecondCard" fitHeight="353.0" fitWidth="210.0" layoutX="695.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@godCards/02.png" />
+            <Image url="@../godCards/02.png" />
          </image>
       </ImageView>
       <ImageView fx:id="FirstCard" fitHeight="353.0" fitWidth="210.0" layoutX="354.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@godCards/Apollo.png" />
+            <Image url="@../godCards/Apollo.png" />
          </image>
       </ImageView>
       <Button layoutX="1289.0" layoutY="451.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Next" />

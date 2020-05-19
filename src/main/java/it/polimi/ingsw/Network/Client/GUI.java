@@ -4,13 +4,10 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-
 
 public class GUI implements UserInterface {
 
@@ -51,7 +48,7 @@ public class GUI implements UserInterface {
     @Override
     public void PlayerNumberRequest() throws IOException {
         Platform.runLater(() -> {
-            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
             ModeController controller = new ModeController(client);
             loader.setController(controller);
             Parent root = null;
@@ -69,7 +66,7 @@ public class GUI implements UserInterface {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/insertNicknameScene.fxml"));
                 NicknameSceneController controller = new NicknameSceneController(client);
                 loader.setController(controller);
                 Parent root = null;
@@ -168,7 +165,7 @@ public class GUI implements UserInterface {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/chosenCards.fxml"));
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
                 ChosenCardsController controller = new ChosenCardsController(client);
                 loader.setController(controller);
                 Parent root = null;

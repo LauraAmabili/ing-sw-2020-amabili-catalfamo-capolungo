@@ -10,7 +10,6 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URL;
 import java.util.*;
 
 import static java.lang.Thread.sleep;
@@ -20,7 +19,7 @@ public class Server {
 
     private int port;
     private Gson gson = new Gson();
-    private String file = "serverConf.json";
+    private String file = "Configurations/serverConf.json";
     private ArrayList<ServerThread> serverThreads = new ArrayList<>();
     public ServerBeatReceiver serverBeatReceiver;
 
@@ -86,7 +85,7 @@ public class Server {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("serverConf.json"))).getFile()));
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -32,7 +32,7 @@ public class GUI_App extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         UI[0].setPrimaryStage(primaryStage);
-        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/welcomeScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/welcomeScene.fxml"));
         loader.setController(new WelcomeSceneController(client[0]));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));

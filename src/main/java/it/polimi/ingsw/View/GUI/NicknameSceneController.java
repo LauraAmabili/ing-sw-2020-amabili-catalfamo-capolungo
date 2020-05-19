@@ -3,7 +3,6 @@ package it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,7 +56,7 @@ public class NicknameSceneController extends SceneController implements Initiali
                 try {
                     notifyNicknameResponse(nick);
                     removeObserver(up);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/WaitingScene.fxml"));
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
                     GUI gui = (GUI) client.getUserInterface();
                     Stage primaryStage = gui.getPrimaryStage();
                     primaryStage.setScene(new Scene(root));

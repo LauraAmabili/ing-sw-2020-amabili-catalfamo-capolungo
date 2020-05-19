@@ -78,6 +78,8 @@ public class Client {
         socket = new Socket("localhost", port);
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
+        ClientBeatSender clientBeatSender = new ClientBeatSender(this);
+        clientBeatSender.start();
 
         //System.out.println("Press x to start the game");
         //String inout = scanner.nextLine();
@@ -126,7 +128,7 @@ public class Client {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("serverConf.json"))).getFile()));
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

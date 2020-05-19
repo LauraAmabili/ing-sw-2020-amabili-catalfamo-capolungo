@@ -4,8 +4,8 @@ import java.util.List;
 
 public class GameConf {
     private static List<String> illegalUsernames = null;
-    private static String godConf = "godConf.json";
-    private static String serverConf = "serverConf.json";
+    private static String godConf = "Configurations/godConf.json";
+    private static String serverConf = "Configurations/serverConf.json";
 
 
     public static String getGodConf() {
