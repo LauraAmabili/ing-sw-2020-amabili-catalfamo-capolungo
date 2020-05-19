@@ -57,6 +57,7 @@ public class Server {
         serverBeatReceiver = new ServerBeatReceiver(this);
         new Thread(serverBeatReceiver).start();
         connectClients();
+
     }
 
 

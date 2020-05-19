@@ -171,13 +171,10 @@ public class VisitorMethodsServer implements VisitorServer {
          */
 
         if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("yes") || askEffectReply.getEffect().equals("Yes")) {
-            boolean effect = true;
-            view.updateTimeToChooseWorkerEffect(effect);
+            view.updateTimeToChooseWorkerEffect(true);
         }
         else if(askEffectReply.getEffect().equals("n") || askEffectReply.getEffect().equals("no") || askEffectReply.getEffect().equals("No")){
-            boolean effect = false;
-            view.updateTimeToChooseWorkerEffect(effect);
-
+            view.updateTimeToChooseWorkerEffect(false);
         } else {
             serverThread.sendToClient(new WorkerInputNotValid());
             view.updateAskForEffect(askEffectReply.getPlayerNickname());

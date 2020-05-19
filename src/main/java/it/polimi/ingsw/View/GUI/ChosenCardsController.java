@@ -48,7 +48,7 @@ public class ChosenCardsController extends SceneController implements Initializa
     @FXML
     ImageView Prometheus = new ImageView();
 
-
+    int counter = 0;
 
 
 
@@ -69,7 +69,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Apollo");
-                    removeObserver(up);
+                    Apollo.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -80,7 +84,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Artemis");
-                    removeObserver(up);
+                    Artemis.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -91,7 +99,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Athena");
-                    removeObserver(up);
+                    Athena.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -102,7 +114,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Atlas");
-                    removeObserver(up);
+                    Atlas.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,7 +129,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Demeter");
-                    removeObserver(up);
+                    Demeter.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -124,7 +144,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Hephaestus");
-                    removeObserver(up);
+                    Hephaestus.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -135,7 +159,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Minotaur");
-                    removeObserver(up);
+                    Minotaur.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -146,7 +174,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Pan");
-                    removeObserver(up);
+                    counter++;
+                    Pan.setOpacity(0.7);
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -157,7 +189,11 @@ public class ChosenCardsController extends SceneController implements Initializa
             public void handle(MouseEvent mouseEvent) {
                 try {
                     notifyChosenCardsUpdate("Prometheus");
-                    removeObserver(up);
+                    Prometheus.setOpacity(0.7);
+                    counter++;
+                    if(counter == client.getNumberOfPlayers()) {
+                        removeObserver(up);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

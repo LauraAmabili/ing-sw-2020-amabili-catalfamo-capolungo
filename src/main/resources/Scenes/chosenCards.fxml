@@ -31,7 +31,7 @@
                <children>
                   <ImageView fx:id="Apollo" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/01.png" />
+                        <Image url="@../godCards/Apollo.png" />
                      </image>
                      <effect>
                         <Glow />

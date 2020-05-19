@@ -162,6 +162,16 @@ public class GUI implements UserInterface {
 
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
+
+    }
+
+    @Override
+    public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
+
+    }
+
+    @Override
+    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -177,16 +187,6 @@ public class GUI implements UserInterface {
                 }
             }
         });
-    }
-
-    @Override
-    public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
-
-    }
-
-    @Override
-    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
-
     }
 
     @Override

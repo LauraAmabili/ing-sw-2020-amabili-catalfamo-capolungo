@@ -25,6 +25,15 @@ public class Client {
     private boolean active;
     private UserInterface userInterface;
     private UpdatesForMessages updatesForMessages;
+    private int numberOfPlayers;
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
+    }
 
     public Client(UserInterface userInterface) throws IOException {
 
