@@ -39,6 +39,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void  PlayerNumberRequest() throws IOException {
 
+        clientBoard.Santorini();
         System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
         //clientBoard.Martello();
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
