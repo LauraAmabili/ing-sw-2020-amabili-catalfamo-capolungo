@@ -13,6 +13,9 @@ public class NotifyMessages {
     public void addObserver(ClientObserver o){
         this.observersClient.add(o);
     }
+    public void removeObserver(ClientObserver o) {
+        this.observersClient.remove(o);
+    }
 
     public void notifyPlayerNumberResponse(String num) throws IOException {
         for(ClientObserver c : observersClient){

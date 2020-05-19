@@ -1,15 +1,20 @@
 package it.polimi.ingsw.View.GUI;
 
+import com.sun.javafx.stage.StageHelper;
 import it.polimi.ingsw.Network.Client.Client;
+import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +54,11 @@ public class ModeController extends SceneController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     notifyPlayerNumberResponse("2");
-
+                    removeObserver(up);
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/WaitingScene.fxml"));
+                    GUI gui = (GUI) client.getUserInterface();
+                    Stage primaryStage = gui.getPrimaryStage();
+                    primaryStage.setScene(new Scene(root));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -60,15 +69,12 @@ public class ModeController extends SceneController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     notifyPlayerNumberResponse("3");
+                    removeObserver(up);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
-
-    public void LoadScene(Parent root, Stage stage) {
-        stage.setScene(new Scene(root));
     }
 
 }

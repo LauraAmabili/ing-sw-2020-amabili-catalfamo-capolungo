@@ -3,6 +3,7 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.GUI_App;
 import it.polimi.ingsw.View.GUI.ModeController;
+import it.polimi.ingsw.View.GUI.NicknameSceneController;
 import it.polimi.ingsw.View.GUI.SceneController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -71,13 +72,21 @@ public class GUI implements UserInterface {
 
     @Override
     public void NicknameRequest() throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
-        SceneController controller = loader.load();
-        loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
-        Parent root = loader.load();
-        Scene primaryStage = new Scene(root);
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
+                NicknameSceneController controller = new NicknameSceneController(client);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

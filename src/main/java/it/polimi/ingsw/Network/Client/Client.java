@@ -105,10 +105,12 @@ public class Client {
                     catch (WriteAbortedException e){
                         System.out.println("Non premere nient tanto non puoi ");
                         setActive(false);
+                        killClient();
                     }
                     catch (SocketException e) {
                         System.out.println("Server is offline");
                         setActive(false);
+                        killClient();
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {

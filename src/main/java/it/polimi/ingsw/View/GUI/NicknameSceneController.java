@@ -1,12 +1,16 @@
 package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
+import it.polimi.ingsw.Network.Client.GUI;
+import it.polimi.ingsw.Network.Client.UpdatesForMessages;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +19,7 @@ import java.util.ResourceBundle;
 public class NicknameSceneController extends SceneController implements Initializable {
 
     Client client;
+    UpdatesForMessages up;
 
     @Override
     public Client getClient() {
@@ -30,6 +35,9 @@ public class NicknameSceneController extends SceneController implements Initiali
 
     public NicknameSceneController(Client client) {
         super(client);
+        this.client = client;
+        up = new UpdatesForMessages(client);
+        addObserver(up);
     }
 
     @Override
@@ -45,11 +53,13 @@ public class NicknameSceneController extends SceneController implements Initiali
                 String nick = nicknameTextField.getText();
                 try {
                     notifyNicknameResponse(nick);
+                    removeObserver(up);
                 } catch (IOException e) {
-                    System.out.println("Errore send input nickname");
+                    System.out.println("Error send input nickname");
                 }
 
             }
         });
     }
+
 }
