@@ -105,7 +105,12 @@ public class VisitorMethodsServer implements VisitorServer {
         String worker  = chooseYourWorkerResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            view.tryThisWorker(w);
+            if(w<3) {
+                view.tryThisWorker(w);
+            } else {
+                serverThread.sendToClient(new WorkerInputNotValid());
+                serverThread.sendToClient(new ChooseYourWorkerRequest());
+            }
         }
         catch (NumberFormatException e) {
             serverThread.sendToClient(new WorkerInputNotValid());
@@ -155,8 +160,39 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
-        boolean effect = askEffectReply.getEffect().equals("y");
-        view.updateTimeToChooseWorkerEffect(effect);
+        /*
+        if(askEffectReply.getEffect()=="y" ) {
+            boolean effect = askEffectReply.getEffect().equals("y");
+            view.updateTimeToChooseWorkerEffect(effect);
+        }
+        else if(askEffectReply.getEffect()=="n"){
+
+
+         */
+        if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("n")){
+
+            boolean effect = askEffectReply.getEffect().equals("y");
+            view.updateTimeToChooseWorkerEffect(effect);
+
+        } else {
+            serverThread.sendToClient(new WorkerInputNotValid());
+            view.updateAskForEffect(askEffectReply.getPlayerNickname());
+        }
+
+
+           // boolean effect = askEffectReply.getEffect().equals("y");
+            //view.updateTimeToChooseWorkerEffect(effect);
+            /*
+        }
+        else {
+           // if(askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equalsIgnoreCase("yes")){
+            serverThread.sendToClient(new WorkerInputNotValid());
+            view.updateAskForEffect(askEffectReply.getPlayerNickname());
+            //}
+        }
+
+             */
+
 
     }
 
@@ -167,7 +203,14 @@ public class VisitorMethodsServer implements VisitorServer {
         String worker  = chooseYourWorkerEffectResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            view.tryThisWorkerEffect(effect,w);
+            if(w<3){
+                view.tryThisWorkerEffect(effect,w);
+            }
+            else {
+                serverThread.sendToClient(new WorkerInputNotValid());
+                serverThread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
+            }
+
         }
         catch (NumberFormatException e) {
             serverThread.sendToClient(new WorkerInputNotValid());
@@ -180,8 +223,30 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
 
-        boolean effect = askEffectBuildResponse.getEffect().equals("y");
-        view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+            /*
+            if(askEffectBuildResponse.getEffect()!="y" || askEffectBuildResponse.getEffect() != "n") {
+                serverThread.sendToClient(new WorkerInputNotValid());
+                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+            }
+            else {
+
+
+               if (askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equalsIgnoreCase("yes")) {
+
+             */
+            if( askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equals("n")){
+
+                    boolean effect = askEffectBuildResponse.getEffect().equals("y");
+                    view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+
+            } else {
+                serverThread.sendToClient(new WorkerInputNotValid());
+                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+            }
+
+               // }
+
+
 
     }
 

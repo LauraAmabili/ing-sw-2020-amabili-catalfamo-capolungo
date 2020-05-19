@@ -29,11 +29,14 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     ClientBoard clientBoard = new ClientBoard();
 
+
     public static String ANSI_BLUE = "\u001B[34m";
     public static String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String PURPLE = "\033[0;35m";
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
+
+
 
 
     @Override
@@ -369,7 +372,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         String colstring2 = string.nextLine();
 
 
-        notifyBuildTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker);
+        notifyMoveTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker);
 
 
     }

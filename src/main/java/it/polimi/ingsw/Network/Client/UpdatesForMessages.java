@@ -49,7 +49,6 @@ public class UpdatesForMessages implements ClientObserver {
 
     @Override
     public void updateMoveResponse(String row, String col, int worker) throws IOException {
-
         client.send(new MoveResponse(row, col, worker));
 
     }
