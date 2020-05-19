@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
-import it.polimi.ingsw.View.GUI.GUI_App;
-import it.polimi.ingsw.View.GUI.ModeController;
-import it.polimi.ingsw.View.GUI.NicknameSceneController;
-import it.polimi.ingsw.View.GUI.SceneController;
+import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -168,7 +165,21 @@ public class GUI implements UserInterface {
 
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/chosenCards.fxml"));
+                ChosenCardsController controller = new ChosenCardsController(client);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

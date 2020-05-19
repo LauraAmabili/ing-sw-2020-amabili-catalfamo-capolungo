@@ -6,20 +6,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class chosenCardsController extends SceneController implements Initializable {
+public class ChosenCardsController extends SceneController implements Initializable {
+
     Client client;
 
     UpdatesForMessages up;
 
-    public chosenCardsController(Client client) {
+    public ChosenCardsController(Client client) {
         super(client);
         this.client = client;
         up = new UpdatesForMessages(client);
@@ -27,7 +30,13 @@ public class chosenCardsController extends SceneController implements Initializa
     }
 
     @FXML
-    Button button1 = new Button();
+    ImageView FirstCard = new ImageView();
+
+    @FXML
+    ImageView SecondCard = new ImageView();
+
+    @FXML
+    ImageView ThirdCard = new ImageView();
 
     @Override
     public Client getClient() {
@@ -40,18 +49,16 @@ public class chosenCardsController extends SceneController implements Initializa
     }
 
     public void setUpButtons() {
-        button1.setOnAction(new EventHandler<ActionEvent>() {
+        FirstCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent mouseEvent) {
                 try {
-                    notifyPlayerNumberResponse("2");
-
+                    notifyChosenCardsUpdate("Apollo");
+                    removeObserver(up);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }
-        );
-
+        });
     }
 }
