@@ -154,6 +154,7 @@ public class TurnTest {
             game.getStateList().get(2).placeWorker(1, 5, 1);
         }
 
+
         game.getBoard().printGrid();
         game.getBoard().printGrid(game.getCurrentTurn().getCurrentPlayer().availableCellsToMove(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1)));
 
