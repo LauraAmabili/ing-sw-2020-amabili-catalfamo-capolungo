@@ -25,7 +25,7 @@ public class ClientBeatSender extends Thread {
                 e.printStackTrace();
             }
             try {
-                sleep(cardiacRhythm * 100000);
+                sleep(cardiacRhythm * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
