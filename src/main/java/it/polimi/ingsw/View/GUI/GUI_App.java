@@ -13,16 +13,24 @@ import java.io.IOException;
 
 public class GUI_App extends Application {
 
+    private Client[] client = new Client[1];
+
     public static void main(String[] args) throws IOException {
-        UserInterface UI = new GUI();
-        Client client = new Client(UI);
         launch(args);
+    }
+
+    @Override
+    public void init() throws IOException {
+        UserInterface UI = new GUI();
+        client[0] = new Client(UI);
+        client[0].startClient();
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+        loader.setController(new ModeController(client[0]));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
