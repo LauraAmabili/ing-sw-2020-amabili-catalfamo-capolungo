@@ -26,6 +26,7 @@ public class Client {
     private UpdatesForMessages updatesForMessages;
 
     public Client(UserInterface userInterface) throws IOException {
+
         updatesForMessages = new UpdatesForMessages(this);
         this.userInterface = userInterface;
         gson = new Gson();

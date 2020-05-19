@@ -14,6 +14,11 @@ import java.io.IOException;
 
 public class GUI implements UserInterface {
 
+
+    //private Client client;
+   // UpdatesForMessages up;
+
+
     private Stage primaryStage;
     private SceneController ModeController;
 
@@ -22,6 +27,15 @@ public class GUI implements UserInterface {
 
     }
 
+    /*
+    public GUI() throws IOException {
+        client = new Client(this);
+        up = new UpdatesForMessages(client);
+        this.addObserver(up);
+    }
+
+
+     */
     @Override
     public void PlayerNumberRequest() throws IOException {
 
@@ -32,7 +46,11 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void NicknameRequest() {
+    public void NicknameRequest() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
+        Parent root = loader.load();
+        Scene primaryStage = new Scene(root);
 
     }
 

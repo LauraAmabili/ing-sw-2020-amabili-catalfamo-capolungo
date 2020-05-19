@@ -5,7 +5,9 @@ import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 
-public abstract class SceneController extends NotifyMessages {
+public abstract class SceneController extends NotifyMessages  {
+
+
 
     UpdatesForMessages up;
 
@@ -13,5 +15,7 @@ public abstract class SceneController extends NotifyMessages {
         up = new UpdatesForMessages(client);
         addObserver(up);
     }
+
+
 
 }
