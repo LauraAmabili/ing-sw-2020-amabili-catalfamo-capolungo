@@ -53,19 +53,16 @@ public class GUI implements UserInterface {
      */
     @Override
     public void PlayerNumberRequest() throws IOException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
-                ModeController controller = new ModeController(client);
-                loader.setController(controller);
-                Parent root = null;
-                try {
-                    root = loader.load();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
+            ModeController controller = new ModeController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
