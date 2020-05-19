@@ -169,6 +169,21 @@ public class VisitorMethodsServer implements VisitorServer {
 
 
          */
+
+        if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("yes") || askEffectReply.getEffect().equals("Yes")) {
+            boolean effect = true;
+            view.updateTimeToChooseWorkerEffect(effect);
+        }
+        else if(askEffectReply.getEffect().equals("n") || askEffectReply.getEffect().equals("no") || askEffectReply.getEffect().equals("No")){
+            boolean effect = false;
+            view.updateTimeToChooseWorkerEffect(effect);
+
+        } else {
+            serverThread.sendToClient(new WorkerInputNotValid());
+            view.updateAskForEffect(askEffectReply.getPlayerNickname());
+        }
+
+        /*
         if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("n")){
 
             boolean effect = askEffectReply.getEffect().equals("y");
@@ -234,10 +249,13 @@ public class VisitorMethodsServer implements VisitorServer {
                if (askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equalsIgnoreCase("yes")) {
 
              */
-            if( askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equals("n")){
-
-                    boolean effect = askEffectBuildResponse.getEffect().equals("y");
-                    view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+            if( askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equals("yes") || askEffectBuildResponse.getEffect().equals("Yes")) {
+                boolean effect = true;
+                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+            }
+            else if(askEffectBuildResponse.getEffect().equals("n") || askEffectBuildResponse.getEffect().equals("no") || askEffectBuildResponse.getEffect().equals("No")){
+                boolean effect = false;
+                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
 
             } else {
                 serverThread.sendToClient(new WorkerInputNotValid());
