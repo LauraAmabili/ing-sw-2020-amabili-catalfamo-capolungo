@@ -9,14 +9,14 @@
    <children>
       <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
-            <Image url="@SantoriniBoard.png" />
+            <Image url="@../Images/SantoriniBoard.png" />
          </image>
       </ImageView>
       <Button fx:id="TwoPlayerButton" layoutX="361.0" layoutY="296.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0">
          <graphic>
             <ImageView fitHeight="250.0" fitWidth="250.0">
                <image>
-                  <Image url="@1v1.jpg" />
+                  <Image url="@../Images/1v1.jpg" />
                </image>
             </ImageView>
          </graphic>
@@ -25,7 +25,7 @@
          <graphic>
             <ImageView fitHeight="250.0" fitWidth="250.0">
                <image>
-                  <Image url="@1v1v1.jpg" />
+                  <Image url="@../Images/1v1v1.jpg" />
                </image>
             </ImageView>
          </graphic>

@@ -1,19 +1,13 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
-import it.polimi.ingsw.View.GUI.GUI_App;
-import it.polimi.ingsw.View.GUI.ModeController;
-import it.polimi.ingsw.View.GUI.NicknameSceneController;
-import it.polimi.ingsw.View.GUI.SceneController;
+import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-
 
 public class GUI implements UserInterface {
 
@@ -53,19 +47,16 @@ public class GUI implements UserInterface {
      */
     @Override
     public void PlayerNumberRequest() throws IOException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/GameModeScene.fxml"));
-                ModeController controller = new ModeController(client);
-                loader.setController(controller);
-                Parent root = null;
-                try {
-                    root = loader.load();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
+            ModeController controller = new ModeController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -75,7 +66,7 @@ public class GUI implements UserInterface {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/insertNicknameScene.fxml"));
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/insertNicknameScene.fxml"));
                 NicknameSceneController controller = new NicknameSceneController(client);
                 loader.setController(controller);
                 Parent root = null;
@@ -171,7 +162,21 @@ public class GUI implements UserInterface {
 
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
+                ChosenCardsController controller = new ChosenCardsController(client);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

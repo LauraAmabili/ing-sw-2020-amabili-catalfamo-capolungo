@@ -9,7 +9,7 @@ public class ClientBeatSender extends Thread {
 
     Client client;
 
-    int cardiacRhythm = 1; //seconds
+    int cardiacRhythm = 5; //seconds
 
     public ClientBeatSender(Client client) {
         this.client = client;
@@ -25,7 +25,7 @@ public class ClientBeatSender extends Thread {
                 e.printStackTrace();
             }
             try {
-                sleep(cardiacRhythm * 100000);
+                sleep(cardiacRhythm * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

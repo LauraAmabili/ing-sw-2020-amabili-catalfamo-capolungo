@@ -9,12 +9,12 @@
    <children>
       <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
-            <Image url="@SantoriniBoard.png" />
+            <Image url="@../Images/SantoriniBoard.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="76.0" fitWidth="77.0" layoutX="731.0" layoutY="331.0">
          <image>
-            <Image url="@to.png" />
+            <Image url="@../Images/to.png" />
          </image>
          <rotationAxis>
             <Point3D />
@@ -22,7 +22,7 @@
       </ImageView>
       <ImageView fitHeight="127.0" fitWidth="412.0" layoutX="564.0" layoutY="168.0">
          <image>
-            <Image url="@welcome.png" />
+            <Image url="@../Images/welcome.png" />
          </image>
          <rotationAxis>
             <Point3D />
@@ -30,7 +30,7 @@
       </ImageView>
       <ImageView fitHeight="121.0" fitWidth="406.0" layoutX="567.0" layoutY="436.0">
          <image>
-            <Image url="@Santorini.png" />
+            <Image url="@../Images/Santorini.png" />
          </image>
          <rotationAxis>
             <Point3D />

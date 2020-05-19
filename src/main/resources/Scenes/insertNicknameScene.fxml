@@ -10,14 +10,14 @@
    <children>
       <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
-            <Image url="@SantoriniBoard.png" />
+            <Image url="@../Images/SantoriniBoard.png" />
          </image>
       </ImageView>
       <Pane layoutX="535.0" layoutY="274.0" prefHeight="296.0" prefWidth="512.0">
          <children>
             <ImageView fitHeight="296.0" fitWidth="512.0">
                <image>
-                  <Image url="@insertNickname.png" />
+                  <Image url="@../Images/insertNickname.png" />
                </image>
             </ImageView>
             <TextField fx:id="nicknameTextField" layoutX="136.0" layoutY="246.0" prefHeight="27.0" prefWidth="241.0" />

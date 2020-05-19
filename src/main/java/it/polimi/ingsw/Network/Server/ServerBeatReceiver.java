@@ -11,7 +11,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
     Server server;
     ArrayList<Connection> connections = new ArrayList<>();
 
-    int expectedCardiacRhythm = 5; //seconds
+    int expectedCardiacRhythm = 10; //seconds
 
     /**
      * Receive the beats from the clients and delete dead clients
@@ -31,7 +31,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
     public void run() {
         while (true) {
             try {
-                sleep(expectedCardiacRhythm * 1000 / 5);
+                sleep(expectedCardiacRhythm * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -48,7 +48,7 @@ public class WelcomeSceneController extends SceneController implements Initializ
                     client.startClient();
                     GUI gui = (GUI) client.getUserInterface();
                     gui.setClient(client);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/WaitingScene.fxml"));
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
                     Stage primaryStage = gui.getPrimaryStage();
                     primaryStage.setScene(new Scene(root));
                 } catch (IOException e) {
