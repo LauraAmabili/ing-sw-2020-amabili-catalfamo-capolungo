@@ -139,7 +139,9 @@ public class ClientBoard {
 
     public void Players(){
 
+         /*
         System.out.println(PURPLE_BOLD);
+
         System.out.println("\n" +
                 " \n" +
                 "                                                          ,ç▓\n" +
@@ -190,6 +192,8 @@ public class ClientBoard {
                 "                                     ▀      \"\n" +
                 " ");
 
+
+         */
         System.out.println(BLUE_BOLD);
         System.out.println("\n" +
                 " \n" +
