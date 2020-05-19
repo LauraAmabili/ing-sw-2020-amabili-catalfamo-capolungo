@@ -9,7 +9,7 @@ public class ClientBeatSender extends Thread {
 
     Client client;
 
-    int cardiacRhythm = 1; //seconds
+    int cardiacRhythm = 5; //seconds
 
     public ClientBeatSender(Client client) {
         this.client = client;
