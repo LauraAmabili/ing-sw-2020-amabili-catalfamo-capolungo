@@ -43,7 +43,7 @@
                <children>
                   <ImageView fx:id="Atlas" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/04.png" />
+                        <Image url="@../godCards/Atlas.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -55,7 +55,7 @@
                <children>
                   <ImageView fx:id="Minotaur" fitHeight="290.0" fitWidth="300.0" layoutX="184.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/08.png" />
+                        <Image url="@../godCards/Minotaur.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -67,7 +67,7 @@
                <children>
                   <ImageView fx:id="Artemis" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/02.png" />
+                        <Image url="@../godCards/Artemis.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -79,7 +79,7 @@
                <children>
                   <ImageView fx:id="Demeter" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/05.png" />
+                        <Image url="@../godCards/Demeter.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -91,7 +91,7 @@
                <children>
                   <ImageView fx:id="Athena" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/03.png" />
+                        <Image url="@../godCards/Athena.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -103,7 +103,7 @@
                <children>
                   <ImageView fx:id="Hephaestus" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/06.png" />
+                        <Image url="@../godCards/Hepheaestus.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -115,7 +115,7 @@
                <children>
                   <ImageView fx:id="Pan" fitHeight="290.0" fitWidth="300.0" layoutX="184.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/09.png" />
+                        <Image url="@../godCards/Pan.png" />
                      </image>
                      <effect>
                         <Glow />
@@ -127,7 +127,7 @@
                <children>
                   <ImageView fx:id="Prometheus" fitHeight="290.0" fitWidth="300.0" layoutX="184.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/10.png" />
+                        <Image url="@../godCards/Prometheus.png" />
                      </image>
                      <effect>
                         <Glow />

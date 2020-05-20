@@ -36,7 +36,7 @@ public interface UserInterface {
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException;
     public void CardAddedUpdate(CardAddedUpdate cardAddedUpdate);
     public void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest);
-    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate);
+    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) throws IOException;
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException;
     public void CardSetUpdate(CardSetUpdate cardSetUpdate);
     public void MaxPlayerReachedUpdate();

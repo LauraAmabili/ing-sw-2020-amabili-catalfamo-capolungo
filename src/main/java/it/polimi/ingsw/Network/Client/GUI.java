@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GUI implements UserInterface {
 
@@ -17,8 +19,22 @@ public class GUI implements UserInterface {
 
 
     private Stage primaryStage;
-    private SceneController ModeController;
-    Client client;
+    private Client client;
+    private List<String> godNames;
+    private List<String> chosenCards = new ArrayList<>();
+    private String currentPlayer;
+
+    public List<String> getChosenCards() {
+        return chosenCards;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public List<String> getGodNames() {
+        return godNames;
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -200,12 +216,45 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
-
+    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) throws IOException {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer())) {
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/CardsToChooseScene.fxml"));
+                    CardsToChooseController controller = new CardsToChooseController(client);
+                    loader.setController(controller);
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                        primaryStage.setScene(new Scene(root));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                        primaryStage.setScene(new Scene(root));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        currentPlayer = setCardTimeUpdate.getCurrentPlayer();
     }
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
+        if(godNames == null) {
+            godNames = setYourCardRequest.getChosenGods();
+        } else {
+            for (String name : setYourCardRequest.getChosenGods()) {
+                if(!godNames.contains(name)) {
+                    chosenCards.add(name);
+                }
+            }
+        }
     }
 
     @Override

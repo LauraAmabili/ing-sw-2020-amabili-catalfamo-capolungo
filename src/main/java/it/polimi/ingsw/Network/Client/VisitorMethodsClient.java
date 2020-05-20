@@ -219,7 +219,7 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(SetCardTimeUpdate setCardTimeUpdate) {
+    public void visit(SetCardTimeUpdate setCardTimeUpdate) throws IOException {
 
        userInterface.SetCardTimeUpdate(setCardTimeUpdate);
     }

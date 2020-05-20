@@ -2,6 +2,7 @@ package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
+import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class ModeController extends SceneController implements Initializable {
+public class ModeController extends NotifyMessages implements Initializable {
 
     @FXML
     Button TwoPlayerButton = new Button();
@@ -33,7 +34,6 @@ public class ModeController extends SceneController implements Initializable {
     }
 
     public ModeController(Client client) {
-        super(client);
         this.client = client;
         up = new UpdatesForMessages(client);
         addObserver(up);

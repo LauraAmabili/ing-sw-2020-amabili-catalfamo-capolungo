@@ -1,6 +1,7 @@
 package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
+import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,14 +17,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChosenCardsController extends SceneController implements Initializable {
+public class ChosenCardsController extends NotifyMessages implements Initializable {
 
     Client client;
 
     UpdatesForMessages up;
 
     public ChosenCardsController(Client client) {
-        super(client);
         this.client = client;
         up = new UpdatesForMessages(client);
         addObserver(up);
@@ -50,10 +50,6 @@ public class ChosenCardsController extends SceneController implements Initializa
 
     int counter = 0;
 
-
-
-
-    @Override
     public Client getClient() {
         return client;
     }

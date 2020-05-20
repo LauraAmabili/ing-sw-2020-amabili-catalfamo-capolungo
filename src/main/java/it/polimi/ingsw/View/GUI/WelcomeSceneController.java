@@ -2,6 +2,7 @@ package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
+import it.polimi.ingsw.Network.Client.NotifyMessages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,20 +18,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class WelcomeSceneController extends SceneController implements Initializable {
+public class WelcomeSceneController extends NotifyMessages implements Initializable {
 
     Client client;
 
     @FXML
     javafx.scene.control.Button StartGameButton = new Button();
 
-    @Override
     public Client getClient() {
         return client;
     }
 
     public WelcomeSceneController(Client client) {
-        super(client);
         this.client = client;
     }
 

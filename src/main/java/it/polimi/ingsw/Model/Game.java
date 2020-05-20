@@ -270,8 +270,9 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputMove()) {
                         notifyTimeToMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
+                } else {
+                    notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 }
-                notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                 break;
             }
         }

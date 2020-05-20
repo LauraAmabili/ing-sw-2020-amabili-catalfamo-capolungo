@@ -22,7 +22,7 @@ public interface VisitorClient {
     public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException;
     public void visit(CardAddedUpdate cardAddedUpdate);
     public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest);
-    public void visit(SetCardTimeUpdate setCardTimeUpdate);
+    public void visit(SetCardTimeUpdate setCardTimeUpdate) throws IOException;
     public void visit(SetYourCardRequest setYourCardRequest) throws IOException;
     public void visit(CardSetUpdate cardSetUpdate);
     public void visit(ChooseCardsUpdate timeToChooseCard);

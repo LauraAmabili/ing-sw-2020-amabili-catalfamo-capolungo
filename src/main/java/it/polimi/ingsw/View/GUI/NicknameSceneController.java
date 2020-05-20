@@ -2,6 +2,7 @@ package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
+import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,12 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NicknameSceneController extends SceneController implements Initializable {
+public class NicknameSceneController extends NotifyMessages implements Initializable {
 
     Client client;
     UpdatesForMessages up;
 
-    @Override
     public Client getClient() {
         return client;
     }
@@ -36,7 +36,6 @@ public class NicknameSceneController extends SceneController implements Initiali
 
 
     public NicknameSceneController(Client client) {
-        super(client);
         this.client = client;
         up = new UpdatesForMessages(client);
         addObserver(up);
