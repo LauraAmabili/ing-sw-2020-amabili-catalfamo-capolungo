@@ -67,6 +67,10 @@ public class ModeController extends NotifyMessages implements Initializable {
                 try {
                     notifyPlayerNumberResponse("3");
                     removeObserver(up);
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                    GUI gui = (GUI) client.getUserInterface();
+                    Stage primaryStage = gui.getPrimaryStage();
+                    primaryStage.setScene(new Scene(root));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -22,6 +22,7 @@ public class GUI implements UserInterface {
     private Client client;
     private List<String> godNames;
     private List<String> chosenCards = new ArrayList<>();
+    private String opponentChosenCard;
     private String currentPlayer;
 
     public List<String> getChosenCards() {
@@ -248,18 +249,16 @@ public class GUI implements UserInterface {
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
         if(godNames == null) {
             godNames = setYourCardRequest.getChosenGods();
-        } else {
-            for (String name : setYourCardRequest.getChosenGods()) {
-                if(!godNames.contains(name)) {
-                    chosenCards.add(name);
-                }
+            if(opponentChosenCard != null) {
+                godNames.add(opponentChosenCard);
             }
         }
     }
 
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
-
+        opponentChosenCard = cardSetUpdate.getGodName();
+        chosenCards.add(cardSetUpdate.getGodName());
     }
 
     @Override

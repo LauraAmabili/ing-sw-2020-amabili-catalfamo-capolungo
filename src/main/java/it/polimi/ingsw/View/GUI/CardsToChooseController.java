@@ -10,11 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,47 +40,18 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GUI gui = (GUI) client.getUserInterface();
-        Stage primaryStage = gui.getPrimaryStage();
-        File file;
-        String tmpAddress;
-        if(gui.getGodNames() != null) {
-            for(String name : gui.getGodNames()) {
-                if(FirstCard.getImage() == null) {
-                    CardName1 = name;
-                    file = new File(CardName1  + ".png");
-                    try {
-                        tmpAddress = file.toURI().toURL().toExternalForm();
-                        FirstCard.setImage(new Image(tmpAddress));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                } else if(ThirdCard.getImage() == null) {
-                    CardName3 = name;
-                    file = new File(CardName3  + ".png");
-                    try {
-                        tmpAddress = file.toURI().toURL().toExternalForm();
-                        ThirdCard.setImage(new Image(tmpAddress));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    CardName2 = name;
-                    file = new File(CardName2  + ".png");
-                    try {
-                        tmpAddress = file.toURI().toURL().toExternalForm();
-                        SecondCard.setImage(new Image(tmpAddress));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
+        LoadCards();
         setUp();
     }
 
     public void setUp() {
         GUI gui = (GUI) client.getUserInterface();
+        FirstCard.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
         FirstCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -100,10 +67,8 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
                 }
             }
         });
-        for(String chosenGod : gui.getChosenCards()) {
-            if (gui.getGodNames().contains(chosenGod)) {
-                FirstCard.setOpacity(0.7);
-            }
+        if (gui.getChosenCards().contains(CardName1)) {
+            FirstCard.setOpacity(0.7);
         }
         if(CardName2 != null) {
             SecondCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -121,10 +86,8 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
                     }
                 }
             });
-            for(String chosenGod : gui.getChosenCards()) {
-                if (gui.getGodNames().contains(chosenGod)) {
-                    SecondCard.setOpacity(0.7);
-                }
+            if (gui.getChosenCards().contains(CardName2)) {
+                SecondCard.setOpacity(0.7);
             }
         } else {
             SecondCard.disabledProperty();
@@ -144,9 +107,29 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
                 }
             }
         });
-        for(String chosenGod : gui.getChosenCards()) {
-            if (gui.getGodNames().contains(chosenGod)) {
-                ThirdCard.setOpacity(0.7);
+        if (gui.getChosenCards().contains(CardName3)) {
+            ThirdCard.setOpacity(0.7);
+        }
+    }
+
+    public void LoadCards() {
+        GUI gui = (GUI) client.getUserInterface();
+        String url;
+        if(gui.getGodNames() != null) {
+            for(String name : gui.getGodNames()) {
+                if(FirstCard.getImage() == null) {
+                    CardName1 = name;
+                    url = "/godCards/" + CardName1 + ".png";
+                    FirstCard.setImage(new Image(url));
+                } else if(ThirdCard.getImage() == null) {
+                    CardName3 = name;
+                    url = "/godCards/" + CardName3  + ".png";
+                    ThirdCard.setImage(new Image(url));
+                } else {
+                    CardName2 = name;
+                    url = "/godCards/" + CardName2  + ".png";
+                    SecondCard.setImage(new Image(url));
+                }
             }
         }
     }
