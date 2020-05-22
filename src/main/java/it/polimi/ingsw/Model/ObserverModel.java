@@ -30,11 +30,11 @@ public interface ObserverModel {
 
     void updateSetWorker(int i, String currentPlayer) throws IOException;
 
-    void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException;
+    void updateCardNotPresent(String nickname, List<String> availableGods , List<God> chosenGods) throws IOException;
 
     void updateGodNotAdded(String challengerName) throws IOException;
 
-    void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException;
+    void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) throws IOException;
 
     void updateNicknameNotValid(String nickname) throws IOException;
 
@@ -54,7 +54,7 @@ public interface ObserverModel {
 
     void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
 
-    void updateSetCard(List<String> chosendGods, String currentPlayer) throws IOException;
+    void updateSetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) throws IOException;
 
     void updateSetWorkerOk(String currentWorker, Board board) throws IOException;
 

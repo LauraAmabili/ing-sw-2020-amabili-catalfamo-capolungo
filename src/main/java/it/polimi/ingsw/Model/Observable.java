@@ -77,9 +77,9 @@ public class Observable {
         }
 
     }
-    void notifyGodNotCorrect(String nickname, List<String> chosenGods) throws IOException {
+    void notifyGodNotCorrect(String nickname, List<String> avilableGods, List<God> chosenGods) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateCardNotPresent(nickname, chosenGods);
+            o.updateCardNotPresent(nickname, avilableGods, chosenGods);
         }
     }
     void notifyGodNotAdded(String challengerName) throws IOException {
@@ -161,9 +161,9 @@ public class Observable {
         }
     }
 
-    public void notifySetCard(List<String> chosenGods, String currentPlayer) throws IOException {
+    public void notifySetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateSetCard(chosenGods, currentPlayer);
+            o.updateSetCard(availableGods, currentPlayer, chosenGods);
         }
     }
 

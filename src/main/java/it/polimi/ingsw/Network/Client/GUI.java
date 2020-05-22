@@ -239,7 +239,7 @@ public class GUI implements UserInterface {
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
         if(godNames == null) {
-            godNames = setYourCardRequest.getChosenGods();
+            godNames = setYourCardRequest.getAvailableGods();
             if(opponentChosenCard != null) {
                 godNames.add(opponentChosenCard);
             }

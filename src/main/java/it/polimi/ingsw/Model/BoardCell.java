@@ -10,6 +10,7 @@ public class BoardCell implements Serializable {
     private Worker worker;
     private boolean dome;
 
+
     @Override
     public String toString(){
         return "Row: "+row+" Col: "+col+" level: "+level+" Worker: "+worker+" Dome: "+dome;

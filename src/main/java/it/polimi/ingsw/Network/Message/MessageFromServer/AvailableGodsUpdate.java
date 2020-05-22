@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
@@ -10,20 +11,20 @@ public class AvailableGodsUpdate extends MessageFromServer {
 
 
 
-    final List<String> cards;
+    List<God> cards;
 
 
-    public AvailableGodsUpdate(List<String> cards) {
+    public AvailableGodsUpdate(List<God> cards) {
 
         this.cards = cards;
     }
 
-    public List<String> getCards() {
+    public List<God> getCards() {
         return cards;
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) {
+    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
     }
 }

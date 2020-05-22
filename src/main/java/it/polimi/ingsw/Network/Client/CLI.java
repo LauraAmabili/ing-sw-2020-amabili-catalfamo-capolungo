@@ -1,18 +1,21 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CLI extends NotifyMessages implements UserInterface {
 
-    private final Scanner string = new Scanner(System.in);
-    private final Scanner input = new Scanner(System.in);
+    private Scanner string = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
-    private final Client client;
+    private Client client;
     UpdatesForMessages up;
 
 
@@ -25,7 +28,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
-    final ClientBoard clientBoard = new ClientBoard();
+    ClientBoard clientBoard = new ClientBoard();
 
 
     public static String ANSI_BLUE = "\u001B[34m";
@@ -225,8 +228,11 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
 
-        List<String> cards = availableGodsUpdate.getCards();
-        System.out.println(cards);
+        List<God> cards = availableGodsUpdate.getCards();
+        for(God i : cards){
+            System.out.print(i.getGodName()+" ");
+        }
+        System.out.println();
 
 
     }
@@ -266,7 +272,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
-        System.out.println("Choose your card between:  " + setYourCardRequest.getChosenGods());
+        System.out.println("Choose your card between:  " + setYourCardRequest.getAvailableGods());
         String in = string.nextLine();
         notifySetYourCardResponse(in);
     }

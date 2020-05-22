@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
@@ -15,16 +16,32 @@ public class Game extends Observable {
 
     //Player
     private int id;
-    private final List<String> nickNames; //in game players
-    private final List<PlayerInterface> onlinePlayers;
-    private final List<PlayerFSA> stateList;
+    private List<String> nickNames; //in game players
+    private List<PlayerInterface> onlinePlayers;
+    private List<PlayerFSA> stateList;
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
     private final boolean cardsChosen = false;
     private final List<String> color;
     int maxPlayer;
+    private List<God> allGods;
 
+    /**
+     * List of the chosenGods of the challenger
+     */
+    private List<God> chosenGodList;
+    /**
+     * List of che gods still available for th client
+     */
+    private final List<String> availableGods = new ArrayList<>();
+    public List<God> getChosenGodList() {
+        return chosenGodList;
+    }
+
+    public void setChosenGodList(List<God> chosenGodList) {
+        this.chosenGodList = chosenGodList;
+    }
 
     private final List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
@@ -36,9 +53,6 @@ public class Game extends Observable {
         for (int i=0; i<playerCreator.getArrayGods().size(); i++)
             godListNames.add(playerCreator.getArrayGods().get(i).getGodName());
     }
-
-    private final List<String> chosenGods = new ArrayList<>();
-
 
 
     public Game() {
@@ -52,14 +66,19 @@ public class Game extends Observable {
         color.add(ANSI_BLUE);
         color.add(ANSI_YELLOW);
         color.add(ANSI_PURPLE);
+        PlayerCreator playerCreator = new PlayerCreator();
+        allGods = playerCreator.getArrayGods();
     }
 
 
+    public List<God> getAllgods() {
+        return allGods;
+    }
     public List<PlayerFSA> getStateList() {
         return stateList;
     }
-    public List<String> getChosenGods() {
-        return chosenGods;
+    public List<String> getAvailableGods() {
+        return availableGods;
     }
     public Board getBoard() {
         return board;
@@ -143,7 +162,7 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() {
+    public void createTurn() throws IOException, InterruptedException {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
     }
@@ -154,7 +173,7 @@ public class Game extends Observable {
      */
     public void chooseCards() throws IOException {
 
-        if(chosenGods.isEmpty()) {
+        if(availableGods.isEmpty()) {
             createChallenger();
             notifyChoose(cardsChosen, this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
         }
@@ -176,8 +195,8 @@ public class Game extends Observable {
     }
 
     public void toSetCard() throws IOException {
-        this.notifyTimeToSetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
-        this.notifySetCard(chosenGods, getCurrentTurn().getCurrentPlayer().getNickname());
+        this.notifyTimeToSetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname());
+        this.notifySetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname(), chosenGodList);
 
     }
 
@@ -204,7 +223,7 @@ public class Game extends Observable {
     }
 
     public void NoGodHasSuchName() throws IOException {
-        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), chosenGods);
+        notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), availableGods, chosenGodList);
     }
 
     public void updateBoard() throws IOException {
@@ -280,13 +299,13 @@ public class Game extends Observable {
 
     public void timeToChallenger() throws IOException {
         notifyCards(getCurrentTurn().getCurrentPlayer().getNickname());
-        notifyChoose(cardsChosen,this.getGodListNames(), this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyChoose(cardsChosen,this.getAllgods(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void godAdded(boolean state) throws IOException {
 
-        notifyGodAdded(chosenGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
-        System.out.println(chosenGods);
+        notifyGodAdded(availableGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        System.out.println(availableGods);
 
     }
 
