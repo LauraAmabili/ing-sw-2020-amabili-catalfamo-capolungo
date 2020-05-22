@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
@@ -227,8 +228,11 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
 
-        List<String> cards = availableGodsUpdate.getCards();
-        System.out.println(cards);
+        List<God> cards = availableGodsUpdate.getCards();
+        for(God i : cards){
+            System.out.print(i.getGodName()+" ");
+        }
+        System.out.println();
 
 
     }
@@ -268,7 +272,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
-        System.out.println("Choose your card between:  " + setYourCardRequest.getChosenGods());
+        System.out.println("Choose your card between:  " + setYourCardRequest.getAvailableGods());
         String in = string.nextLine();
         notifySetYourCardResponse(in);
     }

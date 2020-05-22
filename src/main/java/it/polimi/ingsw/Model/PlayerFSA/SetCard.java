@@ -21,10 +21,10 @@ public class SetCard extends PlayerFSA{
     @Override
     public void setCard(String godName) throws IOException {
         PlayerCreator playerCreator = new PlayerCreator();
-        if(!game.getChosenGods().contains(godName)) {
+        if(!game.getAvailableGods().contains(godName)) {
             game.NoGodHasSuchName();
         } else {
-            game.getChosenGods().remove(godName);
+            game.getAvailableGods().remove(godName);
             player.setActiveCard(new God(godName));
             player = playerCreator.createPlayer(godName, player);
             game.getCurrentTurn().setCurrentPlayer(player);
@@ -44,7 +44,7 @@ public class SetCard extends PlayerFSA{
             }
             game.getCurrentTurn().nextTurn(game);
 
-            if(game.getChosenGods().size() != 0) {
+            if(game.getAvailableGods().size() != 0) {
                 game.toSetCard();
             } else {
                 game.toPlaceWorker();

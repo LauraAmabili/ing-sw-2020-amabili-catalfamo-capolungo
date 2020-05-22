@@ -2,6 +2,7 @@ package it.polimi.ingsw.View;
 
 import it.polimi.ingsw.Controller.Observable;
 import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
@@ -153,7 +154,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     @Override
     public void updateNicknameNotValid(String nickname) throws IOException {
 
-        //TODO: serve ancora?
+
 
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new NicknameNotValidUpdate());
@@ -185,7 +186,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateChoose(boolean chosenGods, List Names, String ChallengerName) throws IOException {
+    public void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) throws IOException {
 
         if(!chosenGods) {
             if(MyNickname.equals(ChallengerName)) {
@@ -280,11 +281,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
      * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
+    public  void updateSetCard(List<String> availableGods, String currentPlayerName, List<God> chosenGods) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
             System.out.println(chosenGods);
-            thread.sendToClient(new SetYourCardRequest(chosenGods));
+            thread.sendToClient(new SetYourCardRequest(availableGods, chosenGods));
         }
 
     }
@@ -316,17 +317,17 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     /**
      * Send to the client/current player an update that the name of the God chosen is not correct
      * @param nickname name of the current player
-     * @param chosenGods name of the chosen God
+     * @param availableGods name of the chosen God
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateCardNotPresent(String nickname, List<String> chosenGods) throws IOException {
+    public void updateCardNotPresent(String nickname, List<String> availableGods, List<God> chosenGods) throws IOException {
 
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new CardNotFoundRequest());
         }
 
-        updateSetCard(chosenGods, nickname);
+        updateSetCard(availableGods, nickname, chosenGods);
     }
 
 

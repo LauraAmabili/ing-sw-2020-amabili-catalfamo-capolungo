@@ -86,9 +86,9 @@ public class GameTest {
        for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
            game.getStateList().get(i).chosenCard("Atlas");
        }
-       Assert.assertNotNull(game.getChosenGods());
-       Assert.assertEquals(game.getChosenGods().get(0), "Apollo");
-       Assert.assertEquals(game.getChosenGods().get(1), "Atlas");
+       Assert.assertNotNull(game.getAvailableGods());
+       Assert.assertEquals(game.getAvailableGods().get(0), "Apollo");
+       Assert.assertEquals(game.getAvailableGods().get(1), "Atlas");
 
    }
 
@@ -117,7 +117,7 @@ public class GameTest {
     public void CardsNotChosenYet() throws IOException {
 
         game.getStateList().get(0).addNickname("Notateen");
-        Assert.assertEquals(game.getChosenGods().size(), 0 );
+        Assert.assertEquals(game.getAvailableGods().size(), 0 );
         game.chooseCards();
         game.createChallenger();
         Assert.assertNotNull(game.getCurrentTurn().getCurrentPlayer());
@@ -129,11 +129,11 @@ public class GameTest {
 
     @Test
     public void CheckCard(){
-         game.getChosenGods().add("Apollo");
-         Assert.assertNotNull(game.getChosenGods());
-         Assert.assertEquals(game.getChosenGods().get(0), "Apollo");
-       game.getChosenGods().add("Pan");
-         Assert.assertEquals(game.getChosenGods().get(1), "Pan");
+         game.getAvailableGods().add("Apollo");
+         Assert.assertNotNull(game.getAvailableGods());
+         Assert.assertEquals(game.getAvailableGods().get(0), "Apollo");
+       game.getAvailableGods().add("Pan");
+         Assert.assertEquals(game.getAvailableGods().get(1), "Pan");
 
 
 

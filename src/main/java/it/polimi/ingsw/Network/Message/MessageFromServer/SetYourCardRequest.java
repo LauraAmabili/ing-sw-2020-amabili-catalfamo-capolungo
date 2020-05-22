@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
@@ -8,14 +9,20 @@ import java.util.List;
 public class SetYourCardRequest extends MessageFromServer {
 
 
-    List<String> chosenGods;
+    List<String> availableGods;
+    List<God> chosenGods;
 
-    public SetYourCardRequest(List<String> chosenGods) {
-        this.chosenGods = chosenGods;
+    public List<God> getChosenGods() {
+        return chosenGods;
     }
 
-    public List<String> getChosenGods() {
-        return chosenGods;
+    public SetYourCardRequest(List<String> availableGods, List<God> chosenGods) {
+        this.chosenGods = chosenGods;
+        this.availableGods = availableGods;
+    }
+
+    public List<String> getAvailableGods() {
+        return availableGods;
     }
 
     @Override
