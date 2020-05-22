@@ -71,7 +71,7 @@ public class Game extends Observable {
     }
 
 
-    public List<God> getAllgods() {
+    public List<God> getAllGods() {
         return allGods;
     }
     public List<PlayerFSA> getStateList() {
@@ -299,7 +299,7 @@ public class Game extends Observable {
 
     public void timeToChallenger() throws IOException {
         notifyCards(getCurrentTurn().getCurrentPlayer().getNickname());
-        notifyChoose(cardsChosen,this.getAllgods(), this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyChoose(cardsChosen,this.getAllGods(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
     public void godAdded(boolean state) throws IOException {

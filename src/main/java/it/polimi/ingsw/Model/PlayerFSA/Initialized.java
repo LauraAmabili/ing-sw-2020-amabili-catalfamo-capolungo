@@ -4,6 +4,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.God.GodFileCreator;
+import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 
@@ -14,11 +15,13 @@ public class Initialized extends PlayerFSA {
 
     PlayerInterface player;
     Game game;
+    PlayerCreator p = new PlayerCreator();
 
 
     public Initialized(PlayerInterface player, Game game) {
         this.player = player;
         this.game = game;
+
     }
 
     @Override
@@ -37,7 +40,8 @@ public class Initialized extends PlayerFSA {
                 }
                 if(flag) {
                     game.getAvailableGods().add(godName);
-                    game.getChosenGodList().add(new God(godName));
+                    //game.getChosenGodList().add(p.find(godName));
+                    //System.out.println(game.getChosenGodList());
                 }
             }
             if(game.getAvailableGods().size() == game.getOnlinePlayers().size()) {
