@@ -7,7 +7,7 @@ import java.io.IOException;
 public class ChosenCardsUpdate extends MessageFromClient {
 
 
-    String chosenCard;
+    final String chosenCard;
 
     public ChosenCardsUpdate(String chosenCard) {
         this.chosenCard = chosenCard;

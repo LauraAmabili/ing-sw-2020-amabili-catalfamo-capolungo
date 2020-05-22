@@ -12,14 +12,13 @@ import java.util.List;
 public class PlayerDecorator implements PlayerInterface, Serializable {
 
     // attributes
-    protected PlayerInterface player;
+    protected final PlayerInterface player;
     private String nickname;
     private List<Worker> workerRef; // reference to the workers
     private List<God> chosenGods;
     private God activeCard;
     private Board board;
     private boolean moveUp;
-    private String color;
 
     // constructor
     public PlayerDecorator(PlayerInterface player) {
@@ -29,7 +28,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         this.activeCard = player.getActiveCard();
         this.board = player.getBoard();
         this.moveUp = player.isMoveUp();
-        this.color = player.getColor();
+        String color = player.getColor();
         for (Worker worker : workerRef) {
             worker.setPlayerWorker(this);
         }

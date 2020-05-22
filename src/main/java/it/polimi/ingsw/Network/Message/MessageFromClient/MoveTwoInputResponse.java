@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public class MoveTwoInputResponse extends MessageFromClient {
 
-    String row1;
-    String col1;
-    String row2;
-    String col2;
-    int worker;
+    final String row1;
+    final String col1;
+    final String row2;
+    final String col2;
+    final int worker;
 
     public String getRow1() {
         return row1;
@@ -41,7 +41,7 @@ public class MoveTwoInputResponse extends MessageFromClient {
     }
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
     }
 }

@@ -7,7 +7,7 @@ import java.io.IOException;
 public class StartingSetWorkerRequest extends MessageFromServer {
 
 
-    int worker;
+    final int worker;
 
     public StartingSetWorkerRequest(int worker) {
 

@@ -2,17 +2,14 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Worker;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Initialized extends PlayerFSA {
 
-    PlayerInterface player;
-    Game game;
+    final PlayerInterface player;
+    final Game game;
 
 
     public Initialized(PlayerInterface player, Game game) {

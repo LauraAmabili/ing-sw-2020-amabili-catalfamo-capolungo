@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class BoardCell implements Serializable {
 
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
     private int level = 0;
     private Worker worker;
     private boolean dome;

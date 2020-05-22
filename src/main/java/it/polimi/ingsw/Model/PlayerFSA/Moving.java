@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Moving extends PlayerFSA {
 
-    PlayerInterface player;
-    Game game;
+    final PlayerInterface player;
+    final Game game;
     boolean effect;
 
     public Moving(PlayerInterface player, Game game) {

@@ -6,7 +6,6 @@ import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialBuild_DomeAnyLevel;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpecialBuild_DomeAnyLevelTest {
 
     Game game = new Game();
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
 
     @Test
-    public void testSpecialBuild_DomeAnyLevel() throws IOException {
+    public void testSpecialBuild_DomeAnyLevel() {
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);
         mockWorkers1.add(worker1);

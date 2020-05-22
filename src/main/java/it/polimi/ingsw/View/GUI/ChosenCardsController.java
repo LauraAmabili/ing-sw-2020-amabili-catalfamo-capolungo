@@ -3,25 +3,21 @@ package it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChosenCardsController extends NotifyMessages implements Initializable {
 
-    Client client;
+    final Client client;
 
-    UpdatesForMessages up;
+    final UpdatesForMessages up;
 
     public ChosenCardsController(Client client) {
         this.client = client;
@@ -30,22 +26,31 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     }
 
     @FXML
+    final
     ImageView Apollo = new ImageView();
     @FXML
+    final
     ImageView Artemis = new ImageView();
     @FXML
+    final
     ImageView Athena = new ImageView();
     @FXML
+    final
     ImageView Atlas = new ImageView();
     @FXML
+    final
     ImageView Demeter = new ImageView();
     @FXML
+    final
     ImageView Hephaestus = new ImageView();
     @FXML
+    final
     ImageView Minotaur = new ImageView();
     @FXML
+    final
     ImageView Pan = new ImageView();
     @FXML
+    final
     ImageView Prometheus = new ImageView();
 
     int counter = 0;
@@ -60,139 +65,112 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     }
 
     public void setUpButtons() {
-        Apollo.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Apollo");
-                    Apollo.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Apollo.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Apollo");
+                Apollo.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Artemis.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Artemis");
-                    Artemis.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Artemis.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Artemis");
+                Artemis.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Athena.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Athena");
-                    Athena.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Athena.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Athena");
+                Athena.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Atlas.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Atlas");
-                    Atlas.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Atlas.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Atlas");
+                Atlas.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Demeter.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Demeter");
-                    Demeter.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Demeter.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Demeter");
+                Demeter.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Hephaestus.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Hephaestus");
-                    Hephaestus.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Hephaestus.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Hephaestus");
+                Hephaestus.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Minotaur.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Minotaur");
-                    Minotaur.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Minotaur.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Minotaur");
+                Minotaur.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Pan.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Pan");
-                    counter++;
-                    Pan.setOpacity(0.7);
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Pan.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Pan");
+                counter++;
+                Pan.setOpacity(0.7);
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        Prometheus.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifyChosenCardsUpdate("Prometheus");
-                    Prometheus.setOpacity(0.7);
-                    counter++;
-                    if(counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Prometheus.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Prometheus");
+                Prometheus.setOpacity(0.7);
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

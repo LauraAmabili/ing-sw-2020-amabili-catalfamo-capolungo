@@ -19,6 +19,6 @@ public class Connection {
         this.lastBeatInstant = lastBeatInstant;
     }
 
-    public ServerThread serverThread;
+    public final ServerThread serverThread;
     public long lastBeatInstant;
 }

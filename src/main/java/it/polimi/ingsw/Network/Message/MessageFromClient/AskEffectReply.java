@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class AskEffectReply extends MessageFromClient {
 
-    String effect;
-    String playerNickname;
+    final String effect;
+    final String playerNickname;
 
     public String getEffect() {
         return effect;
@@ -20,7 +20,7 @@ public class AskEffectReply extends MessageFromClient {
     }
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
     }
 }

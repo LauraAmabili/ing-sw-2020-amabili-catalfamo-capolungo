@@ -17,9 +17,9 @@ import java.util.List;
 
 public class GameTest {
 
-    Game game = new Game();
-    VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server(), 2, true));
-    GameController controller = new GameController();
+    final Game game = new Game();
+    final VirtualView view1 = new VirtualView(new ServerThread(new Socket(), new Server(), 2, true));
+    final GameController controller = new GameController();
 
     public GameTest() throws IOException {
     }
@@ -30,10 +30,6 @@ public class GameTest {
         game.initialiseMatch(2);
         game.createTurn();
         view1.AddObserver(controller);
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
 

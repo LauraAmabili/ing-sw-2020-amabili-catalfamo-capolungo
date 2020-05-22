@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class PlaceWorker extends PlayerFSA{
 
-    PlayerInterface player;
-    Game game;
+    final PlayerInterface player;
+    final Game game;
 
     public PlaceWorker(PlayerInterface player, Game game) {
         this.player = player;

@@ -6,7 +6,6 @@ import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialMove_MoveTwice;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpecialMove_MoveTwiceTest {
 
     Game game = new Game();
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
 
     @Test
     public void testSpecialMove_MoveTwice() {

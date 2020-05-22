@@ -21,7 +21,7 @@ public class GUI implements UserInterface {
     private Stage primaryStage;
     private Client client;
     private List<String> godNames;
-    private List<String> chosenCards = new ArrayList<>();
+    private final List<String> chosenCards = new ArrayList<>();
     private String opponentChosenCard;
     private String currentPlayer;
 
@@ -63,7 +63,7 @@ public class GUI implements UserInterface {
 
      */
     @Override
-    public void PlayerNumberRequest() throws IOException {
+    public void PlayerNumberRequest() {
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
             ModeController controller = new ModeController(client);
@@ -79,20 +79,17 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void NicknameRequest() throws IOException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/insertNicknameScene.fxml"));
-                NicknameSceneController controller = new NicknameSceneController(client);
-                loader.setController(controller);
-                Parent root = null;
-                try {
-                    root = loader.load();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    public void NicknameRequest() {
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/insertNicknameScene.fxml"));
+            NicknameSceneController controller = new NicknameSceneController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -153,7 +150,7 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void BuildRequest(BuildRequest buildRequest) throws IOException {
+    public void BuildRequest(BuildRequest buildRequest) {
 
     }
 
@@ -189,19 +186,16 @@ public class GUI implements UserInterface {
 
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
-                ChosenCardsController controller = new ChosenCardsController(client);
-                loader.setController(controller);
-                Parent root = null;
-                try {
-                    root = loader.load();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
+            ChosenCardsController controller = new ChosenCardsController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -217,28 +211,25 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) throws IOException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer())) {
-                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/CardsToChooseScene.fxml"));
-                    CardsToChooseController controller = new CardsToChooseController(client);
-                    loader.setController(controller);
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                        primaryStage.setScene(new Scene(root));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                        primaryStage.setScene(new Scene(root));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
+        Platform.runLater(() -> {
+            if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer())) {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/CardsToChooseScene.fxml"));
+                CardsToChooseController controller = new CardsToChooseController(client);
+                loader.setController(controller);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                    primaryStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -272,7 +263,7 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
 
     }
 

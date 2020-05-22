@@ -8,6 +8,7 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Objects;
@@ -16,15 +17,15 @@ public class Client {
 
     private int port;
     private String nickname;
-    private Gson gson;
-    private String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
+    private final Gson gson;
+    private final String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private VisitorMethodsClient visit;
+    private final VisitorMethodsClient visit;
     private boolean active;
-    private UserInterface userInterface;
-    private UpdatesForMessages updatesForMessages;
+    private final UserInterface userInterface;
+    private final UpdatesForMessages updatesForMessages;
     private int numberOfPlayers;
 
     public int getNumberOfPlayers() {
@@ -35,7 +36,7 @@ public class Client {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public Client(UserInterface userInterface) throws IOException {
+    public Client(UserInterface userInterface) {
 
         updatesForMessages = new UpdatesForMessages(this);
         this.userInterface = userInterface;
@@ -82,11 +83,26 @@ public class Client {
 
      */
 
-    public void startClient() throws IOException {
+    public void startClient() {
 
-        socket = new Socket("localhost", port);
-        out = new ObjectOutputStream(socket.getOutputStream());
-        in = new ObjectInputStream(socket.getInputStream());
+        try {
+            socket = new Socket("localhost", port);
+        } catch (ConnectException e){
+            System.out.println("Did you start the server?");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ClientBeatSender clientBeatSender = new ClientBeatSender(this);
         clientBeatSender.start();
 

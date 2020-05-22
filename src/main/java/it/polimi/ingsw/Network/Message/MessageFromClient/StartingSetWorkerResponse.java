@@ -7,9 +7,9 @@ import java.io.IOException;
 public class StartingSetWorkerResponse extends MessageFromClient {
 
 
-    String row;
-    String col;
-    int worker;
+    final String row;
+    final String col;
+    final int worker;
 
 
     public StartingSetWorkerResponse(String row, String col, int worker) {

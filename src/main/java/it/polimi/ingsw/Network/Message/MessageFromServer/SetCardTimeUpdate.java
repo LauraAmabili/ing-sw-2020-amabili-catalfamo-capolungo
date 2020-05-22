@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class SetCardTimeUpdate extends MessageFromServer {
 
-    String currentPlayer;
+    final String currentPlayer;
 
     public SetCardTimeUpdate(String currentPlayer) {
 

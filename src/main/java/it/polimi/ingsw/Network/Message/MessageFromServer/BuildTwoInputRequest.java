@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class BuildTwoInputRequest extends MessageFromServer {
 
-    int worker;
+    final int worker;
 
     public int getWorker() {
         return worker;

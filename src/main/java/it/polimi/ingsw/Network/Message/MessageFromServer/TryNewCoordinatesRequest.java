@@ -7,7 +7,7 @@ import java.io.IOException;
 public class TryNewCoordinatesRequest extends MessageFromServer {
 
 
-    int worker;
+    final int worker;
 
     public TryNewCoordinatesRequest(int worker) {
         this.worker = worker;

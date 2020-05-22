@@ -7,7 +7,7 @@ import java.io.IOException;
 public class PlayerLockedUpdate extends MessageFromServer {
 
 
-    String nickname;
+    final String nickname;
 
     public PlayerLockedUpdate(String nickname) {
 
@@ -19,7 +19,7 @@ public class PlayerLockedUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
 
     }

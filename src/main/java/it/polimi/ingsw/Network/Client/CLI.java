@@ -1,20 +1,18 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CLI extends NotifyMessages implements UserInterface {
 
-    private Scanner string = new Scanner(System.in);
-    private Scanner input = new Scanner(System.in);
+    private final Scanner string = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
     Board boardToPrint = new Board();
-    private Client client;
+    private final Client client;
     UpdatesForMessages up;
 
 
@@ -27,7 +25,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
-    ClientBoard clientBoard = new ClientBoard();
+    final ClientBoard clientBoard = new ClientBoard();
 
 
     public static String ANSI_BLUE = "\u001B[34m";

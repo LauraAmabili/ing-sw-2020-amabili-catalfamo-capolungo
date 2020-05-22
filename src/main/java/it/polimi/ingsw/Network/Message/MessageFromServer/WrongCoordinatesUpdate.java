@@ -7,7 +7,7 @@ import java.io.IOException;
 public class WrongCoordinatesUpdate extends MessageFromServer {
 
 
-    int worker;
+    final int worker;
 
     public WrongCoordinatesUpdate(int worker) {
         this.worker = worker;

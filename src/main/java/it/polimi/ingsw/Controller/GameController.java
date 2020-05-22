@@ -2,17 +2,14 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameController implements Observer {
 
 
-    private Game game = new Game();
+    private final Game game = new Game();
 
     public static final String PURPLE = "\033[0;35m";
     public static final String RESET = "\033[0m";

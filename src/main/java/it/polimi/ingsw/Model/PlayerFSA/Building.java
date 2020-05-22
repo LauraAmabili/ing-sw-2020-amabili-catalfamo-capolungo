@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Building extends PlayerFSA {
 
-    PlayerInterface player;
-    Game game;
+    final PlayerInterface player;
+    final Game game;
     boolean effect;
 
     public boolean getEffect() {

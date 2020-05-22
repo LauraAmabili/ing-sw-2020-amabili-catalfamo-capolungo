@@ -8,7 +8,7 @@ public class ChooseYourWorkerResponse extends MessageFromClient {
 
 
 
-    String worker;
+    final String worker;
 
     public ChooseYourWorkerResponse(String worker) {
         this.worker = worker;
@@ -20,7 +20,7 @@ public class ChooseYourWorkerResponse extends MessageFromClient {
 
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);
     }
 }

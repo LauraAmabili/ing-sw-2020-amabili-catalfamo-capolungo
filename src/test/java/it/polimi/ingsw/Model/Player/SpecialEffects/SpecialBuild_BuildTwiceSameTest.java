@@ -6,7 +6,6 @@ import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialBuild_BuildTwiceSame;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpecialBuild_BuildTwiceSameTest {
 
     Game game = new Game();
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
 
 
     @Test
-    public void testSpecialBuild_BuildTwiceSame() throws IOException {
+    public void testSpecialBuild_BuildTwiceSame() {
 
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);

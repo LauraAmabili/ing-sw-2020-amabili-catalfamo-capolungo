@@ -21,17 +21,19 @@ import java.util.ResourceBundle;
 
 public class NicknameSceneController extends NotifyMessages implements Initializable {
 
-    Client client;
-    UpdatesForMessages up;
+    final Client client;
+    final UpdatesForMessages up;
 
     public Client getClient() {
         return client;
     }
 
     @FXML
+    final
     Button confirmNickButton = new Button();
 
     @FXML
+    final
     TextField nicknameTextField = new TextField();
 
 
@@ -48,22 +50,19 @@ public class NicknameSceneController extends NotifyMessages implements Initializ
 
 
     public void setUpButtons() {
-        confirmNickButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String nick = nicknameTextField.getText();
-                try {
-                    notifyNicknameResponse(nick);
-                    removeObserver(up);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                    GUI gui = (GUI) client.getUserInterface();
-                    Stage primaryStage = gui.getPrimaryStage();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    System.out.println("Error send input nickname");
-                }
-
+        confirmNickButton.setOnAction(event -> {
+            String nick = nicknameTextField.getText();
+            try {
+                notifyNicknameResponse(nick);
+                removeObserver(up);
+                Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                GUI gui = (GUI) client.getUserInterface();
+                Stage primaryStage = gui.getPrimaryStage();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                System.out.println("Error send input nickname");
             }
+
         });
     }
 

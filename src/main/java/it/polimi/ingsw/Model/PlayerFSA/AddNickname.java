@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class AddNickname extends PlayerFSA {
 
-    PlayerInterface player;
-    Game game;
+    final PlayerInterface player;
+    final Game game;
     public static final String PURPLE = "\033[0;35m";
 
     public AddNickname(PlayerInterface player, Game game) {

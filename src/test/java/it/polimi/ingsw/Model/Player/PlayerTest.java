@@ -15,20 +15,15 @@ import static org.junit.Assert.*;
 public class PlayerTest {
 
     Game game = new Game();
-    ArrayList<BoardCell> adjCells = new ArrayList<>();
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
-    private List<Worker> mockWorkers2 = new ArrayList<Worker>();
-    Worker worker2 = new Worker(2);
-    Worker worker1 = new Worker(1);
-    Board  board = new Board();
+    final ArrayList<BoardCell> adjCells = new ArrayList<>();
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
+    private final List<Worker> mockWorkers2 = new ArrayList<>();
+    final Worker worker2 = new Worker(2);
+    final Worker worker1 = new Worker(1);
+    final Board  board = new Board();
 
 
-    @Before
-    public void setUp() {
-
-    }
-
- @Test
+    @Test
     public void testAvailableCellsToMove() {
 
         mockWorkers1.add(worker1);

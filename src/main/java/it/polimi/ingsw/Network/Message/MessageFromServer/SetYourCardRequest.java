@@ -8,7 +8,7 @@ import java.util.List;
 public class SetYourCardRequest extends MessageFromServer {
 
 
-    List<String> chosenGods;
+    final List<String> chosenGods;
 
     public SetYourCardRequest(List<String> chosenGods) {
         this.chosenGods = chosenGods;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1600.0">
+         <image>
+            <Image url="@../Images/SantoriniBoard.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="77.0" layoutX="731.0" layoutY="331.0">
+         <image>
+            <Image url="@../Images/to.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </ImageView>
+      <ImageView fitHeight="127.0" fitWidth="412.0" layoutX="564.0" layoutY="168.0">
+         <image>
+            <Image url="@../Images/welcome.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </ImageView>
+      <ImageView fitHeight="121.0" fitWidth="406.0" layoutX="567.0" layoutY="436.0">
+         <image>
+            <Image url="@../Images/Santorini.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </ImageView>
+      <Button fx:id="StartGameButton" layoutX="685.0" layoutY="583.0" mnemonicParsing="false" text="Press here to start game" textAlignment="CENTER" textFill="#13a847" textOverrun="CENTER_ELLIPSIS">
+         <opaqueInsets>
+            <Insets top="3.0" />
+         </opaqueInsets>
+      </Button>
+   </children>
+</Pane>

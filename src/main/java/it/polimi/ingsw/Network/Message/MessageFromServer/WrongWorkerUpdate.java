@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class WrongWorkerUpdate extends MessageFromServer {
 
-    int worker;
+    final int worker;
 
     public WrongWorkerUpdate(int worker) {
         this.worker = worker;
@@ -18,7 +18,7 @@ public class WrongWorkerUpdate extends MessageFromServer {
 
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
 
     }
 }

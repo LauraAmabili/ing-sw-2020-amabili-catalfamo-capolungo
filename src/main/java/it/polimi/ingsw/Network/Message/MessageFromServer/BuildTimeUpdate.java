@@ -8,7 +8,7 @@ public class BuildTimeUpdate extends MessageFromServer {
 
 
 
-    String currentPlayer;
+    final String currentPlayer;
 
     public BuildTimeUpdate(String current) {
         this.currentPlayer = current;
@@ -19,7 +19,7 @@ public class BuildTimeUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
             gameMessageVisitorClient.visit(this);
     }
 }

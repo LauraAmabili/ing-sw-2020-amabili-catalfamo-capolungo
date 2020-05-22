@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Model.God;
 
-import com.google.gson.Gson;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

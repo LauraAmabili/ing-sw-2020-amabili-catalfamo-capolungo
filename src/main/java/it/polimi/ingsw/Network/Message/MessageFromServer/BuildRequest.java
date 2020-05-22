@@ -7,7 +7,7 @@ import java.io.IOException;
 public class BuildRequest extends MessageFromServer {
 
 
-    int worker;
+    final int worker;
 
     public BuildRequest(int worker) {
         this.worker = worker;

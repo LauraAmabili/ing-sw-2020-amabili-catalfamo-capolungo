@@ -20,9 +20,10 @@ import java.util.ResourceBundle;
 
 public class WelcomeSceneController extends NotifyMessages implements Initializable {
 
-    Client client;
+    final Client client;
 
     @FXML
+    final
     javafx.scene.control.Button StartGameButton = new Button();
 
     public Client getClient() {
@@ -40,19 +41,16 @@ public class WelcomeSceneController extends NotifyMessages implements Initializa
     }
 
     public void setUpButtons() {
-        StartGameButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    client.startClient();
-                    GUI gui = (GUI) client.getUserInterface();
-                    gui.setClient(client);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                    Stage primaryStage = gui.getPrimaryStage();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        StartGameButton.setOnAction(event -> {
+            try {
+                client.startClient();
+                GUI gui = (GUI) client.getUserInterface();
+                gui.setClient(client);
+                Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                Stage primaryStage = gui.getPrimaryStage();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

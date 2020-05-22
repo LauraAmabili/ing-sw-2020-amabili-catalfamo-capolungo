@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ChooseCardsUpdate extends MessageFromServer {
 
-    String challenger;
+    final String challenger;
 
 
     public ChooseCardsUpdate(String challenger) {
@@ -18,7 +18,7 @@ public class ChooseCardsUpdate extends MessageFromServer {
     }
 
     @Override
-        public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+        public void accept(VisitorClient gameMessageVisitorClient) {
             gameMessageVisitorClient.visit(this);
         }
 }

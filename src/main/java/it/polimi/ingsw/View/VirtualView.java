@@ -16,9 +16,9 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     private String MyNickname;
     private PlayerInterface currentPlayer = new Player();
-    private ServerThread thread;
-    private Scanner input = new Scanner(System.in);
-    private Scanner cases = new Scanner(System.in);
+    private final ServerThread thread;
+    private final Scanner input = new Scanner(System.in);
+    private final Scanner cases = new Scanner(System.in);
     private int numberOfPlayer = 0;
 
     public static String ANSI_BLUE = "\u001B[34m";
@@ -108,9 +108,8 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     /**
      * Sends a message to the client asking the nickname
      * @throws IOException Exception for the Message
-     * @throws InterruptedException Exception for the Message
      */
-    public  void insertNickname() throws IOException, InterruptedException {
+    public  void insertNickname() throws IOException {
 
 
           thread.sendToClient(new NicknameRequest());

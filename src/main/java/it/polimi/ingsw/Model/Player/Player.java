@@ -25,7 +25,6 @@ public class Player implements PlayerInterface, Serializable {
     private boolean enableSpecialBuild;
     private boolean hasSpecialMove = false;
     private boolean hasSpecialBuild = false;
-    private boolean hasTwoInputBuild = false;
     private String color;
 
     public String getColor() {
@@ -54,7 +53,8 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public boolean isHasTwoInputBuild() {
-        return hasTwoInputBuild;
+        boolean hasTwoInputBuild = false;
+        return false;
     }
 
     public void setHasSpecialBuild(boolean hasSpecialBuild) {

@@ -34,7 +34,7 @@ public class BoardUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
 
             gameMessageVisitorClient.visit(this);
     }

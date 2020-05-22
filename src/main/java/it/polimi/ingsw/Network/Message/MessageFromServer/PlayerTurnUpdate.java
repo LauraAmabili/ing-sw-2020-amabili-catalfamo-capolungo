@@ -7,7 +7,7 @@ import java.io.IOException;
 public class PlayerTurnUpdate extends MessageFromServer {
 
 
-    String nickname;
+    final String nickname;
 
     public PlayerTurnUpdate(String nickname) {
         this.nickname = nickname;
@@ -18,7 +18,7 @@ public class PlayerTurnUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
             gameMessageVisitorClient.visit(this);
     }
 }

@@ -22,12 +22,14 @@ import java.util.ResourceBundle;
 public class ModeController extends NotifyMessages implements Initializable {
 
     @FXML
+    final
     Button TwoPlayerButton = new Button();
     @FXML
+    final
     Button ThreePlayerButton = new Button();
 
-    Client client;
-    UpdatesForMessages up;
+    final Client client;
+    final UpdatesForMessages up;
 
     public Client getClient() {
         return client;
@@ -46,34 +48,28 @@ public class ModeController extends NotifyMessages implements Initializable {
 
 
     public void setUpButtons() {
-        TwoPlayerButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    notifyPlayerNumberResponse("2");
-                    removeObserver(up);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                    GUI gui = (GUI) client.getUserInterface();
-                    Stage primaryStage = gui.getPrimaryStage();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        TwoPlayerButton.setOnAction(event -> {
+            try {
+                notifyPlayerNumberResponse("2");
+                removeObserver(up);
+                Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                GUI gui = (GUI) client.getUserInterface();
+                Stage primaryStage = gui.getPrimaryStage();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
-        ThreePlayerButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    notifyPlayerNumberResponse("3");
-                    removeObserver(up);
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                    GUI gui = (GUI) client.getUserInterface();
-                    Stage primaryStage = gui.getPrimaryStage();
-                    primaryStage.setScene(new Scene(root));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        ThreePlayerButton.setOnAction(event -> {
+            try {
+                notifyPlayerNumberResponse("3");
+                removeObserver(up);
+                Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                GUI gui = (GUI) client.getUserInterface();
+                Stage primaryStage = gui.getPrimaryStage();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

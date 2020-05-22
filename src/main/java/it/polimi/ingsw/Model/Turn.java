@@ -2,16 +2,13 @@ package it.polimi.ingsw.Model;
 
 
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
-import it.polimi.ingsw.Model.PlayerFSA.Initialized;
-import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 
 import java.util.*;
 
 public class Turn {
     private int TurnId;
     private PlayerInterface currentPlayer;
-    private List<PlayerInterface> activePlayers;
+    private final List<PlayerInterface> activePlayers;
 
     public Turn(List<PlayerInterface> list) {
         activePlayers = list;

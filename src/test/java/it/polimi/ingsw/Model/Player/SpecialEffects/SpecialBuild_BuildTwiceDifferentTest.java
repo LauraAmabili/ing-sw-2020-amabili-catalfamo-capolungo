@@ -6,9 +6,7 @@ import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialBuild_BuildTwiceDifferent;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -23,14 +21,7 @@ class SpecialBuild_BuildTwiceDifferentTest {
     Game game = new Game();
     ArrayList<BoardCell> adjCells = new ArrayList<>();
 
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
-
-
-
-    @Before
-    public void setUp() {
-
-    }
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
 
 
     @Test

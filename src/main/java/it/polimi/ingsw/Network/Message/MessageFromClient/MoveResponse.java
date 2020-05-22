@@ -6,9 +6,9 @@ import java.io.IOException;
 
 public class MoveResponse extends MessageFromClient {
 
-    String row;
-    String col;
-    int worker;
+    final String row;
+    final String col;
+    final int worker;
 
     public MoveResponse(String row, String col, int worker) {
         this.row = row;
@@ -29,7 +29,7 @@ public class MoveResponse extends MessageFromClient {
     }
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
             gameMessageVisitorClient.visit(this);
     }
 }

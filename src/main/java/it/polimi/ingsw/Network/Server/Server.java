@@ -12,18 +12,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 
-import static java.lang.Thread.sleep;
-
 
 public class Server {
 
     private int port;
-    private Gson gson = new Gson();
-    private String file = "Configurations/serverConf.json";
-    private ArrayList<ServerThread> serverThreads = new ArrayList<>();
+    private final Gson gson = new Gson();
+    private final String file = "Configurations/serverConf.json";
+    private final ArrayList<ServerThread> serverThreads = new ArrayList<>();
     public ServerBeatReceiver serverBeatReceiver;
 
-    GameController gameController = new GameController();
+    final GameController gameController = new GameController();
 
     public Server() {
         read();
@@ -50,9 +48,8 @@ public class Server {
      *
      * @throws IOException
      * @throws ClassNotFoundException
-     * @throws InterruptedException
      */
-    public void startServer() throws IOException, ClassNotFoundException, InterruptedException {
+    public void startServer() throws IOException, ClassNotFoundException {
 
         serverBeatReceiver = new ServerBeatReceiver(this);
         new Thread(serverBeatReceiver).start();
@@ -61,9 +58,9 @@ public class Server {
     }
 
 
-    public void connectClients() throws IOException, ClassNotFoundException {
+    public void connectClients() throws IOException {
 
-        Socket s = null;
+        Socket s;
         ServerSocket ss = new ServerSocket(port);
 
         while (true) {

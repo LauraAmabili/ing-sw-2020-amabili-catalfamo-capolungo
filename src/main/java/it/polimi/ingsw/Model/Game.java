@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
@@ -16,18 +15,18 @@ public class Game extends Observable {
 
     //Player
     private int id;
-    private List<String> nickNames; //in game players
-    private List<PlayerInterface> onlinePlayers;
-    private List<PlayerFSA> stateList;
+    private final List<String> nickNames; //in game players
+    private final List<PlayerInterface> onlinePlayers;
+    private final List<PlayerFSA> stateList;
     private Turn currentTurn;
     private int counterId = 1;
     private Board board;
-    private boolean cardsChosen = false;
-    private List<String> color;
+    private final boolean cardsChosen = false;
+    private final List<String> color;
     int maxPlayer;
 
 
-    private List<String> godListNames = new ArrayList<>();
+    private final List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
         return godListNames;
     }
@@ -38,7 +37,7 @@ public class Game extends Observable {
             godListNames.add(playerCreator.getArrayGods().get(i).getGodName());
     }
 
-    private List<String> chosenGods = new ArrayList<>();
+    private final List<String> chosenGods = new ArrayList<>();
 
 
 
@@ -144,7 +143,7 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() throws IOException, InterruptedException {
+    public void createTurn() {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
     }

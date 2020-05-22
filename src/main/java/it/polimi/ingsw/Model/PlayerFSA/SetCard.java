@@ -11,7 +11,7 @@ import java.io.IOException;
 public class SetCard extends PlayerFSA{
 
     PlayerInterface player;
-    Game game;
+    final Game game;
 
     public SetCard(PlayerInterface player, Game game) {
         this.player = player;

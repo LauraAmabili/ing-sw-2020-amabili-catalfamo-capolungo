@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class NicknameResponse extends MessageFromClient {
 
-    String nickname;
+    final String nickname;
 
     public NicknameResponse(String nickname) {
         this.nickname = nickname;

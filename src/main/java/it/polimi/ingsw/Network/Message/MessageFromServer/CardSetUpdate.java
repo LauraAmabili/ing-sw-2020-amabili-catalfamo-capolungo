@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class CardSetUpdate extends MessageFromServer {
 
-    String currentPlayer;
-    String godName;
+    final String currentPlayer;
+    final String godName;
 
     public CardSetUpdate(String currentPlayer, String godName ) {
         this.currentPlayer = currentPlayer;
@@ -23,7 +23,7 @@ public class CardSetUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
 
     }

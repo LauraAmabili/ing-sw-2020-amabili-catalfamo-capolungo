@@ -6,10 +6,8 @@ import java.util.Arrays;
 
 class GodTest {
 
-    private God godUnderTest;
-
     @BeforeEach
     void setUp() {
-        godUnderTest = new God("godName", Arrays.asList("value"),"descTitle","descStep","descEff");
+        God godUnderTest = new God("godName", Arrays.asList("value"), "descTitle", "descStep", "descEff");
     }
 }

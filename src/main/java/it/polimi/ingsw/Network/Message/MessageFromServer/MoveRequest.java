@@ -7,7 +7,7 @@ import java.io.IOException;
 public class MoveRequest extends MessageFromServer {
 
 
-    int worker;
+    final int worker;
 
     public MoveRequest(int worker) {
         this.worker = worker;

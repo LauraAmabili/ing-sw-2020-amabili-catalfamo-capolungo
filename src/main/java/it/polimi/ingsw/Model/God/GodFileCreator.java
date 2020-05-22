@@ -10,8 +10,8 @@ import java.util.Arrays;
 
 public class GodFileCreator {
 
-    Gson gson = new Gson();
-    String godConf = GameConf.getGodConf();
+    final Gson gson = new Gson();
+    final String godConf = GameConf.getGodConf();
 
     public void create() {
         ArrayList<God> arrayGods = new ArrayList<>();
@@ -37,6 +37,7 @@ public class GodFileCreator {
         }
         gson.toJson(arrayGods, fileWriter);
         try {
+            assert fileWriter != null;
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

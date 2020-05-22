@@ -7,7 +7,7 @@ import java.io.IOException;
 public class StartingSetWorkerTimeUpdate extends MessageFromServer {
 
 
-    String currentPlayer;
+    final String currentPlayer;
 
     public StartingSetWorkerTimeUpdate(String currentPlayer) {
         this.currentPlayer = currentPlayer;
@@ -18,7 +18,7 @@ public class StartingSetWorkerTimeUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
 
     }

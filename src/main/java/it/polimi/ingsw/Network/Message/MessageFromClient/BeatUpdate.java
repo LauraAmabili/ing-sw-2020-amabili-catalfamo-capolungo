@@ -8,7 +8,7 @@ public class BeatUpdate extends MessageFromClient{
 
 
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
     }
 }

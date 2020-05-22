@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class VisitorMethodsServer implements VisitorServer {
 
-    VirtualView view;
-    ServerThread serverThread;
+    final VirtualView view;
+    final ServerThread serverThread;
 
     public VisitorMethodsServer(VirtualView view, ServerThread serverThread) {
         this.view = view;
@@ -209,7 +209,7 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
-    public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException, InterruptedException {
+    public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException {
 
         boolean effect = chooseYourWorkerEffectResponse.isEffect();
         String worker  = chooseYourWorkerEffectResponse.getWorker();
@@ -324,7 +324,7 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
-    public void visit(NicknameResponse nicknameResponse) throws IOException, InterruptedException {
+    public void visit(NicknameResponse nicknameResponse) throws IOException {
 
         boolean check = false;
         String nickname = nicknameResponse.getNickname();

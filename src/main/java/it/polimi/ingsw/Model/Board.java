@@ -11,7 +11,7 @@ public class Board implements Serializable {
 
 
     private static final int SIZE = 5;
-    BoardCell[][] grid = new BoardCell[SIZE][SIZE];
+    final BoardCell[][] grid = new BoardCell[SIZE][SIZE];
 
     public Board() {
         for (int i = 0; i < grid.length; i++) {

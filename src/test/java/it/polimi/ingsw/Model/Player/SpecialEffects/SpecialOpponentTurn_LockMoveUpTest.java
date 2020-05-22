@@ -6,7 +6,6 @@ import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialOpponentTurn_LockMoveUp;
-import it.polimi.ingsw.Model.PlayerFSA.AddNickname;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +18,8 @@ class SpecialOpponentTurn_LockMoveUpTest {
 
 
     Game game = new Game();
-    private List<Worker> mockWorkers1 = new ArrayList<Worker>();
-    private List<Worker> mockWorkers2 = new ArrayList<Worker>();
+    private final List<Worker> mockWorkers1 = new ArrayList<>();
+    private final List<Worker> mockWorkers2 = new ArrayList<>();
 
 
     @Test

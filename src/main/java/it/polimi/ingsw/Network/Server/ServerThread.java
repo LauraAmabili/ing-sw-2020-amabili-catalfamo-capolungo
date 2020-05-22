@@ -13,17 +13,17 @@ import java.net.Socket;
 
 public class ServerThread extends Thread implements Runnable {
 
-    private VirtualView view = new VirtualView(this);
-    Socket socket;
-    Server server;
-    private VisitorServer visitor = new VisitorMethodsServer(view, this);
-    boolean maxPlayerNumberSet = false;
-    int numPlayers = 2;
-    int numOnline = 0;
+    private final VirtualView view = new VirtualView(this);
+    final Socket socket;
+    final Server server;
+    private final VisitorServer visitor = new VisitorMethodsServer(view, this);
+    boolean maxPlayerNumberSet;
+    int numPlayers;
+    final int numOnline = 0;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private volatile boolean keepAlive = true;
-    private boolean ready = false;
+    private final boolean ready = false;
 
 
     public boolean isKeepAlive() {
@@ -45,9 +45,8 @@ public class ServerThread extends Thread implements Runnable {
      * @param server
      * @param numPlayers
      * @param maxPlayerNumberSet
-     * @throws IOException
      */
-    public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlayerNumberSet) throws IOException {
+    public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlayerNumberSet) {
         this.socket = socket;
         this.server = server;
         this.numPlayers = numPlayers;

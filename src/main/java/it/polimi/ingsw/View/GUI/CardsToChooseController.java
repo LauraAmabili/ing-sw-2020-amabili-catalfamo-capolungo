@@ -16,20 +16,23 @@ import java.util.ResourceBundle;
 
 public class CardsToChooseController extends NotifyMessages implements Initializable {
 
-    Client client;
+    final Client client;
     String CardName1;
     String CardName2;
     String CardName3;
-    UpdatesForMessages up;
+    final UpdatesForMessages up;
     int counter = 0;
 
     @FXML
+    final
     ImageView FirstCard = new ImageView();
 
     @FXML
+    final
     ImageView SecondCard = new ImageView();
 
     @FXML
+    final
     ImageView ThirdCard = new ImageView();
 
     public CardsToChooseController(Client client) {
@@ -46,44 +49,35 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
 
     public void setUp() {
         GUI gui = (GUI) client.getUserInterface();
-        FirstCard.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        FirstCard.setOnMouseEntered(mouseEvent -> {
 
-            }
         });
-        FirstCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifySetYourCardResponse(CardName1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                FirstCard.setOpacity(0.7);
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
+        FirstCard.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifySetYourCardResponse(CardName1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            FirstCard.setOpacity(0.7);
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if (gui.getChosenCards().contains(CardName1)) {
             FirstCard.setOpacity(0.7);
         }
         if(CardName2 != null) {
-            SecondCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    try {
-                        notifySetYourCardResponse(CardName2);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    SecondCard.setOpacity(0.7);
-                    counter++;
-                    if (counter == client.getNumberOfPlayers()) {
-                        removeObserver(up);
-                    }
+            SecondCard.setOnMouseClicked(mouseEvent -> {
+                try {
+                    notifySetYourCardResponse(CardName2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                SecondCard.setOpacity(0.7);
+                counter++;
+                if (counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
                 }
             });
             if (gui.getChosenCards().contains(CardName2)) {
@@ -92,19 +86,16 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         } else {
             SecondCard.disabledProperty();
         }
-        ThirdCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    notifySetYourCardResponse(CardName3);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ThirdCard.setOpacity(0.7);
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
+        ThirdCard.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifySetYourCardResponse(CardName3);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ThirdCard.setOpacity(0.7);
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if (gui.getChosenCards().contains(CardName3)) {

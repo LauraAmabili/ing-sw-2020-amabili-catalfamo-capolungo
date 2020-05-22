@@ -8,7 +8,7 @@ import java.util.List;
 public class CardAddedUpdate extends MessageFromServer {
 
 
-    List<String> addedGods;
+    final List<String> addedGods;
 
     public CardAddedUpdate(List<String> addedGods) {
 
@@ -20,7 +20,7 @@ public class CardAddedUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
 
     }

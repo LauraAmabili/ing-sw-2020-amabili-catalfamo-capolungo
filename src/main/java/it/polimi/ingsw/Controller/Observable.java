@@ -8,7 +8,7 @@ public class Observable {
 
 
 
-    private List<Observer> observerController = new ArrayList<>();
+    private final List<Observer> observerController = new ArrayList<>();
 
 
     public void AddObserver(Observer o){

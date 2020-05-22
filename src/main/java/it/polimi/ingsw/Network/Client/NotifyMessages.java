@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Network.Client;
 
-import it.polimi.ingsw.Model.ObserverModel;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
 public class NotifyMessages {
 
 
-    private List<ClientObserver> observersClient = new ArrayList<>();
+    private final List<ClientObserver> observersClient = new ArrayList<>();
     public void addObserver(ClientObserver o){
         this.observersClient.add(o);
     }

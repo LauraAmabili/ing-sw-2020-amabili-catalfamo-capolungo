@@ -1,20 +1,17 @@
 package it.polimi.ingsw.Network.Client;
 
-import it.polimi.ingsw.Model.Board;
-import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class VisitorMethodsClient implements VisitorClient {
 
-    Client client;
+    final Client client;
 
     Scanner scanner = new Scanner(System.in);
-    private Scanner input = new Scanner(System.in);
-    private Scanner string = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
+    private final Scanner string = new Scanner(System.in);
 
     public final UserInterface userInterface;
 
@@ -154,7 +151,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     @Override
-    public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) throws IOException {
+    public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) {
 
 
        userInterface.TryNewCoordinatesRequest();
@@ -177,7 +174,7 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) throws IOException {
+    public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) {
 
        userInterface.NicknameNotValidUpdate();
         

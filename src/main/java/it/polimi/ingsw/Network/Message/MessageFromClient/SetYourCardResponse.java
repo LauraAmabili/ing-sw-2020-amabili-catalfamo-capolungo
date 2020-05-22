@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class SetYourCardResponse extends MessageFromClient {
 
-    String chosenGod;
+    final String chosenGod;
 
     public SetYourCardResponse(String chosenGod) {
         this.chosenGod = chosenGod;

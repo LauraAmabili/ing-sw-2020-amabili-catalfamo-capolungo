@@ -10,7 +10,7 @@ public class AvailableGodsUpdate extends MessageFromServer {
 
 
 
-    List<String> cards;
+    final List<String> cards;
 
 
     public AvailableGodsUpdate(List<String> cards) {
@@ -23,7 +23,7 @@ public class AvailableGodsUpdate extends MessageFromServer {
     }
 
     @Override
-    public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
     }
 }

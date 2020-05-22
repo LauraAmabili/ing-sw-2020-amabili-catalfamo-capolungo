@@ -1,13 +1,12 @@
 package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
-import it.polimi.ingsw.Network.Message.MessageFromServer.WrongCoordinatesUpdate;
 
 import java.io.IOException;
 
 public class UpdatesForMessages implements ClientObserver {
 
-    private Client client;
+    private final Client client;
 
     public UpdatesForMessages(Client client) {
         this.client = client;

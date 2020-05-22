@@ -1,11 +1,8 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.*;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,18 +14,13 @@ import static org.junit.Assert.*;
 
 public class TurnTest {
 
-    Game game = new Game();
+    final Game game = new Game();
     Board board = new Board();
     List<Worker> list = new ArrayList<>();
 
     @Before
     public void setUp() {
         game.getOnlinePlayers().clear();
-    }
-
-    @After
-    public void tearDown() {
-
     }
 
 

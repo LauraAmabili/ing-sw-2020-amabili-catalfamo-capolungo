@@ -15,10 +15,10 @@ import java.io.IOException;
 
 public class GUI_App extends Application {
 
-    private Client[] client = new Client[1];
-    private GUI[] UI = new GUI[1];
+    private final Client[] client = new Client[1];
+    private final GUI[] UI = new GUI[1];
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         launch(args);
     }
 
@@ -32,24 +32,21 @@ public class GUI_App extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         UI[0].setPrimaryStage(primaryStage);
-        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/welcomeScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("welcomeScene.fxml"));
         loader.setController(new WelcomeSceneController(client[0]));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                client[0].setActive(false);
-                try {
-                    client[0].killClient();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Platform.exit();
-                System.exit(0);
+        primaryStage.setOnCloseRequest(windowEvent -> {
+            client[0].setActive(false);
+            try {
+                client[0].killClient();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            Platform.exit();
+            System.exit(0);
         });
     }
 }

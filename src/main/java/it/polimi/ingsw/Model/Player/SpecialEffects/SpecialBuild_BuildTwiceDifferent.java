@@ -2,8 +2,6 @@ package it.polimi.ingsw.Model.Player.SpecialEffects;
 import it.polimi.ingsw.Model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
-
 
 public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
 

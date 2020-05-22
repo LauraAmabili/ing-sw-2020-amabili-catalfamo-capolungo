@@ -1,6 +1,9 @@
 
 package it.polimi.ingsw.Network.Server;
 
+import it.polimi.ingsw.Network.Message.MessageFromServer.PlayerNumberRequest;
+
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -8,10 +11,10 @@ import static java.time.temporal.ChronoField.INSTANT_SECONDS;
 
 public class ServerBeatReceiver extends Thread implements Runnable {
 
-    Server server;
-    ArrayList<Connection> connections = new ArrayList<>();
+    final Server server;
+    final ArrayList<Connection> connections = new ArrayList<>();
 
-    int expectedCardiacRhythm = 10; //seconds
+    final int expectedCardiacRhythm = 10; //seconds
 
     /**
      * Receive the beats from the clients and delete dead clients
@@ -70,7 +73,15 @@ public class ServerBeatReceiver extends Thread implements Runnable {
         /*TODO TODO TODO
         connection.serverThread.getView().dropConnection();
         */
+        if (!connection.serverThread.isMaxPlayerNumberSet()) {
+            try {
+                connections.get(1).serverThread.sendToClient(new PlayerNumberRequest());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         server.getServerThreads().remove(connection.serverThread);
+
         connection.serverThread.setKeepAlive(false);
         connections.remove(connection);
         System.out.println(toDelete + " deleted");

@@ -11,16 +11,8 @@ import java.util.ArrayList;
 
 public class BoardTest {
 
-    Board board = new Board();
-    Game game = new Game();
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
+    final Board board = new Board();
+    final Game game = new Game();
 
     @Test
     public void initialiseGrid() {

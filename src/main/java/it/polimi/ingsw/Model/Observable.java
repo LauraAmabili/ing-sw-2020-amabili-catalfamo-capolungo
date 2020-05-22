@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Observable {
 
 
-    private List<ObserverModel> observerModels = new ArrayList<>();
+    private final List<ObserverModel> observerModels = new ArrayList<>();
 
 
     public void AddObserver(ObserverModel o){
