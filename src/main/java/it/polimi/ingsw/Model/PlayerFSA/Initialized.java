@@ -37,6 +37,7 @@ public class Initialized extends PlayerFSA {
                 }
                 if(flag) {
                     game.getAvailableGods().add(godName);
+                    game.getChosenGodList().add(new God(godName));
                 }
             }
             if(game.getAvailableGods().size() == game.getOnlinePlayers().size()) {

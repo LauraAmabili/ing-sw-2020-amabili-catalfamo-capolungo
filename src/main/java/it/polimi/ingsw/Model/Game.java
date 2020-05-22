@@ -25,7 +25,7 @@ public class Game extends Observable {
     private final boolean cardsChosen = false;
     private final List<String> color;
     int maxPlayer;
-    private List<God> allgods;
+    private List<God> allGods;
 
     /**
      * List of the chosenGods of the challenger
@@ -67,15 +67,12 @@ public class Game extends Observable {
         color.add(ANSI_YELLOW);
         color.add(ANSI_PURPLE);
         PlayerCreator playerCreator = new PlayerCreator();
-        allgods = playerCreator.getArrayGods();
+        allGods = playerCreator.getArrayGods();
     }
 
 
     public List<God> getAllgods() {
-        return allgods;
-    }
-    public void setAllgods(List<God> allgods) {
-        this.allgods = allgods;
+        return allGods;
     }
     public List<PlayerFSA> getStateList() {
         return stateList;
