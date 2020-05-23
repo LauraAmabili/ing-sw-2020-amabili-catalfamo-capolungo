@@ -39,6 +39,8 @@ public class Game extends Observable {
         return chosenGodList;
     }
 
+
+
     private final List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
         return godListNames;
