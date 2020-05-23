@@ -1,6 +1,7 @@
 package it.polimi.ingsw.View.GUI;
 
 import it.polimi.ingsw.Network.Client.Client;
+import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
@@ -32,7 +33,7 @@ public class BoardController extends NotifyMessages implements Initializable {
     @FXML
     Text NameText3 = new Text();
 
-    public void BoardController(Client client) {
+    public BoardController(Client client) {
         this.client = client;
         up = new UpdatesForMessages(client);
         addObserver(up);
@@ -40,6 +41,14 @@ public class BoardController extends NotifyMessages implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        GUI gui = (GUI) client.getUserInterface();
+        NameText3.setText(client.getNickname());
+        String name = gui.getOpponentPlayers().get(0);
+        NameText1.setText(name);
+        if(gui.getOpponentPlayers().get(1) != null) {
+            name = gui.getOpponentPlayers().get(1);
+            NameText2.setText(name);
+        }
 
     }
 

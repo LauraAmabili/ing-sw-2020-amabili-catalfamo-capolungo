@@ -42,11 +42,6 @@ public class GUI_App extends Application {
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> {
             client[0].setActive(false);
-            try {
-                client[0].killClient();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             Platform.exit();
             System.exit(0);
         });

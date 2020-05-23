@@ -17,6 +17,10 @@ public class Observable {
         this.observerModels.add(o);
     }
 
+    public void RemoveObserver(ObserverModel o) {
+        observerModels.remove(o);
+    }
+
     void notifyPlayerAdded(String obj) throws IOException {
         for(ObserverModel o : observerModels){
             o.updatePlayerAdded(obj);

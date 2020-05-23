@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View.GUI;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
@@ -10,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,16 +27,17 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
     int counter = 0;
 
     @FXML
-    final
     ImageView FirstCard = new ImageView();
-
     @FXML
-    final
     ImageView SecondCard = new ImageView();
-
     @FXML
-    final
     ImageView ThirdCard = new ImageView();
+    @FXML
+    Text Description1 = new Text();
+    @FXML
+    Text Description2 = new Text();
+    @FXML
+    Text Description3 = new Text();
 
     public CardsToChooseController(Client client) {
         this.client = client;
@@ -50,7 +54,11 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
     public void setUp() {
         GUI gui = (GUI) client.getUserInterface();
         FirstCard.setOnMouseEntered(mouseEvent -> {
-
+            for(int i = 0; i < gui.getGodNames().size(); i++) {
+                if(gui.getGodNames().get(i).getGodName().equals(CardName1)) {
+                    Description1.setText(gui.getGodNames().get(i).getDescriptionEffect());
+                }
+            }
         });
         FirstCard.setOnMouseClicked(mouseEvent -> {
             try {
@@ -68,6 +76,13 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
             FirstCard.setOpacity(0.7);
         }
         if(CardName2 != null) {
+            SecondCard.setOnMouseEntered(mouseEvent -> {
+                for(int i = 0; i < gui.getGodNames().size(); i++) {
+                    if(gui.getGodNames().get(i).getGodName().equals(CardName2)) {
+                        Description2.setText(gui.getGodNames().get(i).getDescriptionEffect());
+                    }
+                }
+            });
             SecondCard.setOnMouseClicked(mouseEvent -> {
                 try {
                     notifySetYourCardResponse(CardName2);
@@ -86,6 +101,13 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         } else {
             SecondCard.disabledProperty();
         }
+        ThirdCard.setOnMouseEntered(mouseEvent -> {
+            for(int i = 0; i < gui.getGodNames().size(); i++) {
+                if(gui.getGodNames().get(i).getGodName().equals(CardName3)) {
+                    Description3.setText(gui.getGodNames().get(i).getDescriptionEffect());
+                }
+            }
+        });
         ThirdCard.setOnMouseClicked(mouseEvent -> {
             try {
                 notifySetYourCardResponse(CardName3);
@@ -107,17 +129,17 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         GUI gui = (GUI) client.getUserInterface();
         String url;
         if(gui.getGodNames() != null) {
-            for(String name : gui.getGodNames()) {
+            for(God name : gui.getGodNames()) {
                 if(FirstCard.getImage() == null) {
-                    CardName1 = name;
+                    CardName1 = name.getGodName();
                     url = "/godCards/" + CardName1 + ".png";
                     FirstCard.setImage(new Image(url));
                 } else if(ThirdCard.getImage() == null) {
-                    CardName3 = name;
+                    CardName3 = name.getGodName();
                     url = "/godCards/" + CardName3  + ".png";
                     ThirdCard.setImage(new Image(url));
                 } else {
-                    CardName2 = name;
+                    CardName2 = name.getGodName();
                     url = "/godCards/" + CardName2  + ".png";
                     SecondCard.setImage(new Image(url));
                 }

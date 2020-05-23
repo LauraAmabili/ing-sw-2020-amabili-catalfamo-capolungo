@@ -43,8 +43,12 @@ public class VirtualView extends Observable implements ObserverModel {
     }
     public void setCurrentPlayer(PlayerInterface currentPlayer) {
         this.currentPlayer = currentPlayer;
-
     }
+
+    public ServerThread getThread() {
+        return thread;
+    }
+
     public int getNumberOfPlayer() {
         return numberOfPlayer;
     }

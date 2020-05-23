@@ -221,7 +221,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
         System.out.println("It's time to choose the cards for the game!");
-        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger()+ " is choosing the cards");
+        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger() + " is choosing the cards");
 
     }
 

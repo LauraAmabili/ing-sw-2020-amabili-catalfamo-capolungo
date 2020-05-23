@@ -26,31 +26,22 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     }
 
     @FXML
-    final
     ImageView Apollo = new ImageView();
     @FXML
-    final
     ImageView Artemis = new ImageView();
     @FXML
-    final
     ImageView Athena = new ImageView();
     @FXML
-    final
     ImageView Atlas = new ImageView();
     @FXML
-    final
     ImageView Demeter = new ImageView();
     @FXML
-    final
     ImageView Hephaestus = new ImageView();
     @FXML
-    final
     ImageView Minotaur = new ImageView();
     @FXML
-    final
     ImageView Pan = new ImageView();
     @FXML
-    final
     ImageView Prometheus = new ImageView();
 
     int counter = 0;
@@ -67,8 +58,8 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     public void setUpButtons() {
         Apollo.setOnMouseClicked(mouseEvent -> {
             try {
+                this.Apollo.setOpacity(0.7);
                 notifyChosenCardsUpdate("Apollo");
-                Apollo.setOpacity(0.7);
                 counter++;
                 if(counter == client.getNumberOfPlayers()) {
                     removeObserver(up);
