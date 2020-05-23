@@ -18,7 +18,7 @@ public class Player implements PlayerInterface, Serializable {
     private String nickname;
     private List<Worker> workerRef = new ArrayList<>(); // reference to the workers
     private God activeCard;
-    private Board board;
+    private transient Board board;
     private final List<God> chosenGods = new ArrayList<>();
     private boolean moveUp = true;
     private boolean enableSpecialMove;

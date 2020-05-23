@@ -159,7 +159,7 @@ public class VisitorMethodsServer implements VisitorServer {
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
         /*
-        if(askEffectReply.getEffect()=="y" ) {
+        if(askEffectReply.getEffect()=="y") {
             boolean effect = askEffectReply.getEffect().equals("y");
             view.updateTimeToChooseWorkerEffect(effect);
         }
@@ -168,10 +168,10 @@ public class VisitorMethodsServer implements VisitorServer {
 
          */
 
-        if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("yes") || askEffectReply.getEffect().equals("Yes")) {
+        if(askEffectReply.getEffect().equals("y")) {
             view.updateTimeToChooseWorkerEffect(true);
         }
-        else if(askEffectReply.getEffect().equals("n") || askEffectReply.getEffect().equals("no") || askEffectReply.getEffect().equals("No")){
+        else if(askEffectReply.getEffect().equals("n")){
             view.updateTimeToChooseWorkerEffect(false);
         } else {
             serverThread.sendToClient(new WorkerInputNotValid());
@@ -233,33 +233,16 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
 
-            /*
-            if(askEffectBuildResponse.getEffect()!="y" || askEffectBuildResponse.getEffect() != "n") {
-                serverThread.sendToClient(new WorkerInputNotValid());
-                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-            else {
+        if( askEffectBuildResponse.getEffect().equals("y")) {
+            view.updatePlayerBuild(true, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+        }
+        else if(askEffectBuildResponse.getEffect().equals("n")){
+            view.updatePlayerBuild(false, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
 
-
-               if (askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equalsIgnoreCase("yes")) {
-
-             */
-            if( askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equals("yes") || askEffectBuildResponse.getEffect().equals("Yes")) {
-                boolean effect = true;
-                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-            else if(askEffectBuildResponse.getEffect().equals("n") || askEffectBuildResponse.getEffect().equals("no") || askEffectBuildResponse.getEffect().equals("No")){
-                boolean effect = false;
-                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-
-            } else {
-                serverThread.sendToClient(new WorkerInputNotValid());
-                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-
-               // }
-
-
+        } else {
+            serverThread.sendToClient(new WorkerInputNotValid());
+            view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+        }
 
     }
 

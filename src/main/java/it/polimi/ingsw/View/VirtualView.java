@@ -12,7 +12,7 @@ import java.util.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Server.ServerThread;
 
-public class VirtualView extends Observable implements ObserverModel, Runnable {
+public class VirtualView extends Observable implements ObserverModel {
 
 
     private String MyNickname;
@@ -311,7 +311,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
      * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateGodSet(String nickname, String godName) throws IOException {
+    public  void updateGodSet(PlayerInterface nickname, String godName) throws IOException {
 
         thread.sendToClient(new CardSetUpdate(nickname, godName));
 
@@ -624,17 +624,10 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     }
 
-
-
     @Override
     public void updateBoard(Board board) throws IOException {
 
         thread.sendToClient(new BoardUpdate("board updated", board));
-    }
-
-    @Override
-    public void run() {
-
     }
 
     public void updateTimeToChooseWorkerEffect(boolean effect) throws IOException {
@@ -648,53 +641,6 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     public void dropConnection() {
         notifyDropConnection(MyNickname);
     }
-
-
-    /*
-    public void menageInput(Integer in) throws IOException, InterruptedException {
-        switch (in) {
-            case 1:
-                //startingGame();
-                break;
-            case 2:
-                insertNickname();
-                break;
-            case 6:
-                //startMoving();
-                break;
-            case 0:
-                System.out.println("Input sbagliato");
-                break;
-            default:
-                System.out.println("Input sbagliato");
-                break;
-        }
-    }
-
-
-
-    public void printComandi(){
-        System.out.println(PURPLE + "Press 2 to add nickname");
-        System.out.println("Press 6 to start your turn");
-        System.out.print(RESET);
-        System.out.print(ANSI_BLUE);
-    }
-
-
-
-
-    public void start(){
-
-        System.out.println("WELCOME TO SANTORINI");
-        System.out.println("Press 1 to start the game");
-    }
-
-     */
-
-
-
-
-
 
 }
 

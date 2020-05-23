@@ -6,9 +6,6 @@ import java.io.IOException;
 
 public class ChallengerCardsRequest extends MessageFromServer {
 
-
-
-
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);

@@ -159,7 +159,7 @@ public class Game extends Observable {
     /**
      * Create a turn with the online Players
      */
-    public void createTurn() throws IOException, InterruptedException {
+    public void createTurn() {
         Turn turn = new Turn(this.getOnlinePlayers());
         this.setCurrentTurn(turn);
     }
@@ -183,7 +183,8 @@ public class Game extends Observable {
     /**
      * This create the challenger by choosing a random number
      */
-    public void createChallenger(){
+    public void createChallenger() {
+
         Random random = new Random();
         currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
         int i = onlinePlayers.indexOf(currentTurn.getCurrentPlayer());
@@ -203,7 +204,7 @@ public class Game extends Observable {
     }
 
     public void msgGodSet(String godName) throws IOException {
-        notifyGodSet(currentTurn.getCurrentPlayer().getNickname(), godName);
+        notifyGodSet(currentTurn.getCurrentPlayer(), godName);
     }
 
     public void toPlaceWorker() throws IOException {
@@ -261,6 +262,8 @@ public class Game extends Observable {
                 if(getStateList().get(i).getEffect()) {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputBuild()) {
                         notifyTimeToBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    } else {
+                        notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
                 } else {
                     notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
@@ -284,6 +287,8 @@ public class Game extends Observable {
                 if (getStateList().get(i).getEffect()) {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputMove()) {
                         notifyTimeToMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    } else {
+                        notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     }
                 } else {
                     notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
