@@ -40,7 +40,7 @@ public class Initialized extends PlayerFSA {
                 }
                 if(flag) {
                     game.getAvailableGods().add(godName);
-                    //game.getChosenGodList().add(p.find(godName));
+                    game.getChosenGodList().add(p.find(godName));
                     //System.out.println(game.getChosenGodList());
                 }
             }

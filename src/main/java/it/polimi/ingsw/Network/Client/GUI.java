@@ -127,6 +127,20 @@ public class GUI implements UserInterface {
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
+        //TODO: create Board Scene
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
+            ChosenCardsController controller = new ChosenCardsController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override

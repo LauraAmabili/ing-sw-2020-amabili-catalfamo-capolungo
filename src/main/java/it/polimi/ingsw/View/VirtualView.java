@@ -12,7 +12,7 @@ import java.util.*;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.Network.Server.ServerThread;
 
-public class VirtualView extends Observable implements ObserverModel, Runnable {
+public class VirtualView extends Observable implements ObserverModel {
 
 
     private String MyNickname;
@@ -52,27 +52,6 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         this.numberOfPlayer = numberOfPlayer;
     }
 
-    /*
-    @Override
-    public void run() {
-        start();
-        while (true) {
-            printComandi();
-            String in = cases.nextLine();
-            try {
-                int integer = Integer.parseInt(in);
-                menageInput(integer);
-            } catch (NumberFormatException | IOException | InterruptedException exc) {
-                try {
-                    menageInput(0);
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-     */
 
     //Preparing game
 
@@ -392,6 +371,13 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     }
 
+    /**
+     * check if the coordinates are correct, sends a message if they are not
+     * @param row row chosen
+     * @param col col chosen
+     * @param i number of worker to be set
+     * @throws IOException Exception for the Message
+     */
     public void toSetWorker(int row, int col, int i ) throws IOException {
         if(row > 0 && row <= 5 && col > 0 && col <= 5) {
             notifyAddingWorker(row, col, i);
@@ -399,6 +385,7 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
             thread.sendToClient(new WrongCoordinatesUpdate(i));
         }
     }
+
 
     @Override
     public void updateSetWorkerOk(String currentPlayer, Board board) throws IOException {
@@ -410,9 +397,9 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     /**
      * This send a message if the coordinates for the Worker are wrong
-     * @param i
-     * @param currentPlayer
-     * @throws IOException
+     * @param i number of worker
+     * @param currentPlayer player current playing
+     * @throws IOException Exception for the Message
      */
     @Override
     public void updateSetWorker(int i, String currentPlayer) throws IOException {
@@ -427,6 +414,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     //Input 6 to start your Turn
 
 
+    /**
+     * Calling the update about the time of the game, it's time to move
+     * @param currentPlayer current player playing
+     * @throws IOException Exception for the message
+     */
     @Override
     public void updateStartMoving(String currentPlayer) throws IOException {
 
@@ -435,6 +427,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
 
     }
+
+    /**
+     * Sends a message to all the players if someone win
+     * @param playerNickname name of the player current playing
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updatePlayerHasLost(String playerNickname) throws IOException {
 
@@ -444,6 +442,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
+    /**
+     * Sends to all the client that it's time for the current player to choose the Worker because the player can move
+     * @param nickname nickname of the current player
+     * @throws IOException Exception for the message
+     */
     @Override
     public void updateDecideWorker(String nickname) throws IOException {
 
@@ -451,6 +454,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
+    /**
+     * called by notifyChooseWorker
+     * called when it's time for the player to decide the worker
+     * @param nickname name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateTimeToChooseWorker(String nickname) throws IOException {
 
@@ -458,6 +467,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     }
 
+    /**
+     * sends a message to the client if the player has a card that needs the effect to be activated
+     * @param nickname name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateAskForEffect(String nickname) throws IOException {
         if(MyNickname.equals(nickname)) {
@@ -465,6 +479,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
     }
 
+    /**
+     * sends to the player a message if the player has a card that needs to build differently
+     * @param currentPlayer name of the current player
+     * @param worker worker that will build
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException {
         if(MyNickname.equals(currentPlayer)) {
@@ -472,10 +492,22 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
     }
 
+    /**
+     * sends to the controller the notify to check if the player with that worker cam build
+     * @param effect to be set true or false
+     * @param nickname name of the current player
+     * @param worker worker that it's gonna build
+     * @throws IOException Exception for the Message
+     */
     public void updatePlayerBuild(boolean effect, String nickname,int worker) throws IOException {
         notifyPlayerBuild(effect, nickname, worker);
     }
 
+    /**
+     * Sends the message to the client to choose the worker
+     * @param nickname name of the current player
+     * @throws IOException Exception for the Message
+     */
     public void chooseWorker(String nickname) throws IOException {
 
 
@@ -485,13 +517,23 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
+    /**
+     * After be chosen, here we check if the worker can actually move
+     * @param worker number of the worker
+     * @throws IOException Exception for the Message
+     */
     public void tryThisWorker(int worker) throws IOException {
 
         notifyTryThisWorker(worker);
 
     }
 
-
+    /**
+     * Sends a Message if the worker is not correct, we choose automatically the other one
+     * @param worker number of the worker
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateWorkerSelected(int worker, String current) throws IOException {
 
@@ -501,6 +543,13 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
 
     }
+
+    /**
+     * Calls the request for the moving
+     * @param worker number of the worker
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateMoving(int worker, String current) throws IOException {
 
@@ -508,6 +557,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     }
 
+    /**
+     * Sends the message to the current player to ask for coordinates
+     * @param worker number of the player
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     public void moving(int worker, String current) throws IOException {
 
         if(MyNickname.equals(current)) {
@@ -516,13 +571,25 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         //se mi sono mossa costruisco
     }
 
+    /**
+     * This sends a notify to the controller to check if row and col are okay to be moved on
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker chosen worker
+     * @throws IOException Exception for the Message
+     */
     public void tryMoving(int row, int col, int worker) throws IOException {
 
         notifyMoving(row, col, worker);
 
     }
 
-
+    /**
+     * Sends a message if the coordinates are not valid and calls the moving again
+     * @param worker number of the worker that cannot move
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateNoCoordinatesValid(int worker, String current) throws IOException {
 
@@ -532,6 +599,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
 
     }
 
+    /**
+     * Sends a general update
+     * @param obh object
+     * @param obj object
+     */
     @Override
     public void update(Object obh, Object obj){
 
@@ -539,6 +611,11 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
+    /**
+     * Sends an update to all the clients with the winner
+     * @param player name of the winning player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateWinners(PlayerInterface player) throws IOException {
 
@@ -547,6 +624,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         //System.out.println(player + "You win!");
     }
 
+    /**
+     * Sends a message to the player with the card that needs to build twice
+     * @param currentPlayer name of the current player
+     * @param worker number of the worker
+     * @throws IOException Exception for the message
+     */
     @Override
     public void updateBuildTwoInput(String currentPlayer,int worker) throws IOException {
         thread.sendToClient(new BuildTimeUpdate(currentPlayer));
@@ -555,6 +638,12 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
     }
 
+    /**
+     * Sends a message to the player with the card that needs to move twice
+     * @param nickname  name of the current player
+     * @param worker number of the worker
+     * @throws IOException Exception for the message
+     */
     @Override
     public void updateMoveTwoInput(String nickname, int worker) throws IOException {
         if(MyNickname.equals(nickname)) {
@@ -562,18 +651,42 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
         }
     }
 
+    /**
+     * This sends a notify to the controller to check the coordinates
+     * @param row1 row for the first move
+     * @param col1 col for the first move
+     * @param row2 row for the second move
+     * @param col2 col for the second move
+     * @param worker worker to be moved twice
+     * @throws IOException Exception for the Message
+     */
     public void timeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
 
         notifyTimeToMoveTwoInput(row1, col1, row2, col2, worker);
 
     }
 
+    /**
+     * This sends a notify to the controller to check the coordinates
+     * @param row1 row for the first build
+     * @param col1 col for the first build
+     * @param row2 row for the second build
+     * @param col2 col for the second build
+     * @param worker worker that will build twice
+     * @throws IOException Exception for the Message
+     */
     public void timeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
 
         notifyTimeToBuildTwoInput(row1, col1, row2, col2, worker);
 
     }
 
+    /**
+     * Send to all the clients an update that it's time to build
+     * @param worker number of the worker
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateTimeToBuild(int worker, String current) throws IOException {
 
@@ -584,31 +697,39 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
-
-
+    /**
+     * send to the client of the current player the request to build
+     * @param worker number of worker just moved
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     public void building(int worker, String current) throws IOException {
 
-
-        // System.out.println("Vuoi costruire? Insert Yes or no");
-        //String input = cases.nextLine();
-        //notifyWantToBuild(worker);
         if(MyNickname.equals(current)) {
             thread.sendToClient(new BuildRequest(worker));
-            //System.out.println("Build around your worker # " + worker + "Insert row e col: ");
-            //int row = input.nextInt();
-            //int col = input.nextInt();
-            //notifyBuilding(row, col, worker);
+
         }
-
-
     }
 
+    /**
+     * Sends to the controller the notify with the coordinates to check if they are correct
+     * @param row row to be checked
+     * @param col col to be checked
+     * @param worker number of the worker
+     * @throws IOException Exception for the message
+     */
     public void tryToBuild(int row, int col, int worker) throws IOException {
 
         notifyBuilding(row, col, worker);
 
     }
 
+    /**
+     * Sends to the current player the message that the coordinates are not correct
+     * @param worker number of the worker
+     * @param current name of the current player
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateBuilding(int worker, String current) throws IOException {
 
@@ -621,18 +742,18 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     }
 
 
-
+    /**
+     * Sends the message with the Board updated
+     * @param board board to be send
+     * @throws IOException Exception for the Message
+     */
     @Override
     public void updateBoard(Board board) throws IOException {
 
         thread.sendToClient(new BoardUpdate("board updated", board));
     }
 
-    @Override
-    public void run() {
-
-    }
-
+    //TODO: ?
     public void updateTimeToChooseWorkerEffect(boolean effect) throws IOException {
         thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
     }
@@ -644,54 +765,6 @@ public class VirtualView extends Observable implements ObserverModel, Runnable {
     public void dropConnection() {
         notifyDropConnection(MyNickname);
     }
-
-
-    /*
-    public void menageInput(Integer in) throws IOException, InterruptedException {
-        switch (in) {
-            case 1:
-                //startingGame();
-                break;
-            case 2:
-                insertNickname();
-                break;
-            case 6:
-                //startMoving();
-                break;
-            case 0:
-                System.out.println("Input sbagliato");
-                break;
-            default:
-                System.out.println("Input sbagliato");
-                break;
-        }
-    }
-
-
-
-    public void printComandi(){
-        System.out.println(PURPLE + "Press 2 to add nickname");
-        System.out.println("Press 6 to start your turn");
-        System.out.print(RESET);
-        System.out.print(ANSI_BLUE);
-    }
-
-
-
-
-    public void start(){
-
-        System.out.println("WELCOME TO SANTORINI");
-        System.out.println("Press 1 to start the game");
-    }
-
-     */
-
-
-
-
-
-
 }
 
 
