@@ -36,21 +36,19 @@ public class VisitorMethodsServer implements VisitorServer {
                 serverThread.setNumPlayers(numberOfPlayers);
                 serverThread.setMaxPlrMsg(true);
                 view.notifyNumberOfPlayer(numberOfPlayers);
+                for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+                    serverThread.getServer().getServerThreads().get(i).setMaxPlayerNumberSet(true);
+                }
                 if (serverThread.getServer().getServerThreads().size() == numberOfPlayers) {
                     for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
                         serverThread.getServer().getServerThreads().get(i).sendToClient(new NicknameRequest());
                     }
                 }
-            }
-            else
-            {
+            } else {
                 serverThread.sendToClient(new NumberOfPlayerWrong());
-               serverThread.sendToClient(new PlayerNumberRequest());
-
+                serverThread.sendToClient(new PlayerNumberRequest());
             }
-
         } catch (NumberFormatException e){
-
             serverThread.sendToClient(new NumberOfPlayerWrong());
             serverThread.sendToClient(new PlayerNumberRequest());
 
@@ -326,28 +324,25 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException {
 
-        boolean check = false;
+        boolean check = true;
         String nickname = nicknameResponse.getNickname();
-        for(int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
-            if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() == null) {
-                view.AddingNickname(nickname);
-                return;
+        for(int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+            int j = serverThread.getServer().getServerThreads().indexOf(view.getThread());
+            if(i != j) {
+                if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() != null) {
+                    if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
+                        check = false;
+                    }
+                }
             }
         }
-        for (int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
-            if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
-                check = true;
-                break;
-            }
-        }
-        if (!check) {
+        if (check) {
             view.AddingNickname(nickname);
+            view.getThread().setNicknameSet(true);
         } else {
             serverThread.sendToClient(new NicknameNotValidUpdate());
             serverThread.sendToClient(new NicknameRequest());
         }
     }
-
-
 
 }

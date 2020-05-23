@@ -21,19 +21,17 @@ import java.util.ResourceBundle;
 
 public class NicknameSceneController extends NotifyMessages implements Initializable {
 
-    final Client client;
-    final UpdatesForMessages up;
+    Client client;
+    UpdatesForMessages up;
 
     public Client getClient() {
         return client;
     }
 
     @FXML
-    final
     Button confirmNickButton = new Button();
 
     @FXML
-    final
     TextField nicknameTextField = new TextField();
 
 

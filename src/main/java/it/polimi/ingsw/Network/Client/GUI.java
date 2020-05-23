@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
@@ -20,20 +21,20 @@ public class GUI implements UserInterface {
 
     private Stage primaryStage;
     private Client client;
-    private List<String> godNames;
+    private List<God> godNames;
     private final List<String> chosenCards = new ArrayList<>();
-    private String opponentChosenCard;
-    private String currentPlayer;
+    private List<String> opponentChosenCards = new ArrayList<>();
+    private List<String> opponentPlayers = new ArrayList<>();
 
     public List<String> getChosenCards() {
         return chosenCards;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer;
+    public List<String> getOpponentPlayers() {
+        return opponentPlayers;
     }
 
-    public List<String> getGodNames() {
+    public List<God> getGodNames() {
         return godNames;
     }
 
@@ -233,23 +234,20 @@ public class GUI implements UserInterface {
                 }
             }
         });
-        currentPlayer = setCardTimeUpdate.getCurrentPlayer();
+        opponentPlayers.add(setCardTimeUpdate.getCurrentPlayer());
     }
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
-        if(godNames == null) {
-            godNames = setYourCardRequest.getAvailableGods();
-            if(opponentChosenCard != null) {
-                godNames.add(opponentChosenCard);
-            }
-        }
+
+        godNames = setYourCardRequest.getChosenGods();
+        opponentChosenCards = setYourCardRequest.getAvailableGods();
+
     }
 
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
-        opponentChosenCard = cardSetUpdate.getGodName();
-        chosenCards.add(cardSetUpdate.getGodName());
+
     }
 
     @Override

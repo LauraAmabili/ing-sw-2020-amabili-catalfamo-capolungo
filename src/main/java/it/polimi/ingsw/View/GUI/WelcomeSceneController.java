@@ -20,11 +20,10 @@ import java.util.ResourceBundle;
 
 public class WelcomeSceneController extends NotifyMessages implements Initializable {
 
-    final Client client;
+    Client client;
 
     @FXML
-    final
-    javafx.scene.control.Button StartGameButton = new Button();
+    Button StartGameButton = new Button();
 
     public Client getClient() {
         return client;

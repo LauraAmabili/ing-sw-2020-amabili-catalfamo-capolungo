@@ -22,14 +22,12 @@ import java.util.ResourceBundle;
 public class ModeController extends NotifyMessages implements Initializable {
 
     @FXML
-    final
     Button TwoPlayerButton = new Button();
     @FXML
-    final
     Button ThreePlayerButton = new Button();
 
-    final Client client;
-    final UpdatesForMessages up;
+    Client client;
+    UpdatesForMessages up;
 
     public Client getClient() {
         return client;

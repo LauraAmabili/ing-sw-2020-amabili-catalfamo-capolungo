@@ -21,7 +21,7 @@ public class Server {
     private final ArrayList<ServerThread> serverThreads = new ArrayList<>();
     public ServerBeatReceiver serverBeatReceiver;
 
-    final GameController gameController = new GameController();
+    private GameController gameController = new GameController();
 
     public Server() {
         read();
@@ -36,10 +36,13 @@ public class Server {
         return gameController;
     }
 
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Server server = new Server();
         server.startServer();
-
     }
 
     /**
@@ -62,7 +65,7 @@ public class Server {
 
         Socket s;
         ServerSocket ss = new ServerSocket(port);
-
+        boolean check = false;
         while (true) {
             s = ss.accept();
             System.out.println("Connection from " + s + "!");
@@ -70,7 +73,17 @@ public class Server {
             if(serverThreads.size() == 0) {
                 st = new ServerThread(s, this, 2, false);
             } else {
-                st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), serverThreads.get(0).isMaxPlayerNumberSet());
+                for (ServerThread serverThread : serverThreads) {
+                    if (serverThread.isMaxPlayerNumberSet()) {
+                        check = true;
+                        break;
+                    }
+                }
+                if(check) {
+                    st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), true);
+                } else {
+                    st = new ServerThread(s, this, serverThreads.get(0).getNumPlayers(), false);
+                }
             }
             st.start();
         }

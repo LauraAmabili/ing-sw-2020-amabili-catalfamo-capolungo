@@ -39,10 +39,6 @@ public class Game extends Observable {
         return chosenGodList;
     }
 
-    public void setChosenGodList(List<God> chosenGodList) {
-        this.chosenGodList = chosenGodList;
-    }
-
     private final List<String> godListNames = new ArrayList<>();
     public List<String> getGodListNames() {
         return godListNames;
@@ -68,6 +64,7 @@ public class Game extends Observable {
         color.add(ANSI_PURPLE);
         PlayerCreator playerCreator = new PlayerCreator();
         allGods = playerCreator.getArrayGods();
+        chosenGodList = new ArrayList<>();
     }
 
 
