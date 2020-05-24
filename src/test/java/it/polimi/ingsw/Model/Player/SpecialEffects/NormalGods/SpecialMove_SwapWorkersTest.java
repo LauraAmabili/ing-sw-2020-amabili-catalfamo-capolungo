@@ -1,11 +1,10 @@
-package it.polimi.ingsw.Model.Player.SpecialEffects;
+package it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialMove_SwapWorkers;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 

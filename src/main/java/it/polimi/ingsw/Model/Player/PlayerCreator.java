@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.Player.SpecialEffects.*;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,7 +1,9 @@
-package it.polimi.ingsw.Model.Player.SpecialEffects;
+package it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods;
 
 
 import it.polimi.ingsw.Model.BoardCell;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
