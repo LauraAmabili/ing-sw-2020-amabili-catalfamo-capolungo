@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
@@ -20,21 +22,48 @@ public class GUI implements UserInterface {
 
     private Stage primaryStage;
     private Client client;
-    private List<String> godNames;
-    private final List<String> chosenCards = new ArrayList<>();
-    private String opponentChosenCard;
+    private List<God> chosenCards;
+    private List<String> opponentChosenCards;
+    private final List<String> opponentPlayerName = new ArrayList<>();
+    private final List<PlayerInterface> opponentPlayers = new ArrayList<>();
+    private String MyCard;
     private String currentPlayer;
+    private PlayerInterface Me;
 
-    public List<String> getChosenCards() {
-        return chosenCards;
+    public PlayerInterface getMe() {
+        return Me;
+    }
+
+    public void setMe(PlayerInterface me) {
+        Me = me;
     }
 
     public String getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public List<String> getGodNames() {
-        return godNames;
+    public String getMyCard() {
+        return MyCard;
+    }
+
+    public void setMyCard(String myCard) {
+        MyCard = myCard;
+    }
+
+    public List<String> getOpponentPlayerName() {
+        return opponentPlayerName;
+    }
+
+    public List<String> getOpponentChosenCards() {
+        return opponentChosenCards;
+    }
+
+    public List<God> getChosenCards() {
+        return chosenCards;
+    }
+
+    public List<PlayerInterface> getOpponentPlayers() {
+        return opponentPlayers;
     }
 
     public Stage getPrimaryStage() {
@@ -107,6 +136,20 @@ public class GUI implements UserInterface {
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
+        currentPlayer = startingSetWorkerTimeUpdate.getCurrentPlayer();
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new BoardController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
@@ -126,6 +169,20 @@ public class GUI implements UserInterface {
 
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
+
+        //TODO: create Board Scene
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
+            ChosenCardsController controller = new ChosenCardsController(client);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -214,6 +271,7 @@ public class GUI implements UserInterface {
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
         Platform.runLater(() -> {
             if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer())) {
+                opponentPlayerName.add(setCardTimeUpdate.getCurrentPlayer());
                 FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/CardsToChooseScene.fxml"));
                 CardsToChooseController controller = new CardsToChooseController(client);
                 loader.setController(controller);
@@ -233,23 +291,25 @@ public class GUI implements UserInterface {
                 }
             }
         });
-        currentPlayer = setCardTimeUpdate.getCurrentPlayer();
     }
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
-        if(godNames == null) {
-            godNames = setYourCardRequest.getAvailableGods();
-            if(opponentChosenCard != null) {
-                godNames.add(opponentChosenCard);
-            }
-        }
+
+        chosenCards = setYourCardRequest.getChosenGods();
+        opponentChosenCards = setYourCardRequest.getAvailableGods();
+
     }
 
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
-        opponentChosenCard = cardSetUpdate.getGodName();
-        chosenCards.add(cardSetUpdate.getGodName());
+
+        if(!client.getNickname().equals(cardSetUpdate.getCurrentPlayer().getNickname())) {
+            opponentPlayers.add(cardSetUpdate.getCurrentPlayer());
+        } else {
+            setMe(cardSetUpdate.getCurrentPlayer());
+        }
+
     }
 
     @Override

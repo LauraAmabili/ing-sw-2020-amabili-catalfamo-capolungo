@@ -18,7 +18,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     private List<God> chosenGods;
     private God activeCard;
     private Board board;
-    private boolean moveUp;
+    private transient boolean moveUp;
 
     // constructor
     public PlayerDecorator(PlayerInterface player) {

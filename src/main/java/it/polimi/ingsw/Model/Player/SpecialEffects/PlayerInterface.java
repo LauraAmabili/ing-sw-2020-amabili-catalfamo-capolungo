@@ -16,6 +16,7 @@ public interface PlayerInterface extends Serializable {
     List<Worker> workerRef = null;
 
     God activeCard = null;
+
     Board board = null;
 
     String color = null;

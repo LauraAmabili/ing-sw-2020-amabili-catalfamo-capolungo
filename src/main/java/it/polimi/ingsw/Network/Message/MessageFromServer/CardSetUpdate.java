@@ -1,20 +1,21 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
 public class CardSetUpdate extends MessageFromServer {
 
-    final String currentPlayer;
-    final String godName;
+    private final PlayerInterface currentPlayer;
+    private final String godName;
 
-    public CardSetUpdate(String currentPlayer, String godName ) {
+    public CardSetUpdate(PlayerInterface currentPlayer, String godName ) {
         this.currentPlayer = currentPlayer;
         this.godName = godName;
     }
 
-    public String getCurrentPlayer() {
+    public PlayerInterface getCurrentPlayer() {
         return currentPlayer;
     }
 

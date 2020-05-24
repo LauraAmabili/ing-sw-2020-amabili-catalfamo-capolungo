@@ -36,21 +36,19 @@ public class VisitorMethodsServer implements VisitorServer {
                 serverThread.setNumPlayers(numberOfPlayers);
                 serverThread.setMaxPlrMsg(true);
                 view.notifyNumberOfPlayer(numberOfPlayers);
+                for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+                    serverThread.getServer().getServerThreads().get(i).setMaxPlayerNumberSet(true);
+                }
                 if (serverThread.getServer().getServerThreads().size() == numberOfPlayers) {
                     for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
                         serverThread.getServer().getServerThreads().get(i).sendToClient(new NicknameRequest());
                     }
                 }
-            }
-            else
-            {
+            } else {
                 serverThread.sendToClient(new NumberOfPlayerWrong());
-               serverThread.sendToClient(new PlayerNumberRequest());
-
+                serverThread.sendToClient(new PlayerNumberRequest());
             }
-
         } catch (NumberFormatException e){
-
             serverThread.sendToClient(new NumberOfPlayerWrong());
             serverThread.sendToClient(new PlayerNumberRequest());
 
@@ -161,7 +159,7 @@ public class VisitorMethodsServer implements VisitorServer {
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
         /*
-        if(askEffectReply.getEffect()=="y" ) {
+        if(askEffectReply.getEffect()=="y") {
             boolean effect = askEffectReply.getEffect().equals("y");
             view.updateTimeToChooseWorkerEffect(effect);
         }
@@ -170,10 +168,10 @@ public class VisitorMethodsServer implements VisitorServer {
 
          */
 
-        if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("yes") || askEffectReply.getEffect().equals("Yes")) {
+        if(askEffectReply.getEffect().equals("y")) {
             view.updateTimeToChooseWorkerEffect(true);
         }
-        else if(askEffectReply.getEffect().equals("n") || askEffectReply.getEffect().equals("no") || askEffectReply.getEffect().equals("No")){
+        else if(askEffectReply.getEffect().equals("n")){
             view.updateTimeToChooseWorkerEffect(false);
         } else {
             serverThread.sendToClient(new WorkerInputNotValid());
@@ -235,33 +233,16 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
 
-            /*
-            if(askEffectBuildResponse.getEffect()!="y" || askEffectBuildResponse.getEffect() != "n") {
-                serverThread.sendToClient(new WorkerInputNotValid());
-                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-            else {
+        if( askEffectBuildResponse.getEffect().equals("y")) {
+            view.updatePlayerBuild(true, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+        }
+        else if(askEffectBuildResponse.getEffect().equals("n")){
+            view.updatePlayerBuild(false, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
 
-
-               if (askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equalsIgnoreCase("yes")) {
-
-             */
-            if( askEffectBuildResponse.getEffect().equals("y") || askEffectBuildResponse.getEffect().equals("yes") || askEffectBuildResponse.getEffect().equals("Yes")) {
-                boolean effect = true;
-                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-            else if(askEffectBuildResponse.getEffect().equals("n") || askEffectBuildResponse.getEffect().equals("no") || askEffectBuildResponse.getEffect().equals("No")){
-                boolean effect = false;
-                view.updatePlayerBuild(effect, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-
-            } else {
-                serverThread.sendToClient(new WorkerInputNotValid());
-                view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-            }
-
-               // }
-
-
+        } else {
+            serverThread.sendToClient(new WorkerInputNotValid());
+            view.updateAskForEffectBuild(askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
+        }
 
     }
 
@@ -326,28 +307,25 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException {
 
-        boolean check = false;
+        boolean check = true;
         String nickname = nicknameResponse.getNickname();
-        for(int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
-            if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() == null) {
-                view.AddingNickname(nickname);
-                return;
+        for(int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+            int j = serverThread.getServer().getServerThreads().indexOf(view.getThread());
+            if(i != j) {
+                if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() != null) {
+                    if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
+                        check = false;
+                    }
+                }
             }
         }
-        for (int i = 0; i < serverThread.getServer().getServerThreads().size() - 1; i++) {
-            if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
-                check = true;
-                break;
-            }
-        }
-        if (!check) {
+        if (check) {
             view.AddingNickname(nickname);
+            view.getThread().setNicknameSet(true);
         } else {
             serverThread.sendToClient(new NicknameNotValidUpdate());
             serverThread.sendToClient(new NicknameRequest());
         }
     }
-
-
 
 }

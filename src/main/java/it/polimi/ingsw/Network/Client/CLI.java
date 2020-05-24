@@ -78,14 +78,12 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
-
         System.out.println("It's "+ startingSetWorkerTimeUpdate.getCurrentPlayer() + " time to place Workers");
+
     }
 
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
-
-
 
         int worker = startingSetWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
@@ -95,14 +93,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         String colstring = string.nextLine();
         notifyStartingSetWorkerResponse(rowstring, colstring, worker);
 
-
-
-
     }
 
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
-
 
         int worker = wrongCoordinatesUpdate.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
@@ -112,13 +106,13 @@ public class CLI extends NotifyMessages implements UserInterface {
         String colstring = string.nextLine();
         notifyWrongCoordinatesUpdate(rowstring, colstring, worker);
 
-
     }
 
     @Override
     public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate) {
 
         System.out.println(playerLockedUpdate.getNickname() + "'s workers are locked. Out!");
+
     }
 
     @Override
@@ -129,7 +123,6 @@ public class CLI extends NotifyMessages implements UserInterface {
         boardToPrint.printGrid();
         //System.out.println(RESET);
 
-
     }
 
     @Override
@@ -138,7 +131,6 @@ public class CLI extends NotifyMessages implements UserInterface {
         String nickname = playerTurnUpdate.getNickname();
         System.out.println("It's time to move!");
         System.out.println("Now playing : " + nickname);
-
 
     }
 
@@ -149,7 +141,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
         //int worker = input.nextInt();
         String worker = string.nextLine();
-       notifyChooseYourWorkerResponse(worker);
+        notifyChooseYourWorkerResponse(worker);
 
     }
 
@@ -221,7 +213,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
         System.out.println("It's time to choose the cards for the game!");
-        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger()+ " is choosing the cards");
+        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger() + " is choosing the cards");
 
     }
 
@@ -280,7 +272,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
 
-        System.out.println("Now "+ cardSetUpdate.getCurrentPlayer() + " has " + cardSetUpdate.getGodName() + " as Active Card");
+        System.out.println("Now "+ cardSetUpdate.getCurrentPlayer().getNickname() + " has " + cardSetUpdate.getGodName() + " as Active Card");
 
     }
 
@@ -298,15 +290,12 @@ public class CLI extends NotifyMessages implements UserInterface {
         String effect = string.nextLine();
         notifyAskEffectReply(effect, client.getNickname());
 
-
-
     }
 
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-        //int worker = input.nextInt();
         boolean effect = chooseYourWorkerEffectRequest.isEffect();
         String worker = string.nextLine();
         notifyChooseYourWorkerEffectResponse(worker, effect);

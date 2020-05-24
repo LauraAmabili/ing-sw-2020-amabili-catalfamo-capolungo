@@ -2,14 +2,9 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 
 import it.polimi.ingsw.Model.Game;
-import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.God.GodFileCreator;
 import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Worker;
-
 import java.io.IOException;
-import java.util.List;
 
 public class Initialized extends PlayerFSA {
 
@@ -30,6 +25,7 @@ public class Initialized extends PlayerFSA {
         if(game.getGodListNames().contains(godName)) {
             if(game.getAvailableGods().isEmpty()) {
                 game.getAvailableGods().add(godName);
+                game.getChosenGodList().add(p.find(godName));
             } else {
                 for(String g : game.getAvailableGods()) {
                     if(g.equals(godName)) {
@@ -40,8 +36,8 @@ public class Initialized extends PlayerFSA {
                 }
                 if(flag) {
                     game.getAvailableGods().add(godName);
-                    //game.getChosenGodList().add(p.find(godName));
-                    //System.out.println(game.getChosenGodList());
+                    game.getChosenGodList().add(p.find(godName));
+                    System.out.println(game.getChosenGodList());
                 }
             }
             if(game.getAvailableGods().size() == game.getOnlinePlayers().size()) {

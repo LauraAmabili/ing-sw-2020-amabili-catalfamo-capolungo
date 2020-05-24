@@ -1,6 +1,7 @@
 
 package it.polimi.ingsw.Network.Server;
 
+import it.polimi.ingsw.Controller.GameController;
 import it.polimi.ingsw.Network.Message.MessageFromServer.PlayerNumberRequest;
 
 import java.io.IOException;
@@ -55,6 +56,8 @@ public class ServerBeatReceiver extends Thread implements Runnable {
                 if (refLastBeatInstant - connections.get(i).lastBeatInstant > expectedCardiacRhythm)
                     removeBody(connections.get(i));
             }
+        } else {
+            server.setGameController(new GameController());
         }
 
     }
@@ -81,7 +84,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
             }
         }
         server.getServerThreads().remove(connection.serverThread);
-
+        connection.serverThread.RemoveObserver(connection.serverThread.getView());
         connection.serverThread.setKeepAlive(false);
         connections.remove(connection);
         System.out.println(toDelete + " deleted");

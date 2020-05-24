@@ -103,7 +103,7 @@
                <children>
                   <ImageView fx:id="Hephaestus" fitHeight="290.0" fitWidth="300.0" layoutX="181.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../godCards/Hepheaestus.png" />
+                        <Image url="@../godCards/Hephaestus.png" />
                      </image>
                      <effect>
                         <Glow />

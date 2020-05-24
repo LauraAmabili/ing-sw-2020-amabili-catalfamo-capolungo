@@ -7,7 +7,7 @@ import java.io.IOException;
 public class PlayerTurnUpdate extends MessageFromServer {
 
 
-    final String nickname;
+    private final String nickname;
 
     public PlayerTurnUpdate(String nickname) {
         this.nickname = nickname;

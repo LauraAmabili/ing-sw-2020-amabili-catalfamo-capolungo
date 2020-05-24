@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Server;
 
+import it.polimi.ingsw.Model.ObserverModel;
 import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
 import it.polimi.ingsw.Network.Message.MessageFromServer.MaxPlayerReachedUpdate;
 import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
@@ -17,7 +18,8 @@ public class ServerThread extends Thread implements Runnable {
     final Socket socket;
     final Server server;
     private final VisitorServer visitor = new VisitorMethodsServer(view, this);
-    boolean maxPlayerNumberSet;
+    private boolean maxPlayerNumberSet;
+    private boolean nicknameSet = false;
     int numPlayers;
     final int numOnline = 0;
     private ObjectOutputStream out;
@@ -25,6 +27,17 @@ public class ServerThread extends Thread implements Runnable {
     private volatile boolean keepAlive = true;
     private final boolean ready = false;
 
+    public boolean isNicknameSet() {
+        return nicknameSet;
+    }
+
+    public void setNicknameSet(boolean nicknameSet) {
+        this.nicknameSet = nicknameSet;
+    }
+
+    public void setMaxPlayerNumberSet(boolean maxPlayerNumberSet) {
+        this.maxPlayerNumberSet = maxPlayerNumberSet;
+    }
 
     public boolean isKeepAlive() {
         return keepAlive;
@@ -104,15 +117,17 @@ public class ServerThread extends Thread implements Runnable {
             try {
                 sendToClient(new PlayerNumberRequest());
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Connection with client lost");
             }
         } else {
             if (isMaxPlayerNumberSet() && server.getServerThreads().size() == numPlayers) {
                 for (int i = 0; i < server.getServerThreads().size(); i++) {
                     try {
-                        server.getServerThreads().get(i).sendToClient(new NicknameRequest());
+                        if(!server.getServerThreads().get(i).isNicknameSet()) {
+                            server.getServerThreads().get(i).sendToClient(new NicknameRequest());
+                        }
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Connection with client lost");
                     }
                 }
             }
@@ -121,7 +136,7 @@ public class ServerThread extends Thread implements Runnable {
                 try {
                     sendToClient(new MaxPlayerReachedUpdate());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Connection with client lost");
                 }
                 return;
             }
@@ -148,11 +163,14 @@ public class ServerThread extends Thread implements Runnable {
      * @param messageFromServer
      * @throws IOException
      */
-
     public void sendToClient(MessageFromServer messageFromServer) throws IOException {
         out.reset();
         out.writeObject(messageFromServer);
         out.flush();
+    }
+
+    public void RemoveObserver(ObserverModel view) {
+        server.getGameController().getGame().RemoveObserver(view);
     }
 
 }

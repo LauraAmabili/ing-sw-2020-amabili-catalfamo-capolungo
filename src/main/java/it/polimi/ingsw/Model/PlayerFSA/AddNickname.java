@@ -45,7 +45,6 @@ public class AddNickname extends PlayerFSA {
                         }
                     }
                     game.nameAccepted(name);
-
                     if(game.getOnlinePlayers().size() == game.getNicknames().size()) {
                         game.createChallenger();
                         game.timeToChallenger();

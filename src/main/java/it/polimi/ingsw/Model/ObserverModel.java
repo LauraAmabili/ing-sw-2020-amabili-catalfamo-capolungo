@@ -15,7 +15,7 @@ public interface ObserverModel {
 
     void updateGameisReady() throws IOException, InterruptedException;
 
-    void updateGodSet(String player, String godName) throws IOException;
+    void updateGodSet(PlayerInterface player, String godName) throws IOException;
 
     void updateBoard(Board board) throws IOException;
 
