@@ -1,11 +1,11 @@
-package it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods;
+package it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.Player;
+import it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods.SpecialMove_MoveTwice;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods.SpecialMove_MoveTwicePerimetral;
 import it.polimi.ingsw.Model.Worker;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SpecialMove_MoveTwiceTest {
+class SpecialMove_MoveTwicePerimetralTest {
 
     Game game = new Game();
     private final List<Worker> mockWorkers1 = new ArrayList<>();
@@ -34,7 +34,7 @@ class SpecialMove_MoveTwiceTest {
         worker1.setPlayerWorker(mockPlayer);
         mockWorkers1.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers1, board);
-        PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
+        PlayerInterface player = new SpecialMove_MoveTwicePerimetral(mockPlayer);
 
 
 
@@ -47,11 +47,13 @@ class SpecialMove_MoveTwiceTest {
 
         //enable specialMove
         player.setEnableSpecialMove(true);
-        assertTrue(player.move(2, 2, worker1));
         assertFalse(player.move(2, 2, worker1));
-        assertTrue(player.move(1, 1, worker1));
-        assertFalse(player.move(4, 4, worker1));
+        player.move(0,0, worker1);
+        assertTrue(player.move(0, 2, worker1));
 
+        /*assertSame(null, board.getGrid()[0][3].getWorker());
+        assertTrue(player.move(2, 2, worker1));
+        assertSame(worker1, board.getGrid()[2][2].getWorker());*/
 
     }
 }

@@ -55,7 +55,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        adj.removeIf(x -> x.getWorker().getPlayerWorker() == worker.getPlayerWorker());
+        //adj.removeIf(x -> x.getWorker().getPlayerWorker().getNickname().equals(worker.getPlayerWorker().getNickname()));
         adj.removeIf(BoardCell::getDome);
         if (worker.getPlayerWorker().isMoveUp()) {
             adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
@@ -64,8 +64,9 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         }
 
         for (int i = 0; i < adj.size(); i++) {
-            if (otherside(worker, adj.get(i).getWorker())==null)
-                adj.remove(i);
+            if (adj.get(i).getWorker() != null)
+                if (otherside(worker, adj.get(i).getWorker()) == null)
+                    adj.remove(i);
         }
 
 
@@ -73,7 +74,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
     }
 
 
-    public BoardCell otherside (Worker pushing, Worker pushed) {
+    public BoardCell otherside(Worker pushing, Worker pushed) {
         int rowPushingCell = pushing.getCurCell().getRow();
         int colPushingCell = pushing.getCurCell().getCol();
         int rowPushedCell = pushed.getCurCell().getRow();
