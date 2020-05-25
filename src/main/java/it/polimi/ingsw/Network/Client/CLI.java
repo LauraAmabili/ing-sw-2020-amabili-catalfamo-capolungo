@@ -17,6 +17,8 @@ public class CLI extends NotifyMessages implements UserInterface {
     Board boardToPrint = new Board();
     private Client client;
     UpdatesForMessages up;
+    List<God> gods = new ArrayList<>();
+
 
 
     public CLI() throws IOException {
@@ -88,10 +90,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         int worker = startingSetWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         System.out.println("Row: ");
-        String rowstring = string.nextLine();
+        String rowString = string.nextLine();
         System.out.println("Col: ");
-        String colstring = string.nextLine();
-        notifyStartingSetWorkerResponse(rowstring, colstring, worker);
+        String colString = string.nextLine();
+        notifyStartingSetWorkerResponse(rowString, colString, worker);
 
     }
 
@@ -101,10 +103,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         int worker = wrongCoordinatesUpdate.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
         System.out.println("Row: ");
-        String rowstring = string.nextLine();
+        String rowString = string.nextLine();
         System.out.println("Col: ");
-        String colstring = string.nextLine();
-        notifyWrongCoordinatesUpdate(rowstring, colstring, worker);
+        String colString = string.nextLine();
+        notifyWrongCoordinatesUpdate(rowString, colString, worker);
 
     }
 
@@ -119,9 +121,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
         boardToPrint = boardUpdate.getBoard();
-        //System.out.println(GREEN);
         boardToPrint.printGrid();
-        //System.out.println(RESET);
 
     }
 
@@ -139,7 +139,6 @@ public class CLI extends NotifyMessages implements UserInterface {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
 
-        //int worker = input.nextInt();
         String worker = string.nextLine();
         notifyChooseYourWorkerResponse(worker);
 
@@ -152,13 +151,13 @@ public class CLI extends NotifyMessages implements UserInterface {
         int worker = moveRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
         System.out.println("Row: ");
-        String rowstring = string.nextLine();
+        String rowString = string.nextLine();
 
         System.out.println("Col: ");
-        String colstring = string.nextLine();
+        String colString = string.nextLine();
 
 
-       notifyMoveResponse(rowstring, colstring, worker);
+       notifyMoveResponse(rowString, colString, worker);
     }
 
     @Override
@@ -225,6 +224,7 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.print(i.getGodName()+" ");
         }
         System.out.println();
+        gods = availableGodsUpdate.getCards();
 
 
     }
@@ -232,10 +232,27 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
-        System.out.println("Choose card: ");
+        System.out.println("Write 'cardName -desc' to have the description of the card, 'cardName' to select the card.");
+        //System.out.println("Choose card: ");
         String cardName = string.nextLine();
-        notifyChosenCardsUpdate(cardName);
-
+        if(cardName.contains("-desc")){
+            String[] phrase = cardName.split(" ");
+            System.out.println(phrase[0]);
+            for(God g : gods){
+                if(g.getGodName().equals(phrase[0])){
+                    System.out.println(g.getDescriptionEffect());
+                    break;
+                }
+                else {
+                    System.out.println("God not correct");
+                    break;
+                }
+            }
+            ChallengerCardsRequest(challengerCardsRequest);
+        }
+        else {
+            notifyChosenCardsUpdate(cardName);
+        }
     }
 
     @Override
@@ -265,8 +282,28 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
         System.out.println("Choose your card between:  " + setYourCardRequest.getAvailableGods());
+        System.out.println("Write 'cardName -desc' to have the description of the Card");
+        List<God> chosenGods = setYourCardRequest.getChosenGods();
         String in = string.nextLine();
-        notifySetYourCardResponse(in);
+        if(in.contains("-desc")){
+            String[] phrase = in.split(" ");
+            System.out.println(phrase[0]);
+            for(God g : chosenGods){
+                if(g.getGodName().equals(phrase[0])){
+                    System.out.println(g.getDescriptionEffect());
+                    break;
+                }
+                else {
+                    System.out.println("God not correct");
+                    break;
+                }
+            }
+           SetYourCardRequest(setYourCardRequest);
+        }
+        else {
+            notifySetYourCardResponse(in);
+        }
+
     }
 
     @Override
@@ -395,6 +432,9 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println(" +-----+ ");
         System.out.println(RESET);
     }
+
+
+
 
 
 

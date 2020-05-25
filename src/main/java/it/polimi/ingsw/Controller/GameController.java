@@ -24,6 +24,12 @@ public class GameController implements Observer {
         return game;
     }
 
+    /**
+     * calls the method on game to create the match with the number of players chosen and create the turn
+     * @param numberOfPlayers number of player decided by the first client
+     * @throws IOException Exception
+     * @throws InterruptedException Exception
+     */
     @Override
     public synchronized void updateInitialiseMatch(int numberOfPlayers) throws IOException, InterruptedException {
 
@@ -32,6 +38,11 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * checks the player with the correct state and set the nickname chosen by the client
+     * @param nickname chosen nickname
+     * @throws IOException Exception
+     */
     @Override
     public synchronized void updateNickname(String nickname) throws IOException {
 
@@ -44,6 +55,10 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * Calls the method to choose the cards by the challenger
+     * @throws IOException Exception
+     */
     @Override
     public synchronized void updateChoosingCards() throws IOException {
 
@@ -51,6 +66,11 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * If the current player is choosing the cards calls the method to add the chosencard to the list
+     * @param in name of the chosen card
+     * @throws IOException Exception
+     */
     @Override
     public synchronized void updateTryThisCard(String in) throws IOException {
 
@@ -60,6 +80,11 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * Calls the method if the player has the correct state to set the card chosen
+     * @param godName name of the god chosen by the current player
+     * @throws IOException Exception
+     */
     @Override
     public synchronized void updateSetGodName(String godName) throws IOException {
 
@@ -73,6 +98,13 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * calls the method with the coordinates for the worker to set
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker worker to be set
+     * @throws IOException Exception
+     */
     @Override
     public synchronized void updateAddingWorker(int row, int col, int worker) throws IOException {
 
@@ -85,6 +117,13 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * After checking if the player is in the correct state, calling the build with the coordinates chosen
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker worker just moved
+     * @throws IOException Exception
+     */
     @Override
     public void updateBuilding(int row, int col, int worker) throws IOException {
 
@@ -95,6 +134,10 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * After checking if the player is in the correct state, this check if the current player can move
+     * @throws IOException Exception
+     */
     @Override
     public void updateStartMoving() throws IOException {
 
@@ -107,6 +150,13 @@ public class GameController implements Observer {
 
     }
 
+
+    /**
+     * This method check if the player of the worker involved has the effect true
+     * @param effect effect boolean to set true if the client wants to use the effect
+     * @param worker worker to apply the effect to
+     * @throws IOException Exception
+     */
     @Override
     public void updateTryThisWorkerEffect(boolean effect, int worker) throws IOException {
 
@@ -123,6 +173,13 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * check if the current player in the correct state has the effect flag true
+     * @param effect effect to check
+     * @param nickname name of the current player
+     * @param worker worker to build around
+     * @throws IOException Exception
+     */
     @Override
     public void updatePlayerBuild(boolean effect, String nickname, int worker) throws IOException {
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
@@ -137,6 +194,15 @@ public class GameController implements Observer {
         }
     }
 
+    /**
+     *
+     * @param row1
+     * @param col1
+     * @param row2
+     * @param col2
+     * @param worker
+     * @throws IOException
+     */
     @Override
     public void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
