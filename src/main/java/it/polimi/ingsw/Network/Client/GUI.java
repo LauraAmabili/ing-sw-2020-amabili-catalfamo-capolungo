@@ -1,7 +1,10 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+import it.polimi.ingsw.Model.PlayerFSA.PlaceWorker;
+import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
@@ -29,6 +32,20 @@ public class GUI implements UserInterface {
     private String MyCard;
     private String currentPlayer;
     private PlayerInterface Me;
+    private Board board;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 
     public PlayerInterface getMe() {
         return Me;
@@ -82,15 +99,6 @@ public class GUI implements UserInterface {
         this.client = client;
     }
 
-    /*
-    public GUI() throws IOException {
-        client = new Client(this);
-        up = new UpdatesForMessages(client);
-        this.addObserver(up);
-    }
-
-
-     */
     @Override
     public void PlayerNumberRequest() {
         Platform.runLater(() -> {
@@ -136,10 +144,11 @@ public class GUI implements UserInterface {
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
+        state = "Placing workers";
         currentPlayer = startingSetWorkerTimeUpdate.getCurrentPlayer();
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
-            BoardController controller = new BoardController(client);
+            BoardController controller = new UpdateController(client, state);
             loader.setController(controller);
             Parent root = null;
             try {
@@ -154,11 +163,37 @@ public class GUI implements UserInterface {
 
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
-
+        int worker = startingSetWorkerRequest.getWorker();
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            PlaceWorkerController controller = new PlaceWorkerController(client, worker, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
+
+        int worker = wrongCoordinatesUpdate.getWorker();
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            PlaceWorkerController controller = new PlaceWorkerController(client, worker, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -170,10 +205,10 @@ public class GUI implements UserInterface {
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
-        //TODO: create Board Scene
+        setBoard(boardUpdate.getBoard());
         Platform.runLater(() -> {
-            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
-            ChosenCardsController controller = new ChosenCardsController(client);
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new UpdateController(client, state);
             loader.setController(controller);
             Parent root = null;
             try {
@@ -189,10 +224,38 @@ public class GUI implements UserInterface {
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
+        currentPlayer = playerTurnUpdate.getNickname();
+        state = "Moving";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new UpdateController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new ChooseWorkerController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 

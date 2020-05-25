@@ -43,7 +43,6 @@ public class SetCard extends PlayerFSA{
                 }
             }
             game.getCurrentTurn().nextTurn(game);
-
             if(game.getAvailableGods().size() != 0) {
                 game.toSetCard();
             } else {

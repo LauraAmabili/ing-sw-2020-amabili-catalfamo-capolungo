@@ -339,7 +339,7 @@ public class VirtualView extends Observable implements ObserverModel {
     public void setWorkers1(String currentPlayerName, int i) throws IOException {
 
         if(MyNickname.equals(currentPlayerName)) {
-                thread.sendToClient(new StartingSetWorkerRequest(i));
+            thread.sendToClient(new StartingSetWorkerRequest(i));
         }
 
     }
@@ -353,9 +353,7 @@ public class VirtualView extends Observable implements ObserverModel {
     @Override
     public void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException {
 
-        Board boardToSend = new Board();
-        boardToSend = board;
-        thread.sendToClient(new BoardUpdate("boo", boardToSend));
+        thread.sendToClient(new BoardUpdate(board));
         setWorkers2(currentPlayer, 1);
 
     }
@@ -395,7 +393,7 @@ public class VirtualView extends Observable implements ObserverModel {
     public void updateSetWorkerOk(String currentPlayer, Board board) throws IOException {
 
         if(MyNickname.equals(currentPlayer)){
-            thread.sendToClient(new BoardUpdate("ciao", board));
+            thread.sendToClient(new BoardUpdate(board));
         }
     }
 
@@ -754,7 +752,7 @@ public class VirtualView extends Observable implements ObserverModel {
     @Override
     public void updateBoard(Board board) throws IOException {
 
-        thread.sendToClient(new BoardUpdate("board updated", board));
+        thread.sendToClient(new BoardUpdate(board));
     }
 
     //TODO: ?
