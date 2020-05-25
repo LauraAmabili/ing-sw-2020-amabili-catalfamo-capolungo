@@ -92,7 +92,7 @@ public class GameTest {
 
 
     @Test
-    public void isGodNameSetted() throws IOException {
+    public void isGodNameSet() throws IOException {
 
         game.getStateList().get(0).addNickname("Notateen");
         game.getStateList().get(1).addNickname("SuperRexo");
@@ -194,23 +194,5 @@ public class GameTest {
         Assert.assertEquals(game.getBoard().getGrid()[1][2].getLevel(), 1);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    State state = State.ADDNICKNAME;
-    assertEquals(game.getCurrentTurn().getCurrentPlayer().getNickname(), "Notateen");
-     */
-
-
 
 }

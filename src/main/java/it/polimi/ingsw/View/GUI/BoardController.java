@@ -1,25 +1,33 @@
 package it.polimi.ingsw.View.GUI;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class BoardController extends NotifyMessages implements Initializable {
+public abstract class BoardController extends NotifyMessages {
 
     Client client;
     UpdatesForMessages up;
+    GUI gui;
+    String state;
+
+    public BoardController(Client client, String state) {
+        this.client = client;
+        this.state = state;
+        gui = (GUI) client.getUserInterface();
+        up = new UpdatesForMessages(client);
+        addObserver(up);
+    }
 
     @FXML
     GridPane Board = new GridPane();
@@ -30,70 +38,99 @@ public class BoardController extends NotifyMessages implements Initializable {
     @FXML
     ImageView Card3 = new ImageView();
     @FXML
-    Text NameText1 = new Text();
+    TextField NameText1 = new TextField();
     @FXML
-    Text NameText2 = new Text();
+    TextField NameText2 = new TextField();
     @FXML
-    Text NameText3 = new Text();
+    TextField NameText3 = new TextField();
     @FXML
     Text CurrentTurnPlayer = new Text();
+    @FXML
+    TextField ActionText = new TextField();
+    @FXML
+    Button SpecialEffect = new Button();
 
-    public BoardController(Client client) {
-        this.client = client;
-        up = new UpdatesForMessages(client);
-        addObserver(up);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        LoadNameAndCards();
-
-    }
 
 
     public void LoadNameAndCards() {
-        GUI gui = (GUI) client.getUserInterface();
         String url;
+        gui = (GUI) client.getUserInterface();
         String name = gui.getMe().getNickname();
-        NameText3.setText(name);
-        if(gui.getMe().getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
-            NameText3.setFill(Color.BLUE);
-        } else if(gui.getMe().getWorkerRef().get(0).getColor().equals("\u001B[35m")) {
-            NameText3.setFill(Color.DARKMAGENTA);
-        } else {
-            NameText3.setFill(Color.GOLDENROD);
-        }
-        name = gui.getOpponentPlayers().get(0).getNickname();
         NameText1.setText(name);
-        if(gui.getOpponentPlayers().get(0).getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
-            NameText1.setFill(Color.BLUE);
-        } else if(gui.getOpponentPlayers().get(0).getWorkerRef().get(0).getColor().equals("\u001B[35m")) {
-            NameText1.setFill(Color.DARKMAGENTA);
-        } else {
-            NameText1.setFill(Color.GOLDENROD);
-        }
-        if(gui.getOpponentPlayers().size() > 2) {
+        setColor(gui.getMe(), NameText1);
+        name = gui.getOpponentPlayers().get(0).getNickname();
+        NameText3.setText(name);
+        setColor(gui.getOpponentPlayers().get(0), NameText3);
+        if(gui.getOpponentPlayers().size() > 1) {
             name = gui.getOpponentPlayers().get(1).getNickname();
             NameText2.setText(name);
-            if(gui.getOpponentPlayers().get(1).getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
-                NameText2.setFill(Color.BLUE);
-            } else if(gui.getOpponentPlayers().get(1).getWorkerRef().get(0).getColor().equals("\u001B[35m")) {
-                NameText2.setFill(Color.DARKMAGENTA);
-            } else {
-                NameText2.setFill(Color.GOLDENROD);
-            }
+            setColor(gui.getOpponentPlayers().get(1), NameText2);
+        } else {
+            NameText2.setVisible(false);
+            NameText2.setDisable(true);
         }
         url = "/godCards/" + gui.getMyCard() + ".png";
         Card3.setImage(new Image(url));
         url = "/godCards/" + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + ".png";
         Card1.setImage(new Image(url));
-        if(gui.getOpponentPlayers().size() > 2) {
+        if(gui.getOpponentPlayers().size() > 1) {
             url = "/godCards/" + gui.getOpponentPlayers().get(1).getActiveCard().getGodName() + ".png";
             Card2.setImage(new Image(url));
         }
         CurrentTurnPlayer.setText("Current Turn: " + gui.getCurrentPlayer());
     }
 
+    public void setColor(PlayerInterface player, TextField NameText) {
+        if(player.getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
+            NameText.setStyle("-fx-text-fill: blue");
+        } else if(player.getWorkerRef().get(0).getColor().equals("\u001B[35m")) {
+            NameText.setStyle("-fx-text-fill: darkmagenta");
+        } else {
+            NameText.setStyle("-fx-text-fill: goldenrod");
+        }
+    }
+
+    public void LoadBoard() {
+        String color;
+        it.polimi.ingsw.Model.Board board = gui.getBoard();
+        if(board != null) {
+            for (int i = 0; i < board.getGrid()[0].length; i++) {
+                for(int j = 0; j < board.getGrid()[0].length; j++) {
+                    Pane cell = (Pane) Board.getChildren().get(j + (i * 5));
+                    if (board.getGrid()[i][j].getLevel() == 1) {
+                        ImageView imageView = (ImageView) cell.getChildren().get(2);
+                        imageView.setImage(new Image("/Images/LevelNumberOne.PNG"));
+                    } else if (board.getGrid()[i][j].getLevel() == 2) {
+                        ImageView imageView = (ImageView) cell.getChildren().get(2);
+                        imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
+                    } else if (board.getGrid()[i][j].getLevel() == 3) {
+                        ImageView imageView = (ImageView) cell.getChildren().get(2);
+                        imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
+                    } else if (board.getGrid()[i][j].getDome()) {
+                        ImageView imageView = (ImageView) cell.getChildren().get(2);
+                        imageView.setImage(new Image("/Images/LevelNumberDome.PNG"));
+                    }
+                    if (board.getGrid()[i][j].getWorker() != null) {
+                        color = board.getGrid()[i][j].getWorker().getColor();
+                        if (color.equals("\u001B[34m")) {
+                            ImageView imageView = (ImageView) cell.getChildren().get(1);
+                            imageView.setImage(new Image("/Images/BlueHammer.png"));
+                        } else if (color.equals("\u001B[35m")) {
+                            ImageView imageView = (ImageView) cell.getChildren().get(1);
+                            imageView.setImage(new Image("/Images/PurpleHammer.png"));
+                        } else {
+                            ImageView imageView = (ImageView) cell.getChildren().get(1);
+                            imageView.setImage(new Image("/Images/YellowHammer.png"));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void StateText(String state) {
+        String text = "Current Action: " + state;
+        ActionText.setText(text);
+    }
 
 }

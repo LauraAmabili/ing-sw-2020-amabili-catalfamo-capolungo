@@ -119,9 +119,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
         boardToPrint = boardUpdate.getBoard();
-        //System.out.println(GREEN);
         boardToPrint.printGrid();
-        //System.out.println(RESET);
 
     }
 

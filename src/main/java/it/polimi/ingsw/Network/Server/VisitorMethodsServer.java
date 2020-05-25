@@ -87,7 +87,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int col = Integer.parseInt(colString);
             int worker = startingSetWorkerResponse.getWorker();
             view.toSetWorker(row, col, worker);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             int worker = startingSetWorkerResponse.getWorker();
             serverThread.sendToClient(new WrongCoordinatesUpdate(worker));
         }

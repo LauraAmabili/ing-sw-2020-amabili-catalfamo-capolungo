@@ -8,21 +8,11 @@ import java.io.IOException;
 public class BoardUpdate extends MessageFromServer {
 
     //Board board;
-    String boardUpdate;
     Board board;
 
-    public BoardUpdate(String boardUpdate, Board board) {
+    public BoardUpdate(Board board) {
 
         this.board = board;
-        this.boardUpdate = boardUpdate;
-    }
-
-    public String getBoardUpdate() {
-        return boardUpdate;
-    }
-
-    public void setBoardUpdate(String boardUpdate) {
-        this.boardUpdate = boardUpdate;
     }
 
     public Board getBoard() {

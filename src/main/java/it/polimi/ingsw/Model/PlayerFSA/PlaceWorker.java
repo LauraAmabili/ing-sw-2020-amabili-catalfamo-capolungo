@@ -19,7 +19,7 @@ public class PlaceWorker extends PlayerFSA{
     public void placeWorker(int row, int col, int worker) throws IOException {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
             //game.updateBoard();
-            if(worker==0){
+            if(worker == 0){
                 game.BoardWorkerUpdate();
             }
             else {
