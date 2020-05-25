@@ -1,6 +1,5 @@
 package it.polimi.ingsw.View.GUI;
 
-import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Network.Client.Client;
 import javafx.event.EventHandler;
@@ -13,60 +12,57 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChooseWorkerController extends BoardController implements Initializable {
+public class MovingController extends BoardController implements Initializable {
 
-    String worker;
-    BoardCell[][] grid;
-    int row;
     int col;
+    int row;
+    int worker;
+    BoardCell[][] grid;
 
-    public ChooseWorkerController(Client client, String state) {
+    public MovingController(Client client, String state,int worker) {
         super(client, state);
         grid = gui.getBoard().getGrid();
+        this.worker = worker;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         LoadNameAndCards();
         LoadBoard();
         setUpButtons();
         StateText(state);
-
     }
 
     public void setUpButtons() {
+        if(gui.getMe().isEnableSpecialMove()) {
+            UseEffect.setDisable(false);
+        } else if(!gui.getMe().isEnableSpecialMove()) {
+            DontUseEffect.setDisable(false);
+        }
         for(Node node : Board.getChildren()) {
             node.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     if(GridPane.getColumnIndex((Node) mouseEvent.getSource()) != null) {
-                        col = (GridPane.getColumnIndex((Node) mouseEvent.getSource()));
+                        col = (GridPane.getColumnIndex((Node) mouseEvent.getSource()) + 1);
                     } else {
-                        col = 0;
+                        col = 1;
                     }
                     if((GridPane.getRowIndex((Node) mouseEvent.getSource())) != null) {
-                        row = (GridPane.getRowIndex((Node) mouseEvent.getSource()));
+                        row = (GridPane.getRowIndex((Node) mouseEvent.getSource()) + 1);
                     } else {
-                        row = 0;
+                        row = 1;
                     }
-                    if (grid[row][col].getWorker() != null && gui.getMe().getNickname().equals(grid[row][col].getWorker().getPlayerWorker().getNickname())) {
-                        if (grid[row][col].getWorker().getPlayerWorker().getWorkerRef().get(0).getIdWorker() == grid[row][col].getWorker().getIdWorker()) {
-                            worker = 1 + "";
-                        } else {
-                            worker = 2 + "";
-                        }
-                        try {
-                            notifyChooseYourWorkerResponse(worker);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    String rowString = row + "";
+                    String colString = col + "";
+                    try {
+                        notifyMoveResponse(rowString, colString, worker);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             });
         }
-
     }
-
 
 }

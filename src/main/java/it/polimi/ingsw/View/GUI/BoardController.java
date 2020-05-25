@@ -48,7 +48,9 @@ public abstract class BoardController extends NotifyMessages {
     @FXML
     TextField ActionText = new TextField();
     @FXML
-    Button SpecialEffect = new Button();
+    Button UseEffect = new Button();
+    @FXML
+    Button DontUseEffect = new Button();
 
 
 

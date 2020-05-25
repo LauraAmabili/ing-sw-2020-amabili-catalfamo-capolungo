@@ -244,6 +244,7 @@ public class GUI implements UserInterface {
     @Override
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
 
+        state = "Choosing Worker";
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
             BoardController controller = new ChooseWorkerController(client, state);
@@ -261,6 +262,21 @@ public class GUI implements UserInterface {
 
     @Override
     public void MoveRequest(MoveRequest moveRequest) {
+
+        int worker = moveRequest.getWorker();
+        state = "Moving";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new MovingController(client, state, worker);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -382,6 +398,21 @@ public class GUI implements UserInterface {
 
     @Override
     public void AskEffect() {
+
+        String name = client.getNickname();
+        state = "Choosing effect";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new AskEffectController(client, state, name);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
