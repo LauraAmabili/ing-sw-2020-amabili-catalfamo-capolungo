@@ -347,9 +347,10 @@ public class GUI implements UserInterface {
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
+        String name = chooseCardsUpdate.getChallenger();
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ChallengerNameScene.fxml"));
-            ChosenCardsController controller = new ChosenCardsController(client);
+            TimeToChallengerController controller = new TimeToChallengerController(client, name);
             loader.setController(controller);
             Parent root = null;
             try {
