@@ -235,18 +235,19 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Write 'cardName -desc' to have the description of the card, 'cardName' to select the card.");
         //System.out.println("Choose card: ");
         String cardName = string.nextLine();
+        boolean flag = true;
         if(cardName.contains("-desc")){
             String[] phrase = cardName.split(" ");
             System.out.println(phrase[0]);
             for(God g : gods){
                 if(g.getGodName().equals(phrase[0])){
                     System.out.println(g.getDescriptionEffect());
+                    flag = false;
                     break;
                 }
-                else {
-                    System.out.println("God not correct");
-                    break;
-                }
+            }
+            if(flag){
+                System.out.println("God not correct ");
             }
             ChallengerCardsRequest(challengerCardsRequest);
         }
@@ -285,18 +286,19 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Write 'cardName -desc' to have the description of the Card");
         List<God> chosenGods = setYourCardRequest.getChosenGods();
         String in = string.nextLine();
+        boolean flag = true;
         if(in.contains("-desc")){
             String[] phrase = in.split(" ");
             System.out.println(phrase[0]);
             for(God g : chosenGods){
                 if(g.getGodName().equals(phrase[0])){
                     System.out.println(g.getDescriptionEffect());
+                    flag = false;
                     break;
                 }
-                else {
-                    System.out.println("God not correct");
-                    break;
-                }
+            }
+            if(flag){
+                System.out.println("God not correct ");
             }
            SetYourCardRequest(setYourCardRequest);
         }

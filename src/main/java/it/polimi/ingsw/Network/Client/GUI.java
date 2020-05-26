@@ -297,6 +297,19 @@ public class GUI implements UserInterface {
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ChallengerNameScene.fxml"));
+            BoardController controller = new ChooseWorkerController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
@@ -327,7 +340,7 @@ public class GUI implements UserInterface {
 
     @Override
     public void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
-
+        //non necessario
     }
 
     @Override
@@ -377,7 +390,7 @@ public class GUI implements UserInterface {
 
     @Override
     public void MaxPlayerReachedUpdate() {
-
+        //non necesssario
     }
 
     @Override
@@ -397,7 +410,7 @@ public class GUI implements UserInterface {
 
     @Override
     public void NumberOfPlayerWrong() {
-
+        //non necessario
     }
 
     @Override
