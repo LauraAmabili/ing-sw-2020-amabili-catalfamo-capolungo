@@ -570,7 +570,6 @@ public class VirtualView extends Observable implements ObserverModel {
         if(MyNickname.equals(current)) {
             thread.sendToClient(new MoveRequest(worker));
         }
-        //se mi sono mossa costruisco
     }
 
     /**

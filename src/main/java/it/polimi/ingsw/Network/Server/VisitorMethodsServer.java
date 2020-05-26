@@ -103,7 +103,7 @@ public class VisitorMethodsServer implements VisitorServer {
         String worker  = chooseYourWorkerResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            if(w<3) {
+            if(w < 3 && w > 0) {
                 view.tryThisWorker(w);
             } else {
                 serverThread.sendToClient(new WorkerInputNotValid());
@@ -177,8 +177,8 @@ public class VisitorMethodsServer implements VisitorServer {
         String worker  = chooseYourWorkerEffectResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            if(w<3){
-                view.tryThisWorkerEffect(effect,w);
+            if(w < 3 && w > 0) {
+                view.tryThisWorkerEffect(effect, w);
             }
             else {
                 serverThread.sendToClient(new WorkerInputNotValid());
@@ -197,10 +197,10 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
 
-        if( askEffectBuildResponse.getEffect().equals("y")) {
+        if(askEffectBuildResponse.getEffect().equals("y")) {
             view.updatePlayerBuild(true, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
         }
-        else if(askEffectBuildResponse.getEffect().equals("n")){
+        else if(askEffectBuildResponse.getEffect().equals("n")) {
             view.updatePlayerBuild(false, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
 
         } else {

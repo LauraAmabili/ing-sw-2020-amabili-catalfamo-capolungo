@@ -71,7 +71,7 @@ public class UpdatesForMessages implements ClientObserver {
     }
 
     public void updateChooseYourWorkerEffectResponse(String worker, boolean effect) throws IOException {
-        client.send(new ChooseYourWorkerResponse(worker));
+        client.send(new ChooseYourWorkerEffectResponse(worker, effect));
     }
 
 

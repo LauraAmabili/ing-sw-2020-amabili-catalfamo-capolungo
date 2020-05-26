@@ -349,7 +349,7 @@ public class GUI implements UserInterface {
 
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ChallengerNameScene.fxml"));
-            BoardController controller = new ChooseWorkerController(client, state);
+            ChosenCardsController controller = new ChosenCardsController(client);
             loader.setController(controller);
             Parent root = null;
             try {

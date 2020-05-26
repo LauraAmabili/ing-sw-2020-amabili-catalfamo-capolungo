@@ -18,6 +18,7 @@ public class SpecialWin_MoveDown extends PlayerDecorator {
      * @param worker
      * @return
      */
+    @Override
     public boolean checkWin(@NotNull Worker worker) {
 
         return

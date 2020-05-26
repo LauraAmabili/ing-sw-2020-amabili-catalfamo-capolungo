@@ -115,10 +115,7 @@ public class VisitorMethodsClient implements VisitorClient {
     @Override
     public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
-
         userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
-        //client.send(new ChooseYourWorkerResponse(worker));
-
 
     }
 

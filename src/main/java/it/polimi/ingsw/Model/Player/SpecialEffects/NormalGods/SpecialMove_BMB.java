@@ -58,6 +58,7 @@ public class SpecialMove_BMB extends PlayerDecorator {
         return player.move(row, col, worker);
     }
 
+    @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         if (enableSpecialMove) {
             List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());

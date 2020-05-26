@@ -106,7 +106,7 @@ public abstract class BoardController extends NotifyMessages {
                     } else if (board.getGrid()[i][j].getLevel() == 2) {
                         ImageView imageView = (ImageView) cell.getChildren().get(2);
                         imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
-                    } else if (board.getGrid()[i][j].getLevel() == 3) {
+                    } else if (board.getGrid()[i][j].getLevel() == 3 && !board.getGrid()[i][j].getDome()) {
                         ImageView imageView = (ImageView) cell.getChildren().get(2);
                         imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
                     } else if (board.getGrid()[i][j].getDome()) {

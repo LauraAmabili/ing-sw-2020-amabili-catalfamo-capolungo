@@ -39,6 +39,7 @@ public class Moving extends PlayerFSA {
 
     @Override
     public void checkWorker(int worker, boolean effect) throws IOException {
+
         this.effect = effect;
         player.setEnableSpecialMove(effect);
         if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
@@ -50,6 +51,7 @@ public class Moving extends PlayerFSA {
             game.updateWorkerSelected(worker);
         }
         game.timeToMove(worker);
+
     }
 
     @Override

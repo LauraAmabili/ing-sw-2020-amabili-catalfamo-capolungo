@@ -38,7 +38,7 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
      * @param worker Worker used
      * @return true <--> the method works </-->
      */
-
+    @Override
     public boolean build(int row, int col, @NotNull Worker worker) {
         if (enableSpecialBuild) {
             if(availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {

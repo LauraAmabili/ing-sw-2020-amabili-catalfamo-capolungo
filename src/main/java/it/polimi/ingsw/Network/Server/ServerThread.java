@@ -147,7 +147,7 @@ public class ServerThread extends Thread implements Runnable {
             try {
                 MessageFromClient message = ((MessageFromClient) in.readObject());
                 System.out.println("Message received");
-                message.accept(visitor);
+                Accept(message);
             } catch (IOException e) {
                 return;
             } catch (ClassNotFoundException | InterruptedException e) {
@@ -167,6 +167,10 @@ public class ServerThread extends Thread implements Runnable {
         out.reset();
         out.writeObject(messageFromServer);
         out.flush();
+    }
+
+    public synchronized void Accept(MessageFromClient msg) throws IOException, InterruptedException {
+        msg.accept(visitor);
     }
 
     public void RemoveObserver(ObserverModel view) {

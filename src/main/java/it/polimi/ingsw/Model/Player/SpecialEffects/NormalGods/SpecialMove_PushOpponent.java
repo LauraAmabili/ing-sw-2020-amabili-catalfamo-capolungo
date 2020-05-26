@@ -23,6 +23,7 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
      * @param worker
      * @return
      */
+    @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
 
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {

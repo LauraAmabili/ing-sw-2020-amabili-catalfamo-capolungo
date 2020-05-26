@@ -138,7 +138,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-
         //int worker = input.nextInt();
         String worker = string.nextLine();
         notifyChooseYourWorkerResponse(worker);
@@ -285,7 +284,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         List<God> chosenGods = setYourCardRequest.getChosenGods();
         String in = string.nextLine();
         boolean flag = true;
-        if(in.contains("-desc")){
+        if(in.contains("-desc")) {
             String[] phrase = in.split(" ");
             System.out.println(phrase[0]);
             for(God g : chosenGods){
@@ -299,8 +298,7 @@ public class CLI extends NotifyMessages implements UserInterface {
                 System.out.println("God not correct ");
             }
            SetYourCardRequest(setYourCardRequest);
-        }
-        else {
+        } else {
             notifySetYourCardResponse(in);
         }
 

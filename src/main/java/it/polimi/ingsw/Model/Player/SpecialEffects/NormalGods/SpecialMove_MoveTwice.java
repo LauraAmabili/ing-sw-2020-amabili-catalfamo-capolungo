@@ -43,6 +43,7 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      * @param worker
      * @return
      */
+    @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
@@ -65,6 +66,7 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      * @param worker Worker used
      * @return ArrayList with the BoardCells
      */
+    @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         if(enableSpecialMove) {
             List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
