@@ -8,6 +8,7 @@ import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -48,7 +49,9 @@ public abstract class BoardController extends NotifyMessages {
     @FXML
     TextField ActionText = new TextField();
     @FXML
-    Button SpecialEffect = new Button();
+    ToggleButton UseEffect = new ToggleButton();
+    @FXML
+    ToggleButton DontUseEffect = new ToggleButton();
 
 
 
@@ -70,9 +73,9 @@ public abstract class BoardController extends NotifyMessages {
             NameText2.setDisable(true);
         }
         url = "/godCards/" + gui.getMyCard() + ".png";
-        Card3.setImage(new Image(url));
-        url = "/godCards/" + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + ".png";
         Card1.setImage(new Image(url));
+        url = "/godCards/" + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + ".png";
+        Card3.setImage(new Image(url));
         if(gui.getOpponentPlayers().size() > 1) {
             url = "/godCards/" + gui.getOpponentPlayers().get(1).getActiveCard().getGodName() + ".png";
             Card2.setImage(new Image(url));

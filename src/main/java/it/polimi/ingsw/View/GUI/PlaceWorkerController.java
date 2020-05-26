@@ -38,10 +38,12 @@ public class PlaceWorkerController extends BoardController implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         setUpButtons();
         LoadNameAndCards();
         LoadBoard();
         StateText(state);
+
     }
 
     public void setUpButtons() {

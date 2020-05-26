@@ -139,6 +139,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
 
+        //int worker = input.nextInt();
         String worker = string.nextLine();
         notifyChooseYourWorkerResponse(worker);
 
@@ -152,12 +153,9 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Choose row and col for worker " + worker + " : " );
         System.out.println("Row: ");
         String rowString = string.nextLine();
-
         System.out.println("Col: ");
         String colString = string.nextLine();
-
-
-       notifyMoveResponse(rowString, colString, worker);
+        notifyMoveResponse(rowString, colString, worker);
     }
 
     @Override

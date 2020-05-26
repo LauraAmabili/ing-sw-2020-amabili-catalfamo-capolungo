@@ -27,9 +27,12 @@ public class ChooseWorkerController extends BoardController implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         LoadNameAndCards();
         LoadBoard();
         setUpButtons();
+        StateText(state);
+
     }
 
     public void setUpButtons() {
@@ -54,7 +57,11 @@ public class ChooseWorkerController extends BoardController implements Initializ
                             worker = 2 + "";
                         }
                         try {
-                            notifyChooseYourWorkerResponse(worker);
+                            if(!gui.getMe().isEnableSpecialMove()) {
+                                notifyChooseYourWorkerResponse(worker);
+                            } else {
+                                notifyChooseYourWorkerEffectResponse(worker, gui.getMe().isEnableSpecialMove());
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

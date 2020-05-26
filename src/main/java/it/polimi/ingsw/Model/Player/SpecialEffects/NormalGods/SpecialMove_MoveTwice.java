@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SpecialMove_MoveTwice extends PlayerDecorator {
 
-    private boolean hasSpecialMove = true;
+    private final boolean hasSpecialMove;
 
     @Override
     public boolean isEnableSpecialMove() {

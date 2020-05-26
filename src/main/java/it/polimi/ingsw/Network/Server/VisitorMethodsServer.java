@@ -158,16 +158,6 @@ public class VisitorMethodsServer implements VisitorServer {
     @Override
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
-        /*
-        if(askEffectReply.getEffect()=="y") {
-            boolean effect = askEffectReply.getEffect().equals("y");
-            view.updateTimeToChooseWorkerEffect(effect);
-        }
-        else if(askEffectReply.getEffect()=="n"){
-
-
-         */
-
         if(askEffectReply.getEffect().equals("y")) {
             view.updateTimeToChooseWorkerEffect(true);
         }
@@ -177,32 +167,6 @@ public class VisitorMethodsServer implements VisitorServer {
             serverThread.sendToClient(new WorkerInputNotValid());
             view.updateAskForEffect(askEffectReply.getPlayerNickname());
         }
-
-        /*
-        if( askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equals("n")){
-
-            boolean effect = askEffectReply.getEffect().equals("y");
-            view.updateTimeToChooseWorkerEffect(effect);
-
-        } else {
-            serverThread.sendToClient(new WorkerInputNotValid());
-            view.updateAskForEffect(askEffectReply.getPlayerNickname());
-        }
-
-
-           // boolean effect = askEffectReply.getEffect().equals("y");
-            //view.updateTimeToChooseWorkerEffect(effect);
-            /*
-        }
-        else {
-           // if(askEffectReply.getEffect().equals("y") || askEffectReply.getEffect().equalsIgnoreCase("yes")){
-            serverThread.sendToClient(new WorkerInputNotValid());
-            view.updateAskForEffect(askEffectReply.getPlayerNickname());
-            //}
-        }
-
-             */
-
 
     }
 
