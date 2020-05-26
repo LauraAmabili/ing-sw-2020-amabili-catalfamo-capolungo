@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MovingController extends BoardController implements Initializable {
+public class BuildingController extends BoardController implements Initializable {
 
     int col;
     int row;
     int worker;
 
-    public MovingController(Client client, String state,int worker) {
+    public BuildingController(Client client, String state, int worker) {
         super(client, state);
         this.worker = worker;
     }
@@ -32,10 +32,10 @@ public class MovingController extends BoardController implements Initializable {
     }
 
     public void setUpButtons() {
-        if(gui.getMe().isEnableSpecialMove()) {
+        if(gui.getMe().isEnableSpecialBuild()) {
             UseEffect.setDisable(false);
             UseEffect.setSelected(true);
-        } else if(!gui.getMe().isEnableSpecialMove()) {
+        } else {
             DontUseEffect.setDisable(false);
             DontUseEffect.setSelected(true);
         }
@@ -56,7 +56,7 @@ public class MovingController extends BoardController implements Initializable {
                     String rowString = row + "";
                     String colString = col + "";
                     try {
-                        notifyMoveResponse(rowString, colString, worker);
+                        notifyBuildResponse(rowString, colString, worker);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

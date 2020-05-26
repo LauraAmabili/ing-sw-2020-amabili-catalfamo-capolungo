@@ -232,11 +232,11 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Write 'cardName -desc' to have the description of the card, 'cardName' to select the card.");
         //System.out.println("Choose card: ");
         String cardName = string.nextLine();
-        if(cardName.contains("-desc")){
+        if(cardName.contains("-desc")) {
             String[] phrase = cardName.split(" ");
             System.out.println(phrase[0]);
-            for(God g : gods){
-                if(g.getGodName().equals(phrase[0])){
+            for(God g : gods) {
+                if(g.getGodName().equals(phrase[0])) {
                     System.out.println(g.getDescriptionEffect());
                     break;
                 }
@@ -246,8 +246,7 @@ public class CLI extends NotifyMessages implements UserInterface {
                 }
             }
             ChallengerCardsRequest(challengerCardsRequest);
-        }
-        else {
+        } else {
             notifyChosenCardsUpdate(cardName);
         }
     }
@@ -342,7 +341,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
         int worker = askEffectBuild.getWorker();
-        notifyAskeffectBuildResponse(effect,client.getNickname(),worker);
+        notifyAskeffectBuildResponse(effect, client.getNickname(),worker);
        // return effect;
 
     }

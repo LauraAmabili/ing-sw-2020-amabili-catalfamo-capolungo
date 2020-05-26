@@ -29,11 +29,16 @@ public class GUI implements UserInterface {
     private List<String> opponentChosenCards;
     private final List<String> opponentPlayerName = new ArrayList<>();
     private final List<PlayerInterface> opponentPlayers = new ArrayList<>();
+    private List<String> cards = new ArrayList<>();
     private String MyCard;
     private String currentPlayer;
     private PlayerInterface Me;
     private Board board;
     private String state;
+
+    public List<String> getCards() {
+        return cards;
+    }
 
     public String getState() {
         return state;
@@ -283,10 +288,39 @@ public class GUI implements UserInterface {
     @Override
     public void BuildTimeUpdate() {
 
+        state = "Building";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new UpdateController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
     public void BuildRequest(BuildRequest buildRequest) {
+
+        int worker = buildRequest.getWorker();
+        state = "Building";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new BuildingController(client, state, worker);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -322,6 +356,7 @@ public class GUI implements UserInterface {
 
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
+
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
             ChosenCardsController controller = new ChosenCardsController(client);
@@ -401,6 +436,7 @@ public class GUI implements UserInterface {
 
         String name = client.getNickname();
         state = "Choosing effect";
+        Me.setEnableSpecialMove(false);
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
             BoardController controller = new AskEffectController(client, state, name);
@@ -419,10 +455,40 @@ public class GUI implements UserInterface {
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
 
+        state = "Choosing Worker";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new ChooseWorkerController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) {
+
+        String name = client.getNickname();
+        Me.setEnableSpecialMove(false);
+        state = "Choosing effect";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new AskEffectController(client, state, name);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
