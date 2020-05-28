@@ -49,8 +49,8 @@ public class Server {
      * Create the thread that manages the connection
      * Listen for new connections from clients
      *
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException exception
+     * @throws ClassNotFoundException exception
      */
     public void startServer() throws IOException, ClassNotFoundException {
 

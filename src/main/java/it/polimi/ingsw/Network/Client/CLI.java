@@ -419,6 +419,12 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    @Override
+    public void DroppedCOnnection(DroppedConnection droppedConnection) {
+        String playerOut = droppedConnection.getNickname();
+        System.out.println( playerOut + "disconnected!");
+    }
+
 
     public void face(){
 

@@ -282,11 +282,12 @@ public class GameController implements Observer {
      * @param nickname name of the player that drop his connection
      */
     @Override
-    public void updateDropConnection(String nickname) {
+    public void updateDropConnection(String nickname) throws IOException {
         for (PlayerInterface p : game.getOnlinePlayers()) {
             if(p.getNickname().equals(nickname)) {
                 if(game.getCurrentTurn().getCurrentPlayer().getNickname().equals(p.getNickname())) {
                     //TODO: send to other players drop connection error
+                    game.sendDropConnection(nickname);
                     game.getCurrentTurn().nextTurn(game);
                 }
                 game.delPlayer(p);

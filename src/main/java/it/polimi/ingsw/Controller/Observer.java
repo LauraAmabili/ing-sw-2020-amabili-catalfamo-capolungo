@@ -20,5 +20,5 @@ public interface Observer {
     void updatePlayerBuild(boolean effect, String nickname, int worker) throws IOException;
     void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
     void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
-    void updateDropConnection(String nickname);
+    void updateDropConnection(String nickname) throws IOException;
 }

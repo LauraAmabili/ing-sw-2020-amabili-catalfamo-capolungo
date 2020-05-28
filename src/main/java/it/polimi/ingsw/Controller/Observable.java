@@ -15,18 +15,34 @@ public class Observable {
         this.observerController.add(o);
     }
 
-
+    /**
+     * update to initialise the match with the first setting
+     * @param number number of players of the game
+     * @throws IOException exception
+     * @throws InterruptedException exception
+     */
     public void notifyInitialiseMatch(int number) throws IOException, InterruptedException {
         for(Observer o : observerController){
             o.updateInitialiseMatch(number);
 
         }
     }
+
+    /**
+     * update to set the nickname
+     * @param in nickname chosen by the client
+     * @throws IOException exception
+     */
     public void notifyAddingNickname(String in ) throws IOException {
         for(Observer o : observerController){
             o.updateNickname(in);
         }
     }
+
+    /**
+     * update that it's time to choose the cards
+     * @throws IOException exception
+     */
     public void notifyChoosingCards() throws IOException {
         for(Observer o : observerController){
             o.updateChoosingCards();
@@ -34,12 +50,24 @@ public class Observable {
 
     }
 
+    /**
+     * update with the name of the god chosen bu the client to check if it's correct
+     * @param godName name of the god chosen
+     * @throws IOException excepton
+     */
     public void notifyGodNameChosen(String godName) throws IOException {
         for(Observer o : observerController){
             o.updateSetGodName(godName);
         }
     }
 
+    /**
+     * update to add the worker in the coordinates chosen
+     * @param row chosen row
+     * @param col chosen col
+     * @param i worker to add
+     * @throws IOException exception
+     */
     public void notifyAddingWorker(int row, int col, int i ) throws IOException {
         for(Observer o : observerController){
             o.updateAddingWorker(row, col, i );
@@ -112,7 +140,7 @@ public class Observable {
         }
     }
 
-    public void notifyDropConnection(String nickname) {
+    public void notifyDropConnection(String nickname) throws IOException {
         for(Observer o : observerController){
             o.updateDropConnection(nickname);
         }

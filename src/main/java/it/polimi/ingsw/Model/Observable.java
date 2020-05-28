@@ -211,5 +211,11 @@ public class Observable {
         }
     }
 
+    public void notifyDroppedConnection(String nickname) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateDroppedConnection(nickname);
+        }
+    }
+
 
 }

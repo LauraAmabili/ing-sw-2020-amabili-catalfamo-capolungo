@@ -70,5 +70,7 @@ public interface ObserverModel {
     void updateBuildTwoInput(String currentPlayer,int worker) throws IOException;
 
     void updateMoveTwoInput(String nickname, int worker) throws IOException;
+
+    void updateDroppedConnection(String nickname) throws IOException;
 }
 

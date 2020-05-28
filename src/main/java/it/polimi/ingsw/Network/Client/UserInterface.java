@@ -44,6 +44,7 @@ public interface UserInterface {
     void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
     void WinMessage(String nickaname);
     void WorkerInputNotValid();
+    void DroppedCOnnection(DroppedConnection droppedConnection);
 
 }
 

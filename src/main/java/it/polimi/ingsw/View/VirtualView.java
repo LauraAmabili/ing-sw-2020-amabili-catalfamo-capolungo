@@ -652,6 +652,11 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
+    @Override
+    public void updateDroppedConnection(String nickname) throws IOException {
+        thread.sendToClient(new DroppedConnection(nickname));
+    }
+
     /**
      * This sends a notify to the controller to check the coordinates
      * @param row1 row for the first move
@@ -759,11 +764,18 @@ public class VirtualView extends Observable implements ObserverModel {
         thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
     }
 
+    /**
+     * sends a notify to the model with the information if the player wants to use the effect
+     * @param effect effect
+     * @param worker worker to add the effect on
+     * @throws IOException exception for the message
+     */
     public void tryThisWorkerEffect(boolean effect, int worker) throws IOException {
         notifyTryThisWorkerEffect(effect, worker);
     }
 
-    public void dropConnection() {
+
+    public void dropConnection() throws IOException {
         notifyDropConnection(MyNickname);
     }
 

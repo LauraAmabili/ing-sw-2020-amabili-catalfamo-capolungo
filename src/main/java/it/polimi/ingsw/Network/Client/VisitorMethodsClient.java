@@ -319,5 +319,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    @Override
+    public void visit(DroppedConnection droppedConnection) {
+        userInterface.DroppedCOnnection(droppedConnection);
+    }
+
 
 }

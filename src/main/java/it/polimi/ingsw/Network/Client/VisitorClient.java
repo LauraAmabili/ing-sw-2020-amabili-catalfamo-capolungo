@@ -44,4 +44,5 @@ public interface VisitorClient {
     void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
     void visit(WinMessage winMessage);
     void visit(WorkerInputNotValid workerInputNotValid);
+    void visit(DroppedConnection droppedConnection);
 }

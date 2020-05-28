@@ -426,6 +426,10 @@ public class Game extends Observable {
             notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
         }
     }
+
+    public void sendDropConnection(String nickname) throws IOException {
+        notifyDroppedConnection(nickname);
+    }
     /*
     public void anotherRound(){
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
