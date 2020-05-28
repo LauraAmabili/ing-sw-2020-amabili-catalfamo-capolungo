@@ -46,13 +46,16 @@ public class Game extends Observable {
         return godListNames;
     }
 
+    /**
+     * Create the list of gods
+     */
     public void initialiseGodList(){
         PlayerCreator playerCreator = new PlayerCreator();
         for (int i=0; i<playerCreator.getArrayGods().size(); i++)
             godListNames.add(playerCreator.getArrayGods().get(i).getGodName());
     }
 
-
+    //constructor
     public Game() {
         nickNames = new ArrayList<>();
         onlinePlayers = new ArrayList<>();
@@ -194,62 +197,129 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * Calls the first notify to tell oll the observer that it's time to Set the card, the second one
+     * to tell the clients that the current player is setting the card
+     * @throws IOException Exception for the Message
+     */
     public void toSetCard() throws IOException {
         this.notifyTimeToSetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname());
         this.notifySetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname(), chosenGodList);
 
     }
 
+    /**
+     * notify the observers that the board is updated by the current player
+     * @throws IOException
+     */
     public void BoardWorkerUpdate() throws IOException {
 
         notifyWorkerBoardUpdate(board, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * notify the observers that the card was set
+     * @param godName name of the god just set
+     * @throws IOException
+     */
     public void msgGodSet(String godName) throws IOException {
         notifyGodSet(currentTurn.getCurrentPlayer(), godName);
     }
 
+    /**
+     * notify observers that it's time for the current player to place workers
+     * @throws IOException Exception for the Message
+     */
     public void toPlaceWorker() throws IOException {
         notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * notify the observers that the name inserted is not valid because someone else took it
+     * @param nickname nickname that is not valid
+     * @throws IOException Exception for the message
+     */
     public void sameNameError(String nickname) throws IOException {
         notifyNicknameNotValid(nickname);
     }
 
+
+    /**
+     * calls a notify to the observers to say that the name was added
+     * @param name name just added
+     * @throws IOException Exception for the Message
+     */
     public void nameAccepted(String name) throws IOException {
-        //String color = this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(0).getColor();
+
         notifyPlayerAdded(name);
     }
 
+    /**
+     * calls a Notify to tell that the god chosen is not present in the list of gods
+     * @throws IOException Exception for the Message
+     */
     public void NoGodHasSuchName() throws IOException {
         notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), availableGods, chosenGodList);
     }
 
+    /**
+     * notify with the update of the Board
+     * @throws IOException
+     */
     public void updateBoard() throws IOException {
         notifyBoardUpdate(board);
     }
 
+    /**
+     * calls a notify on all the observers to say that the chosen cell is already occupied
+     * @param worker num of the worker that the player is trying to set
+     * @throws IOException Exception for the message
+     */
     public void cellAlreadyOccupied(int worker) throws IOException {
         notifyCellAlreadyOccupied(worker, getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * calls a notify to all the observers to say that the Player has just lost because both his workers cannot move
+     * @param name nae of the player
+     * @throws IOException Exception for the message
+     */
     public void NoPossibleMoves(String name) throws IOException {
         notifyPlayerHasLost(name);
     }
 
+    /**
+     * calls a notify to all the observers to say that the player wins the game
+     * @param p player that is winning
+     * @throws IOException Exception for the message
+     */
     public void updateWin(PlayerInterface p) throws IOException {
         notifyWin(p);
     }
 
+    /**
+     * calls a notify to all the observer that the worker selected is set
+     * @param worker number of the chosen worker
+     * @throws IOException Exception for the message
+     */
     public void updateWorkerSelected(int worker) throws IOException {
         notifyWorkerSelected(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * calls a notify to all the observer to say that the coordinates chosen to move the worker are not valid
+     * @param worker number of the worker
+     * @throws IOException Exception for the message
+     */
     public void NoCoordinatesValidMove(int worker) throws IOException {
         notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * calls a notify to all the observer to ask the current player if he wants the effect, only if h has a card with the special effect
+     * @param worker worker to build around
+     * @throws IOException Exception for the message
+     */
     public void askEffectBuild(int worker) throws IOException {
         if(getCurrentTurn().getCurrentPlayer().isHasSpecialBuild()) {
             notifyAskForEffectBuild(currentTurn.getCurrentPlayer().getNickname(), worker);
@@ -258,6 +328,7 @@ public class Game extends Observable {
         }
     }
 
+    //TODO: javadoc
     public void timeToBuild(int worker) throws IOException {
         for(int i = 0; i < getOnlinePlayers().size(); i++) {
             if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
@@ -275,14 +346,24 @@ public class Game extends Observable {
         }
     }
 
+    /**
+     * calls a notify to all the observer to say that the coordinates to build on are not valid
+     * @param worker number of the worker
+     * @throws IOException exception for the message
+     */
     public void NoCoordinatesValidBuild(int worker) throws IOException {
         notifyTryNewCoordinatesBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * calls a notify to all the observer to say that the worker can move
+     * @throws IOException Exception for the message
+     */
     public void timeToCheckWorker() throws IOException {
         notifyCanMove(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    //TODO: javadoc
     public void timeToMove(int worker) throws IOException {
         for(int i = 0; i < getOnlinePlayers().size(); i++) {
             if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
@@ -301,22 +382,42 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * calls a notify to all the observer to say that the challenger must choose the cards for the game
+     * @throws IOException Exception for the message
+     */
     public void timeToChallenger() throws IOException {
         notifyCards(getCurrentTurn().getCurrentPlayer().getNickname());
         notifyChoose(cardsChosen,this.getAllGods(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * calls a notify to all the observer to say that the god chosen by the challenger is added correctly
+     * @param state boolean to set if the cards are all chosen
+     * @throws IOException exception for the message
+     */
     public void godAdded(boolean state) throws IOException {
 
         notifyGodAdded(availableGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
-        System.out.println(availableGods);
+        //System.out.println(availableGods);
 
     }
 
+    /**
+     * calls a notify to all the observer to say that the god chosen by the challenger
+     * is not added because it was not correct
+     * @throws IOException exception for the message
+     */
     public void godNotAdded() throws IOException {
         notifyGodNotAdded(this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
+    /**
+     * sends first a notify to say to all the observer that it's time for the current player to move,
+     * then choose the notify to ask for the effect if the current player has the special effect,
+     * otherwise sends the notify to choose for the worker to move
+     * @throws IOException exception for the message
+     */
     public void toMoving() throws IOException {
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());
         if(getCurrentTurn().getCurrentPlayer().isHasSpecialMove()) {

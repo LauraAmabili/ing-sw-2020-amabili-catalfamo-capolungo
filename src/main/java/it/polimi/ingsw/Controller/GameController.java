@@ -195,13 +195,13 @@ public class GameController implements Observer {
     }
 
     /**
-     *
-     * @param row1
-     * @param col1
-     * @param row2
-     * @param col2
-     * @param worker
-     * @throws IOException
+     * check if the current player is the correct state and then move with the coordinates
+     * @param row1 first chosen row
+     * @param col1 first chosen col
+     * @param row2 second chosen row
+     * @param col2 second chosen col
+     * @param worker worker to move twice
+     * @throws IOException exception for the message
      */
     @Override
     public void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
@@ -213,6 +213,15 @@ public class GameController implements Observer {
         }
     }
 
+    /**
+     * check if the current player is in the correct state and then build in the coordinates given
+     * @param row1 first chosen row
+     * @param col1 first chosen col
+     * @param row2 second chosen row
+     * @param col2 second chosen col
+     * @param worker worker that should build, but, you know, is just a game
+     * @throws IOException exception for the message
+     */
     @Override
     public void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(int i = 0; i < game.getOnlinePlayers().size(); i++) {
@@ -223,6 +232,11 @@ public class GameController implements Observer {
         }
     }
 
+    /**
+     * check the current player that is in the correct state and checks if the chosen worker can move
+     * @param worker number of the chosen worker
+     * @throws IOException exception for the message
+     */
     @Override
     public void updateTryThisWorker(int worker) throws IOException {
 
@@ -232,6 +246,13 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * checks if the current player is in the correct state and calls the move on the coordinates given
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker numbero of the worker to move
+     * @throws IOException exception for the message
+     */
     @Override
     public void updateMoving(int row, int col, int worker) throws IOException {
 
@@ -246,11 +267,20 @@ public class GameController implements Observer {
 
     }
 
+    /**
+     * calls the starting game in the model
+     * @throws IOException exception for the message
+     * @throws InterruptedException exception
+     */
     @Override
     public void updateStartingGame() throws IOException, InterruptedException {
         game.notifyStartingGame();
     }
 
+    /**
+     * When the player lose his connection this delete his information in the game and sends a message to all the observers
+     * @param nickname name of the player that drop his connection
+     */
     @Override
     public void updateDropConnection(String nickname) {
         for (PlayerInterface p : game.getOnlinePlayers()) {

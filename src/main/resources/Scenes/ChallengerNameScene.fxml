@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fx:id="ChallengerName" fill="#13255e" layoutX="163.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="158.66668701171875">
+            <Text fx:id="ChallengerName" fill="#13255e" layoutX="163.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="158.66668701171875">
                <font>
                   <Font size="29.0" />
                </font>

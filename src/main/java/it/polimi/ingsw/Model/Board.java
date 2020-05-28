@@ -202,6 +202,10 @@ public class Board implements Serializable {
         return b;
     }
 
+    /**
+     * print the grid
+     * @param adj list of boardcells to print
+     */
     public void printGrid(List<BoardCell> adj) {
         boolean stamped = false;
         for (BoardCell[] boardCells : grid) {
