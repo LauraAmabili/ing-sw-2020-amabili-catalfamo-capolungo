@@ -28,6 +28,7 @@ public class Client {
     private final UserInterface userInterface;
     private final UpdatesForMessages updatesForMessages;
     private int numberOfPlayers;
+    private ClientBeatSender clientBeatSender;
 
     public int getNumberOfPlayers() {
         return numberOfPlayers;
@@ -110,7 +111,7 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ClientBeatSender clientBeatSender = new ClientBeatSender(this);
+        clientBeatSender = new ClientBeatSender(this);
         clientBeatSender.start();
 
         //System.out.println("Press x to start the game");
@@ -123,8 +124,15 @@ public class Client {
 
     public synchronized void send(MessageFromClient x) throws IOException {
 
-        out.writeObject(x);
-        out.flush();
+        try {
+            out.writeObject(x);
+            out.flush();
+        } catch (SocketException e) {
+            System.out.println("Server Offline");
+            active = false;
+            killClient();
+        }
+
 
     }
 

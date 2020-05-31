@@ -18,6 +18,6 @@ public class DroppedConnection extends MessageFromServer{
 
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) throws IOException {
-
+        gameMessageVisitorClient.visit(this);
     }
 }

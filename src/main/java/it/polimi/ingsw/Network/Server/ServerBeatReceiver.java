@@ -2,6 +2,7 @@
 package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Controller.GameController;
+import it.polimi.ingsw.Network.Message.MessageFromServer.DroppedConnection;
 import it.polimi.ingsw.Network.Message.MessageFromServer.PlayerNumberRequest;
 
 import java.io.IOException;
@@ -70,12 +71,15 @@ public class ServerBeatReceiver extends Thread implements Runnable {
      * @param connection of the dead
      */
     public synchronized void removeBody(Connection connection) {
-
+        String nickname = connection.serverThread.getView().getNickname();
         String toDelete = connection.serverThread.toString();
         System.out.println("deleting " + toDelete + " with last beat at " + connection.lastBeatInstant);
-        /*TODO TODO TODO
-        connection.serverThread.getView().dropConnection();
-        */
+        connection.serverThread.getServer().getGameController().getGame().RemoveObserver(connection.serverThread.getView());
+        try {
+            connection.serverThread.getView().dropConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         server.getServerThreads().remove(connection.serverThread);
         connection.serverThread.RemoveObserver(connection.serverThread.getView());
@@ -84,6 +88,14 @@ public class ServerBeatReceiver extends Thread implements Runnable {
         if (!connection.serverThread.isMaxPlayerNumberSet() && connections.size()>0) {
             try {
                 connections.get(0).serverThread.sendToClient(new PlayerNumberRequest());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for (Connection i : connections){
+            try {
+                i.serverThread.sendToClient(new DroppedConnection(nickname));
             } catch (IOException e) {
                 e.printStackTrace();
             }

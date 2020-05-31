@@ -4,6 +4,8 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Network.Message.MessageFromClient.BeatUpdate;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ClientBeatSender extends Thread {
 
@@ -11,16 +13,20 @@ public class ClientBeatSender extends Thread {
 
     final int cardiacRhythm = 5; //seconds
 
+    public volatile boolean active = true;
+
     public ClientBeatSender(Client client) {
         this.client = client;
     }
 
     @Override
     public void run() {
-        while (true) {
+        while (active) {
 
             try {
                 client.send(new BeatUpdate());
+            } catch (SocketException e) {
+                active=false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -29,6 +35,7 @@ public class ClientBeatSender extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }
