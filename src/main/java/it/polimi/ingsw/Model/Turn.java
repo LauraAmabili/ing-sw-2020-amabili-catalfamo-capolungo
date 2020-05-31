@@ -35,6 +35,7 @@ public class Turn {
     }
 
 
+
     /**
      * Switch the Player and goes on with the turn
      */
@@ -60,6 +61,10 @@ public class Turn {
         return getCurrentPlayer().availableCellsToMove(worker).size() == 0;
     }
 
+    /**
+     * Check if the player can move with both his worker
+     * @return boolean
+     */
     public boolean checkLockPlayer() {
         return currentPlayer.availableCellsToMove(currentPlayer.getWorkerRef().get(0)).size() == 0 && currentPlayer.availableCellsToMove(currentPlayer.getWorkerRef().get(1)).size() == 0;
     }

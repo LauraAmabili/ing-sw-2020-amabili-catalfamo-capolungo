@@ -548,5 +548,10 @@ public class GUI implements UserInterface {
         });
     }
 
+    @Override
+    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
+
+    }
+
 
 }

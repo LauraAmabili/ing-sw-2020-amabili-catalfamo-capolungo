@@ -216,6 +216,12 @@ public class Observable {
             o.updateDroppedConnection(nickname);
         }
     }
+    public void notifySetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateSetFirstPlayer(nickname, onlinePlayers);
+        }
+
+    }
 
 
 }

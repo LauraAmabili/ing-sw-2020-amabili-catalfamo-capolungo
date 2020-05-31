@@ -324,5 +324,10 @@ public class VisitorMethodsClient implements VisitorClient {
         userInterface.DroppedCOnnection(droppedConnection);
     }
 
+    @Override
+    public void visit(SetFirstPlayer setFirstPlayer) {
+        userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());
+    }
+
 
 }

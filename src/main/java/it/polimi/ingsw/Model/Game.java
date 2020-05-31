@@ -437,5 +437,9 @@ public class Game extends Observable {
     }
 
      */
+
+    public void setFirstPlayer() throws IOException {
+        notifySetFirstPlayer(this.getCurrentTurn().getCurrentPlayer().getNickname(), onlinePlayers);
+    }
 }
 

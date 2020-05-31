@@ -49,7 +49,8 @@ public class Initialized extends PlayerFSA {
                     }
                 }
                 game.getCurrentTurn().nextTurn(game);
-                game.toSetCard();
+                game.setFirstPlayer();
+                game.toSetCard(); //faccio questo dopo che ho scelto il primo giocatore
             } else {
                 game.godAdded(false);
             }

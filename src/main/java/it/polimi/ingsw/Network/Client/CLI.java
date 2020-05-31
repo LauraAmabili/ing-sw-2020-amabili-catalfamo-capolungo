@@ -2,6 +2,7 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
@@ -423,6 +424,18 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void DroppedCOnnection(DroppedConnection droppedConnection) {
         String playerOut = droppedConnection.getNickname();
         System.out.println( playerOut + "disconnected!");
+    }
+
+    @Override
+    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
+
+        System.out.println("Choose the first player! Press the number near the name: ");
+        int i = 1;
+        for(PlayerInterface p : onlinePlayers){
+            System.out.println(i + p.getNickname());
+            i = i+1;
+        }
+
     }
 
 

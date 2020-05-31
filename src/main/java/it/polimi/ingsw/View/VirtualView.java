@@ -657,6 +657,13 @@ public class VirtualView extends Observable implements ObserverModel {
         thread.sendToClient(new DroppedConnection(nickname));
     }
 
+    @Override
+    public void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException {
+        if(MyNickname.equals(nickname)){
+            thread.sendToClient(new SetFirstPlayer(onlinePlayers));
+        }
+    }
+
     /**
      * This sends a notify to the controller to check the coordinates
      * @param row1 row for the first move

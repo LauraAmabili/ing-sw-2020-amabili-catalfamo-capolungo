@@ -1,9 +1,11 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 
 import java.io.IOException;
+import java.util.List;
 
 
 public interface UserInterface {
@@ -45,6 +47,7 @@ public interface UserInterface {
     void WinMessage(String nickaname);
     void WorkerInputNotValid();
     void DroppedCOnnection(DroppedConnection droppedConnection);
+    void SetFirstPlayer(List<PlayerInterface> onlinePlayers);
 
 }
 

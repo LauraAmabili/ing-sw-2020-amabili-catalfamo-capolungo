@@ -72,5 +72,7 @@ public interface ObserverModel {
     void updateMoveTwoInput(String nickname, int worker) throws IOException;
 
     void updateDroppedConnection(String nickname) throws IOException;
+
+    void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException;
 }
 
