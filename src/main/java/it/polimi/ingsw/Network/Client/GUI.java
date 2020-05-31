@@ -3,8 +3,6 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Model.PlayerFSA.PlaceWorker;
-import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
@@ -383,6 +381,7 @@ public class GUI implements UserInterface {
                 e.printStackTrace();
             }
         });
+
     }
 
     @Override
@@ -412,7 +411,10 @@ public class GUI implements UserInterface {
                 }
             } else {
                 try {
-                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/PlayerSettingCardScene.fxml"));
+                    WaitingSetCardController controller = new WaitingSetCardController(client, setCardTimeUpdate.getCurrentPlayer());
+                    loader.setController(controller);
+                    Parent root = loader.load();
                     primaryStage.setScene(new Scene(root));
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -493,7 +495,7 @@ public class GUI implements UserInterface {
         state = "Choosing effect";
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
-            BoardController controller = new AskEffectController(client, state, name);
+            BoardController controller = new AskEffectBuildController(client, state, name, askEffectBuild.getWorker());
             loader.setController(controller);
             Parent root = null;
             try {
@@ -514,10 +516,40 @@ public class GUI implements UserInterface {
     @Override
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
 
+        int worker = buildTwoInputRequest.getWorker();
+        state = "Building";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new TwoInputBuildingController(client, state, worker);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
     public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
+
+        int worker = moveTwoInputRequest.getWorker();
+        state = "Moving";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new TwoInputMovingController(client, state, worker);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -528,7 +560,19 @@ public class GUI implements UserInterface {
 
     @Override
     public void WorkerInputNotValid() {
-
+        state = "Choosing Worker";
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            BoardController controller = new ChooseWorkerController(client, state);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

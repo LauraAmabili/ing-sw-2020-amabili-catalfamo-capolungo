@@ -45,5 +45,7 @@ public class GUI_App extends Application {
             Platform.exit();
             System.exit(0);
         });
+
     }
+
 }

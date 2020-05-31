@@ -17,11 +17,11 @@ import java.util.ResourceBundle;
 
 public class CardsToChooseController extends NotifyMessages implements Initializable {
 
-    final Client client;
+    Client client;
     String CardName1;
     String CardName2;
     String CardName3;
-    final UpdatesForMessages up;
+    UpdatesForMessages up;
     int counter = 0;
 
     @FXML
