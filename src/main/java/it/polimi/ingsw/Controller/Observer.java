@@ -21,4 +21,5 @@ public interface Observer {
     void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
     void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException;
     void updateDropConnection(String nickname) throws IOException;
+    void updateFirstPlayer(int player) throws IOException;
 }

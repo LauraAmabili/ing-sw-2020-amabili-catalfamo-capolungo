@@ -421,13 +421,13 @@ public class CLI extends NotifyMessages implements UserInterface {
     }
 
     @Override
-    public void DroppedCOnnection(DroppedConnection droppedConnection) {
+    public void DroppedConnection(DroppedConnection droppedConnection) {
         String playerOut = droppedConnection.getNickname();
         System.out.println( playerOut + "disconnected!");
     }
 
     @Override
-    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
+    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) throws IOException {
 
         System.out.println("Choose the first player! Press the number near the name: ");
         int i = 1;
@@ -435,6 +435,9 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.println(i + p.getNickname());
             i = i+1;
         }
+
+        String player = input.nextLine();
+        notifyPlayerThatStart(player, onlinePlayers);
 
     }
 

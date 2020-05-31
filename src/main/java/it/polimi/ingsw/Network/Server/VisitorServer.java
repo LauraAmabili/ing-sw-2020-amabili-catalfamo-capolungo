@@ -26,5 +26,6 @@ public interface VisitorServer {
     void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException;
     void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException;
     void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException;
+    void visit(PlayerThatStart playerThatStart) throws IOException;
 
 }

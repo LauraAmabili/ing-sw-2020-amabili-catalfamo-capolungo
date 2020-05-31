@@ -146,6 +146,12 @@ public class Observable {
         }
     }
 
+    public void notifyFirstPlayer(int player) throws IOException {
+        for(Observer o : observerController){
+            o.updateFirstPlayer(player);
+        }
+    }
+
 
 
 

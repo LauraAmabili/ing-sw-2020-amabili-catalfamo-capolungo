@@ -1,6 +1,9 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+
 import java.io.IOException;
+import java.util.List;
 
 public interface ClientObserver {
 
@@ -19,6 +22,6 @@ public interface ClientObserver {
     void updateAskeffectBuildResponse(String effect, String nickname, int worker) throws IOException;
     void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException;
     void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException;
-
+    void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers) throws IOException;
 }
 

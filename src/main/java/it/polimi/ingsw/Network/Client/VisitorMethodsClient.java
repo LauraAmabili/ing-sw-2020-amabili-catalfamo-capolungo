@@ -321,11 +321,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     @Override
     public void visit(DroppedConnection droppedConnection) {
-        userInterface.DroppedCOnnection(droppedConnection);
+        userInterface.DroppedConnection(droppedConnection);
     }
 
     @Override
-    public void visit(SetFirstPlayer setFirstPlayer) {
+    public void visit(SetFirstPlayer setFirstPlayer) throws IOException {
         userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());
     }
 

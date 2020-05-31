@@ -664,6 +664,11 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
+
+    public void setFirstPlayer(int player) throws IOException {
+        notifyFirstPlayer(player);
+    }
+
     /**
      * This sends a notify to the controller to check the coordinates
      * @param row1 row for the first move

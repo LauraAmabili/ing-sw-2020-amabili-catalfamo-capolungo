@@ -295,5 +295,12 @@ public class GameController implements Observer {
         }
     }
 
+    @Override
+    public void updateFirstPlayer(int player) throws IOException {
+        //TODO:
+        game.getCurrentTurn().firstTurn(player, game);
+        game.toSetCard();
+    }
+
 
 }

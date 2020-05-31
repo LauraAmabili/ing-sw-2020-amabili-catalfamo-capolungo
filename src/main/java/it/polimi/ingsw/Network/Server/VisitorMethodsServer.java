@@ -264,6 +264,26 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     @Override
+    public void visit(PlayerThatStart playerThatStart) throws IOException {
+        int MaxPlayer = serverThread.getServer().getServerThreads().size();
+        try{
+            int player = Integer.parseInt(playerThatStart.getPlayer());
+            if(player>0 && player<serverThread.getServer().getServerThreads().size()){
+                view.setFirstPlayer(player);
+            } else  {
+                serverThread.sendToClient(new WorkerInputNotValid());
+                serverThread.sendToClient(new SetFirstPlayer(playerThatStart.getOnlinePlayers()));
+            }
+        }
+        catch (NumberFormatException e){
+            serverThread.sendToClient(new WorkerInputNotValid());
+            serverThread.sendToClient(new SetFirstPlayer(playerThatStart.getOnlinePlayers()));
+        }
+
+
+    }
+
+    @Override
     public void visit(BeatUpdate beatUpdate) {
         serverThread.getServer().serverBeatReceiver.receiveBeat(serverThread);
     }

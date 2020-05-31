@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +97,12 @@ public class NotifyMessages {
     public void notifyBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException {
         for(ClientObserver c : observersClient){
             c.updateBuildTwoInputResponse(row1, col1, row2,col2, worker);
+        }
+    }
+
+    public void notifyPlayerThatStart(String player, List <PlayerInterface> onlinePlayers) throws IOException {
+        for(ClientObserver c : observersClient){
+            c.updatePlayerThatStart(player,onlinePlayers);
         }
     }
 

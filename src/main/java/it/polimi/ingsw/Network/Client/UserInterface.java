@@ -44,10 +44,10 @@ public interface UserInterface {
     void NumberOfPlayerWrong();
     void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) throws IOException;
     void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) throws IOException;
-    void WinMessage(String nickaname);
+    void WinMessage(String nickname);
     void WorkerInputNotValid();
-    void DroppedCOnnection(DroppedConnection droppedConnection);
-    void SetFirstPlayer(List<PlayerInterface> onlinePlayers);
+    void DroppedConnection(DroppedConnection droppedConnection);
+    void SetFirstPlayer(List<PlayerInterface> onlinePlayers) throws IOException;
 
 }
 

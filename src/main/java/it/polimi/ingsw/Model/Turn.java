@@ -35,11 +35,20 @@ public class Turn {
     }
 
 
+    public synchronized void firstTurn(int firstPlayer , Game game){
+
+        currentPlayer = activePlayers.get(firstPlayer-1);
+        int i = getActivePlayers().indexOf(currentPlayer);
+        game.getStateList().get(i).next();
+
+    }
+
 
     /**
      * Switch the Player and goes on with the turn
      */
     public synchronized void nextTurn(Game game) {
+
         int index = activePlayers.size() - 1;
         int i = activePlayers.indexOf(currentPlayer);
         if(index == i) {
@@ -50,6 +59,7 @@ public class Turn {
         TurnId++;
         i = getActivePlayers().indexOf(currentPlayer);
         game.getStateList().get(i).next();
+
     }
 
     /**

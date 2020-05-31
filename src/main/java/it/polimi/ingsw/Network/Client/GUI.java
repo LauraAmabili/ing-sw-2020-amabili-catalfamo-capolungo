@@ -532,7 +532,7 @@ public class GUI implements UserInterface {
     }
 
     @Override
-    public void DroppedCOnnection(DroppedConnection droppedConnection) {
+    public void DroppedConnection(DroppedConnection droppedConnection) {
         //TODO
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));

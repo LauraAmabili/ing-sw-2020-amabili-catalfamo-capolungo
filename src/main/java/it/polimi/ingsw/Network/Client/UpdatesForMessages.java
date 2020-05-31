@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UpdatesForMessages implements ClientObserver {
 
@@ -87,6 +89,9 @@ public class UpdatesForMessages implements ClientObserver {
         client.send(new BuildTwoInputResponse(row1, col1, row2, col2, worker));
     }
 
+    public void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers) throws IOException {
+        client.send(new PlayerThatStart(player, onlinePlayers));
+    }
 
 
 

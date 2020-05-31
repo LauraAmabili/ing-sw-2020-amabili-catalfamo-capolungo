@@ -45,5 +45,5 @@ public interface VisitorClient {
     void visit(WinMessage winMessage);
     void visit(WorkerInputNotValid workerInputNotValid);
     void visit(DroppedConnection droppedConnection);
-    void visit(SetFirstPlayer setFirstPlayer);
+    void visit(SetFirstPlayer setFirstPlayer) throws IOException;
 }
