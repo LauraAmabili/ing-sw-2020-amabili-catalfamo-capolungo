@@ -12,6 +12,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Client {
 
@@ -40,9 +41,10 @@ public class Client {
 
         updatesForMessages = new UpdatesForMessages(this);
         this.userInterface = userInterface;
-        gson = new Gson();
+
         active = true;
         visit = new VisitorMethodsClient(this,userInterface);
+        gson = new Gson();
         read();
 
     }
@@ -70,9 +72,6 @@ public class Client {
     }
 
 
-
-
-
     /*
     public static void main(String[] args) throws IOException {
 
@@ -84,11 +83,19 @@ public class Client {
      */
 
     public void startClient() {
-
+        String host;
+        host = "localhost";
+        /*Multiplayer match
+        Scanner scanner= new Scanner(System.in);
+        System.out.println("Host? ");
+        String host=scanner.nextLine();
+        System.out.println("Port? ");
+        int port=scanner.nextInt();
+        */
         try {
-            socket = new Socket("localhost", port);
+            socket = new Socket(host, port);
         } catch (ConnectException e){
-            System.out.println("Did you start the server?");
+            System.out.println("Server not found");
             return;
         } catch (IOException e) {
             e.printStackTrace();

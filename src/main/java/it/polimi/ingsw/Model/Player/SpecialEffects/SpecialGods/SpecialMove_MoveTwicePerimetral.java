@@ -65,6 +65,7 @@ public class SpecialMove_MoveTwicePerimetral extends PlayerDecorator {
      * @param worker Worker used
      * @return ArrayList with the BoardCells
      */
+    @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         if(enableSpecialMove) {
             List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());

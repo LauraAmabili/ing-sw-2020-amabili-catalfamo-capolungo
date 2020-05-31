@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Model.God;
+/*package it.polimi.ingsw.Model.God;
 
 import com.google.gson.*;
 import it.polimi.ingsw.Helper.GameConf;
@@ -50,3 +50,5 @@ public class GodFileCreator {
     }
 
 }
+
+ */
