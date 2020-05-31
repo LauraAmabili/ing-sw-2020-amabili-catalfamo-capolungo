@@ -268,7 +268,7 @@ public class VisitorMethodsServer implements VisitorServer {
         int MaxPlayer = serverThread.getServer().getServerThreads().size();
         try{
             int player = Integer.parseInt(playerThatStart.getPlayer());
-            if(player>0 && player<serverThread.getServer().getServerThreads().size()){
+            if(player>0 && player<=serverThread.getServer().getServerThreads().size()){
                 view.setFirstPlayer(player);
             } else  {
                 serverThread.sendToClient(new WorkerInputNotValid());
