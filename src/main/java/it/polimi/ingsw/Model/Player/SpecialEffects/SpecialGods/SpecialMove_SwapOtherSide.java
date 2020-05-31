@@ -26,6 +26,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
      * @param worker
      * @return
      */
+    @Override
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             Worker opponentWorker = this.getBoard().getGrid()[row][col].getWorker();

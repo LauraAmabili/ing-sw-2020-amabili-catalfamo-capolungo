@@ -44,6 +44,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
      * @return true <--> the method works </-->
      */
 
+    @Override
     public boolean build(int row, int col, @NotNull Worker worker) {
         if (worker.getCurCell().getRow()==row && worker.getCurCell().getRow()==col){
             if (enableSpecialBuild){
@@ -67,7 +68,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
         return false;
     }
 
-
+    @Override
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
         if (enableSpecialBuild) {
             List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());

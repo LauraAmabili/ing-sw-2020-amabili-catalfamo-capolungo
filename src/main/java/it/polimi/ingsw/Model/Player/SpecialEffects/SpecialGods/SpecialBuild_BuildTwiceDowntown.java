@@ -48,6 +48,7 @@ public class SpecialBuild_BuildTwiceDowntown extends PlayerDecorator {
      * @param col2 Second BoardCell col
      * @return true <--> the method works </-->
      */
+    @Override
     public boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
 
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];

@@ -76,17 +76,20 @@ public class ServerBeatReceiver extends Thread implements Runnable {
         /*TODO TODO TODO
         connection.serverThread.getView().dropConnection();
         */
-        if (!connection.serverThread.isMaxPlayerNumberSet()) {
-            try {
-                connections.get(1).serverThread.sendToClient(new PlayerNumberRequest());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
         server.getServerThreads().remove(connection.serverThread);
         connection.serverThread.RemoveObserver(connection.serverThread.getView());
         connection.serverThread.setKeepAlive(false);
         connections.remove(connection);
+        if (!connection.serverThread.isMaxPlayerNumberSet() && connections.size()>0) {
+            try {
+                connections.get(0).serverThread.sendToClient(new PlayerNumberRequest());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         System.out.println(toDelete + " deleted");
     }
 

@@ -22,6 +22,7 @@ public class SpecialWin_BunchOfTowers extends PlayerDecorator {
      * @param worker
      * @return
      */
+    @Override
     public boolean checkWin(@NotNull Worker worker) {
 
         if (((worker.getOldCell().getLevel() <
