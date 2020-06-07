@@ -594,7 +594,18 @@ public class GUI implements UserInterface {
 
     @Override
     public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
-
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/setFirstPlayerScene.fxml"));
+            setFirstPlayerController controller = new setFirstPlayerController(client, onlinePlayers);
+            loader.setController(controller);
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 

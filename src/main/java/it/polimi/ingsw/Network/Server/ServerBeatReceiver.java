@@ -92,7 +92,6 @@ public class ServerBeatReceiver extends Thread implements Runnable {
                 e.printStackTrace();
             }
         }
-
         for (Connection i : connections){
             try {
                 i.serverThread.sendToClient(new DroppedConnection(nickname));
@@ -100,8 +99,6 @@ public class ServerBeatReceiver extends Thread implements Runnable {
                 e.printStackTrace();
             }
         }
-
-
         System.out.println(toDelete + " deleted");
     }
 
@@ -120,7 +117,6 @@ public class ServerBeatReceiver extends Thread implements Runnable {
                 return;
             }
         }
-
         connections.add(new Connection(serverThread, Instant.now().getLong(INSTANT_SECONDS)));
         System.out.println("Connection added!");
     }

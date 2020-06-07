@@ -6,6 +6,7 @@ import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +18,7 @@ public class WaitingSetCardController extends NotifyMessages implements Initiali
     String name;
 
     @FXML
-    TextField PlayerName = new TextField();
+    Text PlayerName = new Text();
 
     public WaitingSetCardController(Client client, String name) {
         this.client = client;

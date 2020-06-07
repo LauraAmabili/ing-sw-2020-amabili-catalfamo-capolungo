@@ -7,6 +7,8 @@ import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -31,11 +33,11 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
     @FXML
     ImageView ThirdCard = new ImageView();
     @FXML
-    Text Description1 = new Text();
+    TextField Description1 = new TextField();
     @FXML
-    Text Description2 = new Text();
+    TextField Description2 = new TextField();
     @FXML
-    Text Description3 = new Text();
+    TextField Description3 = new TextField();
 
     public CardsToChooseController(Client client) {
         this.client = client;
@@ -103,6 +105,7 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
             }
         } else {
             SecondCard.disabledProperty();
+            Description2.setDisable(true);
         }
         for(int i = 0; i < gui.getChosenCards().size(); i++) {
             if(gui.getChosenCards().get(i).getGodName().equals(CardName3)) {

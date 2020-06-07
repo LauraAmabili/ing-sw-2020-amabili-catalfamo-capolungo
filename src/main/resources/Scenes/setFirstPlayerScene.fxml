@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1600.0" focusTraversable="true">
+         <image>
+            <Image url="@../Images/cl_bg.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Person1" fitHeight="264.0" fitWidth="175.0" focusTraversable="true" layoutX="309.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Human.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Stage1" fitHeight="432.0" fitWidth="192.0" layoutX="301.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fg_panel2.png" />
+         </image></ImageView>
+      <ImageView fx:id="Person2" fitHeight="264.0" fitWidth="175.0" focusTraversable="true" layoutX="713.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Stage2" fitHeight="432.0" fitWidth="192.0" layoutX="704.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Person3" fitHeight="264.0" fitWidth="175.0" focusTraversable="true" layoutX="1109.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Human.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Stage3" fitHeight="432.0" fitWidth="192.0" layoutX="1100.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fg_panel4.png" />
+         </image></ImageView>
+      <TextField fx:id="PlayerNick1" alignment="CENTER" editable="false" focusTraversable="false" layoutX="322.0" layoutY="684.0" />
+      <TextField fx:id="PlayerNick2" alignment="CENTER" editable="false" focusTraversable="false" layoutX="726.0" layoutY="684.0" />
+      <TextField fx:id="PlayerNick3" alignment="CENTER" editable="false" focusTraversable="false" layoutX="1122.0" layoutY="684.0" />
+      <TextField fx:id="ActionText" alignment="CENTER" editable="false" focusTraversable="false" layoutX="518.0" layoutY="144.0" prefHeight="56.0" prefWidth="564.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -28,20 +27,8 @@
             <ImageView fx:id="ThirdCard" fitHeight="290.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Text fx:id="Description1" layoutX="375.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="173.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text fx:id="Description2" layoutX="714.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="173.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text fx:id="Description3" layoutX="1048.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="173.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
+      <TextField fx:id="Description1" layoutX="387.0" layoutY="620.0" />
+      <TextField fx:id="Description2" layoutX="726.0" layoutY="620.0" />
+      <TextField fx:id="Description3" layoutX="1060.0" layoutY="620.0" />
    </children>
 </Pane>

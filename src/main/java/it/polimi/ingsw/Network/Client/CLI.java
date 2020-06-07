@@ -3,7 +3,6 @@ package it.polimi.ingsw.Network.Client;
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import it.polimi.ingsw.Network.Message.MessageFromClient.PlayerNumberResponse;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 import java.io.IOException;
@@ -433,7 +432,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         int i = 1;
         for(PlayerInterface p : onlinePlayers){
             System.out.println(i + p.getNickname());
-            i = i+1;
+            i = i + 1;
         }
 
         String player = input.nextLine();
