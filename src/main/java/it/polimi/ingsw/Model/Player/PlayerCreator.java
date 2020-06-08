@@ -69,8 +69,8 @@ public class PlayerCreator {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader("godConf.json");
-           // fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/godConf.json"))).getFile()));
+           // fileReader = new FileReader("godConf.json");
+           fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/godConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
