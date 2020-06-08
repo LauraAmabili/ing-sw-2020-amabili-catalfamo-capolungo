@@ -162,8 +162,8 @@ public class Client {
     public void read() {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader("serverConf.json");
-            //fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
+            //fileReader = new FileReader("serverConf.json");
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
