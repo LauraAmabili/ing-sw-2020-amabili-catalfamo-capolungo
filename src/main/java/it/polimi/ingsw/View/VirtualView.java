@@ -176,7 +176,6 @@ public class VirtualView extends Observable implements ObserverModel {
                 chooseCard(ChallengerName);
             }
         }
-            //update(null, null);
 
     }
 
@@ -190,7 +189,6 @@ public class VirtualView extends Observable implements ObserverModel {
         if(MyNickname.equals(challengerName)) {
             thread.sendToClient(new ChallengerCardsRequest());
         }
-
 
     }
 
@@ -222,7 +220,6 @@ public class VirtualView extends Observable implements ObserverModel {
                 thread.sendToClient(new CardAddedUpdate(gods));
             }
         }
-
     }
 
     /**

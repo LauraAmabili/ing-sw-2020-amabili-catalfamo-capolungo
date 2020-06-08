@@ -26,7 +26,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         client = new Client(this);
         up = new UpdatesForMessages(client);
         this.addObserver(up);
-        client.startClient();
+        connectionPortRequest();
 
     }
 
@@ -40,6 +40,14 @@ public class CLI extends NotifyMessages implements UserInterface {
     public static final String GREEN = "\033[0;32m";
 
 
+    public void connectionPortRequest(){
+        Scanner scanner= new Scanner(System.in);
+        System.out.println("Host? ");
+        String host = scanner.nextLine();
+        System.out.println("Port? ");
+        String port=scanner.nextLine();
+        client.startClient(host,port);
+    }
 
 
     @Override

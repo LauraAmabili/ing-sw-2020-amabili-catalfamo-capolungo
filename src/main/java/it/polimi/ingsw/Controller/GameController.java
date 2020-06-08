@@ -298,14 +298,12 @@ public class GameController implements Observer {
     @Override
     public void updateDropConnection(String nickname) throws IOException {
         for (int i = 0; i < game.getOnlinePlayers().size(); i++)
-
             if (game.getOnlinePlayers().get(i).getNickname().equals(nickname)) {
                 if (game.getCurrentTurn().getCurrentPlayer().getNickname().equals(game.getOnlinePlayers().get(i).getNickname())) {
                     game.getCurrentTurn().nextTurn(game);
                 }
                 game.delPlayer(game.getOnlinePlayers().get(i));
             }
-
     }
 
     @Override

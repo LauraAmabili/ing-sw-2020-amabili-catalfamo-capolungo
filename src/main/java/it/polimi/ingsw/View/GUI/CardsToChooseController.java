@@ -33,11 +33,11 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
     @FXML
     ImageView ThirdCard = new ImageView();
     @FXML
-    TextField Description1 = new TextField();
+    TextArea Description1 = new TextArea();
     @FXML
-    TextField Description2 = new TextField();
+    TextArea Description2 = new TextArea();
     @FXML
-    TextField Description3 = new TextField();
+    TextArea Description3 = new TextArea();
 
     public CardsToChooseController(Client client) {
         this.client = client;

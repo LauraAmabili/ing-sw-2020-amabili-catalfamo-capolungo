@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +23,12 @@ import java.util.ResourceBundle;
 public class WelcomeSceneController extends NotifyMessages implements Initializable {
 
     Client client;
+
+    @FXML
+    TextField IP = new TextField();
+
+    @FXML
+    TextField Port = new TextField();
 
     @FXML
     Button StartGameButton = new Button();
@@ -42,7 +50,9 @@ public class WelcomeSceneController extends NotifyMessages implements Initializa
     public void setUpButtons() {
         StartGameButton.setOnAction(event -> {
             try {
-                client.startClient();
+                String host = IP.getText();
+                String port = Port.getText();
+                client.startClient(host, port);
                 GUI gui = (GUI) client.getUserInterface();
                 gui.setClient(client);
                 Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));

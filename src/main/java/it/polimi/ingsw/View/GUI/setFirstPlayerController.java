@@ -6,7 +6,6 @@ import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,6 +70,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
         setColor(list.get(1), PlayerNick3);
         if(list.size() == 2) {
             PlayerNick2.setDisable(true);
+            PlayerNick2.setVisible(false);
         } else {
             Stage2.setImage(new Image("Images/fg_panel4.png"));
             Person2.setImage(new Image("Images/Human.png"));

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -27,8 +27,8 @@
             <ImageView fx:id="ThirdCard" fitHeight="290.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <TextField fx:id="Description1" layoutX="387.0" layoutY="620.0" />
-      <TextField fx:id="Description2" layoutX="726.0" layoutY="620.0" />
-      <TextField fx:id="Description3" layoutX="1060.0" layoutY="620.0" />
+      <TextArea fx:id="Description1" editable="false" focusTraversable="false" layoutX="387.0" layoutY="620.0" prefHeight="95.0" prefWidth="149.0" />
+      <TextArea fx:id="Description2" editable="false" focusTraversable="false" layoutX="726.0" layoutY="620.0" prefHeight="95.0" prefWidth="149.0" />
+      <TextArea fx:id="Description3" editable="false" focusTraversable="false" layoutX="1060.0" layoutY="620.0" prefHeight="95.0" prefWidth="149.0" />
    </children>
 </Pane>

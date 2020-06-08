@@ -83,19 +83,10 @@ public class Client {
 
      */
 
-    public void startClient() {
-        String host;
-        host = "localhost";
-        /*Multiplayer match
-        Scanner scanner= new Scanner(System.in);
-        System.out.println("Host? ");
-        String host=scanner.nextLine();
-        System.out.println("Port? ");
-        int port=scanner.nextInt();
-        */
+    public void startClient(String host, String port) {
         try {
-            socket = new Socket(host, port);
-        } catch (ConnectException e){
+            socket = new Socket(host, Integer.parseInt(port));
+        } catch (ConnectException e) {
             System.out.println("Server not found");
             return;
         } catch (IOException e) {
