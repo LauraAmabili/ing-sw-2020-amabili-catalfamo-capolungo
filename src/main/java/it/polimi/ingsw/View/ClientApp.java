@@ -21,6 +21,19 @@ import java.util.Scanner;
 public class ClientApp {
 
     public static void main(String[] args) throws IOException {
+
+
+
+
+        if (args.length > 0 && args[0].equalsIgnoreCase("-cli")) {
+            CLIApp cli = new CLIApp();
+            CLIApp.main(args);
+        } else {
+            GUI_App gui = new GUI_App();
+            GUI_App.main(args);
+        }
+
+        /*
         Scanner scanner= new Scanner(System.in);
         System.out.println("CLI or GUI?");
         String app=scanner.nextLine();
@@ -34,6 +47,8 @@ public class ClientApp {
 
         }
 
+
+         */
 
         //Client client = new Client(UI);
         //client.startClient();

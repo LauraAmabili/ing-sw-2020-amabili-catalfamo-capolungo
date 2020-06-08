@@ -41,14 +41,21 @@ public class CLI extends NotifyMessages implements UserInterface {
 
 
     public void connectionPortRequest(){
+
         Scanner scanner= new Scanner(System.in);
         System.out.println("Host? ");
         String host = scanner.nextLine();
-        System.out.println("Port? ");
-        String port=scanner.nextLine();
-        client.startClient(host,port);
-    }
+        String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+        boolean result = host.matches(PATTERN);
+        if(result) {
+            System.out.println("Port? ");
+            String port = scanner.nextLine();
+            client.startClient(host, port);
+        } else {
+            connectionPortRequest();
+        }
 
+    }
 
     @Override
     public void  PlayerNumberRequest() throws IOException {
