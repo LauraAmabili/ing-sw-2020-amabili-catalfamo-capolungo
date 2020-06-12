@@ -232,7 +232,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
 
         List<God> cards = availableGodsUpdate.getCards();
-        for(God i : cards){
+        for(God i : cards) {
             System.out.print(i.getGodName()+" ");
         }
         System.out.println();

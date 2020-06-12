@@ -2,9 +2,11 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameController implements Observer {
 
@@ -297,13 +299,31 @@ public class GameController implements Observer {
      */
     @Override
     public void updateDropConnection(String nickname) throws IOException {
-        for (int i = 0; i < game.getOnlinePlayers().size(); i++)
-            if (game.getOnlinePlayers().get(i).getNickname().equals(nickname)) {
-                if (game.getCurrentTurn().getCurrentPlayer().getNickname().equals(game.getOnlinePlayers().get(i).getNickname())) {
-                    game.getCurrentTurn().nextTurn(game);
+        boolean state = false;
+        for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
+            if (nickname != null) {
+                if (game.getOnlinePlayers().get(i).getNickname().equals(nickname)) {
+                    if (game.getCurrentTurn().getCurrentPlayer().getNickname().equals(game.getOnlinePlayers().get(i).getNickname())) {
+                        if (!game.isStarted()) {
+                            state = true;
+                            PlayerCreator playerCreator = new PlayerCreator();
+                            game.setAllGods(playerCreator.getArrayGods());
+                            game.initialiseGodList();
+                            game.setChosenGodList(new ArrayList<>());
+                            game.setAvailableGods(new ArrayList<>());
+                        } else {
+                            game.getCurrentTurn().nextTurn(game);
+                        }
+                    }
+                    game.delPlayer(game.getOnlinePlayers().get(i));
+                    if (state) {
+                        game.createChallenger();
+                        game.timeToChallenger();
+                    }
+                    break;
                 }
-                game.delPlayer(game.getOnlinePlayers().get(i));
             }
+        }
     }
 
     @Override

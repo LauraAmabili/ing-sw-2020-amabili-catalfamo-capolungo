@@ -13,6 +13,7 @@ public class PlaceWorker extends PlayerFSA{
     public PlaceWorker(PlayerInterface player, Game game) {
         this.player = player;
         this.game = game;
+        game.setStarted(true);
     }
 
     @Override
