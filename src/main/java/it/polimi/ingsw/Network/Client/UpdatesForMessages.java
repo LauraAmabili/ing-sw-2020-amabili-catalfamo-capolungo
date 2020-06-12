@@ -16,9 +16,12 @@ public class UpdatesForMessages implements ClientObserver {
 
     @Override
     public void updatePlayerNumberResponse(String num) throws IOException {
-        client.setNumberOfPlayers(Integer.parseInt(num));
-        client.send(new PlayerNumberResponse(num));
-
+        try {
+            client.setNumberOfPlayers(Integer.parseInt(num));
+            client.send(new PlayerNumberResponse(num));
+        } catch (NumberFormatException e) {
+            client.send(new PlayerNumberResponse("-1"));
+        }
     }
 
     @Override

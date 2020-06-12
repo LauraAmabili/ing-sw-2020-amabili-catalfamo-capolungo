@@ -25,6 +25,7 @@ public class Game extends Observable {
     private final boolean cardsChosen = false;
     private final List<String> color;
     int maxPlayer;
+    boolean started;
     private List<God> allGods;
 
     /**
@@ -34,12 +35,11 @@ public class Game extends Observable {
     /**
      * List of che gods still available for th client
      */
-    private final List<String> availableGods = new ArrayList<>();
+    private List<String> availableGods = new ArrayList<>();
 
     public List<God> getChosenGodList() {
         return chosenGodList;
     }
-
 
     private final List<String> godListNames = new ArrayList<>();
 
@@ -71,8 +71,25 @@ public class Game extends Observable {
         PlayerCreator playerCreator = new PlayerCreator();
         allGods = playerCreator.getArrayGods();
         chosenGodList = new ArrayList<>();
+        started = false;
     }
 
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
+
+    public void setAllGods(List<God> allGods) {
+        this.allGods = allGods;
+    }
+
+    public void setChosenGodList(List<God> chosenGodList) {
+        this.chosenGodList = chosenGodList;
+    }
 
     public List<God> getAllGods() {
         return allGods;
@@ -84,6 +101,10 @@ public class Game extends Observable {
 
     public List<String> getAvailableGods() {
         return availableGods;
+    }
+
+    public void setAvailableGods(List<String> availableGods) {
+        this.availableGods = availableGods;
     }
 
     public Board getBoard() {
@@ -203,7 +224,11 @@ public class Game extends Observable {
     public void createChallenger() {
 
         Random random = new Random();
-        currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
+        if(currentTurn.getActivePlayers().size() != 1) {
+            currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(random.nextInt(currentTurn.getActivePlayers().size() - 1)));
+        } else {
+            currentTurn.setCurrentPlayer(currentTurn.getActivePlayers().get(0));
+        }
         int i = onlinePlayers.indexOf(currentTurn.getCurrentPlayer());
         stateList.set(i, new Initialized(getCurrentTurn().getCurrentPlayer(), this));
 
