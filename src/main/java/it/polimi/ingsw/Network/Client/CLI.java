@@ -57,6 +57,12 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+
+    /**
+     * print the request to choose the number of player of the game  then sends a notify with the number
+     * @throws IOException Exception
+     */
+
     @Override
     public void  PlayerNumberRequest() throws IOException {
 
@@ -71,15 +77,23 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+
+    /**
+     * Asks the nickname for the game then sends a notify with the nickname
+     * @throws IOException Exception
+     */
+
     @Override
     public void NicknameRequest() throws IOException {
-
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
         notifyNicknameResponse(nickname);
-        //return nickname;
     }
 
+
+    /**
+     * Print the connection update if the connection is established
+     */
     @Override
     public void ConnectionResponse() {
         System.out.println("Connection established to server");
@@ -454,28 +468,5 @@ public class CLI extends NotifyMessages implements UserInterface {
         notifyPlayerThatStart(player, onlinePlayers);
 
     }
-
-
-    public void face(){
-
-        System.out.println(PURPLE);
-        System.out.println(" +\"\"\"\"\"+ ");
-        System.out.println("[| o o |]");
-        System.out.println(" |  ^  | ");
-        System.out.println(" | '-' | ");
-        System.out.println(" +-----+ ");
-        System.out.println(RESET);
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 }
