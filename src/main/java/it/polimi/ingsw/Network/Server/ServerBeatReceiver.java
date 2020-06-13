@@ -92,6 +92,11 @@ public class ServerBeatReceiver extends Thread implements Runnable {
                 e.printStackTrace();
             }
         }
+
+
+
+
+
         for (Connection i : connections){
             try {
                 i.serverThread.sendToClient(new DroppedConnection(nickname));

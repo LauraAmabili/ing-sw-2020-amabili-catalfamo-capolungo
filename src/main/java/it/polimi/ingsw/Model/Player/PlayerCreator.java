@@ -8,6 +8,7 @@ import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.Player.SpecialEffects.*;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods.*;
+import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -63,18 +64,36 @@ public class PlayerCreator {
         if (effects.contains("SpecialWin_MoveDown")) {
             p = new SpecialWin_MoveDown(p);
         }
+        if (effects.contains("SpecialBuild_BuildDownUnder")) {
+            p = new SpecialBuild_BuildDownUnder(p);
+        }
+        if (effects.contains("SpecialBuild_BuildTwiceDowntown")) {
+            p = new SpecialBuild_BuildTwiceDowntown(p);
+        }
+        if (effects.contains("SpecialMove_MoveTwicePerimetral")) {
+            p = new SpecialMove_MoveTwicePerimetral(p);
+        }
+        if (effects.contains("SpecialMove_SwapOtherSide")) {
+            p = new SpecialMove_SwapOtherSide(p);
+        }
+        if (effects.contains("SpecialWin_BunchOfTowers")) {
+            p = new SpecialWin_BunchOfTowers(p);
+        }
+
+
         return p;
     }
 
     public void read() {
         FileReader fileReader = null;
         try {
-           // fileReader = new FileReader("godConf.json");
-           fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/godConf.json"))).getFile()));
+            // fileReader = new FileReader("godConf.json");
+            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/godConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Type userListType = new TypeToken<ArrayList<God>>(){}.getType();
+        Type userListType = new TypeToken<ArrayList<God>>() {
+        }.getType();
         assert fileReader != null;
         arrayGods = gson.fromJson(fileReader, userListType);
         try {
@@ -86,8 +105,8 @@ public class PlayerCreator {
 
 
     public God find(String g) {
-        for (God x : arrayGods){
-            if (x.getGodName().equals(g)){
+        for (God x : arrayGods) {
+            if (x.getGodName().equals(g)) {
                 return x;
             }
         }
