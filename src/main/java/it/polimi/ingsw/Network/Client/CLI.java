@@ -99,6 +99,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Connection established to server");
     }
 
+
+    /**
+     * Print to Cli when Card is not present
+     */
     @Override
     public void CardNotFoundRequest() {
 
