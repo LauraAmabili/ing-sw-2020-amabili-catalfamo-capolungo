@@ -11,13 +11,24 @@ The purpose of the project is to develop the board game [Santorini](https://roxl
 |__gson__|serialize and deserialize Java objects to JSON|
 |__JavaFx__|next-generation standard GUI library for Java|
 
+## Gruppo AM29
 
-### Developed Functionalities
-- Complete Rules
-- CLI
-- Socket
 
 ## Group Components
-- [__Laura Amabili__](https://github.com/LauraAmabili)
-- [__Roberto Capolungo__](https://github.com/RCapolungo)
-- [__Walter Catalfamo__](https://github.com/walter-catalfamo)
+- ### 10598083 [__Laura Amabili__](https://github.com/LauraAmabili)<br>laura.amabili@mail.polimi.it
+- ### 10569104 [__Roberto Capolungo__](https://github.com/RCapolungo)<br>roberto.capolungo@mail.polimi.it
+- ### 10608233 [__Walter Catalfamo__](https://github.com/walter-catalfamo)<br>walter.catalfamo@mail.polimi.it
+
+
+| Functionality | State |
+|:-----------------------|:------------------------------------:|
+| Basic rules | [![GREEN](https://placehold.it/15/44bb44/44bb44)](#) |
+| Complete rules |[![GREEN](https://placehold.it/15/44bb44/44bb44)](#) |
+| Socket |[![GREEN](https://placehold.it/15/44bb44/44bb44)](#)|
+| GUI |[![YELLOW](https://placehold.it/15/ffdd00/ffdd00)](#)|
+| CLI | [![GREEN](https://placehold.it/15/44bb44/44bb44)](#) |
+| Multiple games | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
+| Persistence | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
+| Advanced Gods |[![GREEN](https://placehold.it/15/44bb44/44bb44)](#)|
+| Undo | [![RED](https://placehold.it/15/f03c15/f03c15)](#) |
+
