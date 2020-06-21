@@ -106,6 +106,7 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         } else {
             SecondCard.disabledProperty();
             Description2.setDisable(true);
+            Description2.setVisible(false);
         }
         for(int i = 0; i < gui.getChosenCards().size(); i++) {
             if(gui.getChosenCards().get(i).getGodName().equals(CardName3)) {

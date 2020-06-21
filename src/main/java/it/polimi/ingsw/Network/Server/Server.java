@@ -20,22 +20,16 @@ public class Server {
     private final String file = "Configurations/serverConf.json";
     private final ArrayList<ServerThread> serverThreads = new ArrayList<>();
     public ServerBeatReceiver serverBeatReceiver;
-
     private GameController gameController = new GameController();
-
     public Server() {
         read();
     }
-
-
     public List<ServerThread> getServerThreads() {
         return serverThreads;
     }
-
     public GameController getGameController() {
         return gameController;
     }
-
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
     }

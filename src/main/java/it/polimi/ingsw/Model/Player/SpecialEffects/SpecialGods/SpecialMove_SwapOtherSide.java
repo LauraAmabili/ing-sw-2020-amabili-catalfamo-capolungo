@@ -40,7 +40,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
                 worker.setOldCell(worker.getCurCell());
                 worker.setCurCell(opponentWorker.getCurCell());
                 opponentWorker.setOldCell(opponentWorker.getCurCell());
-                opponentWorker.setCurCell(otherside(worker, opponentWorker));
+                opponentWorker.setCurCell(otherSide(worker, opponentWorker));
                 worker.getOldCell().setWorker(null);
                 worker.getCurCell().setWorker(worker);
                 opponentWorker.getCurCell().setWorker(opponentWorker);
@@ -66,7 +66,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
 
         for (int i = 0; i < adj.size(); i++) {
             if (adj.get(i).getWorker() != null)
-                if (otherside(worker, adj.get(i).getWorker()) == null)
+                if (otherSide(worker, adj.get(i).getWorker()) == null)
                     adj.remove(i);
         }
 
@@ -75,7 +75,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
     }
 
 
-    public BoardCell otherside(Worker pushing, Worker pushed) {
+    public BoardCell otherSide(Worker pushing, Worker pushed) {
         int rowPushingCell = pushing.getCurCell().getRow();
         int colPushingCell = pushing.getCurCell().getCol();
         int rowPushedCell = pushed.getCurCell().getRow();
