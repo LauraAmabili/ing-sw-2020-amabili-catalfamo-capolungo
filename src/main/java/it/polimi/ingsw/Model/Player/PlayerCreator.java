@@ -10,10 +10,7 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods.*;
 import it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +82,11 @@ public class PlayerCreator {
     }
 
     public void read() {
+
+        BufferedReader fileReader = null;
+        fileReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Configurations/godConf.json"))));
+
+        /*
         FileReader fileReader = null;
         try {
             // fileReader = new FileReader("godConf.json");
@@ -92,6 +94,8 @@ public class PlayerCreator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+         */
         Type userListType = new TypeToken<ArrayList<God>>() {
         }.getType();
         assert fileReader != null;

@@ -160,6 +160,11 @@ public class Client {
     }
 
     public void read() {
+
+
+        BufferedReader fileReader = null;
+        fileReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Configurations/serverConf.json"))));
+        /*
         FileReader fileReader = null;
         try {
             //fileReader = new FileReader("serverConf.json");
@@ -167,6 +172,8 @@ public class Client {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+         */
         Type userListType = new TypeToken<Integer>() {
         }.getType();
         assert fileReader != null;

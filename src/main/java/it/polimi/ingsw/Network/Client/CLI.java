@@ -69,7 +69,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         clientBoard.Santorini();
         System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
         //clientBoard.Martello();
-        clientBoard.Players();
+        //clientBoard.Players();
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
         //clientBoard.Players();
         String num = string.nextLine();

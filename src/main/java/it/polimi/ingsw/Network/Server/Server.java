@@ -93,24 +93,28 @@ public class Server {
     /**
      * Read the configuration from the server
      */
+
     public void read() {
-        FileReader fileReader = null;
-        try {
-            //fileReader =  new FileReader("serverConf.json");
-            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
+        //FileReader fileReader = null;
+        BufferedReader fileReader = null;
+        //try {
+        //fileReader =  new FileReader("serverConf.json");
+        fileReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Configurations/serverConf.json"))));
+           /* //fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+            */
         Type userListType = new TypeToken<Integer>() {
         }.getType();
-        assert fileReader != null;
         port = gson.fromJson(fileReader, userListType);
         try {
             fileReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
 }
