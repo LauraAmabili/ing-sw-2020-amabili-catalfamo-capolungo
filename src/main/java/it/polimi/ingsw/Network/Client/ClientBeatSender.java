@@ -19,6 +19,9 @@ public class ClientBeatSender extends Thread {
         this.client = client;
     }
 
+    /**
+     * Send a message to the server each cardiacRhythm seconds to notify that this client is alive
+     */
     @Override
     public void run() {
         while (active) {

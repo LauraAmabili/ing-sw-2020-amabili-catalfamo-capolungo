@@ -42,6 +42,15 @@ class SpecialBuild_BuildTwiceDifferentTest {
         player.build(1, 0, worker1);
         assertEquals(2, board.getGrid()[1][0].getLevel());
 
+        mockPlayer.isHasSpecialBuild();
+        mockPlayer.isHasTwoInputBuild();
+        mockPlayer.isEnableSpecialBuild();
+
+        mockPlayer.setEnableSpecialBuild(false);
+        player.build(1, 0, worker1);
+        assertEquals(3, board.getGrid()[1][0].getLevel());
+
+
     }
 
 

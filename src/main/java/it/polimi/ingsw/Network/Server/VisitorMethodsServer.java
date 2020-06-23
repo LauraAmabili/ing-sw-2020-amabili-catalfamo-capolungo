@@ -22,6 +22,7 @@ public class VisitorMethodsServer implements VisitorServer {
      * check if the format is correct
      * check if the number is available
      * otherwise the view is notified
+     *
      * @param playerNumberResponse
      * @throws IOException
      * @throws InterruptedException
@@ -32,7 +33,7 @@ public class VisitorMethodsServer implements VisitorServer {
         String num = playerNumberResponse.getNumberOfPlayers();
         try {
             int numberOfPlayers = Integer.parseInt(num);
-            if(numberOfPlayers == 3 || numberOfPlayers == 2){
+            if (numberOfPlayers == 3 || numberOfPlayers == 2) {
                 serverThread.setNumPlayers(numberOfPlayers);
                 serverThread.setMaxPlrMsg(true);
                 view.notifyNumberOfPlayer(numberOfPlayers);
@@ -48,7 +49,7 @@ public class VisitorMethodsServer implements VisitorServer {
                 serverThread.sendToClient(new NumberOfPlayerWrong());
                 serverThread.sendToClient(new PlayerNumberRequest());
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             serverThread.sendToClient(new NumberOfPlayerWrong());
             serverThread.sendToClient(new PlayerNumberRequest());
 
@@ -58,6 +59,7 @@ public class VisitorMethodsServer implements VisitorServer {
 
     /**
      * cards chosen by the challenger
+     *
      * @param chosenCardsUpdate
      * @throws IOException
      */
@@ -69,6 +71,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Choose the card
+     * @param setYourCardResponse
+     * @throws IOException
+     */
     @Override
     public void visit(SetYourCardResponse setYourCardResponse) throws IOException {
 
@@ -76,6 +83,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Set Worker Coordinates
+     * @param startingSetWorkerResponse
+     * @throws IOException
+     */
     @Override
     public void visit(StartingSetWorkerResponse startingSetWorkerResponse) throws IOException {
 
@@ -95,30 +107,36 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
-
-
+    /**
+     * Choose the number of worker
+     * @param chooseYourWorkerResponse
+     * @throws IOException
+     */
     @Override
     public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException {
 
-        String worker  = chooseYourWorkerResponse.getWorker();
+        String worker = chooseYourWorkerResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            if(w < 3 && w > 0) {
+            if (w < 3 && w > 0) {
                 view.tryThisWorker(w);
             } else {
                 serverThread.sendToClient(new WorkerInputNotValid());
                 serverThread.sendToClient(new ChooseYourWorkerRequest());
             }
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             serverThread.sendToClient(new WorkerInputNotValid());
             serverThread.sendToClient(new ChooseYourWorkerRequest());
         }
 
 
-
     }
 
+    /**
+     * Move coordinates
+     * @param moveResponse
+     * @throws IOException
+     */
     @Override
     public void visit(MoveResponse moveResponse) throws IOException {
 
@@ -129,7 +147,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int col = Integer.parseInt(colString);
             int worker = moveResponse.getWorker();
             view.tryMoving(row, col, worker);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             int worker = moveResponse.getWorker();
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new MoveRequest(worker));
@@ -137,6 +155,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Build coordinates
+     * @param buildResponse
+     * @throws IOException
+     */
     @Override
     public void visit(BuildResponse buildResponse) throws IOException {
 
@@ -147,7 +170,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int col = Integer.parseInt(colString);
             int worker = buildResponse.getWorker();
             view.tryToBuild(row, col, worker);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             int worker = buildResponse.getWorker();
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new BuildRequest(worker));
@@ -155,13 +178,17 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Prompt to the user if they want to enable the effect
+     * @param askEffectReply
+     * @throws IOException
+     */
     @Override
     public void visit(AskEffectReply askEffectReply) throws IOException {
 
-        if(askEffectReply.getEffect().equals("y")) {
+        if (askEffectReply.getEffect().equals("y")) {
             view.updateTimeToChooseWorkerEffect(true);
-        }
-        else if(askEffectReply.getEffect().equals("n")){
+        } else if (askEffectReply.getEffect().equals("n")) {
             view.updateTimeToChooseWorkerEffect(false);
         } else {
             serverThread.sendToClient(new WorkerInputNotValid());
@@ -170,23 +197,26 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Enable the special card effect
+     * @param chooseYourWorkerEffectResponse
+     * @throws IOException
+     */
     @Override
     public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException {
 
         boolean effect = chooseYourWorkerEffectResponse.isEffect();
-        String worker  = chooseYourWorkerEffectResponse.getWorker();
+        String worker = chooseYourWorkerEffectResponse.getWorker();
         try {
             int w = Integer.parseInt(worker);
-            if(w < 3 && w > 0) {
+            if (w < 3 && w > 0) {
                 view.tryThisWorkerEffect(effect, w);
-            }
-            else {
+            } else {
                 serverThread.sendToClient(new WorkerInputNotValid());
                 serverThread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
             }
 
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             serverThread.sendToClient(new WorkerInputNotValid());
             serverThread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
         }
@@ -194,13 +224,17 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Enable or not the effect
+     * @param askEffectBuildResponse
+     * @throws IOException
+     */
     @Override
     public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
 
-        if(askEffectBuildResponse.getEffect().equals("y")) {
+        if (askEffectBuildResponse.getEffect().equals("y")) {
             view.updatePlayerBuild(true, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
-        }
-        else if(askEffectBuildResponse.getEffect().equals("n")) {
+        } else if (askEffectBuildResponse.getEffect().equals("n")) {
             view.updatePlayerBuild(false, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
 
         } else {
@@ -210,6 +244,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Request two inputs for a special build
+     * @param buildTwoInputResponse
+     * @throws IOException
+     */
     @Override
     public void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException {
 
@@ -224,7 +263,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int row2 = Integer.parseInt(rowString2);
             int col2 = Integer.parseInt(colString2);
             view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new BuildTwoInputRequest(worker));
         }
@@ -242,8 +281,11 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
-
-
+    /**
+     * Request two inputs for a special move
+     * @param moveTwoInputResponse
+     * @throws IOException
+     */
     @Override
     public void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException {
         String rowString1 = moveTwoInputResponse.getRow1();
@@ -263,19 +305,23 @@ public class VisitorMethodsServer implements VisitorServer {
         }
     }
 
+    /**
+     *
+     * @param playerThatStart
+     * @throws IOException
+     */
     @Override
     public void visit(PlayerThatStart playerThatStart) throws IOException {
         int MaxPlayer = serverThread.getServer().getServerThreads().size();
-        try{
+        try {
             int player = Integer.parseInt(playerThatStart.getPlayer());
-            if(player>0 && player<=serverThread.getServer().getServerThreads().size()){
+            if (player > 0 && player <= serverThread.getServer().getServerThreads().size()) {
                 view.setFirstPlayer(player);
-            } else  {
+            } else {
                 serverThread.sendToClient(new WorkerInputNotValid());
                 serverThread.sendToClient(new SetFirstPlayer(playerThatStart.getOnlinePlayers()));
             }
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             serverThread.sendToClient(new WorkerInputNotValid());
             serverThread.sendToClient(new SetFirstPlayer(playerThatStart.getOnlinePlayers()));
         }
@@ -283,20 +329,29 @@ public class VisitorMethodsServer implements VisitorServer {
 
     }
 
+    /**
+     * Client beat
+     * @param beatUpdate
+     */
     @Override
     public void visit(BeatUpdate beatUpdate) {
         serverThread.getServer().serverBeatReceiver.receiveBeat(serverThread);
     }
 
+    /**
+     * Nickname chosen by the client
+     * @param nicknameResponse
+     * @throws IOException
+     */
     @Override
     public void visit(NicknameResponse nicknameResponse) throws IOException {
 
         boolean check = true;
         String nickname = nicknameResponse.getNickname();
-        for(int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
+        for (int i = 0; i < serverThread.getServer().getServerThreads().size(); i++) {
             int j = serverThread.getServer().getServerThreads().indexOf(view.getThread());
-            if(i != j) {
-                if(serverThread.getServer().getServerThreads().get(i).getView().getNickname() != null) {
+            if (i != j) {
+                if (serverThread.getServer().getServerThreads().get(i).getView().getNickname() != null) {
                     if (serverThread.getServer().getServerThreads().get(i).getView().getNickname().equals(nickname)) {
                         check = false;
                     }
@@ -313,3 +368,5 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
 }
+
+

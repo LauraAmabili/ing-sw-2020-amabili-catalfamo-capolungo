@@ -54,7 +54,10 @@ public class Server {
 
     }
 
-
+    /**
+     * Clients can be connected
+     * @throws IOException
+     */
     public void connectClients() throws IOException {
 
         Socket s;
