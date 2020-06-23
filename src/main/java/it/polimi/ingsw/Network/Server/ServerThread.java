@@ -169,10 +169,21 @@ public class ServerThread extends Thread implements Runnable {
         out.flush();
     }
 
+    /**
+     * Visitor analyzes the incoming messages
+     * @param msg
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public synchronized void Accept(MessageFromClient msg) throws IOException, InterruptedException {
         msg.accept(visitor);
     }
 
+
+    /**
+     * Observer is removed
+     * @param view
+     */
     public void RemoveObserver(ObserverModel view) {
         server.getGameController().getGame().RemoveObserver(view);
     }

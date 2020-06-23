@@ -83,6 +83,12 @@ public class Client {
 
      */
 
+    /**
+     * Client is started on a defined host and port
+     * Client Beat Sender is started
+     * @param host
+     * @param port
+     */
     public void startClient(String host, String port) {
 
 
@@ -130,6 +136,10 @@ public class Client {
 
     }
 
+    /**
+     * receive messages and share them with the visitor
+     * @return
+     */
     public Thread receive() {
         Thread t = new Thread(() -> {
             try {
@@ -139,7 +149,7 @@ public class Client {
                         x.accept(visit);
                     }
                     catch (WriteAbortedException e){
-                        System.out.println("Non premere nient tanto non puoi ");
+
                         setActive(false);
                         killClient();
                     }
@@ -159,6 +169,9 @@ public class Client {
         return t;
     }
 
+    /**
+     * read configuration from file
+     */
     public void read() {
 
 
@@ -185,6 +198,10 @@ public class Client {
         }
     }
 
+    /**
+     * close outgoing channels
+     * @throws IOException
+     */
     public void killClient() throws IOException {
         in.close();
         out.close();

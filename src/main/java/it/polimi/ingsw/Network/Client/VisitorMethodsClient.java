@@ -23,8 +23,11 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
-
-
+    /**
+     * Request the number of players
+     * @param playerNumberRequest
+     * @throws IOException
+     */
     @Override
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
 
@@ -33,6 +36,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Request the nickname
+     * @param nicknameRequest
+     * @throws IOException
+     */
     @Override
     public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
 
@@ -43,6 +51,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * connection enabled
+     * @param connectionResponse
+     */
     @Override
     public void visit(ConnectionResponse connectionResponse) {
 
@@ -50,6 +62,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * card not found, a new card has to be chosen
+     * @param cardNotFoundRequest
+     */
     @Override
     public void visit(CardNotFoundRequest cardNotFoundRequest) {
 

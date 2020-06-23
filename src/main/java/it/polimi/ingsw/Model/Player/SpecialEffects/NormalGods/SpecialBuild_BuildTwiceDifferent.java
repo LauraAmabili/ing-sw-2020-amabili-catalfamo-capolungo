@@ -55,8 +55,10 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
             if(!b1.equals(b2)) {
                 return player.build(row1, col1, worker) && player.build(row2, col2, worker);
             }
-            return false;
         }
-        return player.build(row1, col1, worker);
+        else {
+            return player.build(row1, col1, worker);
+        }
+        return false;
     }
 }
