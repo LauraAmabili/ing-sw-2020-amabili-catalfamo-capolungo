@@ -20,7 +20,7 @@ class SpecialBuild_BuildBuildDownUnder {
 
 
     @Test
-    public void testSpecialBuild_BuildTwiceSame() {
+    public void testSpecialBuild_BuildBuildDownUnder() {
 
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);

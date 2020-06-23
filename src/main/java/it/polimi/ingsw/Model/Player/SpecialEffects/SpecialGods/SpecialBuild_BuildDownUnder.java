@@ -49,8 +49,8 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
         if (worker.getCurCell().getRow()==row && worker.getCurCell().getRow()==col){
             if (enableSpecialBuild){
                 for (int i = 0; i < availableCellsToBuild(worker).size(); i++) {
-                    if (availableCellsToBuild(worker,true).get(i).getRow()==row &&
-                            availableCellsToBuild(worker,true).get(i).getCol()==col){
+                    if (availableCellsToBuild(worker).get(i).getRow()==row &&
+                            availableCellsToBuild(worker).get(i).getCol()==col){
                         worker.getCurCell().setLevel(worker.getCurCell().getLevel()+1);
                         return true;
                     }

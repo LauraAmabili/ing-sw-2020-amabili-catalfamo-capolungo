@@ -57,6 +57,7 @@ public class TurnTest {
         game.getStateList().get(i).chosenCard("artemis");
         assertEquals(new Initialized(game.getOnlinePlayers().get(i), game), game.getStateList().get(i));
         game.getStateList().get(i).chosenCard("Athena");
+        game.getCurrentTurn().nextTurn(game);
         if (i == 2) {
             assertEquals(new SetCard(turn2.getActivePlayers().get(0), game), game.getStateList().get(0));
             assertEquals(turn2.getCurrentPlayer(), turn2.getActivePlayers().get(0));
