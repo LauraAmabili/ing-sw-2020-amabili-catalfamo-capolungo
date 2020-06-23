@@ -441,7 +441,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void WinMessage(String nickaname) {
 
+        clientBoard.win();
         System.out.println(nickaname + " wins the match! Yay!!");
+
 
     }
 

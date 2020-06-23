@@ -74,5 +74,9 @@ public interface ObserverModel {
     void updateDroppedConnection(String nickname) throws IOException;
 
     void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException;
+
+    void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException;
+
+    void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException;
 }
 

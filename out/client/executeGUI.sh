@@ -1,1 +1,0 @@
-java -jar AM29client.jar 

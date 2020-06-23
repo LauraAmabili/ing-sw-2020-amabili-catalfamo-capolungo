@@ -661,6 +661,22 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
+    @Override
+    public void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException {
+        if(MyNickname.equals(nickname)){
+            thread.sendToClient(new TryNewCoordinatesRequest(worker));
+            thread.sendToClient(new BuildTwoInputRequest(worker));
+        }
+    }
+
+    @Override
+    public void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException {
+        if(MyNickname.equals(nickname)){
+            thread.sendToClient(new TryNewCoordinatesRequest(worker));
+            thread.sendToClient(new MoveTwoInputRequest(worker));
+        }
+    }
+
 
     public void setFirstPlayer(int player) throws IOException {
         notifyFirstPlayer(player);

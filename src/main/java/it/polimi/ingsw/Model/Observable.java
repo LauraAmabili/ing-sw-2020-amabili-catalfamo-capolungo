@@ -223,5 +223,16 @@ public class Observable {
 
     }
 
+    public void notifyNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateNoCoordinatesValidBuildTwoInput(worker, nickname);
+        }
+    }
+
+    public void notifyNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateNoCoordinatesValidMoveTwoInput(worker, nickname);
+        }
+    }
 
 }

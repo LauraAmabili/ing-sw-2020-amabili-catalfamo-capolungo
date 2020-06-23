@@ -495,6 +495,12 @@ public class Game extends Observable {
 
      */
 
+    public void NoCoordinatesValidMoveTwoInput(int worker) throws IOException {
+        notifyNoCoordinatesValidMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+    }
+    public void NoCoordinatesValidBuildTwoInput(int worker) throws IOException {
+        notifyNoCoordinatesValidBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+    }
     public void setFirstPlayer() throws IOException {
         notifySetFirstPlayer(this.getCurrentTurn().getCurrentPlayer().getNickname(), onlinePlayers);
     }
