@@ -14,18 +14,18 @@
       </ImageView>
       <Button fx:id="TwoPlayerButton" layoutX="361.0" layoutY="296.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0">
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0">
+            <ImageView fitHeight="200.0" fitWidth="103.0">
                <image>
-                  <Image url="@../Images/1v1.jpg" />
+                  <Image url="@../Images/2Player.jpg" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <Button fx:id="ThreePlayerButton" layoutX="985.0" layoutY="296.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0">
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0">
+            <ImageView fitHeight="200.0" fitWidth="137.0">
                <image>
-                  <Image url="@../Images/1v1v1.jpg" />
+                  <Image url="@../Images/3Player.jpg" />
                </image>
             </ImageView>
          </graphic>

@@ -556,7 +556,7 @@ public class GUI implements UserInterface {
     @Override
     public void WinMessage(String nickaname) {
         Platform.runLater(() -> {
-            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/WinScene.fxml"));
             BoardController controller = new WinSceneController(client, state, nickaname);
             loader.setController(controller);
             Parent root = null;
