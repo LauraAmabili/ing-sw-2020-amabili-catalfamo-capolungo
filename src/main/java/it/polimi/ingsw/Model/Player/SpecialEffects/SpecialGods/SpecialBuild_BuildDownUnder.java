@@ -46,24 +46,19 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
 
     @Override
     public boolean build(int row, int col, @NotNull Worker worker) {
-        if (worker.getCurCell().getRow()==row && worker.getCurCell().getRow()==col){
-            if (enableSpecialBuild){
-                for (int i = 0; i < availableCellsToBuild(worker).size(); i++) {
-                    if (availableCellsToBuild(worker).get(i).getRow()==row &&
-                            availableCellsToBuild(worker).get(i).getCol()==col){
+        if (worker.getCurCell().getRow() == row && worker.getCurCell().getCol() == col) {
+            if (enableSpecialBuild) {
+                List<BoardCell> adj = availableCellsToBuild(worker);
+                for (int i = 0; i < adj.size(); i++) {
+                    if (adj.get(i).getRow() == row && adj.get(i).getCol() == col) {
                         worker.getCurCell().setLevel(worker.getCurCell().getLevel()+1);
                         return true;
                     }
-
-
                 }
-
             }
             return false;
-
-        }
-        else {
-            player.build(row,col,worker);
+        } else {
+            player.build(row, col, worker);
         }
         return false;
     }
@@ -78,7 +73,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
             adj.removeIf((n) -> n.getLevel() == 2);
             return adj;
         }
-        return player.availableCellsToBuild(worker, false);
+        return player.availableCellsToBuild(worker);
     }
 
 
