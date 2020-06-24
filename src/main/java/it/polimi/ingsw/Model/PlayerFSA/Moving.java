@@ -38,7 +38,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void checkWorker(int worker, boolean effect) throws IOException {
+    public synchronized void checkWorker(int worker, boolean effect) throws IOException {
 
         this.effect = effect;
         player.setEnableSpecialMove(effect);
@@ -55,7 +55,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void move(int row, int col, int worker) throws IOException {
+    public synchronized void move(int row, int col, int worker) throws IOException {
         if(!player.move(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidMove(worker);
         } else {
@@ -76,7 +76,7 @@ public class Moving extends PlayerFSA {
     }
 
     @Override
-    public void move(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public synchronized void move(int row1, int col1, int row2, int col2, int worker) throws IOException {
         if(!player.move(row1 - 1, col1 - 1, row2 -1, col2 - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidMoveTwoInput(worker);
         } else {

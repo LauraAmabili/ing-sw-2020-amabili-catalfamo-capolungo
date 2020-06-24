@@ -566,6 +566,7 @@ public class GUI implements UserInterface {
                 e.printStackTrace();
             }
         });
+        client.setActive(false);
     }
 
     @Override

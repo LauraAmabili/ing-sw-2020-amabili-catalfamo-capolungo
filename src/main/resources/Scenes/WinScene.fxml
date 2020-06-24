@@ -111,16 +111,6 @@
                   <ImageView fitHeight="122.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="34.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="528.0" fitWidth="741.0" layoutX="-182.0" layoutY="-264.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/endgame_victorywin.png" />
-                     </image>
-                  </ImageView>
-                  <TextField fx:id="WinPlayer" editable="false" focusTraversable="false" layoutX="-87.0" layoutY="37.0" prefHeight="48.0" prefWidth="303.0">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </TextField>
                </children></Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
@@ -219,5 +209,15 @@
       <TextField fx:id="NameText3" editable="false" focusTraversable="false" layoutX="26.0" layoutY="331.0" />
       <ToggleButton fx:id="UseEffect" disable="true" layoutX="1285.0" layoutY="781.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Use effect" />
       <ToggleButton fx:id="DontUseEffect" disable="true" layoutX="1285.0" layoutY="827.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Do not use effect" />
+      <ImageView fitHeight="584.0" fitWidth="589.0" layoutX="530.0" layoutY="165.0" preserveRatio="true">
+         <image>
+            <Image url="@../Images/endgame_victorywin.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="WinPlayer" editable="false" focusTraversable="false" layoutX="652.0" layoutY="520.0" prefHeight="48.0" prefWidth="303.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

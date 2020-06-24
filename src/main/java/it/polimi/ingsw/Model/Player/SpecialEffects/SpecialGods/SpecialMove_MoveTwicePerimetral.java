@@ -82,7 +82,7 @@ public class SpecialMove_MoveTwicePerimetral extends PlayerDecorator {
             }
             return adj;
         }
-        return player.availableCellsToMove(worker, false);
+        return player.availableCellsToMove(worker);
 
     }
 

@@ -19,6 +19,7 @@ public class Server {
     private final Gson gson = new Gson();
     private final String file = "Configurations/serverConf.json";
     private final ArrayList<ServerThread> serverThreads = new ArrayList<>();
+    private boolean keepAlive = true;
     public ServerBeatReceiver serverBeatReceiver;
     private GameController gameController = new GameController();
     public Server() {
@@ -37,6 +38,10 @@ public class Server {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Server server = new Server();
         server.startServer();
+    }
+
+    public void setKeepAlive(boolean keepAlive) {
+        this.keepAlive = keepAlive;
     }
 
     /**
@@ -63,7 +68,7 @@ public class Server {
         Socket s;
         ServerSocket ss = new ServerSocket(port);
         boolean check = false;
-        while (true) {
+        while (keepAlive) {
             s = ss.accept();
             System.out.println("Connection from " + s + "!");
             ServerThread st;

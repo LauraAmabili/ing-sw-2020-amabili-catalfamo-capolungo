@@ -23,7 +23,7 @@ public class Building extends PlayerFSA {
     }
 
     @Override
-    public void checkBuild(int worker, boolean effect) throws IOException {
+    public synchronized void checkBuild(int worker, boolean effect) throws IOException {
         this.effect = effect;
         player.setEnableSpecialBuild(effect);
         if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
@@ -41,7 +41,7 @@ public class Building extends PlayerFSA {
 
 
     @Override
-    public void build(int row, int col, int worker) throws IOException {
+    public synchronized void build(int row, int col, int worker) throws IOException {
         if(!player.build(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidBuild(worker);
         } else {
@@ -59,7 +59,7 @@ public class Building extends PlayerFSA {
     }
 
     @Override
-    public void build(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public synchronized void build(int row1, int col1, int row2, int col2, int worker) throws IOException {
         if(!player.build(row1 - 1, col1 - 1, row2 - 1, col2 - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidBuildTwoInput(worker);
         } else {

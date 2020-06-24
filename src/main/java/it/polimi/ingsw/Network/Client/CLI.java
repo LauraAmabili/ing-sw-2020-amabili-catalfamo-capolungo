@@ -443,7 +443,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
         clientBoard.win();
         System.out.println(nickaname + " wins the match! Yay!!");
-
+        client.setActive(false);
 
     }
 

@@ -28,6 +28,6 @@ public class WinSceneController extends BoardController implements Initializable
     }
 
     public void setUpButtons() {
-        WinPlayer.setText(Player + "wins");
+        WinPlayer.setText(Player + " wins");
     }
 }
