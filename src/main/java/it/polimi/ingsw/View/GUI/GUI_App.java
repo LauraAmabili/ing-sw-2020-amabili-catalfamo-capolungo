@@ -38,7 +38,7 @@ public class GUI_App extends Application {
         loader.setController(new WelcomeSceneController(client[0]));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> {
             client[0].setActive(false);

@@ -8,7 +8,6 @@ import it.polimi.ingsw.View.GUI.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -111,7 +110,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -127,7 +126,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -156,7 +155,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -174,7 +173,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -192,7 +191,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -216,7 +215,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -236,7 +235,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -255,7 +254,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -275,7 +274,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -294,7 +293,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -314,7 +313,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -353,7 +352,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -376,7 +375,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -405,17 +404,17 @@ public class GUI implements UserInterface {
                 Parent root = null;
                 try {
                     root = loader.load();
-                    primaryStage.setScene(new Scene(root));
+                    primaryStage.getScene().setRoot(root);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/PlayerSettingCardScene.fxml"));
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/playerSettingCardScene.fxml"));
                     WaitingSetCardController controller = new WaitingSetCardController(client, setCardTimeUpdate.getCurrentPlayer());
                     loader.setController(controller);
                     Parent root = loader.load();
-                    primaryStage.setScene(new Scene(root));
+                    primaryStage.getScene().setRoot(root);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -460,7 +459,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -479,7 +478,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -500,7 +499,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -525,7 +524,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -545,7 +544,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -562,7 +561,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -579,7 +578,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -596,7 +595,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -612,7 +611,7 @@ public class GUI implements UserInterface {
             Parent root = null;
             try {
                 root = loader.load();
-                primaryStage.setScene(new Scene(root));
+                primaryStage.getScene().setRoot(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }

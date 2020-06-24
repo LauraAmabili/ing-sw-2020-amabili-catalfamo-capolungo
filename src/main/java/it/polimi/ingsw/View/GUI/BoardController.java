@@ -1,12 +1,12 @@
 package it.polimi.ingsw.View.GUI;
 
+import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Client.Client;
 import it.polimi.ingsw.Network.Client.GUI;
 import it.polimi.ingsw.Network.Client.NotifyMessages;
 import it.polimi.ingsw.Network.Client.UpdatesForMessages;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -95,7 +95,7 @@ public abstract class BoardController extends NotifyMessages {
 
     public void LoadBoard() {
         String color;
-        it.polimi.ingsw.Model.Board board = gui.getBoard();
+        Board board = gui.getBoard();
         if(board != null) {
             for (int i = 0; i < board.getGrid()[0].length; i++) {
                 for(int j = 0; j < board.getGrid()[0].length; j++) {
