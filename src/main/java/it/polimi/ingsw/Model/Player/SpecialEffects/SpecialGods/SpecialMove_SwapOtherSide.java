@@ -20,7 +20,6 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
 
     /**
      * You can move your Worker into an opponent's pushable BoardCell
-     *
      * @param row
      * @param col
      * @param worker
@@ -37,10 +36,11 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
                 worker.getCurCell().setWorker(worker);
                 return true;
             } else {
+                BoardCell otherCell = otherSide(worker, opponentWorker);
                 worker.setOldCell(worker.getCurCell());
                 worker.setCurCell(opponentWorker.getCurCell());
                 opponentWorker.setOldCell(opponentWorker.getCurCell());
-                opponentWorker.setCurCell(otherSide(worker, opponentWorker));
+                opponentWorker.setCurCell(otherCell);
                 worker.getOldCell().setWorker(null);
                 worker.getCurCell().setWorker(worker);
                 opponentWorker.getCurCell().setWorker(opponentWorker);
@@ -82,27 +82,41 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         int colPushedCell = pushed.getCurCell().getCol();
         int rowDestinationCell = 0;
         int colDestinationCell = 0;
-        if (rowPushedCell > rowPushingCell)
-            rowDestinationCell = rowPushingCell - (rowPushedCell - rowPushingCell);
+        /*if (rowPushedCell > rowPushingCell)
+            rowDestinationCell = rowPushingCell + (rowPushedCell - rowPushingCell);
         if (rowPushedCell == rowPushingCell)
             rowDestinationCell = rowPushedCell;
-        if (colPushedCell < colPushingCell)
-            colDestinationCell = colPushedCell + (colPushingCell - colPushedCell);
+        if (rowPushedCell < rowPushingCell)
+            rowDestinationCell = rowPushingCell - (rowPushedCell - rowPushingCell);
         if (colPushedCell > colPushingCell)
-            colDestinationCell = colPushingCell - (colPushedCell - colPushingCell);
+            colDestinationCell = colPushingCell + (colPushedCell - colPushingCell);
         if (colPushedCell == colPushingCell)
             colDestinationCell = colPushedCell;
         if (colPushedCell < colPushingCell)
-            colDestinationCell = colPushedCell + (colPushingCell - colPushedCell);
+            colDestinationCell = colPushingCell - (colPushingCell - colPushedCell);*/
+
+        if (rowPushedCell == rowPushingCell)
+            rowDestinationCell = rowPushedCell;
+        if (rowPushedCell > rowPushingCell)
+            rowDestinationCell = rowPushingCell-1;
+        if (rowPushedCell < rowPushingCell)
+            rowDestinationCell = rowPushingCell+1;
+
+        if (colPushedCell == colPushingCell)
+            colDestinationCell = rowPushedCell;
+        if (colPushedCell > colPushingCell)
+            colDestinationCell = colPushingCell-1;
+        if (colPushedCell < colPushingCell)
+            colDestinationCell = colPushingCell+1;
+
 
         if ((rowDestinationCell < 0 || colDestinationCell < 0 || rowDestinationCell > 4 || colDestinationCell > 4))
             return null;
-        BoardCell destinationCell = this.getBoard().getGrid()[rowDestinationCell][rowPushedCell];
-        if (destinationCell.getDome())
+        if (this.getBoard().getGrid()[rowDestinationCell][colDestinationCell].getDome())
             return null;
-        if (destinationCell.getWorker() != null)
+        if (this.getBoard().getGrid()[rowDestinationCell][colDestinationCell].getWorker() != null)
             return null;
-        return destinationCell;
+        return this.getBoard().getGrid()[rowDestinationCell][colDestinationCell];
 
     }
 
