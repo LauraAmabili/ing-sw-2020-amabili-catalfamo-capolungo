@@ -10,7 +10,6 @@ public interface VisitorClient {
     void visit(PlayerNumberRequest playerNumberRequest) throws IOException;
 
     void visit(ConnectionResponse connectionResponse);
-
     void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate);
     void visit(NicknameRequest nicknameRequest) throws IOException;
     void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate);

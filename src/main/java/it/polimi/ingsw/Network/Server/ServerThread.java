@@ -2,10 +2,7 @@ package it.polimi.ingsw.Network.Server;
 
 import it.polimi.ingsw.Model.ObserverModel;
 import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
-import it.polimi.ingsw.Network.Message.MessageFromServer.MaxPlayerReachedUpdate;
-import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
-import it.polimi.ingsw.Network.Message.MessageFromServer.NicknameRequest;
-import it.polimi.ingsw.Network.Message.MessageFromServer.PlayerNumberRequest;
+import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.VirtualView;
 
 
@@ -112,6 +109,11 @@ public class ServerThread extends Thread implements Runnable {
             e.printStackTrace();
         }
         server.getServerThreads().add(this);
+        try {
+            sendToClient(new ConnectionResponse());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //numOnline = server.getClients().size();
         if (server.getServerThreads().size() == 1) {
             try {

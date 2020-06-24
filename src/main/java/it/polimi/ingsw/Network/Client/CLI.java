@@ -96,7 +96,9 @@ public class CLI extends NotifyMessages implements UserInterface {
      */
     @Override
     public void ConnectionResponse() {
-        System.out.println("Connection established to server");
+
+        System.out.println("Connection established");
+
     }
 
 
