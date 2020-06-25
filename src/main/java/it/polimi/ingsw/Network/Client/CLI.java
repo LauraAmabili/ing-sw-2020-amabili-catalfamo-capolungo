@@ -40,6 +40,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     public static final String GREEN = "\033[0;32m";
 
 
+    /**
+     * Request of ip and server port
+     */
     public void connectionPortRequest(){
 
         Scanner scanner= new Scanner(System.in);
@@ -112,6 +115,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * print the name of the player that is placing workers
+     * @param startingSetWorkerTimeUpdate message
+     */
+
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
@@ -119,6 +127,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asks the coordinates for the worker to set
+     * @param startingSetWorkerRequest type of message
+     * @throws IOException Exception
+     */
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
 
@@ -160,6 +173,8 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+
+
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
@@ -183,13 +198,14 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void MoveRequest(MoveRequest moveRequest) throws IOException {
 
 
+        boardToPrint.printAvailableGrid(moveRequest.getAvailableCess());
         int worker = moveRequest.getWorker();
         System.out.println("Choose row and col for worker " + worker + " : " );
         System.out.println("Row: ");
         String rowString = string.nextLine();
         System.out.println("Col: ");
         String colString = string.nextLine();
-        notifyMoveResponse(rowString, colString, worker);
+        notifyMoveResponse(rowString, colString, worker, moveRequest.getAvailableCess());
     }
 
     @Override
@@ -200,14 +216,14 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void BuildRequest(BuildRequest buildRequest) throws IOException {
 
+        boardToPrint.printAvailableGrid(buildRequest.getAv());
         System.out.println("Choose where to build! Insert Row and Col: ");
         System.out.println("Row: ");
         String rowstring = string.nextLine();
         System.out.println("Col: ");
         String colstring = string.nextLine();
         int worker = buildRequest.getWorker();
-
-        notifyBuildResponse(rowstring, colstring,worker);
+        notifyBuildResponse(rowstring, colstring,worker, buildRequest.getAv());
     }
 
     @Override
@@ -440,11 +456,12 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+
     @Override
-    public void WinMessage(String nickaname) {
+    public void WinMessage(String nickname) {
 
         clientBoard.win();
-        System.out.println(nickaname + " wins the match! Yay!!");
+        System.out.println(nickname + " wins the match! Yay!!");
         client.setActive(false);
 
     }

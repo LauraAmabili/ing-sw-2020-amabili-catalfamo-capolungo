@@ -379,7 +379,7 @@ public class Game extends Observable {
      * @throws IOException Exception for the message
      */
     public void updateWorkerSelected(int worker) throws IOException {
-        notifyWorkerSelected(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyWorkerSelected(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
     }
 
     /**
@@ -389,7 +389,7 @@ public class Game extends Observable {
      * @throws IOException Exception for the message
      */
     public void NoCoordinatesValidMove(int worker) throws IOException {
-        notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),  this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
     }
 
     /**
@@ -402,7 +402,7 @@ public class Game extends Observable {
         if (getCurrentTurn().getCurrentPlayer().isHasSpecialBuild()) {
             notifyAskForEffectBuild(currentTurn.getCurrentPlayer().getNickname(), worker);
         } else {
-            notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+            notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),  this.getCurrentTurn().getCurrentPlayer().availableCellsToBuild(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
         }
     }
 
@@ -414,10 +414,10 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputBuild()) {
                         notifyTimeToBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     } else {
-                        notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                        notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToBuild(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
                     }
                 } else {
-                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    notifyTimeToBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToBuild(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
                 }
                 break;
             }
@@ -431,7 +431,7 @@ public class Game extends Observable {
      * @throws IOException exception for the message
      */
     public void NoCoordinatesValidBuild(int worker) throws IOException {
-        notifyTryNewCoordinatesBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyTryNewCoordinatesBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),this.getCurrentTurn().getCurrentPlayer().availableCellsToBuild(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)) );
     }
 
     /**
@@ -451,10 +451,10 @@ public class Game extends Observable {
                     if (getCurrentTurn().getCurrentPlayer().isHasTwoInputMove()) {
                         notifyTimeToMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
                     } else {
-                        notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                        notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),  this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
                     }
                 } else {
-                    notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
+                    notifyCanMoveThisWorker(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),  this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
                 }
                 break;
             }

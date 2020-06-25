@@ -149,8 +149,9 @@ public class VisitorMethodsServer implements VisitorServer {
             view.tryMoving(row, col, worker);
         } catch (NumberFormatException e) {
             int worker = moveResponse.getWorker();
+
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
-            serverThread.sendToClient(new MoveRequest(worker));
+            serverThread.sendToClient(new MoveRequest(worker, moveResponse.getAvailable()));
         }
 
     }
@@ -173,7 +174,7 @@ public class VisitorMethodsServer implements VisitorServer {
         } catch (NumberFormatException e) {
             int worker = buildResponse.getWorker();
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
-            serverThread.sendToClient(new BuildRequest(worker));
+            serverThread.sendToClient(new BuildRequest(worker, buildResponse.getAv()));
         }
 
     }

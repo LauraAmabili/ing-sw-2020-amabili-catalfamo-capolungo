@@ -390,7 +390,7 @@ public class GUI implements UserInterface {
 
     @Override
     public void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
-        //non necessario
+
     }
 
     @Override

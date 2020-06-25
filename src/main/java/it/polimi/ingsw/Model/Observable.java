@@ -62,19 +62,19 @@ public class Observable {
             o.updateDecideWorker(nickname);
         }
     }
-    void notifyCanMoveThisWorker(int worker, String current) throws IOException {
+    void notifyCanMoveThisWorker(int worker, String current,  List<BoardCell> available) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateMoving(worker, current);
+            o.updateMoving(worker, current, available);
         }
     }
-    void notifyTryNewCoordinatesMove(int Worker, String current) throws IOException {
+    void notifyTryNewCoordinatesMove(int Worker, String current,  List<BoardCell> available) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateMoving(Worker, current);
+            o.updateMoving(Worker, current, available);
         }
     }
-    void notifyTryNewCoordinatesBuild(int worker, String current) throws IOException {
+    void notifyTryNewCoordinatesBuild(int worker, String current,  List<BoardCell> available) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updateBuilding(worker, current);
+            o.updateBuilding(worker, current,  available);
         }
     }
     void notifyCellAlreadyOccupied(int i, String currentPlayer) throws IOException {
@@ -140,19 +140,19 @@ public class Observable {
             o.updateWinners(p);
         }
     }
-    void notifyWorkerSelected(int worker, String current) throws IOException {
+    void notifyWorkerSelected(int worker, String current,  List<BoardCell> available) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateWorkerSelected(worker, current);
+            o.updateWorkerSelected(worker, current, available);
         }
     }
-    void notifyNoCoordinatesValid(int worker, String current) throws IOException {
+    void notifyNoCoordinatesValid(int worker, String current,  List<BoardCell> available) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateNoCoordinatesValid(worker, current);
+            o.updateNoCoordinatesValid(worker, current, available);
         }
     }
-    void notifyTimeToBuild(int worker, String current) throws IOException {
+    void notifyTimeToBuild(int worker, String current, List<BoardCell> av) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateTimeToBuild(worker, current);
+            o.updateTimeToBuild(worker, current, av);
         }
     }
     public void notifyStartingGame() throws IOException, InterruptedException {
