@@ -274,7 +274,6 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println();
         gods = availableGodsUpdate.getCards();
 
-
     }
 
     @Override
@@ -450,9 +449,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Col: ");
         String colstring2 = string.nextLine();
 
-
         notifyMoveTwoInputResponse(rowstring1, colstring1, rowstring2, colstring2, worker);
-
 
     }
 
@@ -476,11 +473,13 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
         String playerOut = droppedConnection.getNickname();
+        System.out.println(PURPLE);
         if (playerOut == null) {
             System.out.println("Player disconnected!");
         } else {
             System.out.println(playerOut + " disconnected!");
         }
+        System.out.println(RESET);
     }
 
     @Override
