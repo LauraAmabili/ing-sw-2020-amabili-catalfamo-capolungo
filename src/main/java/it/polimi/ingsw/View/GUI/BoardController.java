@@ -47,7 +47,7 @@ public abstract class BoardController extends NotifyMessages {
     @FXML
     Text CurrentTurnPlayer = new Text();
     @FXML
-    TextField ActionText = new TextField();
+    Text ActionText = new Text();
     @FXML
     ToggleButton UseEffect = new ToggleButton();
     @FXML
