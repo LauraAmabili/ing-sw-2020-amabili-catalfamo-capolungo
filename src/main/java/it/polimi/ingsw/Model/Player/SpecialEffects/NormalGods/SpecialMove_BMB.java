@@ -53,7 +53,9 @@ public class SpecialMove_BMB extends PlayerDecorator {
     @Override
     public boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
         if (enableSpecialMove) {
-            return player.build(rowBuild, colBuild, worker) && player.move(row, col, worker);
+            if(worker.getCurCell().getLevel() >= worker.getPlayerWorker().getBoard().getGrid()[row][col].getLevel()) {
+                return player.build(rowBuild, colBuild, worker) && player.move(row, col, worker);
+            } else return false;
         }
         return player.move(row, col, worker);
     }

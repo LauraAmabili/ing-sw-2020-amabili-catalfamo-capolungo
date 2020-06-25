@@ -8,6 +8,7 @@ import it.polimi.ingsw.View.VirtualView;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerThread extends Thread implements Runnable {
 
@@ -166,9 +167,13 @@ public class ServerThread extends Thread implements Runnable {
      * @throws IOException
      */
     public void sendToClient(MessageFromServer messageFromServer) throws IOException {
-        out.reset();
-        out.writeObject(messageFromServer);
-        out.flush();
+        try {
+            out.reset();
+            out.writeObject(messageFromServer);
+            out.flush();
+        } catch (SocketException e) {
+            System.out.println();
+        }
     }
 
     /**

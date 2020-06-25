@@ -149,16 +149,43 @@ public class Game extends Observable {
      *
      * @param player the PlayerInterface to delete from the game
      */
-    public void delPlayer(@NotNull PlayerInterface player) {
+    public synchronized void delPlayer(@NotNull PlayerInterface player) {
 
         for (Worker x : player.getWorkerRef()) {
             if (x.getCurCell() != null)
                 x.getCurCell().setWorker(null);
         }
         player.getWorkerRef().clear();
-        onlinePlayers.remove(player);
-        currentTurn.getActivePlayers().remove(player);
-
+        for (int i = 0; i < onlinePlayers.size(); i++) {
+            if(onlinePlayers.get(i).equals(player)) {
+                color.add(player.getColor());
+                if(!started) {
+                    List<Worker> list = new ArrayList<>();
+                    PlayerInterface newPlayer = new Player();
+                    Board board = player.getBoard();
+                    for (int j = 0; j < 2; j++, counterId++) {
+                        Worker worker = new Worker(counterId);
+                        worker.setColor(color.get(0));
+                        worker.setPlayerWorker(newPlayer);
+                        list.add(worker);
+                    }
+                    newPlayer.setWorkerRef(list);
+                    newPlayer.setBoard(board);
+                    stateList.remove(i);
+                    stateList.add(new AddNickname(newPlayer, this));
+                    onlinePlayers.remove(player);
+                    currentTurn.getActivePlayers().remove(player);
+                    currentTurn.getActivePlayers().add(newPlayer);
+                    nickNames.remove(player.getNickname());
+                } else {
+                    stateList.remove(i);
+                    onlinePlayers.remove(player);
+                    currentTurn.getActivePlayers().remove(player);
+                    nickNames.remove(player.getNickname());
+                }
+                break;
+            }
+        }
     }
 
     /**

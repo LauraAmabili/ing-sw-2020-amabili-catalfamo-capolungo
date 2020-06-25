@@ -93,7 +93,7 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends a message to the client asking the nickname
      * @throws IOException Exception for the Message
      */
-    public  void insertNickname() throws IOException {
+    public void insertNickname() throws IOException {
 
 
           thread.sendToClient(new NicknameRequest());
