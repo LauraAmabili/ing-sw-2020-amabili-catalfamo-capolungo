@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Network.Message.MessageFromClient;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Network.Server.VisitorServer;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BuildResponse extends MessageFromClient {
 
@@ -10,6 +12,15 @@ public class BuildResponse extends MessageFromClient {
     final String row;
     final String  col;
     final int worker;
+    List<BoardCell> av;
+
+    public List<BoardCell> getAv() {
+        return av;
+    }
+
+    public void setAv(List<BoardCell> av) {
+        this.av = av;
+    }
 
     public BuildResponse(String row, String col, int worker) {
         this.row = row;

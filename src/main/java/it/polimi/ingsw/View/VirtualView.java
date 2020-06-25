@@ -534,11 +534,11 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateWorkerSelected(int worker, String current) throws IOException {
+    public void updateWorkerSelected(int worker, String current,  List<BoardCell> available) throws IOException {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new WrongWorkerUpdate(worker));
-            moving(worker, current);
+            moving(worker, current, available);
         }
 
     }
@@ -550,11 +550,12 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateMoving(int worker, String current) throws IOException {
+    public void updateMoving(int worker, String current,  List<BoardCell> available) throws IOException {
 
-        moving(worker, current);
+        moving(worker, current, available);
 
     }
+
 
     /**
      * Sends the message to the current player to ask for coordinates
@@ -562,10 +563,10 @@ public class VirtualView extends Observable implements ObserverModel {
      * @param current name of the current player
      * @throws IOException Exception for the Message
      */
-    public void moving(int worker, String current) throws IOException {
+    public void moving(int worker, String current, List<BoardCell> available) throws IOException {
 
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new MoveRequest(worker));
+            thread.sendToClient(new MoveRequest(worker, available));
         }
     }
 
@@ -589,11 +590,11 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateNoCoordinatesValid(int worker, String current) throws IOException {
+    public void updateNoCoordinatesValid(int worker, String current,  List<BoardCell> available) throws IOException {
 
         thread.sendToClient(new TryNewCoordinatesRequest(worker));
         //System.out.println("This coordinates are not valid, insert them again");
-        moving(worker, current);
+        moving(worker, current, available);
 
     }
 
@@ -719,11 +720,11 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateTimeToBuild(int worker, String current) throws IOException {
+    public void updateTimeToBuild(int worker, String current, List<BoardCell> av) throws IOException {
 
         thread.sendToClient(new BuildTimeUpdate(current));
         //System.out.println("It's now time to  build!");
-        building(worker, current);
+        building(worker, current, av);
 
     }
 
@@ -734,10 +735,10 @@ public class VirtualView extends Observable implements ObserverModel {
      * @param current name of the current player
      * @throws IOException Exception for the Message
      */
-    public void building(int worker, String current) throws IOException {
+    public void building(int worker, String current, List<BoardCell> av) throws IOException {
 
         if(MyNickname.equals(current)) {
-            thread.sendToClient(new BuildRequest(worker));
+            thread.sendToClient(new BuildRequest(worker, av));
 
         }
     }
@@ -762,12 +763,12 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateBuilding(int worker, String current) throws IOException {
+    public void updateBuilding(int worker, String current, List<BoardCell> av) throws IOException {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new TryNewCoordinatesRequest(worker));
             //System.out.println("Try new coordinates: ");
-            building(worker, current);
+            building(worker, current, av);
         }
 
     }

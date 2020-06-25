@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
@@ -47,15 +48,15 @@ public class NotifyMessages {
         }
     }
 
-    public void notifyMoveResponse(String row, String col, int worker) throws IOException {
+    public void notifyMoveResponse(String row, String col, int worker, List<BoardCell> av) throws IOException {
         for(ClientObserver c : observersClient){
-            c.updateMoveResponse(row, col, worker);
+            c.updateMoveResponse(row, col, worker, av);
         }
     }
 
-    public void notifyBuildResponse(String row, String col, int worker) throws IOException {
+    public void notifyBuildResponse(String row, String col, int worker, List<BoardCell> b) throws IOException {
         for(ClientObserver c : observersClient){
-            c.updateBuildResponse(row, col, worker);
+            c.updateBuildResponse(row, col, worker, b);
         }
     }
 

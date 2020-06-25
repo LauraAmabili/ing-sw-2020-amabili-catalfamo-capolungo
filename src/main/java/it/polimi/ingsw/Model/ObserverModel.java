@@ -25,9 +25,9 @@ public interface ObserverModel {
 
     void updateWinners(PlayerInterface player) throws IOException;
 
-    void updateMoving(int worker, String current) throws IOException;
+    void updateMoving(int worker, String current,  List<BoardCell> available) throws IOException;
 
-    void updateBuilding(int worker, String current) throws IOException;
+    void updateBuilding(int worker, String current,  List<BoardCell> available) throws IOException;
 
     void updateSetWorker(int i, String currentPlayer) throws IOException;
 
@@ -47,11 +47,11 @@ public interface ObserverModel {
 
     void updateTimeToPlaceWorker(String currentPlayerName) throws IOException;
 
-    void updateWorkerSelected(int worker, String current) throws IOException;
+    void updateWorkerSelected(int worker, String current, List<BoardCell> available) throws IOException;
 
-    void updateNoCoordinatesValid(int worker, String current) throws IOException;
+    void updateNoCoordinatesValid(int worker, String current, List<BoardCell> available) throws IOException;
 
-    void updateTimeToBuild(int worker, String current) throws IOException;
+    void updateTimeToBuild(int worker, String current, List<BoardCell> av) throws IOException;
 
     void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
 

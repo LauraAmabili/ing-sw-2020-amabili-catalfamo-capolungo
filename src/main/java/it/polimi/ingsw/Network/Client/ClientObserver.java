@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ public interface ClientObserver {
     void updateStartingSetWorkerResponse(String row, String col, int worker) throws IOException;
     void updateWrongCoordinatesUpdate(String row, String col, int worker) throws IOException;
     void updateChooseYourWorkerResponse(String worker) throws IOException;
-    void updateMoveResponse(String row, String col, int worker) throws IOException;
-    void updateBuildResponse(String row, String col, int worker) throws IOException;
+    void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) throws IOException;
+    void updateBuildResponse(String row, String col, int worker, List<BoardCell> av) throws IOException;
     void updateChosenCardsUpdate(String cardName) throws IOException;
     void updateSetYourCardResponse(String in) throws IOException;
     void updateAskEffectReply(String effect, String nickname) throws IOException;

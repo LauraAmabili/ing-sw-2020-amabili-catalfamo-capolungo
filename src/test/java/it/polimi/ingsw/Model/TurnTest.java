@@ -149,7 +149,7 @@ public class TurnTest {
 
 
         game.getBoard().printGrid();
-        game.getBoard().printGrid(game.getCurrentTurn().getCurrentPlayer().availableCellsToMove(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1)));
+        game.getBoard().printAvailableGrid(game.getCurrentTurn().getCurrentPlayer().availableCellsToMove(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(1)));
 
         //NextTurn() when moved worker and built building
         for (PlayerInterface p : turn2.getActivePlayers()) {

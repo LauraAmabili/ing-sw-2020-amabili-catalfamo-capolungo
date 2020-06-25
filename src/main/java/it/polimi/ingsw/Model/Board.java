@@ -203,10 +203,10 @@ public class Board implements Serializable {
     }
 
     /**
-     * print the grid
+     * print the cells around available to move and build in
      * @param adj list of boardcells to print
      */
-    public void printGrid(List<BoardCell> adj) {
+    public void printAvailableGrid(List<BoardCell> adj) {
         boolean stamped = false;
         for (BoardCell[] boardCells : grid) {
             for (int j = 0; j < grid[0].length; j++) {

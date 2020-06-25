@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Client;
 
+import it.polimi.ingsw.Model.BoardCell;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromClient.*;
 
@@ -52,12 +53,16 @@ public class UpdatesForMessages implements ClientObserver {
     }
 
     @Override
-    public void updateMoveResponse(String row, String col, int worker) throws IOException {
-        client.send(new MoveResponse(row, col, worker));
+    public void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) throws IOException {
+        MoveResponse move = new MoveResponse(row, col, worker);
+        move.setAvailable(av);
+        client.send(move);
 
     }
 
-    public void updateBuildResponse(String row, String col, int worker) throws IOException {
+    public void updateBuildResponse(String row, String col, int worker, List<BoardCell> b) throws IOException {
+       BuildResponse message = new BuildResponse(row, col, worker);
+       message.setAv(b);
         client.send(new BuildResponse(row, col, worker));
     }
 
