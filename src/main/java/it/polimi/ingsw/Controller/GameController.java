@@ -3,7 +3,6 @@ package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Player.PlayerCreator;
-import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,11 +11,6 @@ public class GameController implements Observer {
 
 
     private final Game game = new Game();
-
-    public static final String PURPLE = "\033[0;35m";
-    public static final String RESET = "\033[0m";
-    public static final String GREEN = "\033[0;32m";
-
 
     public GameController() {
     }
@@ -29,11 +23,9 @@ public class GameController implements Observer {
      * calls the method on game to create the match with the number of players chosen and create the turn
      *
      * @param numberOfPlayers number of player decided by the first client
-     * @throws IOException          Exception
-     * @throws InterruptedException Exception
      */
     @Override
-    public synchronized void updateInitialiseMatch(int numberOfPlayers) throws IOException, InterruptedException {
+    public synchronized void updateInitialiseMatch(int numberOfPlayers) {
 
         game.initialiseMatch(numberOfPlayers);
         game.createTurn();
@@ -133,7 +125,7 @@ public class GameController implements Observer {
      * @throws IOException Exception
      */
     @Override
-    public void updateBuilding(int row, int col, int worker) throws IOException {
+    public synchronized void updateBuilding(int row, int col, int worker) throws IOException {
 
 
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
@@ -148,7 +140,7 @@ public class GameController implements Observer {
      * @throws IOException Exception
      */
     @Override
-    public void updateStartMoving() throws IOException {
+    public synchronized void updateStartMoving() throws IOException {
 
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
@@ -168,7 +160,7 @@ public class GameController implements Observer {
      * @throws IOException Exception
      */
     @Override
-    public void updateTryThisWorkerEffect(boolean effect, int worker) throws IOException {
+    public synchronized void updateTryThisWorkerEffect(boolean effect, int worker) throws IOException {
 
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
@@ -192,7 +184,7 @@ public class GameController implements Observer {
      * @throws IOException Exception
      */
     @Override
-    public void updatePlayerBuild(boolean effect, String nickname, int worker) throws IOException {
+    public synchronized void updatePlayerBuild(boolean effect, String nickname, int worker) throws IOException {
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
                 if (game.getCurrentTurn().getCurrentPlayer().isHasSpecialBuild()) {
@@ -216,7 +208,7 @@ public class GameController implements Observer {
      * @throws IOException exception for the message
      */
     @Override
-    public void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public synchronized void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
                 game.getStateList().get(i).move(row1, col1, row2, col2, worker);
@@ -236,7 +228,7 @@ public class GameController implements Observer {
      * @throws IOException exception for the message
      */
     @Override
-    public void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public synchronized void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
                 game.getStateList().get(i).build(row1, col1, row2, col2, worker);
@@ -252,7 +244,7 @@ public class GameController implements Observer {
      * @throws IOException exception for the message
      */
     @Override
-    public void updateTryThisWorker(int worker) throws IOException {
+    public synchronized void updateTryThisWorker(int worker) throws IOException {
 
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             game.getStateList().get(i).checkWorker(worker, false);
@@ -269,7 +261,7 @@ public class GameController implements Observer {
      * @throws IOException exception for the message
      */
     @Override
-    public void updateMoving(int row, int col, int worker) throws IOException {
+    public synchronized void updateMoving(int row, int col, int worker) throws IOException {
 
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (game.getOnlinePlayers().get(i).equals(game.getCurrentTurn().getCurrentPlayer())) {
@@ -288,7 +280,7 @@ public class GameController implements Observer {
      * @throws InterruptedException exception
      */
     @Override
-    public void updateStartingGame() throws IOException, InterruptedException {
+    public synchronized void updateStartingGame() throws IOException, InterruptedException {
         game.notifyStartingGame();
     }
 
@@ -298,20 +290,20 @@ public class GameController implements Observer {
      * @param nickname name of the player that drop his connection
      */
     @Override
-    public void updateDropConnection(String nickname) throws IOException {
+    public synchronized void updateDropConnection(String nickname) throws IOException {
         boolean state = false;
         for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
             if (nickname != null) {
                 if (game.getOnlinePlayers().get(i).getNickname().equals(nickname)) {
                     if (game.getCurrentTurn().getCurrentPlayer().getNickname().equals(game.getOnlinePlayers().get(i).getNickname())) {
-                        if (!game.isStarted()) {
+                        if (!game.isStarted() && game.getOnlinePlayers().size() > 2) {
                             state = true;
                             PlayerCreator playerCreator = new PlayerCreator();
                             game.setAllGods(playerCreator.getArrayGods());
                             game.initialiseGodList();
                             game.setChosenGodList(new ArrayList<>());
                             game.setAvailableGods(new ArrayList<>());
-                        } else {
+                        } else if(game.getOnlinePlayers().size() == 3) {
                             game.getCurrentTurn().nextTurn(game);
                         }
                     }
@@ -327,7 +319,7 @@ public class GameController implements Observer {
     }
 
     @Override
-    public void updateFirstPlayer(int player) throws IOException {
+    public synchronized void updateFirstPlayer(int player) throws IOException {
         //TODO:
         game.getCurrentTurn().firstTurn(player, game);
         game.toSetCard();

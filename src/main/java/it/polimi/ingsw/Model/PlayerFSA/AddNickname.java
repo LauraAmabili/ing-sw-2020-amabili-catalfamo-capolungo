@@ -49,8 +49,6 @@ public class AddNickname extends PlayerFSA {
                         game.createChallenger();
                         game.timeToChallenger();
                     }
-
-
                 }
                 break;
             }

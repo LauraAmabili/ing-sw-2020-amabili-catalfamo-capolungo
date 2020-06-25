@@ -28,7 +28,7 @@ public class Moving extends PlayerFSA {
             game.NoPossibleMoves(player.getNickname());
             game.delPlayer(game.getCurrentTurn().getCurrentPlayer());
             if(game.getOnlinePlayers().size() == 1) {
-                game.updateWin(player);
+                game.updateWin(game.getOnlinePlayers().get(0));
             } else {
                 game.getCurrentTurn().nextTurn(game);
             }
