@@ -90,6 +90,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
                     for(int i = 0; i < list.size(); i++) {
                         if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
                             numbPlayer = i + 1 + "";
+                            break;
                         }
                     }
                     notifyPlayerThatStart(numbPlayer, list);
@@ -107,6 +108,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
                         for(int i = 0; i < list.size(); i++) {
                             if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
                                 numbPlayer = i + 1 + "";
+                                break;
                             }
                         }
                         notifyPlayerThatStart(numbPlayer, list);
@@ -124,6 +126,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
                     for(int i = 0; i < list.size(); i++) {
                         if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
                             numbPlayer = i + 1 + "";
+                            break;
                         }
                     }
                     notifyPlayerThatStart(numbPlayer, list);

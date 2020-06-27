@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public abstract class BoardController extends NotifyMessages {
@@ -52,7 +53,14 @@ public abstract class BoardController extends NotifyMessages {
     ToggleButton UseEffect = new ToggleButton();
     @FXML
     ToggleButton DontUseEffect = new ToggleButton();
-
+    @FXML
+    Text Text1 = new Text();
+    @FXML
+    Text Text2 = new Text();
+    @FXML
+    Text Text3 = new Text();
+    @FXML
+    Text Text4 = new Text();
 
 
     public void LoadNameAndCards() {
@@ -111,7 +119,7 @@ public abstract class BoardController extends NotifyMessages {
                             imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
                             imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelTwo.jpg"));;
-                        } else if (board.getGrid()[i][j].getLevel() == 3 && !board.getGrid()[i][j].getDome()) {
+                        } else if (board.getGrid()[i][j].getLevel() == 3) {
                             ImageView imageView = (ImageView) cell.getChildren().get(2);
                             imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
                             imageView = (ImageView) cell.getChildren().get(0);
@@ -132,7 +140,7 @@ public abstract class BoardController extends NotifyMessages {
                             imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
                             imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelTwoDome.jpg"));
-                        } else if (board.getGrid()[i][j].getLevel() == 3 && !board.getGrid()[i][j].getDome()) {
+                        } else if (board.getGrid()[i][j].getLevel() == 3) {
                             ImageView imageView = (ImageView) cell.getChildren().get(2);
                             imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
                             imageView = (ImageView) cell.getChildren().get(0);
