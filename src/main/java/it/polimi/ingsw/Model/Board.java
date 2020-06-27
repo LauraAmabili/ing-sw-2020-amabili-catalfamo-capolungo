@@ -251,7 +251,7 @@ public class Board implements Serializable {
                         }
                         if(boardCells[j].getDome()) {
                             System.out.print("D");
-                            for (int k = 0; k < 9; k++) {
+                            for (int k = 0; k < 8; k++) {
                                 System.out.print(" ");
                             }
                         } else {

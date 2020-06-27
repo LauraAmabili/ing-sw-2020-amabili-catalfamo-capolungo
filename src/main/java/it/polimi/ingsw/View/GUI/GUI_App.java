@@ -15,6 +15,9 @@ import javafx.util.*;
 
 import java.io.IOException;
 
+import static javafx.scene.text.Font.loadFont;
+import static javafx.scene.text.Font.loadFonts;
+
 public class GUI_App extends Application {
 
     private final Client[] client = new Client[1];
@@ -34,6 +37,7 @@ public class GUI_App extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         UI[0].setPrimaryStage(primaryStage);
+        loadFonts(getClass().getResource("/Font/dalek/DALEK___.ttf").toExternalForm(), 20);
         FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/welcomeScene.fxml"));
         loader.setController(new WelcomeSceneController(client[0]));
         Parent root = loader.load();

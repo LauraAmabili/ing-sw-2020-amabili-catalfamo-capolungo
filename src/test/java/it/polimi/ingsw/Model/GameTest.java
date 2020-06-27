@@ -66,6 +66,7 @@ public class GameTest {
         Assert.assertEquals(0, player1.getWorkerRef().size());
         Assert.assertNull(b1.getWorker());
         Assert.assertNull(b2.getWorker());
+
     }
 
 

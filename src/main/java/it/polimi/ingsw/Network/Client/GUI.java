@@ -590,9 +590,7 @@ public class GUI implements UserInterface {
     public void DroppedConnection(DroppedConnection droppedConnection) {
         //TODO
         Platform.runLater(() -> {
-            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/chosenCards.fxml"));
-            ChosenCardsController controller = new ChosenCardsController(client);
-            loader.setController(controller);
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
             Parent root = null;
             try {
                 root = loader.load();

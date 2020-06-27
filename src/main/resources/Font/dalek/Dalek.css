@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Dalek';
+    src: url('Dalek___.ttf');
+}
+
+.text {
+    -fx-font-family: "Dalek";
+}
