@@ -20,7 +20,8 @@ public class SpecialWin_MoveDown extends PlayerDecorator {
      */
     @Override
     public boolean checkWin(@NotNull Worker worker) {
-
+        if (worker.getOldCell()==worker.getCurCell())
+            return false;
         return
                 (player.checkWin(worker) ||
                         (worker.getOldCell().getLevel() - worker.getCurCell().getLevel() >= 2)

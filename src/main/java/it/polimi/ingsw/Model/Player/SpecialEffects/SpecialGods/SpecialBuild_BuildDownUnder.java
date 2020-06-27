@@ -47,34 +47,23 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
     @Override
     public boolean build(int row, int col, @NotNull Worker worker) {
         if (worker.getCurCell().getRow() == row && worker.getCurCell().getCol() == col) {
-            if (enableSpecialBuild) {
-                List<BoardCell> adj = availableCellsToBuild(worker);
-                for (int i = 0; i < adj.size(); i++) {
-                    if (adj.get(i).getRow() == row && adj.get(i).getCol() == col) {
-                        worker.getCurCell().setLevel(worker.getCurCell().getLevel()+1);
-                        return true;
-                    }
+                worker.getCurCell().setLevel(worker.getCurCell().getLevel() + 1);
+                return true;
+            }
+        else {
+            if (player.availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
+                BoardCell b = this.getBoard().getGrid()[row][col];
+                if (b.getLevel() == 3) {
+                    b.setDome(true);
+                } else {
+                    b.setLevel((b.getLevel() + 1));
                 }
+                return true;
             }
             return false;
-        } else {
-            player.build(row, col, worker);
         }
-        return false;
     }
 
-    @Override
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
-        if (enableSpecialBuild) {
-            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-            adj.removeIf((n) -> n.getWorker() != null);
-            adj.add(worker.getCurCell());
-            adj.removeIf(BoardCell::getDome);
-            adj.removeIf((n) -> n.getLevel() == 2);
-            return adj;
-        }
-        return player.availableCellsToBuild(worker);
-    }
 
 
 }
