@@ -12,7 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="WinPlayer" fitHeight="900.0" fitWidth="1600.0">
+      <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
             <Image url="@../Images/SantoriniBoard.png" />
          </image>
@@ -110,29 +110,17 @@
                   <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="34.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="251.0" fitWidth="602.0" layoutX="-186.0" layoutY="-81.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/OneDrive_2020-06-25/santorini_risorse-grafiche-2/Sprite/Cards/gameGodFrameName1.png" />
-                     </image>
-                  </ImageView>
-                  <Pane layoutX="54.0" layoutY="-103.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="12.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="40.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </Pane>
+                  <ImageView fx:id="WinBanner" fitHeight="155.0" fitWidth="553.0" layoutX="-181.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="WinPlayer" layoutX="21.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
                </children></Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fill="#c99f13" layoutX="-137.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Text>
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -195,16 +183,18 @@
                   <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
                </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="34.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="-6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children>
       </GridPane>
       <ImageView fx:id="Card3" fitHeight="290.0" fitWidth="173.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Card2" fitHeight="290.0" fitWidth="173.0" layoutX="1413.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Card1" fitHeight="290.0" fitWidth="173.0" layoutX="1413.0" layoutY="596.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="1425.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="148.5078125">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <TextField fx:id="NameText2" editable="false" focusTraversable="false" layoutX="1419.0" layoutY="329.0">
          <font>
             <Font name="Dalek" size="14.0" />

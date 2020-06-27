@@ -106,7 +106,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
                     try {
                         String numbPlayer = null;
                         for(int i = 0; i < list.size(); i++) {
-                            if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
+                            if(list.get(i).getNickname().equals(PlayerNick2.getText())) {
                                 numbPlayer = i + 1 + "";
                                 break;
                             }
@@ -124,7 +124,7 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
                 try {
                     String numbPlayer = null;
                     for(int i = 0; i < list.size(); i++) {
-                        if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
+                        if(list.get(i).getNickname().equals(PlayerNick3.getText())) {
                             numbPlayer = i + 1 + "";
                             break;
                         }
