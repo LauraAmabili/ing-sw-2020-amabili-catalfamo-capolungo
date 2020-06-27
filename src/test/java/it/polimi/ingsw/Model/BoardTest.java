@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Player.Player;
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoardTest {
 
@@ -76,6 +78,49 @@ public class BoardTest {
         game.getStateList().get(1).addNickname("SuperRexo");
         board.printGrid();
 
+    }
+
+    @Test
+    public void printGrid() {
+        String ANSI_YELLOW = "\u001B[33m";
+        String ANSI_BLUE = "\u001B[34m";
+        int counter = 0;
+        List<PlayerInterface> list = new ArrayList<>();
+        List<Worker> workerList = new ArrayList<>();
+        PlayerInterface player1 = new Player();
+        player1.setBoard(board);
+        player1.setNickname("SuperRexo");
+        player1.setColor(ANSI_YELLOW);
+        PlayerInterface player2 = new Player();
+        player2.setBoard(board);
+        player2.setColor(ANSI_BLUE);
+        player2.setNickname("NotATeen");
+        list.add(player1);
+        list.add(player2);
+        for(PlayerInterface p : list) {
+            for (int i = 0; i < 2; i++, counter++) {
+                Worker worker = new Worker(counter);
+                workerList.add(worker);
+                worker.setPlayerWorker(p);
+                worker.setColor(p.getColor());
+            }
+            p.setWorkerRef(workerList);
+            workerList.clear();
+        }
+        board.getGrid()[0][0].setWorker(player1.getWorkerRef().get(0));
+        player1.getWorkerRef().get(0).setCurCell(board.getGrid()[0][0]);
+        board.getGrid()[4][4].setWorker(player1.getWorkerRef().get(1));
+        player1.getWorkerRef().get(1).setCurCell(board.getGrid()[4][4]);
+        board.getGrid()[1][1].setWorker(player2.getWorkerRef().get(0));
+        player2.getWorkerRef().get(0).setCurCell(board.getGrid()[1][1]);
+        board.getGrid()[3][3].setWorker(player2.getWorkerRef().get(1));
+        player2.getWorkerRef().get(1).setCurCell(board.getGrid()[3][3]);
+        board.getGrid()[2][2].setDome(true);
+        board.getGrid()[1][4].setLevel(3);
+        board.getGrid()[2][4].setDome(true);
+        board.getGrid()[2][4].setLevel(3);
+        board.printGrid();
+        board.printAvailableGrid(player1.availableCellsToMove(player1.getWorkerRef().get(0)));
     }
 
 }
