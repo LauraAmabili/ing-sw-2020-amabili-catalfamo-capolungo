@@ -103,7 +103,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
             rowDestinationCell = rowPushingCell+1;
 
         if (colPushedCell == colPushingCell)
-            colDestinationCell = rowPushedCell;
+            colDestinationCell = colPushedCell;
         if (colPushedCell > colPushingCell)
             colDestinationCell = colPushingCell-1;
         if (colPushedCell < colPushingCell)
