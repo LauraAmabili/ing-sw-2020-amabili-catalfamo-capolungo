@@ -12,7 +12,7 @@
             <Image url="@../Images/cl_bg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Athena" fitHeight="251.0" fitWidth="167.0" layoutX="509.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Athena" fitHeight="251.0" fitWidth="167.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Athena.png" />
          </image>
@@ -28,7 +28,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Atlas" fitHeight="251.0" fitWidth="167.0" layoutX="733.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Atlas" fitHeight="251.0" fitWidth="167.0" layoutX="949.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Atlas.png" />
          </image>
@@ -36,7 +36,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Minotaur" fitHeight="251.0" fitWidth="167.0" layoutX="510.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Minotaur" fitHeight="251.0" fitWidth="167.0" layoutX="734.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Minotaur.png" />
          </image>
@@ -44,7 +44,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Artemis" fitHeight="251.0" fitWidth="167.0" layoutX="295.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Artemis" fitHeight="251.0" fitWidth="167.0" layoutX="509.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Artemis.png" />
          </image>
@@ -52,7 +52,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Demeter" fitHeight="251.0" fitWidth="167.0" layoutX="1394.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Demeter" fitHeight="251.0" fitWidth="167.0" layoutX="70.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Demeter.png" />
          </image>
@@ -60,7 +60,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Hephaestus" fitHeight="251.0" fitWidth="167.0" layoutX="70.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Hephaestus" fitHeight="251.0" fitWidth="167.0" layoutX="295.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Hephaestus.png" />
          </image>
@@ -68,7 +68,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Pan" fitHeight="251.0" fitWidth="167.0" layoutX="733.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Pan" fitHeight="251.0" fitWidth="167.0" layoutX="949.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Pan.png" />
          </image>
@@ -76,7 +76,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="Prometheus" fitHeight="251.0" fitWidth="167.0" layoutX="949.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Prometheus" fitHeight="251.0" fitWidth="167.0" layoutX="1163.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../godCards/Prometheus.png" />
          </image>
@@ -89,24 +89,24 @@
             <Image url="@../godCards/Zeus.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Triton" fitHeight="251.0" fitWidth="167.0" layoutX="1164.0" layoutY="549.0" preserveRatio="true">
-         <image>
-            <Image url="@../godCards/Triton.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Hestia" fitHeight="251.0" fitWidth="167.0" layoutX="296.0" layoutY="549.0" preserveRatio="true">
+      <ImageView fx:id="Hestia" fitHeight="251.0" fitWidth="167.0" layoutX="510.0" layoutY="549.0" preserveRatio="true">
          <image>
             <Image url="@../godCards/Hestia.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Chronus" fitHeight="251.0" fitWidth="167.0" layoutX="1164.0" layoutY="95.0" preserveRatio="true">
+      <ImageView fx:id="Chronus" fitHeight="251.0" fitWidth="167.0" layoutX="1395.0" layoutY="95.0" preserveRatio="true">
          <image>
             <Image url="@../godCards/Chronus.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Charon" fitHeight="251.0" fitWidth="167.0" layoutX="949.0" layoutY="95.0" preserveRatio="true">
+      <ImageView fx:id="Charon" fitHeight="251.0" fitWidth="167.0" layoutX="1163.0" layoutY="95.0" preserveRatio="true">
          <image>
             <Image url="@../godCards/Charon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Ares" fitHeight="251.0" fitWidth="150.0" layoutX="295.0" layoutY="95.0">
+         <image>
+            <Image url="@../godCards/Ares.png" />
          </image>
       </ImageView>
    </children>

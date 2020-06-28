@@ -30,6 +30,8 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     @FXML
     ImageView Apollo = new ImageView();
     @FXML
+    ImageView Ares = new ImageView();
+    @FXML
     ImageView Artemis = new ImageView();
     @FXML
     ImageView Athena = new ImageView();
@@ -51,8 +53,6 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
     ImageView Pan = new ImageView();
     @FXML
     ImageView Prometheus = new ImageView();
-    @FXML
-    ImageView Triton = new ImageView();
     @FXML
     ImageView Zeus = new ImageView();
 
@@ -76,6 +76,22 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
                 notifyChosenCardsUpdate("Apollo");
                 this.Apollo.setOpacity(0.7);
                 gui.getCards().add("Apollo");
+                counter++;
+                if(counter == client.getNumberOfPlayers()) {
+                    removeObserver(up);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        if(gui.getCards().contains("Ares")) {
+            Ares.setOpacity(0.7);
+        }
+        Ares.setOnMouseClicked(mouseEvent -> {
+            try {
+                notifyChosenCardsUpdate("Ares");
+                this.Ares.setOpacity(0.7);
+                gui.getCards().add("Ares");
                 counter++;
                 if(counter == client.getNumberOfPlayers()) {
                     removeObserver(up);
@@ -252,22 +268,6 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
                 notifyChosenCardsUpdate("Prometheus");
                 Prometheus.setOpacity(0.7);
                 gui.getCards().add("Prometheus");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        if(gui.getCards().contains("Triton")) {
-            Triton.setOpacity(0.7);
-        }
-        Triton.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Triton");
-                this.Triton.setOpacity(0.7);
-                gui.getCards().add("Triton");
                 counter++;
                 if(counter == client.getNumberOfPlayers()) {
                     removeObserver(up);
