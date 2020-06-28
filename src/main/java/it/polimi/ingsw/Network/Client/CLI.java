@@ -460,6 +460,8 @@ public class CLI extends NotifyMessages implements UserInterface {
         clientBoard.win();
         System.out.println(nickname + " wins the match! Yay!!");
         client.setActive(false);
+        client.killClient();
+        client.getClientBeatSender().setActive(false);
 
     }
 

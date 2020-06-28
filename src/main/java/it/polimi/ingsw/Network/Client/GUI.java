@@ -567,6 +567,8 @@ public class GUI implements UserInterface {
             }
         });
         client.setActive(false);
+        client.killClient();
+        client.getClientBeatSender().setActive(false);
     }
 
     @Override

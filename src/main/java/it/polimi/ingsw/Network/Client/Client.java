@@ -19,7 +19,6 @@ public class Client {
     private int port;
     private String nickname;
     private final Gson gson;
-    private final String file = "./src/main/java/it/polimi/ingsw/resources/serverConf.json";
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -71,7 +70,9 @@ public class Client {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
+    public ClientBeatSender getClientBeatSender() {
+        return clientBeatSender;
+    }
 
     /*
     public static void main(String[] args) throws IOException {
@@ -149,17 +150,17 @@ public class Client {
                         x.accept(visit);
                     }
                     catch (WriteAbortedException e){
-
                         setActive(false);
                         killClient();
                     }
                     catch (SocketException e) {
                         System.out.println("Server is offline");
                         setActive(false);
+                        wait(1000);
                         killClient();
                     }
                 }
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
                 setActive(false);
 
@@ -200,12 +201,15 @@ public class Client {
 
     /**
      * close outgoing channels
-     * @throws IOException
      */
-    public void killClient() throws IOException {
-        in.close();
-        out.close();
-        socket.close();
+    public void killClient() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            System.out.println("You've been disconnected");
+        }
     }
 
 }

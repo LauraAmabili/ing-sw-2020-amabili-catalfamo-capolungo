@@ -312,6 +312,9 @@ public class GameController implements Observer {
                         game.createChallenger();
                         game.timeToChallenger();
                     }
+                    if(game.isStarted() && game.getOnlinePlayers().size() == 1) {
+                        game.updateWin(game.getOnlinePlayers().get(0));
+                    }
                     break;
                 }
             }
