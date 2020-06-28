@@ -263,6 +263,8 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     public boolean checkWin(@NotNull Worker worker) {
+        if (worker.getOldCell()==worker.getCurCell())
+            return false;
         return ((worker.getOldCell().getLevel() < worker.getCurCell().getLevel())
                 && worker.getCurCell().getLevel() == 3);
     }
