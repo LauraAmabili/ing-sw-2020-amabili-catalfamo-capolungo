@@ -39,7 +39,7 @@ public class SpecialBuild_DomeAnyLevel extends PlayerDecorator {
      * @return true <--> the method works </-->
      */
     @Override
-    public boolean build(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean build(int row, int col, @NotNull Worker worker) {
         if (enableSpecialBuild) {
             if(availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
                 this.getBoard().getGrid()[row][col].setDome(true);

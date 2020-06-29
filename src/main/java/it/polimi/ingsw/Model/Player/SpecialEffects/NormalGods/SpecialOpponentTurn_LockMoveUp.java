@@ -31,7 +31,7 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
      * @return
      */
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean move(int row, int col, @NotNull Worker worker) {
         if (toUnlock)
             unlockMoveUp(worker);
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {

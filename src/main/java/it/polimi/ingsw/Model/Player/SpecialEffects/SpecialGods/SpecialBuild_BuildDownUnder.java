@@ -50,7 +50,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
      */
 
     @Override
-    public boolean build(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean build(int row, int col, @NotNull Worker worker) {
         if (worker.getCurCell().getRow() == row && worker.getCurCell().getCol() == col) {
                 worker.getCurCell().setLevel(worker.getCurCell().getLevel() + 1);
                 return true;

@@ -44,7 +44,7 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      * @return
      */
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());
