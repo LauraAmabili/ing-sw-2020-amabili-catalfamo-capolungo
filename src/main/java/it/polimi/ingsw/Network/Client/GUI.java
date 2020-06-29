@@ -32,6 +32,7 @@ public class GUI implements UserInterface {
     private PlayerInterface Me;
     private Board board;
     private String state;
+    private boolean started = false;
 
     public List<String> getCards() {
         return cards;
@@ -167,6 +168,7 @@ public class GUI implements UserInterface {
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
         int worker = startingSetWorkerRequest.getWorker();
         Platform.runLater(() -> {
+            started = true;
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));
             PlaceWorkerController controller = new PlaceWorkerController(client, worker, state);
             loader.setController(controller);
@@ -589,17 +591,34 @@ public class GUI implements UserInterface {
 
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
-        //TODO
-        Platform.runLater(() -> {
-            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-            Parent root = null;
-            try {
-                root = loader.load();
-                primaryStage.getScene().setRoot(root);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(!started) {
+            if(cards != null) {
+                cards.clear();
             }
-        });
+            if(chosenCards != null) {
+                chosenCards.clear();
+            }
+            if(opponentChosenCards != null) {
+                opponentChosenCards.clear();
+            }
+            opponentPlayerName.remove(droppedConnection.getNickname());
+            for(int i = 0; i < opponentPlayers.size(); i++) {
+                if(opponentPlayers.get(i).getNickname().equals(droppedConnection.getNickname())) {
+                    opponentPlayers.remove(opponentPlayers.get(i));
+                    break;
+                }
+            }
+            Platform.runLater(() -> {
+                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    primaryStage.getScene().setRoot(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 
     @Override

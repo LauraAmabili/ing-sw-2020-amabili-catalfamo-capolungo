@@ -85,6 +85,8 @@ public class SpecialMove_MoveTwicePerimetral extends PlayerDecorator {
         return player.availableCellsToMove(worker);
 
     }
+
+
     /**
      * Checks where he cannot build
      * @param boardCell boardcell not to build on
