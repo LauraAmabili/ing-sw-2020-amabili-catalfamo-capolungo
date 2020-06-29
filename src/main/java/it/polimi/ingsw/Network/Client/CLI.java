@@ -167,6 +167,10 @@ public class CLI extends NotifyMessages implements UserInterface {
     }
 
 
+    /**
+     * Prints to the player that his worker is blocked
+     * @param playerLockedUpdate Message
+     */
     @Override
     public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate) {
 
@@ -174,6 +178,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Prints the board
+     * @param boardUpdate Message
+     */
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
@@ -183,7 +191,10 @@ public class CLI extends NotifyMessages implements UserInterface {
     }
 
 
-
+    /**
+     * Prints the name of the player that is moving
+     * @param playerTurnUpdate Message
+     */
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
@@ -193,6 +204,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asks the number of the worker that the player wats to move
+     * @param chooseYourWorkerRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
 
@@ -203,6 +219,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Moving request, need to inser row and col
+     * @param moveRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void MoveRequest(MoveRequest moveRequest) throws IOException {
 
@@ -219,11 +240,21 @@ public class CLI extends NotifyMessages implements UserInterface {
         notifyMoveResponse(rowString, colString, worker, moveRequest.getAvailableCess());
     }
 
+
+    /**
+     * Update for every player about the time
+     */
     @Override
     public void BuildTimeUpdate() {
         System.out.println("Time to Build!");
     }
 
+
+    /**
+     * Building request, asking the coordinates
+     * @param buildRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void BuildRequest(BuildRequest buildRequest) throws IOException {
 
@@ -240,12 +271,20 @@ public class CLI extends NotifyMessages implements UserInterface {
         notifyBuildResponse(rowstring, colstring,worker, buildRequest.getAv());
     }
 
+
+    /**
+     * Notify that the coordinates are not correct
+     */
     @Override
     public void TryNewCoordinatesRequest() {
         System.out.println("Coordinates not correct! Try new coordinates");
 
     }
 
+    /**
+     * If your worker cannot move, the game chooses the other one for you
+     * @param wrongWorkerUpdate Message
+     */
     @Override
     public void WrongWorkerUpdate(WrongWorkerUpdate wrongWorkerUpdate) {
 
@@ -254,6 +293,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Update that the nickname is correct
+     * @param nicknameAcceptedUpdate Message
+     */
     @Override
     public void NicknameAcceptedUpdate(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
 
@@ -263,6 +306,9 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Message that the nickname is not valid
+     */
     @Override
     public void NicknameNotValidUpdate() {
 
@@ -270,6 +316,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Update with the name of the challenger that is choosing the cards
+     * @param chooseCardsUpdate Message
+     */
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
@@ -278,6 +328,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * List of gods available for the game
+     * @param availableGodsUpdate Message
+     */
     @Override
     public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
 
@@ -290,6 +344,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asks for the cards to choose by the challenger and prints the description of the card if asked
+     * @param challengerCardsRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
@@ -319,6 +378,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         }
     }
 
+    /**
+     * Update with the list of god added already
+     * @param cardAddedUpdate Message
+     */
     @Override
     public void CardAddedUpdate(CardAddedUpdate cardAddedUpdate) {
 
@@ -328,6 +391,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Prints god not correct if the god chosen is not correct
+     * @param cardChallengerNotFoundRequest Message
+     */
     @Override
     public void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
 
@@ -335,6 +402,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Prints the name of the person that is going to set the card
+     * @param setCardTimeUpdate Exception
+     */
     @Override
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
 
@@ -343,6 +414,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * The player can ask for the description of the card when choosing for it
+     * @param setYourCardRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
         System.out.println("Choose your card between:  " + ANSI_BLUE + setYourCardRequest.getAvailableGods() + RESET);
@@ -370,13 +446,20 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Prints the name of the game and the card chosen
+     * @param cardSetUpdate Message
+     */
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
 
-        System.out.println("Now "+ cardSetUpdate.getCurrentPlayer().getNickname() + " has " + cardSetUpdate.getGodName() + " as Active Card");
+        System.out.println("Now "+ ANSI_BLUE +cardSetUpdate.getCurrentPlayer().getNickname() + RESET  + " has " +ANSI_BLUE +  cardSetUpdate.getGodName() + RESET +  " as Active Card");
 
     }
 
+    /**
+     * Prints this when someone is trying to connect but there are enough player for the chosen game
+     */
     @Override
     public void MaxPlayerReachedUpdate() {
 
@@ -384,15 +467,25 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asking for the usage of the effect
+     * @throws IOException Exception
+     */
     @Override
     public void AskEffect() throws IOException {
 
-        System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
+        System.out.println("Do you want to use your card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
         notifyAskEffectReply(effect, client.getNickname());
 
     }
 
+
+    /**
+     * Request of the worker to move
+     * @param chooseYourWorkerEffectRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
 
@@ -403,23 +496,35 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asking for the usage of the effect for the build
+     * @throws IOException Exception
+     */
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) throws IOException {
 
-        System.out.println("Do you want to use yor card effect?\ny: Yes, n: No");
+        System.out.println("Do you want to use your card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
         int worker = askEffectBuild.getWorker();
         notifyAskeffectBuildResponse(effect,client.getNickname(),worker);
-       // return effect;
+
 
     }
 
+    /**
+     * Prints this if you choose a different number instead of 2 or 3
+     */
     @Override
     public void NumberOfPlayerWrong() {
         System.out.println("Wrong number of player! ");
 
     }
 
+    /**
+     * Request for two input for where to build
+     * @param buildTwoInputRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
 
@@ -448,6 +553,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Request for two input for where to move
+     * @param moveTwoInputRequest Message
+     * @throws IOException Exception
+     */
     @Override
     public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
 
@@ -474,18 +584,29 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Winning message
+     * @param nickname name of the winner
+     */
 
     @Override
     public void WinMessage(String nickname) {
 
-        clientBoard.win();
-        System.out.println(nickname + " wins the match! Yay!!");
+        if(client.getNickname().equals(nickname)){
+            clientBoard.win();
+        }
+        else {
+            System.out.println(nickname + " wins the match! Yay!!");
+        }
         client.setActive(false);
         client.killClient();
         client.getClientBeatSender().setActive(false);
 
     }
 
+    /**
+     * Input not valid
+     */
     @Override
     public void WorkerInputNotValid() {
 
@@ -493,6 +614,10 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Managing the disconnection
+     * @param droppedConnection Message
+     */
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
         String playerOut = droppedConnection.getNickname();
@@ -506,6 +631,12 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println(RESET);
     }
 
+
+    /**
+     * Challenger choosing the name of the first player
+     * @param onlinePlayers Message
+     * @throws IOException Exception
+     */
     @Override
     public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) throws IOException {
 
