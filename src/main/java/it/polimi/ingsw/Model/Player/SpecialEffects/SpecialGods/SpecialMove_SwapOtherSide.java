@@ -62,7 +62,6 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         if (enableSpecialMove) {
             if (opponentCells(worker).size() > 0) {
                 if (opponentCells(worker).contains(this.getBoard().getGrid()[row1][col1])) {
-
                     change(this.getBoard().getGrid()[row1][col1],
                             otherSide(worker, this.getBoard().getGrid()[row1][col1].getWorker()));
                 } else {
@@ -88,10 +87,13 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         adj.removeIf(x -> x.getWorker().getPlayerWorker() == worker.getPlayerWorker());
         for (BoardCell x: adj){
             BoardCell otherCell = otherSide(worker, x.getWorker());
-            if (otherCell.getDome())
-                adj.remove(x);
-            if (otherCell.getWorker()!=null)
-                adj.remove(x);
+            if (otherCell != null){
+                if (otherCell.getDome())
+                    adj.remove(x);
+                if (otherCell.getWorker()!=null)
+                    adj.remove(x);
+            }
+
         }
 
 
