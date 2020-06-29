@@ -321,9 +321,15 @@ public class GameController implements Observer {
         }
     }
 
+
+    /**
+     * Sends to the model the name of the first player chosen to start the game
+     * @param player name of the player
+     * @throws IOException Exception
+     */
+
     @Override
     public synchronized void updateFirstPlayer(int player) throws IOException {
-        //TODO:
         game.getCurrentTurn().firstTurn(player, game);
         game.toSetCard();
     }

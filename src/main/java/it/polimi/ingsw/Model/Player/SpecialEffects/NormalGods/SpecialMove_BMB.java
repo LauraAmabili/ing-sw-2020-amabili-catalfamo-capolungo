@@ -60,6 +60,11 @@ public class SpecialMove_BMB extends PlayerDecorator {
         return player.move(row, col, worker);
     }
 
+    /**
+     * After building we need to recalculate where the worker can move
+     * @param worker mumber of the worker
+     * @return recursion
+     */
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         if (enableSpecialMove) {

@@ -52,6 +52,11 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
 
     }
 
+    /**
+     * Check if the worker can be pushed
+     * @param worker
+     * @return
+     */
 
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
@@ -75,6 +80,12 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
     }
 
 
+    /**
+     *
+     * @param pushing worker that pushes
+     * @param pushed worker pushed
+     * @return boardCell where the pushed is moved
+     */
     public BoardCell otherSide(Worker pushing, Worker pushed) {
         int rowPushingCell = pushing.getCurCell().getRow();
         int colPushingCell = pushing.getCurCell().getCol();
@@ -101,14 +112,12 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
             rowDestinationCell = rowPushingCell-1;
         if (rowPushedCell < rowPushingCell)
             rowDestinationCell = rowPushingCell+1;
-
         if (colPushedCell == colPushingCell)
             colDestinationCell = colPushedCell;
         if (colPushedCell > colPushingCell)
             colDestinationCell = colPushingCell-1;
         if (colPushedCell < colPushingCell)
             colDestinationCell = colPushingCell+1;
-
 
         if ((rowDestinationCell < 0 || colDestinationCell < 0 || rowDestinationCell > 4 || colDestinationCell > 4))
             return null;

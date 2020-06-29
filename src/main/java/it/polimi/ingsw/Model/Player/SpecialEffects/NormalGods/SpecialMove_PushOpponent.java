@@ -18,10 +18,10 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
     }
 
     /**You can move your Worker into an opponent's pushable BoardCell
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker chosen worker
+     * @return true or false
      */
     @Override
     public boolean move(int row, int col, @NotNull Worker worker) {

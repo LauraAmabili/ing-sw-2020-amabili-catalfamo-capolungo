@@ -80,7 +80,9 @@ public class VirtualView extends Observable implements ObserverModel {
     @Override
     public void updateGameisReady() throws IOException, InterruptedException {
 
+        System.out.println(ANSI_BLUE);
             insertNickname();
+            System.out.println(RESET);
 
     }
 
@@ -378,6 +380,7 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     public void toSetWorker(int row, int col, int i ) throws IOException {
+
         if(row > 0 && row <= 5 && col > 0 && col <= 5) {
             notifyAddingWorker(row, col, i);
         } else {
@@ -592,7 +595,9 @@ public class VirtualView extends Observable implements ObserverModel {
     @Override
     public void updateNoCoordinatesValid(int worker, String current,  List<BoardCell> available) throws IOException {
 
-        thread.sendToClient(new TryNewCoordinatesRequest(worker));
+        if(MyNickname.equals(current)) {
+            thread.sendToClient(new TryNewCoordinatesRequest(worker));
+        }
         //System.out.println("This coordinates are not valid, insert them again");
         moving(worker, current, available);
 

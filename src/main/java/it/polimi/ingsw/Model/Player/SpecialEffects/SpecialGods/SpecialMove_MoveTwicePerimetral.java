@@ -85,7 +85,11 @@ public class SpecialMove_MoveTwicePerimetral extends PlayerDecorator {
         return player.availableCellsToMove(worker);
 
     }
-
+    /**
+     * Checks where he cannot build
+     * @param boardCell boardcell not to build on
+     * @return boolean
+     */
     private boolean downtown(BoardCell boardCell) {
         int row = boardCell.getRow();
         int col = boardCell.getCol();

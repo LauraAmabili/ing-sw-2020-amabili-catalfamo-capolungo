@@ -25,6 +25,11 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
         this.enableSpecialBuild = enableSpecialBuild;
     }
 
+    /**
+     * List of available cells where the worker can build, here we need to considerate under himself too
+     * @param worker number of the worker
+     * @return recursion
+     */
     @Override
     public boolean isHasSpecialBuild() {
         return hasSpecialBuild;
