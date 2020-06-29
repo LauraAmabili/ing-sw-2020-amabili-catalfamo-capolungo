@@ -38,6 +38,8 @@ public class CLI extends NotifyMessages implements UserInterface {
     public static final String PURPLE = "\033[0;35m";
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
+    public static final String YELLOW = "\033[0;33m";
+
 
 
     /**
@@ -69,8 +71,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void  PlayerNumberRequest() throws IOException {
 
-        clientBoard.Santorini();
-        System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
+
         //clientBoard.Martello();
         //clientBoard.Players();
         System.out.println("Choose a game mode: \n*: 2 for a game 1v1.\n*: 3 for a game 1v1v1.");
@@ -101,6 +102,8 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ConnectionResponse() {
 
         System.out.println("Connection established");
+        clientBoard.Santorini();
+        System.out.println("Welcome to Santorini! Ready to play? You are gonna move and build your own island!");
 
     }
 
@@ -145,6 +148,11 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     }
 
+    /**
+     * Asks again for coordinates
+     * @param wrongCoordinatesUpdate message
+     * @throws IOException Exception
+     */
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
 
@@ -157,6 +165,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         notifyWrongCoordinatesUpdate(rowString, colString, worker);
 
     }
+
 
     @Override
     public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate) {
@@ -200,7 +209,9 @@ public class CLI extends NotifyMessages implements UserInterface {
 
         boardToPrint.printAvailableGrid(moveRequest.getAvailableCess());
         int worker = moveRequest.getWorker();
+        System.out.println(YELLOW);
         System.out.println("Choose row and col for worker " + worker + " : " );
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowString = string.nextLine();
         System.out.println("Col: ");
@@ -217,7 +228,10 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void BuildRequest(BuildRequest buildRequest) throws IOException {
 
         boardToPrint.printAvailableGrid(buildRequest.getAv());
+        System.out.println(YELLOW);
+        System.out.println();
         System.out.println("Choose where to build! Insert Row and Col: ");
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowstring = string.nextLine();
         System.out.println("Col: ");
@@ -260,7 +274,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
         System.out.println("It's time to choose the cards for the game!");
-        System.out.println("Challenger was random, " + chooseCardsUpdate.getChallenger() + " is choosing the cards");
+        System.out.println("Challenger was random, " + PURPLE +  chooseCardsUpdate.getChallenger() + RESET + " is choosing the cards");
 
     }
 
@@ -279,7 +293,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException {
 
-        System.out.println("Write 'cardName -desc' to have the description of the card, 'cardName' to select the card.");
+
+        System.out.println("Write "+ GREEN + " 'cardName -desc' " + RESET +  "to have the description of the card, " + GREEN + " 'cardName' to select the card." + RESET);
+        System.out.println(RESET);
         //System.out.println("Choose card: ");
         String cardName = string.nextLine();
         boolean flag = true;
@@ -329,7 +345,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
-        System.out.println("Choose your card between:  " + setYourCardRequest.getAvailableGods());
+        System.out.println("Choose your card between:  " + ANSI_BLUE + setYourCardRequest.getAvailableGods() + RESET);
         System.out.println("Write 'cardName -desc' to have the description of the Card");
         List<God> chosenGods = setYourCardRequest.getChosenGods();
         String in = string.nextLine();
@@ -408,14 +424,17 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
 
         int worker = buildTwoInputRequest.getWorker();
+        System.out.println(YELLOW);
         System.out.println("Choose row and col for the first action");
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowstring1 = string.nextLine();
 
         System.out.println("Col: ");
         String colstring1 = string.nextLine();
-
+        System.out.println(YELLOW);
         System.out.println("Choose row and col for the second action");
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowstring2 = string.nextLine();
 
@@ -434,15 +453,17 @@ public class CLI extends NotifyMessages implements UserInterface {
 
 
         int worker = moveTwoInputRequest.getWorker();
-
+        System.out.println(YELLOW);
         System.out.println("Choose row and col for the first action");
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowstring1 = string.nextLine();
 
         System.out.println("Col: ");
         String colstring1 = string.nextLine();
-
+        System.out.println(YELLOW);
         System.out.println("Choose row and col for the second action");
+        System.out.println(RESET);
         System.out.println("Row: ");
         String rowstring2 = string.nextLine();
 
@@ -480,6 +501,7 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.println("Player disconnected!");
         } else {
             System.out.println(playerOut + " disconnected!");
+            System.out.println("Sorry to hear that, maybe the game was too hard to handle! ");
         }
         System.out.println(RESET);
     }
@@ -490,7 +512,7 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Choose the first player! Press the number near the name: ");
         int i = 1;
         for(PlayerInterface p : onlinePlayers){
-            System.out.println(i + p.getNickname());
+            System.out.println(YELLOW + i + RESET + " " + p.getNickname());
             i = i + 1;
         }
 

@@ -156,11 +156,10 @@ public class Client {
                     catch (SocketException e) {
                         System.out.println("Server is offline");
                         setActive(false);
-                        wait(1000);
                         killClient();
                     }
                 }
-            } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
                 setActive(false);
 

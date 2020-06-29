@@ -56,6 +56,11 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
         return player.build(row, col, worker);
     }
 
+    /**
+     * List of available cells where the worker can build twice around him
+     * @param worker number of the worker
+     * @return recursion for the double building
+     */
     @Override
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
         if(enableSpecialBuild) {

@@ -67,8 +67,8 @@ public class PlayerCreator {
         if (effects.contains("SpecialBuild_BuildTwiceDowntown")) {
             p = new SpecialBuild_BuildTwiceDowntown(p);
         }
-        if (effects.contains("SpecialMove_MoveTwicePerimetral")) {
-            p = new SpecialMove_MoveTwicePerimetral(p);
+        if (effects.contains("SpecialBuild_RemoveBlock")) {
+            p = new SpecialBuild_RemoveBlock(p);
         }
         if (effects.contains("SpecialMove_SwapOtherSide")) {
             p = new SpecialMove_SwapOtherSide(p);

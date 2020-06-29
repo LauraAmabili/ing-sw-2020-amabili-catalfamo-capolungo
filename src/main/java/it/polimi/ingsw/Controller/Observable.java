@@ -74,7 +74,10 @@ public class Observable {
         }
     }
 
-
+    /**
+     * uptade to start the movement
+     * @throws IOException Exception
+     */
     public void notifyStartMoving() throws IOException {
         for(Observer o : observerController){
             o.updateStartMoving();
@@ -82,26 +85,49 @@ public class Observable {
 
     }
 
+    /**
+     * Update for the controller with the worker to try
+     * @param worker number of the worker
+     * @throws IOException Exception
+     */
     public void notifyTryThisWorker(int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTryThisWorker(worker);
         }
     }
 
+    /**
+     * update for the movement with the coordinates for the worker
+     * @param row row chosen
+     * @param col col chosen
+     * @param worker number of the worker
+     * @throws IOException Exception
+     */
     public void notifyMoving(int row, int col, int worker) throws IOException {
         for(Observer o : observerController){
             o.updateMoving(row, col, worker);
         }
 
-
     }
 
+    /**
+     * Update for the controller to try if the card chosen is correct
+     * @param in name of the card
+     * @throws IOException Exception
+     */
     public void notifyTryThisCard(String in) throws IOException {
         for(Observer o : observerController){
             o.updateTryThisCard(in);
         }
     }
 
+    /**
+     * Uptade with the coordinates of the build
+     * @param row row chosen
+     * @param col con chosen
+     * @param i number of the worker
+     * @throws IOException Exception
+     */
 
     public void notifyBuilding(int row, int col, int i ) throws IOException {
         for(Observer o : observerController){
@@ -110,42 +136,90 @@ public class Observable {
 
     }
 
+    /**
+     * update that the game is ready to start
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void notifyStartingGame() throws IOException, InterruptedException {
         for(Observer o : observerController){
             o.updateStartingGame();
         }
     }
 
+    /**
+     * Update for the check of the effect for the worker
+     * @param effect effect of the player
+     * @param worker number of the worker
+     * @throws IOException Exceotion
+     */
     public void notifyTryThisWorkerEffect(boolean effect,int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTryThisWorkerEffect(effect, worker);
         }
     }
 
+    /**
+     * Update for the special build of the player with a build effect
+     * @param effect effect of the player
+     * @param nickname nickname of the player
+     * @param worker number of the worker
+     * @throws IOException Exception
+     */
     public void notifyPlayerBuild(boolean effect, String nickname, int worker) throws IOException {
         for(Observer o : observerController){
             o.updatePlayerBuild(effect, nickname, worker);
         }
     }
 
+    /**
+     * update with the double coordinates for the moving with two input
+     * @param row1 first row chosen
+     * @param col1 first col chosen
+     * @param row2 second row chosen
+     * @param col2 second col chosen
+     * @param worker number of the worker
+     * @throws IOException Exception
+     */
     public void notifyTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTimeToMoveTwoInput(row1, col1, row2, col2, worker);
         }
     }
 
+
+    /**
+     * update with the double coordinates for the building with two input
+     * @param row1 first row chosen
+     * @param col1 first col chosen
+     * @param row2 second row chosen
+     * @param col2 second col chosen
+     * @param worker number of the worker
+     * @throws IOException Exception
+     */
     public void notifyTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
         for(Observer o : observerController){
             o.updateTimeToBuildTwoInput(row1, col1, row2, col2, worker);
         }
     }
 
+
+    /**
+     * Update with the name of the player that dropped the conneciton
+     * @param nickname name of the player disconnected
+     * @throws IOException Exception
+     */
     public void notifyDropConnection(String nickname) throws IOException {
         for(Observer o : observerController){
             o.updateDropConnection(nickname);
         }
     }
 
+    /**
+     * Update with the name of the first Player chosen by the challenger
+     * @param player name of the player
+     * @throws IOException Exception
+     */
     public void notifyFirstPlayer(int player) throws IOException {
         for(Observer o : observerController){
             o.updateFirstPlayer(player);
