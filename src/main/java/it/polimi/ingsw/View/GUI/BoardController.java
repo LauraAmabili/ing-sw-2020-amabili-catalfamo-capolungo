@@ -109,19 +109,13 @@ public abstract class BoardController extends NotifyMessages {
                     Pane cell = (Pane) Board.getChildren().get(j + (i * 5));
                     if(!board.getGrid()[i][j].getDome()) {
                         if (board.getGrid()[i][j].getLevel() == 1) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberOne.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelOne.jpg"));
                         } else if (board.getGrid()[i][j].getLevel() == 2) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelTwo.jpg"));;
                         } else if (board.getGrid()[i][j].getLevel() == 3) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelThree.jpg"));
                         }
                     } else {
@@ -130,19 +124,13 @@ public abstract class BoardController extends NotifyMessages {
                             imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelZeroDome.jpg"));
                         } else if (board.getGrid()[i][j].getLevel() == 1) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberOne.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelOneDome.jpg"));
                         } else if (board.getGrid()[i][j].getLevel() == 2) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberTwo.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelTwoDome.jpg"));
                         } else if (board.getGrid()[i][j].getLevel() == 3) {
-                            ImageView imageView = (ImageView) cell.getChildren().get(2);
-                            imageView.setImage(new Image("/Images/LevelNumberThree.PNG"));
-                            imageView = (ImageView) cell.getChildren().get(0);
+                            ImageView imageView = (ImageView) cell.getChildren().get(0);
                             imageView.setImage(new Image("/Images/BuildingLevelThreeDome.jpg"));
                         }
                     }
