@@ -41,6 +41,7 @@ class SpecialMove_PushOpponentTest {
         worker2.setPlayerWorker(mockPlayer2);
         mockPlayer2.getBoard().getGrid()[0][1].setWorker(worker2);
         player1.move(0, 1, worker1);
+        assertEquals(worker1.getPlayerWorker(), player1);
         assertEquals(worker1.getCurCell(), mockPlayer1.getBoard().getGrid()[0][1]);
         assertEquals(worker2.getCurCell(), mockPlayer2.getBoard().getGrid()[0][2]);
 
