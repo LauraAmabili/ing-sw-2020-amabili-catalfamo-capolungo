@@ -163,6 +163,7 @@ public class Game extends Observable {
                     List<Worker> list = new ArrayList<>();
                     PlayerInterface newPlayer = new Player();
                     Board board = player.getBoard();
+                    color.add(player.getColor());
                     for (int j = 0; j < 2; j++, counterId++) {
                         Worker worker = new Worker(counterId);
                         worker.setColor(color.get(0));
@@ -184,8 +185,20 @@ public class Game extends Observable {
                     nickNames.remove(player.getNickname());
                 }
                 break;
+            } else {
+                onlinePlayers.set(i, CopyPlayer(onlinePlayers.get(i)));
+                currentTurn.getActivePlayers().set(i, CopyPlayer(onlinePlayers.get(i)));
             }
         }
+    }
+
+    public PlayerInterface CopyPlayer(PlayerInterface player) {
+        PlayerInterface newPlayer = new Player();
+        newPlayer.setNickname(player.getNickname());
+        newPlayer.setWorkerRef(player.getWorkerRef());
+        newPlayer.setColor(player.getColor());
+        newPlayer.setBoard(player.getBoard());
+        return newPlayer;
     }
 
     /**
