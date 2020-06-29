@@ -25,7 +25,7 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
      * @return
      */
     @Override
-    public boolean move(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
 				if(this.getBoard().getGrid()[row][col].getWorker()==null){
 					worker.getCurCell().setWorker(null);

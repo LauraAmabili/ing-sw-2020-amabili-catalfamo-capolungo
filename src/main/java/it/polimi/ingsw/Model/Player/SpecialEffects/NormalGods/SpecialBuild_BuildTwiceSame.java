@@ -43,7 +43,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
      */
 
     @Override
-    public boolean build(int row, int col, @NotNull Worker worker) {
+    public synchronized boolean build(int row, int col, @NotNull Worker worker) {
         if (enableSpecialBuild) {
             if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
                 BoardCell b = this.getBoard().getGrid()[row][col];
