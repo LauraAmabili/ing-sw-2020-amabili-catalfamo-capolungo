@@ -138,8 +138,6 @@ public class VirtualView extends Observable implements ObserverModel {
     @Override
     public void updateNicknameNotValid(String nickname) throws IOException {
 
-
-
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new NicknameNotValidUpdate());
         }
