@@ -291,7 +291,6 @@ public class GameController implements Observer {
      */
     @Override
     public synchronized void updateDropConnection(String nickname) throws IOException {
-        boolean state = false;
         if(!game.isStarted()) {
             game.serverRestarting();
         } else {
@@ -301,11 +300,11 @@ public class GameController implements Observer {
                         game.getCurrentTurn().nextTurn(game);
                     }
                     game.delPlayer(game.getOnlinePlayers().get(i));
+                    if(game.getOnlinePlayers().size() == 1) {
+                        game.updateWin(game.getOnlinePlayers().get(0));
+                    }
+                    break;
                 }
-                if(game.getOnlinePlayers().size() == 1) {
-                    game.updateWin(game.getOnlinePlayers().get(0));
-                }
-                break;
             }
         }
     }

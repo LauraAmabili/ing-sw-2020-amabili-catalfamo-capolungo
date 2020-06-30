@@ -151,54 +151,27 @@ public class Game extends Observable {
      */
     public synchronized void delPlayer(@NotNull PlayerInterface player) {
 
-        for (Worker x : player.getWorkerRef()) {
-            if (x.getCurCell() != null)
-                x.getCurCell().setWorker(null);
+        for(BoardCell boardCell[] : board.getGrid()) {
+            for(BoardCell b : boardCell) {
+                if(b.getWorker() != null) {
+                    if(b.getWorker().getPlayerWorker().getNickname().equals(player.getNickname())) {
+                        b.setWorker(null);
+                    }
+                }
+            }
         }
         player.getWorkerRef().clear();
         for (int i = 0; i < onlinePlayers.size(); i++) {
-            if(onlinePlayers.get(i).equals(player)) {
-                color.add(player.getColor());
-                if(!started) {
-                    List<Worker> list = new ArrayList<>();
-                    PlayerInterface newPlayer = new Player();
-                    Board board = player.getBoard();
-                    color.add(player.getColor());
-                    for (int j = 0; j < 2; j++, counterId++) {
-                        Worker worker = new Worker(counterId);
-                        worker.setColor(color.get(0));
-                        worker.setPlayerWorker(newPlayer);
-                        list.add(worker);
-                    }
-                    newPlayer.setWorkerRef(list);
-                    newPlayer.setBoard(board);
+            if(onlinePlayers.get(i).getNickname().equals(player.getNickname())) {
+                if(started) {
                     stateList.remove(i);
-                    stateList.add(new AddNickname(newPlayer, this));
-                    onlinePlayers.remove(player);
-                    currentTurn.getActivePlayers().remove(player);
-                    currentTurn.getActivePlayers().add(newPlayer);
-                    nickNames.remove(player.getNickname());
-                } else {
-                    stateList.remove(i);
-                    onlinePlayers.remove(player);
-                    currentTurn.getActivePlayers().remove(player);
+                    onlinePlayers.remove(i);
+                    currentTurn.getActivePlayers().remove(i);
                     nickNames.remove(player.getNickname());
                 }
                 break;
-            } else {
-                onlinePlayers.set(i, CopyPlayer(onlinePlayers.get(i)));
-                currentTurn.getActivePlayers().set(i, CopyPlayer(onlinePlayers.get(i)));
             }
         }
-    }
-
-    public PlayerInterface CopyPlayer(PlayerInterface player) {
-        PlayerInterface newPlayer = new Player();
-        newPlayer.setNickname(player.getNickname());
-        newPlayer.setWorkerRef(player.getWorkerRef());
-        newPlayer.setColor(player.getColor());
-        newPlayer.setBoard(player.getBoard());
-        return newPlayer;
     }
 
     /**
