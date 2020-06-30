@@ -48,7 +48,7 @@ public interface UserInterface {
     void WorkerInputNotValid();
     void DroppedConnection(DroppedConnection droppedConnection);
     void SetFirstPlayer(List<PlayerInterface> onlinePlayers) throws IOException;
-
+    void ServerRestart();
 }
 
 

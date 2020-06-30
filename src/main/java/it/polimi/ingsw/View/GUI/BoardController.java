@@ -83,9 +83,21 @@ public abstract class BoardController extends NotifyMessages {
         Card1.setImage(new Image(url));
         url = "/godCards/" + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + ".png";
         Card3.setImage(new Image(url));
+        if(gui.getDroppedPlayers().size() != 0) {
+            if (gui.getOpponentPlayers().get(0).equals(gui.getDroppedPlayers().get(0))) {
+                Card3.setOpacity(0.5);
+                NameText3.setDisable(true);
+            }
+        }
         if(gui.getOpponentPlayers().size() > 1) {
             url = "/godCards/" + gui.getOpponentPlayers().get(1).getActiveCard().getGodName() + ".png";
             Card2.setImage(new Image(url));
+            if(gui.getDroppedPlayers().size() != 0) {
+                if (gui.getOpponentPlayers().get(1).equals(gui.getDroppedPlayers().get(0))) {
+                    Card2.setOpacity(0.5);
+                    NameText2.setDisable(true);
+                }
+            }
         }
         CurrentTurnPlayer.setText("Current Turn: " + gui.getCurrentPlayer());
     }

@@ -292,31 +292,20 @@ public class GameController implements Observer {
     @Override
     public synchronized void updateDropConnection(String nickname) throws IOException {
         boolean state = false;
-        for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
-            if (nickname != null) {
+        if(!game.isStarted()) {
+            game.serverRestarting();
+        } else {
+            for (int i = 0; i < game.getOnlinePlayers().size(); i++) {
                 if (game.getOnlinePlayers().get(i).getNickname().equals(nickname)) {
                     if (game.getCurrentTurn().getCurrentPlayer().getNickname().equals(game.getOnlinePlayers().get(i).getNickname())) {
-                        if (!game.isStarted() && game.getOnlinePlayers().size() > 2) {
-                            state = true;
-                            PlayerCreator playerCreator = new PlayerCreator();
-                            game.setAllGods(playerCreator.getArrayGods());
-                            game.initialiseGodList();
-                            game.setChosenGodList(new ArrayList<>());
-                            game.setAvailableGods(new ArrayList<>());
-                        } else if(game.getOnlinePlayers().size() == 3) {
-                            game.getCurrentTurn().nextTurn(game);
-                        }
+                        game.getCurrentTurn().nextTurn(game);
                     }
                     game.delPlayer(game.getOnlinePlayers().get(i));
-                    if (state) {
-                        game.createChallenger();
-                        game.timeToChallenger();
-                    }
-                    if(game.isStarted() && game.getOnlinePlayers().size() == 1) {
-                        game.updateWin(game.getOnlinePlayers().get(0));
-                    }
-                    break;
                 }
+                if(game.getOnlinePlayers().size() == 1) {
+                    game.updateWin(game.getOnlinePlayers().get(0));
+                }
+                break;
             }
         }
     }

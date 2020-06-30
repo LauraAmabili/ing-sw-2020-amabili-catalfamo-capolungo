@@ -45,4 +45,5 @@ public interface VisitorClient {
     void visit(WorkerInputNotValid workerInputNotValid);
     void visit(DroppedConnection droppedConnection);
     void visit(SetFirstPlayer setFirstPlayer) throws IOException;
+    void visit(ServerRestart serverRestart);
 }

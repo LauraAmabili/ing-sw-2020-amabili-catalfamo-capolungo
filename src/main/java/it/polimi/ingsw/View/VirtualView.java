@@ -811,6 +811,10 @@ public class VirtualView extends Observable implements ObserverModel {
         notifyDropConnection(MyNickname);
     }
 
+    public void updateServerRestart() throws IOException {
+        thread.sendToClient(new ServerRestart());
+    }
+
 }
 
 

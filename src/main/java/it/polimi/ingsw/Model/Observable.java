@@ -235,4 +235,11 @@ public class Observable {
         }
     }
 
+    public void notifyServerRestart() throws IOException {
+        for(ObserverModel o : observerModels){
+            o.updateServerRestart();
+        }
+
+    }
+
 }

@@ -626,7 +626,7 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.println("Player disconnected!");
         } else {
             System.out.println(playerOut + " disconnected!");
-            System.out.println("Sorry to hear that, maybe the game was too hard to handle! ");
+            System.out.println("Sorry to hear that, maybe the game was too hard to handle!");
         }
         System.out.println(RESET);
     }
@@ -650,6 +650,14 @@ public class CLI extends NotifyMessages implements UserInterface {
         String player = input.nextLine();
         notifyPlayerThatStart(player, onlinePlayers);
 
+    }
+
+    @Override
+    public void ServerRestart() {
+        System.out.println("A player disconnected before the game started.\nServer is restarting, please reconnect to the server");
+        client.setActive(false);
+        client.killClient();
+        client.getClientBeatSender().setActive(false);
     }
 
 }

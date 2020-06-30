@@ -2,6 +2,7 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
+import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
@@ -26,6 +27,7 @@ public class GUI implements UserInterface {
     private List<String> opponentChosenCards;
     private final List<String> opponentPlayerName = new ArrayList<>();
     private final List<PlayerInterface> opponentPlayers = new ArrayList<>();
+    private List<PlayerInterface> droppedPlayers = new ArrayList<>();
     private List<String> cards = new ArrayList<>();
     private String MyCard;
     private String currentPlayer;
@@ -33,6 +35,10 @@ public class GUI implements UserInterface {
     private Board board;
     private String state;
     private boolean started = false;
+
+    public List<PlayerInterface> getDroppedPlayers() {
+        return droppedPlayers;
+    }
 
     public List<String> getCards() {
         return cards;
@@ -592,22 +598,6 @@ public class GUI implements UserInterface {
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
         if(!started) {
-            if(cards != null) {
-                cards.clear();
-            }
-            if(chosenCards != null) {
-                chosenCards.clear();
-            }
-            if(opponentChosenCards != null) {
-                opponentChosenCards.clear();
-            }
-            opponentPlayerName.remove(droppedConnection.getNickname());
-            for(int i = 0; i < opponentPlayers.size(); i++) {
-                if(opponentPlayers.get(i).getNickname().equals(droppedConnection.getNickname())) {
-                    opponentPlayers.remove(opponentPlayers.get(i));
-                    break;
-                }
-            }
             Platform.runLater(() -> {
                 FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
                 Parent root = null;
@@ -618,6 +608,12 @@ public class GUI implements UserInterface {
                     e.printStackTrace();
                 }
             });
+        } else {
+            for (PlayerInterface opponentPlayer : opponentPlayers) {
+                if (opponentPlayer.getNickname().equals(droppedConnection.getNickname())) {
+                    droppedPlayers.add(opponentPlayer);
+                }
+            }
         }
     }
 
@@ -635,6 +631,13 @@ public class GUI implements UserInterface {
                 e.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public void ServerRestart() {
+        client.setActive(false);
+        client.killClient();
+        client.getClientBeatSender().setActive(false);
     }
 
 

@@ -78,5 +78,7 @@ public interface ObserverModel {
     void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException;
 
     void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException;
+
+    void updateServerRestart() throws IOException;
 }
 

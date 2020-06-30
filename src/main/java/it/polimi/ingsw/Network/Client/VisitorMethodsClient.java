@@ -345,5 +345,10 @@ public class VisitorMethodsClient implements VisitorClient {
         userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());
     }
 
+    @Override
+    public void visit(ServerRestart serverRestart) {
+        userInterface.ServerRestart();
+    }
+
 
 }
