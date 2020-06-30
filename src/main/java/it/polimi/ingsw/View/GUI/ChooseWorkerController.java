@@ -35,6 +35,10 @@ public class ChooseWorkerController extends BoardController implements Initializ
 
     }
 
+
+    /**
+     * Set up buttons for the scene. Call a notify the return the number of worker
+     */
     public void setUpButtons() {
         for(Node node : Board.getChildren()) {
             node.setOnMouseClicked(new EventHandler<MouseEvent>() {

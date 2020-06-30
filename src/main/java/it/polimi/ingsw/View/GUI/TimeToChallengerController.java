@@ -33,6 +33,9 @@ public class TimeToChallengerController extends NotifyMessages implements Initia
         set();
     }
 
+    /**
+     * Load the name of the challenger.
+     */
     public void set(){
         ChallengerName.setText(name);
     }

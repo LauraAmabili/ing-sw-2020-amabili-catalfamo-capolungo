@@ -61,6 +61,9 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
         setUpButtons();
     }
 
+    /**
+     * Load the Images and the textFields on the scene.
+     */
     public void LoadScene() {
         String name = list.get(0).getNickname();
         PlayerNick1.setText(name);
@@ -81,6 +84,9 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
         ActionText.setText("Choose first player");
     }
 
+    /**
+     * Set up buttons for the scene. Call a notify that return the name of the first player who will play
+     */
     public void setUpButtons() {
         Stage1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -125,6 +131,11 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
         });
     }
 
+    /**
+     * Set up the color of the TextField
+     * @param player
+     * @param NameText
+     */
     public void setColor(PlayerInterface player, TextField NameText) {
         if(player.getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
             NameText.setStyle("-fx-text-fill: blue");

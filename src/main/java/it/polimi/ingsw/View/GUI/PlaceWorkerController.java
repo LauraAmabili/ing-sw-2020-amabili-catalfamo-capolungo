@@ -38,14 +38,15 @@ public class PlaceWorkerController extends BoardController implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         setUpButtons();
         LoadNameAndCards();
         LoadBoard();
         StateText(state);
-
     }
 
+    /**
+     * Call a notify that return the row and column of the chosen pane.
+     */
     public void setUpButtons() {
         for (Node node : Board.getChildren()) {
             node.setOnMouseClicked(new EventHandler<MouseEvent>() {

@@ -35,6 +35,9 @@ public class MovingController extends BoardController implements Initializable {
         StateText(state);
     }
 
+    /**
+     * Set up buttons for the scene. Call a notify that return the row and column of the chosen pane.
+     */
     public void setUpButtons() {
         Worker w = null;
         if(gui.getMe().isEnableSpecialMove()) {

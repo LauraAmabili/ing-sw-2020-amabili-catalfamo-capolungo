@@ -61,7 +61,9 @@ public abstract class BoardController extends NotifyMessages {
     @FXML
     Text Text4 = new Text();
 
-
+    /**
+     * Load names and cards to scene
+     */
     public void LoadNameAndCards() {
         String url;
         gui = (GUI) client.getUserInterface();
@@ -102,6 +104,11 @@ public abstract class BoardController extends NotifyMessages {
         CurrentTurnPlayer.setText("Current Turn: " + gui.getCurrentPlayer());
     }
 
+    /**
+     * Set up the color of the TextField
+     * @param player
+     * @param NameText
+     */
     public void setColor(PlayerInterface player, TextField NameText) {
         if(player.getWorkerRef().get(0).getColor().equals("\u001B[34m") ) {
             NameText.setStyle("-fx-text-fill: blue");
@@ -112,6 +119,9 @@ public abstract class BoardController extends NotifyMessages {
         }
     }
 
+    /**
+     * Load the images for the scene.
+     */
     public void LoadBoard() {
         String color;
         Board board = gui.getBoard();
@@ -164,6 +174,10 @@ public abstract class BoardController extends NotifyMessages {
         }
     }
 
+    /**
+     * Set up the current state of the game.
+     * @param state
+     */
     public void StateText(String state) {
         String text = "Current Action: " + state;
         ActionText.setText(text);

@@ -35,15 +35,12 @@ class SpecialBuild_BuildBuildDownUnder {
         mockWorkers1.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_BuildDownUnder(mockPlayer);
-        player.setEnableSpecialBuild(true);
         player.build(1, 0, worker1);
         assertEquals(1, board.getGrid()[1][0].getLevel());
         player.build(0, 1, worker1);
         assertEquals(1, board.getGrid()[0][1].getLevel());
-        player.setEnableSpecialBuild(false);
         player.build(1, 0, worker1);
         assertEquals(2, board.getGrid()[1][0].getLevel());
-        player.setEnableSpecialBuild(true);
         player.build(0, 0, worker1);
         assertEquals(1, board.getGrid()[0][0].getLevel());
 

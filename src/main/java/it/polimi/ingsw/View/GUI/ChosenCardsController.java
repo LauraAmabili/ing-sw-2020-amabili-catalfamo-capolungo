@@ -67,6 +67,9 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
         setUpButtons();
     }
 
+    /**
+     * Set up buttons for the scene. Call a notify that return the card name pressed
+     */
     public void setUpButtons() {
         if(gui.getCards().contains("Apollo")) {
             Apollo.setOpacity(0.7);
