@@ -32,11 +32,13 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
      * List of available cells where the worker can build, here we need to considerate under himself too
      * @return recursion
      */
+    /*
     @Override
     public boolean isHasSpecialBuild() {
         return hasSpecialBuild;
     }
 
+    */
     public SpecialBuild_BuildDownUnder(PlayerInterface p) {
         super(p);
         hasSpecialBuild = true;
