@@ -15,9 +15,13 @@ public class AddNickname extends PlayerFSA {
     public AddNickname(PlayerInterface player, Game game) {
         this.player = player;
         this.game = game;
-
     }
 
+    /**
+     * Check if nickname is valid. If it's valid, name, is set on the player else send error message.
+     * @param name
+     * @throws IOException
+     */
     @Override
     public void addNickname(String name) throws IOException {
         if(game.getNicknames().size() == 0) {
@@ -55,6 +59,9 @@ public class AddNickname extends PlayerFSA {
         }
     }
 
+    /**
+     * Set the next state.
+     */
     @Override
     public void next() {
         for(int i = 0; i < game.getStateList().size(); i++) {

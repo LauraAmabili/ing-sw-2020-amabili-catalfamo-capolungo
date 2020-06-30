@@ -22,6 +22,10 @@ public class Moving extends PlayerFSA {
         return effect;
     }
 
+    /**
+     * Check if both workers can move. if both can't move delete this player
+     * @throws IOException
+     */
     @Override
     public void canIMove() throws IOException {
         if(game.getCurrentTurn().checkLockPlayer()) {
@@ -37,6 +41,12 @@ public class Moving extends PlayerFSA {
         }
     }
 
+    /**
+     * Check if the selected worker can move. if it's not possible the other worker is chosen.
+     * @param worker
+     * @param effect
+     * @throws IOException
+     */
     @Override
     public synchronized void checkWorker(int worker, boolean effect) throws IOException {
 
@@ -54,6 +64,13 @@ public class Moving extends PlayerFSA {
 
     }
 
+    /**
+     * Move the worker on the selected coordinates.
+     * @param row
+     * @param col
+     * @param worker
+     * @throws IOException
+     */
     @Override
     public synchronized void move(int row, int col, int worker) throws IOException {
         if(!player.move(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
@@ -75,6 +92,15 @@ public class Moving extends PlayerFSA {
         }
     }
 
+    /**
+     * Move the worker on the selected coordinates (Used for special effects)
+     * @param row1
+     * @param col1
+     * @param row2
+     * @param col2
+     * @param worker
+     * @throws IOException
+     */
     @Override
     public synchronized void move(int row1, int col1, int row2, int col2, int worker) throws IOException {
         if(!player.move(row1 - 1, col1 - 1, row2 -1, col2 - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {

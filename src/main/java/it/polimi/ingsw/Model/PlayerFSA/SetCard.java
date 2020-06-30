@@ -18,6 +18,11 @@ public class SetCard extends PlayerFSA{
         this.game = game;
     }
 
+    /**
+     * Set the godName on the player. If godName is not present in the availableGods list send message error.
+     * @param godName
+     * @throws IOException
+     */
     @Override
     public void setCard(String godName) throws IOException {
         PlayerCreator playerCreator = new PlayerCreator();

@@ -16,7 +16,9 @@ public class Idle extends PlayerFSA {
         this.game = game;
     }
 
-
+    /**
+     * Set the next state of the previous state.
+     */
     @Override
     public void next() {
         oldState.next();
