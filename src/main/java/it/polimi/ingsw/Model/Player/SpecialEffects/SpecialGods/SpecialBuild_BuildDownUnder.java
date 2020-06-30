@@ -10,10 +10,10 @@ import java.util.List;
 
 
 public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
-
+    /*
     private final boolean hasSpecialBuild;
 
-    /*
+
     private boolean enableSpecialBuild;
 
     @Override
@@ -27,11 +27,13 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
     }
 
 
-     */
+
+
     /**
      * List of available cells where the worker can build, here we need to considerate under himself too
      * @return recursion
      */
+
     /*
     @Override
     public boolean isHasSpecialBuild() {
@@ -39,9 +41,10 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
     }
 
     */
+
     public SpecialBuild_BuildDownUnder(PlayerInterface p) {
         super(p);
-        hasSpecialBuild = true;
+        //hasSpecialBuild = true;
     }
 
     /*
@@ -75,6 +78,20 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
         }
     }
     */
+
+    @Override
+    public synchronized boolean build(int row, int col, @NotNull Worker worker) {
+        if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
+            BoardCell b = this.getBoard().getGrid()[row][col];
+            if (b.getLevel() == 3) {
+                b.setDome(true);
+            } else {
+                b.setLevel((b.getLevel() + 1));
+            }
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public List<BoardCell> availableCellsToBuild(Worker worker) {
