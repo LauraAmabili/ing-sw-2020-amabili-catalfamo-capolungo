@@ -27,7 +27,6 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
 
     /**
      * List of available cells where the worker can build, here we need to considerate under himself too
-     * @param worker number of the worker
      * @return recursion
      */
     @Override
@@ -40,6 +39,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
         hasSpecialBuild = true;
     }
 
+    /*
     /**
      * Builds twice on the same BoardCell
      *
@@ -49,6 +49,7 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
      * @return true <--> the method works </-->
      */
 
+    /*
     @Override
     public synchronized boolean build(int row, int col, @NotNull Worker worker) {
         if (worker.getCurCell().getRow() == row && worker.getCurCell().getCol() == col) {
@@ -68,7 +69,14 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
             return false;
         }
     }
+    */
 
+    @Override
+    public List<BoardCell> availableCellsToBuild(Worker worker) {
+        List<BoardCell> b = player.availableCellsToBuild(worker);
+        b.add(worker.getCurCell());
+        return b;
+    }
 
 
 }
