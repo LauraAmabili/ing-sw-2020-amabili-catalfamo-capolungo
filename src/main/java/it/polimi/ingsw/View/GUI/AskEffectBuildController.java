@@ -28,8 +28,10 @@ public class AskEffectBuildController extends BoardController implements Initial
         StateText(state);
     }
 
+    /**
+     * Set up buttons for effect response.
+     */
     public void setUpButtons() {
-
         UseEffect.setDisable(false);
         UseEffect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

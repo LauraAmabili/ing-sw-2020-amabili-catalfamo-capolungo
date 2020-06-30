@@ -33,6 +33,9 @@ public class TwoInputMovingController extends BoardController implements Initial
         StateText(state);
     }
 
+    /**
+     * Set up buttons for the scene. Call a notify that return the rows and columns of the chosen panes
+     */
     public void setUpButtons() {
         if(gui.getMe().isEnableSpecialBuild()) {
             UseEffect.setDisable(false);

@@ -47,6 +47,9 @@ public class WelcomeSceneController extends NotifyMessages implements Initializa
         setUpButtons();
     }
 
+    /**
+     * Set up the button to connect to the server
+     */
     public void setUpButtons() {
         StartGameButton.setOnAction(event -> {
             try {

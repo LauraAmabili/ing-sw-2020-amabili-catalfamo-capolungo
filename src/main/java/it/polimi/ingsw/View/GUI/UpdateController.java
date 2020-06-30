@@ -14,11 +14,9 @@ public class UpdateController extends BoardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         LoadNameAndCards();
         LoadBoard();
         StateText(state);
-
     }
 
 }

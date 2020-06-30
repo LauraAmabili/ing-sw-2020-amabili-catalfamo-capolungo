@@ -27,6 +27,9 @@ public class AskEffectController extends BoardController implements Initializabl
         StateText(state);
     }
 
+    /**
+     * Set up buttons for effect response. Call a notify that return if the player want or not use the effect of the card.
+     */
     public void setUpButtons() {
 
         UseEffect.setDisable(false);

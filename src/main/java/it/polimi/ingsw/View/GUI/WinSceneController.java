@@ -31,6 +31,9 @@ public class WinSceneController extends BoardController implements Initializable
         setUpButtons();
     }
 
+    /**
+     * Load the name of the player who has won.
+     */
     public void setUpButtons() {
         if(Player.equals(client.getNickname())) {
             WinPlayer.setText(Player + " wins");

@@ -31,6 +31,9 @@ public class WaitingSetCardController extends NotifyMessages implements Initiali
         setUp();
     }
 
+    /**
+     * Load the name of the current player who is choosing the card.
+     */
     public void setUp() {
         PlayerName.setText(name);
     }

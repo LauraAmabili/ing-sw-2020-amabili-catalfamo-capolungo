@@ -51,6 +51,9 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         setUp();
     }
 
+    /**
+     * Set up images for the scene. Call a notify that return the name of the chosen card
+     */
     public void setUp() {
         GUI gui = (GUI) client.getUserInterface();
         ArrayList<String> godList = new ArrayList<>();
@@ -131,6 +134,9 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
         }
     }
 
+    /**
+     * Load chosen cards for the scene.
+     */
     public void LoadCards() {
         GUI gui = (GUI) client.getUserInterface();
         String url;

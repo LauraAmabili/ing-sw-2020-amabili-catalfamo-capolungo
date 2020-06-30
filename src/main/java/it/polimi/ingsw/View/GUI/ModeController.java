@@ -44,7 +44,9 @@ public class ModeController extends NotifyMessages implements Initializable {
         setUpButtons();
     }
 
-
+    /**
+     * Set up buttons for the scene. Call a notify that return the number of player
+     */
     public void setUpButtons() {
         TwoPlayerButton.setOnAction(event -> {
             try {

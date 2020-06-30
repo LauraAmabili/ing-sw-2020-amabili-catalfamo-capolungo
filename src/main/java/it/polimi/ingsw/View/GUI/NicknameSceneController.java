@@ -46,7 +46,9 @@ public class NicknameSceneController extends NotifyMessages implements Initializ
         setUpButtons();
     }
 
-
+    /**
+     * Call a notify that return the name of the player.
+     */
     public void setUpButtons() {
         confirmNickButton.setOnAction(event -> {
             String nick = nicknameTextField.getText();
