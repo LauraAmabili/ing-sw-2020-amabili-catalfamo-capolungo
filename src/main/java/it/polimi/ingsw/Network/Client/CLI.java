@@ -70,7 +70,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      */
 
     @Override
-    public void  PlayerNumberRequest() throws IOException {
+    public void  PlayerNumberRequest() {
 
 
         //clientBoard.Martello();
@@ -85,14 +85,14 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     /**
      * Asks the nickname for the game then sends a notify with the nickname
-     * @throws IOException Exception
      */
 
     @Override
-    public void NicknameRequest() throws IOException {
+    public void NicknameRequest()  {
         System.out.println("Insert nickname:");
         String nickname = string.nextLine();
         notifyNicknameResponse(nickname);
+
     }
 
 
@@ -137,7 +137,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
+    public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest)  {
 
         int worker = startingSetWorkerRequest.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
@@ -155,7 +155,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
+    public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate)  {
 
         int worker = wrongCoordinatesUpdate.getWorker();
         System.out.println("Insert your coordinates (x,y) as row and col for worker " + worker);
@@ -208,13 +208,11 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Asks the number of the worker that the player wats to move
      * @param chooseYourWorkerRequest Message
-     * @throws IOException Exception
      */
     @Override
-    public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
+    public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest)  {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
-        //int worker = input.nextInt();
         String worker = string.nextLine();
         notifyChooseYourWorkerResponse(worker);
 
@@ -223,10 +221,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Moving request, need to inser row and col
      * @param moveRequest Message
-     * @throws IOException Exception
      */
     @Override
-    public void MoveRequest(MoveRequest moveRequest) throws IOException {
+    public void MoveRequest(MoveRequest moveRequest)  {
 
 
         boardToPrint.printAvailableGrid(moveRequest.getAvailableCess());
@@ -254,10 +251,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Building request, asking the coordinates
      * @param buildRequest Message
-     * @throws IOException Exception
      */
     @Override
-    public void BuildRequest(BuildRequest buildRequest) throws IOException {
+    public void BuildRequest(BuildRequest buildRequest) {
 
         boardToPrint.printAvailableGrid(buildRequest.getAv());
         System.out.println(YELLOW);
@@ -351,7 +347,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) throws IOException {
+    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest)  {
 
 
         System.out.println("Write "+ GREEN + " 'cardName -desc' " + RESET +  "to have the description of the card, " + GREEN + " 'cardName' to select the card." + RESET);
@@ -422,7 +418,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
+    public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) {
         System.out.println("Choose your card between:  " + GREEN + setYourCardRequest.getAvailableGods() + RESET);
         System.out.println("Write 'cardName -desc' to have the description of the Card");
         List<God> chosenGods = setYourCardRequest.getChosenGods();
@@ -474,7 +470,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void AskEffect() throws IOException {
+    public void AskEffect()  {
 
         System.out.println("Do you want to use your card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
@@ -489,7 +485,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
 
         System.out.println("Time to choose your worker! Which one do you want to move? 1 0 2? ");
         boolean effect = chooseYourWorkerEffectRequest.isEffect();
@@ -503,7 +499,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void AskEffectBuild(AskEffectBuild askEffectBuild) throws IOException {
+    public void AskEffectBuild(AskEffectBuild askEffectBuild) {
 
         System.out.println("Do you want to use your card effect?\ny: Yes, n: No");
         String effect = string.nextLine();
@@ -528,7 +524,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
+    public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
 
         int worker = buildTwoInputRequest.getWorker();
         System.out.println(YELLOW);
@@ -561,7 +557,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
+    public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
 
 
         int worker = moveTwoInputRequest.getWorker();
@@ -640,7 +636,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      * @throws IOException Exception
      */
     @Override
-    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) throws IOException {
+    public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
 
         System.out.println("Choose the first player! Press the number near the name: ");
         int i = 1;
@@ -664,6 +660,12 @@ public class CLI extends NotifyMessages implements UserInterface {
         client.setActive(false);
         client.killClient();
         client.getClientBeatSender().setActive(false);
+    }
+
+    @Override
+    public void lengthNameError()  {
+        System.out.println("The name was too long, please be under 18 characters ;) ");
+
     }
 
 }

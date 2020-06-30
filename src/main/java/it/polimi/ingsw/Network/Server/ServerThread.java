@@ -110,37 +110,21 @@ public class ServerThread extends Thread implements Runnable {
             e.printStackTrace();
         }
         server.getServerThreads().add(this);
-        try {
-            sendToClient(new ConnectionResponse());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendToClient(new ConnectionResponse());
         //numOnline = server.getClients().size();
         if (server.getServerThreads().size() == 1) {
-            try {
-                sendToClient(new PlayerNumberRequest());
-            } catch (IOException e) {
-                System.out.println("Connection with client lost");
-            }
+            sendToClient(new PlayerNumberRequest());
         } else {
             if (isMaxPlayerNumberSet() && server.getServerThreads().size() == numPlayers) {
                 for (int i = 0; i < server.getServerThreads().size(); i++) {
-                    try {
-                        if(!server.getServerThreads().get(i).isNicknameSet()) {
-                            server.getServerThreads().get(i).sendToClient(new NicknameRequest());
-                        }
-                    } catch (IOException e) {
-                        System.out.println("Connection with client lost");
+                    if(!server.getServerThreads().get(i).isNicknameSet()) {
+                        server.getServerThreads().get(i).sendToClient(new NicknameRequest());
                     }
                 }
             }
             if (server.getServerThreads().size() > numPlayers) {
                 server.getServerThreads().remove(server.getServerThreads().size() - 1);
-                try {
-                    sendToClient(new MaxPlayerReachedUpdate());
-                } catch (IOException e) {
-                    System.out.println("Connection with client lost");
-                }
+                sendToClient(new MaxPlayerReachedUpdate());
                 return;
             }
         }
@@ -166,13 +150,14 @@ public class ServerThread extends Thread implements Runnable {
      * @param messageFromServer
      * @throws IOException
      */
-    public void sendToClient(MessageFromServer messageFromServer) throws IOException {
+    public void sendToClient(MessageFromServer messageFromServer)  {
         try {
             out.reset();
             out.writeObject(messageFromServer);
             out.flush();
-        } catch (SocketException e) {
+        } catch (IOException e) {
             System.out.println();
+            System.out.println("Connection with the client lost");
         }
     }
 

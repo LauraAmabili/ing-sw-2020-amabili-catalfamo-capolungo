@@ -359,7 +359,10 @@ public class VisitorMethodsServer implements VisitorServer {
                 }
             }
         }
-        if (check) {
+        if(nickname.length()>19){
+            serverThread.sendToClient(new tooLongName());
+            serverThread.sendToClient(new NicknameRequest());
+        } else if (check && nickname.length()<19) {
             view.AddingNickname(nickname);
             view.getThread().setNicknameSet(true);
         } else {

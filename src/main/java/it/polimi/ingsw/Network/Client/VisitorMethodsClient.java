@@ -5,6 +5,9 @@ import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * All the methods here call a method in another class with the Message depending on the interface
+ */
 public class VisitorMethodsClient implements VisitorClient {
 
     final Client client;
@@ -25,8 +28,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
     /**
      * Request the number of players
-     * @param playerNumberRequest
-     * @throws IOException
+     * @param playerNumberRequest Message
      */
     @Override
     public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
@@ -38,11 +40,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     /**
      * Request the nickname
-     * @param nicknameRequest
-     * @throws IOException
+     * @param nicknameRequest Message
      */
     @Override
-    public synchronized void visit(NicknameRequest nicknameRequest) throws IOException {
+    public synchronized void visit(NicknameRequest nicknameRequest) {
 
 
         userInterface.NicknameRequest();
@@ -53,7 +54,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
     /**
      * connection enabled
-     * @param connectionResponse
+     * @param connectionResponse Message
      */
     @Override
     public void visit(ConnectionResponse connectionResponse) {
@@ -64,7 +65,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
     /**
      * card not found, a new card has to be chosen
-     * @param cardNotFoundRequest
+     * @param cardNotFoundRequest Message
      */
     @Override
     public void visit(CardNotFoundRequest cardNotFoundRequest) {
@@ -73,6 +74,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Time to set workers
+     * @param startingSetWorkerTimeUpdate Message
+     */
     @Override
     public void visit(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
@@ -81,29 +86,39 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
-
+    /**
+     * coordinates for the worker to set
+     * @param startingSetWorkerRequest Message
+     */
     @Override
-    public void visit(StartingSetWorkerRequest startingSetWorkerRequest) throws IOException {
+    public void visit(StartingSetWorkerRequest startingSetWorkerRequest) {
 
 
         userInterface.StartingSetWorkerRequest(startingSetWorkerRequest);
-        //int worker = startingSetWorkerRequest.getWorker();
-        //client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
+
 
     }
 
 
+    /**
+     * Coordinates wrong, aking for new ones
+     * @param wrongCoordinatesUpdate message
+     */
     @Override
-    public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) throws IOException {
+    public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
 
 
         userInterface.WrongCoordinatesUpdate(wrongCoordinatesUpdate);
-        //int worker = wrongCoordinatesUpdate.getWorker();
-        //client.send(new StartingSetWorkerResponse(coor.get(0), coor.get(1), worker));
+
 
 
     }
 
+
+    /**
+     * The player is locked, no more in the game
+     * @param playerLockedUpdate message
+     */
     @Override
     public void visit(PlayerLockedUpdate playerLockedUpdate) {
 
@@ -111,16 +126,23 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Sends the board when updated
+     * @param boardUpdate message
+     */
     @Override
     public void visit(BoardUpdate boardUpdate) {
-
-
 
        userInterface.BoardUpdate(boardUpdate);
 
 
     }
 
+
+    /**
+     * Information about the player that is playing now
+     * @param playerTurnUpdate message
+     */
     @Override
     public void visit(PlayerTurnUpdate playerTurnUpdate) {
 
@@ -128,22 +150,34 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Asks for the worker to move
+     * @param chooseYourWorkerRequest message
+     */
     @Override
-    public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) throws IOException {
+    public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest)  {
 
         userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);
 
     }
 
+    /**
+     * Asks for the coordinates
+     * @param moveRequest message
+     */
     @Override
-    public void visit(MoveRequest moveRequest) throws IOException {
+    public void visit(MoveRequest moveRequest)  {
 
         userInterface.MoveRequest(moveRequest);
-       // int worker = moveRequest.getWorker();
-       // client.send(new MoveResponse(coor.get(0), coor.get(1), worker));
+
 
     }
 
+    /**
+     * Update the game, it's time for the building
+     * @param buildTimeUpdate message
+     */
     @Override
     public void visit(BuildTimeUpdate buildTimeUpdate) {
 
@@ -151,18 +185,25 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Asking for building coordinates
+     * @param buildingRowAndCol message
+     */
     @Override
-    public void visit(BuildRequest buildingRowAndCol) throws IOException {
+    public void visit(BuildRequest buildingRowAndCol)  {
 
 
         userInterface.BuildRequest(buildingRowAndCol);
-        //int worker = buildingRowAndCol.getWorker();
-        //client.send(new BuildResponse(coor.get(0), coor.get(1), worker));
 
 
     }
 
 
+    /**
+     * Coordinates were not correct, asking for new ones
+     * @param tryNewCoordinatesRequest message
+     */
     @Override
     public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) {
 
@@ -171,6 +212,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * The worker chosen was not correct, asking for a new one
+     * @param wrongWorkerUpdate message
+     */
     @Override
     public void visit(WrongWorkerUpdate wrongWorkerUpdate) {
 
@@ -179,6 +225,10 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
+    /**
+     * Sends an update to notify the player that the nickname was correct
+     * @param nicknameAcceptedUpdate message
+     */
     @Override
     public void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
 
@@ -186,6 +236,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Sends the request for a new nickname
+     * @param nicknameNotValidUpdate message
+     */
     @Override
     public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) {
 
@@ -193,6 +248,11 @@ public class VisitorMethodsClient implements VisitorClient {
         
     }
 
+
+    /**
+     * Asks for the card of the player
+     * @param chooseCardsUpdate message
+     */
     @Override
     public void visit(ChooseCardsUpdate chooseCardsUpdate) {
 
@@ -200,20 +260,34 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Sends the list of the available gods
+     * @param availableGodsUpdate message
+     */
     @Override
     public void visit(AvailableGodsUpdate availableGodsUpdate) {
 
        userInterface.AvailableGodsUpdate(availableGodsUpdate);
     }
 
+
+    /**
+     * Asks for the cards for the game
+     * @param challengerCardsRequest message
+     */
     @Override
-    public void visit(ChallengerCardsRequest challengerCardsRequest) throws IOException {
+    public void visit(ChallengerCardsRequest challengerCardsRequest)  {
 
         userInterface.ChallengerCardsRequest(challengerCardsRequest);
-        //client.send(new ChosenCardsUpdate(cardName));
+
 
     }
 
+
+    /**
+     * Sends the update with the card updated
+     * @param cardAddedUpdate message
+     */
     @Override
     public void visit(CardAddedUpdate cardAddedUpdate) {
 
@@ -221,6 +295,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Sends an error if the card chosen is not in the given cards
+     * @param cardChallengerNotFoundRequest message
+     */
     @Override
     public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
 
@@ -228,20 +307,34 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Update about the time of the game, it's time to set the cards
+     * @param setCardTimeUpdate message
+     */
     @Override
-    public void visit(SetCardTimeUpdate setCardTimeUpdate) throws IOException {
+    public void visit(SetCardTimeUpdate setCardTimeUpdate)  {
 
        userInterface.SetCardTimeUpdate(setCardTimeUpdate);
     }
 
+
+    /**
+     * Request of setting the card
+     * @param setYourCardRequest message
+     */
     @Override
-    public void visit(SetYourCardRequest setYourCardRequest) throws IOException {
+    public void visit(SetYourCardRequest setYourCardRequest) {
 
         userInterface.SetYourCardRequest(setYourCardRequest);
-        //client.send(new SetYourCardResponse(in));
+
 
     }
 
+
+    /**
+     * Update if the card is set correctly
+     * @param cardSetUpdate Message
+     */
     @Override
     public void visit(CardSetUpdate cardSetUpdate) {
 
@@ -250,6 +343,10 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
+    /**
+     * Message if the max number of player is reached
+     * @param maxPlayerReachedUpdate
+     */
     @Override
     public void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate) {
 
@@ -261,46 +358,34 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
         userInterface.AskEffect();
-        //client.send(new AskEffectReply(effect, client.getNickname()));
+
 
     }
 
-    /*
-    @Override
-    public void visit(PingRequest pingRequest){
-        try {
-            client.send(new PingResponse(pingRequest.getId()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-     */
 
     @Override
-    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) throws IOException {
+    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest)  {
 
         userInterface.ChooseYourWorkerEffectRequest(chooseYourWorkerEffectRequest);
-        //client.send(new ChooseYourWorkerEffectResponse(worker, chooseYourWorkerEffectRequest.isEffect()));
+
 
     }
 
     @Override
-    public void visit(AskEffectBuild askEffectBuild) throws IOException {
+    public void visit(AskEffectBuild askEffectBuild)  {
 
 
         userInterface.AskEffectBuild(askEffectBuild);
-        //client.send(new AskEffectBuildResponse(effect, client.getNickname(), askEffectBuild.getWorker()));
+
 
     }
 
     @Override
-    public void visit(BuildTwoInputRequest buildTwoInputRequest) throws IOException {
+    public void visit(BuildTwoInputRequest buildTwoInputRequest)  {
 
-       // int worker = buildTwoInputRequest.getWorker();
+
         userInterface.BuildTwoInputRequest(buildTwoInputRequest);
-        //client.send(new BuildTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
+
 
     }
 
@@ -312,11 +397,11 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(MoveTwoInputRequest moveTwoInputRequest) throws IOException {
+    public void visit(MoveTwoInputRequest moveTwoInputRequest) {
 
-        //int worker = moveTwoInputRequest.getWorker();
+
         userInterface.MoveTwoInputRequest(moveTwoInputRequest);
-        //client.send(new MoveTwoInputResponse(coos.get(0), coos.get(1), coos.get(2), coos.get(3), worker));
+
     }
 
     @Override
@@ -341,13 +426,25 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(SetFirstPlayer setFirstPlayer) throws IOException {
+    public void visit(SetFirstPlayer setFirstPlayer)  {
         userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());
     }
 
     @Override
     public void visit(ServerRestart serverRestart) {
         userInterface.ServerRestart();
+    }
+
+
+    @Override
+    public void visit(tooLongName tooLongName)  {
+        userInterface.lengthNameError();
+
+    }
+
+    @Override
+    public void visit(VisitorClient gameMessageVisitorClient) {
+        userInterface.lengthNameError();
     }
 
 

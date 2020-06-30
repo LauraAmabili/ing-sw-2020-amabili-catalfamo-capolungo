@@ -75,11 +75,7 @@ public class BuildingController extends BoardController implements Initializable
                     }
                     String rowString = row + "";
                     String colString = col + "";
-                    try {
-                        notifyBuildResponse(rowString, colString, worker, null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    notifyBuildResponse(rowString, colString, worker, null);
                 }
             });
         }

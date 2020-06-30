@@ -75,10 +75,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Starts when there are enough clients for the number of players chosen
      * @throws IOException
-     * @throws InterruptedException
      */
     @Override
-    public void updateGameisReady() throws IOException, InterruptedException {
+    public void updateGameisReady() throws IOException {
 
         System.out.println(ANSI_BLUE);
             insertNickname();
@@ -111,7 +110,7 @@ public class VirtualView extends Observable implements ObserverModel {
      */
     public synchronized void AddingNickname(String nickname) throws IOException {
 
-        MyNickname = nickname;
+        setNickname(nickname);
         notifyAddingNickname(nickname);
 
     }
@@ -119,10 +118,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends a Message to the client that the nickname is accepted
      * @param nickname nickname chosen by the client
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updatePlayerAdded(String nickname, String color) throws IOException {
+    public void updatePlayerAdded(String nickname, String color) {
 
         if(nickname.equals(MyNickname)) {
             thread.sendToClient(new NicknameAcceptedUpdate(color, nickname));
@@ -133,10 +131,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends the client this message if the nickname is not Valid
      * @param nickname nickname not accepted by the server
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateNicknameNotValid(String nickname) throws IOException {
+    public void updateNicknameNotValid(String nickname) {
 
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new NicknameNotValidUpdate());
@@ -151,10 +148,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends to all the clients the Message that it's time for the Challenger to set the cards
      * @param name name of the challenger
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateTimeToChoose(String name, String color) throws IOException {
+    public void updateTimeToChoose(String name, String color) {
 
         thread.sendToClient(new ChooseCardsUpdate(name, color));
 
@@ -165,10 +161,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * @param chosenGods name of the chosenGod
      * @param Names names of the gods chosen until now
      * @param ChallengerName name of the challenger
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) throws IOException {
+    public void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) {
 
         if(!chosenGods) {
             if(MyNickname.equals(ChallengerName)) {
@@ -182,9 +177,8 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends the challenger that it's time to choose for the cards
      * @param challengerName name of the challenger
-     * @throws IOException Exception for the Message
      */
-    public void chooseCard(String challengerName) throws IOException {
+    public void chooseCard(String challengerName) {
 
         if(MyNickname.equals(challengerName)) {
             thread.sendToClient(new ChallengerCardsRequest());
@@ -244,10 +238,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends to all clients an update about the Time of the game, now it's time to set the Card for each player
      * @param chosenGods list of gods chosen by the challenger
      * @param currentPlayerName name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) throws IOException {
+    public  void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) {
 
         thread.sendToClient(new SetCardTimeUpdate(currentPlayerName));
 
@@ -257,10 +250,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends the client of che currentPlayer the option to set the God for the Game
      * @param chosenGods list of gods chosen by the challenger
      * @param currentPlayerName name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateSetCard(List<String> availableGods, String currentPlayerName, List<God> chosenGods) throws IOException {
+    public  void updateSetCard(List<String> availableGods, String currentPlayerName, List<God> chosenGods) {
 
         if(MyNickname.equals(currentPlayerName)) {
             System.out.println(chosenGods);
@@ -284,10 +276,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends to all the clients the name of the Player and the God that the player decided to take
      * @param nickname name of the current player
      * @param godName name of the god chosen by the player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateGodSet(PlayerInterface nickname, String godName) throws IOException {
+    public  void updateGodSet(PlayerInterface nickname, String godName) {
 
         thread.sendToClient(new CardSetUpdate(nickname, godName));
 
@@ -331,9 +322,8 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends to the client of the current player the request to set the first worker
      * @param currentPlayerName name of the current player
      * @param i number of the worker
-     * @throws IOException Exception for the Message
      */
-    public void setWorkers1(String currentPlayerName, int i) throws IOException {
+    public void setWorkers1(String currentPlayerName, int i) {
 
         if(MyNickname.equals(currentPlayerName)) {
             thread.sendToClient(new StartingSetWorkerRequest(i));
@@ -360,9 +350,8 @@ public class VirtualView extends Observable implements ObserverModel {
      * sends to the client the request to add the second worker
      * @param currentPlayerName name of the current Player
      * @param i number of the worker
-     * @throws IOException Exception for the Message
      */
-    public void setWorkers2(String currentPlayerName, int i) throws IOException {
+    public void setWorkers2(String currentPlayerName, int i) {
 
         if(MyNickname.equals(currentPlayerName)) {
             thread.sendToClient(new StartingSetWorkerRequest(i));
@@ -388,7 +377,7 @@ public class VirtualView extends Observable implements ObserverModel {
 
 
     @Override
-    public void updateSetWorkerOk(String currentPlayer, Board board) throws IOException {
+    public void updateSetWorkerOk(String currentPlayer, Board board) {
 
         if(MyNickname.equals(currentPlayer)){
             thread.sendToClient(new BoardUpdate(board));
@@ -399,10 +388,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * This send a message if the coordinates for the Worker are wrong
      * @param i number of worker
      * @param currentPlayer player current playing
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateSetWorker(int i, String currentPlayer) throws IOException {
+    public void updateSetWorker(int i, String currentPlayer) {
 
         if(MyNickname.equals(currentPlayer)) {
             thread.sendToClient(new WrongCoordinatesUpdate(i));
@@ -431,10 +419,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends a message to all the players if someone win
      * @param playerNickname name of the player current playing
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updatePlayerHasLost(String playerNickname) throws IOException {
+    public void updatePlayerHasLost(String playerNickname) {
 
         thread.sendToClient(new PlayerLockedUpdate(playerNickname));
 
@@ -445,10 +432,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends to all the client that it's time for the current player to choose the Worker because the player can move
      * @param nickname nickname of the current player
-     * @throws IOException Exception for the message
      */
     @Override
-    public void updateDecideWorker(PlayerInterface nickname) throws IOException {
+    public void updateDecideWorker(PlayerInterface nickname) {
 
          thread.sendToClient(new PlayerTurnUpdate(nickname));
     }
@@ -458,10 +444,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * called by notifyChooseWorker
      * called when it's time for the player to decide the worker
      * @param nickname name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateTimeToChooseWorker(String nickname) throws IOException {
+    public void updateTimeToChooseWorker(String nickname) {
 
         chooseWorker(nickname);
 
@@ -470,10 +455,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * sends a message to the client if the player has a card that needs the effect to be activated
      * @param nickname name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateAskForEffect(String nickname) throws IOException {
+    public void updateAskForEffect(String nickname) {
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new AskEffect());
         }
@@ -483,10 +467,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * sends to the player a message if the player has a card that needs to build differently
      * @param currentPlayer name of the current player
      * @param worker worker that will build
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException {
+    public void updateAskForEffectBuild(String currentPlayer, int worker) {
         if(MyNickname.equals(currentPlayer)) {
             thread.sendToClient(new AskEffectBuild(worker));
         }
@@ -506,9 +489,8 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends the message to the client to choose the worker
      * @param nickname name of the current player
-     * @throws IOException Exception for the Message
      */
-    public void chooseWorker(String nickname) throws IOException {
+    public void chooseWorker(String nickname) {
 
 
         if(MyNickname.equals(nickname)) {
@@ -532,10 +514,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends a Message if the worker is not correct, we choose automatically the other one
      * @param worker number of the worker
      * @param current name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateWorkerSelected(int worker, String current,  List<BoardCell> available) throws IOException {
+    public void updateWorkerSelected(int worker, String current,  List<BoardCell> available) {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new WrongWorkerUpdate(worker));
@@ -548,10 +529,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Calls the request for the moving
      * @param worker number of the worker
      * @param current name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateMoving(int worker, String current,  List<BoardCell> available) throws IOException {
+    public void updateMoving(int worker, String current,  List<BoardCell> available) {
 
         moving(worker, current, available);
 
@@ -562,9 +542,8 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends the message to the current player to ask for coordinates
      * @param worker number of the player
      * @param current name of the current player
-     * @throws IOException Exception for the Message
      */
-    public void moving(int worker, String current, List<BoardCell> available) throws IOException {
+    public void moving(int worker, String current, List<BoardCell> available) {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new MoveRequest(worker, available));
@@ -616,10 +595,9 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends an update to all the clients with the winner
      * @param player name of the winning player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateWinners(PlayerInterface player) throws IOException {
+    public void updateWinners(PlayerInterface player) {
 
 
             thread.sendToClient(new WinMessage(player.getNickname()));
@@ -631,10 +609,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends a message to the player with the card that needs to build twice
      * @param currentPlayer name of the current player
      * @param worker number of the worker
-     * @throws IOException Exception for the message
      */
     @Override
-    public void updateBuildTwoInput(String currentPlayer,int worker) throws IOException {
+    public void updateBuildTwoInput(String currentPlayer,int worker) {
         thread.sendToClient(new BuildTimeUpdate(currentPlayer));
         if(MyNickname.equals(currentPlayer)) {
             thread.sendToClient(new BuildTwoInputRequest(worker));
@@ -645,29 +622,28 @@ public class VirtualView extends Observable implements ObserverModel {
      * Sends a message to the player with the card that needs to move twice
      * @param nickname  name of the current player
      * @param worker number of the worker
-     * @throws IOException Exception for the message
      */
     @Override
-    public void updateMoveTwoInput(String nickname, int worker) throws IOException {
+    public void updateMoveTwoInput(String nickname, int worker) {
         if(MyNickname.equals(nickname)) {
             thread.sendToClient(new MoveTwoInputRequest(worker));
         }
     }
 
     @Override
-    public void updateDroppedConnection(String nickname) throws IOException {
+    public void updateDroppedConnection(String nickname) {
         thread.sendToClient(new DroppedConnection(nickname));
     }
 
     @Override
-    public void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException {
+    public void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) {
         if(MyNickname.equals(nickname)){
             thread.sendToClient(new SetFirstPlayer(onlinePlayers));
         }
     }
 
     @Override
-    public void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException {
+    public void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) {
         if(MyNickname.equals(nickname)){
             thread.sendToClient(new TryNewCoordinatesRequest(worker));
             thread.sendToClient(new BuildTwoInputRequest(worker));
@@ -675,7 +651,7 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
     @Override
-    public void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException {
+    public void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) {
         if(MyNickname.equals(nickname)){
             thread.sendToClient(new TryNewCoordinatesRequest(worker));
             thread.sendToClient(new MoveTwoInputRequest(worker));
@@ -721,10 +697,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * Send to all the clients an update that it's time to build
      * @param worker number of the worker
      * @param current name of the current player
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateTimeToBuild(int worker, String current, List<BoardCell> av) throws IOException {
+    public void updateTimeToBuild(int worker, String current, List<BoardCell> av) {
 
         thread.sendToClient(new BuildTimeUpdate(current));
         //System.out.println("It's now time to  build!");
@@ -737,9 +712,8 @@ public class VirtualView extends Observable implements ObserverModel {
      * send to the client of the current player the request to build
      * @param worker number of worker just moved
      * @param current name of the current player
-     * @throws IOException Exception for the Message
      */
-    public void building(int worker, String current, List<BoardCell> av) throws IOException {
+    public void building(int worker, String current, List<BoardCell> av) {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new BuildRequest(worker, av));
@@ -781,16 +755,15 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends the message with the Board updated
      * @param board board to be send
-     * @throws IOException Exception for the Message
      */
     @Override
-    public void updateBoard(Board board) throws IOException {
+    public void updateBoard(Board board) {
 
         thread.sendToClient(new BoardUpdate(board));
     }
 
-    //TODO: ?
-    public void updateTimeToChooseWorkerEffect(boolean effect) throws IOException {
+
+    public void updateTimeToChooseWorkerEffect(boolean effect) {
         thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
     }
 
@@ -809,8 +782,23 @@ public class VirtualView extends Observable implements ObserverModel {
         notifyDropConnection(MyNickname);
     }
 
-    public void updateServerRestart() throws IOException {
+    public void updateServerRestart() {
         thread.sendToClient(new ServerRestart());
+    }
+
+    /**
+     * sends a Message to the client that the chosen name was too long
+     * @param name chosen name
+     */
+    @Override
+    public void updateLenghtName(String name) {
+        /*
+        if (MyNickname.equals(name)) {
+            thread.sendToClient(new tooLongName());
+            MyNickname = null;
+        }
+
+         */
     }
 
 }

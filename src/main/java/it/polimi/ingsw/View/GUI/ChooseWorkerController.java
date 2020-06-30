@@ -56,14 +56,10 @@ public class ChooseWorkerController extends BoardController implements Initializ
                         } else {
                             worker = 2 + "";
                         }
-                        try {
-                            if(!gui.getMe().isEnableSpecialMove()) {
-                                notifyChooseYourWorkerResponse(worker);
-                            } else {
-                                notifyChooseYourWorkerEffectResponse(worker, gui.getMe().isEnableSpecialMove());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        if(!gui.getMe().isEnableSpecialMove()) {
+                            notifyChooseYourWorkerResponse(worker);
+                        } else {
+                            notifyChooseYourWorkerEffectResponse(worker, gui.getMe().isEnableSpecialMove());
                         }
                     }
                 }

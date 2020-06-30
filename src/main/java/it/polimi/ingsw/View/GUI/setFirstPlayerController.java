@@ -85,54 +85,42 @@ public class setFirstPlayerController extends NotifyMessages implements Initiali
         Stage1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                try {
-                    String numbPlayer = null;
-                    for(int i = 0; i < list.size(); i++) {
-                        if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
-                            numbPlayer = i + 1 + "";
-                            break;
-                        }
+                String numbPlayer = null;
+                for(int i = 0; i < list.size(); i++) {
+                    if(list.get(i).getNickname().equals(PlayerNick1.getText())) {
+                        numbPlayer = i + 1 + "";
+                        break;
                     }
-                    notifyPlayerThatStart(numbPlayer, list);
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+                notifyPlayerThatStart(numbPlayer, list);
             }
         });
         if(list.size() == 3) {
             Stage2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    try {
-                        String numbPlayer = null;
-                        for(int i = 0; i < list.size(); i++) {
-                            if(list.get(i).getNickname().equals(PlayerNick2.getText())) {
-                                numbPlayer = i + 1 + "";
-                                break;
-                            }
+                    String numbPlayer = null;
+                    for(int i = 0; i < list.size(); i++) {
+                        if(list.get(i).getNickname().equals(PlayerNick2.getText())) {
+                            numbPlayer = i + 1 + "";
+                            break;
                         }
-                        notifyPlayerThatStart(numbPlayer, list);
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
+                    notifyPlayerThatStart(numbPlayer, list);
                 }
             });
         }
         Stage3.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                try {
-                    String numbPlayer = null;
-                    for(int i = 0; i < list.size(); i++) {
-                        if(list.get(i).getNickname().equals(PlayerNick3.getText())) {
-                            numbPlayer = i + 1 + "";
-                            break;
-                        }
+                String numbPlayer = null;
+                for(int i = 0; i < list.size(); i++) {
+                    if(list.get(i).getNickname().equals(PlayerNick3.getText())) {
+                        numbPlayer = i + 1 + "";
+                        break;
                     }
-                    notifyPlayerThatStart(numbPlayer, list);
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+                notifyPlayerThatStart(numbPlayer, list);
             }
         });
     }

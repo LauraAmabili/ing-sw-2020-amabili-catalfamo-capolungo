@@ -18,10 +18,9 @@ public class UpdatesForMessages implements ClientObserver {
     /**
      * Sends the message with the number of player
      * @param num number of players of the game
-     * @throws IOException Exception
      */
     @Override
-    public void updatePlayerNumberResponse(String num) throws IOException {
+    public void updatePlayerNumberResponse(String num) {
         try {
             client.setNumberOfPlayers(Integer.parseInt(num));
             client.send(new PlayerNumberResponse(num));
@@ -33,10 +32,9 @@ public class UpdatesForMessages implements ClientObserver {
     /**
      * Nickname response to send to the server
      * @param nickname name chosen by the player
-     * @throws IOException Exception
      */
     @Override
-    public void updateNicknameResponse(String nickname) throws IOException {
+    public void updateNicknameResponse(String nickname) {
 
         client.setNickname(nickname);
         client.send(new NicknameResponse(nickname));
@@ -49,10 +47,9 @@ public class UpdatesForMessages implements ClientObserver {
      * @param row chosen row
      * @param col chosen col
      * @param worker number of the worker
-     * @throws IOException Exception
      */
     @Override
-    public void updateStartingSetWorkerResponse(String row, String col, int worker) throws IOException {
+    public void updateStartingSetWorkerResponse(String row, String col, int worker) {
 
         client.send(new StartingSetWorkerResponse(row, col, worker));
 
@@ -64,10 +61,9 @@ public class UpdatesForMessages implements ClientObserver {
      * @param row chosen row
      * @param col chosen col
      * @param worker worker
-     * @throws IOException Exception
      */
     @Override
-    public void updateWrongCoordinatesUpdate(String row, String col, int worker) throws IOException {
+    public void updateWrongCoordinatesUpdate(String row, String col, int worker)  {
         client.send(new StartingSetWorkerResponse(row, col, worker));
     }
 
@@ -75,10 +71,9 @@ public class UpdatesForMessages implements ClientObserver {
     /**
      * Sending the server the worker chosen to make the move
      * @param worker number of the worker
-     * @throws IOException Exception
      */
     @Override
-    public void updateChooseYourWorkerResponse(String worker) throws IOException {
+    public void updateChooseYourWorkerResponse(String worker){
 
         client.send(new ChooseYourWorkerResponse(worker));
 
@@ -91,10 +86,9 @@ public class UpdatesForMessages implements ClientObserver {
      * @param col chosen col
      * @param worker number of the worker
      * @param av list of Board cells where to move in
-     * @throws IOException Exception
      */
     @Override
-    public void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) throws IOException {
+    public void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) {
         MoveResponse move = new MoveResponse(row, col, worker);
         move.setAvailable(av);
         client.send(move);
@@ -107,9 +101,8 @@ public class UpdatesForMessages implements ClientObserver {
      * @param col chosen col
      * @param worker worker chosen before
      * @param b board cells available
-     * @throws IOException Exception
      */
-    public void updateBuildResponse(String row, String col, int worker, List<BoardCell> b) throws IOException {
+    public void updateBuildResponse(String row, String col, int worker, List<BoardCell> b) {
        BuildResponse message = new BuildResponse(row, col, worker);
        message.setAv(b);
         client.send(new BuildResponse(row, col, worker));
@@ -118,9 +111,8 @@ public class UpdatesForMessages implements ClientObserver {
     /**
      * Card chosen by the challenger
      * @param cardName name of the card
-     * @throws IOException Exception
      */
-    public void updateChosenCardsUpdate(String cardName) throws IOException {
+    public void updateChosenCardsUpdate(String cardName)  {
         client.send(new ChosenCardsUpdate(cardName));
     }
 
@@ -128,9 +120,8 @@ public class UpdatesForMessages implements ClientObserver {
     /**
      * Card chosen by the player
      * @param in name of the card
-     * @throws IOException exception
      */
-    public void updateSetYourCardResponse(String in) throws IOException {
+    public void updateSetYourCardResponse(String in)  {
         client.send(new SetYourCardResponse(in));
     }
 
@@ -138,9 +129,8 @@ public class UpdatesForMessages implements ClientObserver {
      * Reply for the decision of the worker
      * @param effect y or n
      * @param nickname name of the player
-     * @throws IOException
      */
-    public void updateAskEffectReply(String effect, String nickname) throws IOException {
+    public void updateAskEffectReply(String effect, String nickname){
 
         client.send(new AskEffectReply(effect, client.getNickname()));
     }
@@ -149,9 +139,8 @@ public class UpdatesForMessages implements ClientObserver {
      * sends a message to the server
      * @param worker number of the worker
      * @param effect y or n
-     * @throws IOException exception
      */
-    public void updateChooseYourWorkerEffectResponse(String worker, boolean effect) throws IOException {
+    public void updateChooseYourWorkerEffectResponse(String worker, boolean effect){
         client.send(new ChooseYourWorkerEffectResponse(worker, effect));
     }
 
@@ -163,7 +152,7 @@ public class UpdatesForMessages implements ClientObserver {
      * @param worker number of the worker
      * @throws IOException exception
      */
-    public void updateAskeffectBuildResponse(String effect, String nickname, int worker) throws IOException {
+    public void updateAskeffectBuildResponse(String effect, String nickname, int worker)  {
         client.send(new AskEffectBuildResponse(effect, client.getNickname(), worker));
     }
 
@@ -176,7 +165,7 @@ public class UpdatesForMessages implements ClientObserver {
      * @param worker number for the worker
      * @throws IOException
      */
-    public void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException {
+    public void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
         client.send(new MoveTwoInputResponse(row1, col1, row2, col2, worker));
     }
 
@@ -189,7 +178,7 @@ public class UpdatesForMessages implements ClientObserver {
      * @param worker number of the worker
      * @throws IOException
      */
-    public void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException {
+    public void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
         client.send(new BuildTwoInputResponse(row1, col1, row2, col2, worker));
     }
 
@@ -200,7 +189,7 @@ public class UpdatesForMessages implements ClientObserver {
      * @param onlinePlayers list of players
      * @throws IOException
      */
-    public void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers) throws IOException {
+    public void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers)  {
         client.send(new PlayerThatStart(player, onlinePlayers));
     }
 

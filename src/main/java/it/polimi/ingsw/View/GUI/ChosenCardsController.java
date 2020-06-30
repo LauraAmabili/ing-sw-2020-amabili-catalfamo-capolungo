@@ -72,224 +72,168 @@ public class ChosenCardsController extends NotifyMessages implements Initializab
             Apollo.setOpacity(0.7);
         }
         Apollo.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Apollo");
-                this.Apollo.setOpacity(0.7);
-                gui.getCards().add("Apollo");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Apollo");
+            this.Apollo.setOpacity(0.7);
+            gui.getCards().add("Apollo");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Ares")) {
             Ares.setOpacity(0.7);
         }
         Ares.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Ares");
-                this.Ares.setOpacity(0.7);
-                gui.getCards().add("Ares");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Ares");
+            this.Ares.setOpacity(0.7);
+            gui.getCards().add("Ares");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Artemis")) {
             Artemis.setOpacity(0.7);
         }
         Artemis.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Artemis");
-                Artemis.setOpacity(0.7);
-                gui.getCards().add("Artemis");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Artemis");
+            Artemis.setOpacity(0.7);
+            gui.getCards().add("Artemis");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Athena")) {
             Athena.setOpacity(0.7);
         }
         Athena.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Athena");
-                Athena.setOpacity(0.7);
-                gui.getCards().add("Athena");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Athena");
+            Athena.setOpacity(0.7);
+            gui.getCards().add("Athena");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Atlas")) {
             Atlas.setOpacity(0.7);
         }
         Atlas.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Atlas");
-                Atlas.setOpacity(0.7);
-                gui.getCards().add("Atlas");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Atlas");
+            Atlas.setOpacity(0.7);
+            gui.getCards().add("Atlas");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Charon")) {
             Charon.setOpacity(0.7);
         }
         Charon.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Charon");
-                this.Charon.setOpacity(0.7);
-                gui.getCards().add("Charon");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Charon");
+            this.Charon.setOpacity(0.7);
+            gui.getCards().add("Charon");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Chronus")) {
             Chronus.setOpacity(0.7);
         }
         Chronus.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Chronus");
-                this.Chronus.setOpacity(0.7);
-                gui.getCards().add("Chronus");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Chronus");
+            this.Chronus.setOpacity(0.7);
+            gui.getCards().add("Chronus");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Demeter")) {
             Demeter.setOpacity(0.7);
         }
         Demeter.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Demeter");
-                Demeter.setOpacity(0.7);
-                gui.getCards().add("Demeter");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Demeter");
+            Demeter.setOpacity(0.7);
+            gui.getCards().add("Demeter");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Hephaestus")) {
             Hephaestus.setOpacity(0.7);
         }
         Hephaestus.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Hephaestus");
-                Hephaestus.setOpacity(0.7);
-                gui.getCards().add("Hephaestus");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Hephaestus");
+            Hephaestus.setOpacity(0.7);
+            gui.getCards().add("Hephaestus");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Hestia")) {
             Hestia.setOpacity(0.7);
         }
         Hestia.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Hestia");
-                this.Hestia.setOpacity(0.7);
-                gui.getCards().add("Hestia");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Hestia");
+            this.Hestia.setOpacity(0.7);
+            gui.getCards().add("Hestia");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Minotaur")) {
             Minotaur.setOpacity(0.7);
         }
         Minotaur.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Minotaur");
-                Minotaur.setOpacity(0.7);
-                gui.getCards().add("Minotaur");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Minotaur");
+            Minotaur.setOpacity(0.7);
+            gui.getCards().add("Minotaur");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Pan")) {
             Pan.setOpacity(0.7);
         }
         Pan.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Pan");
-                Pan.setOpacity(0.7);
-                gui.getCards().add("Pan");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Pan");
+            Pan.setOpacity(0.7);
+            gui.getCards().add("Pan");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Prometheus")) {
             Prometheus.setOpacity(0.7);
         }
         Prometheus.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Prometheus");
-                Prometheus.setOpacity(0.7);
-                gui.getCards().add("Prometheus");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Prometheus");
+            Prometheus.setOpacity(0.7);
+            gui.getCards().add("Prometheus");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
         if(gui.getCards().contains("Zeus")) {
             Zeus.setOpacity(0.7);
         }
         Zeus.setOnMouseClicked(mouseEvent -> {
-            try {
-                notifyChosenCardsUpdate("Zeus");
-                this.Zeus.setOpacity(0.7);
-                gui.getCards().add("Zeus");
-                counter++;
-                if(counter == client.getNumberOfPlayers()) {
-                    removeObserver(up);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            notifyChosenCardsUpdate("Zeus");
+            this.Zeus.setOpacity(0.7);
+            gui.getCards().add("Zeus");
+            counter++;
+            if(counter == client.getNumberOfPlayers()) {
+                removeObserver(up);
             }
         });
     }

@@ -640,5 +640,10 @@ public class GUI implements UserInterface {
         client.getClientBeatSender().setActive(false);
     }
 
+    @Override
+    public void lengthNameError() {
+        //TODO
+    }
+
 
 }

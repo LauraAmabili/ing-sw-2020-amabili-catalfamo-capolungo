@@ -34,23 +34,15 @@ public class AskEffectBuildController extends BoardController implements Initial
         UseEffect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    gui.getMe().setEnableSpecialMove(true);
-                    notifyAskeffectBuildResponse("y", name, worker);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                gui.getMe().setEnableSpecialMove(true);
+                notifyAskeffectBuildResponse("y", name, worker);
             }
         });
         DontUseEffect.setDisable(false);
         DontUseEffect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    notifyAskeffectBuildResponse("n", name, worker);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                notifyAskeffectBuildResponse("n", name, worker);
             }
         });
 

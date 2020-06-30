@@ -33,23 +33,15 @@ public class AskEffectController extends BoardController implements Initializabl
         UseEffect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    gui.getMe().setEnableSpecialMove(true);
-                    notifyAskEffectReply("y", name);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                gui.getMe().setEnableSpecialMove(true);
+                notifyAskEffectReply("y", name);
             }
         });
         DontUseEffect.setDisable(false);
         DontUseEffect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    notifyAskEffectReply("n", name);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                notifyAskEffectReply("n", name);
             }
         });
 

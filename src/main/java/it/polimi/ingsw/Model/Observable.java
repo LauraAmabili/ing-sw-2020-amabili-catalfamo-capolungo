@@ -242,4 +242,10 @@ public class Observable {
 
     }
 
+    public void notifyLenghtName(String name){
+        for(ObserverModel o : observerModels){
+            o.updateLenghtName(name);
+        }
+    }
+
 }

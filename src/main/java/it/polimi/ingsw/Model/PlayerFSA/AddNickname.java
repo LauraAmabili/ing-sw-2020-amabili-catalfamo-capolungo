@@ -24,17 +24,18 @@ public class AddNickname extends PlayerFSA {
      */
     @Override
     public void addNickname(String name) throws IOException {
-        if(game.getNicknames().size() == 0) {
-            game.getNicknames().add(name);
-            player.setNickname(name);
-            player.setColor(PURPLE);
-            for(int i = 0; i < game.getStateList().size(); i++) {
-                if(game.getNicknames().get(i).equals(player.getNickname())) {
-                    game.getStateList().set(i, new Idle(player, this, game));
-                    break;
+        if(game.getNicknames().size() == 0){
+                game.getNicknames().add(name);
+                player.setNickname(name);
+                player.setColor(PURPLE);
+                for (int i = 0; i < game.getStateList().size(); i++) {
+                    if (game.getNicknames().get(i).equals(player.getNickname())) {
+                        game.getStateList().set(i, new Idle(player, this, game));
+                        break;
+                    }
                 }
-            }
-            game.nameAccepted(name);
+                game.nameAccepted(name);
+
         } else {
             for (PlayerInterface p : game.getOnlinePlayers()) {
                 if (p.getNickname().equals(name)) {

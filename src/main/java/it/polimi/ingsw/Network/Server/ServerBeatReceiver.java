@@ -86,11 +86,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
         connection.serverThread.setKeepAlive(false);
         connections.remove(connection);
         for (Connection i : connections){
-            try {
-                i.serverThread.sendToClient(new DroppedConnection(nickname));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            i.serverThread.sendToClient(new DroppedConnection(nickname));
         }
         if(server.getServerThreads().size() == 0) {
             server.setGameController(new GameController());

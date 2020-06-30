@@ -123,12 +123,12 @@ public class Client {
 
 
 
-    public synchronized void send(MessageFromClient x) throws IOException {
+    public synchronized void send(MessageFromClient x)  {
 
         try {
             out.writeObject(x);
             out.flush();
-        } catch (SocketException e) {
+        } catch (IOException e) {
             System.out.println("Server Offline");
             active = false;
             killClient();

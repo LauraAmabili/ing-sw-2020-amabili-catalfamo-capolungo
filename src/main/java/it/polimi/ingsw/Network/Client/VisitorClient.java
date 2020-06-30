@@ -46,4 +46,6 @@ public interface VisitorClient {
     void visit(DroppedConnection droppedConnection);
     void visit(SetFirstPlayer setFirstPlayer) throws IOException;
     void visit(ServerRestart serverRestart);
+    void visit(tooLongName tooLongName) throws IOException;
+    void visit(VisitorClient gameMessageVisitorClient);
 }

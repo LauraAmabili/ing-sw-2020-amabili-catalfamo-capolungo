@@ -66,12 +66,8 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
             }
         }
         FirstCard.setOnMouseClicked(mouseEvent -> {
-            try {
-                gui.setMyCard(CardName1);
-                notifySetYourCardResponse(CardName1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            gui.setMyCard(CardName1);
+            notifySetYourCardResponse(CardName1);
             FirstCard.setOpacity(0.7);
             counter++;
             if(counter == client.getNumberOfPlayers()) {
@@ -88,12 +84,8 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
                 }
             }
             SecondCard.setOnMouseClicked(mouseEvent -> {
-                try {
-                    gui.setMyCard(CardName2);
-                    notifySetYourCardResponse(CardName2);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                gui.setMyCard(CardName2);
+                notifySetYourCardResponse(CardName2);
                 SecondCard.setOpacity(0.7);
                 counter++;
                 if (counter == client.getNumberOfPlayers()) {
@@ -114,12 +106,8 @@ public class CardsToChooseController extends NotifyMessages implements Initializ
             }
         }
         ThirdCard.setOnMouseClicked(mouseEvent -> {
-            try {
-                gui.setMyCard(CardName3);
-                notifySetYourCardResponse(CardName3);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            gui.setMyCard(CardName3);
+            notifySetYourCardResponse(CardName3);
             ThirdCard.setOpacity(0.7);
             counter++;
             if(counter == client.getNumberOfPlayers()) {

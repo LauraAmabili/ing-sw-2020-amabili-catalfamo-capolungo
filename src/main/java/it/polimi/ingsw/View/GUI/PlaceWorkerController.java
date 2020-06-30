@@ -61,11 +61,7 @@ public class PlaceWorkerController extends BoardController implements Initializa
                     } else {
                         row = "1";
                     }
-                    try {
-                        notifyStartingSetWorkerResponse(row, column, worker);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    notifyStartingSetWorkerResponse(row, column, worker);
                 }
             });
         }

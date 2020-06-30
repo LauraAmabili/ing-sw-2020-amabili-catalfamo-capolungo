@@ -75,12 +75,8 @@ public class MovingController extends BoardController implements Initializable {
                     }
                     String rowString = row + "";
                     String colString = col + "";
-                    try {
-                        //TODO: check this null
-                        notifyMoveResponse(rowString, colString, worker, null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    //TODO: check this null
+                    notifyMoveResponse(rowString, colString, worker, null);
                 }
             });
         }

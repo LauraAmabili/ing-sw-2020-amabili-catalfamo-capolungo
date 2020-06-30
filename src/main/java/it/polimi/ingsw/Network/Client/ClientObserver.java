@@ -9,20 +9,20 @@ import java.util.List;
 public interface ClientObserver {
 
 
-    void updatePlayerNumberResponse(String num) throws IOException;
-    void updateNicknameResponse(String nickname) throws IOException;
-    void updateStartingSetWorkerResponse(String row, String col, int worker) throws IOException;
-    void updateWrongCoordinatesUpdate(String row, String col, int worker) throws IOException;
-    void updateChooseYourWorkerResponse(String worker) throws IOException;
-    void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) throws IOException;
-    void updateBuildResponse(String row, String col, int worker, List<BoardCell> av) throws IOException;
-    void updateChosenCardsUpdate(String cardName) throws IOException;
-    void updateSetYourCardResponse(String in) throws IOException;
-    void updateAskEffectReply(String effect, String nickname) throws IOException;
-    void updateChooseYourWorkerEffectResponse(String worker, boolean effect) throws IOException;
-    void updateAskeffectBuildResponse(String effect, String nickname, int worker) throws IOException;
-    void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException;
-    void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) throws IOException;
-    void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers) throws IOException;
+    void updatePlayerNumberResponse(String num);
+    void updateNicknameResponse(String nickname);
+    void updateStartingSetWorkerResponse(String row, String col, int worker);
+    void updateWrongCoordinatesUpdate(String row, String col, int worker);
+    void updateChooseYourWorkerResponse(String worker) ;
+    void updateMoveResponse(String row, String col, int worker, List<BoardCell> av) ;
+    void updateBuildResponse(String row, String col, int worker, List<BoardCell> av) ;
+    void updateChosenCardsUpdate(String cardName) ;
+    void updateSetYourCardResponse(String in) ;
+    void updateAskEffectReply(String effect, String nickname) ;
+    void updateChooseYourWorkerEffectResponse(String worker, boolean effect);
+    void updateAskeffectBuildResponse(String effect, String nickname, int worker) ;
+    void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker) ;
+    void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) ;
+    void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers) ;
 }
 

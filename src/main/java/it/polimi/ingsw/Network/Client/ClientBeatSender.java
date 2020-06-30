@@ -29,13 +29,7 @@ public class ClientBeatSender extends Thread {
     public void run() {
         while (active) {
 
-            try {
-                client.send(new BeatUpdate());
-            } catch (SocketException e) {
-                active=false;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            client.send(new BeatUpdate());
             try {
                 sleep(cardiacRhythm * 1000);
             } catch (InterruptedException e) {

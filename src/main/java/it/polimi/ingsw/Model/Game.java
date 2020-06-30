@@ -525,6 +525,10 @@ public class Game extends Observable {
 
      */
 
+
+    public void nameLenghtError(String name){
+        notifyLenghtName(name);
+    }
     public void NoCoordinatesValidMoveTwoInput(int worker) throws IOException {
         notifyNoCoordinatesValidMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }

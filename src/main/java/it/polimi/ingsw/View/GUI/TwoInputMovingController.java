@@ -64,11 +64,7 @@ public class TwoInputMovingController extends BoardController implements Initial
                     String rowString2 = row2 + "";
                     String colString2 = col2 + "";
                     if(firstInput) {
-                        try {
-                            notifyMoveTwoInputResponse(rowString1, colString1, rowString2, colString2, worker);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        notifyMoveTwoInputResponse(rowString1, colString1, rowString2, colString2, worker);
                     }
                     firstInput = true;
                 }

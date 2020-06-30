@@ -64,11 +64,7 @@ public class TwoInputBuildingController extends BoardController implements Initi
                     String rowString2 = row2 + "";
                     String colString2 = col2 + "";
                     if(firstInput) {
-                        try {
-                            notifyBuildTwoInputResponse(rowString1, colString1, rowString2, colString2, worker);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        notifyBuildTwoInputResponse(rowString1, colString1, rowString2, colString2, worker);
                     }
                     firstInput = true;
                 }
