@@ -19,6 +19,11 @@ public class Initialized extends PlayerFSA {
 
     }
 
+    /**
+     * Add the God name on the availableGods. if godName is not present in the godListNames return an error message.
+     * @param godName
+     * @throws IOException
+     */
     @Override
     public void chosenCard(String godName) throws IOException {
         boolean flag = true;
@@ -59,6 +64,9 @@ public class Initialized extends PlayerFSA {
         }
     }
 
+    /**
+     * Set the next state.
+     */
     @Override
     public void next() {
         for(int i = 0; i < game.getStateList().size(); i++) {

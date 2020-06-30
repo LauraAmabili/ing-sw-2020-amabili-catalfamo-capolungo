@@ -16,6 +16,13 @@ public class PlaceWorker extends PlayerFSA{
         game.setStarted(true);
     }
 
+    /**
+     * Place Worker on the selected coordinates.
+     * @param row
+     * @param col
+     * @param worker
+     * @throws IOException
+     */
     @Override
     public synchronized void placeWorker(int row, int col, int worker) throws IOException {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
@@ -47,6 +54,9 @@ public class PlaceWorker extends PlayerFSA{
         }
     }
 
+    /**
+     * Set the next state.
+     */
     @Override
     public void next() {
         for(int i = 0; i < game.getStateList().size(); i++) {

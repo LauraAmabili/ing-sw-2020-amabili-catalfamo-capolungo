@@ -166,7 +166,6 @@ public class Game extends Observable {
                 if(started) {
                     stateList.remove(i);
                     onlinePlayers.remove(i);
-                    currentTurn.getActivePlayers().remove(i);
                     nickNames.remove(player.getNickname());
                 }
                 break;
