@@ -234,7 +234,7 @@ public class GUI implements UserInterface {
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
-        currentPlayer = playerTurnUpdate.getNickname();
+        currentPlayer = playerTurnUpdate.getPlayer().getNickname();
         state = "Moving";
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/BoardViewScene.fxml"));

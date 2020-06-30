@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
@@ -7,14 +8,14 @@ import java.io.IOException;
 public class PlayerTurnUpdate extends MessageFromServer {
 
 
-    private final String nickname;
+    private final PlayerInterface player;
 
-    public PlayerTurnUpdate(String nickname) {
-        this.nickname = nickname;
+    public PlayerTurnUpdate(PlayerInterface player) {
+        this.player = player;
     }
 
-    public String getNickname() {
-        return nickname;
+    public PlayerInterface getPlayer() {
+        return player;
     }
 
     @Override

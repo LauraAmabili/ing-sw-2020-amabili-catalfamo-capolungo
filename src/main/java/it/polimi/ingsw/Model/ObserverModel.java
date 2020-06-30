@@ -41,7 +41,7 @@ public interface ObserverModel {
 
     void updatePlayerHasLost(String playerName) throws IOException;
 
-    void updateDecideWorker(String nickname) throws IOException;
+    void updateDecideWorker(PlayerInterface nickname) throws IOException;
 
     void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) throws IOException;
 

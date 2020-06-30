@@ -448,7 +448,7 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the message
      */
     @Override
-    public void updateDecideWorker(String nickname) throws IOException {
+    public void updateDecideWorker(PlayerInterface nickname) throws IOException {
 
          thread.sendToClient(new PlayerTurnUpdate(nickname));
     }
