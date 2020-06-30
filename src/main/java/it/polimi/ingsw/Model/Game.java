@@ -434,7 +434,7 @@ public class Game extends Observable {
      * @throws IOException Exception for the message
      */
     public void timeToCheckWorker() throws IOException {
-        notifyCanMove(this.getCurrentTurn().getCurrentPlayer().getNickname());
+        notifyCanMove(this.getCurrentTurn().getCurrentPlayer());
     }
 
     //TODO: javadoc

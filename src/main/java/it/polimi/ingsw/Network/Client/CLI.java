@@ -199,9 +199,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
-        String nickname = playerTurnUpdate.getNickname();
+        String nickname = playerTurnUpdate.getPlayer().getNickname();
         System.out.println("It's time to move!");
-        System.out.println("Now playing : " + nickname);
+        System.out.println("Now playing : " + playerTurnUpdate.getPlayer().getWorkerRef().get(0).getColor() + nickname + RESET);
 
     }
 

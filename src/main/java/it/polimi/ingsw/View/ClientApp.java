@@ -22,6 +22,9 @@ public class ClientApp {
 
 
 
+    /**
+     * read from console the UI the user wants to use
+     */
     public static void main(String[] args) throws IOException {
 
         if (args.length > 0 && args[0].equalsIgnoreCase("-cli")) {

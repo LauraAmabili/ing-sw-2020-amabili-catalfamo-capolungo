@@ -57,7 +57,7 @@ public class Observable {
             o.updateBoard(board);
         }
     }
-    void notifyCanMove(String nickname) throws IOException {
+    void notifyCanMove(PlayerInterface nickname) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateDecideWorker(nickname);
         }
