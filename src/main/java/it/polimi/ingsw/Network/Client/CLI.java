@@ -21,6 +21,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
 
 
+
     public CLI() throws IOException {
 
         client = new Client(this);
@@ -300,9 +301,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void NicknameAcceptedUpdate(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
 
-        System.out.println("Nickname accepted");
+        String color = nicknameAcceptedUpdate.getColor();
+        System.out.println("Nickname " + nicknameAcceptedUpdate.getColor() + nicknameAcceptedUpdate.getName() + RESET + " accepted");
         System.out.println("Wait for others to connect..");
-
 
     }
 
@@ -324,7 +325,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
         System.out.println("It's time to choose the cards for the game!");
-        System.out.println("Challenger was random, " + PURPLE +  chooseCardsUpdate.getChallenger() + RESET + " is choosing the cards");
+        System.out.println("Challenger was random, " + chooseCardsUpdate.getColor() +  chooseCardsUpdate.getChallenger() + RESET + " is choosing the cards");
 
     }
 
@@ -409,8 +410,9 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
 
-        String current = setCardTimeUpdate.getCurrentPlayer();
-        System.out.println("It's " + current + " time to set his Card");
+
+        String current = setCardTimeUpdate.getCurrentPlayer().getNickname();
+        System.out.println("It's " + setCardTimeUpdate.getCurrentPlayer().getWorkerRef().get(0).getColor() + current + RESET + " time to set the Card");
 
     }
 
@@ -421,7 +423,7 @@ public class CLI extends NotifyMessages implements UserInterface {
      */
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) throws IOException {
-        System.out.println("Choose your card between:  " + ANSI_BLUE + setYourCardRequest.getAvailableGods() + RESET);
+        System.out.println("Choose your card between:  " + GREEN + setYourCardRequest.getAvailableGods() + RESET);
         System.out.println("Write 'cardName -desc' to have the description of the Card");
         List<God> chosenGods = setYourCardRequest.getChosenGods();
         String in = string.nextLine();
@@ -453,7 +455,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
 
-        System.out.println("Now "+ ANSI_BLUE +cardSetUpdate.getCurrentPlayer().getNickname() + RESET  + " has " +ANSI_BLUE +  cardSetUpdate.getGodName() + RESET +  " as Active Card");
+        System.out.println("Now "+ cardSetUpdate.getCurrentPlayer().getWorkerRef().get(0).getColor() + cardSetUpdate.getCurrentPlayer().getNickname() + RESET  + " has "  +  cardSetUpdate.getGodName().toUpperCase() + RESET +  " as Active Card");
 
     }
 
@@ -596,7 +598,7 @@ public class CLI extends NotifyMessages implements UserInterface {
             clientBoard.win();
         }
         else {
-            System.out.println(nickname + " wins the match! Yay!!");
+            System.out.println( nickname + " wins the match! Yay!!");
         }
         client.setActive(false);
         client.killClient();
@@ -643,15 +645,19 @@ public class CLI extends NotifyMessages implements UserInterface {
         System.out.println("Choose the first player! Press the number near the name: ");
         int i = 1;
         for(PlayerInterface p : onlinePlayers){
-            System.out.println(YELLOW + i + RESET + " " + p.getNickname());
+            System.out.println(GREEN + i + RESET + " " + p.getWorkerRef().get(0).getColor() +  p.getNickname() + RESET);
             i = i + 1;
         }
 
+        //TODO, lista colori tanto sempre uguale
         String player = input.nextLine();
         notifyPlayerThatStart(player, onlinePlayers);
 
     }
 
+    /**
+     * Prints that the server is restarting
+     */
     @Override
     public void ServerRestart() {
         System.out.println("A player disconnected before the game started.\nServer is restarting, please reconnect to the server");

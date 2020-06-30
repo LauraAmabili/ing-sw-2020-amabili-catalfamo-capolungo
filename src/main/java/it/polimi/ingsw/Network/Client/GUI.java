@@ -404,8 +404,8 @@ public class GUI implements UserInterface {
     @Override
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
         Platform.runLater(() -> {
-            if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer())) {
-                opponentPlayerName.add(setCardTimeUpdate.getCurrentPlayer());
+            if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer().getNickname())) {
+                opponentPlayerName.add(setCardTimeUpdate.getCurrentPlayer().getNickname());
                 FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/CardsToChooseScene.fxml"));
                 CardsToChooseController controller = new CardsToChooseController(client);
                 loader.setController(controller);
@@ -419,7 +419,7 @@ public class GUI implements UserInterface {
             } else {
                 try {
                     FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/playerSettingCardScene.fxml"));
-                    WaitingSetCardController controller = new WaitingSetCardController(client, setCardTimeUpdate.getCurrentPlayer());
+                    WaitingSetCardController controller = new WaitingSetCardController(client, setCardTimeUpdate.getCurrentPlayer().getNickname());
                     loader.setController(controller);
                     Parent root = loader.load();
                     primaryStage.getScene().setRoot(root);

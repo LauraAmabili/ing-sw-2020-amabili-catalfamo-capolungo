@@ -11,7 +11,7 @@ public interface ObserverModel {
     //public void update(Object obj);
     void update(Object o, Object obj);
 
-    void updatePlayerAdded(String obj) throws IOException;
+    void updatePlayerAdded(String obj, String color) throws IOException;
 
     void updateGameisReady() throws IOException, InterruptedException;
 
@@ -19,7 +19,7 @@ public interface ObserverModel {
 
     void updateBoard(Board board) throws IOException;
 
-    void updateTimeToChoose(String name) throws IOException;
+    void updateTimeToChoose(String name, String color) throws IOException;
 
     void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException;
 
@@ -43,7 +43,7 @@ public interface ObserverModel {
 
     void updateDecideWorker(String nickname) throws IOException;
 
-    void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException;
+    void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) throws IOException;
 
     void updateTimeToPlaceWorker(String currentPlayerName) throws IOException;
 

@@ -24,7 +24,6 @@ public class GodFileCreator {
         arrayGods.add(new God("Minotaur", Arrays.asList("SpecialMove_PushOpponent"), "Bull-headed Monster", "Your Move", "Your Worker may move into an opponent Worker’s space, if their Worker can be forced one space straight backwards to an unoccupied space at any level. "));
         arrayGods.add(new God("Pan", Arrays.asList("SpecialWin_MoveDown"), "God of the Wild", "Win Condition", "You also win if your Worker moves down two or more levels."));
         arrayGods.add(new God("Prometheus", Arrays.asList("SpecialMove_BMB"), "Titan Benefactor of Mankind", "Your Turn", "If your Worker does not move up, it may build both before and after moving"));
-
         arrayGods.add(new God("Zeus", Arrays.asList("SpecialBuild_BuildDownUnder"), "God of the Sky", "Your Build", "Your Worker may build a block under itself."));
         arrayGods.add(new God("Hestia", Arrays.asList("SpecialBuild_BuildTwiceDowntown"), "Goddess of Hearth and Home", "Your Build", "Your Worker may build one additional time, but this cannot be on a perimeter space"));
         arrayGods.add(new God("Triton", Arrays.asList("SpecialMove_MoveTwicePerimetral"), "God of the Waves", "Your Move", "Each time your Worker moves into a perimeter space, it may immediately move again."));

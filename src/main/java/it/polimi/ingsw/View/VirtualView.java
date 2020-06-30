@@ -122,10 +122,10 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updatePlayerAdded(String nickname) throws IOException {
+    public void updatePlayerAdded(String nickname, String color) throws IOException {
 
         if(nickname.equals(MyNickname)) {
-            thread.sendToClient(new NicknameAcceptedUpdate());
+            thread.sendToClient(new NicknameAcceptedUpdate(color, nickname));
         }
 
     }
@@ -154,9 +154,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public void updateTimeToChoose(String name) throws IOException {
+    public void updateTimeToChoose(String name, String color) throws IOException {
 
-        thread.sendToClient(new ChooseCardsUpdate(name));
+        thread.sendToClient(new ChooseCardsUpdate(name, color));
 
     }
 
@@ -247,7 +247,7 @@ public class VirtualView extends Observable implements ObserverModel {
      * @throws IOException Exception for the Message
      */
     @Override
-    public  void updateTimeToSetCard(List<String> chosenGods, String currentPlayerName) throws IOException {
+    public  void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) throws IOException {
 
         thread.sendToClient(new SetCardTimeUpdate(currentPlayerName));
 

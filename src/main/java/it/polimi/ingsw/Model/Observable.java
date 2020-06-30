@@ -22,9 +22,9 @@ public class Observable {
         observerModels.remove(o);
     }
 
-    void notifyPlayerAdded(String obj) throws IOException {
+    void notifyPlayerAdded(String obj, String color) throws IOException {
         for(ObserverModel o : observerModels){
-            o.updatePlayerAdded(obj);
+            o.updatePlayerAdded(obj, color);
         }
     }
     void notifyGameIsRead() throws IOException, InterruptedException {
@@ -111,7 +111,7 @@ public class Observable {
             o.updatePlayerHasLost(playerName);
         }
     }
-    void notifyTimeToSetCard(List chosenGods, String currentPlayerName) throws IOException {
+    void notifyTimeToSetCard(List chosenGods, PlayerInterface currentPlayerName) throws IOException {
         for (ObserverModel o : observerModels) {
             o.updateTimeToSetCard(chosenGods, currentPlayerName);
         }
@@ -121,9 +121,9 @@ public class Observable {
             o.updateTimeToPlaceWorker(currentPlayerName);
         }
     }
-    void notifyCards(String name) throws IOException {
+    void notifyCards(String name, String color) throws IOException {
         for (ObserverModel o : observerModels){
-            o.updateTimeToChoose(name);
+            o.updateTimeToChoose(name, color);
         }
     }
     /*

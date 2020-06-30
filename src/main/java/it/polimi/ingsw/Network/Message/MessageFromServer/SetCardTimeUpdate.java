@@ -1,19 +1,20 @@
 package it.polimi.ingsw.Network.Message.MessageFromServer;
 
+import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Client.VisitorClient;
 
 import java.io.IOException;
 
 public class SetCardTimeUpdate extends MessageFromServer {
 
-    private final String currentPlayer;
+    private final PlayerInterface currentPlayer;
 
-    public SetCardTimeUpdate(String currentPlayer) {
+    public SetCardTimeUpdate(PlayerInterface currentPlayer) {
 
         this.currentPlayer = currentPlayer;
     }
 
-    public String getCurrentPlayer() {
+    public PlayerInterface getCurrentPlayer() {
         return currentPlayer;
     }
 

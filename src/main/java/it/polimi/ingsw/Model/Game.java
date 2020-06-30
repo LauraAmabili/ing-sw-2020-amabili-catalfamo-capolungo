@@ -66,8 +66,8 @@ public class Game extends Observable {
         String ANSI_BLUE = "\u001B[34m";
         String ANSI_PURPLE = "\u001B[35m";
         color.add(ANSI_BLUE);
-        color.add(ANSI_YELLOW);
         color.add(ANSI_PURPLE);
+        color.add(ANSI_YELLOW);
         PlayerCreator playerCreator = new PlayerCreator();
         allGods = playerCreator.getArrayGods();
         chosenGodList = new ArrayList<>();
@@ -254,7 +254,7 @@ public class Game extends Observable {
      * @throws IOException Exception for the Message
      */
     public void toSetCard() throws IOException {
-        this.notifyTimeToSetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname());
+        this.notifyTimeToSetCard(availableGods, getCurrentTurn().getCurrentPlayer());
         this.notifySetCard(availableGods, getCurrentTurn().getCurrentPlayer().getNickname(), chosenGodList);
 
     }
@@ -307,7 +307,16 @@ public class Game extends Observable {
      */
     public void nameAccepted(String name) throws IOException {
 
-        notifyPlayerAdded(name);
+        String c = null;
+        for(PlayerInterface p : onlinePlayers){
+            if(p.getNickname().equals(name)){
+                c = p.getWorkerRef().get(0).getColor();
+                break;
+            }
+
+        }
+        notifyPlayerAdded(name, c);
+
     }
 
     /**
@@ -454,7 +463,16 @@ public class Game extends Observable {
      * @throws IOException Exception for the message
      */
     public void timeToChallenger() throws IOException {
-        notifyCards(getCurrentTurn().getCurrentPlayer().getNickname());
+
+
+        String c = null;
+        for(PlayerInterface p : onlinePlayers){
+            if(p.getNickname().equals(getCurrentTurn().getCurrentPlayer().getNickname())){
+                c = p.getWorkerRef().get(0).getColor();
+                break;
+            }
+        }
+        notifyCards(getCurrentTurn().getCurrentPlayer().getNickname(), c);
         notifyChoose(cardsChosen, this.getAllGods(), this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
 
