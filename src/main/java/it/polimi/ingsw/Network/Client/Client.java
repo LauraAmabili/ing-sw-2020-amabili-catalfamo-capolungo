@@ -74,15 +74,6 @@ public class Client {
         return clientBeatSender;
     }
 
-    /*
-    public static void main(String[] args) throws IOException {
-
-        Client client = new Client();
-        client.startClient();
-
-    }
-
-     */
 
     /**
      * Client is started on a defined host and port
@@ -92,11 +83,9 @@ public class Client {
      */
     public void startClient(String host, String port) {
 
-
-
         try {
             socket = new Socket(host, Integer.parseInt(port));
-        } catch (ConnectException e) {
+        } catch (ConnectException | NumberFormatException e) {
             System.out.println("Server not found");
             return;
         } catch (IOException e) {
@@ -114,9 +103,6 @@ public class Client {
         }
         clientBeatSender = new ClientBeatSender(this);
         clientBeatSender.start();
-
-        //System.out.println("Press x to start the game");
-        //String inout = scanner.nextLine();
         Thread T0 = receive();
 
     }
@@ -129,11 +115,9 @@ public class Client {
             out.writeObject(x);
             out.flush();
         } catch (IOException e) {
-            System.out.println("Server Offline");
             active = false;
-            killClient();
+            clientBeatSender.setActive(false);
         }
-
 
     }
 
@@ -151,16 +135,21 @@ public class Client {
                     }
                     catch (WriteAbortedException e){
                         setActive(false);
+                        clientBeatSender.setActive(false);
                         killClient();
                     }
                     catch (SocketException e) {
                         System.out.println("Server is offline");
+                        System.out.println("You have been disconnected");
                         setActive(false);
+                        clientBeatSender.setActive(false);
                         killClient();
+                        return;
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+                clientBeatSender.setActive(false);
                 setActive(false);
 
             }
@@ -174,19 +163,8 @@ public class Client {
      */
     public void read() {
 
-
         BufferedReader fileReader = null;
         fileReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Configurations/serverConf.json"))));
-        /*
-        FileReader fileReader = null;
-        try {
-            //fileReader = new FileReader("serverConf.json");
-            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/serverConf.json"))).getFile()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-         */
         Type userListType = new TypeToken<Integer>() {
         }.getType();
         assert fileReader != null;
@@ -207,7 +185,7 @@ public class Client {
             out.close();
             socket.close();
         } catch (IOException e) {
-            System.out.println("You've been disconnected");
+            System.out.println("You have been disconnected");
         }
     }
 

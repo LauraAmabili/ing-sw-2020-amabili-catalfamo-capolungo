@@ -10,11 +10,7 @@ public class CLIApp {
 
     public static void main(String[] args) throws IOException {
 
-
         UserInterface UI = new CLI();
-        //Client client = new Client(UI);
-        //client.startClient();
-
 
     }
 

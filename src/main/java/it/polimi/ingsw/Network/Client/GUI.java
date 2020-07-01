@@ -574,8 +574,8 @@ public class GUI implements UserInterface {
             }
         });
         client.setActive(false);
-        client.killClient();
         client.getClientBeatSender().setActive(false);
+        client.killClient();
     }
 
     @Override
@@ -636,8 +636,8 @@ public class GUI implements UserInterface {
     @Override
     public void ServerRestart() {
         client.setActive(false);
-        client.killClient();
         client.getClientBeatSender().setActive(false);
+        client.killClient();
     }
 
     @Override

@@ -597,8 +597,9 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.println( nickname + " wins the match! Yay!!");
         }
         client.setActive(false);
-        client.killClient();
         client.getClientBeatSender().setActive(false);
+        client.killClient();
+
 
     }
 
@@ -658,8 +659,8 @@ public class CLI extends NotifyMessages implements UserInterface {
     public void ServerRestart() {
         System.out.println("A player disconnected before the game started.\nServer is restarting, please reconnect to the server");
         client.setActive(false);
-        client.killClient();
         client.getClientBeatSender().setActive(false);
+        client.killClient();
     }
 
     @Override

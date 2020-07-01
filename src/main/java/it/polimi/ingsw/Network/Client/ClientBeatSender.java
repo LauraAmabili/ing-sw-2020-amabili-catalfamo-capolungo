@@ -28,7 +28,6 @@ public class ClientBeatSender extends Thread {
     @Override
     public void run() {
         while (active) {
-
             client.send(new BeatUpdate());
             try {
                 sleep(cardiacRhythm * 1000);

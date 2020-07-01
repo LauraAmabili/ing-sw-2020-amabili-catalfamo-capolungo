@@ -26,7 +26,6 @@ class SpecialBuild_RemoveBlockTest {
     public void SpecialBuild_RemoveBlockTest(){
         Worker worker2 = new Worker(2);
         Worker worker1 = new Worker(1);
-        mockWorkers1.add(worker1);
         Board board = new Board();
         mockWorkers1.add(worker1);
         mockWorkers1.add(worker2);
@@ -37,18 +36,15 @@ class SpecialBuild_RemoveBlockTest {
         worker2.setCurCell(board.getGrid()[1][1]);
         worker2.setOldCell(null);
         worker2.setPlayerWorker(mockPlayer);
-        mockWorkers1.add(worker1);
         mockPlayer = new Player("mockName", mockWorkers1, board);
         PlayerInterface player = new SpecialBuild_RemoveBlock(mockPlayer);
 
         player.getBoard().getGrid()[0][0].setLevel(3);
         player.setEnableSpecialBuild(true);
 
-
-        player.build(2, 3, 0, 0, worker1);
+        player.build( 2, 3, 0, 0, worker1);
         assertEquals(1, board.getGrid()[2][3].getLevel());
         assertEquals(2, board.getGrid()[0][0].getLevel());
-
 
     }
 

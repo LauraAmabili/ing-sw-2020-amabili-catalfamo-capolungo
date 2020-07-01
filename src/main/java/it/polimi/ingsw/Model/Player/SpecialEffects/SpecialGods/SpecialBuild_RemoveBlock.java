@@ -53,22 +53,18 @@ public class SpecialBuild_RemoveBlock extends PlayerDecorator {
     public synchronized boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
 
         if (enableSpecialBuild) {
-
             Worker unmovedWorker = findUnmovedWorker(worker);
-            BoardCell cellToDestroy = this.player.getBoard().getGrid()[row1][col1];
-            if (unmovedWorker!=null && canDestroy(unmovedWorker).size()>0){
+            BoardCell cellToDestroy = this.player.getBoard().getGrid()[row2][col2];
+            assert unmovedWorker != null;
+            List<BoardCell> destroyable = canDestroy(unmovedWorker);
+            if (destroyable.size()>0){
                 if (canDestroy(unmovedWorker).contains((cellToDestroy))){
                     cellToDestroy.setLevel(cellToDestroy.getLevel()-1);
 
                 }
-
-
             }
-
-
-
         }
-        return player.build(row2, col2, worker);
+        return player.build(row1, col1, worker);
 
 
     }
