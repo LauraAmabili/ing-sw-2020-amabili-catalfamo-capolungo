@@ -354,7 +354,7 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
     @Override
-    public void visit(AskEffect askEffect) throws IOException {
+    public void visit(AskEffect askEffect) {
 
 
         userInterface.AskEffect();

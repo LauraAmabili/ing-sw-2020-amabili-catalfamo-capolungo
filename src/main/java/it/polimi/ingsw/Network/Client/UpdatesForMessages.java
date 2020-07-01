@@ -150,7 +150,6 @@ public class UpdatesForMessages implements ClientObserver {
      * @param effect effect
      * @param nickname nickname of the player
      * @param worker number of the worker
-     * @throws IOException exception
      */
     public void updateAskeffectBuildResponse(String effect, String nickname, int worker)  {
         client.send(new AskEffectBuildResponse(effect, client.getNickname(), worker));
@@ -163,7 +162,6 @@ public class UpdatesForMessages implements ClientObserver {
      * @param row2 second chosen row
      * @param col2 second chosen col
      * @param worker number for the worker
-     * @throws IOException
      */
     public void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
         client.send(new MoveTwoInputResponse(row1, col1, row2, col2, worker));
@@ -176,7 +174,6 @@ public class UpdatesForMessages implements ClientObserver {
      * @param row2 second chosen row
      * @param col2 second chosen col
      * @param worker number of the worker
-     * @throws IOException
      */
     public void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
         client.send(new BuildTwoInputResponse(row1, col1, row2, col2, worker));
@@ -187,7 +184,6 @@ public class UpdatesForMessages implements ClientObserver {
      * response with the name of the player that start
      * @param player name of the player
      * @param onlinePlayers list of players
-     * @throws IOException
      */
     public void updatePlayerThatStart(String player, List<PlayerInterface> onlinePlayers)  {
         client.send(new PlayerThatStart(player, onlinePlayers));

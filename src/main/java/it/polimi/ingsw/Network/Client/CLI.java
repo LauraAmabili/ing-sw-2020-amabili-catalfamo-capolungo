@@ -415,7 +415,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * The player can ask for the description of the card when choosing for it
      * @param setYourCardRequest Message
-     * @throws IOException Exception
      */
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest) {
@@ -429,6 +428,7 @@ public class CLI extends NotifyMessages implements UserInterface {
             System.out.println(phrase[0]);
             for(God g : chosenGods){
                 if(g.getGodName().equals(phrase[0])){
+                    System.out.println(g.getDescriptionTitle());
                     System.out.println(g.getDescriptionEffect());
                     flag = false;
                     break;
@@ -467,7 +467,6 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     /**
      * Asking for the usage of the effect
-     * @throws IOException Exception
      */
     @Override
     public void AskEffect()  {
@@ -482,7 +481,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Request of the worker to move
      * @param chooseYourWorkerEffectRequest Message
-     * @throws IOException Exception
      */
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
@@ -496,7 +494,6 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     /**
      * Asking for the usage of the effect for the build
-     * @throws IOException Exception
      */
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) {
@@ -521,7 +518,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Request for two input for where to build
      * @param buildTwoInputRequest Message
-     * @throws IOException Exception
      */
     @Override
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
@@ -554,7 +550,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Request for two input for where to move
      * @param moveTwoInputRequest Message
-     * @throws IOException Exception
      */
     @Override
     public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
@@ -634,7 +629,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Challenger choosing the name of the first player
      * @param onlinePlayers Message
-     * @throws IOException Exception
      */
     @Override
     public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {

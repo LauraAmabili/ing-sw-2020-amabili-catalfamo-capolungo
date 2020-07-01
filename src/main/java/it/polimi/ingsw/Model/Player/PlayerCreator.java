@@ -4,7 +4,6 @@ package it.polimi.ingsw.Model.Player;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Helper.GameConf;
 import it.polimi.ingsw.Model.Player.SpecialEffects.*;
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods.*;
@@ -19,7 +18,7 @@ import java.util.Objects;
 public class PlayerCreator {
 
     Gson gson = new Gson();
-    String godConf = GameConf.getGodConf();
+
     ArrayList<God> arrayGods;
 
     public PlayerCreator() {
@@ -86,16 +85,7 @@ public class PlayerCreator {
         BufferedReader fileReader = null;
         fileReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Configurations/godConf.json"))));
 
-        /*
-        FileReader fileReader = null;
-        try {
-            // fileReader = new FileReader("godConf.json");
-            fileReader = new FileReader(new File((Objects.requireNonNull(getClass().getClassLoader().getResource("Configurations/godConf.json"))).getFile()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-         */
         Type userListType = new TypeToken<ArrayList<God>>() {
         }.getType();
         assert fileReader != null;
