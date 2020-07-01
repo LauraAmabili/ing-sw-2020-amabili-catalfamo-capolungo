@@ -33,13 +33,24 @@ public class PlayerCreator {
         this.arrayGods = arrayGods;
     }
 
+    /**
+     * create player with the effects of the god passed as input
+     * @param godName
+     * @param p
+     * @return
+     */
     public PlayerInterface createPlayer(String godName, PlayerInterface p) {
         God god = find(godName);
         p = addEffects(p, god.getEffects());
         return p;
     }
 
-
+    /**
+     *
+     * @param p
+     * @param effects
+     * @return
+     */
     public PlayerInterface addEffects(PlayerInterface p, List<String> effects) {
         if (effects.contains("SpecialBuild_BuildTwiceDifferent"))
             p = new SpecialBuild_BuildTwiceDifferent(p);

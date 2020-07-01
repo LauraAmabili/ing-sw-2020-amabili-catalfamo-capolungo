@@ -72,6 +72,13 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         return this.move(row2, col2, worker);
     }
 
+
+    /**
+     * move a worker from a boardcell to another without any further change
+     * @param startingBoardCell
+     * @param finalBoardCell
+     * @return
+     */
     public boolean change(BoardCell startingBoardCell, BoardCell finalBoardCell) {
         startingBoardCell.getWorker().setOldCell(startingBoardCell);
         startingBoardCell.getWorker().setCurCell(finalBoardCell);
@@ -80,6 +87,11 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         return true;
     }
 
+    /**
+     * return opponent pushable boardcells
+     * @param worker
+     * @return
+     */
     public List<BoardCell> opponentCells(Worker worker) {
 
         List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
@@ -91,7 +103,12 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
         return adj;
     }
 
-
+    /**
+     * return opposite side cell
+     * @param pushing
+     * @param pushed
+     * @return
+     */
     public BoardCell otherSide(Worker pushing, Worker pushed) {
         if (pushing.getPlayerWorker().equals(pushed.getPlayerWorker()))
             return null;

@@ -150,8 +150,6 @@ public class Player implements PlayerInterface, Serializable {
 
     }
 
-    //To be Decorated
-
     /**
      * return an Arraylist of the boardcell where the worker can move
      * @param worker
@@ -174,6 +172,11 @@ public class Player implements PlayerInterface, Serializable {
 
     }
 
+    /**
+     * return an Arraylist of the boardcell where the worker can move
+     * @param worker
+     * @return
+     */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
 
         List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
@@ -225,6 +228,13 @@ public class Player implements PlayerInterface, Serializable {
 
     }
 
+
+    /**
+     * return an Arraylist of the boardcell where the worker can build
+     * @param worker
+     * @param specialEffect
+     * @return
+     */
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
 
         List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
@@ -262,6 +272,11 @@ public class Player implements PlayerInterface, Serializable {
         return false;
     }
 
+    /**
+     * check if the win move was performed by a worker
+     * @param worker
+     * @return
+     */
     public boolean checkWin(@NotNull Worker worker) {
         if (worker.getOldCell()==worker.getCurCell())
             return false;
