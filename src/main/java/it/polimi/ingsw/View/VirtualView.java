@@ -376,14 +376,6 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
 
-    @Override
-    public void updateSetWorkerOk(String currentPlayer, Board board) {
-
-        if(MyNickname.equals(currentPlayer)){
-            thread.sendToClient(new BoardUpdate(board));
-        }
-    }
-
     /**
      * This send a message if the coordinates for the Worker are wrong
      * @param i number of worker
@@ -581,28 +573,14 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
     /**
-     * Sends a general update
-     * @param obh object
-     * @param obj object
-     */
-    @Override
-    public void update(Object obh, Object obj){
-
-        System.out.println("Exception occured");
-    }
-
-
-    /**
      * Sends an update to all the clients with the winner
      * @param player name of the winning player
      */
     @Override
     public void updateWinners(PlayerInterface player) {
 
+        thread.sendToClient(new WinMessage(player.getNickname()));
 
-            thread.sendToClient(new WinMessage(player.getNickname()));
-
-        //System.out.println(player + "You win!");
     }
 
     /**
@@ -630,10 +608,6 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
-    @Override
-    public void updateDroppedConnection(String nickname) {
-        thread.sendToClient(new DroppedConnection(nickname));
-    }
 
     @Override
     public void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) {
@@ -784,21 +758,6 @@ public class VirtualView extends Observable implements ObserverModel {
 
     public void updateServerRestart() {
         thread.sendToClient(new ServerRestart());
-    }
-
-    /**
-     * sends a Message to the client that the chosen name was too long
-     * @param name chosen name
-     */
-    @Override
-    public void updateLenghtName(String name) {
-        /*
-        if (MyNickname.equals(name)) {
-            thread.sendToClient(new tooLongName());
-            MyNickname = null;
-        }
-
-         */
     }
 
 }

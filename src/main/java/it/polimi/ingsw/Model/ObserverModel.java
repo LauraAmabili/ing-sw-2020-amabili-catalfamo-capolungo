@@ -55,7 +55,6 @@ public interface ObserverModel {
 
     void updateSetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) throws IOException;
 
-
     void updateStartMoving(String current) throws IOException;
 
     void updateTimeToChooseWorker(String current) throws IOException;

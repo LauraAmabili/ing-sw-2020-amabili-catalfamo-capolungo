@@ -43,11 +43,6 @@ public class Observable {
             o.updateGodAdded(gods, cardChosen, challengerName);
         }
     }
-    void notifyWinner(PlayerInterface player) throws IOException {
-        for(ObserverModel o : observerModels){
-            o.updateWinners(player);
-        }
-    }
     void notifyBoardUpdate(Board board) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateBoard(board);
