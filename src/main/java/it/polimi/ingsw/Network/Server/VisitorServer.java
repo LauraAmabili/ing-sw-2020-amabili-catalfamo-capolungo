@@ -110,14 +110,13 @@ public interface VisitorServer {
      * 1. normal move
      * 2. special move
      * @param moveTwoInputResponse
-     * @throws IOException
      */
-    void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException;
+    void visit(MoveTwoInputResponse moveTwoInputResponse) ;
 
     /**
      * Takes the number of player for the game that starts and sends it to the Model
      * @param playerThatStart number of the player that starts
      */
-    void visit(PlayerThatStart playerThatStart) throws IOException;
+    void visit(PlayerThatStart playerThatStart);
 
 }

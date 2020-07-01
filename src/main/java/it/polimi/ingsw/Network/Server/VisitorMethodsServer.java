@@ -277,7 +277,7 @@ public class VisitorMethodsServer implements VisitorServer {
      * @throws IOException
      */
     @Override
-    public void visit(MoveTwoInputResponse moveTwoInputResponse) throws IOException {
+    public void visit(MoveTwoInputResponse moveTwoInputResponse) {
         String rowString1 = moveTwoInputResponse.getRow1();
         String rowString2 = moveTwoInputResponse.getRow2();
         String colString1 = moveTwoInputResponse.getCol1();
@@ -300,7 +300,7 @@ public class VisitorMethodsServer implements VisitorServer {
      * @param playerThatStart number of the player that starts
      */
     @Override
-    public void visit(PlayerThatStart playerThatStart) throws IOException {
+    public void visit(PlayerThatStart playerThatStart) {
         int MaxPlayer = serverThread.getServer().getServerThreads().size();
         try {
             int player = Integer.parseInt(playerThatStart.getPlayer());

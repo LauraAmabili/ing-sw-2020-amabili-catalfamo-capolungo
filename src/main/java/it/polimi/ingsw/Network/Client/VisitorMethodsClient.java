@@ -345,7 +345,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
     /**
      * Message if the max number of player is reached
-     * @param maxPlayerReachedUpdate
+     * @param maxPlayerReachedUpdate Message
      */
     @Override
     public void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate) {
@@ -353,6 +353,11 @@ public class VisitorMethodsClient implements VisitorClient {
         userInterface.MaxPlayerReachedUpdate();
     }
 
+
+    /**
+     * Asking to the player if it wants to use the effect or not, applied with active gods
+     * @param askEffect Message
+     */
     @Override
     public void visit(AskEffect askEffect) {
 
@@ -363,6 +368,10 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
+    /**
+     * Asking for the worker when the player has some special effect
+     * @param chooseYourWorkerEffectRequest Message
+     */
     @Override
     public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest)  {
 
@@ -371,6 +380,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Asking for the effect when the player has an effect that involves building
+     * @param askEffectBuild Message
+     */
     @Override
     public void visit(AskEffectBuild askEffectBuild)  {
 
@@ -380,6 +394,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Asking for different input for the building
+     * @param buildTwoInputRequest Message
+     */
     @Override
     public void visit(BuildTwoInputRequest buildTwoInputRequest)  {
 
@@ -389,6 +408,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Sending the message that the number of player chosen is not 2 or 3
+     * @param numberOfPlayerWrong Message
+     */
     @Override
     public void visit(NumberOfPlayerWrong numberOfPlayerWrong) {
 
@@ -396,6 +420,11 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Asking for a different input for the moving
+     * @param moveTwoInputRequest Message
+     */
     @Override
     public void visit(MoveTwoInputRequest moveTwoInputRequest) {
 
@@ -404,6 +433,10 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+    /**
+     * Sending the win message with the name of the winner
+     * @param winMessage message
+     */
     @Override
     public void visit(WinMessage winMessage) {
 
@@ -412,6 +445,10 @@ public class VisitorMethodsClient implements VisitorClient {
     }
 
 
+    /**
+     * telling the client that the worker chosen was not valid
+     * @param workerInputNotValid Message
+     */
 
     @Override
     public void visit(WorkerInputNotValid workerInputNotValid) {
@@ -420,31 +457,46 @@ public class VisitorMethodsClient implements VisitorClient {
 
     }
 
+
+    /**
+     * Saying to the client that someone dropped the connection
+     * @param droppedConnection Message with the name of the player that dropped the connection
+     */
     @Override
     public void visit(DroppedConnection droppedConnection) {
         userInterface.DroppedConnection(droppedConnection);
     }
+
+
+    /**
+     * Asking for the name of the first Player
+     * @param setFirstPlayer Message
+     */
 
     @Override
     public void visit(SetFirstPlayer setFirstPlayer)  {
         userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());
     }
 
+
+    /**
+     * The server is restarting
+     * @param serverRestart Message
+     */
     @Override
     public void visit(ServerRestart serverRestart) {
         userInterface.ServerRestart();
     }
 
 
+    /**
+     * Saying to the client that the username length is too long
+     * @param tooLongName Message
+     */
     @Override
     public void visit(tooLongName tooLongName)  {
         userInterface.lengthNameError();
 
-    }
-
-    @Override
-    public void visit(VisitorClient gameMessageVisitorClient) {
-        userInterface.lengthNameError();
     }
 
 

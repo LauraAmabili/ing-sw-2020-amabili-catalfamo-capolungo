@@ -16,7 +16,11 @@ public class WinMessage extends MessageFromServer {
     public String getNickname() {
         return nickname;
     }
-
+    /**
+     * Calls the correspondent visit method based on the type of Message from the Server
+     * @param gameMessageVisitorClient gameMessage to be checked
+     * @throws IOException Exception
+     */
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);

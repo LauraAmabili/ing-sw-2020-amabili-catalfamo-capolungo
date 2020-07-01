@@ -317,7 +317,7 @@ public class GameController implements Observer {
      */
 
     @Override
-    public synchronized void updateFirstPlayer(int player) throws IOException {
+    public synchronized void updateFirstPlayer(int player)  {
         game.getCurrentTurn().firstTurn(player, game);
         game.toSetCard();
     }

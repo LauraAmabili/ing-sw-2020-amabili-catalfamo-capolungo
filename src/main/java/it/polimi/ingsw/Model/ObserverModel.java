@@ -9,71 +9,71 @@ import java.util.List;
 public interface ObserverModel {
 
 
-    void updatePlayerAdded(String obj, String color) throws IOException;
+    void updatePlayerAdded(String obj, String color) ;
 
-    void updateGameisReady() throws IOException, InterruptedException;
+    void updateGameisReady() throws InterruptedException;
 
-    void updateGodSet(PlayerInterface player, String godName) throws IOException;
+    void updateGodSet(PlayerInterface player, String godName) ;
 
-    void updateBoard(Board board) throws IOException;
+    void updateBoard(Board board) ;
 
-    void updateTimeToChoose(String name, String color) throws IOException;
+    void updateTimeToChoose(String name, String color) ;
 
-    void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException;
+    void updateGodAdded(List<String> gods, boolean cardChosen, String challengerName) ;
 
-    void updateWinners(PlayerInterface player) throws IOException;
+    void updateWinners(PlayerInterface player) ;
 
-    void updateMoving(int worker, String current,  List<BoardCell> available) throws IOException;
+    void updateMoving(int worker, String current,  List<BoardCell> available) ;
 
-    void updateBuilding(int worker, String current,  List<BoardCell> available) throws IOException;
+    void updateBuilding(int worker, String current,  List<BoardCell> available) ;
 
-    void updateSetWorker(int i, String currentPlayer) throws IOException;
+    void updateSetWorker(int i, String currentPlayer) ;
 
-    void updateCardNotPresent(String nickname, List<String> availableGods , List<God> chosenGods) throws IOException;
+    void updateCardNotPresent(String nickname, List<String> availableGods , List<God> chosenGods) ;
 
-    void updateGodNotAdded(String challengerName) throws IOException;
+    void updateGodNotAdded(String challengerName) ;
 
-    void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) throws IOException;
+    void updateChoose(boolean chosenGods, List<God> Names, String ChallengerName) ;
 
-    void updateNicknameNotValid(String nickname) throws IOException;
+    void updateNicknameNotValid(String nickname) ;
 
-    void updatePlayerHasLost(String playerName) throws IOException;
+    void updatePlayerHasLost(String playerName) ;
 
-    void updateDecideWorker(PlayerInterface nickname) throws IOException;
+    void updateDecideWorker(PlayerInterface nickname) ;
 
-    void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) throws IOException;
+    void updateTimeToSetCard(List<String> chosenGods, PlayerInterface currentPlayerName) ;
 
-    void updateTimeToPlaceWorker(String currentPlayerName) throws IOException;
+    void updateTimeToPlaceWorker(String currentPlayerName) ;
 
-    void updateWorkerSelected(int worker, String current, List<BoardCell> available) throws IOException;
+    void updateWorkerSelected(int worker, String current, List<BoardCell> available) ;
 
-    void updateNoCoordinatesValid(int worker, String current, List<BoardCell> available) throws IOException;
+    void updateNoCoordinatesValid(int worker, String current, List<BoardCell> available) ;
 
-    void updateTimeToBuild(int worker, String current, List<BoardCell> av) throws IOException;
+    void updateTimeToBuild(int worker, String current, List<BoardCell> av) ;
 
-    void updateBoardAddedWorker(Board board, String currentPlayer) throws IOException;
+    void updateBoardAddedWorker(Board board, String currentPlayer);
 
-    void updateSetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) throws IOException;
+    void updateSetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) ;
 
-    void updateStartMoving(String current) throws IOException;
+    void updateStartMoving(String current) ;
 
-    void updateTimeToChooseWorker(String current) throws IOException;
+    void updateTimeToChooseWorker(String current) ;
 
-    void updateAskForEffect(String currentPlayer) throws IOException;
+    void updateAskForEffect(String currentPlayer) ;
     
-    void updateAskForEffectBuild(String currentPlayer, int worker) throws IOException;
+    void updateAskForEffectBuild(String currentPlayer, int worker) ;
 
-    void updateBuildTwoInput(String currentPlayer,int worker) throws IOException;
+    void updateBuildTwoInput(String currentPlayer,int worker) ;
 
-    void updateMoveTwoInput(String nickname, int worker) throws IOException;
+    void updateMoveTwoInput(String nickname, int worker) ;
 
-    void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException;
+    void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) ;
 
-    void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException;
+    void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) ;
 
-    void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) throws IOException;
+    void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) ;
 
-    void updateServerRestart() throws IOException;
+    void updateServerRestart() ;
 
 
 }

@@ -18,10 +18,10 @@ public class Observable {
     /**
      * update to initialise the match with the first setting
      * @param number number of players of the game
-     * @throws IOException exception
+     *
      * @throws InterruptedException exception
      */
-    public void notifyInitialiseMatch(int number) throws IOException, InterruptedException {
+    public void notifyInitialiseMatch(int number) throws InterruptedException {
         for(Observer o : observerController){
             o.updateInitialiseMatch(number);
 
@@ -31,9 +31,9 @@ public class Observable {
     /**
      * update to set the nickname
      * @param in nickname chosen by the client
-     * @throws IOException exception
+     *
      */
-    public void notifyAddingNickname(String in ) throws IOException {
+    public void notifyAddingNickname(String in )  {
         for(Observer o : observerController){
             o.updateNickname(in);
         }
@@ -41,9 +41,9 @@ public class Observable {
 
     /**
      * update that it's time to choose the cards
-     * @throws IOException exception
+     *
      */
-    public void notifyChoosingCards() throws IOException {
+    public void notifyChoosingCards()  {
         for(Observer o : observerController){
             o.updateChoosingCards();
         }
@@ -53,9 +53,9 @@ public class Observable {
     /**
      * update with the name of the god chosen bu the client to check if it's correct
      * @param godName name of the god chosen
-     * @throws IOException excepton
+     * @ excepton
      */
-    public void notifyGodNameChosen(String godName) throws IOException {
+    public void notifyGodNameChosen(String godName)  {
         for(Observer o : observerController){
             o.updateSetGodName(godName);
         }
@@ -66,9 +66,9 @@ public class Observable {
      * @param row chosen row
      * @param col chosen col
      * @param i worker to add
-     * @throws IOException exception
+     *
      */
-    public void notifyAddingWorker(int row, int col, int i ) throws IOException {
+    public void notifyAddingWorker(int row, int col, int i )  {
         for(Observer o : observerController){
             o.updateAddingWorker(row, col, i );
         }
@@ -76,9 +76,9 @@ public class Observable {
 
     /**
      * uptade to start the movement
-     * @throws IOException Exception
+     *
      */
-    public void notifyStartMoving() throws IOException {
+    public void notifyStartMoving()  {
         for(Observer o : observerController){
             o.updateStartMoving();
         }
@@ -88,9 +88,9 @@ public class Observable {
     /**
      * Update for the controller with the worker to try
      * @param worker number of the worker
-     * @throws IOException Exception
+     *
      */
-    public void notifyTryThisWorker(int worker) throws IOException {
+    public void notifyTryThisWorker(int worker)  {
         for(Observer o : observerController){
             o.updateTryThisWorker(worker);
         }
@@ -101,9 +101,9 @@ public class Observable {
      * @param row row chosen
      * @param col col chosen
      * @param worker number of the worker
-     * @throws IOException Exception
+     *
      */
-    public void notifyMoving(int row, int col, int worker) throws IOException {
+    public void notifyMoving(int row, int col, int worker)  {
         for(Observer o : observerController){
             o.updateMoving(row, col, worker);
         }
@@ -113,9 +113,9 @@ public class Observable {
     /**
      * Update for the controller to try if the card chosen is correct
      * @param in name of the card
-     * @throws IOException Exception
+     *
      */
-    public void notifyTryThisCard(String in) throws IOException {
+    public void notifyTryThisCard(String in)  {
         for(Observer o : observerController){
             o.updateTryThisCard(in);
         }
@@ -126,10 +126,10 @@ public class Observable {
      * @param row row chosen
      * @param col con chosen
      * @param i number of the worker
-     * @throws IOException Exception
+     *
      */
 
-    public void notifyBuilding(int row, int col, int i ) throws IOException {
+    public void notifyBuilding(int row, int col, int i )  {
         for(Observer o : observerController){
             o.updateBuilding(row, col, i );
         }
@@ -138,10 +138,10 @@ public class Observable {
 
     /**
      * update that the game is ready to start
-     * @throws IOException
+     * @
      * @throws InterruptedException
      */
-    public void notifyStartingGame() throws IOException, InterruptedException {
+    public void notifyStartingGame()  throws InterruptedException {
         for(Observer o : observerController){
             o.updateStartingGame();
         }
@@ -151,9 +151,8 @@ public class Observable {
      * Update for the check of the effect for the worker
      * @param effect effect of the player
      * @param worker number of the worker
-     * @throws IOException Exceotion
      */
-    public void notifyTryThisWorkerEffect(boolean effect,int worker) throws IOException {
+    public void notifyTryThisWorkerEffect(boolean effect,int worker)  {
         for(Observer o : observerController){
             o.updateTryThisWorkerEffect(effect, worker);
         }
@@ -164,9 +163,9 @@ public class Observable {
      * @param effect effect of the player
      * @param nickname nickname of the player
      * @param worker number of the worker
-     * @throws IOException Exception
+     *
      */
-    public void notifyPlayerBuild(boolean effect, String nickname, int worker) throws IOException {
+    public void notifyPlayerBuild(boolean effect, String nickname, int worker)  {
         for(Observer o : observerController){
             o.updatePlayerBuild(effect, nickname, worker);
         }
@@ -179,9 +178,9 @@ public class Observable {
      * @param row2 second row chosen
      * @param col2 second col chosen
      * @param worker number of the worker
-     * @throws IOException Exception
+     *
      */
-    public void notifyTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public void notifyTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) {
         for(Observer o : observerController){
             o.updateTimeToMoveTwoInput(row1, col1, row2, col2, worker);
         }
@@ -195,9 +194,9 @@ public class Observable {
      * @param row2 second row chosen
      * @param col2 second col chosen
      * @param worker number of the worker
-     * @throws IOException Exception
+     *
      */
-    public void notifyTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public void notifyTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker)  {
         for(Observer o : observerController){
             o.updateTimeToBuildTwoInput(row1, col1, row2, col2, worker);
         }
@@ -207,9 +206,9 @@ public class Observable {
     /**
      * Update with the name of the player that dropped the conneciton
      * @param nickname name of the player disconnected
-     * @throws IOException Exception
+     *
      */
-    public void notifyDropConnection(String nickname) throws IOException {
+    public void notifyDropConnection(String nickname)  {
         for(Observer o : observerController){
             o.updateDropConnection(nickname);
         }
@@ -218,9 +217,8 @@ public class Observable {
     /**
      * Update with the name of the first Player chosen by the challenger
      * @param player name of the player
-     * @throws IOException Exception
      */
-    public void notifyFirstPlayer(int player) throws IOException {
+    public void notifyFirstPlayer(int player) {
         for(Observer o : observerController){
             o.updateFirstPlayer(player);
         }
