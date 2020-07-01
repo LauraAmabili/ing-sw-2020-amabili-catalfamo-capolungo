@@ -102,6 +102,9 @@ public class GUI implements UserInterface {
         this.client = client;
     }
 
+    /**
+     * Load the scene that permit to select the number of players
+     */
     @Override
     public void PlayerNumberRequest() {
         Platform.runLater(() -> {
@@ -118,6 +121,9 @@ public class GUI implements UserInterface {
         });
     }
 
+    /**
+     * Load the scene that permit to insert the nickname
+     */
     @Override
     public void NicknameRequest() {
         Platform.runLater(() -> {
@@ -144,6 +150,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene with the current action
+     * @param startingSetWorkerTimeUpdate
+     */
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
 
@@ -164,6 +174,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that permit to place workers on the board place workers on the board
+     * @param startingSetWorkerRequest
+     */
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
         int worker = startingSetWorkerRequest.getWorker();
@@ -182,6 +196,10 @@ public class GUI implements UserInterface {
         });
     }
 
+    /**
+     * Load the scene with the board
+     * @param wrongCoordinatesUpdate
+     */
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
 
@@ -206,6 +224,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene with the upadated board
+     * @param boardUpdate
+     */
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
 
@@ -225,6 +247,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene with the current action
+     * @param playerTurnUpdate
+     */
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
 
@@ -245,6 +271,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that permit to choose the worker
+     * @param chooseYourWorkerRequest
+     */
     @Override
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
 
@@ -264,6 +294,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that permit to move the worker
+     * @param moveRequest
+     */
     @Override
     public void MoveRequest(MoveRequest moveRequest) {
 
@@ -284,6 +318,9 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that permit to build
+     */
     @Override
     public void BuildTimeUpdate() {
 
@@ -303,6 +340,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene with the current action
+     * @param buildRequest
+     */
     @Override
     public void BuildRequest(BuildRequest buildRequest) {
 
@@ -343,6 +384,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene with the name of the challenger
+     * @param chooseCardsUpdate
+     */
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
 
@@ -367,6 +412,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that let the challenger choose the cards
+     * @param challengerCardsRequest
+     */
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
 
@@ -395,6 +444,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the scene that permit the current player to choose his card. If it's not his turn load a waiting scene.
+     * @param setCardTimeUpdate
+     */
     @Override
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
         Platform.runLater(() -> {
@@ -424,6 +477,10 @@ public class GUI implements UserInterface {
         });
     }
 
+    /**
+     * save the chosen cards.
+     * @param setYourCardRequest
+     */
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
 
@@ -432,6 +489,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Save the Players.
+     * @param cardSetUpdate
+     */
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
 
@@ -447,6 +508,9 @@ public class GUI implements UserInterface {
     public void MaxPlayerReachedUpdate() {
     }
 
+    /**
+     * Load a scene that permit to choose if the player want or not use his card effect
+     */
     @Override
     public void AskEffect() {
 
@@ -468,6 +532,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load a scene the permit to choose the worker.
+     * @param chooseYourWorkerEffectRequest
+     */
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
 
@@ -487,6 +555,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load a scene that permit to choose if the player want or not use his card effect
+     * @param askEffectBuild
+     */
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) {
 
@@ -513,6 +585,10 @@ public class GUI implements UserInterface {
         //non necessario
     }
 
+    /**
+     * Load a scene that permit to choose the coordinates for building.
+     * @param buildTwoInputRequest
+     */
     @Override
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
 
@@ -533,6 +609,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load a scene that permit to choose the coordinates for moving.
+     * @param moveTwoInputRequest
+     */
     @Override
     public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
 
@@ -553,6 +633,10 @@ public class GUI implements UserInterface {
 
     }
 
+    /**
+     * Load the win scene
+     * @param nickaname
+     */
     @Override
     public void WinMessage(String nickaname) {
         Platform.runLater(() -> {
@@ -572,6 +656,9 @@ public class GUI implements UserInterface {
         client.killClient();
     }
 
+    /**
+     * Load the scene if the player has chosen a not valid cell of the board
+     */
     @Override
     public void WorkerInputNotValid() {
         state = "Choosing Worker";
@@ -589,6 +676,10 @@ public class GUI implements UserInterface {
         });
     }
 
+    /**
+     * Load the drop connection scene if some players has disconnected before the starting of the game.
+     * @param droppedConnection
+     */
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
         if(!started) {
@@ -611,6 +702,10 @@ public class GUI implements UserInterface {
         }
     }
 
+    /**
+     * Load the scene the permit to chose the starter player
+     * @param onlinePlayers
+     */
     @Override
     public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
         Platform.runLater(() -> {
@@ -627,6 +722,9 @@ public class GUI implements UserInterface {
         });
     }
 
+    /**
+     * kill the client if server is no more connected to the client
+     */
     @Override
     public void ServerRestart() {
         client.setActive(false);
