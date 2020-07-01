@@ -2,7 +2,6 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Model.Board;
 import it.polimi.ingsw.Model.God.God;
-import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 import it.polimi.ingsw.View.GUI.*;
@@ -15,11 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GUI implements UserInterface {
-
-
-    //private Client client;
-   // UpdatesForMessages up;
-
 
     private Stage primaryStage;
     private Client client;

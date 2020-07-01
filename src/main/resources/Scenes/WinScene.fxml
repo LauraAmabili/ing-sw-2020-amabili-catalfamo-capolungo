@@ -96,13 +96,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="34.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="WinBanner" fitHeight="155.0" fitWidth="553.0" layoutX="-181.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="WinPlayer" layoutX="21.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="61.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
                </children></Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
@@ -186,6 +180,12 @@
       <Text fx:id="CurrentTurnPlayer" fill="#e8eaee" layoutX="525.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="559.1281127929688">
          <font>
             <Font name="Dalek" size="32.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="WinBanner" fitHeight="155.0" fitWidth="553.0" layoutX="575.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="WinPlayer" layoutX="800.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="25.0" />
          </font>
       </Text>
    </children>
