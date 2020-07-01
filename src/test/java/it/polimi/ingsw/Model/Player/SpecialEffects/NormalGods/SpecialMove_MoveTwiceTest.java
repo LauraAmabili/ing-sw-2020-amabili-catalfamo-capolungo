@@ -45,7 +45,7 @@ class SpecialMove_MoveTwiceTest {
 
         //enable specialMove
         player.setEnableSpecialMove(true);
-        assertTrue(player.move(2, 2, worker1));
+        //assertTrue(player.move(2, 2, worker1));
         assertFalse(player.move(2, 2, worker1));
         assertTrue(player.move(1, 1, worker1));
         assertFalse(player.move(4, 4, worker1));

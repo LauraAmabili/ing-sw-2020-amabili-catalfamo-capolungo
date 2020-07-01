@@ -134,7 +134,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Asks the coordinates for the worker to set
      * @param startingSetWorkerRequest type of message
-     * @throws IOException Exception
      */
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest)  {
@@ -152,7 +151,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Asks again for coordinates
      * @param wrongCoordinatesUpdate message
-     * @throws IOException Exception
      */
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate)  {
@@ -344,7 +342,6 @@ public class CLI extends NotifyMessages implements UserInterface {
     /**
      * Asks for the cards to choose by the challenger and prints the description of the card if asked
      * @param challengerCardsRequest Message
-     * @throws IOException Exception
      */
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest)  {
@@ -640,7 +637,6 @@ public class CLI extends NotifyMessages implements UserInterface {
             i = i + 1;
         }
 
-        //TODO, lista colori tanto sempre uguale
         String player = input.nextLine();
         notifyPlayerThatStart(player, onlinePlayers);
 
@@ -657,6 +653,10 @@ public class CLI extends NotifyMessages implements UserInterface {
         client.killClient();
     }
 
+
+    /**
+     * Prints the message that the length of the name is too long
+     */
     @Override
     public void lengthNameError()  {
         System.out.println("The name was too long, please be under 18 characters ;) ");

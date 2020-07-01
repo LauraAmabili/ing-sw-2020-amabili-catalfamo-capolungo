@@ -25,7 +25,7 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
      *      unlock(player)
      * if you go higher
      *      lock(player)
-     * @param row
+     * @param row chosen row
      * @param col
      * @param worker
      * @return

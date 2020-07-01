@@ -152,7 +152,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene with the current action
-     * @param startingSetWorkerTimeUpdate
+     * @param startingSetWorkerTimeUpdate Message
      */
     @Override
     public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
@@ -176,7 +176,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene that permit to place workers on the board place workers on the board
-     * @param startingSetWorkerRequest
+     * @param startingSetWorkerRequest Message
      */
     @Override
     public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
@@ -198,7 +198,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene with the board
-     * @param wrongCoordinatesUpdate
+     * @param wrongCoordinatesUpdate Message
      */
     @Override
     public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
@@ -225,8 +225,8 @@ public class GUI implements UserInterface {
     }
 
     /**
-     * Load the scene with the upadated board
-     * @param boardUpdate
+     * Load the scene with the updated board
+     * @param boardUpdate Board updated
      */
     @Override
     public void BoardUpdate(BoardUpdate boardUpdate) {
@@ -249,7 +249,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene with the current action
-     * @param playerTurnUpdate
+     * @param playerTurnUpdate name of the player that is in the current turn
      */
     @Override
     public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
@@ -273,7 +273,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene that permit to choose the worker
-     * @param chooseYourWorkerRequest
+     * @param chooseYourWorkerRequest Message
      */
     @Override
     public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
@@ -296,7 +296,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene that permit to move the worker
-     * @param moveRequest
+     * @param moveRequest Message
      */
     @Override
     public void MoveRequest(MoveRequest moveRequest) {
@@ -342,7 +342,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene with the current action
-     * @param buildRequest
+     * @param buildRequest Message
      */
     @Override
     public void BuildRequest(BuildRequest buildRequest) {
@@ -386,7 +386,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene with the name of the challenger
-     * @param chooseCardsUpdate
+     * @param chooseCardsUpdate Message
      */
     @Override
     public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
@@ -414,7 +414,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene that let the challenger choose the cards
-     * @param challengerCardsRequest
+     * @param challengerCardsRequest Message
      */
     @Override
     public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
@@ -446,7 +446,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene that permit the current player to choose his card. If it's not his turn load a waiting scene.
-     * @param setCardTimeUpdate
+     * @param setCardTimeUpdate Message
      */
     @Override
     public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
@@ -479,7 +479,7 @@ public class GUI implements UserInterface {
 
     /**
      * save the chosen cards.
-     * @param setYourCardRequest
+     * @param setYourCardRequest Message
      */
     @Override
     public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
@@ -491,7 +491,7 @@ public class GUI implements UserInterface {
 
     /**
      * Save the Players.
-     * @param cardSetUpdate
+     * @param cardSetUpdate Message
      */
     @Override
     public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
@@ -534,7 +534,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load a scene the permit to choose the worker.
-     * @param chooseYourWorkerEffectRequest
+     * @param chooseYourWorkerEffectRequest Message
      */
     @Override
     public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
@@ -557,7 +557,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load a scene that permit to choose if the player want or not use his card effect
-     * @param askEffectBuild
+     * @param askEffectBuild message
      */
     @Override
     public void AskEffectBuild(AskEffectBuild askEffectBuild) {
@@ -582,12 +582,11 @@ public class GUI implements UserInterface {
 
     @Override
     public void NumberOfPlayerWrong() {
-        //non necessario
     }
 
     /**
      * Load a scene that permit to choose the coordinates for building.
-     * @param buildTwoInputRequest
+     * @param buildTwoInputRequest message
      */
     @Override
     public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
@@ -611,7 +610,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load a scene that permit to choose the coordinates for moving.
-     * @param moveTwoInputRequest
+     * @param moveTwoInputRequest message
      */
     @Override
     public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
@@ -635,7 +634,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the win scene
-     * @param nickaname
+     * @param nickaname nickname of the winner
      */
     @Override
     public void WinMessage(String nickaname) {
@@ -678,7 +677,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the drop connection scene if some players has disconnected before the starting of the game.
-     * @param droppedConnection
+     * @param droppedConnection Message with the name of the player that dropped the connection
      */
     @Override
     public void DroppedConnection(DroppedConnection droppedConnection) {
@@ -704,7 +703,7 @@ public class GUI implements UserInterface {
 
     /**
      * Load the scene the permit to chose the starter player
-     * @param onlinePlayers
+     * @param onlinePlayers list of onlinePlayers
      */
     @Override
     public void SetFirstPlayer(List<PlayerInterface> onlinePlayers) {
@@ -734,7 +733,6 @@ public class GUI implements UserInterface {
 
     @Override
     public void lengthNameError() {
-        //TODO
     }
 
 

@@ -274,7 +274,7 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * check if the win move was performed by a worker
-     * @param worker
+     * @param worker nuber of the worker
      * @return
      */
     public boolean checkWin(@NotNull Worker worker) {

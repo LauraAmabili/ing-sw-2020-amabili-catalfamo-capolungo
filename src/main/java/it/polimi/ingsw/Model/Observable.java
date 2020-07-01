@@ -37,11 +37,7 @@ public class Observable {
             o.updateGodSet(player, godName);
         }
     }
-    void notifyObservers(Object something, Object obj){
-        for(ObserverModel o : observerModels){
-            o.update(something,obj);
-        }
-    }
+
     void notifyGodAdded(List<String> gods, boolean cardChosen, String challengerName) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateGodAdded(gods, cardChosen, challengerName);
@@ -67,11 +63,7 @@ public class Observable {
             o.updateMoving(worker, current, available);
         }
     }
-    void notifyTryNewCoordinatesMove(int Worker, String current,  List<BoardCell> available) throws IOException {
-        for(ObserverModel o : observerModels){
-            o.updateMoving(Worker, current, available);
-        }
-    }
+
     void notifyTryNewCoordinatesBuild(int worker, String current,  List<BoardCell> available) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateBuilding(worker, current,  available);
@@ -126,15 +118,7 @@ public class Observable {
             o.updateTimeToChoose(name, color);
         }
     }
-    /*
-    void notifyGodAlreadyChosen(List <String> chosenGods, String name){
-        for (ObserverModel o : observerModels){
-            o.updateGodAlreadyChosen(chosenGods, name);
-        }
-    }
 
-
-     */
     void notifyWin(PlayerInterface p) throws IOException {
         for (ObserverModel o : observerModels){
             o.updateWinners(p);
@@ -211,11 +195,7 @@ public class Observable {
         }
     }
 
-    public void notifyDroppedConnection(String nickname) throws IOException {
-        for(ObserverModel o : observerModels){
-            o.updateDroppedConnection(nickname);
-        }
-    }
+
     public void notifySetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException {
         for(ObserverModel o : observerModels){
             o.updateSetFirstPlayer(nickname, onlinePlayers);
@@ -242,10 +222,6 @@ public class Observable {
 
     }
 
-    public void notifyLenghtName(String name){
-        for(ObserverModel o : observerModels){
-            o.updateLenghtName(name);
-        }
-    }
+
 
 }

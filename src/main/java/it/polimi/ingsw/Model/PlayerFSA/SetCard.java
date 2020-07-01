@@ -58,6 +58,9 @@ public class SetCard extends PlayerFSA{
         }
     }
 
+    /**
+     * Set the next state.
+     */
     @Override
     public void next() {
         for(int i = 0; i < game.getStateList().size(); i++) {

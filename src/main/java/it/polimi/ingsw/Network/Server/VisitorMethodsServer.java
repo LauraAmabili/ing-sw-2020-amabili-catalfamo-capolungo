@@ -269,17 +269,6 @@ public class VisitorMethodsServer implements VisitorServer {
             serverThread.sendToClient(new BuildTwoInputRequest(worker));
         }
 
-        /*
-
-        int row1 = buildTwoInputResponse.getRow1();
-        int row2 = buildTwoInputResponse.getRow2();
-        int col1 = buildTwoInputResponse.getCol1();
-        int col2 = buildTwoInputResponse.getCol2();
-        int worker = buildTwoInputResponse.getWorker();
-        view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
-
-         */
-
     }
 
     /**
@@ -307,9 +296,8 @@ public class VisitorMethodsServer implements VisitorServer {
     }
 
     /**
-     *
-     * @param playerThatStart
-     * @throws IOException
+     * Takes the number of player for the game that starts and sends it to the Model
+     * @param playerThatStart number of the player that starts
      */
     @Override
     public void visit(PlayerThatStart playerThatStart) throws IOException {

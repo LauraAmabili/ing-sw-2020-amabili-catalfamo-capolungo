@@ -35,26 +35,6 @@ public class ClientApp {
             GUI_App.main(args);
         }
 
-        /*
-        Scanner scanner= new Scanner(System.in);
-        System.out.println("CLI or GUI?");
-        String app=scanner.nextLine();
-        if (app.equals("cli") || app.equals("CLI")){
-            CLIApp cli = new CLIApp();
-            CLIApp.main(args);
-        }
-        else if (app.equals("gui") || app.equals("GUI")){
-            GUI_App gui = new GUI_App();
-            GUI_App.main(args);
-
-        }
-
-
-         */
-
-        //Client client = new Client(UI);
-        //client.startClient();
-
 
     }
 

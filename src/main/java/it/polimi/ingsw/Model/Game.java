@@ -514,13 +514,7 @@ public class Game extends Observable {
         }
     }
 
-    public void sendDropConnection(String nickname) throws IOException {
-        notifyDroppedConnection(nickname);
-    }
 
-    public void nameLenghtError(String name){
-        notifyLenghtName(name);
-    }
     public void NoCoordinatesValidMoveTwoInput(int worker) throws IOException {
         notifyNoCoordinatesValidMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
@@ -530,7 +524,6 @@ public class Game extends Observable {
     public void setFirstPlayer() throws IOException {
         notifySetFirstPlayer(this.getCurrentTurn().getCurrentPlayer().getNickname(), onlinePlayers);
     }
-
     public void serverRestarting() throws IOException {
         notifyServerRestart();
     }

@@ -30,6 +30,13 @@ public class ChooseYourWorkerEffectResponse extends MessageFromClient{
         Worker = worker;
     }
 
+
+    /**
+     * Calls the correspondent visit method based on the type of Message
+     * @param gameMessageVisitorClient gameMessage to be checked
+     * @throws IOException Exception
+     * @throws InterruptedException Exception
+     */
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
         gameMessageVisitorClient.visit(this);

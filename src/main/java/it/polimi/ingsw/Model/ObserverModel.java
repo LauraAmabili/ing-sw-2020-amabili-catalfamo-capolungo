@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface ObserverModel {
 
-    //public void update(Object obj);
-    void update(Object o, Object obj);
 
     void updatePlayerAdded(String obj, String color) throws IOException;
 
@@ -57,7 +55,6 @@ public interface ObserverModel {
 
     void updateSetCard(List<String> availableGods, String currentPlayer, List<God> chosenGods) throws IOException;
 
-    void updateSetWorkerOk(String currentWorker, Board board) throws IOException;
 
     void updateStartMoving(String current) throws IOException;
 
@@ -71,8 +68,6 @@ public interface ObserverModel {
 
     void updateMoveTwoInput(String nickname, int worker) throws IOException;
 
-    void updateDroppedConnection(String nickname) throws IOException;
-
     void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) throws IOException;
 
     void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) throws IOException;
@@ -81,6 +76,6 @@ public interface ObserverModel {
 
     void updateServerRestart() throws IOException;
 
-    void updateLenghtName(String name);
+
 }
 

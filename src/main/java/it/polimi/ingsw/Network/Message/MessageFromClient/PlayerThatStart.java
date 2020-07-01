@@ -26,6 +26,12 @@ public class PlayerThatStart extends MessageFromClient{
         return onlinePlayers;
     }
 
+
+    /**
+     * Calls the correspondent visit method based on the type of Message
+     * @param gameMessageVisitorClient gameMessage to be checked
+     * @throws IOException Exception
+     */
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
         gameMessageVisitorClient.visit(this);

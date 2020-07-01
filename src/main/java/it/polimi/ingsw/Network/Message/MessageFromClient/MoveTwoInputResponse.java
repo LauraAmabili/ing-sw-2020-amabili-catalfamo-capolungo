@@ -40,6 +40,12 @@ public class MoveTwoInputResponse extends MessageFromClient {
         this.worker = worker;
     }
 
+
+    /**
+     * Calls the correspondent visit method based on the type of Message
+     * @param gameMessageVisitorClient gameMessage to be checked
+     * @throws IOException Exception
+     */
     @Override
     public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
         gameMessageVisitorClient.visit(this);

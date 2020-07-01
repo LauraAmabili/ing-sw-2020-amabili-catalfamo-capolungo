@@ -15,8 +15,8 @@ public class SpecialWin_MoveDown extends PlayerDecorator {
     /**
      * Win if you go up to level 3 or down of two levels or more
      *
-     * @param worker
-     * @return
+     * @param worker number of the worker
+     * @return boolean
      */
     @Override
     public synchronized boolean checkWin(@NotNull Worker worker) {

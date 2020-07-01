@@ -37,6 +37,10 @@ public class SpecialWin_BunchOfTowers extends PlayerDecorator {
 
     }
 
+    /**
+     * Counting the towers in the game
+     * @return number of the towers
+     */
     public int countTowers(){
         int counter=0;
         BoardCell[][] grid = this.getBoard().getGrid();

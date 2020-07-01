@@ -22,8 +22,14 @@ public class PlayerNumberResponse extends MessageFromClient {
         this.numberOfPlayers = numberOfPlayers;
     }
 
+
+    /**
+     * Calls the correspondent visit method based on the type of Message
+     * @param gameMessageVisitorClient gameMessage to be checked
+     * @throws IOException Exception
+     */
     @Override
-    public void accept(VisitorServer gameMessageVisitorServer) throws IOException, InterruptedException {
-        gameMessageVisitorServer.visit(this);
+    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+        gameMessageVisitorClient.visit(this);
     }
 }

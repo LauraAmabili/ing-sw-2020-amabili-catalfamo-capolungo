@@ -78,8 +78,8 @@ public class Client {
     /**
      * Client is started on a defined host and port
      * Client Beat Sender is started
-     * @param host
-     * @param port
+     * @param host ip server
+     * @param port server port
      */
     public void startClient(String host, String port) {
 
@@ -108,7 +108,10 @@ public class Client {
     }
 
 
-
+    /**
+     * Sends a message to the server
+     * @param x message
+     */
     public synchronized void send(MessageFromClient x)  {
 
         try {
@@ -123,7 +126,6 @@ public class Client {
 
     /**
      * receive messages and share them with the visitor
-     * @return
      */
     public Thread receive() {
         Thread t = new Thread(() -> {
