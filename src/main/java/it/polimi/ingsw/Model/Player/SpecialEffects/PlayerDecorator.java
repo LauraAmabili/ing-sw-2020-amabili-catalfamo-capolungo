@@ -180,8 +180,8 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
 
     @Override
     public void setHasSpecialMove(boolean hasSpecialMove) {
-
     }
+
     @Override
     public boolean isHasSpecialBuild() {
         return false;
@@ -194,7 +194,6 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
 
     @Override
     public void setHasSpecialBuild(boolean hasSpecialBuild) {
-
     }
 
 }
