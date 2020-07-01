@@ -35,11 +35,10 @@ public class WinSceneController extends BoardController implements Initializable
      * Load the name of the player who has won.
      */
     public void setUpButtons() {
+        WinPlayer.setText(Player + " is the winner");
         if(Player.equals(client.getNickname())) {
-            WinPlayer.setText(Player + " wins");
             WinBanner.setImage(new Image("/Images/gameGodFrameName1.png"));
         } else {
-            WinPlayer.setText(Player + " wins\nYou lose");
             WinBanner.setImage(new Image("/Images/gameGodFrameName2.png"));
         }
     }

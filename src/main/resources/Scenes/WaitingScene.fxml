@@ -20,9 +20,9 @@
                   <Image url="@../Images/endgame_victorywin.png" />
                </image>
             </ImageView>
-            <Text fill="#13255e" layoutX="111.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting for others to connect.." textAlignment="CENTER" wrappingWidth="262.2060546875">
+            <Text fill="#13255e" layoutX="111.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting for others to connect.." textAlignment="CENTER" wrappingWidth="262.2060546875">
                <font>
-                  <Font name="System Italic" size="29.0" />
+                  <Font name="Dalek" size="29.0" />
                </font>
             </Text>
          </children>

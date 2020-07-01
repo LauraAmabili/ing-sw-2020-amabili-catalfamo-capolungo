@@ -33,12 +33,21 @@
          <image>
             <Image url="@../Images/fg_panel4.png" />
          </image></ImageView>
-      <TextField fx:id="PlayerNick1" alignment="CENTER" editable="false" focusTraversable="false" layoutX="322.0" layoutY="684.0" />
-      <TextField fx:id="PlayerNick2" alignment="CENTER" editable="false" focusTraversable="false" layoutX="726.0" layoutY="684.0" />
-      <TextField fx:id="PlayerNick3" alignment="CENTER" editable="false" focusTraversable="false" layoutX="1122.0" layoutY="684.0" />
-      <TextField fx:id="ActionText" alignment="CENTER" editable="false" focusTraversable="false" layoutX="518.0" layoutY="144.0" prefHeight="56.0" prefWidth="564.0">
+      <TextField fx:id="PlayerNick1" alignment="CENTER" editable="false" focusTraversable="false" layoutX="329.0" layoutY="684.0">
          <font>
-            <Font size="26.0" />
+            <Font name="Dalek" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="PlayerNick2" alignment="CENTER" editable="false" focusTraversable="false" layoutX="732.0" layoutY="684.0">
+         <font>
+            <Font name="Dalek" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="PlayerNick3" alignment="CENTER" editable="false" focusTraversable="false" layoutX="1128.0" layoutY="684.0">
+         <font>
+            <Font name="Dalek" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="ActionText" alignment="CENTER" editable="false" focusTraversable="false" layoutX="519.0" layoutY="143.0" prefHeight="56.0" prefWidth="564.0">
+         <font>
+            <Font name="Dalek" size="26.0" />
          </font>
       </TextField>
    </children>

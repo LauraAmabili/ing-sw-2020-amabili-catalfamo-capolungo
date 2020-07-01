@@ -182,10 +182,13 @@
             <Font name="Dalek" size="32.0" />
          </font>
       </Text>
-      <ImageView fx:id="WinBanner" fitHeight="155.0" fitWidth="553.0" layoutX="575.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="WinPlayer" layoutX="800.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <ImageView fx:id="WinBanner" fitHeight="155.0" fitWidth="553.0" layoutX="575.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/gameGodFrameName1.png" />
+         </image></ImageView>
+      <Text fx:id="WinPlayer" layoutX="711.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
          <font>
-            <Font size="25.0" />
+            <Font name="Dalek" size="25.0" />
          </font>
       </Text>
    </children>
