@@ -24,6 +24,6 @@ public class WrongWorkerUpdate extends MessageFromServer {
      */
     @Override
     public void accept(VisitorClient gameMessageVisitorClient) {
-
+        gameMessageVisitorClient.visit(this);
     }
 }

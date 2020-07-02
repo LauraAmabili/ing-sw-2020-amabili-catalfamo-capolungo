@@ -36,7 +36,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
     public void run() {
         while (true) {
             try {
-                sleep(expectedCardiacRhythm * 1000);
+                sleep(expectedCardiacRhythm * 100000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
