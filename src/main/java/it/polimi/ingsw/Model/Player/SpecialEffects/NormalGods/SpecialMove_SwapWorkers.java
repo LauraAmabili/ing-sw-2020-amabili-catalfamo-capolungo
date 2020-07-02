@@ -19,10 +19,10 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
 
 
     /**You can swap your Worker with an opponent's Worker
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return true <--> the method works </-->
      */
     @Override
     public synchronized boolean move(int row, int col, @NotNull Worker worker) {

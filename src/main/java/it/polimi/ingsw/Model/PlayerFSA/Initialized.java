@@ -4,7 +4,6 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-import java.io.IOException;
 
 public class Initialized extends PlayerFSA {
 
@@ -21,8 +20,7 @@ public class Initialized extends PlayerFSA {
 
     /**
      * Add the God name on the availableGods. if godName is not present in the godListNames return an error message.
-     * @param godName
-     * @throws IOException
+     * @param godName name of the god
      */
     @Override
     public void chosenCard(String godName)  {

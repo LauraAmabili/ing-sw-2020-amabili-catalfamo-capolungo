@@ -24,11 +24,11 @@ public class VisitorMethodsServer implements VisitorServer {
      * otherwise the view is notified
      *
      * @param playerNumberResponse
-     * @throws IOException
+     * @
      * @throws InterruptedException
      */
     @Override
-    public void visit(PlayerNumberResponse playerNumberResponse) throws IOException, InterruptedException {
+    public void visit(PlayerNumberResponse playerNumberResponse) throws InterruptedException {
 
         String num = playerNumberResponse.getNumberOfPlayers();
         try {
@@ -61,10 +61,10 @@ public class VisitorMethodsServer implements VisitorServer {
      * cards chosen by the challenger
      *
      * @param chosenCardsUpdate
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(ChosenCardsUpdate chosenCardsUpdate) throws IOException {
+    public void visit(ChosenCardsUpdate chosenCardsUpdate)  {
 
         String cardName = chosenCardsUpdate.getChosenCard();
         view.tryThisCard(cardName);
@@ -74,10 +74,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Choose the card
      * @param setYourCardResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(SetYourCardResponse setYourCardResponse) throws IOException {
+    public void visit(SetYourCardResponse setYourCardResponse)  {
 
         view.godNameChosen(setYourCardResponse.getChosenGod());
 
@@ -86,10 +86,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Set Worker Coordinates
      * @param startingSetWorkerResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(StartingSetWorkerResponse startingSetWorkerResponse) throws IOException {
+    public void visit(StartingSetWorkerResponse startingSetWorkerResponse)  {
 
 
         String rowString = startingSetWorkerResponse.getRow();
@@ -110,10 +110,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Choose the number of worker
      * @param chooseYourWorkerResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException {
+    public void visit(ChooseYourWorkerResponse chooseYourWorkerResponse)  {
 
         String worker = chooseYourWorkerResponse.getWorker();
         try {
@@ -135,10 +135,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Move coordinates
      * @param moveResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(MoveResponse moveResponse) throws IOException {
+    public void visit(MoveResponse moveResponse)  {
 
         String rowString = moveResponse.getRow();
         String colString = moveResponse.getCol();
@@ -159,10 +159,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Build coordinates
      * @param buildResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(BuildResponse buildResponse) throws IOException {
+    public void visit(BuildResponse buildResponse)  {
 
         String rowString = buildResponse.getRow();
         String colString = buildResponse.getCol();
@@ -182,10 +182,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Prompt to the user if they want to enable the effect
      * @param askEffectReply
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(AskEffectReply askEffectReply) throws IOException {
+    public void visit(AskEffectReply askEffectReply)  {
 
         if (askEffectReply.getEffect().equals("y")) {
             view.updateTimeToChooseWorkerEffect(true);
@@ -201,10 +201,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Enable the special card effect
      * @param chooseYourWorkerEffectResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException {
+    public void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse)  {
 
         boolean effect = chooseYourWorkerEffectResponse.isEffect();
         String worker = chooseYourWorkerEffectResponse.getWorker();
@@ -228,10 +228,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Enable or not the effect
      * @param askEffectBuildResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException {
+    public void visit(AskEffectBuildResponse askEffectBuildResponse)  {
 
         if (askEffectBuildResponse.getEffect().equals("y")) {
             view.updatePlayerBuild(true, askEffectBuildResponse.getPlayerNickname(), askEffectBuildResponse.getWorker());
@@ -248,10 +248,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Request two inputs for a special build
      * @param buildTwoInputResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException {
+    public void visit(BuildTwoInputResponse buildTwoInputResponse)  {
 
         String rowString1 = buildTwoInputResponse.getRow1();
         String colString1 = buildTwoInputResponse.getCol1();
@@ -279,7 +279,7 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Request two inputs for a special move
      * @param moveTwoInputResponse
-     * @throws IOException
+     * @
      */
     @Override
     public void visit(MoveTwoInputResponse moveTwoInputResponse) {
@@ -340,10 +340,10 @@ public class VisitorMethodsServer implements VisitorServer {
     /**
      * Nickname chosen by the client
      * @param nicknameResponse
-     * @throws IOException
+     * @
      */
     @Override
-    public void visit(NicknameResponse nicknameResponse) throws IOException {
+    public void visit(NicknameResponse nicknameResponse)  {
 
         boolean check = true;
         String nickname = nicknameResponse.getNickname();

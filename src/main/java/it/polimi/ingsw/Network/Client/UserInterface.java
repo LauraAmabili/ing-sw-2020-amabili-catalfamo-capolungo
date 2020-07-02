@@ -4,7 +4,6 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
 
 
-import java.io.IOException;
 import java.util.List;
 
 

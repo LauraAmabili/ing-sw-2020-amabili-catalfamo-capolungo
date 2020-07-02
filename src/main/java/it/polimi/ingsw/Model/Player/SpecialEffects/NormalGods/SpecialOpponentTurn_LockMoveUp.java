@@ -25,10 +25,10 @@ public class SpecialOpponentTurn_LockMoveUp extends PlayerDecorator {
      *      unlock(player)
      * if you go higher
      *      lock(player)
-     * @param row chosen row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return * @return true <--> the method works </-->
      */
     @Override
     public synchronized boolean move(int row, int col, @NotNull Worker worker) {

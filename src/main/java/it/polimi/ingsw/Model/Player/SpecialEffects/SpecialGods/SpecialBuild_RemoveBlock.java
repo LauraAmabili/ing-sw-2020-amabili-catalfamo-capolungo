@@ -71,8 +71,8 @@ public class SpecialBuild_RemoveBlock extends PlayerDecorator {
 
     /**
      * Find the unused worker
-     * @param worker
-     * @return
+     * @param worker worker of the player
+     * @return right worker
      */
     private Worker findUnmovedWorker (Worker worker){
 
@@ -87,8 +87,8 @@ public class SpecialBuild_RemoveBlock extends PlayerDecorator {
 
     /**
      * Find the cell to be destroyed
-     * @param worker
-     * @return
+     * @param worker worker
+     * @return List of cells to remove
      */
     private List<BoardCell> canDestroy (Worker worker) {
         List<BoardCell> destroyable = this.getBoard().adjacentCells(worker.getCurCell());

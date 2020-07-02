@@ -2,8 +2,6 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
-
-import java.io.IOException;
 import java.util.List;
 
 public interface ObserverModel {
@@ -210,6 +208,9 @@ public interface ObserverModel {
      */
     void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) ;
 
+    /**
+     *Sends the message that the server is restarting
+     */
     void updateServerRestart() ;
 
 

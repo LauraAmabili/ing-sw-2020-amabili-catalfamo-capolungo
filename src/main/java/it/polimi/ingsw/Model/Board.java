@@ -148,8 +148,8 @@ public class Board implements Serializable {
 
     /**
      * Return a List of the adjacent BoardCells given a BoardCell
-     * @param b
-     * @return
+     * @param b board cell
+     * @return list of board cell
      */
     public List<BoardCell> adjacentCells(@NotNull BoardCell b) {
         int r_temp, c_temp;
@@ -174,7 +174,7 @@ public class Board implements Serializable {
 
     /**
      * Creates an gridList of all cells with no workers on
-     * @return
+     * @return list of free board cell
      */
     public List<BoardCell> freeCells() {
         List<BoardCell> b = new ArrayList<>();
@@ -190,7 +190,7 @@ public class Board implements Serializable {
 
     /**
      * Return a List with all the BoardCells
-     * @return
+     * @return board cells
      */
     public List<BoardCell> allCells() {
         List<BoardCell> b = new ArrayList<>();
@@ -204,7 +204,7 @@ public class Board implements Serializable {
 
     /**
      * print the cells around available to move and build in
-     * @param adj list of boardcells to print
+     * @param adj list of board cells to print
      */
     public void printAvailableGrid(List<BoardCell> adj) {
         boolean stamped = false;

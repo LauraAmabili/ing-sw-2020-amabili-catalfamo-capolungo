@@ -18,10 +18,9 @@ public class PlaceWorker extends PlayerFSA{
 
     /**
      * Place Worker on the selected coordinates.
-     * @param row
-     * @param col
-     * @param worker
-     * @throws IOException
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker worker used
      */
     @Override
     public synchronized void placeWorker(int row, int col, int worker)  {

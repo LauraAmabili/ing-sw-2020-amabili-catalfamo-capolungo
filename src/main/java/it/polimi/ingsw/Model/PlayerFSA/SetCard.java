@@ -6,7 +6,7 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.PlayerCreator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-import java.io.IOException;
+
 
 public class SetCard extends PlayerFSA{
 
@@ -20,8 +20,7 @@ public class SetCard extends PlayerFSA{
 
     /**
      * Set the godName on the player. If godName is not present in the availableGods list send message error.
-     * @param godName
-     * @throws IOException
+     * @param godName name of the god
      */
     @Override
     public void setCard(String godName)  {

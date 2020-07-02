@@ -33,7 +33,7 @@ public class PlayerThatStart extends MessageFromClient{
      * @throws IOException Exception
      */
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws  InterruptedException {
         gameMessageVisitorClient.visit(this);
     }
 }

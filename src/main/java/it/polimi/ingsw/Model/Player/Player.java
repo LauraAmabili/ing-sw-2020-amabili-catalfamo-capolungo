@@ -130,10 +130,10 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * Add a Worker in the board for the first time
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return true if the Boardcell is free
      */
     @Override
     public boolean addWorker(int row, int col, Worker worker) {
@@ -152,8 +152,8 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * return an Arraylist of the boardcell where the worker can move
-     * @param worker
-     * @return
+     * @param worker Worker used
+     * @return list of available board cells
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
 
@@ -174,8 +174,8 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * return an Arraylist of the boardcell where the worker can move
-     * @param worker
-     * @return
+     * @param worker worker used
+     * @return list of the available board cells
      */
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
 
@@ -194,10 +194,10 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * update the location of the worker in Worker && update the presence of the worker in BoardCell
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return * @return true <--> the method works </-->
      */
     public boolean move(int row, int col, @NotNull Worker worker) {
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
@@ -216,8 +216,8 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * returns an Arraylist of the boardcell where the worker can build
-     * @param worker
-     * @return
+     * @param worker Worker used
+     * @return list of boardcells
      */
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
 
@@ -231,9 +231,9 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * return an Arraylist of the boardcell where the worker can build
-     * @param worker
-     * @param specialEffect
-     * @return
+     * @param worker Worker used
+     * @param specialEffect true if has the special effect
+     * @return list of boardcell available to build on with the effect
      */
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
 
@@ -246,10 +246,10 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * update the level of the building in the BoardCell
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return * @return true <--> the method works </-->
      */
     public boolean build(int row, int col, @NotNull Worker worker) {
         if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
@@ -274,8 +274,8 @@ public class Player implements PlayerInterface, Serializable {
 
     /**
      * check if the win move was performed by a worker
-     * @param worker nuber of the worker
-     * @return
+     * @param worker number of the worker
+     * @return * @return true <--> the method works </-->
      */
     public boolean checkWin(@NotNull Worker worker) {
         if (worker.getOldCell()==worker.getCurCell())

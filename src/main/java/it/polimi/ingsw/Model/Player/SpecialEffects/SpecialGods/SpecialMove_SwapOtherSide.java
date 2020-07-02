@@ -50,12 +50,12 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
      * 1. Opponent BoardCell
      * 2. Moving worker BoardCell
      *
-     * @param row1
-     * @param col1
-     * @param row2
-     * @param col2
-     * @param worker
-     * @return
+     * @param row1 chosen row
+     * @param col1 chosen col
+     * @param row2 chosen row
+     * @param col2 chosen col
+     * @param worker Worker to move
+     * @return boolean if moved correctly
      */
     @Override
     public synchronized boolean move(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
