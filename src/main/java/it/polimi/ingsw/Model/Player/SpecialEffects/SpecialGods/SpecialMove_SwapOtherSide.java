@@ -59,6 +59,17 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
      */
     @Override
     public synchronized boolean move(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
+
+        BoardCell cell1 = getBoard().getGrid()[row1][col1];
+        BoardCell cell2 = getBoard().getGrid()[row2][col2];
+        if (!isMoveUp()){
+            if (cell1.getLevel()>worker.getCurCell().getLevel())
+                return false;
+            if (cell2.getLevel()>worker.getCurCell().getLevel())
+                return false;
+        }
+
+
         if (enableSpecialMove) {
             if (opponentCells(worker).size() > 0) {
                 if (opponentCells(worker).contains(this.getBoard().getGrid()[row1][col1])) {

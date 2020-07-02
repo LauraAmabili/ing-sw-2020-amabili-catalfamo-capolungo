@@ -49,16 +49,22 @@ public class SpecialBuild_BuildTwiceDifferent extends PlayerDecorator {
     @Override
     public synchronized boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
 
+
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
+        if(b1.equals(b2))
+            return false;
+        if (!availableCellsToBuild(worker).contains(b1))
+            return false;
+        if (availableCellsToBuild(worker).size()==1)
+            return player.build(row1, col1, worker);
+        if (!availableCellsToBuild(worker).contains(b2))
+            return false;
         if (enableSpecialBuild) {
-            if(!b1.equals(b2)) {
                 return player.build(row1, col1, worker) && player.build(row2, col2, worker);
-            }
         }
         else {
             return player.build(row1, col1, worker);
         }
-        return false;
     }
 }

@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 
-
 public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
 
     private final boolean hasSpecialBuild;
@@ -35,35 +34,40 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
         hasSpecialBuild = true;
     }
 
-    /**Builds twice on the same BoardCell
-     * @param row BoardCell row
-     * @param col BoardCell col
+    /**
+     * Builds twice on the same BoardCell
+     *
+     * @param row    BoardCell row
+     * @param col    BoardCell col
      * @param worker Worker used
      * @return true <--> the method works </-->
      */
 
     @Override
     public synchronized boolean build(int row, int col, @NotNull Worker worker) {
+        BoardCell b = this.getBoard().getGrid()[row][col];
+
         if (enableSpecialBuild) {
-            if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {
-                BoardCell b = this.getBoard().getGrid()[row][col];
-                b.setLevel((b.getLevel() + 2));
-                return true;
-            } else {
+            if (!availableCellsToBuild(worker).contains(b))
                 return false;
-            }
+            b.setLevel((b.getLevel() + 2));
+            return true;
+        } else {
+            return false;
         }
-        return player.build(row, col, worker);
     }
+
+
 
     /**
      * List of available cells where the worker can build twice around him
+     *
      * @param worker number of the worker
      * @return recursion for the double building
      */
     @Override
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
-        if(enableSpecialBuild) {
+        if (enableSpecialBuild) {
             List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
             adj.removeIf((n) -> n.getWorker() != null);
             adj.removeIf(BoardCell::getDome);

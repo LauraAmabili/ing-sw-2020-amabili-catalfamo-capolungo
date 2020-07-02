@@ -54,10 +54,11 @@ public class SpecialBuild_BuildTwiceDowntown extends PlayerDecorator {
         BoardCell b1 = this.getBoard().getGrid()[row1][col1];
         BoardCell b2 = this.getBoard().getGrid()[row2][col2];
         if (enableSpecialBuild) {
-            if(!b1.equals(b2) && downtown(b2)) {
-                return player.build(row1, col1, worker) && player.build(row2, col2, worker);
+            if(downtown(b2)) {
+                if (!player.build(row1, col1, worker))
+                    return false;
+                return player.build(row2, col2, worker);
             }
-            return false;
         }
         return player.build(row1, col1, worker);
     }
