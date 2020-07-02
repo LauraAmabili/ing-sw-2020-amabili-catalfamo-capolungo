@@ -54,21 +54,21 @@ public class SpecialMove_BMB extends PlayerDecorator {
     @Override
     public synchronized boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
         BoardCell cell1 = getBoard().getGrid()[rowBuild][colBuild];
+        BoardCell cell2 = getBoard().getGrid()[row][col];
         if (enableSpecialMove) {
-            /*
-            if (availableCellsToBuild(worker).contains(cell1)) {
+            if (availableCellsToBuild(worker).contains(cell1) && player.availableCellsToMove(worker).contains(cell2)) {
                 player.build(rowBuild, colBuild, worker);
             }
             else {
                 if (availableCellsToBuild(worker).size() > 0)
                     return false;
             }
+            /*
 
-             */
             if(worker.getCurCell().getLevel() >= worker.getPlayerWorker().getBoard().getGrid()[row][col].getLevel()) {
                 return player.build(rowBuild, colBuild, worker) && player.move(row, col, worker);
             } else return false;
-
+            */
         }
 
         return player.move(row, col, worker);
