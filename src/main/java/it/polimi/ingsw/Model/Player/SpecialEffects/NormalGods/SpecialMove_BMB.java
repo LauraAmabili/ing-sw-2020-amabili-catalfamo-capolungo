@@ -84,6 +84,10 @@ public class SpecialMove_BMB extends PlayerDecorator {
         if (enableSpecialMove) {
             if(player.availableCellsToBuild(worker).size() <= 1) {
                 return new ArrayList<>();
+            } else {
+                List<BoardCell> cells = player.availableCellsToMove(worker);
+                cells.removeIf(x -> x.getLevel() > worker.getCurCell().getLevel());
+                return cells;
             }
         }
         return player.availableCellsToMove(worker);

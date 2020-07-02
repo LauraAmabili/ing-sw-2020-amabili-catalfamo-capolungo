@@ -24,7 +24,6 @@ public class Moving extends PlayerFSA {
 
     /**
      * Check if both workers can move. if both can't move delete this player
-     * @throws IOException
      */
     @Override
     public void canIMove()  {
@@ -45,7 +44,6 @@ public class Moving extends PlayerFSA {
      * Check if the selected worker can move. if it's not possible the other worker is chosen.
      * @param worker
      * @param effect
-     * @throws IOException
      */
     @Override
     public synchronized void checkWorker(int worker, boolean effect) {
@@ -70,7 +68,7 @@ public class Moving extends PlayerFSA {
      * @param row
      * @param col
      * @param worker
-     * @throws IOException
+     * @param
      */
     @Override
     public synchronized void move(int row, int col, int worker)  {
@@ -100,10 +98,9 @@ public class Moving extends PlayerFSA {
      * @param row2
      * @param col2
      * @param worker
-     * @throws IOException
      */
     @Override
-    public synchronized void move(int row1, int col1, int row2, int col2, int worker){
+    public synchronized void move(int row1, int col1, int row2, int col2, int worker) {
         if(!player.move(row1 - 1, col1 - 1, row2 -1, col2 - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
             game.NoCoordinatesValidMoveTwoInput(worker);
         } else {
