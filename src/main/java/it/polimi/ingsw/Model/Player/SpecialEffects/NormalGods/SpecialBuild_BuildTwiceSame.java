@@ -53,7 +53,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
             b.setLevel((b.getLevel() + 2));
             return true;
         } else {
-            return false;
+            return player.build(row, col, worker);
         }
     }
 

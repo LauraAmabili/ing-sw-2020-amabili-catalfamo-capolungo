@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialMove_BMBTest {
@@ -35,13 +36,18 @@ class SpecialMove_BMBTest {
         mockWorkers1.add(worker1);
         PlayerInterface player = new SpecialMove_BMB(mockPlayer);
         player.setEnableSpecialMove(true);
+        player.availableCellsToMove(mockPlayer.getWorkerRef().get(0));
         player.move(1, 0, 0, 1, worker1);
         assertEquals(1, board.getGrid()[1][0].getLevel());
         assertEquals(worker1, board.getGrid()[0][1].getWorker());
         player.setEnableSpecialMove(false);
         player.move(1,0, worker1);
         assertEquals(worker1, board.getGrid()[1][0].getWorker());
-
+        player.setHasSpecialMove(true);
+        assertTrue(player.isHasSpecialMove());
+        player.setEnableSpecialMove(true);
+        assertTrue(player.isEnableSpecialMove());
+        assertFalse(mockPlayer.isHasTwoInputMove());
 
     }
 
