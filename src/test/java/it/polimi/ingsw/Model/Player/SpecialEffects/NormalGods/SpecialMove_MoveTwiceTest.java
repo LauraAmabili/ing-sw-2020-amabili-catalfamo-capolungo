@@ -35,10 +35,27 @@ class SpecialMove_MoveTwiceTest {
         PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
 
 
+        player.setEnableSpecialMove(true);
+        assertTrue(player.move(1,1, 2, 2, worker1));
+        player.setEnableSpecialMove(false);
+        assertFalse(player.move(1, 1, 3, 3, worker1));
+        assertEquals(worker1.getCurCell(), worker1.getPlayerWorker().getBoard().getGrid()[2][2]);
+
+        player.setEnableSpecialMove(true);
+        assertFalse(player.move(1,1, 2, 2, worker1));
+
+        assertEquals(worker1.getCurCell(), worker1.getPlayerWorker().getBoard().getGrid()[2][2]);
+
+        worker1.getPlayerWorker().getBoard().getGrid()[4][4].setDome(true);
+
+        player.setEnableSpecialMove(true);
+        assertTrue(player.move(3,3, 4, 4, worker1));
+
+        assertEquals(worker1.getCurCell(), worker1.getPlayerWorker().getBoard().getGrid()[3][3]);
 
 
-        assertFalse(player.move(2, 2, worker1));
-        player.move(0,0, worker1);
+
+        /*player.move(0,0, worker1);
         assertFalse(player.move(0, 2, worker1));
         player.move(0,0, worker1);
 
@@ -48,7 +65,7 @@ class SpecialMove_MoveTwiceTest {
         //assertTrue(player.move(2, 2, worker1));
         assertFalse(player.move(2, 2, worker1));
         assertTrue(player.move(1, 1, worker1));
-        assertFalse(player.move(4, 4, worker1));
+        assertFalse(player.move(4, 4, worker1));*/
 
 
     }

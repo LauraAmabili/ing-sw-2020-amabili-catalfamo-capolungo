@@ -53,16 +53,26 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
      */
     @Override
     public synchronized boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
-        if (enableSpecialMove){
-            player.move(rowBuild, colBuild, worker);
-            return player.move(row, col, worker);
-        }
-        else {
+        BoardCell oldCell = worker.getCurCell();
+        BoardCell cell1 = getBoard().getGrid()[rowBuild][colBuild];
+        BoardCell cell2 = getBoard().getGrid()[row][col];
+
+        if (oldCell.equals(cell2)){
             return false;
         }
+
+        if (enableSpecialMove){
+            if (availableCellsToBuild(worker).contains(cell1))
+                if (player.move(rowBuild, colBuild, worker)){
+                    if (availableCellsToBuild(worker).contains(cell2))
+                        {
+                            return player.move(row, col, worker);
+                        }
+                    return true;
+                }
+
+        }
+        return false;
     }
-
-
-
 
 }
