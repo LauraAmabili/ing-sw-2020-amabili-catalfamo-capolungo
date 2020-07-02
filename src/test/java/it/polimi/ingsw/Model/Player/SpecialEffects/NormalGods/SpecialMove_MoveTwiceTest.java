@@ -90,9 +90,12 @@ class SpecialMove_MoveTwiceTest {
         worker1.getPlayerWorker().setMoveUp(false);
         board.getGrid()[0][1].setLevel(1);
         board.getGrid()[0][2].setLevel(2);
-
         player.setEnableSpecialMove(true);
         assertFalse(player.move(0,1, 0, 2, worker1));
+
+        worker1.getPlayerWorker().setMoveUp(true);
+        player.setEnableSpecialMove(true);
+        assertTrue(player.move(0,1, 0, 2, worker1));
 
     }
 
