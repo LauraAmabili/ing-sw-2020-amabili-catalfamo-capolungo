@@ -180,6 +180,11 @@ public class Player implements PlayerInterface, Serializable {
      * @return * @return true <--> the method works </-->
      */
     public boolean move(int row, int col, @NotNull Worker worker) {
+        BoardCell cell2 = getBoard().getGrid()[row][col];
+        if (!isMoveUp()){
+            if (cell2.getLevel()>worker.getCurCell().getLevel())
+                return false;
+        }
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             worker.getCurCell().setWorker(null);
             worker.setOldCell(worker.getCurCell());

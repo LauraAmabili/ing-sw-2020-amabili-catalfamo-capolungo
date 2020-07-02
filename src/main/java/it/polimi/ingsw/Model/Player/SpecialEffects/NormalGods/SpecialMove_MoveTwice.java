@@ -56,17 +56,18 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
         BoardCell oldCell = worker.getCurCell();
         BoardCell cell1 = getBoard().getGrid()[rowBuild][colBuild];
         BoardCell cell2 = getBoard().getGrid()[row][col];
-
-        if (oldCell.equals(cell2)){
-            return false;
-        }
-
         if (!isMoveUp()){
             if (cell1.getLevel()>worker.getCurCell().getLevel())
                 return false;
             if (cell2.getLevel()>worker.getCurCell().getLevel())
                 return false;
         }
+
+
+        if (oldCell.equals(cell2)){
+            return false;
+        }
+
 
 
         if (enableSpecialMove){
