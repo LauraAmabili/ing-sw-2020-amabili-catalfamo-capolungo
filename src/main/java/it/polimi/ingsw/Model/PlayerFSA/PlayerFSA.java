@@ -18,23 +18,23 @@ public abstract class PlayerFSA {
         this.player = player;
     }
 
-    public void addNickname(String name) throws IOException {
+    public void addNickname(String name)  {
 
     }
 
-    public void chosenCard(String godName) throws IOException {
+    public void chosenCard(String godName)  {
 
     }
 
-    public void setCard(String godName) throws IOException {
+    public void setCard(String godName)  {
 
     }
 
-    public void placeWorker(int row, int col, int worker) throws IOException {
+    public void placeWorker(int row, int col, int worker)  {
 
     }
 
-    public void canIMove() throws IOException {
+    public void canIMove()  {
 
     }
 
@@ -42,27 +42,27 @@ public abstract class PlayerFSA {
         return false;
     }
 
-    public void checkWorker(int worker, boolean effect) throws IOException {
+    public void checkWorker(int worker, boolean effect)  {
 
     }
 
-    public void move(int row, int col, int worker) throws IOException {
+    public void move(int row, int col, int worker)  {
 
     }
 
-    public void move(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public void move(int row1, int col1, int row2, int col2, int worker)  {
 
     }
 
-    public void checkBuild(int worker, boolean effect) throws IOException {
+    public void checkBuild(int worker, boolean effect)  {
 
     }
 
-    public void build(int row1, int col1, int row2, int col2, int worker) throws IOException {
+    public void build(int row1, int col1, int row2, int col2, int worker)  {
 
     }
 
-    public void build(int row, int col, int worker) throws IOException {
+    public void build(int row, int col, int worker)  {
 
     }
 

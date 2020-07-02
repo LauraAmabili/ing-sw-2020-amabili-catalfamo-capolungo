@@ -25,7 +25,7 @@ public class Initialized extends PlayerFSA {
      * @throws IOException
      */
     @Override
-    public void chosenCard(String godName) throws IOException {
+    public void chosenCard(String godName)  {
         boolean flag = true;
         if(game.getGodListNames().contains(godName)) {
             if(game.getAvailableGods().isEmpty()) {

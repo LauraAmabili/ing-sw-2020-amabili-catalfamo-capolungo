@@ -24,7 +24,7 @@ public class PlaceWorker extends PlayerFSA{
      * @throws IOException
      */
     @Override
-    public synchronized void placeWorker(int row, int col, int worker) throws IOException {
+    public synchronized void placeWorker(int row, int col, int worker)  {
         if(player.addWorker(row -1 , col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker))) {
             //game.updateBoard();
             if(worker == 0){

@@ -75,11 +75,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
         String toDelete = connection.serverThread.toString();
         System.out.println("deleting " + toDelete + " with last beat at " + connection.lastBeatInstant);
         connection.serverThread.getServer().getGameController().getGame().RemoveObserver(connection.serverThread.getView());
-        try {
-            connection.serverThread.getView().dropConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        connection.serverThread.getView().dropConnection();
 
         server.getServerThreads().remove(connection.serverThread);
         connection.serverThread.RemoveObserver(connection.serverThread.getView());

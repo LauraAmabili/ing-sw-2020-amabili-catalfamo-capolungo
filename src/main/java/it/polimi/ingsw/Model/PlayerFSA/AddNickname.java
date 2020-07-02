@@ -23,7 +23,7 @@ public class AddNickname extends PlayerFSA {
      * @throws IOException
      */
     @Override
-    public void addNickname(String name) throws IOException {
+    public void addNickname(String name) {
         if(game.getNicknames().size() == 0){
                 game.getNicknames().add(name);
                 player.setNickname(name);

@@ -24,7 +24,7 @@ public class SetCard extends PlayerFSA{
      * @throws IOException
      */
     @Override
-    public void setCard(String godName) throws IOException {
+    public void setCard(String godName)  {
         PlayerCreator playerCreator = new PlayerCreator();
         if(!game.getAvailableGods().contains(godName)) {
             game.NoGodHasSuchName();
