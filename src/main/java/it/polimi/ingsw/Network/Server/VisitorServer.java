@@ -21,89 +21,88 @@ public interface VisitorServer {
     /**
      * Nickname chosen by the client
      * @param nicknameResponse
-     * @throws IOException
+     * @
      */
-    void visit(NicknameResponse nicknameResponse) throws IOException;
+    void visit(NicknameResponse nicknameResponse) ;
 
     /**
      * Number of players chosen by the client
      * @param playerNumberResponse
-     * @throws IOException
+     * @
      * @throws InterruptedException
      */
-    void visit(PlayerNumberResponse playerNumberResponse) throws IOException, InterruptedException;
+    void visit(PlayerNumberResponse playerNumberResponse) throws InterruptedException;
 
     /**Cards chosen by the challenger
      *
      * @param chosenCardsUpdate
-     * @throws IOException
+     * @
      */
-    void visit(ChosenCardsUpdate chosenCardsUpdate) throws IOException;
+    void visit(ChosenCardsUpdate chosenCardsUpdate) ;
 
     /**Card chosen by each player
      *
      * @param setYourCardResponse
-     * @throws IOException
+     * @
      */
-    void visit(SetYourCardResponse setYourCardResponse) throws IOException;
+    void visit(SetYourCardResponse setYourCardResponse) ;
 
     /**Put the workers on the board
      *
      * @param startingSetWorkerResponse
-     * @throws IOException
+     * @
      */
-    void visit(StartingSetWorkerResponse startingSetWorkerResponse) throws IOException;
+    void visit(StartingSetWorkerResponse startingSetWorkerResponse) ;
 
     /**Select which worker you want to move
      *
      * @param chooseYourWorkerResponse
-     * @throws IOException
+     * @
      */
-    void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) throws IOException;
+    void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) ;
 
     /**
      * Move input
      * @param moveResponse
-     * @throws IOException
+     * @
      */
-    void visit(MoveResponse moveResponse) throws IOException;
+    void visit(MoveResponse moveResponse) ;
 
     /**Build input
      *
      * @param buildResponse
-     * @throws IOException
+     * @
      */
-    void visit(BuildResponse buildResponse) throws IOException;
+    void visit(BuildResponse buildResponse) ;
 
     /**Ask clients if it wants to enable the effect
      *
      * @param askEffectReply
-     * @throws IOException
+     * @
      */
-    void visit(AskEffectReply askEffectReply) throws IOException;
+    void visit(AskEffectReply askEffectReply) ;
 
     /**
      * Choose the worker for the effect
      * @param chooseYourWorkerEffectResponse
-     * @throws IOException
+     * @
      */
-    void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) throws IOException;
+    void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) ;
 
     /**
      * Ask clients if it wants to enable the build effect
      * @param askEffectBuildResponse
-     * @throws IOException
+     * @
      */
-    void visit(AskEffectBuildResponse askEffectBuildResponse) throws IOException;
+    void visit(AskEffectBuildResponse askEffectBuildResponse) ;
 
     /**
      * Send a build with two boardcells as input
      * 1. normal build
      * 2. special build
      * @param buildTwoInputResponse
-     * @throws IOException
      */
-    void visit(BuildTwoInputResponse buildTwoInputResponse) throws IOException;
+    void visit(BuildTwoInputResponse buildTwoInputResponse) ;
 
     /**
      * Send a move with two boardcells as input

@@ -19,8 +19,8 @@ public class SpecialWin_BunchOfTowers extends PlayerDecorator {
     /**
      * Win if there are 5 towers
      *
-     * @param worker
-     * @return
+     * @param worker Worker to check
+     * @return true if winner
      */
     @Override
     public synchronized boolean checkWin(@NotNull Worker worker) {

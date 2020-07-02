@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model.PlayerFSA;
 
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public abstract class PlayerFSA {

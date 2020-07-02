@@ -12,7 +12,6 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Client {
 

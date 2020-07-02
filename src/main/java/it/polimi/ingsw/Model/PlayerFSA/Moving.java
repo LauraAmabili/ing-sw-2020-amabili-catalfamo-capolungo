@@ -42,8 +42,8 @@ public class Moving extends PlayerFSA {
 
     /**
      * Check if the selected worker can move. if it's not possible the other worker is chosen.
-     * @param worker
-     * @param effect
+     * @param worker worker used
+     * @param effect true if effect enabled
      */
     @Override
     public synchronized void checkWorker(int worker, boolean effect) {
@@ -65,10 +65,9 @@ public class Moving extends PlayerFSA {
 
     /**
      * Move the worker on the selected coordinates.
-     * @param row
-     * @param col
-     * @param worker
-     * @param
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker worker used
      */
     @Override
     public synchronized void move(int row, int col, int worker)  {
@@ -93,11 +92,11 @@ public class Moving extends PlayerFSA {
 
     /**
      * Move the worker on the selected coordinates (Used for special effects)
-     * @param row1
-     * @param col1
-     * @param row2
-     * @param col2
-     * @param worker
+     * @param row1 chosen row
+     * @param col1 chosen col
+     * @param row2 chosen row
+     * @param col2 chosen col
+     * @param worker worker used
      */
     @Override
     public synchronized void move(int row1, int col1, int row2, int col2, int worker) {

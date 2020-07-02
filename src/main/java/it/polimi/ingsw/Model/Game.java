@@ -9,7 +9,7 @@ import it.polimi.ingsw.Model.PlayerFSA.PlayerFSA;
 import org.jetbrains.annotations.NotNull;
 
 
-import java.io.IOException;
+
 import java.util.*;
 
 public class Game extends Observable {
@@ -186,7 +186,6 @@ public class Game extends Observable {
         Board board = new Board();
         setBoard(board);
 
-        //int MAXPLAYER = 3;
         for (int i = 0; i < numberOfPlayers; i++) {
             onlinePlayers.add(new Player());
         }
@@ -259,7 +258,6 @@ public class Game extends Observable {
     /**
      * notify the observers that the board is updated by the current player
      *
-     * @
      */
     public void BoardWorkerUpdate() {
 
@@ -270,7 +268,6 @@ public class Game extends Observable {
      * notify the observers that the card was set
      *
      * @param godName name of the god just set
-     * @
      */
     public void msgGodSet(String godName)  {
         notifyGodSet(currentTurn.getCurrentPlayer(), godName);
@@ -279,7 +276,6 @@ public class Game extends Observable {
     /**
      * notify observers that it's time for the current player to place workers
      *
-     * @ Exception for the Message
      */
     public void toPlaceWorker()  {
         notifyTimeToPlaceWorker(getCurrentTurn().getCurrentPlayer().getNickname());
@@ -289,7 +285,6 @@ public class Game extends Observable {
      * notify the observers that the name inserted is not valid because someone else took it
      *
      * @param nickname nickname that is not valid
-     * @ Exception for the message
      */
     public void sameNameError(String nickname)  {
         notifyNicknameNotValid(nickname);
@@ -300,7 +295,6 @@ public class Game extends Observable {
      * calls a notify to the observers to say that the name was added
      *
      * @param name name just added
-     * @ Exception for the Message
      */
     public void nameAccepted(String name)  {
 
@@ -319,7 +313,6 @@ public class Game extends Observable {
     /**
      * calls a Notify to tell that the god chosen is not present in the list of gods
      *
-     * @ Exception for the Message
      */
     public void NoGodHasSuchName()  {
         notifyGodNotCorrect(this.getCurrentTurn().getCurrentPlayer().getNickname(), availableGods, chosenGodList);
@@ -327,8 +320,6 @@ public class Game extends Observable {
 
     /**
      * notify with the update of the Board
-     *
-     * @
      */
     public void updateBoard()  {
         notifyBoardUpdate(board);
@@ -338,7 +329,6 @@ public class Game extends Observable {
      * calls a notify on all the observers to say that the chosen cell is already occupied
      *
      * @param worker num of the worker that the player is trying to set
-     * @ Exception for the message
      */
     public void cellAlreadyOccupied(int worker)  {
         notifyCellAlreadyOccupied(worker, getCurrentTurn().getCurrentPlayer().getNickname());
@@ -348,7 +338,6 @@ public class Game extends Observable {
      * calls a notify to all the observers to say that the Player has just lost because both his workers cannot move
      *
      * @param name nae of the player
-     * @ Exception for the message
      */
     public void NoPossibleMoves(String name)  {
         notifyPlayerHasLost(name);
@@ -358,7 +347,6 @@ public class Game extends Observable {
      * calls a notify to all the observers to say that the player wins the game
      *
      * @param p player that is winning
-     * @ Exception for the message
      */
     public void updateWin(PlayerInterface p)  {
         notifyWin(p);
@@ -368,7 +356,6 @@ public class Game extends Observable {
      * calls a notify to all the observer that the worker selected is set
      *
      * @param worker number of the chosen worker
-     * @ Exception for the message
      */
     public void updateWorkerSelected(int worker, boolean hasTwoInput, boolean effect)  {
         notifyWorkerSelected(hasTwoInput, effect, worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
@@ -378,7 +365,6 @@ public class Game extends Observable {
      * calls a notify to all the observer to say that the coordinates chosen to move the worker are not valid
      *
      * @param worker number of the worker
-     * @ Exception for the message
      */
     public void NoCoordinatesValidMove(int worker)  {
         notifyNoCoordinatesValid(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),  this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
@@ -388,7 +374,6 @@ public class Game extends Observable {
      * calls a notify to all the observer to ask the current player if he wants the effect, only if h has a card with the special effect
      *
      * @param worker worker to build around
-     * @ Exception for the message
      */
     public void askEffectBuild(int worker)  {
         if (getCurrentTurn().getCurrentPlayer().isHasSpecialBuild()) {
@@ -423,7 +408,6 @@ public class Game extends Observable {
      * calls a notify to all the observer to say that the coordinates to build on are not valid
      *
      * @param worker number of the worker
-     * @ exception for the message
      */
     public void NoCoordinatesValidBuild(int worker)  {
         notifyTryNewCoordinatesBuild(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(),this.getCurrentTurn().getCurrentPlayer().availableCellsToBuild(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)) );
@@ -432,7 +416,6 @@ public class Game extends Observable {
     /**
      * calls a notify to all the observer to say that the worker can move
      *
-     * @ Exception for the message
      */
     public void timeToCheckWorker()  {
         notifyCanMove(this.getCurrentTurn().getCurrentPlayer());
@@ -463,7 +446,6 @@ public class Game extends Observable {
     /**
      * calls a notify to all the observer to say that the challenger must choose the cards for the game
      *
-     * @ Exception for the message
      */
     public void timeToChallenger()  {
 
@@ -483,12 +465,11 @@ public class Game extends Observable {
      * calls a notify to all the observer to say that the god chosen by the challenger is added correctly
      *
      * @param state boolean to set if the cards are all chosen
-     * @ exception for the message
      */
     public void godAdded(boolean state)  {
 
         notifyGodAdded(availableGods, state, this.getCurrentTurn().getCurrentPlayer().getNickname());
-        //System.out.println(availableGods);
+
 
     }
 
@@ -496,7 +477,6 @@ public class Game extends Observable {
      * calls a notify to all the observer to say that the god chosen by the challenger
      * is not added because it was not correct
      *
-     * @ exception for the message
      */
     public void godNotAdded()  {
         notifyGodNotAdded(this.getCurrentTurn().getCurrentPlayer().getNickname());
@@ -507,7 +487,6 @@ public class Game extends Observable {
      * then choose the notify to ask for the effect if the current player has the special effect,
      * otherwise sends the notify to choose for the worker to move
      *
-     * @ exception for the message
      */
     public void toMoving()  {
         notifyStartMoving(this.getCurrentTurn().getCurrentPlayer().getNickname());

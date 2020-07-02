@@ -101,7 +101,7 @@ public class VisitorMethodsClient implements VisitorClient {
 
 
     /**
-     * Coordinates wrong, aking for new ones
+     * Coordinates wrong, asking for new ones
      * @param wrongCoordinatesUpdate message
      */
     @Override

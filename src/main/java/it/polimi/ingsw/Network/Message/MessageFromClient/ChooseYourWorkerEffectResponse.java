@@ -38,7 +38,7 @@ public class ChooseYourWorkerEffectResponse extends MessageFromClient{
      * @throws InterruptedException Exception
      */
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException, InterruptedException {
+    public void accept(VisitorServer gameMessageVisitorClient) throws InterruptedException {
         gameMessageVisitorClient.visit(this);
     }
 }

@@ -19,8 +19,7 @@ public class AddNickname extends PlayerFSA {
 
     /**
      * Check if nickname is valid. If it's valid, name, is set on the player else send error message.
-     * @param name
-     * @throws IOException
+     * @param name nickname to add
      */
     @Override
     public void addNickname(String name) {

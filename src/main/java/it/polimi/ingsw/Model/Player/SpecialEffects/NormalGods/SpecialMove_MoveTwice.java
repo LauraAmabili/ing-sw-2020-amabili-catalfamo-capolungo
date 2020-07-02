@@ -46,10 +46,10 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
     /**
      * Double move
      *
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row BoardCell row
+     * @param col BoardCell col
+     * @param worker Worker used
+     * @return  * @return true <--> the method works </-->
      */
     @Override
     public synchronized boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {

@@ -35,9 +35,9 @@ public class PlayerCreator {
 
     /**
      * create player with the effects of the god passed as input
-     * @param godName
-     * @param p
-     * @return
+     * @param godName godname
+     * @param p player
+     * @return player with the effect
      */
     public PlayerInterface createPlayer(String godName, PlayerInterface p) {
         God god = find(godName);
@@ -47,9 +47,9 @@ public class PlayerCreator {
 
     /**
      *
-     * @param p
-     * @param effects
-     * @return
+     * @param p player
+     * @param effects effects
+     * @return player decorated
      */
     public PlayerInterface addEffects(PlayerInterface p, List<String> effects) {
         if (effects.contains("SpecialBuild_BuildTwiceDifferent"))

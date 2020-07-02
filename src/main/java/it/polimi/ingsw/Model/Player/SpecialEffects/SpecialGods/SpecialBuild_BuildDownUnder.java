@@ -18,10 +18,10 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
 
     /**
      * Permit to build also under the selected worker
-     * @param row
-     * @param col
-     * @param worker
-     * @return
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker number of the worker
+     * @return boolean if the coordinates are correct
      */
     @Override
     public synchronized boolean build(int row, int col, @NotNull Worker worker) {
@@ -39,11 +39,11 @@ public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
 
     /**
      * return the list of cell where the player can build
-     * @param worker
-     * @return
+     * @param worker Worker to check around
+     * @return list of boardCells available to build on
      */
     @Override
-    public List<BoardCell> availableCellsToBuild(Worker worker) {
+    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
         List<BoardCell> b = player.availableCellsToBuild(worker);
         b.add(worker.getCurCell());
         return b;

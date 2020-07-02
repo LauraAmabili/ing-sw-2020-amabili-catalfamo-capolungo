@@ -3,9 +3,6 @@ package it.polimi.ingsw.Network.Client;
 
 import it.polimi.ingsw.Network.Message.MessageFromClient.BeatUpdate;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.SocketException;
 
 public class ClientBeatSender extends Thread {
 

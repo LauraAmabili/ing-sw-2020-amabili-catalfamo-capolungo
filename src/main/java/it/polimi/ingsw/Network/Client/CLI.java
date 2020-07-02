@@ -22,7 +22,7 @@ public class CLI extends NotifyMessages implements UserInterface {
 
 
 
-    public CLI() throws IOException {
+    public CLI() {
 
         client = new Client(this);
         up = new UpdatesForMessages(client);
@@ -66,7 +66,6 @@ public class CLI extends NotifyMessages implements UserInterface {
 
     /**
      * print the request to choose the number of player of the game  then sends a notify with the number
-     * @throws IOException Exception
      */
 
     @Override
@@ -217,7 +216,7 @@ public class CLI extends NotifyMessages implements UserInterface {
     }
 
     /**
-     * Moving request, need to inser row and col
+     * Moving request, need to insert row and col
      * @param moveRequest Message
      */
     @Override

@@ -64,8 +64,6 @@ public class Turn {
 
     /**
      * Check if the current player can move at least a worker
-     * @param worker
-     * @return
      */
     public boolean checkLockWorker(Worker worker) {
         return getCurrentPlayer().availableCellsToMove(worker).size() == 0;

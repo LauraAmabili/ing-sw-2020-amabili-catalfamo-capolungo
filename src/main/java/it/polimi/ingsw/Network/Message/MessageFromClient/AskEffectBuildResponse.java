@@ -30,7 +30,7 @@ public class AskEffectBuildResponse extends MessageFromClient {
      * @throws IOException Exception
      */
     @Override
-    public void accept(VisitorServer gameMessageVisitorClient) throws IOException {
+    public void accept(VisitorServer gameMessageVisitorClient) {
         gameMessageVisitorClient.visit(this);
     }
 }

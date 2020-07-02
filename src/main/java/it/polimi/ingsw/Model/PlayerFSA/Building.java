@@ -4,7 +4,7 @@ package it.polimi.ingsw.Model.PlayerFSA;
 import it.polimi.ingsw.Model.Game;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-import java.io.IOException;
+
 
 
 public class Building extends PlayerFSA {
@@ -24,9 +24,6 @@ public class Building extends PlayerFSA {
 
     /**
      * Check if the current worker can build. if it's not possible player loose.
-     * @param worker
-     * @param effect
-     * @throws IOException
      */
     @Override
     public synchronized void checkBuild(int worker, boolean effect)  {
@@ -47,10 +44,9 @@ public class Building extends PlayerFSA {
 
     /**
      * Build a building on the selected coordinates.
-     * @param row
-     * @param col
-     * @param worker
-     * @throws IOException
+     * @param row chosen row
+     * @param col chosen col
+     * @param worker number of the worker
      */
     @Override
     public synchronized void build(int row, int col, int worker)  {
@@ -72,12 +68,11 @@ public class Building extends PlayerFSA {
 
     /**
      * Build a building on the selected coordinates (Used for special effect).
-     * @param row1
-     * @param col1
-     * @param row2
-     * @param col2
-     * @param worker
-     * @throws IOException
+     * @param row1 chosen row
+     * @param col1 chosen col
+     * @param row2 chosen row
+     * @param col2 chosen col
+     * @param worker number of the worker used
      */
     @Override
     public synchronized void build(int row1, int col1, int row2, int col2, int worker)  {
