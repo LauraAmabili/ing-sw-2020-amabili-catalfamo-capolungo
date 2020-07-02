@@ -5,7 +5,7 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+
 
 
 
@@ -60,6 +60,14 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
         if (oldCell.equals(cell2)){
             return false;
         }
+
+        if (!isMoveUp()){
+            if (cell1.getLevel()>worker.getCurCell().getLevel())
+                return false;
+            if (cell2.getLevel()>worker.getCurCell().getLevel())
+                return false;
+        }
+
 
         if (enableSpecialMove){
             if (availableCellsToMove(worker).contains(cell1))

@@ -47,7 +47,7 @@ public class SpecialBuild_RemoveBlock extends PlayerDecorator {
      * @param worker Worker used
      * @param row2 Second BoardCell row
      * @param col2 Second BoardCell col
-     * @return true <--> the method works </-->
+     * @return true <--> the method works <-->
      */
     @Override
     public synchronized boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {

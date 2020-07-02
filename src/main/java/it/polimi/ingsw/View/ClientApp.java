@@ -21,9 +21,10 @@ import java.util.Scanner;
 public class ClientApp {
 
 
-
     /**
-     * read from console the UI the user wants to use
+     *
+     * @param args
+     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
 

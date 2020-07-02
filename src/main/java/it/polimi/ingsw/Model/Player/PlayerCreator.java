@@ -35,7 +35,7 @@ public class PlayerCreator {
 
     /**
      * create player with the effects of the god passed as input
-     * @param godName godname
+     * @param godName god name
      * @param p player
      * @return player with the effect
      */

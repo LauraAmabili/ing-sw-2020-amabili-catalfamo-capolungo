@@ -63,8 +63,8 @@ public class SpecialMove_SwapWorkers extends PlayerDecorator {
      *     Remove cells such that:
      *         - there is a dome
      *         - the level is greater than 1
-     * @param worker
-     * @return
+     * @param worker worker used
+     * @return list of available cells for the move
      */
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {

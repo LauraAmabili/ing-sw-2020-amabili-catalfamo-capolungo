@@ -69,4 +69,32 @@ class SpecialMove_MoveTwiceTest {
 
 
     }
+
+    @Test
+    public void testSpecialMove_MoveTwice_2() {
+        Worker worker2 = new Worker(2);
+        Worker worker1 = new Worker(1);
+        mockWorkers1.add(worker1);
+        Board board = new Board();
+        mockWorkers1.add(worker1);
+        mockWorkers1.add(worker2);
+        Player mockPlayer = new Player("Rexo", mockWorkers1, board);
+        worker1.setCurCell(board.getGrid()[0][0]);
+        board.getGrid()[0][0].setWorker(worker1);
+        worker1.setOldCell(null);
+        worker1.setPlayerWorker(mockPlayer);
+        mockWorkers1.add(worker1);
+        mockPlayer = new Player("mockName", mockWorkers1, board);
+        PlayerInterface player = new SpecialMove_MoveTwice(mockPlayer);
+
+        worker1.getPlayerWorker().setMoveUp(false);
+        board.getGrid()[0][1].setLevel(1);
+        board.getGrid()[0][2].setLevel(2);
+
+        player.setEnableSpecialMove(true);
+        assertFalse(player.move(0,1, 0, 2, worker1));
+
+    }
+
+
 }

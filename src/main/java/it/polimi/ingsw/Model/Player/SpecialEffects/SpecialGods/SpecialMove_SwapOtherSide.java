@@ -55,7 +55,7 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
      * @param row2 chosen row
      * @param col2 chosen col
      * @param worker Worker to move
-     * @return boolean if moved correctly
+     * @return true if moved correctly
      */
     @Override
     public synchronized boolean move(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
@@ -75,9 +75,9 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
 
     /**
      * move a worker from a boardcell to another without any further change
-     * @param startingBoardCell
-     * @param finalBoardCell
-     * @return
+     * @param startingBoardCell starting board cell
+     * @param finalBoardCell final board cell
+     * @return boolean
      */
     public boolean change(BoardCell startingBoardCell, BoardCell finalBoardCell) {
         startingBoardCell.getWorker().setOldCell(startingBoardCell);
@@ -88,9 +88,9 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
     }
 
     /**
-     * return opponent pushable boardcells
-     * @param worker
-     * @return
+     * return opponent pushable board cell
+     * @param worker worker used
+     * @return pushable board cells
      */
     public List<BoardCell> opponentCells(Worker worker) {
 
@@ -105,9 +105,9 @@ public class SpecialMove_SwapOtherSide extends PlayerDecorator {
 
     /**
      * return opposite side cell
-     * @param pushing
-     * @param pushed
-     * @return
+     * @param pushing worker pushing
+     * @param pushed worker pushed
+     * @return board cell pushed on
      */
     public BoardCell otherSide(Worker pushing, Worker pushed) {
         if (pushing.getPlayerWorker().equals(pushed.getPlayerWorker()))

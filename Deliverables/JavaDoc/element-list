@@ -1,0 +1,16 @@
+module:it.polimi.ingsw
+it.polimi.ingsw
+it.polimi.ingsw.Controller
+it.polimi.ingsw.Model
+it.polimi.ingsw.Model.God
+it.polimi.ingsw.Model.Player
+it.polimi.ingsw.Model.Player.SpecialEffects
+it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods
+it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods
+it.polimi.ingsw.Model.PlayerFSA
+it.polimi.ingsw.Network.Client
+it.polimi.ingsw.Network.Message.MessageFromClient
+it.polimi.ingsw.Network.Message.MessageFromServer
+it.polimi.ingsw.Network.Server
+it.polimi.ingsw.View
+it.polimi.ingsw.View.GUI

@@ -46,7 +46,7 @@ public class SpecialBuild_BuildTwiceDowntown extends PlayerDecorator {
      * @param worker Worker used
      * @param row2 Second BoardCell row
      * @param col2 Second BoardCell col
-     * @return true <--> the method works </-->
+     * @return true <--> the method works <-->
      */
     @Override
     public synchronized boolean build(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
@@ -64,7 +64,7 @@ public class SpecialBuild_BuildTwiceDowntown extends PlayerDecorator {
 
     /**
      * Checks where he cannot build
-     * @param boardCell boardcell not to build on
+     * @param boardCell board cells not to build on
      * @return boolean
      */
     private boolean downtown(BoardCell boardCell) {
