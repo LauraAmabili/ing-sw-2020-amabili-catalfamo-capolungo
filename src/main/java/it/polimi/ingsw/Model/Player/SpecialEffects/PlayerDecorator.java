@@ -108,18 +108,6 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
         return player.availableCellsToMove(worker);
     }
 
-
-    /**
-     * Checking the available cells for the moving based on the effect of the player
-     * @param worker number of the worker
-     * @return list of BoardCells available for the move
-     */
-    @Override
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
-        return player.availableCellsToMove(worker, specialEffect);
-    }
-
-
     /**
      * This method moves the worker based on the player that uses it
      * @param row chosen row
@@ -144,16 +132,6 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     }
 
     /**
-     * Checking the available cells for the building based on the effect of the player
-     * @param worker number of the worker
-     * @return list of BoardCells available for the build
-     */
-    @Override
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
-        return player.availableCellsToBuild(worker, specialEffect);
-    }
-
-    /**
      * This method builds the worker based on the player
      * @param row chosen row
      * @param col chosen col
@@ -163,18 +141,6 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
     @Override
     public boolean build(int row, int col, @NotNull Worker worker) {
         return player.build(row, col, worker);
-    }
-
-    /**
-     * This method builds the worker based on the fact that the player has the building effect
-     * @param row chosen row
-     * @param col chosen col
-     * @param worker worker doing the action
-     * @return boolean if ends correctly
-     */
-    @Override
-    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
-        return player.build(row, col, worker, specialEffect);
     }
 
     /**

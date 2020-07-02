@@ -70,7 +70,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
             adj.removeIf((n) -> n.getLevel() == 2 || n.getLevel() == 3);
             return adj;
         }
-        return player.availableCellsToBuild(worker, false);
+        return player.availableCellsToBuild(worker);
     }
 
 

@@ -57,14 +57,6 @@ public interface PlayerInterface extends Serializable {
 
 
     /**
-     * Checking the available cells for the moving based on the effect of the player
-     * @param worker number of the worker
-     * @return list of BoardCells available for the move
-     */
-    List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect);
-
-
-    /**
      * This method moves the worker based on the player that uses it
      * @param row chosen row
      * @param col chosen col
@@ -82,13 +74,6 @@ public interface PlayerInterface extends Serializable {
     List<BoardCell> availableCellsToBuild(@NotNull Worker worker);
 
 
-    /**
-     * Checking the available cells for the building based on the effect of the player
-     * @param worker number of the worker
-     * @return list of BoardCells available for the build
-     */
-    List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect);
-
 
     /**
      * This method builds the worker based on the player
@@ -98,17 +83,6 @@ public interface PlayerInterface extends Serializable {
      * @return boolean if ends correctly
      */
     boolean build(int row, int col, @NotNull Worker worker);
-
-
-
-    /**
-     * This method builds the worker based on the fact that the player has the building effect
-     * @param row chosen row
-     * @param col chosen col
-     * @param worker worker doing the action
-     * @return boolean if ends correctly
-     */
-    boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect);
 
 
     /**
