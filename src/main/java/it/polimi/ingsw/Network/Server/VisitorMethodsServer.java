@@ -146,10 +146,14 @@ public class VisitorMethodsServer implements VisitorServer {
             int row = Integer.parseInt(rowString);
             int col = Integer.parseInt(colString);
             int worker = moveResponse.getWorker();
-            view.tryMoving(row, col, worker);
+            if(row > 0 && row < 5 && col > 0 && col < 5) {
+                view.tryMoving(row, col, worker);
+            } else {
+                serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+                serverThread.sendToClient(new MoveRequest(worker, moveResponse.getAvailable()));
+            }
         } catch (NumberFormatException e) {
             int worker = moveResponse.getWorker();
-
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new MoveRequest(worker, moveResponse.getAvailable()));
         }
@@ -170,7 +174,12 @@ public class VisitorMethodsServer implements VisitorServer {
             int row = Integer.parseInt(rowString);
             int col = Integer.parseInt(colString);
             int worker = buildResponse.getWorker();
-            view.tryToBuild(row, col, worker);
+            if(row > 0 && row < 5 && col > 0 && col < 5) {
+                view.tryToBuild(row, col, worker);
+            } else {
+                serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+                serverThread.sendToClient(new BuildRequest(worker, buildResponse.getAv()));
+            }
         } catch (NumberFormatException e) {
             int worker = buildResponse.getWorker();
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
