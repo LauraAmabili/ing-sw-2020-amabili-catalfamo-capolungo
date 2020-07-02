@@ -173,26 +173,6 @@ public class Player implements PlayerInterface, Serializable {
     }
 
     /**
-     * return an Arraylist of the boardcell where the worker can move
-     * @param worker worker used
-     * @return list of the available board cells
-     */
-    public List<BoardCell> availableCellsToMove(@NotNull Worker worker, boolean specialEffect) {
-
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        if (moveUp) {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel() + 1));
-        } else {
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-        }
-        return adj;
-
-    }
-
-    /**
      * update the location of the worker in Worker && update the presence of the worker in BoardCell
      * @param row BoardCell row
      * @param col BoardCell col
@@ -230,21 +210,6 @@ public class Player implements PlayerInterface, Serializable {
 
 
     /**
-     * return an Arraylist of the boardcell where the worker can build
-     * @param worker Worker used
-     * @param specialEffect true if has the special effect
-     * @return list of boardcell available to build on with the effect
-     */
-    public List<BoardCell> availableCellsToBuild(@NotNull Worker worker, boolean specialEffect) {
-
-        List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-        adj.removeIf((n) -> n.getWorker() != null);
-        adj.removeIf(BoardCell::getDome);
-        return adj;
-
-    }
-
-    /**
      * update the level of the building in the BoardCell
      * @param row BoardCell row
      * @param col BoardCell col
@@ -261,10 +226,6 @@ public class Player implements PlayerInterface, Serializable {
             }
             return true;
         }
-        return false;
-    }
-
-    public boolean build(int row, int col, @NotNull Worker worker, boolean specialEffect) {
         return false;
     }
 

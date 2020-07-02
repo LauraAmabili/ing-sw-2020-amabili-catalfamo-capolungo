@@ -144,7 +144,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int row = Integer.parseInt(rowString);
             int col = Integer.parseInt(colString);
             int worker = moveResponse.getWorker();
-            if(row > 0 && row < 5 && col > 0 && col < 5) {
+            if(row > 0 && row < 6 && col > 0 && col < 6) {
                 view.tryMoving(row, col, worker);
             } else {
                 serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
@@ -172,7 +172,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int row = Integer.parseInt(rowString);
             int col = Integer.parseInt(colString);
             int worker = buildResponse.getWorker();
-            if(row > 0 && row < 5 && col > 0 && col < 5) {
+            if(row > 0 && row < 6 && col > 0 && col < 6) {
                 view.tryToBuild(row, col, worker);
             } else {
                 serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
@@ -270,7 +270,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int col1 = Integer.parseInt(colString1);
             int row2 = Integer.parseInt(rowString2);
             int col2 = Integer.parseInt(colString2);
-            if(row1 > 0 && row1 < 5 && row2 > 0 && row2 < 5 && col1 > 0 && col1 < 5 && col2 > 0 && col2 < 5 ) {
+            if(row1 > 0 && row1 < 6 && row2 > 0 && row2 < 6 && col1 > 0 && col1 < 6 && col2 > 0 && col2 < 6 ) {
                 view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
             } else {
                 serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
@@ -300,7 +300,7 @@ public class VisitorMethodsServer implements VisitorServer {
             int col1 = Integer.parseInt(colString1);
             int row2 = Integer.parseInt(rowString2);
             int col2 = Integer.parseInt(colString2);
-            if(row1 > 0 && row1 < 5 && row2 > 0 && row2 < 5 && col1 > 0 && col1 < 5 && col2 > 0 && col2 < 5 ) {
+            if(row1 > 0 && row1 < 6 && row2 > 0 && row2 < 6 && col1 > 0 && col1 < 6 && col2 > 0 && col2 < 6 ) {
                 view.timeToMoveTwoInput(row1, col1, row2, col2, worker);
             } else {
                 serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
