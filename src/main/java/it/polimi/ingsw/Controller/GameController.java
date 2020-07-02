@@ -2,10 +2,10 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Player.PlayerCreator;
+
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class GameController implements Observer {
 
@@ -36,7 +36,6 @@ public class GameController implements Observer {
      * checks the player with the correct state and set the nickname chosen by the client
      *
      * @param nickname chosen nickname
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateNickname(String nickname)  {
@@ -53,7 +52,6 @@ public class GameController implements Observer {
     /**
      * Calls the method to choose the cards by the challenger
      *
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateChoosingCards() {
@@ -66,7 +64,6 @@ public class GameController implements Observer {
      * If the current player is choosing the cards calls the method to add the chosencard to the list
      *
      * @param in name of the chosen card
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateTryThisCard(String in)  {
@@ -81,7 +78,6 @@ public class GameController implements Observer {
      * Calls the method if the player has the correct state to set the card chosen
      *
      * @param godName name of the god chosen by the current player
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateSetGodName(String godName)  {
@@ -137,7 +133,6 @@ public class GameController implements Observer {
     /**
      * After checking if the player is in the correct state, this check if the current player can move
      *
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateStartMoving() {
@@ -157,7 +152,6 @@ public class GameController implements Observer {
      *
      * @param effect effect boolean to set true if the client wants to use the effect
      * @param worker worker to apply the effect to
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updateTryThisWorkerEffect(boolean effect, int worker) {
@@ -181,7 +175,6 @@ public class GameController implements Observer {
      * @param effect   effect to check
      * @param nickname name of the current player
      * @param worker   worker to build around
-     * @throws IOException Exception
      */
     @Override
     public synchronized void updatePlayerBuild(boolean effect, String nickname, int worker)  {
@@ -205,7 +198,6 @@ public class GameController implements Observer {
      * @param row2   second chosen row
      * @param col2   second chosen col
      * @param worker worker to move twice
-     * @throws IOException exception for the message
      */
     @Override
     public synchronized void updateTimeToMoveTwoInput(int row1, int col1, int row2, int col2, int worker) {
@@ -225,7 +217,6 @@ public class GameController implements Observer {
      * @param row2   second chosen row
      * @param col2   second chosen col
      * @param worker worker that should build, but, you know, is just a game
-     * @throws IOException exception for the message
      */
     @Override
     public synchronized void updateTimeToBuildTwoInput(int row1, int col1, int row2, int col2, int worker)  {
@@ -241,7 +232,6 @@ public class GameController implements Observer {
      * check the current player that is in the correct state and checks if the chosen worker can move
      *
      * @param worker number of the chosen worker
-     * @throws IOException exception for the message
      */
     @Override
     public synchronized void updateTryThisWorker(int worker) {
@@ -257,8 +247,7 @@ public class GameController implements Observer {
      *
      * @param row    chosen row
      * @param col    chosen col
-     * @param worker numbero of the worker to move
-     * @throws IOException exception for the message
+     * @param worker number of the worker to move
      */
     @Override
     public synchronized void updateMoving(int row, int col, int worker) {
@@ -276,7 +265,6 @@ public class GameController implements Observer {
     /**
      * calls the starting game in the model
      *
-     * @throws IOException          exception for the message
      * @throws InterruptedException exception
      */
     @Override
@@ -313,7 +301,6 @@ public class GameController implements Observer {
     /**
      * Sends to the model the name of the first player chosen to start the game
      * @param player name of the player
-     * @throws IOException Exception
      */
 
     @Override

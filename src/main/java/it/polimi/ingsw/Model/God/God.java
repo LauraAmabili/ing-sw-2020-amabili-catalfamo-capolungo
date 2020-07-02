@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model.God;
 
-//To delete
 
 import java.io.Serializable;
 import java.util.List;
