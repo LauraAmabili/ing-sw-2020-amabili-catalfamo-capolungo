@@ -14,14 +14,6 @@ public class Turn {
         activePlayers = list;
     }
 
-    public int getTurnId() {
-        return TurnId;
-    }
-
-    public void setTurnId(int turnId) {
-        TurnId = turnId;
-    }
-
     public PlayerInterface getCurrentPlayer() {
         return currentPlayer;
     }
@@ -35,6 +27,10 @@ public class Turn {
     }
 
 
+    /**
+     * @param firstPlayer first player
+     * @param game Game
+     */
     public synchronized void firstTurn(int firstPlayer , Game game){
 
         currentPlayer = activePlayers.get(firstPlayer-1);

@@ -198,6 +198,10 @@ public class GameTest {
         game.getStateList().get(1).build(2, 3, 1);
         Assert.assertEquals(game.getBoard().getGrid()[1][2].getLevel(), 1);
 
+
     }
+
+
+
 
 }

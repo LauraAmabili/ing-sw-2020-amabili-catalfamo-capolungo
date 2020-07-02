@@ -49,7 +49,7 @@ public class SpecialMove_BMB extends PlayerDecorator {
      * @param worker Worker used
      * @param rowBuild Second BoardCell row
      * @param colBuild Second BoardCell col
-     * @return true <--> the method works </-->
+     * @return true <--> the method works
      */
     @Override
     public synchronized boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
@@ -76,7 +76,7 @@ public class SpecialMove_BMB extends PlayerDecorator {
 
     /**
      * After building we need to recalculate where the worker can move
-     * @param worker mumber of the worker
+     * @param worker number of the worker
      * @return recursion
      */
     @Override

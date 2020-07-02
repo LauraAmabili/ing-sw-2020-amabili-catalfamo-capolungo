@@ -83,13 +83,7 @@ public class Game extends Observable {
         this.started = started;
     }
 
-    public void setAllGods(List<God> allGods) {
-        this.allGods = allGods;
-    }
 
-    public void setChosenGodList(List<God> chosenGodList) {
-        this.chosenGodList = chosenGodList;
-    }
 
     public List<God> getAllGods() {
         return allGods;

@@ -3,6 +3,7 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.PlayerFSA.*;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class TurnTest {
 
 
     @Test
-    public void TurnTest() throws IOException {
+    public void TurnTest()  {
 
 
         //NextTurn() when added nickname
@@ -191,6 +192,8 @@ public class TurnTest {
         for (int i = 0; i < game.getStateList().size(); i++) {
             game.getStateList().set(i, new Idle(game.getOnlinePlayers().get(i), new AddNickname(game.getOnlinePlayers().get(i), game), game));
         }
+        turn.firstTurn(1, game);
+        Assert.assertEquals("Rexo", turn.getCurrentPlayer().getNickname());
         game.getStateList().set(0, new Initialized(game.getOnlinePlayers().get(0), game));
         assertEquals(new Initialized(game.getOnlinePlayers().get(0), game), game.getStateList().get(0));
         game.getStateList().get(0).chosenCard("Artemis");

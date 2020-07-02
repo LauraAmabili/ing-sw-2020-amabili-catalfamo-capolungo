@@ -16,24 +16,8 @@ public class God implements Serializable {
         return descriptionTitle;
     }
 
-    public void setDescriptionTitle(String descriptionTitle) {
-        this.descriptionTitle = descriptionTitle;
-    }
-
-    public String getDescriptionStep() {
-        return descriptionStep;
-    }
-
-    public void setDescriptionStep(String descriptionStep) {
-        this.descriptionStep = descriptionStep;
-    }
-
     public String getDescriptionEffect() {
         return descriptionEffect;
-    }
-
-    public void setDescriptionEffect(String descriptionEffect) {
-        this.descriptionEffect = descriptionEffect;
     }
 
     public God(String godName, List<String> effects, String descriptionTitle, String descriptionStep, String descriptionEffect) {
