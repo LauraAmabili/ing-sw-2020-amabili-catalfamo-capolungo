@@ -507,11 +507,15 @@ public class VirtualView extends Observable implements ObserverModel {
      * @param current name of the current player
      */
     @Override
-    public void updateWorkerSelected(int worker, String current,  List<BoardCell> available) {
+    public void updateWorkerSelected(boolean hasTwoInput, boolean effect, int worker, String current,  List<BoardCell> available) {
 
         if(MyNickname.equals(current)) {
             thread.sendToClient(new WrongWorkerUpdate(worker));
-            moving(worker, current, available);
+            if(hasTwoInput && effect) {
+                updateMoveTwoInput(current, worker);
+            } else {
+                moving(worker, current, available);
+            }
         }
 
     }

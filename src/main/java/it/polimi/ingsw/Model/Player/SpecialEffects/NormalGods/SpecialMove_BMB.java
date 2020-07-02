@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 import it.polimi.ingsw.Model.Worker;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -78,11 +79,9 @@ public class SpecialMove_BMB extends PlayerDecorator {
     @Override
     public List<BoardCell> availableCellsToMove(@NotNull Worker worker) {
         if (enableSpecialMove) {
-            List<BoardCell> adj = this.getBoard().adjacentCells(worker.getCurCell());
-            adj.removeIf((n) -> n.getWorker() != null);
-            adj.removeIf(BoardCell::getDome);
-            adj.removeIf((n) -> (n.getLevel() > worker.getCurCell().getLevel()));
-            return adj;
+            if(player.availableCellsToBuild(worker).size() <= 1) {
+                return new ArrayList<>();
+            }
         }
         return player.availableCellsToMove(worker);
     }

@@ -121,12 +121,14 @@ public interface ObserverModel {
      *
      */
     void updateTimeToPlaceWorker(String currentPlayerName) ;
+
     /**
      * Sends a Message if the worker is not correct, we choose automatically the other one
      * @param worker number of the worker
      * @param current name of the current player
      */
-    void updateWorkerSelected(int worker, String current, List<BoardCell> available) ;
+    void updateWorkerSelected(boolean hasTwoInput, boolean effect, int worker, String current, List<BoardCell> available) ;
+
     /**
      * Sends a message if the coordinates are not valid and calls the moving again
      * @param worker number of the worker that cannot move

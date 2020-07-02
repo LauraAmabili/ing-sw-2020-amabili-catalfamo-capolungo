@@ -119,9 +119,9 @@ public class Observable {
             o.updateWinners(p);
         }
     }
-    void notifyWorkerSelected(int worker, String current,  List<BoardCell> available)  {
+    void notifyWorkerSelected(boolean hasTwoInput,boolean effect, int worker, String current,  List<BoardCell> available)  {
         for (ObserverModel o : observerModels){
-            o.updateWorkerSelected(worker, current, available);
+            o.updateWorkerSelected(hasTwoInput, effect, worker, current, available);
         }
     }
     void notifyNoCoordinatesValid(int worker, String current,  List<BoardCell> available)  {

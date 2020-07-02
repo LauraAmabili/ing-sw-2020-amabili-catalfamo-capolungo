@@ -58,9 +58,10 @@ public class Moving extends PlayerFSA {
             } else {
                 worker++;
             }
-            game.updateWorkerSelected(worker);
+            game.updateWorkerSelected(worker, player.isHasTwoInputMove(), effect);
+        } else {
+            game.timeToMove(worker);
         }
-        game.timeToMove(worker);
 
     }
 

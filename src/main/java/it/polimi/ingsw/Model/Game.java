@@ -370,8 +370,8 @@ public class Game extends Observable {
      * @param worker number of the chosen worker
      * @ Exception for the message
      */
-    public void updateWorkerSelected(int worker)  {
-        notifyWorkerSelected(worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
+    public void updateWorkerSelected(int worker, boolean hasTwoInput, boolean effect)  {
+        notifyWorkerSelected(hasTwoInput, effect, worker, this.getCurrentTurn().getCurrentPlayer().getNickname(), this.getCurrentTurn().getCurrentPlayer().availableCellsToMove(this.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker-1)));
     }
 
     /**

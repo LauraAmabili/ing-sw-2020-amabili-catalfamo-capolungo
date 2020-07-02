@@ -263,7 +263,12 @@ public class VisitorMethodsServer implements VisitorServer {
             int col1 = Integer.parseInt(colString1);
             int row2 = Integer.parseInt(rowString2);
             int col2 = Integer.parseInt(colString2);
-            view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
+            if(row1 > 0 && row1 < 5 && row2 > 0 && row2 < 5 && col1 > 0 && col1 < 5 && col2 > 0 && col2 < 5 ) {
+                view.timeToBuildTwoInput(row1, col1, row2, col2, worker);
+            } else {
+                serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+                serverThread.sendToClient(new BuildTwoInputRequest(worker));
+            }
         } catch (NumberFormatException e) {
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new BuildTwoInputRequest(worker));
@@ -288,7 +293,12 @@ public class VisitorMethodsServer implements VisitorServer {
             int col1 = Integer.parseInt(colString1);
             int row2 = Integer.parseInt(rowString2);
             int col2 = Integer.parseInt(colString2);
-            view.timeToMoveTwoInput(row1, col1, row2, col2, worker);
+            if(row1 > 0 && row1 < 5 && row2 > 0 && row2 < 5 && col1 > 0 && col1 < 5 && col2 > 0 && col2 < 5 ) {
+                view.timeToMoveTwoInput(row1, col1, row2, col2, worker);
+            } else {
+                serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
+                serverThread.sendToClient(new MoveTwoInputRequest(worker));
+            }
         } catch (NumberFormatException e) {
             serverThread.sendToClient(new TryNewCoordinatesRequest(worker));
             serverThread.sendToClient(new MoveTwoInputRequest(worker));
