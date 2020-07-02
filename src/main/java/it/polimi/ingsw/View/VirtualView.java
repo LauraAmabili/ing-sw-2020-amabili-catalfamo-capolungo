@@ -608,6 +608,11 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
 
+    /**
+     * Sends the request for choosing tha name of the first player to choose the cards
+     * @param nickname nickname of the current player
+     * @param onlinePlayers list of players
+     */
     @Override
     public void updateSetFirstPlayer(String nickname, List<PlayerInterface> onlinePlayers) {
         if(MyNickname.equals(nickname)){
@@ -615,6 +620,11 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
+    /**
+     * Sends to the client a new request for the coordinates for the build twice
+     * @param worker number of the worker
+     * @param nickname nickname of the player
+     */
     @Override
     public void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) {
         if(MyNickname.equals(nickname)){
@@ -623,6 +633,11 @@ public class VirtualView extends Observable implements ObserverModel {
         }
     }
 
+    /**
+     * Sends to the client a new request for the coordinates for the move twice
+     * @param worker number of the worker
+     * @param nickname nickname of the player
+     */
     @Override
     public void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) {
         if(MyNickname.equals(nickname)){
@@ -632,6 +647,10 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
 
+    /**
+     * Sends to the model the name of the first player
+     * @param player
+     */
     public void setFirstPlayer(int player)  {
         notifyFirstPlayer(player);
     }
@@ -736,6 +755,10 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
 
+    /**
+     * sends the message to the client for the request for choosing the worker when the player has the effect
+     * @param effect boolean for the effect
+     */
     public void updateTimeToChooseWorkerEffect(boolean effect) {
         thread.sendToClient(new ChooseYourWorkerEffectRequest(effect));
     }
@@ -751,10 +774,16 @@ public class VirtualView extends Observable implements ObserverModel {
     }
 
 
+    /**
+     * Sends to the model the update that this client dropped the connection
+     */
     public void dropConnection()  {
         notifyDropConnection(MyNickname);
     }
 
+    /**
+     *Sends the message that the server is restarting
+     */
     public void updateServerRestart() {
         thread.sendToClient(new ServerRestart());
     }

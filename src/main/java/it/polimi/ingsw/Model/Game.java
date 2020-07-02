@@ -398,7 +398,10 @@ public class Game extends Observable {
         }
     }
 
-    //TODO: javadoc
+    /**
+     * Checking the effect of the player to call the right build with the right parameters
+     * @param worker number of the worker of the player
+     */
     public void timeToBuild(int worker)  {
         for (int i = 0; i < getOnlinePlayers().size(); i++) {
             if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
@@ -435,7 +438,10 @@ public class Game extends Observable {
         notifyCanMove(this.getCurrentTurn().getCurrentPlayer());
     }
 
-    //TODO: javadoc
+    /**
+     * Checking the effect of the player to call the right move with the right parameters
+     * @param worker number of the worker of the player
+     */
     public void timeToMove(int worker)  {
         for (int i = 0; i < getOnlinePlayers().size(); i++) {
             if (getOnlinePlayers().get(i).equals(getCurrentTurn().getCurrentPlayer())) {
@@ -512,17 +518,32 @@ public class Game extends Observable {
         }
     }
 
-    //TODO: javadoc
 
+    /**
+     * Calls the update when the coordinates were not valid for the double move
+     * @param worker number of the worker
+     */
     public void NoCoordinatesValidMoveTwoInput(int worker)  {
         notifyNoCoordinatesValidMoveTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
+    /**
+     * Calls the update when the coordinates were not valid for the double build
+     * @param worker number of the worker
+     */
     public void NoCoordinatesValidBuildTwoInput(int worker)  {
         notifyNoCoordinatesValidBuildTwoInput(worker, this.getCurrentTurn().getCurrentPlayer().getNickname());
     }
+
+    /**
+     * When it's time to set the first player this one is asked to the challenger
+     */
     public void setFirstPlayer()  {
         notifySetFirstPlayer(this.getCurrentTurn().getCurrentPlayer().getNickname(), onlinePlayers);
     }
+
+    /**
+     * Sending to the observers the notify that the server is restarting
+     */
     public void serverRestarting()  {
         notifyServerRestart();
     }
