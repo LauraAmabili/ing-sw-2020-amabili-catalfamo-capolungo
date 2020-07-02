@@ -148,4 +148,20 @@ public class PlayerTest {
         assertFalse(player.addWorker(0,0, player.getWorkerRef().get(1)));
         assertTrue(player.addWorker(4,4, player.getWorkerRef().get(1)));
     }
+
+    @Test
+    public void getterAndSetter() {
+        Player p = new Player();
+        p.setHasSpecialBuild(true);
+        assertTrue(p.isHasSpecialBuild());
+        p.setHasSpecialMove(true);
+        assertTrue(p.isHasSpecialMove());
+        p.setEnableSpecialBuild(true);
+        assertTrue(p.isEnableSpecialBuild());
+        p.setEnableSpecialMove(true);
+        assertTrue(p.isEnableSpecialMove());
+        assertFalse(p.isHasTwoInputBuild());
+
+
+    }
 }

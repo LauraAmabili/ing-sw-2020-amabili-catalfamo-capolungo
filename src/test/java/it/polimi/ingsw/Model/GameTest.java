@@ -48,10 +48,14 @@ public class GameTest {
     @Test
     public void delPlayer() {
 
-        BoardCell b1 = new BoardCell(0, 0);
-        BoardCell b2 = new BoardCell(0, 1);
+        game.setStarted(true);
+        game.setBoard(new Board());
+        BoardCell b1 = game.getBoard().getGrid()[0][0];
+        BoardCell b2 = game.getBoard().getGrid()[0][1];
         PlayerInterface player1 = game.getOnlinePlayers().get(0);
+        player1.setNickname("Rob");
         PlayerInterface player2 = game.getOnlinePlayers().get(1);
+        player2.setNickname("Laura");
         List<PlayerInterface> playerList = new ArrayList<>();
         playerList.add(player1);
         playerList.add(player2);
@@ -61,14 +65,11 @@ public class GameTest {
         b2.setWorker(player1.getWorkerRef().get(1));
         player1.getWorkerRef().get(0).setCurCell(b1);
         player1.getWorkerRef().get(1).setCurCell(b2);
-        /*
         game.delPlayer(game.getOnlinePlayers().get(0));
         Assert.assertEquals(game.getOnlinePlayers().get(0), player2);
         Assert.assertEquals(0, player1.getWorkerRef().size());
         Assert.assertNull(b1.getWorker());
         Assert.assertNull(b2.getWorker());
-
-         */
 
     }
 
