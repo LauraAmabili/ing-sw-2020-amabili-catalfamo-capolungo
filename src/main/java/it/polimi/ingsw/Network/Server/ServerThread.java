@@ -52,10 +52,10 @@ public class ServerThread extends Thread implements Runnable {
     /**
      * This class is a thread create by the server. Each client has its own Thread.
      * The thread is the real gate between the Server and the Client.
-     * @param socket
-     * @param server
-     * @param numPlayers
-     * @param maxPlayerNumberSet
+     * @param socket socket
+     * @param server server
+     * @param numPlayers numPlayers
+     * @param maxPlayerNumberSet maxPlayerNumberSet
      */
     public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlayerNumberSet) {
         this.socket = socket;
@@ -147,8 +147,7 @@ public class ServerThread extends Thread implements Runnable {
 
     /**
      * This method sends the input to the client
-     * @param messageFromServer
-     * @throws IOException
+     * @param messageFromServer message
      */
     public void sendToClient(MessageFromServer messageFromServer)  {
         try {
@@ -163,9 +162,7 @@ public class ServerThread extends Thread implements Runnable {
 
     /**
      * Visitor analyzes the incoming messages
-     * @param msg
-     * @throws IOException
-     * @throws InterruptedException
+     * @param msg message
      */
     public synchronized void Accept(MessageFromClient msg) throws IOException, InterruptedException {
         msg.accept(visitor);
@@ -174,7 +171,7 @@ public class ServerThread extends Thread implements Runnable {
 
     /**
      * Observer is removed
-     * @param view
+     * @param view view
      */
     public void RemoveObserver(ObserverModel view) {
         server.getGameController().getGame().RemoveObserver(view);

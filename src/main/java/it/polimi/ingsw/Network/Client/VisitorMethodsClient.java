@@ -31,7 +31,7 @@ public class VisitorMethodsClient implements VisitorClient {
      * @param playerNumberRequest Message
      */
     @Override
-    public synchronized void visit(PlayerNumberRequest playerNumberRequest) throws IOException {
+    public synchronized void visit(PlayerNumberRequest playerNumberRequest) {
 
         userInterface.PlayerNumberRequest();
         //client.send(new PlayerNumberResponse(num));

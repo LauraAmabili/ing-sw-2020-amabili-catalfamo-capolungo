@@ -44,7 +44,6 @@ public class MoveTwoInputResponse extends MessageFromClient {
     /**
      * Calls the correspondent visit method based on the type of Message
      * @param gameMessageVisitorClient gameMessage to be checked
-     * @throws IOException Exception
      */
     @Override
     public void accept(VisitorServer gameMessageVisitorClient)  {

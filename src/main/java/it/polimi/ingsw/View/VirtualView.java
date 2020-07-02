@@ -62,8 +62,6 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Set number of Players of the game. It is called only from the first client
      * @param number number of players chosen
-     *
-     * @throws InterruptedException
      */
     public synchronized void notifyNumberOfPlayer(int number) throws InterruptedException {
 
@@ -653,7 +651,7 @@ public class VirtualView extends Observable implements ObserverModel {
 
     /**
      * Sends to the model the name of the first player
-     * @param player
+     * @param player player
      */
     public void setFirstPlayer(int player)  {
         notifyFirstPlayer(player);

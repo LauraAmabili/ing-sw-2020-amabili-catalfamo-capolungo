@@ -23,9 +23,7 @@ public class VisitorMethodsServer implements VisitorServer {
      * check if the number is available
      * otherwise the view is notified
      *
-     * @param playerNumberResponse
-     * @
-     * @throws InterruptedException
+     * @param playerNumberResponse message
      */
     @Override
     public void visit(PlayerNumberResponse playerNumberResponse) throws InterruptedException {
@@ -339,7 +337,7 @@ public class VisitorMethodsServer implements VisitorServer {
 
     /**
      * Client beat
-     * @param beatUpdate
+     * @param beatUpdate message
      */
     @Override
     public void visit(BeatUpdate beatUpdate) {

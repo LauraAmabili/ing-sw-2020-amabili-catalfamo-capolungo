@@ -34,7 +34,6 @@ public class ChooseYourWorkerEffectResponse extends MessageFromClient{
     /**
      * Calls the correspondent visit method based on the type of Message
      * @param gameMessageVisitorClient gameMessage to be checked
-     * @throws IOException Exception
      * @throws InterruptedException Exception
      */
     @Override

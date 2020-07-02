@@ -21,7 +21,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
     /**
      * Receive the beats from the clients and delete dead clients
      *
-     * @param server
+     * @param server server
      */
     public ServerBeatReceiver(Server server) {
         this.server = server;
@@ -95,7 +95,7 @@ public class ServerBeatReceiver extends Thread implements Runnable {
      * Receive a beat from a client and save it
      * The beat instant is saved with the serverThread of the beat
      *
-     * @param serverThread
+     * @param serverThread serverThread
      */
     public synchronized void receiveBeat(ServerThread serverThread) {
         System.out.println("Beat from: " + serverThread + "at" + Instant.now().getLong(INSTANT_SECONDS));
