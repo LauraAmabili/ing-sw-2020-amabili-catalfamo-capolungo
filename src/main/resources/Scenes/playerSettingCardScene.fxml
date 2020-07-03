@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="900.0" fitWidth="1600.0">
          <image>
@@ -18,14 +20,14 @@
                   <Image url="@../Images/endgame_victorywin.png" />
                </image>
             </ImageView>
-            <Text fill="#12105b" layoutX="123.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is setting the card!" textAlignment="CENTER" wrappingWidth="252.13671875">
+            <Text fill="#12105b" layoutX="123.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is setting the card!" textAlignment="CENTER" wrappingWidth="252.13671875">
                <font>
                   <Font name="Dalek" size="29.0" />
                </font>
             </Text>
-            <Text fx:id="PlayerName" fill="#12105b" layoutX="123.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="252.13671875">
+            <Text fx:id="PlayerName" fill="#12105b" layoutX="116.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="252.13671875">
                <font>
-                  <Font name="Dalek" size="32.0" />
+                  <Font name="Dalek" size="29.0" />
                </font>
             </Text>
          </children>
