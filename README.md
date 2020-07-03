@@ -51,21 +51,12 @@ $ java -jar path/to/server.jar
 
 ### Start the client
 
+As for the server, to start the client, simply locate its jar file and then type into a shell
 You can find the ClientJar in Deliverables [here]()
 
-#### CLI 
+##### Playing under Windows & macOS
 
-##### Playing under Windows
-
-If you intend to play on Windows using the CLI, you need to install the Linux Bash Shell, which is part of the Windows Subsystem for Linux available for Windows 10.
-
-```
-$ java -jar path/to/client.jar -cli
-```
-
-##### Playing under macOS
-
-To start the client, as for the server, simply locate its jar file and then typo into the shell
+####CLI
 
 ```
 $ java -jar path/to/client.jar -cli
@@ -73,19 +64,9 @@ $ java -jar path/to/client.jar -cli
 
 ####GUI
 
-
-##### Playing under Windows
-
-
 ```
 $ java -jar path/to/client.jar 
 ```
 
-##### Playing under macOS
 
-To start the client, as for the server, simply locate its jar file and then typo into the shell
-
-```
-$ java -jar path/to/client.jar 
-```
 
