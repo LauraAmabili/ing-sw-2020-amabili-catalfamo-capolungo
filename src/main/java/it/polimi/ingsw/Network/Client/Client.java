@@ -88,7 +88,6 @@ public class Client {
     public void startClient(String host, String port) {
 
         try {
-
             socket = new Socket(host, Integer.parseInt(port));
         } catch (ConnectException | IllegalArgumentException e) {
             if(userInterface.getClass() == GUI.class) {

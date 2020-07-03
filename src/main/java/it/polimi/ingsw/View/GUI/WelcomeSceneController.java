@@ -55,12 +55,16 @@ public class WelcomeSceneController extends NotifyMessages implements Initializa
             try {
                 String host = IP.getText();
                 String port = Port.getText();
-                client.startClient(host, port);
-                GUI gui = (GUI) client.getUserInterface();
-                gui.setClient(client);
-                Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
-                Stage primaryStage = gui.getPrimaryStage();
-                primaryStage.setScene(new Scene(root));
+                String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+                boolean result = host.matches(PATTERN);
+                if(result) {
+                    client.startClient(host, port);
+                    GUI gui = (GUI) client.getUserInterface();
+                    gui.setClient(client);
+                    Parent root = FXMLLoader.load(GUI_App.class.getResource("/Scenes/WaitingScene.fxml"));
+                    Stage primaryStage = gui.getPrimaryStage();
+                    primaryStage.setScene(new Scene(root));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
