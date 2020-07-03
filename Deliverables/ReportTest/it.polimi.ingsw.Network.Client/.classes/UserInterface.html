@@ -1,0 +1,103 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserInterface</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserInterface (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">UserInterface</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>4</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;public interface UserInterface {
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    void PlayerNumberRequest() ;
+<i>14</i>&nbsp;    void NicknameRequest();
+<i>15</i>&nbsp;    void ConnectionResponse();
+<i>16</i>&nbsp;    void CardNotFoundRequest();
+<i>17</i>&nbsp;    void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate);
+<i>18</i>&nbsp;    void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) ;
+<i>19</i>&nbsp;    void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) ;
+<i>20</i>&nbsp;    void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate);
+<i>21</i>&nbsp;    void BoardUpdate(BoardUpdate boardUpdate);
+<i>22</i>&nbsp;    void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate);
+<i>23</i>&nbsp;    void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) ;
+<i>24</i>&nbsp;    void MoveRequest(MoveRequest moveRequest) ;
+<i>25</i>&nbsp;    void BuildTimeUpdate();
+<i>26</i>&nbsp;    void BuildRequest(BuildRequest buildRequest) ;
+<i>27</i>&nbsp;    void TryNewCoordinatesRequest();
+<i>28</i>&nbsp;    void WrongWorkerUpdate(WrongWorkerUpdate wrongWorkerUpdate);
+<i>29</i>&nbsp;    void NicknameAcceptedUpdate(NicknameAcceptedUpdate nicknameAcceptedUpdate);
+<i>30</i>&nbsp;    void NicknameNotValidUpdate();
+<i>31</i>&nbsp;    void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate);
+<i>32</i>&nbsp;    void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate);
+<i>33</i>&nbsp;    void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) ;
+<i>34</i>&nbsp;    void CardAddedUpdate(CardAddedUpdate cardAddedUpdate);
+<i>35</i>&nbsp;    void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest);
+<i>36</i>&nbsp;    void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate);
+<i>37</i>&nbsp;    void SetYourCardRequest(SetYourCardRequest setYourCardRequest);
+<i>38</i>&nbsp;    void CardSetUpdate(CardSetUpdate cardSetUpdate);
+<i>39</i>&nbsp;    void MaxPlayerReachedUpdate();
+<i>40</i>&nbsp;    void AskEffect() ;
+<i>41</i>&nbsp;    void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) ;
+<i>42</i>&nbsp;    void AskEffectBuild(AskEffectBuild askEffectBuild) ;
+<i>43</i>&nbsp;    void NumberOfPlayerWrong();
+<i>44</i>&nbsp;    void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest);
+<i>45</i>&nbsp;    void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest);
+<i>46</i>&nbsp;    void WinMessage(String nickname);
+<i>47</i>&nbsp;    void WorkerInputNotValid();
+<i>48</i>&nbsp;    void DroppedConnection(DroppedConnection droppedConnection);
+<i>49</i>&nbsp;    void SetFirstPlayer(List&lt;PlayerInterface&gt; onlinePlayers) ;
+<i>50</i>&nbsp;    void ServerRestart();
+<i>51</i>&nbsp;    void lengthNameError();
+<i>52</i>&nbsp;}
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

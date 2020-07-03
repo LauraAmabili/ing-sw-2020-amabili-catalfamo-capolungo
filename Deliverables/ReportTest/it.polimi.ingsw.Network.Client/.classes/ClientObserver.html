@@ -1,0 +1,75 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientObserver</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientObserver (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ClientObserver</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.BoardCell;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.io.IOException;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface ClientObserver {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    void updatePlayerNumberResponse(String num);
+<i>13</i>&nbsp;    void updateNicknameResponse(String nickname);
+<i>14</i>&nbsp;    void updateStartingSetWorkerResponse(String row, String col, int worker);
+<i>15</i>&nbsp;    void updateWrongCoordinatesUpdate(String row, String col, int worker);
+<i>16</i>&nbsp;    void updateChooseYourWorkerResponse(String worker) ;
+<i>17</i>&nbsp;    void updateMoveResponse(String row, String col, int worker, List&lt;BoardCell&gt; av) ;
+<i>18</i>&nbsp;    void updateBuildResponse(String row, String col, int worker, List&lt;BoardCell&gt; av) ;
+<i>19</i>&nbsp;    void updateChosenCardsUpdate(String cardName) ;
+<i>20</i>&nbsp;    void updateSetYourCardResponse(String in) ;
+<i>21</i>&nbsp;    void updateAskEffectReply(String effect, String nickname) ;
+<i>22</i>&nbsp;    void updateChooseYourWorkerEffectResponse(String worker, boolean effect);
+<i>23</i>&nbsp;    void updateAskeffectBuildResponse(String effect, String nickname, int worker) ;
+<i>24</i>&nbsp;    void updateMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker) ;
+<i>25</i>&nbsp;    void updateBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker) ;
+<i>26</i>&nbsp;    void updatePlayerThatStart(String player, List&lt;PlayerInterface&gt; onlinePlayers) ;
+<i>27</i>&nbsp;}
+<i>28</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ObserverModel</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ObserverModel (it.polimi.ingsw.Model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ObserverModel</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.God.God;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface ObserverModel {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    /**
+<i>11</i>&nbsp;     * Sends a Message to the client that the nickname is accepted
+<i>12</i>&nbsp;     * @param obj nickname chosen by the client
+<i>13</i>&nbsp;     */
+<i>14</i>&nbsp;    void updatePlayerAdded(String obj, String color) ;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    /**
+<i>17</i>&nbsp;     * Starts when there are enough clients for the number of players chosen
+<i>18</i>&nbsp;     *
+<i>19</i>&nbsp;     */
+<i>20</i>&nbsp;    void updateGameisReady() throws InterruptedException;
+<i>21</i>&nbsp;    /**
+<i>22</i>&nbsp;     * Sends to all the clients the name of the Player and the God that the player decided to take
+<i>23</i>&nbsp;     * @param player name of the current player
+<i>24</i>&nbsp;     * @param godName name of the god chosen by the player
+<i>25</i>&nbsp;     */
+<i>26</i>&nbsp;    void updateGodSet(PlayerInterface player, String godName) ;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * Sends the message with the Board updated
+<i>30</i>&nbsp;     * @param board board to be send
+<i>31</i>&nbsp;     */
+<i>32</i>&nbsp;    void updateBoard(Board board) ;
+<i>33</i>&nbsp;    /**
+<i>34</i>&nbsp;     * Sends to all the clients the Message that it&#39;s time for the Challenger to set the cards
+<i>35</i>&nbsp;     * @param name name of the challenger
+<i>36</i>&nbsp;     */
+<i>37</i>&nbsp;    void updateTimeToChoose(String name, String color) ;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**
+<i>40</i>&nbsp;     * sends the name of the chosenGods when the challenger is finished choosing
+<i>41</i>&nbsp;     * @param gods list of chosenGods
+<i>42</i>&nbsp;     * @param cardChosen false if there are more cards to be chosen
+<i>43</i>&nbsp;     * @param challengerName name of the challenger
+<i>44</i>&nbsp;     *
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    void updateGodAdded(List&lt;String&gt; gods, boolean cardChosen, String challengerName) ;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    /**
+<i>49</i>&nbsp;     * Sends an update to all the clients with the winner
+<i>50</i>&nbsp;     * @param player name of the winning player
+<i>51</i>&nbsp;     */
+<i>52</i>&nbsp;    void updateWinners(PlayerInterface player) ;
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Calls the request for the moving
+<i>56</i>&nbsp;     * @param worker number of the worker
+<i>57</i>&nbsp;     * @param current name of the current player
+<i>58</i>&nbsp;     */
+<i>59</i>&nbsp;    void updateMoving(int worker, String current,  List&lt;BoardCell&gt; available) ;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    /**
+<i>62</i>&nbsp;     * Sends to the current player the message that the coordinates are not correct
+<i>63</i>&nbsp;     * @param worker number of the worker
+<i>64</i>&nbsp;     * @param current name of the current player
+<i>65</i>&nbsp;     *
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    void updateBuilding(int worker, String current,  List&lt;BoardCell&gt; available) ;
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    /**
+<i>70</i>&nbsp;     * This send a message if the coordinates for the Worker are wrong
+<i>71</i>&nbsp;     * @param i number of worker
+<i>72</i>&nbsp;     * @param currentPlayer player current playing
+<i>73</i>&nbsp;     */
+<i>74</i>&nbsp;    void updateSetWorker(int i, String currentPlayer) ;
+<i>75</i>&nbsp;    /**
+<i>76</i>&nbsp;     * Send to the client/current player an update that the name of the God chosen is not correct
+<i>77</i>&nbsp;     * @param nickname name of the current player
+<i>78</i>&nbsp;     * @param availableGods name of the chosen God
+<i>79</i>&nbsp;     *
+<i>80</i>&nbsp;     */
+<i>81</i>&nbsp;    void updateCardNotPresent(String nickname, List&lt;String&gt; availableGods , List&lt;God&gt; chosenGods) ;
+<i>82</i>&nbsp;    /**
+<i>83</i>&nbsp;     * Sends an update if the god chosen by the challenger is not correct
+<i>84</i>&nbsp;     * @param challengerName challenger name
+<i>85</i>&nbsp;     *
+<i>86</i>&nbsp;     */
+<i>87</i>&nbsp;    void updateGodNotAdded(String challengerName) ;
+<i>88</i>&nbsp;    /**
+<i>89</i>&nbsp;     * sends the client/challenger the positive update that the Card chosen is added correctly sending the names of the chosenGods
+<i>90</i>&nbsp;     * @param chosenGods name of the chosenGod
+<i>91</i>&nbsp;     * @param Names names of the gods chosen until now
+<i>92</i>&nbsp;     * @param ChallengerName name of the challenger
+<i>93</i>&nbsp;     */
+<i>94</i>&nbsp;    void updateChoose(boolean chosenGods, List&lt;God&gt; Names, String ChallengerName) ;
+<i>95</i>&nbsp;    /**
+<i>96</i>&nbsp;     * Sends the client this message if the nickname is not Valid
+<i>97</i>&nbsp;     * @param nickname nickname not accepted by the server
+<i>98</i>&nbsp;     */
+<i>99</i>&nbsp;    void updateNicknameNotValid(String nickname) ;
+<i>100</i>&nbsp;    /**
+<i>101</i>&nbsp;     * Sends a message to all the players if someone win
+<i>102</i>&nbsp;     * @param playerName name of the player current playing
+<i>103</i>&nbsp;     */
+<i>104</i>&nbsp;    void updatePlayerHasLost(String playerName) ;
+<i>105</i>&nbsp;    /**
+<i>106</i>&nbsp;     * Sends to all the client that it&#39;s time for the current player to choose the Worker because the player can move
+<i>107</i>&nbsp;     * @param nickname nickname of the current player
+<i>108</i>&nbsp;     */
+<i>109</i>&nbsp;    void updateDecideWorker(PlayerInterface nickname) ;
+<i>110</i>&nbsp;    /**
+<i>111</i>&nbsp;     * Sends to all clients an update about the Time of the game, now it&#39;s time to set the Card for each player
+<i>112</i>&nbsp;     * @param chosenGods list of gods chosen by the challenger
+<i>113</i>&nbsp;     * @param currentPlayerName name of the current player
+<i>114</i>&nbsp;     */
+<i>115</i>&nbsp;    void updateTimeToSetCard(List&lt;String&gt; chosenGods, PlayerInterface currentPlayerName) ;
+<i>116</i>&nbsp;    /**
+<i>117</i>&nbsp;     * Sends to all the client the update about the time of the game, it&#39;s time to place the first workers
+<i>118</i>&nbsp;     * @param currentPlayerName name of the current Player
+<i>119</i>&nbsp;     *
+<i>120</i>&nbsp;     */
+<i>121</i>&nbsp;    void updateTimeToPlaceWorker(String currentPlayerName) ;
+<i>122</i>&nbsp;
+<i>123</i>&nbsp;    /**
+<i>124</i>&nbsp;     * Sends a Message if the worker is not correct, we choose automatically the other one
+<i>125</i>&nbsp;     * @param worker number of the worker
+<i>126</i>&nbsp;     * @param current name of the current player
+<i>127</i>&nbsp;     */
+<i>128</i>&nbsp;    void updateWorkerSelected(boolean hasTwoInput, boolean effect, int worker, String current, List&lt;BoardCell&gt; available) ;
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    /**
+<i>131</i>&nbsp;     * Sends a message if the coordinates are not valid and calls the moving again
+<i>132</i>&nbsp;     * @param worker number of the worker that cannot move
+<i>133</i>&nbsp;     * @param current name of the current player
+<i>134</i>&nbsp;     *
+<i>135</i>&nbsp;     */
+<i>136</i>&nbsp;    void updateNoCoordinatesValid(int worker, String current, List&lt;BoardCell&gt; available) ;
+<i>137</i>&nbsp;    /**
+<i>138</i>&nbsp;     * Send to all the clients an update that it&#39;s time to build
+<i>139</i>&nbsp;     * @param worker number of the worker
+<i>140</i>&nbsp;     * @param current name of the current player
+<i>141</i>&nbsp;     */
+<i>142</i>&nbsp;    void updateTimeToBuild(int worker, String current, List&lt;BoardCell&gt; av) ;
+<i>143</i>&nbsp;    /**
+<i>144</i>&nbsp;     * Sends the board update with the position of the worker just added and calls the request to set the second worker
+<i>145</i>&nbsp;     * @param board sends a copy of the board to print
+<i>146</i>&nbsp;     * @param currentPlayer name of the current Player
+<i>147</i>&nbsp;     *
+<i>148</i>&nbsp;     */
+<i>149</i>&nbsp;    void updateBoardAddedWorker(Board board, String currentPlayer);
+<i>150</i>&nbsp;    /**
+<i>151</i>&nbsp;     * Sends the client of che currentPlayer the option to set the God for the Game
+<i>152</i>&nbsp;     * @param chosenGods list of gods chosen by the challenger
+<i>153</i>&nbsp;     * @param currentPlayer name of the current player
+<i>154</i>&nbsp;     */
+<i>155</i>&nbsp;    void updateSetCard(List&lt;String&gt; availableGods, String currentPlayer, List&lt;God&gt; chosenGods) ;
+<i>156</i>&nbsp;    /**
+<i>157</i>&nbsp;     * Calling the update about the time of the game, it&#39;s time to move
+<i>158</i>&nbsp;     * @param current current player playing
+<i>159</i>&nbsp;     *
+<i>160</i>&nbsp;     */
+<i>161</i>&nbsp;    void updateStartMoving(String current) ;
+<i>162</i>&nbsp;    /**
+<i>163</i>&nbsp;     * called by notifyChooseWorker
+<i>164</i>&nbsp;     * called when it&#39;s time for the player to decide the worker
+<i>165</i>&nbsp;     * @param current name of the current player
+<i>166</i>&nbsp;     */
+<i>167</i>&nbsp;    void updateTimeToChooseWorker(String current) ;
+<i>168</i>&nbsp;    /**
+<i>169</i>&nbsp;     * sends a message to the client if the player has a card that needs the effect to be activated
+<i>170</i>&nbsp;     * @param currentPlayer name of the current player
+<i>171</i>&nbsp;     */
+<i>172</i>&nbsp;    void updateAskForEffect(String currentPlayer) ;
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;    /**
+<i>175</i>&nbsp;     * sends to the player a message if the player has a card that needs to build differently
+<i>176</i>&nbsp;     * @param currentPlayer name of the current player
+<i>177</i>&nbsp;     * @param worker worker that will build
+<i>178</i>&nbsp;     */
+<i>179</i>&nbsp;    void updateAskForEffectBuild(String currentPlayer, int worker) ;
+<i>180</i>&nbsp;    /**
+<i>181</i>&nbsp;     * Sends a message to the player with the card that needs to build twice
+<i>182</i>&nbsp;     * @param currentPlayer name of the current player
+<i>183</i>&nbsp;     * @param worker number of the worker
+<i>184</i>&nbsp;     */
+<i>185</i>&nbsp;    void updateBuildTwoInput(String currentPlayer,int worker) ;
+<i>186</i>&nbsp;    /**
+<i>187</i>&nbsp;     * Sends a message to the player with the card that needs to move twice
+<i>188</i>&nbsp;     * @param nickname  name of the current player
+<i>189</i>&nbsp;     * @param worker number of the worker
+<i>190</i>&nbsp;     */
+<i>191</i>&nbsp;    void updateMoveTwoInput(String nickname, int worker) ;
+<i>192</i>&nbsp;    /**
+<i>193</i>&nbsp;     * Sends the request for choosing tha name of the first player to choose the cards
+<i>194</i>&nbsp;     * @param nickname nickname of the current player
+<i>195</i>&nbsp;     * @param onlinePlayers list of players
+<i>196</i>&nbsp;     */
+<i>197</i>&nbsp;    void updateSetFirstPlayer(String nickname, List&lt;PlayerInterface&gt; onlinePlayers) ;
+<i>198</i>&nbsp;    /**
+<i>199</i>&nbsp;     * Sends to the client a new request for the coordinates for the build twice
+<i>200</i>&nbsp;     * @param worker number of the worker
+<i>201</i>&nbsp;     * @param nickname nickname of the player
+<i>202</i>&nbsp;     */
+<i>203</i>&nbsp;    void updateNoCoordinatesValidBuildTwoInput(int worker, String nickname) ;
+<i>204</i>&nbsp;    /**
+<i>205</i>&nbsp;     * Sends to the client a new request for the coordinates for the move twice
+<i>206</i>&nbsp;     * @param worker number of the worker
+<i>207</i>&nbsp;     * @param nickname nickname of the player
+<i>208</i>&nbsp;     */
+<i>209</i>&nbsp;    void updateNoCoordinatesValidMoveTwoInput(int worker, String nickname) ;
+<i>210</i>&nbsp;
+<i>211</i>&nbsp;    /**
+<i>212</i>&nbsp;     *Sends the message that the server is restarting
+<i>213</i>&nbsp;     */
+<i>214</i>&nbsp;    void updateServerRestart() ;
+<i>215</i>&nbsp;
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;}
+<i>218</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

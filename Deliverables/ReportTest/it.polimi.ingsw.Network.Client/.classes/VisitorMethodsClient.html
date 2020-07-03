@@ -1,0 +1,586 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: VisitorMethodsClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: VisitorMethodsClient (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">VisitorMethodsClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 40)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 85)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.IOException;
+<i>6</i>&nbsp;import java.util.Scanner;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * All the methods here call a method in another class with the Message depending on the interface
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class VisitorMethodsClient implements VisitorClient {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    final Client client;
+<i>14</i>&nbsp;
+<b class="nc"><i>15</i>&nbsp;    Scanner scanner = new Scanner(System.in);</b>
+<b class="nc"><i>16</i>&nbsp;    private final Scanner input = new Scanner(System.in);</b>
+<b class="nc"><i>17</i>&nbsp;    private final Scanner string = new Scanner(System.in);</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    public final UserInterface userInterface;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;    public VisitorMethodsClient(Client client, UserInterface userInterface) {</b>
+<b class="nc"><i>24</i>&nbsp;        this.client = client;</b>
+<b class="nc"><i>25</i>&nbsp;        this.userInterface = userInterface;</b>
+<b class="nc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Request the number of players
+<i>31</i>&nbsp;     * @param playerNumberRequest Message
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    @Override
+<i>34</i>&nbsp;    public synchronized void visit(PlayerNumberRequest playerNumberRequest) {
+<i>35</i>&nbsp;
+<b class="nc"><i>36</i>&nbsp;        userInterface.PlayerNumberRequest();</b>
+<i>37</i>&nbsp;        //client.send(new PlayerNumberResponse(num));
+<i>38</i>&nbsp;
+<b class="nc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * Request the nickname
+<i>43</i>&nbsp;     * @param nicknameRequest Message
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    @Override
+<i>46</i>&nbsp;    public synchronized void visit(NicknameRequest nicknameRequest) {
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;
+<b class="nc"><i>49</i>&nbsp;        userInterface.NicknameRequest();</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;        //client.send(new NicknameResponse(nickname));
+<i>52</i>&nbsp;
+<b class="nc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * connection enabled
+<i>57</i>&nbsp;     * @param connectionResponse Message
+<i>58</i>&nbsp;     */
+<i>59</i>&nbsp;    @Override
+<i>60</i>&nbsp;    public void visit(ConnectionResponse connectionResponse) {
+<i>61</i>&nbsp;
+<b class="nc"><i>62</i>&nbsp;        userInterface.ConnectionResponse();</b>
+<i>63</i>&nbsp;
+<b class="nc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    /**
+<i>67</i>&nbsp;     * card not found, a new card has to be chosen
+<i>68</i>&nbsp;     * @param cardNotFoundRequest Message
+<i>69</i>&nbsp;     */
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    public void visit(CardNotFoundRequest cardNotFoundRequest) {
+<i>72</i>&nbsp;
+<b class="nc"><i>73</i>&nbsp;        userInterface.CardNotFoundRequest();</b>
+<i>74</i>&nbsp;
+<b class="nc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    /**
+<i>78</i>&nbsp;     * Time to set workers
+<i>79</i>&nbsp;     * @param startingSetWorkerTimeUpdate Message
+<i>80</i>&nbsp;     */
+<i>81</i>&nbsp;    @Override
+<i>82</i>&nbsp;    public void visit(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
+<i>83</i>&nbsp;
+<b class="nc"><i>84</i>&nbsp;        userInterface.StartingSetWorkerTimeUpdate(startingSetWorkerTimeUpdate);</b>
+<i>85</i>&nbsp;
+<b class="nc"><i>86</i>&nbsp;    }</b>
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    /**
+<i>90</i>&nbsp;     * coordinates for the worker to set
+<i>91</i>&nbsp;     * @param startingSetWorkerRequest Message
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    @Override
+<i>94</i>&nbsp;    public void visit(StartingSetWorkerRequest startingSetWorkerRequest) {
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;
+<b class="nc"><i>97</i>&nbsp;        userInterface.StartingSetWorkerRequest(startingSetWorkerRequest);</b>
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;
+<b class="nc"><i>100</i>&nbsp;    }</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    /**
+<i>104</i>&nbsp;     * Coordinates wrong, asking for new ones
+<i>105</i>&nbsp;     * @param wrongCoordinatesUpdate message
+<i>106</i>&nbsp;     */
+<i>107</i>&nbsp;    @Override
+<i>108</i>&nbsp;    public void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;
+<b class="nc"><i>111</i>&nbsp;        userInterface.WrongCoordinatesUpdate(wrongCoordinatesUpdate);</b>
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;
+<b class="nc"><i>115</i>&nbsp;    }</b>
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;    /**
+<i>119</i>&nbsp;     * The player is locked, no more in the game
+<i>120</i>&nbsp;     * @param playerLockedUpdate message
+<i>121</i>&nbsp;     */
+<i>122</i>&nbsp;    @Override
+<i>123</i>&nbsp;    public void visit(PlayerLockedUpdate playerLockedUpdate) {
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;        userInterface.PlayerLockedUpdate(playerLockedUpdate);</b>
+<i>126</i>&nbsp;
+<b class="nc"><i>127</i>&nbsp;    }</b>
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    /**
+<i>130</i>&nbsp;     * Sends the board when updated
+<i>131</i>&nbsp;     * @param boardUpdate message
+<i>132</i>&nbsp;     */
+<i>133</i>&nbsp;    @Override
+<i>134</i>&nbsp;    public void visit(BoardUpdate boardUpdate) {
+<i>135</i>&nbsp;
+<b class="nc"><i>136</i>&nbsp;       userInterface.BoardUpdate(boardUpdate);</b>
+<i>137</i>&nbsp;
+<i>138</i>&nbsp;
+<b class="nc"><i>139</i>&nbsp;    }</b>
+<i>140</i>&nbsp;
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;    /**
+<i>143</i>&nbsp;     * Information about the player that is playing now
+<i>144</i>&nbsp;     * @param playerTurnUpdate message
+<i>145</i>&nbsp;     */
+<i>146</i>&nbsp;    @Override
+<i>147</i>&nbsp;    public void visit(PlayerTurnUpdate playerTurnUpdate) {
+<i>148</i>&nbsp;
+<b class="nc"><i>149</i>&nbsp;        userInterface.PlayerTurnUpdate(playerTurnUpdate);</b>
+<i>150</i>&nbsp;
+<b class="nc"><i>151</i>&nbsp;    }</b>
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;
+<i>154</i>&nbsp;    /**
+<i>155</i>&nbsp;     * Asks for the worker to move
+<i>156</i>&nbsp;     * @param chooseYourWorkerRequest message
+<i>157</i>&nbsp;     */
+<i>158</i>&nbsp;    @Override
+<i>159</i>&nbsp;    public void visit(ChooseYourWorkerRequest chooseYourWorkerRequest)  {
+<i>160</i>&nbsp;
+<b class="nc"><i>161</i>&nbsp;        userInterface.ChooseYourWorkerRequest(chooseYourWorkerRequest);</b>
+<i>162</i>&nbsp;
+<b class="nc"><i>163</i>&nbsp;    }</b>
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;    /**
+<i>166</i>&nbsp;     * Asks for the coordinates
+<i>167</i>&nbsp;     * @param moveRequest message
+<i>168</i>&nbsp;     */
+<i>169</i>&nbsp;    @Override
+<i>170</i>&nbsp;    public void visit(MoveRequest moveRequest)  {
+<i>171</i>&nbsp;
+<b class="nc"><i>172</i>&nbsp;        userInterface.MoveRequest(moveRequest);</b>
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;
+<b class="nc"><i>175</i>&nbsp;    }</b>
+<i>176</i>&nbsp;
+<i>177</i>&nbsp;    /**
+<i>178</i>&nbsp;     * Update the game, it&#39;s time for the building
+<i>179</i>&nbsp;     * @param buildTimeUpdate message
+<i>180</i>&nbsp;     */
+<i>181</i>&nbsp;    @Override
+<i>182</i>&nbsp;    public void visit(BuildTimeUpdate buildTimeUpdate) {
+<i>183</i>&nbsp;
+<b class="nc"><i>184</i>&nbsp;       userInterface.BuildTimeUpdate();</b>
+<i>185</i>&nbsp;
+<b class="nc"><i>186</i>&nbsp;    }</b>
+<i>187</i>&nbsp;
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;    /**
+<i>190</i>&nbsp;     * Asking for building coordinates
+<i>191</i>&nbsp;     * @param buildingRowAndCol message
+<i>192</i>&nbsp;     */
+<i>193</i>&nbsp;    @Override
+<i>194</i>&nbsp;    public void visit(BuildRequest buildingRowAndCol)  {
+<i>195</i>&nbsp;
+<i>196</i>&nbsp;
+<b class="nc"><i>197</i>&nbsp;        userInterface.BuildRequest(buildingRowAndCol);</b>
+<i>198</i>&nbsp;
+<i>199</i>&nbsp;
+<b class="nc"><i>200</i>&nbsp;    }</b>
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;
+<i>203</i>&nbsp;    /**
+<i>204</i>&nbsp;     * Coordinates were not correct, asking for new ones
+<i>205</i>&nbsp;     * @param tryNewCoordinatesRequest message
+<i>206</i>&nbsp;     */
+<i>207</i>&nbsp;    @Override
+<i>208</i>&nbsp;    public void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest) {
+<i>209</i>&nbsp;
+<i>210</i>&nbsp;
+<b class="nc"><i>211</i>&nbsp;       userInterface.TryNewCoordinatesRequest();</b>
+<i>212</i>&nbsp;
+<b class="nc"><i>213</i>&nbsp;    }</b>
+<i>214</i>&nbsp;
+<i>215</i>&nbsp;
+<i>216</i>&nbsp;    /**
+<i>217</i>&nbsp;     * The worker chosen was not correct, asking for a new one
+<i>218</i>&nbsp;     * @param wrongWorkerUpdate message
+<i>219</i>&nbsp;     */
+<i>220</i>&nbsp;    @Override
+<i>221</i>&nbsp;    public void visit(WrongWorkerUpdate wrongWorkerUpdate) {
+<i>222</i>&nbsp;
+<b class="nc"><i>223</i>&nbsp;        userInterface.WrongWorkerUpdate(wrongWorkerUpdate);</b>
+<i>224</i>&nbsp;
+<b class="nc"><i>225</i>&nbsp;    }</b>
+<i>226</i>&nbsp;
+<i>227</i>&nbsp;
+<i>228</i>&nbsp;    /**
+<i>229</i>&nbsp;     * Sends an update to notify the player that the nickname was correct
+<i>230</i>&nbsp;     * @param nicknameAcceptedUpdate message
+<i>231</i>&nbsp;     */
+<i>232</i>&nbsp;    @Override
+<i>233</i>&nbsp;    public void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
+<i>234</i>&nbsp;
+<b class="nc"><i>235</i>&nbsp;        userInterface.NicknameAcceptedUpdate(nicknameAcceptedUpdate);</b>
+<i>236</i>&nbsp;
+<b class="nc"><i>237</i>&nbsp;    }</b>
+<i>238</i>&nbsp;
+<i>239</i>&nbsp;
+<i>240</i>&nbsp;    /**
+<i>241</i>&nbsp;     * Sends the request for a new nickname
+<i>242</i>&nbsp;     * @param nicknameNotValidUpdate message
+<i>243</i>&nbsp;     */
+<i>244</i>&nbsp;    @Override
+<i>245</i>&nbsp;    public void visit(NicknameNotValidUpdate nicknameNotValidUpdate) {
+<i>246</i>&nbsp;
+<b class="nc"><i>247</i>&nbsp;       userInterface.NicknameNotValidUpdate();</b>
+<i>248</i>&nbsp;        
+<b class="nc"><i>249</i>&nbsp;    }</b>
+<i>250</i>&nbsp;
+<i>251</i>&nbsp;
+<i>252</i>&nbsp;    /**
+<i>253</i>&nbsp;     * Asks for the card of the player
+<i>254</i>&nbsp;     * @param chooseCardsUpdate message
+<i>255</i>&nbsp;     */
+<i>256</i>&nbsp;    @Override
+<i>257</i>&nbsp;    public void visit(ChooseCardsUpdate chooseCardsUpdate) {
+<i>258</i>&nbsp;
+<b class="nc"><i>259</i>&nbsp;        userInterface.ChooseCardsUpdate(chooseCardsUpdate);</b>
+<i>260</i>&nbsp;
+<b class="nc"><i>261</i>&nbsp;    }</b>
+<i>262</i>&nbsp;
+<i>263</i>&nbsp;    /**
+<i>264</i>&nbsp;     * Sends the list of the available gods
+<i>265</i>&nbsp;     * @param availableGodsUpdate message
+<i>266</i>&nbsp;     */
+<i>267</i>&nbsp;    @Override
+<i>268</i>&nbsp;    public void visit(AvailableGodsUpdate availableGodsUpdate) {
+<i>269</i>&nbsp;
+<b class="nc"><i>270</i>&nbsp;       userInterface.AvailableGodsUpdate(availableGodsUpdate);</b>
+<b class="nc"><i>271</i>&nbsp;    }</b>
+<i>272</i>&nbsp;
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;    /**
+<i>275</i>&nbsp;     * Asks for the cards for the game
+<i>276</i>&nbsp;     * @param challengerCardsRequest message
+<i>277</i>&nbsp;     */
+<i>278</i>&nbsp;    @Override
+<i>279</i>&nbsp;    public void visit(ChallengerCardsRequest challengerCardsRequest)  {
+<i>280</i>&nbsp;
+<b class="nc"><i>281</i>&nbsp;        userInterface.ChallengerCardsRequest(challengerCardsRequest);</b>
+<i>282</i>&nbsp;
+<i>283</i>&nbsp;
+<b class="nc"><i>284</i>&nbsp;    }</b>
+<i>285</i>&nbsp;
+<i>286</i>&nbsp;
+<i>287</i>&nbsp;    /**
+<i>288</i>&nbsp;     * Sends the update with the card updated
+<i>289</i>&nbsp;     * @param cardAddedUpdate message
+<i>290</i>&nbsp;     */
+<i>291</i>&nbsp;    @Override
+<i>292</i>&nbsp;    public void visit(CardAddedUpdate cardAddedUpdate) {
+<i>293</i>&nbsp;
+<b class="nc"><i>294</i>&nbsp;       userInterface.CardAddedUpdate(cardAddedUpdate);</b>
+<i>295</i>&nbsp;
+<b class="nc"><i>296</i>&nbsp;    }</b>
+<i>297</i>&nbsp;
+<i>298</i>&nbsp;
+<i>299</i>&nbsp;    /**
+<i>300</i>&nbsp;     * Sends an error if the card chosen is not in the given cards
+<i>301</i>&nbsp;     * @param cardChallengerNotFoundRequest message
+<i>302</i>&nbsp;     */
+<i>303</i>&nbsp;    @Override
+<i>304</i>&nbsp;    public void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
+<i>305</i>&nbsp;
+<b class="nc"><i>306</i>&nbsp;       userInterface.CardChallengerNotFoundRequest(cardChallengerNotFoundRequest);</b>
+<i>307</i>&nbsp;
+<b class="nc"><i>308</i>&nbsp;    }</b>
+<i>309</i>&nbsp;
+<i>310</i>&nbsp;    /**
+<i>311</i>&nbsp;     * Update about the time of the game, it&#39;s time to set the cards
+<i>312</i>&nbsp;     * @param setCardTimeUpdate message
+<i>313</i>&nbsp;     */
+<i>314</i>&nbsp;    @Override
+<i>315</i>&nbsp;    public void visit(SetCardTimeUpdate setCardTimeUpdate)  {
+<i>316</i>&nbsp;
+<b class="nc"><i>317</i>&nbsp;       userInterface.SetCardTimeUpdate(setCardTimeUpdate);</b>
+<b class="nc"><i>318</i>&nbsp;    }</b>
+<i>319</i>&nbsp;
+<i>320</i>&nbsp;
+<i>321</i>&nbsp;    /**
+<i>322</i>&nbsp;     * Request of setting the card
+<i>323</i>&nbsp;     * @param setYourCardRequest message
+<i>324</i>&nbsp;     */
+<i>325</i>&nbsp;    @Override
+<i>326</i>&nbsp;    public void visit(SetYourCardRequest setYourCardRequest) {
+<i>327</i>&nbsp;
+<b class="nc"><i>328</i>&nbsp;        userInterface.SetYourCardRequest(setYourCardRequest);</b>
+<i>329</i>&nbsp;
+<i>330</i>&nbsp;
+<b class="nc"><i>331</i>&nbsp;    }</b>
+<i>332</i>&nbsp;
+<i>333</i>&nbsp;
+<i>334</i>&nbsp;    /**
+<i>335</i>&nbsp;     * Update if the card is set correctly
+<i>336</i>&nbsp;     * @param cardSetUpdate Message
+<i>337</i>&nbsp;     */
+<i>338</i>&nbsp;    @Override
+<i>339</i>&nbsp;    public void visit(CardSetUpdate cardSetUpdate) {
+<i>340</i>&nbsp;
+<b class="nc"><i>341</i>&nbsp;        userInterface.CardSetUpdate(cardSetUpdate);</b>
+<i>342</i>&nbsp;
+<b class="nc"><i>343</i>&nbsp;    }</b>
+<i>344</i>&nbsp;
+<i>345</i>&nbsp;
+<i>346</i>&nbsp;    /**
+<i>347</i>&nbsp;     * Message if the max number of player is reached
+<i>348</i>&nbsp;     * @param maxPlayerReachedUpdate Message
+<i>349</i>&nbsp;     */
+<i>350</i>&nbsp;    @Override
+<i>351</i>&nbsp;    public void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate) {
+<i>352</i>&nbsp;
+<b class="nc"><i>353</i>&nbsp;        userInterface.MaxPlayerReachedUpdate();</b>
+<b class="nc"><i>354</i>&nbsp;    }</b>
+<i>355</i>&nbsp;
+<i>356</i>&nbsp;
+<i>357</i>&nbsp;    /**
+<i>358</i>&nbsp;     * Asking to the player if it wants to use the effect or not, applied with active gods
+<i>359</i>&nbsp;     * @param askEffect Message
+<i>360</i>&nbsp;     */
+<i>361</i>&nbsp;    @Override
+<i>362</i>&nbsp;    public void visit(AskEffect askEffect) {
+<i>363</i>&nbsp;
+<i>364</i>&nbsp;
+<b class="nc"><i>365</i>&nbsp;        userInterface.AskEffect();</b>
+<i>366</i>&nbsp;
+<i>367</i>&nbsp;
+<b class="nc"><i>368</i>&nbsp;    }</b>
+<i>369</i>&nbsp;
+<i>370</i>&nbsp;
+<i>371</i>&nbsp;    /**
+<i>372</i>&nbsp;     * Asking for the worker when the player has some special effect
+<i>373</i>&nbsp;     * @param chooseYourWorkerEffectRequest Message
+<i>374</i>&nbsp;     */
+<i>375</i>&nbsp;    @Override
+<i>376</i>&nbsp;    public void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest)  {
+<i>377</i>&nbsp;
+<b class="nc"><i>378</i>&nbsp;        userInterface.ChooseYourWorkerEffectRequest(chooseYourWorkerEffectRequest);</b>
+<i>379</i>&nbsp;
+<i>380</i>&nbsp;
+<b class="nc"><i>381</i>&nbsp;    }</b>
+<i>382</i>&nbsp;
+<i>383</i>&nbsp;
+<i>384</i>&nbsp;    /**
+<i>385</i>&nbsp;     * Asking for the effect when the player has an effect that involves building
+<i>386</i>&nbsp;     * @param askEffectBuild Message
+<i>387</i>&nbsp;     */
+<i>388</i>&nbsp;    @Override
+<i>389</i>&nbsp;    public void visit(AskEffectBuild askEffectBuild)  {
+<i>390</i>&nbsp;
+<i>391</i>&nbsp;
+<b class="nc"><i>392</i>&nbsp;        userInterface.AskEffectBuild(askEffectBuild);</b>
+<i>393</i>&nbsp;
+<i>394</i>&nbsp;
+<b class="nc"><i>395</i>&nbsp;    }</b>
+<i>396</i>&nbsp;
+<i>397</i>&nbsp;
+<i>398</i>&nbsp;    /**
+<i>399</i>&nbsp;     * Asking for different input for the building
+<i>400</i>&nbsp;     * @param buildTwoInputRequest Message
+<i>401</i>&nbsp;     */
+<i>402</i>&nbsp;    @Override
+<i>403</i>&nbsp;    public void visit(BuildTwoInputRequest buildTwoInputRequest)  {
+<i>404</i>&nbsp;
+<i>405</i>&nbsp;
+<b class="nc"><i>406</i>&nbsp;        userInterface.BuildTwoInputRequest(buildTwoInputRequest);</b>
+<i>407</i>&nbsp;
+<i>408</i>&nbsp;
+<b class="nc"><i>409</i>&nbsp;    }</b>
+<i>410</i>&nbsp;
+<i>411</i>&nbsp;
+<i>412</i>&nbsp;    /**
+<i>413</i>&nbsp;     * Sending the message that the number of player chosen is not 2 or 3
+<i>414</i>&nbsp;     * @param numberOfPlayerWrong Message
+<i>415</i>&nbsp;     */
+<i>416</i>&nbsp;    @Override
+<i>417</i>&nbsp;    public void visit(NumberOfPlayerWrong numberOfPlayerWrong) {
+<i>418</i>&nbsp;
+<b class="nc"><i>419</i>&nbsp;       userInterface.NumberOfPlayerWrong();</b>
+<i>420</i>&nbsp;
+<b class="nc"><i>421</i>&nbsp;    }</b>
+<i>422</i>&nbsp;
+<i>423</i>&nbsp;
+<i>424</i>&nbsp;    /**
+<i>425</i>&nbsp;     * Asking for a different input for the moving
+<i>426</i>&nbsp;     * @param moveTwoInputRequest Message
+<i>427</i>&nbsp;     */
+<i>428</i>&nbsp;    @Override
+<i>429</i>&nbsp;    public void visit(MoveTwoInputRequest moveTwoInputRequest) {
+<i>430</i>&nbsp;
+<i>431</i>&nbsp;
+<b class="nc"><i>432</i>&nbsp;        userInterface.MoveTwoInputRequest(moveTwoInputRequest);</b>
+<i>433</i>&nbsp;
+<b class="nc"><i>434</i>&nbsp;    }</b>
+<i>435</i>&nbsp;
+<i>436</i>&nbsp;    /**
+<i>437</i>&nbsp;     * Sending the win message with the name of the winner
+<i>438</i>&nbsp;     * @param winMessage message
+<i>439</i>&nbsp;     */
+<i>440</i>&nbsp;    @Override
+<i>441</i>&nbsp;    public void visit(WinMessage winMessage) {
+<i>442</i>&nbsp;
+<b class="nc"><i>443</i>&nbsp;        userInterface.WinMessage(winMessage.getNickname());</b>
+<i>444</i>&nbsp;
+<b class="nc"><i>445</i>&nbsp;    }</b>
+<i>446</i>&nbsp;
+<i>447</i>&nbsp;
+<i>448</i>&nbsp;    /**
+<i>449</i>&nbsp;     * telling the client that the worker chosen was not valid
+<i>450</i>&nbsp;     * @param workerInputNotValid Message
+<i>451</i>&nbsp;     */
+<i>452</i>&nbsp;
+<i>453</i>&nbsp;    @Override
+<i>454</i>&nbsp;    public void visit(WorkerInputNotValid workerInputNotValid) {
+<i>455</i>&nbsp;
+<b class="nc"><i>456</i>&nbsp;        userInterface.WorkerInputNotValid();</b>
+<i>457</i>&nbsp;
+<b class="nc"><i>458</i>&nbsp;    }</b>
+<i>459</i>&nbsp;
+<i>460</i>&nbsp;
+<i>461</i>&nbsp;    /**
+<i>462</i>&nbsp;     * Saying to the client that someone dropped the connection
+<i>463</i>&nbsp;     * @param droppedConnection Message with the name of the player that dropped the connection
+<i>464</i>&nbsp;     */
+<i>465</i>&nbsp;    @Override
+<i>466</i>&nbsp;    public void visit(DroppedConnection droppedConnection) {
+<b class="nc"><i>467</i>&nbsp;        userInterface.DroppedConnection(droppedConnection);</b>
+<b class="nc"><i>468</i>&nbsp;    }</b>
+<i>469</i>&nbsp;
+<i>470</i>&nbsp;
+<i>471</i>&nbsp;    /**
+<i>472</i>&nbsp;     * Asking for the name of the first Player
+<i>473</i>&nbsp;     * @param setFirstPlayer Message
+<i>474</i>&nbsp;     */
+<i>475</i>&nbsp;
+<i>476</i>&nbsp;    @Override
+<i>477</i>&nbsp;    public void visit(SetFirstPlayer setFirstPlayer)  {
+<b class="nc"><i>478</i>&nbsp;        userInterface.SetFirstPlayer(setFirstPlayer.getOnlinePlayers());</b>
+<b class="nc"><i>479</i>&nbsp;    }</b>
+<i>480</i>&nbsp;
+<i>481</i>&nbsp;
+<i>482</i>&nbsp;    /**
+<i>483</i>&nbsp;     * The server is restarting
+<i>484</i>&nbsp;     * @param serverRestart Message
+<i>485</i>&nbsp;     */
+<i>486</i>&nbsp;    @Override
+<i>487</i>&nbsp;    public void visit(ServerRestart serverRestart) {
+<b class="nc"><i>488</i>&nbsp;        userInterface.ServerRestart();</b>
+<b class="nc"><i>489</i>&nbsp;    }</b>
+<i>490</i>&nbsp;
+<i>491</i>&nbsp;
+<i>492</i>&nbsp;    /**
+<i>493</i>&nbsp;     * Saying to the client that the username length is too long
+<i>494</i>&nbsp;     * @param tooLongName Message
+<i>495</i>&nbsp;     */
+<i>496</i>&nbsp;    @Override
+<i>497</i>&nbsp;    public void visit(tooLongName tooLongName)  {
+<b class="nc"><i>498</i>&nbsp;        userInterface.lengthNameError();</b>
+<i>499</i>&nbsp;
+<b class="nc"><i>500</i>&nbsp;    }</b>
+<i>501</i>&nbsp;
+<i>502</i>&nbsp;
+<i>503</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

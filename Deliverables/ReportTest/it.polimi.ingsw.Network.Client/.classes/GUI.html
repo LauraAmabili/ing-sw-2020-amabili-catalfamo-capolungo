@@ -1,0 +1,834 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GUI</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GUI (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 82)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 384)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.Board;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.God.God;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+<i>7</i>&nbsp;import it.polimi.ingsw.View.GUI.*;
+<i>8</i>&nbsp;import javafx.application.Platform;
+<i>9</i>&nbsp;import javafx.fxml.FXMLLoader;
+<i>10</i>&nbsp;import javafx.scene.Parent;
+<i>11</i>&nbsp;import javafx.stage.Stage;
+<i>12</i>&nbsp;import java.io.IOException;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;import java.util.List;
+<i>15</i>&nbsp;
+<b class="nc"><i>16</i>&nbsp;public class GUI implements UserInterface {</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    private Stage primaryStage;
+<i>19</i>&nbsp;    private Client client;
+<i>20</i>&nbsp;    private List&lt;God&gt; chosenCards;
+<i>21</i>&nbsp;    private List&lt;String&gt; opponentChosenCards;
+<b class="nc"><i>22</i>&nbsp;    private final List&lt;String&gt; opponentPlayerName = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>23</i>&nbsp;    private final List&lt;PlayerInterface&gt; opponentPlayers = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>24</i>&nbsp;    private List&lt;PlayerInterface&gt; droppedPlayers = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>25</i>&nbsp;    private List&lt;String&gt; cards = new ArrayList&lt;&gt;();</b>
+<i>26</i>&nbsp;    private String MyCard;
+<i>27</i>&nbsp;    private String currentPlayer;
+<i>28</i>&nbsp;    private PlayerInterface Me;
+<i>29</i>&nbsp;    private Board board;
+<i>30</i>&nbsp;    private String state;
+<b class="nc"><i>31</i>&nbsp;    private boolean started = false;</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public List&lt;PlayerInterface&gt; getDroppedPlayers() {
+<b class="nc"><i>34</i>&nbsp;        return droppedPlayers;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public List&lt;String&gt; getCards() {
+<b class="nc"><i>38</i>&nbsp;        return cards;</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public String getState() {
+<b class="nc"><i>42</i>&nbsp;        return state;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public Board getBoard() {
+<b class="nc"><i>46</i>&nbsp;        return board;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public void setBoard(Board board) {
+<b class="nc"><i>50</i>&nbsp;        this.board = board;</b>
+<b class="nc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public PlayerInterface getMe() {
+<b class="nc"><i>54</i>&nbsp;        return Me;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public void setMe(PlayerInterface me) {
+<b class="nc"><i>58</i>&nbsp;        Me = me;</b>
+<b class="nc"><i>59</i>&nbsp;    }</b>
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public String getCurrentPlayer() {
+<b class="nc"><i>62</i>&nbsp;        return currentPlayer;</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    public String getMyCard() {
+<b class="nc"><i>66</i>&nbsp;        return MyCard;</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public void setMyCard(String myCard) {
+<b class="nc"><i>70</i>&nbsp;        MyCard = myCard;</b>
+<b class="nc"><i>71</i>&nbsp;    }</b>
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    public List&lt;String&gt; getOpponentPlayerName() {
+<b class="nc"><i>74</i>&nbsp;        return opponentPlayerName;</b>
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    public List&lt;String&gt; getOpponentChosenCards() {
+<b class="nc"><i>78</i>&nbsp;        return opponentChosenCards;</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    public List&lt;God&gt; getChosenCards() {
+<b class="nc"><i>82</i>&nbsp;        return chosenCards;</b>
+<i>83</i>&nbsp;    }
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    public List&lt;PlayerInterface&gt; getOpponentPlayers() {
+<b class="nc"><i>86</i>&nbsp;        return opponentPlayers;</b>
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    public Stage getPrimaryStage() {
+<b class="nc"><i>90</i>&nbsp;        return primaryStage;</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    public void setPrimaryStage(Stage primaryStage) {
+<b class="nc"><i>94</i>&nbsp;        this.primaryStage = primaryStage;</b>
+<b class="nc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    public Client getClient() {
+<b class="nc"><i>98</i>&nbsp;        return client;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    public void setClient(Client client) {
+<b class="nc"><i>102</i>&nbsp;        this.client = client;</b>
+<b class="nc"><i>103</i>&nbsp;    }</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;    /**
+<i>106</i>&nbsp;     * Load the scene that permit to select the number of players
+<i>107</i>&nbsp;     */
+<i>108</i>&nbsp;    @Override
+<i>109</i>&nbsp;    public void PlayerNumberRequest() {
+<b class="nc"><i>110</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>111</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/GameModeScene.fxml&quot;));</b>
+<b class="nc"><i>112</i>&nbsp;            ModeController controller = new ModeController(client);</b>
+<b class="nc"><i>113</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>114</i>&nbsp;            Parent root = null;</b>
+<i>115</i>&nbsp;            try {
+<b class="nc"><i>116</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>117</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>118</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>119</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>120</i>&nbsp;            }</b>
+<b class="nc"><i>121</i>&nbsp;        });</b>
+<b class="nc"><i>122</i>&nbsp;    }</b>
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    /**
+<i>125</i>&nbsp;     * Load the scene that permit to insert the nickname
+<i>126</i>&nbsp;     */
+<i>127</i>&nbsp;    @Override
+<i>128</i>&nbsp;    public void NicknameRequest() {
+<b class="nc"><i>129</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>130</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/insertNicknameScene.fxml&quot;));</b>
+<b class="nc"><i>131</i>&nbsp;            NicknameSceneController controller = new NicknameSceneController(client);</b>
+<b class="nc"><i>132</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>133</i>&nbsp;            Parent root = null;</b>
+<i>134</i>&nbsp;            try {
+<b class="nc"><i>135</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>136</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>137</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>138</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>139</i>&nbsp;            }</b>
+<b class="nc"><i>140</i>&nbsp;        });</b>
+<b class="nc"><i>141</i>&nbsp;    }</b>
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;    @Override
+<i>144</i>&nbsp;    public void ConnectionResponse() {
+<i>145</i>&nbsp;
+<b class="nc"><i>146</i>&nbsp;    }</b>
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;    @Override
+<i>149</i>&nbsp;    public void CardNotFoundRequest() {
+<i>150</i>&nbsp;
+<b class="nc"><i>151</i>&nbsp;    }</b>
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;    /**
+<i>154</i>&nbsp;     * Load the scene with the current action
+<i>155</i>&nbsp;     * @param startingSetWorkerTimeUpdate Message
+<i>156</i>&nbsp;     */
+<i>157</i>&nbsp;    @Override
+<i>158</i>&nbsp;    public void StartingSetWorkerTimeUpdate(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate) {
+<i>159</i>&nbsp;
+<b class="nc"><i>160</i>&nbsp;        state = &quot;Placing workers&quot;;</b>
+<b class="nc"><i>161</i>&nbsp;        currentPlayer = startingSetWorkerTimeUpdate.getCurrentPlayer();</b>
+<b class="nc"><i>162</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>163</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>164</i>&nbsp;            BoardController controller = new UpdateController(client, state);</b>
+<b class="nc"><i>165</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>166</i>&nbsp;            Parent root = null;</b>
+<i>167</i>&nbsp;            try {
+<b class="nc"><i>168</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>169</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>170</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>171</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>172</i>&nbsp;            }</b>
+<b class="nc"><i>173</i>&nbsp;        });</b>
+<i>174</i>&nbsp;
+<b class="nc"><i>175</i>&nbsp;    }</b>
+<i>176</i>&nbsp;
+<i>177</i>&nbsp;    /**
+<i>178</i>&nbsp;     * Load the scene that permit to place workers on the board place workers on the board
+<i>179</i>&nbsp;     * @param startingSetWorkerRequest Message
+<i>180</i>&nbsp;     */
+<i>181</i>&nbsp;    @Override
+<i>182</i>&nbsp;    public void StartingSetWorkerRequest(StartingSetWorkerRequest startingSetWorkerRequest) {
+<b class="nc"><i>183</i>&nbsp;        int worker = startingSetWorkerRequest.getWorker();</b>
+<b class="nc"><i>184</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>185</i>&nbsp;            started = true;</b>
+<b class="nc"><i>186</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>187</i>&nbsp;            PlaceWorkerController controller = new PlaceWorkerController(client, worker, state);</b>
+<b class="nc"><i>188</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>189</i>&nbsp;            Parent root = null;</b>
+<i>190</i>&nbsp;            try {
+<b class="nc"><i>191</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>192</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>193</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>194</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>195</i>&nbsp;            }</b>
+<b class="nc"><i>196</i>&nbsp;        });</b>
+<b class="nc"><i>197</i>&nbsp;    }</b>
+<i>198</i>&nbsp;
+<i>199</i>&nbsp;    /**
+<i>200</i>&nbsp;     * Load the scene with the board
+<i>201</i>&nbsp;     * @param wrongCoordinatesUpdate Message
+<i>202</i>&nbsp;     */
+<i>203</i>&nbsp;    @Override
+<i>204</i>&nbsp;    public void WrongCoordinatesUpdate(WrongCoordinatesUpdate wrongCoordinatesUpdate) {
+<i>205</i>&nbsp;
+<b class="nc"><i>206</i>&nbsp;        int worker = wrongCoordinatesUpdate.getWorker();</b>
+<b class="nc"><i>207</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>208</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>209</i>&nbsp;            PlaceWorkerController controller = new PlaceWorkerController(client, worker, state);</b>
+<b class="nc"><i>210</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>211</i>&nbsp;            Parent root = null;</b>
+<i>212</i>&nbsp;            try {
+<b class="nc"><i>213</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>214</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>215</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>216</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>217</i>&nbsp;            }</b>
+<b class="nc"><i>218</i>&nbsp;        });</b>
+<i>219</i>&nbsp;
+<b class="nc"><i>220</i>&nbsp;    }</b>
+<i>221</i>&nbsp;
+<i>222</i>&nbsp;    @Override
+<i>223</i>&nbsp;    public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate) {
+<i>224</i>&nbsp;
+<b class="nc"><i>225</i>&nbsp;    }</b>
+<i>226</i>&nbsp;
+<i>227</i>&nbsp;    /**
+<i>228</i>&nbsp;     * Load the scene with the updated board
+<i>229</i>&nbsp;     * @param boardUpdate Board updated
+<i>230</i>&nbsp;     */
+<i>231</i>&nbsp;    @Override
+<i>232</i>&nbsp;    public void BoardUpdate(BoardUpdate boardUpdate) {
+<i>233</i>&nbsp;
+<b class="nc"><i>234</i>&nbsp;        setBoard(boardUpdate.getBoard());</b>
+<b class="nc"><i>235</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>236</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>237</i>&nbsp;            BoardController controller = new UpdateController(client, state);</b>
+<b class="nc"><i>238</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>239</i>&nbsp;            Parent root = null;</b>
+<i>240</i>&nbsp;            try {
+<b class="nc"><i>241</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>242</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>243</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>244</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>245</i>&nbsp;            }</b>
+<b class="nc"><i>246</i>&nbsp;        });</b>
+<i>247</i>&nbsp;
+<b class="nc"><i>248</i>&nbsp;    }</b>
+<i>249</i>&nbsp;
+<i>250</i>&nbsp;    /**
+<i>251</i>&nbsp;     * Load the scene with the current action
+<i>252</i>&nbsp;     * @param playerTurnUpdate name of the player that is in the current turn
+<i>253</i>&nbsp;     */
+<i>254</i>&nbsp;    @Override
+<i>255</i>&nbsp;    public void PlayerTurnUpdate(PlayerTurnUpdate playerTurnUpdate) {
+<i>256</i>&nbsp;
+<b class="nc"><i>257</i>&nbsp;        currentPlayer = playerTurnUpdate.getPlayer().getNickname();</b>
+<b class="nc"><i>258</i>&nbsp;        state = &quot;Moving&quot;;</b>
+<b class="nc"><i>259</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>260</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>261</i>&nbsp;            BoardController controller = new UpdateController(client, state);</b>
+<b class="nc"><i>262</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>263</i>&nbsp;            Parent root = null;</b>
+<i>264</i>&nbsp;            try {
+<b class="nc"><i>265</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>266</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>267</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>268</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>269</i>&nbsp;            }</b>
+<b class="nc"><i>270</i>&nbsp;        });</b>
+<i>271</i>&nbsp;
+<b class="nc"><i>272</i>&nbsp;    }</b>
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;    /**
+<i>275</i>&nbsp;     * Load the scene that permit to choose the worker
+<i>276</i>&nbsp;     * @param chooseYourWorkerRequest Message
+<i>277</i>&nbsp;     */
+<i>278</i>&nbsp;    @Override
+<i>279</i>&nbsp;    public void ChooseYourWorkerRequest(ChooseYourWorkerRequest chooseYourWorkerRequest) {
+<i>280</i>&nbsp;
+<b class="nc"><i>281</i>&nbsp;        state = &quot;Choosing Worker&quot;;</b>
+<b class="nc"><i>282</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>283</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>284</i>&nbsp;            BoardController controller = new ChooseWorkerController(client, state);</b>
+<b class="nc"><i>285</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>286</i>&nbsp;            Parent root = null;</b>
+<i>287</i>&nbsp;            try {
+<b class="nc"><i>288</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>289</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>290</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>291</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>292</i>&nbsp;            }</b>
+<b class="nc"><i>293</i>&nbsp;        });</b>
+<i>294</i>&nbsp;
+<b class="nc"><i>295</i>&nbsp;    }</b>
+<i>296</i>&nbsp;
+<i>297</i>&nbsp;    /**
+<i>298</i>&nbsp;     * Load the scene that permit to move the worker
+<i>299</i>&nbsp;     * @param moveRequest Message
+<i>300</i>&nbsp;     */
+<i>301</i>&nbsp;    @Override
+<i>302</i>&nbsp;    public void MoveRequest(MoveRequest moveRequest) {
+<i>303</i>&nbsp;
+<b class="nc"><i>304</i>&nbsp;        int worker = moveRequest.getWorker();</b>
+<b class="nc"><i>305</i>&nbsp;        state = &quot;Moving&quot;;</b>
+<b class="nc"><i>306</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>307</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>308</i>&nbsp;            BoardController controller = new MovingController(client, state, worker);</b>
+<b class="nc"><i>309</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>310</i>&nbsp;            Parent root = null;</b>
+<i>311</i>&nbsp;            try {
+<b class="nc"><i>312</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>313</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>314</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>315</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>316</i>&nbsp;            }</b>
+<b class="nc"><i>317</i>&nbsp;        });</b>
+<i>318</i>&nbsp;
+<b class="nc"><i>319</i>&nbsp;    }</b>
+<i>320</i>&nbsp;
+<i>321</i>&nbsp;    /**
+<i>322</i>&nbsp;     * Load the scene that permit to build
+<i>323</i>&nbsp;     */
+<i>324</i>&nbsp;    @Override
+<i>325</i>&nbsp;    public void BuildTimeUpdate() {
+<i>326</i>&nbsp;
+<b class="nc"><i>327</i>&nbsp;        state = &quot;Building&quot;;</b>
+<b class="nc"><i>328</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>329</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>330</i>&nbsp;            BoardController controller = new UpdateController(client, state);</b>
+<b class="nc"><i>331</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>332</i>&nbsp;            Parent root = null;</b>
+<i>333</i>&nbsp;            try {
+<b class="nc"><i>334</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>335</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>336</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>337</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>338</i>&nbsp;            }</b>
+<b class="nc"><i>339</i>&nbsp;        });</b>
+<i>340</i>&nbsp;
+<b class="nc"><i>341</i>&nbsp;    }</b>
+<i>342</i>&nbsp;
+<i>343</i>&nbsp;    /**
+<i>344</i>&nbsp;     * Load the scene with the current action
+<i>345</i>&nbsp;     * @param buildRequest Message
+<i>346</i>&nbsp;     */
+<i>347</i>&nbsp;    @Override
+<i>348</i>&nbsp;    public void BuildRequest(BuildRequest buildRequest) {
+<i>349</i>&nbsp;
+<b class="nc"><i>350</i>&nbsp;        int worker = buildRequest.getWorker();</b>
+<b class="nc"><i>351</i>&nbsp;        state = &quot;Building&quot;;</b>
+<b class="nc"><i>352</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>353</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>354</i>&nbsp;            BoardController controller = new BuildingController(client, state, worker);</b>
+<b class="nc"><i>355</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>356</i>&nbsp;            Parent root = null;</b>
+<i>357</i>&nbsp;            try {
+<b class="nc"><i>358</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>359</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>360</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>361</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>362</i>&nbsp;            }</b>
+<b class="nc"><i>363</i>&nbsp;        });</b>
+<i>364</i>&nbsp;
+<b class="nc"><i>365</i>&nbsp;    }</b>
+<i>366</i>&nbsp;
+<i>367</i>&nbsp;    @Override
+<i>368</i>&nbsp;    public void TryNewCoordinatesRequest() {
+<i>369</i>&nbsp;
+<b class="nc"><i>370</i>&nbsp;    }</b>
+<i>371</i>&nbsp;
+<i>372</i>&nbsp;    @Override
+<i>373</i>&nbsp;    public void WrongWorkerUpdate(WrongWorkerUpdate wrongWorkerUpdate) {
+<i>374</i>&nbsp;
+<b class="nc"><i>375</i>&nbsp;    }</b>
+<i>376</i>&nbsp;
+<i>377</i>&nbsp;    @Override
+<i>378</i>&nbsp;    public void NicknameAcceptedUpdate(NicknameAcceptedUpdate nicknameAcceptedUpdate) {
+<i>379</i>&nbsp;
+<b class="nc"><i>380</i>&nbsp;    }</b>
+<i>381</i>&nbsp;
+<i>382</i>&nbsp;    @Override
+<i>383</i>&nbsp;    public void NicknameNotValidUpdate() {
+<i>384</i>&nbsp;
+<b class="nc"><i>385</i>&nbsp;    }</b>
+<i>386</i>&nbsp;
+<i>387</i>&nbsp;    /**
+<i>388</i>&nbsp;     * Load the scene with the name of the challenger
+<i>389</i>&nbsp;     * @param chooseCardsUpdate Message
+<i>390</i>&nbsp;     */
+<i>391</i>&nbsp;    @Override
+<i>392</i>&nbsp;    public void ChooseCardsUpdate(ChooseCardsUpdate chooseCardsUpdate) {
+<i>393</i>&nbsp;
+<b class="nc"><i>394</i>&nbsp;        String name = chooseCardsUpdate.getChallenger();</b>
+<b class="nc"><i>395</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>396</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/ChallengerNameScene.fxml&quot;));</b>
+<b class="nc"><i>397</i>&nbsp;            TimeToChallengerController controller = new TimeToChallengerController(client, name);</b>
+<b class="nc"><i>398</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>399</i>&nbsp;            Parent root = null;</b>
+<i>400</i>&nbsp;            try {
+<b class="nc"><i>401</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>402</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>403</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>404</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>405</i>&nbsp;            }</b>
+<b class="nc"><i>406</i>&nbsp;        });</b>
+<i>407</i>&nbsp;
+<b class="nc"><i>408</i>&nbsp;    }</b>
+<i>409</i>&nbsp;
+<i>410</i>&nbsp;    @Override
+<i>411</i>&nbsp;    public void AvailableGodsUpdate(AvailableGodsUpdate availableGodsUpdate) {
+<i>412</i>&nbsp;
+<b class="nc"><i>413</i>&nbsp;    }</b>
+<i>414</i>&nbsp;
+<i>415</i>&nbsp;    /**
+<i>416</i>&nbsp;     * Load the scene that let the challenger choose the cards
+<i>417</i>&nbsp;     * @param challengerCardsRequest Message
+<i>418</i>&nbsp;     */
+<i>419</i>&nbsp;    @Override
+<i>420</i>&nbsp;    public void ChallengerCardsRequest(ChallengerCardsRequest challengerCardsRequest) {
+<i>421</i>&nbsp;
+<b class="nc"><i>422</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>423</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/chosenCards.fxml&quot;));</b>
+<b class="nc"><i>424</i>&nbsp;            ChosenCardsController controller = new ChosenCardsController(client);</b>
+<b class="nc"><i>425</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>426</i>&nbsp;            Parent root = null;</b>
+<i>427</i>&nbsp;            try {
+<b class="nc"><i>428</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>429</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>430</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>431</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>432</i>&nbsp;            }</b>
+<b class="nc"><i>433</i>&nbsp;        });</b>
+<i>434</i>&nbsp;
+<b class="nc"><i>435</i>&nbsp;    }</b>
+<i>436</i>&nbsp;
+<i>437</i>&nbsp;    @Override
+<i>438</i>&nbsp;    public void CardAddedUpdate(CardAddedUpdate cardAddedUpdate) {
+<i>439</i>&nbsp;
+<b class="nc"><i>440</i>&nbsp;    }</b>
+<i>441</i>&nbsp;
+<i>442</i>&nbsp;    @Override
+<i>443</i>&nbsp;    public void CardChallengerNotFoundRequest(CardChallengerNotFoundRequest cardChallengerNotFoundRequest) {
+<i>444</i>&nbsp;
+<b class="nc"><i>445</i>&nbsp;    }</b>
+<i>446</i>&nbsp;
+<i>447</i>&nbsp;    /**
+<i>448</i>&nbsp;     * Load the scene that permit the current player to choose his card. If it&#39;s not his turn load a waiting scene.
+<i>449</i>&nbsp;     * @param setCardTimeUpdate Message
+<i>450</i>&nbsp;     */
+<i>451</i>&nbsp;    @Override
+<i>452</i>&nbsp;    public void SetCardTimeUpdate(SetCardTimeUpdate setCardTimeUpdate) {
+<b class="nc"><i>453</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>454</i>&nbsp;            if (client.getNickname().equals(setCardTimeUpdate.getCurrentPlayer().getNickname())) {</b>
+<b class="nc"><i>455</i>&nbsp;                opponentPlayerName.add(setCardTimeUpdate.getCurrentPlayer().getNickname());</b>
+<b class="nc"><i>456</i>&nbsp;                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/CardsToChooseScene.fxml&quot;));</b>
+<b class="nc"><i>457</i>&nbsp;                CardsToChooseController controller = new CardsToChooseController(client);</b>
+<b class="nc"><i>458</i>&nbsp;                loader.setController(controller);</b>
+<b class="nc"><i>459</i>&nbsp;                Parent root = null;</b>
+<i>460</i>&nbsp;                try {
+<b class="nc"><i>461</i>&nbsp;                    root = loader.load();</b>
+<b class="nc"><i>462</i>&nbsp;                    primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>463</i>&nbsp;                } catch (IOException e) {</b>
+<b class="nc"><i>464</i>&nbsp;                    e.printStackTrace();</b>
+<b class="nc"><i>465</i>&nbsp;                }</b>
+<b class="nc"><i>466</i>&nbsp;            } else {</b>
+<i>467</i>&nbsp;                try {
+<b class="nc"><i>468</i>&nbsp;                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/playerSettingCardScene.fxml&quot;));</b>
+<b class="nc"><i>469</i>&nbsp;                    WaitingSetCardController controller = new WaitingSetCardController(client, setCardTimeUpdate.getCurrentPlayer().getNickname());</b>
+<b class="nc"><i>470</i>&nbsp;                    loader.setController(controller);</b>
+<b class="nc"><i>471</i>&nbsp;                    Parent root = loader.load();</b>
+<b class="nc"><i>472</i>&nbsp;                    primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>473</i>&nbsp;                } catch (IOException e) {</b>
+<b class="nc"><i>474</i>&nbsp;                    e.printStackTrace();</b>
+<b class="nc"><i>475</i>&nbsp;                }</b>
+<i>476</i>&nbsp;            }
+<b class="nc"><i>477</i>&nbsp;        });</b>
+<b class="nc"><i>478</i>&nbsp;    }</b>
+<i>479</i>&nbsp;
+<i>480</i>&nbsp;    /**
+<i>481</i>&nbsp;     * save the chosen cards.
+<i>482</i>&nbsp;     * @param setYourCardRequest Message
+<i>483</i>&nbsp;     */
+<i>484</i>&nbsp;    @Override
+<i>485</i>&nbsp;    public void SetYourCardRequest(SetYourCardRequest setYourCardRequest){
+<i>486</i>&nbsp;
+<b class="nc"><i>487</i>&nbsp;        chosenCards = setYourCardRequest.getChosenGods();</b>
+<b class="nc"><i>488</i>&nbsp;        opponentChosenCards = setYourCardRequest.getAvailableGods();</b>
+<i>489</i>&nbsp;
+<b class="nc"><i>490</i>&nbsp;    }</b>
+<i>491</i>&nbsp;
+<i>492</i>&nbsp;    /**
+<i>493</i>&nbsp;     * Save the Players.
+<i>494</i>&nbsp;     * @param cardSetUpdate Message
+<i>495</i>&nbsp;     */
+<i>496</i>&nbsp;    @Override
+<i>497</i>&nbsp;    public void CardSetUpdate(CardSetUpdate cardSetUpdate) {
+<i>498</i>&nbsp;
+<b class="nc"><i>499</i>&nbsp;        if(!client.getNickname().equals(cardSetUpdate.getCurrentPlayer().getNickname())) {</b>
+<b class="nc"><i>500</i>&nbsp;            opponentPlayers.add(cardSetUpdate.getCurrentPlayer());</b>
+<i>501</i>&nbsp;        } else {
+<b class="nc"><i>502</i>&nbsp;            setMe(cardSetUpdate.getCurrentPlayer());</b>
+<i>503</i>&nbsp;        }
+<i>504</i>&nbsp;
+<b class="nc"><i>505</i>&nbsp;    }</b>
+<i>506</i>&nbsp;
+<i>507</i>&nbsp;    @Override
+<i>508</i>&nbsp;    public void MaxPlayerReachedUpdate() {
+<b class="nc"><i>509</i>&nbsp;    }</b>
+<i>510</i>&nbsp;
+<i>511</i>&nbsp;    /**
+<i>512</i>&nbsp;     * Load a scene that permit to choose if the player want or not use his card effect
+<i>513</i>&nbsp;     */
+<i>514</i>&nbsp;    @Override
+<i>515</i>&nbsp;    public void AskEffect() {
+<i>516</i>&nbsp;
+<b class="nc"><i>517</i>&nbsp;        String name = client.getNickname();</b>
+<b class="nc"><i>518</i>&nbsp;        state = &quot;Choosing effect&quot;;</b>
+<b class="nc"><i>519</i>&nbsp;        Me.setEnableSpecialMove(false);</b>
+<b class="nc"><i>520</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>521</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>522</i>&nbsp;            BoardController controller = new AskEffectController(client, state, name);</b>
+<b class="nc"><i>523</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>524</i>&nbsp;            Parent root = null;</b>
+<i>525</i>&nbsp;            try {
+<b class="nc"><i>526</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>527</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>528</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>529</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>530</i>&nbsp;            }</b>
+<b class="nc"><i>531</i>&nbsp;        });</b>
+<i>532</i>&nbsp;
+<b class="nc"><i>533</i>&nbsp;    }</b>
+<i>534</i>&nbsp;
+<i>535</i>&nbsp;    /**
+<i>536</i>&nbsp;     * Load a scene the permit to choose the worker.
+<i>537</i>&nbsp;     * @param chooseYourWorkerEffectRequest Message
+<i>538</i>&nbsp;     */
+<i>539</i>&nbsp;    @Override
+<i>540</i>&nbsp;    public void ChooseYourWorkerEffectRequest(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) {
+<i>541</i>&nbsp;
+<b class="nc"><i>542</i>&nbsp;        state = &quot;Choosing Worker&quot;;</b>
+<b class="nc"><i>543</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>544</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>545</i>&nbsp;            BoardController controller = new ChooseWorkerController(client, state);</b>
+<b class="nc"><i>546</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>547</i>&nbsp;            Parent root = null;</b>
+<i>548</i>&nbsp;            try {
+<b class="nc"><i>549</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>550</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>551</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>552</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>553</i>&nbsp;            }</b>
+<b class="nc"><i>554</i>&nbsp;        });</b>
+<i>555</i>&nbsp;
+<b class="nc"><i>556</i>&nbsp;    }</b>
+<i>557</i>&nbsp;
+<i>558</i>&nbsp;    /**
+<i>559</i>&nbsp;     * Load a scene that permit to choose if the player want or not use his card effect
+<i>560</i>&nbsp;     * @param askEffectBuild message
+<i>561</i>&nbsp;     */
+<i>562</i>&nbsp;    @Override
+<i>563</i>&nbsp;    public void AskEffectBuild(AskEffectBuild askEffectBuild) {
+<i>564</i>&nbsp;
+<b class="nc"><i>565</i>&nbsp;        String name = client.getNickname();</b>
+<b class="nc"><i>566</i>&nbsp;        Me.setEnableSpecialMove(false);</b>
+<b class="nc"><i>567</i>&nbsp;        state = &quot;Choosing effect&quot;;</b>
+<b class="nc"><i>568</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>569</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>570</i>&nbsp;            BoardController controller = new AskEffectBuildController(client, state, name, askEffectBuild.getWorker());</b>
+<b class="nc"><i>571</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>572</i>&nbsp;            Parent root = null;</b>
+<i>573</i>&nbsp;            try {
+<b class="nc"><i>574</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>575</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>576</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>577</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>578</i>&nbsp;            }</b>
+<b class="nc"><i>579</i>&nbsp;        });</b>
+<i>580</i>&nbsp;
+<b class="nc"><i>581</i>&nbsp;    }</b>
+<i>582</i>&nbsp;
+<i>583</i>&nbsp;    @Override
+<i>584</i>&nbsp;    public void NumberOfPlayerWrong() {
+<b class="nc"><i>585</i>&nbsp;    }</b>
+<i>586</i>&nbsp;
+<i>587</i>&nbsp;    /**
+<i>588</i>&nbsp;     * Load a scene that permit to choose the coordinates for building.
+<i>589</i>&nbsp;     * @param buildTwoInputRequest message
+<i>590</i>&nbsp;     */
+<i>591</i>&nbsp;    @Override
+<i>592</i>&nbsp;    public void BuildTwoInputRequest(BuildTwoInputRequest buildTwoInputRequest) {
+<i>593</i>&nbsp;
+<b class="nc"><i>594</i>&nbsp;        int worker = buildTwoInputRequest.getWorker();</b>
+<b class="nc"><i>595</i>&nbsp;        state = &quot;Building&quot;;</b>
+<b class="nc"><i>596</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>597</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>598</i>&nbsp;            BoardController controller = new TwoInputBuildingController(client, state, worker);</b>
+<b class="nc"><i>599</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>600</i>&nbsp;            Parent root = null;</b>
+<i>601</i>&nbsp;            try {
+<b class="nc"><i>602</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>603</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>604</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>605</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>606</i>&nbsp;            }</b>
+<b class="nc"><i>607</i>&nbsp;        });</b>
+<i>608</i>&nbsp;
+<b class="nc"><i>609</i>&nbsp;    }</b>
+<i>610</i>&nbsp;
+<i>611</i>&nbsp;    /**
+<i>612</i>&nbsp;     * Load a scene that permit to choose the coordinates for moving.
+<i>613</i>&nbsp;     * @param moveTwoInputRequest message
+<i>614</i>&nbsp;     */
+<i>615</i>&nbsp;    @Override
+<i>616</i>&nbsp;    public void MoveTwoInputRequest(MoveTwoInputRequest moveTwoInputRequest) {
+<i>617</i>&nbsp;
+<b class="nc"><i>618</i>&nbsp;        int worker = moveTwoInputRequest.getWorker();</b>
+<b class="nc"><i>619</i>&nbsp;        state = &quot;Moving&quot;;</b>
+<b class="nc"><i>620</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>621</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>622</i>&nbsp;            BoardController controller = new TwoInputMovingController(client, state, worker);</b>
+<b class="nc"><i>623</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>624</i>&nbsp;            Parent root = null;</b>
+<i>625</i>&nbsp;            try {
+<b class="nc"><i>626</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>627</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>628</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>629</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>630</i>&nbsp;            }</b>
+<b class="nc"><i>631</i>&nbsp;        });</b>
+<i>632</i>&nbsp;
+<b class="nc"><i>633</i>&nbsp;    }</b>
+<i>634</i>&nbsp;
+<i>635</i>&nbsp;    /**
+<i>636</i>&nbsp;     * Load the win scene
+<i>637</i>&nbsp;     * @param nickaname nickname of the winner
+<i>638</i>&nbsp;     */
+<i>639</i>&nbsp;    @Override
+<i>640</i>&nbsp;    public void WinMessage(String nickaname) {
+<b class="nc"><i>641</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>642</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/WinScene1.fxml&quot;));</b>
+<b class="nc"><i>643</i>&nbsp;            BoardController controller = new WinSceneController(client, state, nickaname);</b>
+<b class="nc"><i>644</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>645</i>&nbsp;            Parent root = null;</b>
+<i>646</i>&nbsp;            try {
+<b class="nc"><i>647</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>648</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>649</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>650</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>651</i>&nbsp;            }</b>
+<b class="nc"><i>652</i>&nbsp;        });</b>
+<b class="nc"><i>653</i>&nbsp;        client.setActive(false);</b>
+<b class="nc"><i>654</i>&nbsp;        client.getClientBeatSender().setActive(false);</b>
+<b class="nc"><i>655</i>&nbsp;        client.killClient();</b>
+<b class="nc"><i>656</i>&nbsp;    }</b>
+<i>657</i>&nbsp;
+<i>658</i>&nbsp;    /**
+<i>659</i>&nbsp;     * Load the scene if the player has chosen a not valid cell of the board
+<i>660</i>&nbsp;     */
+<i>661</i>&nbsp;    @Override
+<i>662</i>&nbsp;    public void WorkerInputNotValid() {
+<b class="nc"><i>663</i>&nbsp;        state = &quot;Choosing Worker&quot;;</b>
+<b class="nc"><i>664</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>665</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/BoardViewScene.fxml&quot;));</b>
+<b class="nc"><i>666</i>&nbsp;            BoardController controller = new ChooseWorkerController(client, state);</b>
+<b class="nc"><i>667</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>668</i>&nbsp;            Parent root = null;</b>
+<i>669</i>&nbsp;            try {
+<b class="nc"><i>670</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>671</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>672</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>673</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>674</i>&nbsp;            }</b>
+<b class="nc"><i>675</i>&nbsp;        });</b>
+<b class="nc"><i>676</i>&nbsp;    }</b>
+<i>677</i>&nbsp;
+<i>678</i>&nbsp;    /**
+<i>679</i>&nbsp;     * Load the drop connection scene if some players has disconnected before the starting of the game.
+<i>680</i>&nbsp;     * @param droppedConnection Message with the name of the player that dropped the connection
+<i>681</i>&nbsp;     */
+<i>682</i>&nbsp;    @Override
+<i>683</i>&nbsp;    public void DroppedConnection(DroppedConnection droppedConnection) {
+<b class="nc"><i>684</i>&nbsp;        if(!started) {</b>
+<b class="nc"><i>685</i>&nbsp;            Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>686</i>&nbsp;                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/WaitingScene.fxml&quot;));</b>
+<b class="nc"><i>687</i>&nbsp;                Parent root = null;</b>
+<i>688</i>&nbsp;                try {
+<b class="nc"><i>689</i>&nbsp;                    root = loader.load();</b>
+<b class="nc"><i>690</i>&nbsp;                    primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>691</i>&nbsp;                } catch (IOException e) {</b>
+<b class="nc"><i>692</i>&nbsp;                    e.printStackTrace();</b>
+<b class="nc"><i>693</i>&nbsp;                }</b>
+<b class="nc"><i>694</i>&nbsp;            });</b>
+<i>695</i>&nbsp;        } else {
+<b class="nc"><i>696</i>&nbsp;            for (PlayerInterface opponentPlayer : opponentPlayers) {</b>
+<b class="nc"><i>697</i>&nbsp;                if (opponentPlayer.getNickname().equals(droppedConnection.getNickname())) {</b>
+<b class="nc"><i>698</i>&nbsp;                    droppedPlayers.add(opponentPlayer);</b>
+<i>699</i>&nbsp;                }
+<b class="nc"><i>700</i>&nbsp;            }</b>
+<i>701</i>&nbsp;        }
+<b class="nc"><i>702</i>&nbsp;    }</b>
+<i>703</i>&nbsp;
+<i>704</i>&nbsp;    /**
+<i>705</i>&nbsp;     * Load the scene the permit to chose the starter player
+<i>706</i>&nbsp;     * @param onlinePlayers list of onlinePlayers
+<i>707</i>&nbsp;     */
+<i>708</i>&nbsp;    @Override
+<i>709</i>&nbsp;    public void SetFirstPlayer(List&lt;PlayerInterface&gt; onlinePlayers) {
+<b class="nc"><i>710</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>711</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/setFirstPlayerScene.fxml&quot;));</b>
+<b class="nc"><i>712</i>&nbsp;            setFirstPlayerController controller = new setFirstPlayerController(client, onlinePlayers);</b>
+<b class="nc"><i>713</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>714</i>&nbsp;            Parent root = null;</b>
+<i>715</i>&nbsp;            try {
+<b class="nc"><i>716</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>717</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>718</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>719</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>720</i>&nbsp;            }</b>
+<b class="nc"><i>721</i>&nbsp;        });</b>
+<b class="nc"><i>722</i>&nbsp;    }</b>
+<i>723</i>&nbsp;
+<i>724</i>&nbsp;    /**
+<i>725</i>&nbsp;     * kill the client if server is no more connected to the client
+<i>726</i>&nbsp;     */
+<i>727</i>&nbsp;    @Override
+<i>728</i>&nbsp;    public void ServerRestart() {
+<b class="nc"><i>729</i>&nbsp;        Platform.runLater(() -&gt; {</b>
+<b class="nc"><i>730</i>&nbsp;            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource(&quot;/Scenes/SignalScene.fxml&quot;));</b>
+<b class="nc"><i>731</i>&nbsp;            SignalController controller = new SignalController(client);</b>
+<b class="nc"><i>732</i>&nbsp;            loader.setController(controller);</b>
+<b class="nc"><i>733</i>&nbsp;            Parent root = null;</b>
+<i>734</i>&nbsp;            try {
+<b class="nc"><i>735</i>&nbsp;                root = loader.load();</b>
+<b class="nc"><i>736</i>&nbsp;                primaryStage.getScene().setRoot(root);</b>
+<b class="nc"><i>737</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>738</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>739</i>&nbsp;            }</b>
+<b class="nc"><i>740</i>&nbsp;        });</b>
+<b class="nc"><i>741</i>&nbsp;        client.setActive(false);</b>
+<b class="nc"><i>742</i>&nbsp;        client.getClientBeatSender().setActive(false);</b>
+<b class="nc"><i>743</i>&nbsp;        client.killClient();</b>
+<b class="nc"><i>744</i>&nbsp;    }</b>
+<i>745</i>&nbsp;
+<i>746</i>&nbsp;    @Override
+<i>747</i>&nbsp;    public void lengthNameError() {
+<b class="nc"><i>748</i>&nbsp;    }</b>
+<i>749</i>&nbsp;
+<i>750</i>&nbsp;
+<i>751</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

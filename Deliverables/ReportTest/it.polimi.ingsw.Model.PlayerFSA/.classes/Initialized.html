@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Initialized</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.PlayerFSA</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Initialized (it.polimi.ingsw.Model.PlayerFSA)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Initialized</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/ 35)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.PlayerFSA;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.PlayerCreator;
+<i>6</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class Initialized extends PlayerFSA {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    PlayerInterface player;
+<i>11</i>&nbsp;    Game game;
+<b class="fc"><i>12</i>&nbsp;    PlayerCreator p = new PlayerCreator();</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public Initialized(PlayerInterface player, Game game) {</b>
+<b class="fc"><i>16</i>&nbsp;        this.player = player;</b>
+<b class="fc"><i>17</i>&nbsp;        this.game = game;</b>
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    /**
+<i>22</i>&nbsp;     * Add the God name on the availableGods. if godName is not present in the godListNames return an error message.
+<i>23</i>&nbsp;     * @param godName name of the god
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    @Override
+<i>26</i>&nbsp;    public void chosenCard(String godName)  {
+<b class="fc"><i>27</i>&nbsp;        boolean flag = true;</b>
+<b class="fc"><i>28</i>&nbsp;        if(game.getGodListNames().contains(godName)) {</b>
+<b class="fc"><i>29</i>&nbsp;            if(game.getAvailableGods().isEmpty()) {</b>
+<b class="fc"><i>30</i>&nbsp;                game.getAvailableGods().add(godName);</b>
+<b class="fc"><i>31</i>&nbsp;                game.getChosenGodList().add(p.find(godName));</b>
+<i>32</i>&nbsp;            } else {
+<b class="fc"><i>33</i>&nbsp;                for(String g : game.getAvailableGods()) {</b>
+<b class="fc"><i>34</i>&nbsp;                    if(g.equals(godName)) {</b>
+<b class="fc"><i>35</i>&nbsp;                        flag = false;</b>
+<b class="fc"><i>36</i>&nbsp;                        game.godNotAdded();</b>
+<b class="fc"><i>37</i>&nbsp;                        break;</b>
+<i>38</i>&nbsp;                    }
+<b class="fc"><i>39</i>&nbsp;                }</b>
+<b class="fc"><i>40</i>&nbsp;                if(flag) {</b>
+<b class="fc"><i>41</i>&nbsp;                    game.getAvailableGods().add(godName);</b>
+<b class="fc"><i>42</i>&nbsp;                    game.getChosenGodList().add(p.find(godName));</b>
+<b class="fc"><i>43</i>&nbsp;                    System.out.println(game.getChosenGodList());</b>
+<i>44</i>&nbsp;                }
+<i>45</i>&nbsp;            }
+<b class="fc"><i>46</i>&nbsp;            if(game.getAvailableGods().size() == game.getOnlinePlayers().size()) {</b>
+<b class="fc"><i>47</i>&nbsp;                game.godAdded(true);</b>
+<b class="fc"><i>48</i>&nbsp;                for (int i = 0; i &lt; game.getOnlinePlayers().size(); i++) {</b>
+<b class="fc"><i>49</i>&nbsp;                    if (game.getNicknames().get(i).equals(player.getNickname())) {</b>
+<b class="fc"><i>50</i>&nbsp;                        game.getStateList().set(i, new Idle(player, this, game));</b>
+<b class="fc"><i>51</i>&nbsp;                        break;</b>
+<i>52</i>&nbsp;                    }
+<i>53</i>&nbsp;                }
+<i>54</i>&nbsp;                //game.getCurrentTurn().nextTurn(game);
+<b class="fc"><i>55</i>&nbsp;                game.setFirstPlayer();</b>
+<i>56</i>&nbsp;                //game.toSetCard(); //faccio questo dopo che ho scelto il primo giocatore
+<i>57</i>&nbsp;            } else {
+<b class="fc"><i>58</i>&nbsp;                game.godAdded(false);</b>
+<i>59</i>&nbsp;            }
+<i>60</i>&nbsp;        } else {
+<b class="fc"><i>61</i>&nbsp;            game.godNotAdded();</b>
+<i>62</i>&nbsp;        }
+<b class="fc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    /**
+<i>66</i>&nbsp;     * Set the next state.
+<i>67</i>&nbsp;     */
+<i>68</i>&nbsp;    @Override
+<i>69</i>&nbsp;    public void next() {
+<b class="fc"><i>70</i>&nbsp;        for(int i = 0; i &lt; game.getStateList().size(); i++) {</b>
+<b class="fc"><i>71</i>&nbsp;            if(game.getNicknames().get(i).equals(player.getNickname())) {</b>
+<b class="fc"><i>72</i>&nbsp;                game.getStateList().set(i, new SetCard(player, game));</b>
+<b class="fc"><i>73</i>&nbsp;                break;</b>
+<i>74</i>&nbsp;            }
+<i>75</i>&nbsp;        }
+<b class="fc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

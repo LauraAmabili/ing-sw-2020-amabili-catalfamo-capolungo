@@ -1,0 +1,243 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SpecialMove_SwapOtherSide</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SpecialMove_SwapOtherSide (it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpecialMove_SwapOtherSide</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (6/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.3%
+  </span>
+  <span class="absValue">
+    (44/ 60)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.BoardCell;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;import it.polimi.ingsw.Model.Worker;
+<i>7</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;public class SpecialMove_SwapOtherSide extends PlayerDecorator {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private boolean hasSpecialMove;
+<i>15</i>&nbsp;    private boolean hasTwoInputMove;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    private boolean enableSpecialMove;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    public boolean isHasSpecialMove() {
+<b class="nc"><i>22</i>&nbsp;        return hasSpecialMove;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @Override
+<i>26</i>&nbsp;    public boolean isHasTwoInputMove() {
+<b class="nc"><i>27</i>&nbsp;        return hasTwoInputMove;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Override
+<i>31</i>&nbsp;    public boolean isEnableSpecialMove() {
+<b class="nc"><i>32</i>&nbsp;        return enableSpecialMove;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Override
+<i>36</i>&nbsp;    public void setEnableSpecialMove(boolean enableSpecialMove) {
+<b class="fc"><i>37</i>&nbsp;        this.enableSpecialMove = enableSpecialMove;</b>
+<b class="fc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    protected PlayerInterface player;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    // constructor
+<i>43</i>&nbsp;    public SpecialMove_SwapOtherSide(PlayerInterface p) {
+<b class="fc"><i>44</i>&nbsp;        super(p);</b>
+<b class="fc"><i>45</i>&nbsp;        this.hasSpecialMove = true;</b>
+<b class="fc"><i>46</i>&nbsp;        this.hasTwoInputMove = true;</b>
+<b class="fc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * 1. Opponent BoardCell
+<i>51</i>&nbsp;     * 2. Moving worker BoardCell
+<i>52</i>&nbsp;     *
+<i>53</i>&nbsp;     * @param row1 chosen row
+<i>54</i>&nbsp;     * @param col1 chosen col
+<i>55</i>&nbsp;     * @param row2 chosen row
+<i>56</i>&nbsp;     * @param col2 chosen col
+<i>57</i>&nbsp;     * @param worker Worker to move
+<i>58</i>&nbsp;     * @return true if moved correctly
+<i>59</i>&nbsp;     */
+<i>60</i>&nbsp;    @Override
+<i>61</i>&nbsp;    public synchronized boolean move(int row1, int col1, int row2, int col2, @NotNull Worker worker) {
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        BoardCell cell1 = getBoard().getGrid()[row1][col1];</b>
+<b class="fc"><i>64</i>&nbsp;        BoardCell cell2 = getBoard().getGrid()[row2][col2];</b>
+<b class="fc"><i>65</i>&nbsp;        if (!isMoveUp()){</b>
+<b class="nc"><i>66</i>&nbsp;            if (cell1.getLevel()&gt;worker.getCurCell().getLevel())</b>
+<b class="nc"><i>67</i>&nbsp;                return false;</b>
+<b class="nc"><i>68</i>&nbsp;            if (cell2.getLevel()&gt;worker.getCurCell().getLevel())</b>
+<b class="nc"><i>69</i>&nbsp;                return false;</b>
+<i>70</i>&nbsp;        }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;
+<b class="fc"><i>73</i>&nbsp;        if (enableSpecialMove) {</b>
+<b class="fc"><i>74</i>&nbsp;            if (opponentCells(worker).size() &gt; 0) {</b>
+<b class="fc"><i>75</i>&nbsp;                if (opponentCells(worker).contains(this.getBoard().getGrid()[row1][col1])) {</b>
+<b class="fc"><i>76</i>&nbsp;                    change(this.getBoard().getGrid()[row1][col1],</b>
+<b class="fc"><i>77</i>&nbsp;                            otherSide(worker, this.getBoard().getGrid()[row1][col1].getWorker()));</b>
+<i>78</i>&nbsp;                } else {
+<b class="nc"><i>79</i>&nbsp;                    return false; //wrong coordinates</b>
+<i>80</i>&nbsp;                }
+<i>81</i>&nbsp;            }
+<i>82</i>&nbsp;        }
+<b class="fc"><i>83</i>&nbsp;        return this.move(row2, col2, worker);</b>
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    /**
+<i>88</i>&nbsp;     * move a worker from a boardcell to another without any further change
+<i>89</i>&nbsp;     * @param startingBoardCell starting board cell
+<i>90</i>&nbsp;     * @param finalBoardCell final board cell
+<i>91</i>&nbsp;     * @return boolean
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    public boolean change(BoardCell startingBoardCell, BoardCell finalBoardCell) {
+<b class="fc"><i>94</i>&nbsp;        startingBoardCell.getWorker().setOldCell(startingBoardCell);</b>
+<b class="fc"><i>95</i>&nbsp;        startingBoardCell.getWorker().setCurCell(finalBoardCell);</b>
+<b class="fc"><i>96</i>&nbsp;        finalBoardCell.setWorker(startingBoardCell.getWorker());</b>
+<b class="fc"><i>97</i>&nbsp;        startingBoardCell.setWorker(null);</b>
+<b class="fc"><i>98</i>&nbsp;        return true;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    /**
+<i>102</i>&nbsp;     * return opponent pushable board cell
+<i>103</i>&nbsp;     * @param worker worker used
+<i>104</i>&nbsp;     * @return pushable board cells
+<i>105</i>&nbsp;     */
+<i>106</i>&nbsp;    public List&lt;BoardCell&gt; opponentCells(Worker worker) {
+<i>107</i>&nbsp;
+<b class="fc"><i>108</i>&nbsp;        List&lt;BoardCell&gt; adj = this.getBoard().adjacentCells(worker.getCurCell());</b>
+<b class="fc"><i>109</i>&nbsp;        adj.removeIf(x -&gt; x.getWorker() == null);</b>
+<b class="fc"><i>110</i>&nbsp;        adj.removeIf(x -&gt; x.getWorker().getPlayerWorker() == worker.getPlayerWorker());</b>
+<b class="fc"><i>111</i>&nbsp;        adj.removeIf(x -&gt; otherSide(worker, x.getWorker()) == null);</b>
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;
+<b class="fc"><i>114</i>&nbsp;        return adj;</b>
+<i>115</i>&nbsp;    }
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    /**
+<i>118</i>&nbsp;     * return opposite side cell
+<i>119</i>&nbsp;     * @param pushing worker pushing
+<i>120</i>&nbsp;     * @param pushed worker pushed
+<i>121</i>&nbsp;     * @return board cell pushed on
+<i>122</i>&nbsp;     */
+<i>123</i>&nbsp;    public BoardCell otherSide(Worker pushing, Worker pushed) {
+<b class="fc"><i>124</i>&nbsp;        if (pushing.getPlayerWorker().equals(pushed.getPlayerWorker()))</b>
+<b class="nc"><i>125</i>&nbsp;            return null;</b>
+<b class="fc"><i>126</i>&nbsp;        int rowPushingCell = pushing.getCurCell().getRow();</b>
+<b class="fc"><i>127</i>&nbsp;        int colPushingCell = pushing.getCurCell().getCol();</b>
+<b class="fc"><i>128</i>&nbsp;        int rowPushedCell = pushed.getCurCell().getRow();</b>
+<b class="fc"><i>129</i>&nbsp;        int colPushedCell = pushed.getCurCell().getCol();</b>
+<b class="fc"><i>130</i>&nbsp;        int rowDestinationCell = 0;</b>
+<b class="fc"><i>131</i>&nbsp;        int colDestinationCell = 0;</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;
+<b class="fc"><i>134</i>&nbsp;        if (rowPushedCell == rowPushingCell)</b>
+<b class="nc"><i>135</i>&nbsp;            rowDestinationCell = rowPushedCell;</b>
+<b class="fc"><i>136</i>&nbsp;        if (rowPushedCell &gt; rowPushingCell)</b>
+<b class="fc"><i>137</i>&nbsp;            rowDestinationCell = rowPushingCell - 1;</b>
+<b class="fc"><i>138</i>&nbsp;        if (rowPushedCell &lt; rowPushingCell)</b>
+<b class="nc"><i>139</i>&nbsp;            rowDestinationCell = rowPushingCell + 1;</b>
+<i>140</i>&nbsp;
+<b class="fc"><i>141</i>&nbsp;        if (colPushedCell == colPushingCell)</b>
+<b class="nc"><i>142</i>&nbsp;            colDestinationCell = colPushedCell;</b>
+<b class="fc"><i>143</i>&nbsp;        if (colPushedCell &gt; colPushingCell)</b>
+<b class="fc"><i>144</i>&nbsp;            colDestinationCell = colPushingCell - 1;</b>
+<b class="fc"><i>145</i>&nbsp;        if (colPushedCell &lt; colPushingCell)</b>
+<b class="nc"><i>146</i>&nbsp;            colDestinationCell = colPushingCell + 1;</b>
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;
+<b class="fc"><i>149</i>&nbsp;        if ((rowDestinationCell &lt; 0 || colDestinationCell &lt; 0 || rowDestinationCell &gt; 4 || colDestinationCell &gt; 4))</b>
+<b class="nc"><i>150</i>&nbsp;            return null;</b>
+<b class="fc"><i>151</i>&nbsp;        if (this.getBoard().getGrid()[rowDestinationCell][colDestinationCell].getDome())</b>
+<b class="nc"><i>152</i>&nbsp;            return null;</b>
+<b class="fc"><i>153</i>&nbsp;        if (this.getBoard().getGrid()[rowDestinationCell][colDestinationCell].getWorker() != null)</b>
+<b class="nc"><i>154</i>&nbsp;            return null;</b>
+<b class="fc"><i>155</i>&nbsp;        return this.getBoard().getGrid()[rowDestinationCell][colDestinationCell];</b>
+<i>156</i>&nbsp;
+<i>157</i>&nbsp;    }
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;
+<i>160</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

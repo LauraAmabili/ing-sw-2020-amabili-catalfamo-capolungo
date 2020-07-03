@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SpecialMove_BMB</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SpecialMove_BMB (it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpecialMove_BMB</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    67.7%
+  </span>
+  <span class="absValue">
+    (21/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.BoardCell;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;import it.polimi.ingsw.Model.Worker;
+<i>7</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.ArrayList;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;public class SpecialMove_BMB extends PlayerDecorator {
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    private final boolean hasSpecialMove;
+<i>16</i>&nbsp;    private final boolean hasTwoInputMove;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    private boolean enableSpecialMove;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    public boolean isHasTwoInputMove() {
+<b class="nc"><i>22</i>&nbsp;        return hasTwoInputMove;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @Override
+<i>26</i>&nbsp;    public boolean isHasSpecialMove() {
+<b class="fc"><i>27</i>&nbsp;        return hasSpecialMove;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Override
+<i>31</i>&nbsp;    public boolean isEnableSpecialMove() {
+<b class="fc"><i>32</i>&nbsp;        return enableSpecialMove;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Override
+<i>36</i>&nbsp;    public void setEnableSpecialMove(boolean enableSpecialMove) {
+<b class="fc"><i>37</i>&nbsp;        this.enableSpecialMove = enableSpecialMove;</b>
+<b class="fc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public SpecialMove_BMB(PlayerInterface player) {
+<b class="fc"><i>41</i>&nbsp;        super(player);</b>
+<b class="fc"><i>42</i>&nbsp;        hasSpecialMove = true;</b>
+<b class="fc"><i>43</i>&nbsp;        hasTwoInputMove = true;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    /**Build, move on the same level, build
+<i>47</i>&nbsp;     * @param row First BoardCell row
+<i>48</i>&nbsp;     * @param col First BoardCell col
+<i>49</i>&nbsp;     * @param worker Worker used
+<i>50</i>&nbsp;     * @param rowBuild Second BoardCell row
+<i>51</i>&nbsp;     * @param colBuild Second BoardCell col
+<i>52</i>&nbsp;     * @return true &lt;--&gt; the method works
+<i>53</i>&nbsp;     */
+<i>54</i>&nbsp;    @Override
+<i>55</i>&nbsp;    public synchronized boolean move(int rowBuild, int colBuild, int row, int col, @NotNull Worker worker) {
+<b class="fc"><i>56</i>&nbsp;        BoardCell cell1 = getBoard().getGrid()[rowBuild][colBuild];</b>
+<b class="fc"><i>57</i>&nbsp;        BoardCell cell2 = getBoard().getGrid()[row][col];</b>
+<i>58</i>&nbsp;
+<b class="fc"><i>59</i>&nbsp;        if (cell2.getLevel()&gt;cell1.getLevel())</b>
+<b class="nc"><i>60</i>&nbsp;            return false;</b>
+<i>61</i>&nbsp;
+<b class="fc"><i>62</i>&nbsp;        if (!isMoveUp()){</b>
+<b class="nc"><i>63</i>&nbsp;            if (cell1.getLevel()&gt;worker.getCurCell().getLevel())</b>
+<b class="nc"><i>64</i>&nbsp;                return false;</b>
+<b class="nc"><i>65</i>&nbsp;            if (cell2.getLevel()&gt;worker.getCurCell().getLevel())</b>
+<b class="nc"><i>66</i>&nbsp;                return false;</b>
+<i>67</i>&nbsp;        }
+<b class="fc"><i>68</i>&nbsp;        if (enableSpecialMove) {</b>
+<b class="fc"><i>69</i>&nbsp;            if (availableCellsToBuild(worker).contains(cell1) &amp;&amp; player.availableCellsToMove(worker).contains(cell2)) {</b>
+<b class="fc"><i>70</i>&nbsp;                player.build(rowBuild, colBuild, worker);</b>
+<i>71</i>&nbsp;            }
+<i>72</i>&nbsp;            else {
+<b class="nc"><i>73</i>&nbsp;                if (availableCellsToBuild(worker).size() &gt; 0)</b>
+<b class="nc"><i>74</i>&nbsp;                    return false;</b>
+<i>75</i>&nbsp;            }
+<i>76</i>&nbsp;        }
+<i>77</i>&nbsp;
+<b class="fc"><i>78</i>&nbsp;        return player.move(row, col, worker);</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    /**
+<i>82</i>&nbsp;     * After building we need to recalculate where the worker can move
+<i>83</i>&nbsp;     * @param worker number of the worker
+<i>84</i>&nbsp;     * @return recursion
+<i>85</i>&nbsp;     */
+<i>86</i>&nbsp;    @Override
+<i>87</i>&nbsp;    public List&lt;BoardCell&gt; availableCellsToMove(@NotNull Worker worker) {
+<b class="fc"><i>88</i>&nbsp;        if (enableSpecialMove) {</b>
+<b class="fc"><i>89</i>&nbsp;            if(player.availableCellsToBuild(worker).size() &lt;= 1) {</b>
+<b class="nc"><i>90</i>&nbsp;                return new ArrayList&lt;&gt;();</b>
+<i>91</i>&nbsp;            } else {
+<b class="fc"><i>92</i>&nbsp;                List&lt;BoardCell&gt; cells = player.availableCellsToMove(worker);</b>
+<b class="fc"><i>93</i>&nbsp;                cells.removeIf(x -&gt; x.getLevel() &gt; worker.getCurCell().getLevel());</b>
+<b class="fc"><i>94</i>&nbsp;                return cells;</b>
+<i>95</i>&nbsp;            }
+<i>96</i>&nbsp;        }
+<b class="nc"><i>97</i>&nbsp;        return player.availableCellsToMove(worker);</b>
+<i>98</i>&nbsp;    }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: VisitorClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: VisitorClient (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">VisitorClient</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.IOException;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface VisitorClient {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    /**
+<i>11</i>&nbsp;     * Request the number of players
+<i>12</i>&nbsp;     * @param playerNumberRequest Message
+<i>13</i>&nbsp;     */
+<i>14</i>&nbsp;    void visit(PlayerNumberRequest playerNumberRequest) throws IOException;
+<i>15</i>&nbsp;    /**
+<i>16</i>&nbsp;     * connection enabled
+<i>17</i>&nbsp;     * @param connectionResponse Message
+<i>18</i>&nbsp;     */
+<i>19</i>&nbsp;    void visit(ConnectionResponse connectionResponse);
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Message if the max number of player is reached
+<i>22</i>&nbsp;     * @param maxPlayerReachedUpdate Message
+<i>23</i>&nbsp;     */
+<i>24</i>&nbsp;    void visit(MaxPlayerReachedUpdate maxPlayerReachedUpdate);
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * Request the nickname
+<i>27</i>&nbsp;     * @param nicknameRequest Message
+<i>28</i>&nbsp;     */
+<i>29</i>&nbsp;    void visit(NicknameRequest nicknameRequest);
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Sends an update to notify the player that the nickname was correct
+<i>32</i>&nbsp;     * @param nicknameAcceptedUpdate message
+<i>33</i>&nbsp;     */
+<i>34</i>&nbsp;    void visit(NicknameAcceptedUpdate nicknameAcceptedUpdate);
+<i>35</i>&nbsp;    /**
+<i>36</i>&nbsp;     * Sends the request for a new nickname
+<i>37</i>&nbsp;     * @param nicknameNotValidUpdate message
+<i>38</i>&nbsp;     */
+<i>39</i>&nbsp;    void visit(NicknameNotValidUpdate nicknameNotValidUpdate);
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * Sends the list of the available gods
+<i>43</i>&nbsp;     * @param availableGodsUpdate message
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    void visit(AvailableGodsUpdate availableGodsUpdate);
+<i>46</i>&nbsp;    /**
+<i>47</i>&nbsp;     * Asks for the cards for the game
+<i>48</i>&nbsp;     * @param challengerCardsRequest message
+<i>49</i>&nbsp;     */
+<i>50</i>&nbsp;    void visit(ChallengerCardsRequest challengerCardsRequest);
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    /**
+<i>53</i>&nbsp;     * Sends the update with the card updated
+<i>54</i>&nbsp;     * @param cardAddedUpdate message
+<i>55</i>&nbsp;     */
+<i>56</i>&nbsp;    void visit(CardAddedUpdate cardAddedUpdate);
+<i>57</i>&nbsp;    /**
+<i>58</i>&nbsp;     * Sends an error if the card chosen is not in the given cards
+<i>59</i>&nbsp;     * @param cardChallengerNotFoundRequest message
+<i>60</i>&nbsp;     */
+<i>61</i>&nbsp;    void visit(CardChallengerNotFoundRequest cardChallengerNotFoundRequest);
+<i>62</i>&nbsp;    /**
+<i>63</i>&nbsp;     * Update about the time of the game, it&#39;s time to set the cards
+<i>64</i>&nbsp;     * @param setCardTimeUpdate message
+<i>65</i>&nbsp;     */
+<i>66</i>&nbsp;    void visit(SetCardTimeUpdate setCardTimeUpdate);
+<i>67</i>&nbsp;    /**
+<i>68</i>&nbsp;     * Request of setting the card
+<i>69</i>&nbsp;     * @param setYourCardRequest message
+<i>70</i>&nbsp;     */
+<i>71</i>&nbsp;    void visit(SetYourCardRequest setYourCardRequest);
+<i>72</i>&nbsp;    /**
+<i>73</i>&nbsp;     * Update if the card is set correctly
+<i>74</i>&nbsp;     * @param cardSetUpdate Message
+<i>75</i>&nbsp;     */
+<i>76</i>&nbsp;    void visit(CardSetUpdate cardSetUpdate);
+<i>77</i>&nbsp;    /**
+<i>78</i>&nbsp;     * Asks for the card of the player
+<i>79</i>&nbsp;     * @param timeToChooseCard message
+<i>80</i>&nbsp;     */
+<i>81</i>&nbsp;    void visit(ChooseCardsUpdate timeToChooseCard);
+<i>82</i>&nbsp;    /**
+<i>83</i>&nbsp;     * card not found, a new card has to be chosen
+<i>84</i>&nbsp;     * @param cardNotFoundRequest Message
+<i>85</i>&nbsp;     */
+<i>86</i>&nbsp;    void visit(CardNotFoundRequest cardNotFoundRequest);
+<i>87</i>&nbsp;    /**
+<i>88</i>&nbsp;     * Time to set workers
+<i>89</i>&nbsp;     * @param startingSetWorkerTimeUpdate Message
+<i>90</i>&nbsp;     */
+<i>91</i>&nbsp;    void visit(StartingSetWorkerTimeUpdate startingSetWorkerTimeUpdate);
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    /**
+<i>94</i>&nbsp;     * coordinates for the worker to set
+<i>95</i>&nbsp;     * @param startingSetWorkerRequest Message
+<i>96</i>&nbsp;     */
+<i>97</i>&nbsp;    void visit(StartingSetWorkerRequest startingSetWorkerRequest);
+<i>98</i>&nbsp;    /**
+<i>99</i>&nbsp;     * Coordinates wrong, aking for new ones
+<i>100</i>&nbsp;     * @param wrongCoordinatesUpdate message
+<i>101</i>&nbsp;     */
+<i>102</i>&nbsp;    void visit(WrongCoordinatesUpdate wrongCoordinatesUpdate) ;
+<i>103</i>&nbsp;    /**
+<i>104</i>&nbsp;     * The player is locked, no more in the game
+<i>105</i>&nbsp;     * @param playerLockedUpdate message
+<i>106</i>&nbsp;     */
+<i>107</i>&nbsp;    void visit(PlayerLockedUpdate playerLockedUpdate);
+<i>108</i>&nbsp;    /**
+<i>109</i>&nbsp;     * Sends the board when updated
+<i>110</i>&nbsp;     * @param boardUpdate message
+<i>111</i>&nbsp;     */
+<i>112</i>&nbsp;    void visit(BoardUpdate boardUpdate);
+<i>113</i>&nbsp;    /**
+<i>114</i>&nbsp;     * Information about the player that is playing now
+<i>115</i>&nbsp;     * @param playerTurnUpdate message
+<i>116</i>&nbsp;     */
+<i>117</i>&nbsp;    void visit(PlayerTurnUpdate playerTurnUpdate);
+<i>118</i>&nbsp;    /**
+<i>119</i>&nbsp;     * Asks for the worker to move
+<i>120</i>&nbsp;     * @param chooseYourWorkerRequest message
+<i>121</i>&nbsp;     */
+<i>122</i>&nbsp;    void visit(ChooseYourWorkerRequest chooseYourWorkerRequest) ;
+<i>123</i>&nbsp;    /**
+<i>124</i>&nbsp;     * Asks for the coordinates
+<i>125</i>&nbsp;     * @param moveRequest message
+<i>126</i>&nbsp;     */
+<i>127</i>&nbsp;    void visit(MoveRequest moveRequest) ;
+<i>128</i>&nbsp;    /**
+<i>129</i>&nbsp;     * Update the game, it&#39;s time for the building
+<i>130</i>&nbsp;     * @param buildTimeUpdate message
+<i>131</i>&nbsp;     */
+<i>132</i>&nbsp;    void visit(BuildTimeUpdate buildTimeUpdate);
+<i>133</i>&nbsp;    /**
+<i>134</i>&nbsp;     * Asking for building coordinates
+<i>135</i>&nbsp;     * @param buildingRowAndCol message
+<i>136</i>&nbsp;     */
+<i>137</i>&nbsp;    void visit(BuildRequest buildingRowAndCol) ;
+<i>138</i>&nbsp;
+<i>139</i>&nbsp;    /**
+<i>140</i>&nbsp;     * Coordinates were not correct, asking for new ones
+<i>141</i>&nbsp;     * @param tryNewCoordinatesRequest message
+<i>142</i>&nbsp;     */
+<i>143</i>&nbsp;    void visit(TryNewCoordinatesRequest tryNewCoordinatesRequest);
+<i>144</i>&nbsp;    /**
+<i>145</i>&nbsp;     * The worker chosen was not correct, asking for a new one
+<i>146</i>&nbsp;     * @param wrongWorkerUpdate message
+<i>147</i>&nbsp;     */
+<i>148</i>&nbsp;    void visit(WrongWorkerUpdate wrongWorkerUpdate);
+<i>149</i>&nbsp;    /**
+<i>150</i>&nbsp;     * Asking to the player if it wants to use the effect or not, applied with active gods
+<i>151</i>&nbsp;     * @param askEffect Message
+<i>152</i>&nbsp;     */
+<i>153</i>&nbsp;    void visit(AskEffect askEffect) ;
+<i>154</i>&nbsp;    /**
+<i>155</i>&nbsp;     * Asking for the worker when the player has some special effect
+<i>156</i>&nbsp;     * @param chooseYourWorkerEffectRequest Message
+<i>157</i>&nbsp;     */
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;    void visit(ChooseYourWorkerEffectRequest chooseYourWorkerEffectRequest) ;
+<i>160</i>&nbsp;    /**
+<i>161</i>&nbsp;     * Asking for the effect when the player has an effect that involves building
+<i>162</i>&nbsp;     * @param askEffectBuild Message
+<i>163</i>&nbsp;     */
+<i>164</i>&nbsp;    void visit(AskEffectBuild askEffectBuild);
+<i>165</i>&nbsp;    /**
+<i>166</i>&nbsp;     * Asking for different input for the building
+<i>167</i>&nbsp;     * @param buildTwoInputRequest Message
+<i>168</i>&nbsp;     */
+<i>169</i>&nbsp;    void visit(BuildTwoInputRequest buildTwoInputRequest) ;
+<i>170</i>&nbsp;
+<i>171</i>&nbsp;    /**
+<i>172</i>&nbsp;     * Sending the message that the number of player chosen is not 2 or 3
+<i>173</i>&nbsp;     * @param numberOfPlayerWrong Message
+<i>174</i>&nbsp;     */
+<i>175</i>&nbsp;    void visit(NumberOfPlayerWrong numberOfPlayerWrong);
+<i>176</i>&nbsp;    /**
+<i>177</i>&nbsp;     * Asking for a different input for the moving
+<i>178</i>&nbsp;     * @param moveTwoInputRequest Message
+<i>179</i>&nbsp;     */
+<i>180</i>&nbsp;    void visit(MoveTwoInputRequest moveTwoInputRequest) ;
+<i>181</i>&nbsp;    /**
+<i>182</i>&nbsp;     * Sending the win message with the name of the winner
+<i>183</i>&nbsp;     * @param winMessage message
+<i>184</i>&nbsp;     */
+<i>185</i>&nbsp;    void visit(WinMessage winMessage);
+<i>186</i>&nbsp;    /**
+<i>187</i>&nbsp;     * telling the client that the worker chosen was not valid
+<i>188</i>&nbsp;     * @param workerInputNotValid Message
+<i>189</i>&nbsp;     */
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    void visit(WorkerInputNotValid workerInputNotValid);
+<i>192</i>&nbsp;    /**
+<i>193</i>&nbsp;     * Saying to the client that someone dropped the connection
+<i>194</i>&nbsp;     * @param droppedConnection Message with the name of the player that dropped the connection
+<i>195</i>&nbsp;     */
+<i>196</i>&nbsp;    void visit(DroppedConnection droppedConnection);
+<i>197</i>&nbsp;    /**
+<i>198</i>&nbsp;     * Asking for the name of the first Player
+<i>199</i>&nbsp;     * @param setFirstPlayer Message
+<i>200</i>&nbsp;     */
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    void visit(SetFirstPlayer setFirstPlayer) ;
+<i>203</i>&nbsp;    /**
+<i>204</i>&nbsp;     * The server is restarting
+<i>205</i>&nbsp;     * @param serverRestart Message
+<i>206</i>&nbsp;     */
+<i>207</i>&nbsp;    void visit(ServerRestart serverRestart);
+<i>208</i>&nbsp;    /**
+<i>209</i>&nbsp;     * Saying to the client that the username length is too long
+<i>210</i>&nbsp;     * @param tooLongName Message
+<i>211</i>&nbsp;     */
+<i>212</i>&nbsp;    void visit(tooLongName tooLongName) ;
+<i>213</i>&nbsp;
+<i>214</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

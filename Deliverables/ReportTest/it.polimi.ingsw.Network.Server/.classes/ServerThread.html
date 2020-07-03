@@ -1,0 +1,263 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ServerThread</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ServerThread (it.polimi.ingsw.Network.Server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ServerThread</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.9%
+  </span>
+  <span class="absValue">
+    (1/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    17.1%
+  </span>
+  <span class="absValue">
+    (12/ 70)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.ObserverModel;
+<i>4</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
+<i>5</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromServer.*;
+<i>6</i>&nbsp;import it.polimi.ingsw.View.VirtualView;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.io.*;
+<i>10</i>&nbsp;import java.net.Socket;
+<i>11</i>&nbsp;import java.net.SocketException;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;public class ServerThread extends Thread implements Runnable {
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    private final VirtualView view = new VirtualView(this);</b>
+<i>16</i>&nbsp;    final Socket socket;
+<i>17</i>&nbsp;    final Server server;
+<b class="fc"><i>18</i>&nbsp;    private final VisitorServer visitor = new VisitorMethodsServer(view, this);</b>
+<i>19</i>&nbsp;    private boolean maxPlayerNumberSet;
+<b class="fc"><i>20</i>&nbsp;    private boolean nicknameSet = false;</b>
+<i>21</i>&nbsp;    int numPlayers;
+<b class="fc"><i>22</i>&nbsp;    final int numOnline = 0;</b>
+<i>23</i>&nbsp;    private ObjectOutputStream out;
+<i>24</i>&nbsp;    private ObjectInputStream in;
+<b class="fc"><i>25</i>&nbsp;    private volatile boolean keepAlive = true;</b>
+<b class="fc"><i>26</i>&nbsp;    private final boolean ready = false;</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public boolean isNicknameSet() {
+<b class="nc"><i>29</i>&nbsp;        return nicknameSet;</b>
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    public void setNicknameSet(boolean nicknameSet) {
+<b class="nc"><i>33</i>&nbsp;        this.nicknameSet = nicknameSet;</b>
+<b class="nc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    public void setMaxPlayerNumberSet(boolean maxPlayerNumberSet) {
+<b class="nc"><i>37</i>&nbsp;        this.maxPlayerNumberSet = maxPlayerNumberSet;</b>
+<b class="nc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public boolean isKeepAlive() {
+<b class="nc"><i>41</i>&nbsp;        return keepAlive;</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    public void setKeepAlive(boolean keepAlive) {
+<b class="nc"><i>45</i>&nbsp;        this.keepAlive = keepAlive;</b>
+<b class="nc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public VirtualView getView() {
+<b class="nc"><i>49</i>&nbsp;        return view;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    /**
+<i>53</i>&nbsp;     * This class is a thread create by the server. Each client has its own Thread.
+<i>54</i>&nbsp;     * The thread is the real gate between the Server and the Client.
+<i>55</i>&nbsp;     * @param socket socket
+<i>56</i>&nbsp;     * @param server server
+<i>57</i>&nbsp;     * @param numPlayers numPlayers
+<i>58</i>&nbsp;     * @param maxPlayerNumberSet maxPlayerNumberSet
+<i>59</i>&nbsp;     */
+<b class="fc"><i>60</i>&nbsp;    public ServerThread(Socket socket, Server server, int numPlayers, boolean maxPlayerNumberSet) {</b>
+<b class="fc"><i>61</i>&nbsp;        this.socket = socket;</b>
+<b class="fc"><i>62</i>&nbsp;        this.server = server;</b>
+<b class="fc"><i>63</i>&nbsp;        this.numPlayers = numPlayers;</b>
+<b class="fc"><i>64</i>&nbsp;        this.maxPlayerNumberSet = maxPlayerNumberSet;</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void setNumPlayers(int numPlayers) {
+<b class="nc"><i>68</i>&nbsp;        this.numPlayers = numPlayers;</b>
+<b class="nc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public int getNumPlayers() {
+<b class="nc"><i>72</i>&nbsp;        return numPlayers;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public boolean isMaxPlayerNumberSet() {
+<b class="nc"><i>76</i>&nbsp;        return maxPlayerNumberSet;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void setMaxPlrMsg(boolean maxPlrSet) {
+<b class="nc"><i>80</i>&nbsp;        this.maxPlayerNumberSet = maxPlrSet;</b>
+<b class="nc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public Server getServer() {
+<b class="nc"><i>84</i>&nbsp;        return server;</b>
+<i>85</i>&nbsp;    }
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public int getNumOnline() {
+<b class="nc"><i>88</i>&nbsp;        return numOnline;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    /**
+<i>92</i>&nbsp;     * out and in are the channels used to communicate with the clients
+<i>93</i>&nbsp;     * if this is the first client, request the number of players
+<i>94</i>&nbsp;     * if the number of connected clients is greater than the number
+<i>95</i>&nbsp;     *      of maximum players allowed, then a message is sent to that client
+<i>96</i>&nbsp;     *      notifying of this event
+<i>97</i>&nbsp;     * otherwise view and controller are set
+<i>98</i>&nbsp;     * the attribute KeepAlive is used to manage the thread.
+<i>99</i>&nbsp;     *      If KeepAlive = true, then
+<i>100</i>&nbsp;     *          the thread runs and continues to accept new packets
+<i>101</i>&nbsp;     *      If KeepAlive = false, then
+<i>102</i>&nbsp;     *          the thread stops
+<i>103</i>&nbsp;     */
+<i>104</i>&nbsp;    @Override
+<i>105</i>&nbsp;    public void run() {
+<i>106</i>&nbsp;        try {
+<b class="nc"><i>107</i>&nbsp;            out = new ObjectOutputStream(socket.getOutputStream());</b>
+<b class="nc"><i>108</i>&nbsp;            in = new ObjectInputStream(socket.getInputStream());</b>
+<b class="nc"><i>109</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>110</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>111</i>&nbsp;        }</b>
+<b class="nc"><i>112</i>&nbsp;        server.getServerThreads().add(this);</b>
+<b class="nc"><i>113</i>&nbsp;        sendToClient(new ConnectionResponse());</b>
+<i>114</i>&nbsp;        //numOnline = server.getClients().size();
+<b class="nc"><i>115</i>&nbsp;        if (server.getServerThreads().size() == 1) {</b>
+<b class="nc"><i>116</i>&nbsp;            sendToClient(new PlayerNumberRequest());</b>
+<i>117</i>&nbsp;        } else {
+<b class="nc"><i>118</i>&nbsp;            if (isMaxPlayerNumberSet() &amp;&amp; server.getServerThreads().size() == numPlayers) {</b>
+<b class="nc"><i>119</i>&nbsp;                for (int i = 0; i &lt; server.getServerThreads().size(); i++) {</b>
+<b class="nc"><i>120</i>&nbsp;                    if(!server.getServerThreads().get(i).isNicknameSet()) {</b>
+<b class="nc"><i>121</i>&nbsp;                        server.getServerThreads().get(i).sendToClient(new NicknameRequest());</b>
+<i>122</i>&nbsp;                    }
+<i>123</i>&nbsp;                }
+<i>124</i>&nbsp;            }
+<b class="nc"><i>125</i>&nbsp;            if (server.getServerThreads().size() &gt; numPlayers) {</b>
+<b class="nc"><i>126</i>&nbsp;                server.getServerThreads().remove(server.getServerThreads().size() - 1);</b>
+<b class="nc"><i>127</i>&nbsp;                sendToClient(new MaxPlayerReachedUpdate());</b>
+<b class="nc"><i>128</i>&nbsp;                return;</b>
+<i>129</i>&nbsp;            }
+<i>130</i>&nbsp;        }
+<b class="nc"><i>131</i>&nbsp;        view.AddObserver(server.getGameController());</b>
+<b class="nc"><i>132</i>&nbsp;        server.getGameController().getGame().AddObserver(view);</b>
+<b class="nc"><i>133</i>&nbsp;        while (keepAlive) {</b>
+<i>134</i>&nbsp;            try {
+<b class="nc"><i>135</i>&nbsp;                MessageFromClient message = ((MessageFromClient) in.readObject());</b>
+<b class="nc"><i>136</i>&nbsp;                System.out.println(&quot;Message received&quot;);</b>
+<b class="nc"><i>137</i>&nbsp;                Accept(message);</b>
+<b class="nc"><i>138</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>139</i>&nbsp;                return;</b>
+<b class="nc"><i>140</i>&nbsp;            } catch (ClassNotFoundException | InterruptedException e) {</b>
+<b class="nc"><i>141</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>142</i>&nbsp;            }</b>
+<i>143</i>&nbsp;
+<i>144</i>&nbsp;        }
+<i>145</i>&nbsp;
+<b class="nc"><i>146</i>&nbsp;    }</b>
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;    /**
+<i>149</i>&nbsp;     * This method sends the input to the client
+<i>150</i>&nbsp;     * @param messageFromServer message
+<i>151</i>&nbsp;     */
+<i>152</i>&nbsp;    public void sendToClient(MessageFromServer messageFromServer)  {
+<i>153</i>&nbsp;        try {
+<b class="nc"><i>154</i>&nbsp;            out.reset();</b>
+<b class="nc"><i>155</i>&nbsp;            out.writeObject(messageFromServer);</b>
+<b class="nc"><i>156</i>&nbsp;            out.flush();</b>
+<b class="nc"><i>157</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>158</i>&nbsp;            System.out.println();</b>
+<b class="nc"><i>159</i>&nbsp;            System.out.println(&quot;Connection with the client lost&quot;);</b>
+<b class="nc"><i>160</i>&nbsp;        }</b>
+<b class="nc"><i>161</i>&nbsp;    }</b>
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    /**
+<i>164</i>&nbsp;     * Visitor analyzes the incoming messages
+<i>165</i>&nbsp;     * @param msg message
+<i>166</i>&nbsp;     */
+<i>167</i>&nbsp;    public synchronized void Accept(MessageFromClient msg) throws IOException, InterruptedException {
+<b class="nc"><i>168</i>&nbsp;        msg.accept(visitor);</b>
+<b class="nc"><i>169</i>&nbsp;    }</b>
+<i>170</i>&nbsp;
+<i>171</i>&nbsp;
+<i>172</i>&nbsp;    /**
+<i>173</i>&nbsp;     * Observer is removed
+<i>174</i>&nbsp;     * @param view view
+<i>175</i>&nbsp;     */
+<i>176</i>&nbsp;    public void RemoveObserver(ObserverModel view) {
+<b class="nc"><i>177</i>&nbsp;        server.getGameController().getGame().RemoveObserver(view);</b>
+<b class="nc"><i>178</i>&nbsp;    }</b>
+<i>179</i>&nbsp;
+<i>180</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Moving</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.PlayerFSA</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Moving (it.polimi.ingsw.Model.PlayerFSA)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Moving</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.4%
+  </span>
+  <span class="absValue">
+    (37/ 46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.PlayerFSA;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.io.IOException;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class Moving extends PlayerFSA {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    final PlayerInterface player;
+<i>12</i>&nbsp;    final Game game;
+<i>13</i>&nbsp;    boolean effect;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public Moving(PlayerInterface player, Game game) {</b>
+<b class="fc"><i>16</i>&nbsp;        this.player = player;</b>
+<b class="fc"><i>17</i>&nbsp;        this.game = game;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    public boolean getEffect() {
+<b class="fc"><i>22</i>&nbsp;        return effect;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * Check if both workers can move. if both can&#39;t move delete this player
+<i>27</i>&nbsp;     */
+<i>28</i>&nbsp;    @Override
+<i>29</i>&nbsp;    public void canIMove()  {
+<b class="fc"><i>30</i>&nbsp;        if(game.getCurrentTurn().checkLockPlayer()) {</b>
+<b class="nc"><i>31</i>&nbsp;            game.NoPossibleMoves(player.getNickname());</b>
+<b class="nc"><i>32</i>&nbsp;            game.delPlayer(game.getCurrentTurn().getCurrentPlayer());</b>
+<b class="nc"><i>33</i>&nbsp;            if(game.getOnlinePlayers().size() == 1) {</b>
+<b class="nc"><i>34</i>&nbsp;                game.updateWin(game.getOnlinePlayers().get(0));</b>
+<i>35</i>&nbsp;            } else {
+<b class="nc"><i>36</i>&nbsp;                game.getCurrentTurn().nextTurn(game);</b>
+<i>37</i>&nbsp;            }
+<i>38</i>&nbsp;        } else {
+<b class="fc"><i>39</i>&nbsp;            game.timeToCheckWorker();</b>
+<i>40</i>&nbsp;        }
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Check if the selected worker can move. if it&#39;s not possible the other worker is chosen.
+<i>45</i>&nbsp;     * @param worker worker used
+<i>46</i>&nbsp;     * @param effect true if effect enabled
+<i>47</i>&nbsp;     */
+<i>48</i>&nbsp;    @Override
+<i>49</i>&nbsp;    public synchronized void checkWorker(int worker, boolean effect) {
+<i>50</i>&nbsp;
+<b class="fc"><i>51</i>&nbsp;        this.effect = effect;</b>
+<b class="fc"><i>52</i>&nbsp;        player.setEnableSpecialMove(effect);</b>
+<b class="fc"><i>53</i>&nbsp;        if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {</b>
+<b class="fc"><i>54</i>&nbsp;            if(worker == 2) {</b>
+<b class="nc"><i>55</i>&nbsp;                worker = 1;</b>
+<i>56</i>&nbsp;            } else {
+<b class="fc"><i>57</i>&nbsp;                worker++;</b>
+<i>58</i>&nbsp;            }
+<b class="fc"><i>59</i>&nbsp;            game.updateWorkerSelected(worker, player.isHasTwoInputMove(), effect);</b>
+<i>60</i>&nbsp;        } else {
+<b class="fc"><i>61</i>&nbsp;            game.timeToMove(worker);</b>
+<i>62</i>&nbsp;        }
+<i>63</i>&nbsp;
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    /**
+<i>67</i>&nbsp;     * Move the worker on the selected coordinates.
+<i>68</i>&nbsp;     * @param row chosen row
+<i>69</i>&nbsp;     * @param col chosen col
+<i>70</i>&nbsp;     * @param worker worker used
+<i>71</i>&nbsp;     */
+<i>72</i>&nbsp;    @Override
+<i>73</i>&nbsp;    public synchronized void move(int row, int col, int worker)  {
+<b class="fc"><i>74</i>&nbsp;        if(!player.move(row - 1, col - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {</b>
+<b class="fc"><i>75</i>&nbsp;            game.NoCoordinatesValidMove(worker);</b>
+<i>76</i>&nbsp;        } else {
+<b class="fc"><i>77</i>&nbsp;            for (int i = 0; i &lt; game.getStateList().size(); i++) {</b>
+<b class="fc"><i>78</i>&nbsp;                if(game.getNicknames().get(i).equals(player.getNickname())) {</b>
+<b class="fc"><i>79</i>&nbsp;                    game.getStateList().set(i, new Building(player, game));</b>
+<b class="fc"><i>80</i>&nbsp;                    break;</b>
+<i>81</i>&nbsp;                }
+<i>82</i>&nbsp;            }
+<b class="fc"><i>83</i>&nbsp;            game.updateBoard();</b>
+<b class="fc"><i>84</i>&nbsp;            if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {</b>
+<b class="nc"><i>85</i>&nbsp;                game.updateWin(player);</b>
+<i>86</i>&nbsp;            } else {
+<b class="fc"><i>87</i>&nbsp;                player.setEnableSpecialMove(false);</b>
+<b class="fc"><i>88</i>&nbsp;                game.askEffectBuild(worker);</b>
+<i>89</i>&nbsp;            }
+<i>90</i>&nbsp;        }
+<b class="fc"><i>91</i>&nbsp;    }</b>
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    /**
+<i>94</i>&nbsp;     * Move the worker on the selected coordinates (Used for special effects)
+<i>95</i>&nbsp;     * @param row1 chosen row
+<i>96</i>&nbsp;     * @param col1 chosen col
+<i>97</i>&nbsp;     * @param row2 chosen row
+<i>98</i>&nbsp;     * @param col2 chosen col
+<i>99</i>&nbsp;     * @param worker worker used
+<i>100</i>&nbsp;     */
+<i>101</i>&nbsp;    @Override
+<i>102</i>&nbsp;    public synchronized void move(int row1, int col1, int row2, int col2, int worker) {
+<b class="fc"><i>103</i>&nbsp;        if(!player.move(row1 - 1, col1 - 1, row2 -1, col2 - 1, game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {</b>
+<b class="nc"><i>104</i>&nbsp;            game.NoCoordinatesValidMoveTwoInput(worker);</b>
+<i>105</i>&nbsp;        } else {
+<b class="fc"><i>106</i>&nbsp;            for (int i = 0; i &lt; game.getStateList().size(); i++) {</b>
+<b class="fc"><i>107</i>&nbsp;                if(game.getNicknames().get(i).equals(player.getNickname())) {</b>
+<b class="fc"><i>108</i>&nbsp;                    game.getStateList().set(i, new Building(player, game));</b>
+<b class="fc"><i>109</i>&nbsp;                    break;</b>
+<i>110</i>&nbsp;                }
+<i>111</i>&nbsp;            }
+<b class="fc"><i>112</i>&nbsp;            game.updateBoard();</b>
+<b class="fc"><i>113</i>&nbsp;            if(game.getCurrentTurn().getCurrentPlayer().checkWin(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {</b>
+<b class="nc"><i>114</i>&nbsp;                game.updateWin(player);</b>
+<i>115</i>&nbsp;            } else {
+<b class="fc"><i>116</i>&nbsp;                player.setEnableSpecialMove(false);</b>
+<b class="fc"><i>117</i>&nbsp;                game.askEffectBuild(worker);</b>
+<i>118</i>&nbsp;            }
+<i>119</i>&nbsp;        }
+<b class="fc"><i>120</i>&nbsp;    }</b>
+<i>121</i>&nbsp;
+<i>122</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

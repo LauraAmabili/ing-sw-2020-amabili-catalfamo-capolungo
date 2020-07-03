@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: God</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.God</a> ]
+</div>
+
+<h1>Coverage Summary for Class: God (it.polimi.ingsw.Model.God)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">God</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.God;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import java.io.Serializable;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class God implements Serializable {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    private String godName;
+<i>10</i>&nbsp;    private List&lt;String&gt; effects;
+<i>11</i>&nbsp;    private String descriptionTitle;
+<i>12</i>&nbsp;    private String descriptionStep;
+<i>13</i>&nbsp;    private String descriptionEffect;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    public String getDescriptionTitle() {
+<b class="fc"><i>16</i>&nbsp;        return descriptionTitle;</b>
+<i>17</i>&nbsp;    }
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    public String getDescriptionEffect() {
+<b class="fc"><i>20</i>&nbsp;        return descriptionEffect;</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public God(String godName, List&lt;String&gt; effects, String descriptionTitle, String descriptionStep, String descriptionEffect) {</b>
+<b class="fc"><i>24</i>&nbsp;        this.godName = godName;</b>
+<b class="fc"><i>25</i>&nbsp;        this.effects = effects;</b>
+<b class="fc"><i>26</i>&nbsp;        this.descriptionTitle = descriptionTitle;</b>
+<b class="fc"><i>27</i>&nbsp;        this.descriptionStep = descriptionStep;</b>
+<b class="fc"><i>28</i>&nbsp;        this.descriptionEffect = descriptionEffect;</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;    public God(String godName) {</b>
+<b class="fc"><i>32</i>&nbsp;        this.godName = godName;</b>
+<b class="fc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public String getGodName() {
+<b class="fc"><i>36</i>&nbsp;        return godName;</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public void setGodName(String godName) {
+<b class="fc"><i>40</i>&nbsp;        this.godName = godName;</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public List&lt;String&gt; getEffects() {
+<b class="fc"><i>44</i>&nbsp;        return effects;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void setEffects(List&lt;String&gt; effects) {
+<b class="fc"><i>48</i>&nbsp;        this.effects = effects;</b>
+<b class="fc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;}
+<i>51</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NotifyMessages</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NotifyMessages (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NotifyMessages</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 66)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.BoardCell;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.io.IOException;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;public class NotifyMessages {</b>
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;    private final List&lt;ClientObserver&gt; observersClient = new ArrayList&lt;&gt;();</b>
+<i>14</i>&nbsp;    public void addObserver(ClientObserver o){
+<b class="nc"><i>15</i>&nbsp;        this.observersClient.add(o);</b>
+<b class="nc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;    public void removeObserver(ClientObserver o) {
+<b class="nc"><i>18</i>&nbsp;        this.observersClient.remove(o);</b>
+<b class="nc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public void notifyPlayerNumberResponse(String num) {
+<b class="nc"><i>22</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>23</i>&nbsp;            c.updatePlayerNumberResponse(num);</b>
+<b class="nc"><i>24</i>&nbsp;        }</b>
+<b class="nc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public void notifyNicknameResponse(String nickname)  {
+<b class="nc"><i>28</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>29</i>&nbsp;            c.updateNicknameResponse(nickname);</b>
+<b class="nc"><i>30</i>&nbsp;        }</b>
+<b class="nc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public void notifyStartingSetWorkerResponse(String row, String col, int worker)  {
+<b class="nc"><i>34</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>35</i>&nbsp;            c.updateStartingSetWorkerResponse(row, col, worker);</b>
+<b class="nc"><i>36</i>&nbsp;        }</b>
+<b class="nc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public void notifyWrongCoordinatesUpdate(String row, String col, int worker)  {
+<b class="nc"><i>40</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>41</i>&nbsp;            c.updateWrongCoordinatesUpdate(row, col, worker);</b>
+<b class="nc"><i>42</i>&nbsp;        }</b>
+<b class="nc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public void notifyChooseYourWorkerResponse(String worker) {
+<b class="nc"><i>46</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>47</i>&nbsp;            c.updateChooseYourWorkerResponse(worker);</b>
+<b class="nc"><i>48</i>&nbsp;        }</b>
+<b class="nc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public void notifyMoveResponse(String row, String col, int worker, List&lt;BoardCell&gt; av) {
+<b class="nc"><i>52</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>53</i>&nbsp;            c.updateMoveResponse(row, col, worker, av);</b>
+<b class="nc"><i>54</i>&nbsp;        }</b>
+<b class="nc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public void notifyBuildResponse(String row, String col, int worker, List&lt;BoardCell&gt; b)  {
+<b class="nc"><i>58</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>59</i>&nbsp;            c.updateBuildResponse(row, col, worker, b);</b>
+<b class="nc"><i>60</i>&nbsp;        }</b>
+<b class="nc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public void notifyChosenCardsUpdate(String cardName)  {
+<b class="nc"><i>64</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>65</i>&nbsp;            c.updateChosenCardsUpdate(cardName);</b>
+<b class="nc"><i>66</i>&nbsp;        }</b>
+<b class="nc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public void notifySetYourCardResponse(String in)  {
+<b class="nc"><i>71</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>72</i>&nbsp;            c.updateSetYourCardResponse(in);</b>
+<b class="nc"><i>73</i>&nbsp;        }</b>
+<b class="nc"><i>74</i>&nbsp;    }</b>
+<i>75</i>&nbsp;    public void notifyAskEffectReply(String effect, String nickname) {
+<b class="nc"><i>76</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>77</i>&nbsp;            c.updateAskEffectReply(effect, nickname);</b>
+<b class="nc"><i>78</i>&nbsp;        }</b>
+<b class="nc"><i>79</i>&nbsp;    }</b>
+<i>80</i>&nbsp;    public void notifyChooseYourWorkerEffectResponse(String worker, boolean effect)  {
+<b class="nc"><i>81</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>82</i>&nbsp;            c.updateChooseYourWorkerEffectResponse(worker, effect);</b>
+<b class="nc"><i>83</i>&nbsp;        }</b>
+<b class="nc"><i>84</i>&nbsp;    }</b>
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    public void notifyAskeffectBuildResponse(String effect, String nickname, int worker) {
+<b class="nc"><i>87</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>88</i>&nbsp;            c.updateAskeffectBuildResponse(effect, nickname, worker);</b>
+<b class="nc"><i>89</i>&nbsp;        }</b>
+<b class="nc"><i>90</i>&nbsp;    }</b>
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    public void notifyMoveTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
+<b class="nc"><i>94</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>95</i>&nbsp;            c.updateMoveTwoInputResponse(row1, col1, row2,col2, worker);</b>
+<b class="nc"><i>96</i>&nbsp;        }</b>
+<b class="nc"><i>97</i>&nbsp;    }</b>
+<i>98</i>&nbsp;    public void notifyBuildTwoInputResponse(String row1, String col1, String row2, String col2, int worker)  {
+<b class="nc"><i>99</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>100</i>&nbsp;            c.updateBuildTwoInputResponse(row1, col1, row2,col2, worker);</b>
+<b class="nc"><i>101</i>&nbsp;        }</b>
+<b class="nc"><i>102</i>&nbsp;    }</b>
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    public void notifyPlayerThatStart(String player, List &lt;PlayerInterface&gt; onlinePlayers)  {
+<b class="nc"><i>105</i>&nbsp;        for(ClientObserver c : observersClient){</b>
+<b class="nc"><i>106</i>&nbsp;            c.updatePlayerThatStart(player,onlinePlayers);</b>
+<b class="nc"><i>107</i>&nbsp;        }</b>
+<b class="nc"><i>108</i>&nbsp;    }</b>
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

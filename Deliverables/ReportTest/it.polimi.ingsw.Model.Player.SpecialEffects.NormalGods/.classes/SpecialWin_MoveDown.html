@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SpecialWin_MoveDown</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SpecialWin_MoveDown (it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpecialWin_MoveDown</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.Player.SpecialEffects.NormalGods;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.*;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class SpecialWin_MoveDown extends PlayerDecorator {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    public SpecialWin_MoveDown(PlayerInterface p) {
+<b class="fc"><i>12</i>&nbsp;        super(p);</b>
+<b class="fc"><i>13</i>&nbsp;    }</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    /**
+<i>16</i>&nbsp;     * Win if you go up to level 3 or down of two levels or more
+<i>17</i>&nbsp;     *
+<i>18</i>&nbsp;     * @param worker number of the worker
+<i>19</i>&nbsp;     * @return boolean
+<i>20</i>&nbsp;     */
+<i>21</i>&nbsp;    @Override
+<i>22</i>&nbsp;    public synchronized boolean checkWin(@NotNull Worker worker) {
+<b class="fc"><i>23</i>&nbsp;        if (worker.getOldCell()==worker.getCurCell())</b>
+<b class="nc"><i>24</i>&nbsp;            return false;</b>
+<b class="fc"><i>25</i>&nbsp;        return</b>
+<b class="fc"><i>26</i>&nbsp;            (player.checkWin(worker) ||</b>
+<b class="fc"><i>27</i>&nbsp;                    (worker.getOldCell().getLevel() - worker.getCurCell().getLevel() &gt;= 2)</b>
+<i>28</i>&nbsp;            );
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

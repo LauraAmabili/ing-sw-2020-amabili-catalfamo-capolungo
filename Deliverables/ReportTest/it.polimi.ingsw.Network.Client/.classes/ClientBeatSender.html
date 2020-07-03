@@ -1,0 +1,120 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientBeatSender</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientBeatSender (it.polimi.ingsw.Network.Client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientBeatSender</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;
+<i>2</i>&nbsp;package it.polimi.ingsw.Network.Client;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromClient.BeatUpdate;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class ClientBeatSender extends Thread {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    final Client client;
+<i>10</i>&nbsp;
+<b class="nc"><i>11</i>&nbsp;    final int cardiacRhythm = 5; //seconds</b>
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;    public volatile boolean active = true;</b>
+<i>14</i>&nbsp;
+<b class="nc"><i>15</i>&nbsp;    public ClientBeatSender(Client client) {</b>
+<b class="nc"><i>16</i>&nbsp;        this.client = client;</b>
+<b class="nc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;    public void setActive(boolean active) {
+<b class="nc"><i>19</i>&nbsp;        this.active = active;</b>
+<b class="nc"><i>20</i>&nbsp;    }</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    /**
+<i>23</i>&nbsp;     * Send a message to the server each cardiacRhythm seconds to notify that this client is alive
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    @Override
+<i>26</i>&nbsp;    public void run() {
+<b class="nc"><i>27</i>&nbsp;        while (active) {</b>
+<b class="nc"><i>28</i>&nbsp;            client.send(new BeatUpdate());</b>
+<i>29</i>&nbsp;            try {
+<b class="nc"><i>30</i>&nbsp;                sleep(cardiacRhythm * 1000);</b>
+<b class="nc"><i>31</i>&nbsp;            } catch (InterruptedException e) {</b>
+<b class="nc"><i>32</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>33</i>&nbsp;            }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;        }
+<b class="nc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

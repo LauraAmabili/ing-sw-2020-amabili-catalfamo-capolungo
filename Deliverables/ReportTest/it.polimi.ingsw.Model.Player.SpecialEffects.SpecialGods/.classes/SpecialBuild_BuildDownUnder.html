@@ -1,0 +1,136 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SpecialBuild_BuildDownUnder</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SpecialBuild_BuildDownUnder (it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpecialBuild_BuildDownUnder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (10/ 12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Model.Player.SpecialEffects.SpecialGods;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.BoardCell;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerDecorator;
+<i>5</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>6</i>&nbsp;import it.polimi.ingsw.Model.Worker;
+<i>7</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;public class SpecialBuild_BuildDownUnder extends PlayerDecorator {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    public SpecialBuild_BuildDownUnder(PlayerInterface p) {
+<b class="fc"><i>15</i>&nbsp;        super(p);</b>
+<i>16</i>&nbsp;        //hasSpecialBuild = true;
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    /**
+<i>20</i>&nbsp;     * Permit to build also under the selected worker
+<i>21</i>&nbsp;     * @param row chosen row
+<i>22</i>&nbsp;     * @param col chosen col
+<i>23</i>&nbsp;     * @param worker number of the worker
+<i>24</i>&nbsp;     * @return boolean if the coordinates are correct
+<i>25</i>&nbsp;     */
+<i>26</i>&nbsp;    @Override
+<i>27</i>&nbsp;    public synchronized boolean build(int row, int col, @NotNull Worker worker) {
+<b class="fc"><i>28</i>&nbsp;        if (availableCellsToBuild(worker).contains(this.getBoard().getGrid()[row][col])) {</b>
+<b class="fc"><i>29</i>&nbsp;            BoardCell b = this.getBoard().getGrid()[row][col];</b>
+<b class="fc"><i>30</i>&nbsp;            if (b.getLevel() == 3) {</b>
+<b class="nc"><i>31</i>&nbsp;                b.setDome(true);</b>
+<i>32</i>&nbsp;            } else {
+<b class="fc"><i>33</i>&nbsp;                b.setLevel((b.getLevel() + 1));</b>
+<i>34</i>&nbsp;            }
+<b class="fc"><i>35</i>&nbsp;            return true;</b>
+<i>36</i>&nbsp;        }
+<b class="nc"><i>37</i>&nbsp;        return false;</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    /**
+<i>41</i>&nbsp;     * return the list of cell where the player can build
+<i>42</i>&nbsp;     * @param worker Worker to check around
+<i>43</i>&nbsp;     * @return list of boardCells available to build on
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    @Override
+<i>46</i>&nbsp;    public List&lt;BoardCell&gt; availableCellsToBuild(@NotNull Worker worker) {
+<b class="fc"><i>47</i>&nbsp;        List&lt;BoardCell&gt; b = player.availableCellsToBuild(worker);</b>
+<b class="fc"><i>48</i>&nbsp;        b.add(worker.getCurCell());</b>
+<b class="fc"><i>49</i>&nbsp;        return b;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

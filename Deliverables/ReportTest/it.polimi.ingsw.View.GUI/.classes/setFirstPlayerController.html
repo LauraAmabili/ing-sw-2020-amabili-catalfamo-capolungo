@@ -1,0 +1,296 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: setFirstPlayerController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.View.GUI</a> ]
+</div>
+
+<h1>Coverage Summary for Class: setFirstPlayerController (it.polimi.ingsw.View.GUI)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">setFirstPlayerController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 47)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">setFirstPlayerController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">setFirstPlayerController$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">setFirstPlayerController$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 71)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.View.GUI;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>5</i>&nbsp;import it.polimi.ingsw.Network.Client.Client;
+<i>6</i>&nbsp;import it.polimi.ingsw.Network.Client.GUI;
+<i>7</i>&nbsp;import it.polimi.ingsw.Network.Client.NotifyMessages;
+<i>8</i>&nbsp;import it.polimi.ingsw.Network.Client.UpdatesForMessages;
+<i>9</i>&nbsp;import javafx.event.EventHandler;
+<i>10</i>&nbsp;import javafx.fxml.FXML;
+<i>11</i>&nbsp;import javafx.fxml.Initializable;
+<i>12</i>&nbsp;import javafx.scene.control.TextField;
+<i>13</i>&nbsp;import javafx.scene.image.Image;
+<i>14</i>&nbsp;import javafx.scene.image.ImageView;
+<i>15</i>&nbsp;import javafx.scene.input.MouseEvent;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import java.io.IOException;
+<i>18</i>&nbsp;import java.net.URL;
+<i>19</i>&nbsp;import java.util.List;
+<i>20</i>&nbsp;import java.util.ResourceBundle;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;public class setFirstPlayerController extends NotifyMessages implements Initializable {
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    Client client;
+<i>25</i>&nbsp;    UpdatesForMessages up;
+<i>26</i>&nbsp;    GUI gui;
+<i>27</i>&nbsp;    List&lt;PlayerInterface&gt; list;
+<i>28</i>&nbsp;
+<b class="nc"><i>29</i>&nbsp;    @FXML</b>
+<i>30</i>&nbsp;    ImageView Person1 = new ImageView();
+<b class="nc"><i>31</i>&nbsp;    @FXML</b>
+<i>32</i>&nbsp;    ImageView Person2 = new ImageView();
+<b class="nc"><i>33</i>&nbsp;    @FXML</b>
+<i>34</i>&nbsp;    ImageView Person3 = new ImageView();
+<b class="nc"><i>35</i>&nbsp;    @FXML</b>
+<i>36</i>&nbsp;    ImageView Stage1 = new ImageView();
+<b class="nc"><i>37</i>&nbsp;    @FXML</b>
+<i>38</i>&nbsp;    ImageView Stage2 = new ImageView();
+<b class="nc"><i>39</i>&nbsp;    @FXML</b>
+<i>40</i>&nbsp;    ImageView Stage3 = new ImageView();
+<b class="nc"><i>41</i>&nbsp;    @FXML</b>
+<i>42</i>&nbsp;    TextField PlayerNick1 = new TextField();
+<b class="nc"><i>43</i>&nbsp;    @FXML</b>
+<i>44</i>&nbsp;    TextField PlayerNick2 = new TextField();
+<b class="nc"><i>45</i>&nbsp;    @FXML</b>
+<i>46</i>&nbsp;    TextField PlayerNick3 = new TextField();
+<b class="nc"><i>47</i>&nbsp;    @FXML</b>
+<i>48</i>&nbsp;    TextField ActionText = new TextField();
+<i>49</i>&nbsp;
+<b class="nc"><i>50</i>&nbsp;    public setFirstPlayerController(Client client, List&lt;PlayerInterface&gt; list) {</b>
+<b class="nc"><i>51</i>&nbsp;        this.client = client;</b>
+<b class="nc"><i>52</i>&nbsp;        this.list = list;</b>
+<b class="nc"><i>53</i>&nbsp;        up = new UpdatesForMessages(client);</b>
+<b class="nc"><i>54</i>&nbsp;        addObserver(up);</b>
+<b class="nc"><i>55</i>&nbsp;        gui = (GUI) client.getUserInterface();</b>
+<b class="nc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    @Override
+<i>59</i>&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="nc"><i>60</i>&nbsp;        LoadScene();</b>
+<b class="nc"><i>61</i>&nbsp;        setUpButtons();</b>
+<b class="nc"><i>62</i>&nbsp;    }</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Load the Images and the textFields on the scene.
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    public void LoadScene() {
+<b class="nc"><i>68</i>&nbsp;        String name = list.get(0).getNickname();</b>
+<b class="nc"><i>69</i>&nbsp;        PlayerNick1.setText(name);</b>
+<b class="nc"><i>70</i>&nbsp;        setColor(list.get(0), PlayerNick1);</b>
+<b class="nc"><i>71</i>&nbsp;        name = list.get(1).getNickname();</b>
+<b class="nc"><i>72</i>&nbsp;        PlayerNick3.setText(name);</b>
+<b class="nc"><i>73</i>&nbsp;        setColor(list.get(1), PlayerNick3);</b>
+<b class="nc"><i>74</i>&nbsp;        if(list.size() == 2) {</b>
+<b class="nc"><i>75</i>&nbsp;            PlayerNick2.setDisable(true);</b>
+<b class="nc"><i>76</i>&nbsp;            PlayerNick2.setVisible(false);</b>
+<i>77</i>&nbsp;        } else {
+<b class="nc"><i>78</i>&nbsp;            Stage2.setImage(new Image(&quot;Images/fg_panel4.png&quot;));</b>
+<b class="nc"><i>79</i>&nbsp;            Person2.setImage(new Image(&quot;Images/Human.png&quot;));</b>
+<b class="nc"><i>80</i>&nbsp;            name = list.get(2).getNickname();</b>
+<b class="nc"><i>81</i>&nbsp;            PlayerNick2.setText(name);</b>
+<b class="nc"><i>82</i>&nbsp;            setColor(list.get(2), PlayerNick2);</b>
+<i>83</i>&nbsp;        }
+<b class="nc"><i>84</i>&nbsp;        ActionText.setText(&quot;Choose first player&quot;);</b>
+<b class="nc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    /**
+<i>88</i>&nbsp;     * Set up buttons for the scene. Call a notify that return the name of the first player who will play
+<i>89</i>&nbsp;     */
+<i>90</i>&nbsp;    public void setUpButtons() {
+<b class="nc"><i>91</i>&nbsp;        Stage1.setOnMouseClicked(new EventHandler&lt;MouseEvent&gt;() {</b>
+<i>92</i>&nbsp;            @Override
+<i>93</i>&nbsp;            public void handle(MouseEvent mouseEvent) {
+<b class="nc"><i>94</i>&nbsp;                String numbPlayer = null;</b>
+<b class="nc"><i>95</i>&nbsp;                for(int i = 0; i &lt; list.size(); i++) {</b>
+<b class="nc"><i>96</i>&nbsp;                    if(list.get(i).getNickname().equals(PlayerNick1.getText())) {</b>
+<b class="nc"><i>97</i>&nbsp;                        numbPlayer = i + 1 + &quot;&quot;;</b>
+<b class="nc"><i>98</i>&nbsp;                        break;</b>
+<i>99</i>&nbsp;                    }
+<i>100</i>&nbsp;                }
+<b class="nc"><i>101</i>&nbsp;                notifyPlayerThatStart(numbPlayer, list);</b>
+<b class="nc"><i>102</i>&nbsp;            }</b>
+<i>103</i>&nbsp;        });
+<b class="nc"><i>104</i>&nbsp;        if(list.size() == 3) {</b>
+<b class="nc"><i>105</i>&nbsp;            Stage2.setOnMouseClicked(new EventHandler&lt;MouseEvent&gt;() {</b>
+<i>106</i>&nbsp;                @Override
+<i>107</i>&nbsp;                public void handle(MouseEvent mouseEvent) {
+<b class="nc"><i>108</i>&nbsp;                    String numbPlayer = null;</b>
+<b class="nc"><i>109</i>&nbsp;                    for(int i = 0; i &lt; list.size(); i++) {</b>
+<b class="nc"><i>110</i>&nbsp;                        if(list.get(i).getNickname().equals(PlayerNick2.getText())) {</b>
+<b class="nc"><i>111</i>&nbsp;                            numbPlayer = i + 1 + &quot;&quot;;</b>
+<b class="nc"><i>112</i>&nbsp;                            break;</b>
+<i>113</i>&nbsp;                        }
+<i>114</i>&nbsp;                    }
+<b class="nc"><i>115</i>&nbsp;                    notifyPlayerThatStart(numbPlayer, list);</b>
+<b class="nc"><i>116</i>&nbsp;                }</b>
+<i>117</i>&nbsp;            });
+<i>118</i>&nbsp;        }
+<b class="nc"><i>119</i>&nbsp;        Stage3.setOnMouseClicked(new EventHandler&lt;MouseEvent&gt;() {</b>
+<i>120</i>&nbsp;            @Override
+<i>121</i>&nbsp;            public void handle(MouseEvent mouseEvent) {
+<b class="nc"><i>122</i>&nbsp;                String numbPlayer = null;</b>
+<b class="nc"><i>123</i>&nbsp;                for(int i = 0; i &lt; list.size(); i++) {</b>
+<b class="nc"><i>124</i>&nbsp;                    if(list.get(i).getNickname().equals(PlayerNick3.getText())) {</b>
+<b class="nc"><i>125</i>&nbsp;                        numbPlayer = i + 1 + &quot;&quot;;</b>
+<b class="nc"><i>126</i>&nbsp;                        break;</b>
+<i>127</i>&nbsp;                    }
+<i>128</i>&nbsp;                }
+<b class="nc"><i>129</i>&nbsp;                notifyPlayerThatStart(numbPlayer, list);</b>
+<b class="nc"><i>130</i>&nbsp;            }</b>
+<i>131</i>&nbsp;        });
+<b class="nc"><i>132</i>&nbsp;    }</b>
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    /**
+<i>135</i>&nbsp;     * Set up the color of the TextField
+<i>136</i>&nbsp;     * @param player
+<i>137</i>&nbsp;     * @param NameText
+<i>138</i>&nbsp;     */
+<i>139</i>&nbsp;    public void setColor(PlayerInterface player, TextField NameText) {
+<b class="nc"><i>140</i>&nbsp;        if(player.getWorkerRef().get(0).getColor().equals(&quot;\u001B[34m&quot;) ) {</b>
+<b class="nc"><i>141</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: blue&quot;);</b>
+<b class="nc"><i>142</i>&nbsp;        } else if(player.getWorkerRef().get(0).getColor().equals(&quot;\u001B[35m&quot;)) {</b>
+<b class="nc"><i>143</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: darkmagenta&quot;);</b>
+<i>144</i>&nbsp;        } else {
+<b class="nc"><i>145</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: goldenrod&quot;);</b>
+<i>146</i>&nbsp;        }
+<b class="nc"><i>147</i>&nbsp;    }</b>
+<i>148</i>&nbsp;
+<i>149</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: VisitorServer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Network.Server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: VisitorServer (it.polimi.ingsw.Network.Server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">VisitorServer</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Network.Server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Network.Message.MessageFromClient.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.IOException;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Each incoming message is sent here.
+<i>9</i>&nbsp; * The type of the message is analysed and the right method
+<i>10</i>&nbsp; *      is sent to VisitorMethodsServer
+<i>11</i>&nbsp; *
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public interface VisitorServer {
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    /**
+<i>16</i>&nbsp;     * Clients tell the server that they are alive
+<i>17</i>&nbsp;     * @param beatUpdate message
+<i>18</i>&nbsp;     */
+<i>19</i>&nbsp;    void visit(BeatUpdate beatUpdate);
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    /**
+<i>22</i>&nbsp;     * Nickname chosen by the client
+<i>23</i>&nbsp;     * @param nicknameResponse message
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    void visit(NicknameResponse nicknameResponse) ;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Number of players chosen by the client
+<i>29</i>&nbsp;     * @param playerNumberResponse message
+<i>30</i>&nbsp;     */
+<i>31</i>&nbsp;    void visit(PlayerNumberResponse playerNumberResponse) throws InterruptedException;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    /**Cards chosen by the challenger
+<i>34</i>&nbsp;     *
+<i>35</i>&nbsp;     * @param chosenCardsUpdate message
+<i>36</i>&nbsp;     */
+<i>37</i>&nbsp;    void visit(ChosenCardsUpdate chosenCardsUpdate) ;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**Card chosen by each player
+<i>40</i>&nbsp;     *
+<i>41</i>&nbsp;     * @param setYourCardResponse message
+<i>42</i>&nbsp;     */
+<i>43</i>&nbsp;    void visit(SetYourCardResponse setYourCardResponse) ;
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    /**Put the workers on the board
+<i>46</i>&nbsp;     *
+<i>47</i>&nbsp;     * @param startingSetWorkerResponse message
+<i>48</i>&nbsp;     */
+<i>49</i>&nbsp;    void visit(StartingSetWorkerResponse startingSetWorkerResponse) ;
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    /**Select which worker you want to move
+<i>52</i>&nbsp;     *
+<i>53</i>&nbsp;     * @param chooseYourWorkerResponse message
+<i>54</i>&nbsp;     */
+<i>55</i>&nbsp;    void visit(ChooseYourWorkerResponse chooseYourWorkerResponse) ;
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    /**
+<i>58</i>&nbsp;     * Move input
+<i>59</i>&nbsp;     * @param moveResponse message
+<i>60</i>&nbsp;     */
+<i>61</i>&nbsp;    void visit(MoveResponse moveResponse) ;
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**Build input
+<i>64</i>&nbsp;     *
+<i>65</i>&nbsp;     * @param buildResponse message
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    void visit(BuildResponse buildResponse) ;
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    /**Ask clients if it wants to enable the effect
+<i>70</i>&nbsp;     *
+<i>71</i>&nbsp;     * @param askEffectReply message
+<i>72</i>&nbsp;     */
+<i>73</i>&nbsp;    void visit(AskEffectReply askEffectReply) ;
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    /**
+<i>76</i>&nbsp;     * Choose the worker for the effect
+<i>77</i>&nbsp;     * @param chooseYourWorkerEffectResponse message
+<i>78</i>&nbsp;     */
+<i>79</i>&nbsp;    void visit(ChooseYourWorkerEffectResponse chooseYourWorkerEffectResponse) ;
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    /**
+<i>82</i>&nbsp;     * Ask clients if it wants to enable the build effect
+<i>83</i>&nbsp;     * @param askEffectBuildResponse message
+<i>84</i>&nbsp;     */
+<i>85</i>&nbsp;    void visit(AskEffectBuildResponse askEffectBuildResponse) ;
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    /**
+<i>88</i>&nbsp;     * Send a build with two boardcells as input
+<i>89</i>&nbsp;     * 1. normal build
+<i>90</i>&nbsp;     * 2. special build
+<i>91</i>&nbsp;     * @param buildTwoInputResponse message
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    void visit(BuildTwoInputResponse buildTwoInputResponse) ;
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    /**
+<i>96</i>&nbsp;     * Send a move with two boardcells as input
+<i>97</i>&nbsp;     * 1. normal move
+<i>98</i>&nbsp;     * 2. special move
+<i>99</i>&nbsp;     * @param moveTwoInputResponse message
+<i>100</i>&nbsp;     */
+<i>101</i>&nbsp;    void visit(MoveTwoInputResponse moveTwoInputResponse) ;
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    /**
+<i>104</i>&nbsp;     * Takes the number of player for the game that starts and sends it to the Model
+<i>105</i>&nbsp;     * @param playerThatStart number of the player that starts
+<i>106</i>&nbsp;     */
+<i>107</i>&nbsp;    void visit(PlayerThatStart playerThatStart);
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BoardController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.View.GUI</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BoardController (it.polimi.ingsw.View.GUI)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BoardController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 101)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.View.GUI;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Model.Board;
+<i>4</i>&nbsp;import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
+<i>5</i>&nbsp;import it.polimi.ingsw.Network.Client.Client;
+<i>6</i>&nbsp;import it.polimi.ingsw.Network.Client.GUI;
+<i>7</i>&nbsp;import it.polimi.ingsw.Network.Client.NotifyMessages;
+<i>8</i>&nbsp;import it.polimi.ingsw.Network.Client.UpdatesForMessages;
+<i>9</i>&nbsp;import javafx.fxml.FXML;
+<i>10</i>&nbsp;import javafx.scene.control.TextField;
+<i>11</i>&nbsp;import javafx.scene.control.ToggleButton;
+<i>12</i>&nbsp;import javafx.scene.image.Image;
+<i>13</i>&nbsp;import javafx.scene.image.ImageView;
+<i>14</i>&nbsp;import javafx.scene.layout.GridPane;
+<i>15</i>&nbsp;import javafx.scene.layout.Pane;
+<i>16</i>&nbsp;import javafx.scene.text.Text;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;public abstract class BoardController extends NotifyMessages {
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    Client client;
+<i>21</i>&nbsp;    UpdatesForMessages up;
+<i>22</i>&nbsp;    GUI gui;
+<i>23</i>&nbsp;    String state;
+<i>24</i>&nbsp;
+<b class="nc"><i>25</i>&nbsp;    public BoardController(Client client, String state) {</b>
+<b class="nc"><i>26</i>&nbsp;        this.client = client;</b>
+<b class="nc"><i>27</i>&nbsp;        this.state = state;</b>
+<b class="nc"><i>28</i>&nbsp;        gui = (GUI) client.getUserInterface();</b>
+<b class="nc"><i>29</i>&nbsp;        up = new UpdatesForMessages(client);</b>
+<b class="nc"><i>30</i>&nbsp;        addObserver(up);</b>
+<b class="nc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;    @FXML</b>
+<i>34</i>&nbsp;    GridPane Board = new GridPane();
+<b class="nc"><i>35</i>&nbsp;    @FXML</b>
+<i>36</i>&nbsp;    ImageView Card1 = new ImageView();
+<b class="nc"><i>37</i>&nbsp;    @FXML</b>
+<i>38</i>&nbsp;    ImageView Card2 = new ImageView();
+<b class="nc"><i>39</i>&nbsp;    @FXML</b>
+<i>40</i>&nbsp;    ImageView Card3 = new ImageView();
+<b class="nc"><i>41</i>&nbsp;    @FXML</b>
+<i>42</i>&nbsp;    TextField NameText1 = new TextField();
+<b class="nc"><i>43</i>&nbsp;    @FXML</b>
+<i>44</i>&nbsp;    TextField NameText2 = new TextField();
+<b class="nc"><i>45</i>&nbsp;    @FXML</b>
+<i>46</i>&nbsp;    TextField NameText3 = new TextField();
+<b class="nc"><i>47</i>&nbsp;    @FXML</b>
+<i>48</i>&nbsp;    Text CurrentTurnPlayer = new Text();
+<b class="nc"><i>49</i>&nbsp;    @FXML</b>
+<i>50</i>&nbsp;    Text ActionText = new Text();
+<b class="nc"><i>51</i>&nbsp;    @FXML</b>
+<i>52</i>&nbsp;    ToggleButton UseEffect = new ToggleButton();
+<b class="nc"><i>53</i>&nbsp;    @FXML</b>
+<i>54</i>&nbsp;    ToggleButton DontUseEffect = new ToggleButton();
+<b class="nc"><i>55</i>&nbsp;    @FXML</b>
+<i>56</i>&nbsp;    Text Text1 = new Text();
+<b class="nc"><i>57</i>&nbsp;    @FXML</b>
+<i>58</i>&nbsp;    Text Text2 = new Text();
+<b class="nc"><i>59</i>&nbsp;    @FXML</b>
+<i>60</i>&nbsp;    Text Text3 = new Text();
+<b class="nc"><i>61</i>&nbsp;    @FXML</b>
+<i>62</i>&nbsp;    Text Text4 = new Text();
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Load names and cards to scene
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    public void LoadNameAndCards() {
+<i>68</i>&nbsp;        String url;
+<b class="nc"><i>69</i>&nbsp;        gui = (GUI) client.getUserInterface();</b>
+<b class="nc"><i>70</i>&nbsp;        String name = gui.getMe().getNickname();</b>
+<b class="nc"><i>71</i>&nbsp;        NameText1.setText(name);</b>
+<b class="nc"><i>72</i>&nbsp;        setColor(gui.getMe(), NameText1);</b>
+<b class="nc"><i>73</i>&nbsp;        name = gui.getOpponentPlayers().get(0).getNickname();</b>
+<b class="nc"><i>74</i>&nbsp;        NameText3.setText(name);</b>
+<b class="nc"><i>75</i>&nbsp;        setColor(gui.getOpponentPlayers().get(0), NameText3);</b>
+<b class="nc"><i>76</i>&nbsp;        if(gui.getOpponentPlayers().size() &gt; 1) {</b>
+<b class="nc"><i>77</i>&nbsp;            name = gui.getOpponentPlayers().get(1).getNickname();</b>
+<b class="nc"><i>78</i>&nbsp;            NameText2.setText(name);</b>
+<b class="nc"><i>79</i>&nbsp;            setColor(gui.getOpponentPlayers().get(1), NameText2);</b>
+<i>80</i>&nbsp;        } else {
+<b class="nc"><i>81</i>&nbsp;            NameText2.setVisible(false);</b>
+<b class="nc"><i>82</i>&nbsp;            NameText2.setDisable(true);</b>
+<i>83</i>&nbsp;        }
+<b class="nc"><i>84</i>&nbsp;        url = &quot;/godCards/&quot; + gui.getMyCard() + &quot;.png&quot;;</b>
+<b class="nc"><i>85</i>&nbsp;        Card1.setImage(new Image(url));</b>
+<b class="nc"><i>86</i>&nbsp;        url = &quot;/godCards/&quot; + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + &quot;.png&quot;;</b>
+<b class="nc"><i>87</i>&nbsp;        Card3.setImage(new Image(url));</b>
+<b class="nc"><i>88</i>&nbsp;        if(gui.getDroppedPlayers().size() != 0) {</b>
+<b class="nc"><i>89</i>&nbsp;            if (gui.getOpponentPlayers().get(0).equals(gui.getDroppedPlayers().get(0))) {</b>
+<b class="nc"><i>90</i>&nbsp;                Card3.setOpacity(0.5);</b>
+<b class="nc"><i>91</i>&nbsp;                NameText3.setDisable(true);</b>
+<i>92</i>&nbsp;            }
+<i>93</i>&nbsp;        }
+<b class="nc"><i>94</i>&nbsp;        if(gui.getOpponentPlayers().size() &gt; 1) {</b>
+<b class="nc"><i>95</i>&nbsp;            url = &quot;/godCards/&quot; + gui.getOpponentPlayers().get(1).getActiveCard().getGodName() + &quot;.png&quot;;</b>
+<b class="nc"><i>96</i>&nbsp;            Card2.setImage(new Image(url));</b>
+<b class="nc"><i>97</i>&nbsp;            if(gui.getDroppedPlayers().size() != 0) {</b>
+<b class="nc"><i>98</i>&nbsp;                if (gui.getOpponentPlayers().get(1).equals(gui.getDroppedPlayers().get(0))) {</b>
+<b class="nc"><i>99</i>&nbsp;                    Card2.setOpacity(0.5);</b>
+<b class="nc"><i>100</i>&nbsp;                    NameText2.setDisable(true);</b>
+<i>101</i>&nbsp;                }
+<i>102</i>&nbsp;            }
+<i>103</i>&nbsp;        }
+<b class="nc"><i>104</i>&nbsp;        CurrentTurnPlayer.setText(&quot;Current Turn: &quot; + gui.getCurrentPlayer());</b>
+<b class="nc"><i>105</i>&nbsp;    }</b>
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    /**
+<i>108</i>&nbsp;     * Set up the color of the TextField
+<i>109</i>&nbsp;     * @param player
+<i>110</i>&nbsp;     * @param NameText
+<i>111</i>&nbsp;     */
+<i>112</i>&nbsp;    public void setColor(PlayerInterface player, TextField NameText) {
+<b class="nc"><i>113</i>&nbsp;        if(player.getWorkerRef().get(0).getColor().equals(&quot;\u001B[34m&quot;) ) {</b>
+<b class="nc"><i>114</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: blue&quot;);</b>
+<b class="nc"><i>115</i>&nbsp;        } else if(player.getWorkerRef().get(0).getColor().equals(&quot;\u001B[35m&quot;)) {</b>
+<b class="nc"><i>116</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: darkmagenta&quot;);</b>
+<i>117</i>&nbsp;        } else {
+<b class="nc"><i>118</i>&nbsp;            NameText.setStyle(&quot;-fx-text-fill: goldenrod&quot;);</b>
+<i>119</i>&nbsp;        }
+<b class="nc"><i>120</i>&nbsp;    }</b>
+<i>121</i>&nbsp;
+<i>122</i>&nbsp;    /**
+<i>123</i>&nbsp;     * Load the images for the scene.
+<i>124</i>&nbsp;     */
+<i>125</i>&nbsp;    public void LoadBoard() {
+<i>126</i>&nbsp;        String color;
+<b class="nc"><i>127</i>&nbsp;        Board board = gui.getBoard();</b>
+<b class="nc"><i>128</i>&nbsp;        if(board != null) {</b>
+<b class="nc"><i>129</i>&nbsp;            for (int i = 0; i &lt; board.getGrid()[0].length; i++) {</b>
+<b class="nc"><i>130</i>&nbsp;                for(int j = 0; j &lt; board.getGrid()[0].length; j++) {</b>
+<b class="nc"><i>131</i>&nbsp;                    Pane cell = (Pane) Board.getChildren().get(j + (i * 5));</b>
+<b class="nc"><i>132</i>&nbsp;                    if(!board.getGrid()[i][j].getDome()) {</b>
+<b class="nc"><i>133</i>&nbsp;                        if (board.getGrid()[i][j].getLevel() == 1) {</b>
+<b class="nc"><i>134</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>135</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelOne.jpg&quot;));</b>
+<b class="nc"><i>136</i>&nbsp;                        } else if (board.getGrid()[i][j].getLevel() == 2) {</b>
+<b class="nc"><i>137</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>138</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelTwo.jpg&quot;));;</b>
+<b class="nc"><i>139</i>&nbsp;                        } else if (board.getGrid()[i][j].getLevel() == 3) {</b>
+<b class="nc"><i>140</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>141</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelThree.jpg&quot;));</b>
+<b class="nc"><i>142</i>&nbsp;                        }</b>
+<i>143</i>&nbsp;                    } else {
+<b class="nc"><i>144</i>&nbsp;                        if (board.getGrid()[i][j].getLevel() == 0) {</b>
+<i>145</i>&nbsp;                            ImageView imageView;
+<b class="nc"><i>146</i>&nbsp;                            imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>147</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelZeroDome.jpg&quot;));</b>
+<b class="nc"><i>148</i>&nbsp;                        } else if (board.getGrid()[i][j].getLevel() == 1) {</b>
+<b class="nc"><i>149</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>150</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelOneDome.jpg&quot;));</b>
+<b class="nc"><i>151</i>&nbsp;                        } else if (board.getGrid()[i][j].getLevel() == 2) {</b>
+<b class="nc"><i>152</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>153</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelTwoDome.jpg&quot;));</b>
+<b class="nc"><i>154</i>&nbsp;                        } else if (board.getGrid()[i][j].getLevel() == 3) {</b>
+<b class="nc"><i>155</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(0);</b>
+<b class="nc"><i>156</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BuildingLevelThreeDome.jpg&quot;));</b>
+<i>157</i>&nbsp;                        }
+<i>158</i>&nbsp;                    }
+<b class="nc"><i>159</i>&nbsp;                    if (board.getGrid()[i][j].getWorker() != null) {</b>
+<b class="nc"><i>160</i>&nbsp;                        color = board.getGrid()[i][j].getWorker().getColor();</b>
+<b class="nc"><i>161</i>&nbsp;                        if (color.equals(&quot;\u001B[34m&quot;)) {</b>
+<b class="nc"><i>162</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(1);</b>
+<b class="nc"><i>163</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/BlueHammer.png&quot;));</b>
+<b class="nc"><i>164</i>&nbsp;                        } else if (color.equals(&quot;\u001B[35m&quot;)) {</b>
+<b class="nc"><i>165</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(1);</b>
+<b class="nc"><i>166</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/PurpleHammer.png&quot;));</b>
+<b class="nc"><i>167</i>&nbsp;                        } else {</b>
+<b class="nc"><i>168</i>&nbsp;                            ImageView imageView = (ImageView) cell.getChildren().get(1);</b>
+<b class="nc"><i>169</i>&nbsp;                            imageView.setImage(new Image(&quot;/Images/YellowHammer.png&quot;));</b>
+<i>170</i>&nbsp;                        }
+<i>171</i>&nbsp;                    }
+<i>172</i>&nbsp;                }
+<i>173</i>&nbsp;            }
+<i>174</i>&nbsp;        }
+<b class="nc"><i>175</i>&nbsp;    }</b>
+<i>176</i>&nbsp;
+<i>177</i>&nbsp;    /**
+<i>178</i>&nbsp;     * Set up the current state of the game.
+<i>179</i>&nbsp;     * @param state
+<i>180</i>&nbsp;     */
+<i>181</i>&nbsp;    public void StateText(String state) {
+<b class="nc"><i>182</i>&nbsp;        String text = &quot;Current Action: &quot; + state;</b>
+<b class="nc"><i>183</i>&nbsp;        ActionText.setText(text);</b>
+<b class="nc"><i>184</i>&nbsp;    }</b>
+<i>185</i>&nbsp;
+<i>186</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-03 23:19</div>
+</div>
+</body>
+</html>
