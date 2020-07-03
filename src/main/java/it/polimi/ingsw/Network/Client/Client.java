@@ -88,13 +88,14 @@ public class Client {
     public void startClient(String host, String port) {
 
         try {
+
             socket = new Socket(host, Integer.parseInt(port));
-        } catch (ConnectException | NumberFormatException e) {
+        } catch (ConnectException | IllegalArgumentException e) {
             if(userInterface.getClass() == GUI.class) {
                 GUI gui = (GUI) getUserInterface();
                 Stage stage = gui.getPrimaryStage();
                 Platform.runLater(() -> {
-                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ServerNotFound.fxml"));
                     try {
                         Parent root = loader.load();
                         stage.getScene().setRoot(root);

@@ -189,12 +189,12 @@
          <font>
             <Font name="Dalek" size="12.0" />
          </font></ToggleButton>
-      <ImageView fitHeight="77.0" fitWidth="419.0" layoutX="26.0" layoutY="811.0">
+      <ImageView fitHeight="77.0" fitWidth="484.0" layoutX="26.0" layoutY="811.0">
          <image>
             <Image url="@../Images/btn_player.png" />
          </image>
       </ImageView>
-      <Text fx:id="ActionText" fill="#e8eaee" layoutX="53.0" layoutY="853.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="365.22900390625">
+      <Text fx:id="ActionText" fill="#e8eaee" layoutX="49.0" layoutY="849.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="428.22900390625">
          <font>
             <Font name="Dalek" size="24.0" />
          </font>

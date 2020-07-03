@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1600.0">
+         <image>
+            <Image url="@../Images/SantoriniBoard.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="551.0" layoutY="241.0" prefHeight="386.0" prefWidth="484.0">
+         <children>
+            <ImageView fitHeight="386.0" fitWidth="484.0" layoutY="18.0">
+               <image>
+                  <Image url="@../Images/endgame_victorywin.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="Text1" fill="#13255e" layoutX="108.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server not found. Please restart the client" textAlignment="CENTER" wrappingWidth="268.9349365234375">
+               <font>
+                  <Font name="Dalek" size="29.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</Pane>

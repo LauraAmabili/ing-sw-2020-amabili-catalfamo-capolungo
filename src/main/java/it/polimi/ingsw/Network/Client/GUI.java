@@ -728,7 +728,8 @@ public class GUI implements UserInterface {
     public void ServerRestart() {
         Platform.runLater(() -> {
             FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/SignalScene.fxml"));
-
+            SignalController controller = new SignalController(client);
+            loader.setController(controller);
             Parent root = null;
             try {
                 root = loader.load();
