@@ -95,7 +95,7 @@ public class Client {
                 GUI gui = (GUI) getUserInterface();
                 Stage stage = gui.getPrimaryStage();
                 Platform.runLater(() -> {
-                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ServerNotFound.fxml"));
                     try {
                         Parent root = loader.load();
                         stage.getScene().setRoot(root);

@@ -20,12 +20,12 @@
             </ImageView>
             <Text fill="#12105b" layoutX="123.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is setting the card!" textAlignment="CENTER" wrappingWidth="252.13671875">
                <font>
-                  <Font name="System Italic" size="29.0" />
+                  <Font name="Dalek" size="29.0" />
                </font>
             </Text>
             <Text fx:id="PlayerName" fill="#12105b" layoutX="123.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="252.13671875">
                <font>
-                  <Font name="System Italic" size="32.0" />
+                  <Font name="Dalek" size="32.0" />
                </font>
             </Text>
          </children>
