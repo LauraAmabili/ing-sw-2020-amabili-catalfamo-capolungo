@@ -42,7 +42,7 @@ Java Runtime Environment 8 or greater is required in order to play. More informa
 
 ### Start the Server
 
-The Server.Jar file is into Deliverables folder [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ServerJar)
+The Server.Jar file is into [Deliverables folder](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ServerJar)
 
 The execution can be done within a shell with the following command:
 ```
@@ -51,7 +51,7 @@ $ java -jar path/to/server.jar
 
 ### Start the client
 
-Similarly, also the Client.Jar file is into Deliverables folder [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ClientJar)
+Similarly, also the Client.Jar file is into [Deliverables folder](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ClientJar)
 
 ##### Playing under Windows & macOS
 
