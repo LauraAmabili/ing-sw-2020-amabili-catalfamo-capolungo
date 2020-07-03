@@ -103,7 +103,6 @@ public class Client {
                     }
 
                 });
-
             } else {
                 System.out.println("Server not found.\n Restart client");
             }
