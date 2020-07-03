@@ -73,12 +73,6 @@ public class SpecialMove_BMB extends PlayerDecorator {
                 if (availableCellsToBuild(worker).size() > 0)
                     return false;
             }
-            /*
-
-            if(worker.getCurCell().getLevel() >= worker.getPlayerWorker().getBoard().getGrid()[row][col].getLevel()) {
-                return player.build(rowBuild, colBuild, worker) && player.move(row, col, worker);
-            } else return false;
-            */
         }
 
         return player.move(row, col, worker);
