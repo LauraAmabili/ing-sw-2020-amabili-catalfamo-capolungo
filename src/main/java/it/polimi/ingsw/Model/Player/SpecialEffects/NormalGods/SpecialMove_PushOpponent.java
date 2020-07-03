@@ -31,7 +31,6 @@ public class SpecialMove_PushOpponent extends PlayerDecorator {
             if (cell2.getLevel()>worker.getCurCell().getLevel())
                 return false;
         }
-
         if (availableCellsToMove(worker).contains(this.getBoard().getGrid()[row][col])) {
             Worker opponentWorker = this.getBoard().getGrid()[row][col].getWorker();
             if (opponentWorker == null) {

@@ -4,6 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.Network.Message.MessageFromClient.MessageFromClient;
 import it.polimi.ingsw.Network.Message.MessageFromServer.MessageFromServer;
+import it.polimi.ingsw.View.GUI.GUI_App;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 
 import java.io.*;
@@ -85,7 +90,23 @@ public class Client {
         try {
             socket = new Socket(host, Integer.parseInt(port));
         } catch (ConnectException | NumberFormatException e) {
-            System.out.println("Server not found");
+            if(userInterface.getClass() == GUI.class) {
+                GUI gui = (GUI) getUserInterface();
+                Stage stage = gui.getPrimaryStage();
+                Platform.runLater(() -> {
+                    FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/GameModeScene.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        stage.getScene().setRoot(root);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+
+                });
+
+            } else {
+                System.out.println("Server not found.\n Restart client");
+            }
             return;
         } catch (IOException e) {
             e.printStackTrace();

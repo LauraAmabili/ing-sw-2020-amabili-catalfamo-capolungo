@@ -726,6 +726,17 @@ public class GUI implements UserInterface {
      */
     @Override
     public void ServerRestart() {
+        Platform.runLater(() -> {
+            FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/SignalScene.fxml"));
+
+            Parent root = null;
+            try {
+                root = loader.load();
+                primaryStage.getScene().setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         client.setActive(false);
         client.getClientBeatSender().setActive(false);
         client.killClient();

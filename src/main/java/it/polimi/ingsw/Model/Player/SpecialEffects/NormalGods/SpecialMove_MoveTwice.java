@@ -62,15 +62,10 @@ public class SpecialMove_MoveTwice extends PlayerDecorator {
             if (cell2.getLevel()>worker.getCurCell().getLevel())
                 return false;
         }
-
-
         if (oldCell.equals(cell2)){
             return false;
         }
-
-
-
-        if (enableSpecialMove){
+        if (enableSpecialMove) {
             if (availableCellsToMove(worker).contains(cell1))
                 if (player.move(rowBuild, colBuild, worker)){
                     if (availableCellsToMove(worker).contains(cell2))

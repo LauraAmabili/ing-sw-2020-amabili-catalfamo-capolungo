@@ -23,9 +23,9 @@ public class SpecialWin_MoveDown extends PlayerDecorator {
         if (worker.getOldCell()==worker.getCurCell())
             return false;
         return
-                (player.checkWin(worker) ||
-                        (worker.getOldCell().getLevel() - worker.getCurCell().getLevel() >= 2)
-                );
+            (player.checkWin(worker) ||
+                    (worker.getOldCell().getLevel() - worker.getCurCell().getLevel() >= 2)
+            );
 
     }
 }
