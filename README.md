@@ -58,6 +58,8 @@ You can find the ClientJar in Deliverables [here](https://github.com/LauraAmabil
 
 ####CLI
 
+For a better user experience we suggest you to use PowerShell for Windows. 
+
 ```
 $ java -jar path/to/client.jar -cli
 ```
