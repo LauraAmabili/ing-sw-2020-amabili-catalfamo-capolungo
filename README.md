@@ -43,7 +43,7 @@ This game is written in Java, so you need to have Java Runtime Environment 8 or 
 ### Start the server
 
 To start the server, simply locate its jar file and then type into a shell
-You can find the ServerJar in Deliverables [here]()
+You can find the ServerJar in Deliverables [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ServerJar)
 
 ```
 $ java -jar path/to/server.jar
@@ -52,7 +52,7 @@ $ java -jar path/to/server.jar
 ### Start the client
 
 As for the server, to start the client, simply locate its jar file and then type into a shell
-You can find the ClientJar in Deliverables [here]()
+You can find the ClientJar in Deliverables [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ClientJar)
 
 ##### Playing under Windows & macOS
 
@@ -61,6 +61,7 @@ You can find the ClientJar in Deliverables [here]()
 ```
 $ java -jar path/to/client.jar -cli
 ```
+
 
 ####GUI
 
