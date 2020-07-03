@@ -7,10 +7,10 @@ The purpose of the project is to develop the board game [Santorini](https://roxl
 ## Before playing
 
 You can find the complete set of rules of the original board game [here](https://www.ultraboardgames.com/santorini/game-rules.php).
-This game is written in Java, so you need to have Java Runtime Environment 8 or greater installed on your system in order to play. More information [here](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
+Java Runtime Environment 8 or greater is required in order to play. More information [here](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
 
 ### Libraries
-|Librery|Description|
+|Library|Description|
 |---------------|-----------|
 |__maven__|build automation tool|
 |__junit__|unit testing framework|
@@ -40,25 +40,24 @@ This game is written in Java, so you need to have Java Runtime Environment 8 or 
 
 ## Start playing
 
-### Start the server
+### Start the Server
 
-To start the server, simply locate its jar file and then type into a shell
-You can find the ServerJar in Deliverables [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ServerJar)
+The Server.Jar file is into Deliverables folder [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ServerJar)
 
+The execution can be done within a shell with the following command:
 ```
 $ java -jar path/to/server.jar
 ```
 
 ### Start the client
 
-As for the server, to start the client, simply locate its jar file and then type into a shell
-You can find the ClientJar in Deliverables [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ClientJar)
+Similarly, also the Client.Jar file is into Deliverables folder [here](https://github.com/LauraAmabili/ing-sw-2020-amabili-catalfamo-capolungo/tree/master/out/ClientJar)
 
 ##### Playing under Windows & macOS
 
 ####CLI
 
-For a better user experience we suggest you to use PowerShell for Windows. 
+"PowerShell for Windows" is suggested for a better user experience. 
 
 ```
 $ java -jar path/to/client.jar -cli
