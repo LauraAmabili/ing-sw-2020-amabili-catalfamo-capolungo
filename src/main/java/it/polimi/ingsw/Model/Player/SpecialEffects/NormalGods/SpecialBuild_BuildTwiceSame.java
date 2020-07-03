@@ -22,6 +22,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
     @Override
     public void setEnableSpecialBuild(boolean enableSpecialBuild) {
         this.enableSpecialBuild = enableSpecialBuild;
+
     }
 
     @Override

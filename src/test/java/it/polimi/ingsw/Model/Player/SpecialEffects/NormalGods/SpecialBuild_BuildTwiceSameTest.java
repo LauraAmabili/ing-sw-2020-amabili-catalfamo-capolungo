@@ -46,4 +46,28 @@ class SpecialBuild_BuildTwiceSameTest {
 
     }
 
+    @Test
+    public void testSpecialBuild_BuildTwiceSame_2() {
+
+        Worker worker2 = new Worker(2);
+        Worker worker1 = new Worker(1);
+        mockWorkers1.add(worker1);
+        Board board = new Board();
+        mockWorkers1.add(worker1);
+        mockWorkers1.add(worker2);
+        worker1.setCurCell(board.getGrid()[0][0]);
+        worker1.setOldCell(null);
+        mockWorkers1.add(worker1);
+        PlayerInterface player = new SpecialBuild_BuildTwiceSame(new Player("mockName", mockWorkers1, board));
+        player.setMoveUp(false);
+        board.getGrid()[0][1].setLevel(1);
+        assertFalse(player.move(0,1,worker1));
+        board.getGrid()[0][0].setLevel(1);
+        assertTrue(player.move(0,1,worker1));
+        player.setMoveUp(true);
+        board.getGrid()[0][0].setLevel(2);
+        assertTrue(player.move(0,0,worker1));
+
+    }
+
 }

@@ -41,6 +41,7 @@ public class PlayerDecorator implements PlayerInterface, Serializable {
 
     public void setMoveUp(boolean moveUp) {
         this.moveUp = moveUp;
+        player.setMoveUp(moveUp);
     }
 
     @Override
