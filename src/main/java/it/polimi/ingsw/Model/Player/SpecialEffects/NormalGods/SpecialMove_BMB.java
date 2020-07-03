@@ -56,6 +56,9 @@ public class SpecialMove_BMB extends PlayerDecorator {
         BoardCell cell1 = getBoard().getGrid()[rowBuild][colBuild];
         BoardCell cell2 = getBoard().getGrid()[row][col];
 
+        if (cell2.getLevel()>cell1.getLevel())
+            return false;
+
         if (!isMoveUp()){
             if (cell1.getLevel()>worker.getCurCell().getLevel())
                 return false;
