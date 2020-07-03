@@ -49,11 +49,28 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
         BoardCell b = this.getBoard().getGrid()[row][col];
 
         if (enableSpecialBuild) {
-            if (!availableCellsToBuild(worker).contains(b))
-                return false;
-            b.setLevel((b.getLevel() + 2));
-            return true;
-        } else {
+            if (availableCellsToBuild(worker).contains(b)){
+                if (b.getLevel()<=1){
+                    b.setLevel((b.getLevel() + 2));
+                    return true;
+                }
+
+                else if (b.getLevel()==2){
+                    b.setLevel((b.getLevel() + 1));
+                    return true;
+                }
+
+                else if (b.getLevel()==3){
+                    b.setDome(true);
+                    return true;
+                }
+
+            }
+
+
+            return false;
+        }
+        else {
             return player.build(row, col, worker);
         }
     }
@@ -66,6 +83,7 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
      * @param worker number of the worker
      * @return recursion for the double building
      */
+    /*
     @Override
     public List<BoardCell> availableCellsToBuild(@NotNull Worker worker) {
         if (enableSpecialBuild) {
@@ -77,6 +95,8 @@ public class SpecialBuild_BuildTwiceSame extends PlayerDecorator {
         }
         return player.availableCellsToBuild(worker);
     }
+
+     */
 
 
 }
