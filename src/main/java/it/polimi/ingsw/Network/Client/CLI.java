@@ -658,7 +658,9 @@ public class CLI extends NotifyMessages implements UserInterface {
      */
     @Override
     public void lengthNameError()  {
+        System.out.println(GREEN);
         System.out.println("The name was too long, please be under 18 characters ;) ");
+        System.out.println(RESET);
 
     }
 
