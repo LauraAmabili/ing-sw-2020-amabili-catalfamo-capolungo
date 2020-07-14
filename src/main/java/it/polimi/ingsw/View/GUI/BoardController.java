@@ -83,6 +83,12 @@ public abstract class BoardController extends NotifyMessages {
         }
         url = "/godCards/" + gui.getMyCard() + ".png";
         Card1.setImage(new Image(url));
+        if(gui.getDroppedPlayers().size() != 0) {
+            if (gui.getMe().equals(gui.getDroppedPlayers().get(0))) {
+                Card1.setOpacity(0.5);
+                NameText1.setDisable(true);
+            }
+        }
         url = "/godCards/" + gui.getOpponentPlayers().get(0).getActiveCard().getGodName() + ".png";
         Card3.setImage(new Image(url));
         if(gui.getDroppedPlayers().size() != 0) {
@@ -91,7 +97,7 @@ public abstract class BoardController extends NotifyMessages {
                 NameText3.setDisable(true);
             }
         }
-        if(gui.getOpponentPlayers().size() > 1) {
+        if(gui.getOpponentPlayers().size() != 0) {
             url = "/godCards/" + gui.getOpponentPlayers().get(1).getActiveCard().getGodName() + ".png";
             Card2.setImage(new Image(url));
             if(gui.getDroppedPlayers().size() != 0) {

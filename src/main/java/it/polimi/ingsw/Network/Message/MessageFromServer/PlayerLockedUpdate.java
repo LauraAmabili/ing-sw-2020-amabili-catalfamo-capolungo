@@ -8,16 +8,20 @@ public class PlayerLockedUpdate extends MessageFromServer {
 
 
     final String nickname;
+    private String currentPlayer;
 
-    public PlayerLockedUpdate(String nickname) {
-
+    public PlayerLockedUpdate(String nickname, String currentPlayer) {
         this.nickname = nickname;
+        this.currentPlayer = currentPlayer;
     }
 
     public String getNickname() {
         return nickname;
     }
 
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     /**
      * Calls the correspondent visit method based on the type of Message from the Server

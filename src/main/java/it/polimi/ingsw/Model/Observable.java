@@ -93,9 +93,9 @@ public class Observable {
         }
 
     }
-    void notifyPlayerHasLost(String playerName)  {
+    void notifyPlayerHasLost(String playerName, String current)  {
         for(ObserverModel o : observerModels){
-            o.updatePlayerHasLost(playerName);
+            o.updatePlayerHasLost(playerName, current);
         }
     }
     void notifyTimeToSetCard(List chosenGods, PlayerInterface currentPlayerName)  {
@@ -158,9 +158,9 @@ public class Observable {
         }
     }
 
-    public void notifyChooseWorker(String currentPlayer)  {
+    public void notifyChooseWorker(String currentPlayer, Board board)  {
         for(ObserverModel o : observerModels){
-            o.updateTimeToChooseWorker(currentPlayer);
+            o.updateTimeToChooseWorker(currentPlayer, board);
         }
 
     }

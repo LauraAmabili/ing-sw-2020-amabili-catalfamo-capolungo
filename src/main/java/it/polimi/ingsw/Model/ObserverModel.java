@@ -100,8 +100,9 @@ public interface ObserverModel {
     /**
      * Sends a message to all the players if someone win
      * @param playerName name of the player current playing
+     * @param current
      */
-    void updatePlayerHasLost(String playerName) ;
+    void updatePlayerHasLost(String playerName, String current) ;
     /**
      * Sends to all the client that it's time for the current player to choose the Worker because the player can move
      * @param nickname nickname of the current player
@@ -164,7 +165,7 @@ public interface ObserverModel {
      * called when it's time for the player to decide the worker
      * @param current name of the current player
      */
-    void updateTimeToChooseWorker(String current) ;
+    void updateTimeToChooseWorker(String current, Board board) ;
     /**
      * sends a message to the client if the player has a card that needs the effect to be activated
      * @param currentPlayer name of the current player

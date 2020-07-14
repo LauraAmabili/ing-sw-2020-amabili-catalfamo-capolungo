@@ -221,7 +221,15 @@ public class GUI implements UserInterface {
 
     @Override
     public void PlayerLockedUpdate(PlayerLockedUpdate playerLockedUpdate) {
-
+        currentPlayer = playerLockedUpdate.getCurrentPlayer();
+        for (PlayerInterface opponentPlayer : opponentPlayers) {
+            if (opponentPlayer.getNickname().equals(playerLockedUpdate.getNickname())) {
+                droppedPlayers.add(opponentPlayer);
+            }
+        }
+        if(getMe().getNickname().equals(playerLockedUpdate.getNickname())) {
+            droppedPlayers.add(getMe());
+        }
     }
 
     /**

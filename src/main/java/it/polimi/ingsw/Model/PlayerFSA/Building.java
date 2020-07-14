@@ -30,7 +30,7 @@ public class Building extends PlayerFSA {
         this.effect = effect;
         player.setEnableSpecialBuild(effect);
         if(game.getCurrentTurn().checkLockWorker(game.getCurrentTurn().getCurrentPlayer().getWorkerRef().get(worker - 1))) {
-            game.NoPossibleMoves(player.getNickname());
+            game.NoPossibleMoves(player.getNickname(), game.getCurrentTurn().getCurrentPlayer().getNickname());
             game.delPlayer(game.getCurrentTurn().getCurrentPlayer());
             if(game.getOnlinePlayers().size() == 1) {
                 game.updateWin(player);

@@ -27,9 +27,15 @@ public class Moving extends PlayerFSA {
      */
     @Override
     public void canIMove()  {
+        int i;
         if(game.getCurrentTurn().checkLockPlayer()) {
-            game.NoPossibleMoves(player.getNickname());
+            for(i = 0; i < game.getOnlinePlayers().size(); i++) {
+                if(player.equals(game.getOnlinePlayers().get(i))) {
+                    break;
+                }
+            }
             game.delPlayer(game.getCurrentTurn().getCurrentPlayer());
+            game.NoPossibleMoves(player.getNickname(), game.getOnlinePlayers().get(i).getNickname());
             if(game.getOnlinePlayers().size() == 1) {
                 game.updateWin(game.getOnlinePlayers().get(0));
             } else {

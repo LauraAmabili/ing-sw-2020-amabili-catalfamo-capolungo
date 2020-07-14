@@ -333,8 +333,8 @@ public class Game extends Observable {
      *
      * @param name nae of the player
      */
-    public void NoPossibleMoves(String name)  {
-        notifyPlayerHasLost(name);
+    public void NoPossibleMoves(String name, String current)  {
+        notifyPlayerHasLost(name, current);
     }
 
     /**
@@ -487,7 +487,7 @@ public class Game extends Observable {
         if (getCurrentTurn().getCurrentPlayer().isHasSpecialMove()) {
             notifyAskForEffect(currentTurn.getCurrentPlayer().getNickname());
         } else {
-            notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname());
+            notifyChooseWorker(this.getCurrentTurn().getCurrentPlayer().getNickname(), board);
         }
     }
 

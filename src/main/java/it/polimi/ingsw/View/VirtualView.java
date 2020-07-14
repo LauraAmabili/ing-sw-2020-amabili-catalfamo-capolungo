@@ -6,7 +6,6 @@ import it.polimi.ingsw.Model.God.God;
 import it.polimi.ingsw.Model.Player.Player;
 import it.polimi.ingsw.Model.Player.SpecialEffects.PlayerInterface;
 
-import java.io.IOException;
 import java.util.*;
 
 import it.polimi.ingsw.Network.Message.MessageFromServer.*;
@@ -408,11 +407,12 @@ public class VirtualView extends Observable implements ObserverModel {
     /**
      * Sends a message to all the players if someone win
      * @param playerNickname name of the player current playing
+     * @param current
      */
     @Override
-    public void updatePlayerHasLost(String playerNickname) {
+    public void updatePlayerHasLost(String playerNickname, String current) {
 
-        thread.sendToClient(new PlayerLockedUpdate(playerNickname));
+        thread.sendToClient(new PlayerLockedUpdate(playerNickname, current));
 
 
     }
@@ -435,8 +435,9 @@ public class VirtualView extends Observable implements ObserverModel {
      * @param nickname name of the current player
      */
     @Override
-    public void updateTimeToChooseWorker(String nickname) {
+    public void updateTimeToChooseWorker(String nickname, Board board) {
 
+        thread.sendToClient(new BoardUpdate(board));
         chooseWorker(nickname);
 
     }

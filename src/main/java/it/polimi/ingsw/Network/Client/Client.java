@@ -101,7 +101,6 @@ public class Client {
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-
                 });
             } else {
                 System.out.println("Server not found.\n Restart client");
@@ -160,8 +159,22 @@ public class Client {
                         killClient();
                     }
                     catch (SocketException e) {
-                        System.out.println("Server is offline");
-                        System.out.println("You have been disconnected");
+                        if(userInterface.getClass() == GUI.class) {
+                            GUI gui = (GUI) getUserInterface();
+                            Stage stage = gui.getPrimaryStage();
+                            Platform.runLater(() -> {
+                                FXMLLoader loader = new FXMLLoader(GUI_App.class.getResource("/Scenes/ServerOffline.fxml"));
+                                try {
+                                    Parent root = loader.load();
+                                    stage.getScene().setRoot(root);
+                                } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                }
+                            });
+                        } else {
+                            System.out.println("Server is offline");
+                            System.out.println("You have been disconnected");
+                        }
                         setActive(false);
                         clientBeatSender.setActive(false);
                         killClient();
